@@ -1,0 +1,5 @@
+.property-single-item .open-house-item { 
+	border-bottom:1px solid rgba(0, 0, 0, 0.1);
+	padding:15px 0px; 
+}
+.property-single-item .open-house-item:last-child { border-bottom:none; }
