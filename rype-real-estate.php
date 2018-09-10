@@ -148,6 +148,10 @@ if(rype_real_estate_is_plugin_active('rype-add-ons/rype-add-ons.php')) {
 	            'floor_plan_note' => __( 'Provide the absolute url to a hosted image.', 'rype-real-estate' ),
 	        );
 	        wp_localize_script( 'rype-real-estate', 'rype_real_estate_local_script', $translation_array );
+	    
+	        //dynamic styles
+        	wp_enqueue_style('rype-real-estate-dynamic-styles', plugins_url('/css/dynamic-styles.css', __FILE__));
+        	include( plugin_dir_path( __FILE__ ) . '/css/dynamic_styles.php');
 	    }
 	}
 	add_action('wp_enqueue_scripts', 'rype_real_estate_front_end_scripts');

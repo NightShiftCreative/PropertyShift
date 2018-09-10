@@ -12,7 +12,7 @@ function rype_real_estate_get_custom_properties(array $custom_args, $custom_show
 //returns property count (supply user ID to return property count for that user)
 function rype_real_estate_count_properties($type, $user_id = null) {
         $args_total_properties = array(
-            'post_type' => 'rao-property',
+            'post_type' => 'rype-property',
             'showposts' => -1,
             'author_name' => $user_id,
             'post_status' => $type 
@@ -133,7 +133,7 @@ function rype_real_estate_get_property_address($post_id) {
     $values = get_post_custom($post_id);
     $street_address = isset( $values['rypecore_property_address'] ) ? esc_attr( $values['rypecore_property_address'][0] ) : '';
     $property_address = '';
-    $property_location = rao_get_property_location($post_id);
+    $property_location = rype_real_estate_get_property_location($post_id);
     if(!empty($street_address) || !empty($property_location)) { $property_address .= rypecore_get_icon($icon_set, 'map-marker', 'map-marker', 'location'); }
     if(!empty($street_address)) { $property_address .= $street_address; }
     if(!empty($street_address) && !empty($property_location)) { $property_address .= ', '; }
@@ -180,7 +180,7 @@ function rype_real_estate_get_property_amenities($post_id, $hide_empty = true, $
 add_action( 'init', 'rype_real_estate_create_properties_post_type' );
 function rype_real_estate_create_properties_post_type() {
     $properties_slug = get_option('rypecore_property_detail_slug', 'properties');
-    register_post_type( 'rao-property',
+    register_post_type( 'rype-property',
         array(
             'labels' => array(
                 'name' => __( 'Properties', 'rype-real-estate' ),
@@ -200,7 +200,7 @@ function rype_real_estate_create_properties_post_type() {
 
  /* Add property details (meta box) */ 
  function rype_real_estate_add_meta_box() {
-    add_meta_box( 'property-details-meta-box', 'Property Details', 'rype_real_estate_property_details', 'rao-property', 'normal', 'high' );
+    add_meta_box( 'property-details-meta-box', 'Property Details', 'rype_real_estate_property_details', 'rype-property', 'normal', 'high' );
  }
 add_action( 'add_meta_boxes', 'rype_real_estate_add_meta_box' );
 
@@ -241,7 +241,7 @@ function rype_real_estate_property_details($post) {
             <li><a href="#map" title="<?php esc_html_e('Map', 'rype-real-estate'); ?>" onclick="refreshMap()"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Map', 'rype-real-estate'); ?></span></a></li>
             <li><a href="#video" title="<?php esc_html_e('Video', 'rype-real-estate'); ?>"><i class="fa fa-video-camera"></i> <span class="tab-text"><?php echo esc_html_e('Video', 'rype-real-estate'); ?></span></a></li>
             <li><a href="#agent" title="<?php esc_html_e('Owner Info', 'rype-real-estate'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Owner Info', 'rype-real-estate'); ?></span></a></li>
-            <?php do_action('rao_real_estate_after_property_tabs'); ?>
+            <?php do_action('rype_real_estate_after_property_tabs'); ?>
         </ul>
 
         <div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php echo esc_html_e('Loading...', 'rype-real-estate'); ?></div>
@@ -401,7 +401,7 @@ function rype_real_estate_property_details($post) {
         <!--*************************************************-->
         <div id="gallery" class="tab-content">
             <h3><?php echo esc_html_e('Gallery', 'rype-real-estate'); ?></h3>
-            <?php echo rao_generate_gallery($additional_images); ?>
+            <?php if(function_exists('rao_generate_gallery')) { echo rao_generate_gallery($additional_images); } ?>
         </div>
         
         <!--*************************************************-->
@@ -517,7 +517,7 @@ function rype_real_estate_property_details($post) {
             <table class="admin-module">
                 <?php
                     $agent_listing_args = array(
-                        'post_type' => 'rao-agent',
+                        'post_type' => 'rype-agent',
                         'posts_per_page' => -1
                         );
                     $agent_listing_query = new WP_Query( $agent_listing_args );
@@ -557,7 +557,7 @@ function rype_real_estate_property_details($post) {
         <!--*************************************************-->
         <!-- ADD-ONS -->
         <!--*************************************************-->
-        <?php do_action('rao_real_estate_after_property_tab_content', $values); ?>
+        <?php do_action('rype_real_estate_after_property_tab_content', $values); ?>
 
         <div class="clear"></div>
     </div>
@@ -667,7 +667,7 @@ function rype_real_estate_save_meta_box( $post_id ) {
         update_post_meta( $post_id, 'rypecore_agent_custom_url', wp_kses( $_POST['rypecore_agent_custom_url'], $allowed ) );
 
     //hook in for other add-ons
-    do_action('rao_real_estate_save_property_details', $post_id);
+    do_action('rype_real_estate_save_property_details', $post_id);
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -693,7 +693,7 @@ function rype_real_estate_property_type_init() {
     
     register_taxonomy(
         'property_type',
-        'rao-property',
+        'rype-property',
         array(
             'label'         => __( 'Property Types', 'rype-real-estate' ),
             'labels'        => $labels,
@@ -724,7 +724,7 @@ function rype_real_estate_property_status_init() {
     
     register_taxonomy(
         'property_status',
-        'rao-property',
+        'rype-property',
         array(
             'label'         => __( 'Property Status', 'rype-real-estate' ),
             'labels'        => $labels,
@@ -755,7 +755,7 @@ function rype_real_estate_property_location_init() {
     
     register_taxonomy(
         'property_location',
-        'rao-property',
+        'rype-property',
         array(
             'label'         => __( 'Property Location', 'rype-real-estate' ),
             'labels'        => $labels,
@@ -786,7 +786,7 @@ function rype_real_estate_property_amenities_init() {
     
     register_taxonomy(
         'property_amenities',
-        'rao-property',
+        'rype-property',
         array(
             'label'         => __( 'Amenities', 'rype-real-estate' ),
             'labels'        => $labels,
@@ -800,7 +800,7 @@ add_action( 'init', 'rype_real_estate_property_amenities_init' );
 /*-----------------------------------------------------------------------------------*/
 /*  Add Custom Columns to Properties Post Type
 /*-----------------------------------------------------------------------------------*/
-add_filter( 'manage_edit-rao-property_columns', 'rype_real_estate_edit_properties_columns' ) ;
+add_filter( 'manage_edit-rype-property_columns', 'rype_real_estate_edit_properties_columns' ) ;
 
 function rype_real_estate_edit_properties_columns( $columns ) {
 
@@ -820,7 +820,7 @@ function rype_real_estate_edit_properties_columns( $columns ) {
 }
 
 
-add_action( 'manage_rao-property_posts_custom_column', 'rype_real_estate_manage_properties_columns', 10, 2 );
+add_action( 'manage_rype-property_posts_custom_column', 'rype_real_estate_manage_properties_columns', 10, 2 );
 
 function rype_real_estate_manage_properties_columns( $column, $post_id ) {
     global $post;
@@ -1029,12 +1029,12 @@ add_filter( 'rao_custom_header_vars', 'rype_real_estate_properties_map_custom_he
 function rype_real_estate_property_dashboard_widgets($banner_source) {
     global $current_user; ?>
     <div class="user-dashboard-widget stat">
-        <span><?php echo rao_count_properties(array('publish', 'pending'), $current_user->user_login); ?></span> 
+        <span><?php echo rype_real_estate_count_properties(array('publish', 'pending'), $current_user->user_login); ?></span> 
         <?php esc_html_e('Total Properties', 'rypecore'); ?>
     </div>
 
     <div class="user-dashboard-widget stat">
-        <span><?php echo rao_count_properties(array('pending'), $current_user->user_login); ?></span> 
+        <span><?php echo rype_real_estate_count_properties(array('pending'), $current_user->user_login); ?></span> 
         <?php esc_html_e('Pending Properties', 'rypecore'); ?>
     </div>
 
@@ -1044,11 +1044,11 @@ function rype_real_estate_property_dashboard_widgets($banner_source) {
         </div>
         <?php 
             $args_recent = array(
-                'post_type' => 'rao-property',
+                'post_type' => 'rype-property',
                 'showposts' => 4,
                 'author_name' => $current_user->user_login
             );
-            rao_get_custom_properties($args_recent, false, 'grid', false, esc_html__('Sorry, no recent properties were found.', 'rype-real-estate') );
+            rype_real_estate_get_custom_properties($args_recent, false, 'grid', false, esc_html__('Sorry, no recent properties were found.', 'rype-real-estate') );
         ?>
     </div>
 <?php }
