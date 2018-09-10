@@ -25,15 +25,52 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
     'rype-real-estate'
 );
 
-//set github access token
-$myUpdateChecker->setAuthentication('73a172a4a4cf96b8ac3882982671d7cf13701c27');
+/*-----------------------------------------------------------------------------------*/
+/*  Require Rype Add-Ons
+/*-----------------------------------------------------------------------------------*/
+require_once( plugin_dir_path( __FILE__ ) . '/includes/plugins/class-tgm-plugin-activation.php');
+add_action( 'tgmpa_register', 'rype_real_estate_register_required_plugins' );
+function rype_real_estate_register_required_plugins() {
+
+    $plugins = array(
+        array(
+			'name'         => 'Rype Add-ons', // The plugin name.
+			'slug'         => 'rype-add-ons', // The plugin slug (typically the folder name).
+			'source'       => 'https://github.com/RypeCreative/Rype-Add-Ons/archive/1.0.0.zip', // The plugin source.
+			'required'     => true, // If false, the plugin is only 'recommended' instead of required.
+			'version'	   => '1.0.0',
+			'force_activation'   => fasle,
+			'force_deactivation' => false,
+		),
+    );
+
+    $config = array(
+        'id'           => 'rype-real-estate',       // Unique ID for hashing notices for multiple instances of TGMPA.
+        'default_path' => '',                      // Default absolute path to bundled plugins.
+        'menu'         => 'tgmpa-install-plugins', // Menu slug.
+        'has_notices'  => true,                    // Show admin notices or not.
+        'dismissable'  => false,                    // If false, a user cannot dismiss the nag message.
+        'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+        'is_automatic' => true,                   // Automatically activate plugins after installation or not.
+        'message'      => '',                      // Message to output right before the plugins table.
+        'strings'      => array(
+			'notice_can_install_required'     => _n_noop(
+				'Rype Real Estate requires the following plugin: %1$s.',
+				'Rype Real Estate requires the following plugins: %1$s.',
+				'rype-real-estate'
+			),
+		),
+    );
+
+    tgmpa( $plugins, $config );
+}
 
 /*-----------------------------------------------------------------------------------*/
 /*	Include Admin Plugin Scripts and Stylesheets
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_admin_scripts() {
 	if (is_admin()) {
-		wp_enqueue_script('rype-real-estate-admin-js', plugins_url('/js/rype-real-estate-admin.js', __FILE__), array('jquery', 'jquery-ui-core', 'media-upload', 'thickbox'), '', true);
+		wp_enqueue_script('rype-real-estate-admin-js', plugins_url('/js/rype-real-estate-admin.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'media-upload', 'thickbox'), '', true);
 		wp_enqueue_style('rype-real-estate-admin-css', plugins_url('/css/rype-real-estate-admin.css',  __FILE__), array(), '1.0', 'all');
 
 		/* localize scripts */
@@ -108,9 +145,14 @@ function rype_real_estate_front_end_scripts() {
 add_action('wp_enqueue_scripts', 'rype_real_estate_front_end_scripts');
 
 /*-----------------------------------------------------------------------------------*/
-/*  ADD ADMIN PAGES
+/*  ADD ADMIN PAGES AND SETTINGS
 /*-----------------------------------------------------------------------------------*/
 include( plugin_dir_path( __FILE__ ) . 'includes/admin-pages.php');
+
+/*-----------------------------------------------------------------------------------*/
+/*  Includes Property Related Functions
+/*-----------------------------------------------------------------------------------*/
+include( plugin_dir_path( __FILE__ ) . '/includes/property-functions.php');
 
 
 ?>

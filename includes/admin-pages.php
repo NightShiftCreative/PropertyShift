@@ -29,8 +29,6 @@ function rype_real_estate_settings_page() { ?>
 		    <a href="?page=rype-real-estate-help" class="nav-tab"><?php esc_html_e('Help', 'rype-real-estate'); ?></a>
 		</h2>
 
-		<h3><?php esc_html_e('Settings', 'rype-real-estate'); ?></h3>
-
 		<form method="post" action="options.php">
             <?php settings_fields( 'rype-real-estate-settings-group' ); ?>
             <?php do_settings_sections( 'rype-real-estate-settings-group' ); ?>
@@ -53,8 +51,6 @@ function rype_real_estate_add_ons_page() { ?>
 		    <a href="?page=rype-real-estate-help" class="nav-tab"><?php esc_html_e('Help', 'rype-real-estate'); ?></a>
 		</h2>
 
-		<h3><?php esc_html_e('Add-Ons', 'rype-real-estate'); ?></h3>
-
 		<form method="post" action="options.php">
             <?php settings_fields( 'rype-real-estate-add-ons-group' ); ?>
             <?php do_settings_sections( 'rype-real-estate-add-ons-group' ); ?>
@@ -74,8 +70,6 @@ function rype_real_estate_help_page() { ?>
 		    <a href="?page=rype-real-estate-add-ons" class="nav-tab"><?php esc_html_e('Add-Ons', 'rype-real-estate'); ?></a>
 		    <a href="?page=rype-real-estate-help" class="nav-tab nav-tab-active"><?php esc_html_e('Help', 'rype-real-estate'); ?></a>
 		</h2>
-
-		<h3><?php esc_html_e('Help', 'rype-real-estate'); ?></h3>
     </div>
 <?php }
 
