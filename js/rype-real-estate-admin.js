@@ -60,22 +60,22 @@ jQuery(document).ready(function($) {
         var count = $('.admin-module-floor-plans .accordion .floor-plan-item').length;
 
 		var floorPlanItem = '\
-            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <span class="repeater-title-mirror floor-plan-title-mirror">'+ rao_real_estate_local_script.new_floor_plan +'</span> <span class="delete delete-floor-plan right"><i class="fa fa-trash"></i> '+ rao_real_estate_local_script.delete_text +'</span></h3> \
+            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <span class="repeater-title-mirror floor-plan-title-mirror">'+ rype_real_estate_local_script.new_floor_plan +'</span> <span class="delete delete-floor-plan right"><i class="fa fa-trash"></i> '+ rype_real_estate_local_script.delete_text +'</span></h3> \
 			<div class="floor-plan-item"> \
 				<div class="floor-plan-left"> \
-					<label>'+ rao_real_estate_local_script.floor_plan_title +' </label> <input class="repeater-title floor-plan-title" type="text" name="rypecore_floor_plans['+count+'][title]" placeholder="'+ rao_real_estate_local_script.new_floor_plan +'" /><br/> \
-					<label>'+ rao_real_estate_local_script.floor_plan_size +' </label> <input type="text" name="rypecore_floor_plans['+count+'][size]" /><br/> \
-					<label>'+ rao_real_estate_local_script.floor_plan_rooms +' </label> <input type="number" name="rypecore_floor_plans['+count+'][rooms]" /><br/> \
-					<label>'+ rao_real_estate_local_script.floor_plan_bathrooms +' </label> <input type="number" name="rypecore_floor_plans['+count+'][baths]" /><br/> \
+					<label>'+ rype_real_estate_local_script.floor_plan_title +' </label> <input class="repeater-title floor-plan-title" type="text" name="rypecore_floor_plans['+count+'][title]" placeholder="'+ rype_real_estate_local_script.new_floor_plan +'" /><br/> \
+					<label>'+ rype_real_estate_local_script.floor_plan_size +' </label> <input type="text" name="rypecore_floor_plans['+count+'][size]" /><br/> \
+					<label>'+ rype_real_estate_local_script.floor_plan_rooms +' </label> <input type="number" name="rypecore_floor_plans['+count+'][rooms]" /><br/> \
+					<label>'+ rype_real_estate_local_script.floor_plan_bathrooms +' </label> <input type="number" name="rypecore_floor_plans['+count+'][baths]" /><br/> \
 				</div> \
                 <div class="floor-plan-right"> \
-                    <label>'+ rao_real_estate_local_script.floor_plan_description +' </label> \
+                    <label>'+ rype_real_estate_local_script.floor_plan_description +' </label> \
 				    <textarea name="rypecore_floor_plans['+count+'][description]"></textarea> \
 				    <div class="floor-plan-img"> \
-                        <label>'+ rao_real_estate_local_script.floor_plan_img +' </label> \
+                        <label>'+ rype_real_estate_local_script.floor_plan_img +' </label> \
                         <input type="text" name="rypecore_floor_plans['+count+'][img]" /> \
-                        <input id="_btn" class="rao_upload_image_button" type="button" value="'+ rao_real_estate_local_script.upload_img +'" /> \
-                        <span class="button-secondary remove">'+ rao_real_estate_local_script.remove_text +'</span> \
+                        <input id="_btn" class="rao_upload_image_button" type="button" value="'+ rype_real_estate_local_script.upload_img +'" /> \
+                        <span class="button-secondary remove">'+ rype_real_estate_local_script.remove_text +'</span> \
                     </div> \
                 </div> \
                 <div class="clear"></div> \
@@ -154,47 +154,47 @@ jQuery(document).ready(function($) {
         var fieldID = Math.round(new Date().getTime() + (Math.random() * 100));
 
         if(customFieldExists(fieldValue)) { 
-            alert(rao_real_estate_local_script.custom_field_dup_error); 
+            alert(rype_real_estate_local_script.custom_field_dup_error); 
         } else { 
             var customFieldItem = '\
                 <table class="custom-field-item sortable-item"> \
                     <tr> \
                         <td> \
-                            <label>'+rao_real_estate_local_script.value_text+'</label> \
+                            <label>'+rype_real_estate_local_script.value_text+'</label> \
                             <input type="text" class="custom-field-name-input" name="rypecore_custom_fields['+count+'][name]" value="'+fieldValue+'" /> \
                             <input type="hidden" class="custom-field-id" name="rypecore_custom_fields['+count+'][id]" value="'+fieldID+'" readonly /> \
                             <div class="edit-custom-field-form hide-soft"> \
                                 <table class="admin-module"> \
                                     <tr> \
-                                    <td class="admin-module-label"><label>'+rao_real_estate_local_script.field_type_text+'</label></td> \
+                                    <td class="admin-module-label"><label>'+rype_real_estate_local_script.field_type_text+'</label></td> \
                                     <td class="admin-module-field"> \
                                         <select class="custom-field-type-select" name="rypecore_custom_fields['+count+'][type]"> \
-                                            <option value="text">'+rao_real_estate_local_script.text_input_text+'</option> \
-                                            <option value="num">'+rao_real_estate_local_script.num_input_text+'</option> \
-                                            <option value="select">'+rao_real_estate_local_script.select_text+'</option> \
+                                            <option value="text">'+rype_real_estate_local_script.text_input_text+'</option> \
+                                            <option value="num">'+rype_real_estate_local_script.num_input_text+'</option> \
+                                            <option value="select">'+rype_real_estate_local_script.select_text+'</option> \
                                         </select> \
                                     </td> \
                                     </tr> \
                                 </table> \
                                 <table class="admin-module admin-module-select-options hide-soft"> \
                                     <tr> \
-                                    <td class="admin-module-label"><label>'+rao_real_estate_local_script.select_options_text+'</label></td> \
+                                    <td class="admin-module-label"><label>'+rype_real_estate_local_script.select_options_text+'</label></td> \
                                     <td class="admin-module-field"> \
                                         <div class="custom-field-select-options-container"></div> \
-                                        <div class="button add-custom-field-select">'+rao_real_estate_local_script.select_options_add+'</div> \
+                                        <div class="button add-custom-field-select">'+rype_real_estate_local_script.select_options_add+'</div> \
                                     </td> \
                                     </tr> \
                                 </table> \
                                 <table class="admin-module no-border"> \
                                     <tr> \
-                                    <td class="admin-module-label"><label>'+rao_real_estate_local_script.front_end_text+'</label></td> \
+                                    <td class="admin-module-label"><label>'+rype_real_estate_local_script.front_end_text+'</label></td> \
                                     <td class="admin-module-field"><input type="checkbox" name="rypecore_custom_fields['+count+'][front_end]" checked /></td> \
                                     </tr> \
                                 </table> \
                             </div> \
                         </td> \
-                        <td class="custom-field-action edit-custom-field"><div class="sortable-item-action"><i class="fa fa-cog"></i> '+rao_real_estate_local_script.edit_text+'</div></td> \
-                        <td class="custom-field-action delete-custom-field"><div class="sortable-item-action"><i class="fa fa-trash"></i> '+rao_real_estate_local_script.remove_text+'</div></td> \
+                        <td class="custom-field-action edit-custom-field"><div class="sortable-item-action"><i class="fa fa-cog"></i> '+rype_real_estate_local_script.edit_text+'</div></td> \
+                        <td class="custom-field-action delete-custom-field"><div class="sortable-item-action"><i class="fa fa-trash"></i> '+rype_real_estate_local_script.remove_text+'</div></td> \
                     </tr> \
                 </table> \
             ';
@@ -228,7 +228,7 @@ jQuery(document).ready(function($) {
             existingFields.push(existingFieldValue);
         });
         if($.inArray(fieldValue, existingFields) !== -1) { 
-            alert(rao_real_estate_local_script.custom_field_dup_error);
+            alert(rype_real_estate_local_script.custom_field_dup_error);
             $(this).val(originalFieldValue);
         } else {
             var fieldID = $(this).parent().find('.custom-field-id').val();
@@ -240,7 +240,7 @@ jQuery(document).ready(function($) {
 
     //delete custom field
     $('.admin-module-custom-fields').on("click", ".delete-custom-field", function() {
-        var confirmMessage = rao_real_estate_local_script.delete_custom_field_confirm;
+        var confirmMessage = rype_real_estate_local_script.delete_custom_field_confirm;
         if (confirm(confirmMessage) == true) {
             $(this).parent().parent().parent().remove();
             var customFieldID = $(this).parent().find('.custom-field-id').val();
@@ -249,7 +249,7 @@ jQuery(document).ready(function($) {
                 url: 'admin-ajax.php',
                 type: 'POST',
                 data: {
-                    action : 'rao_delete_custom_field',
+                    action : 'rype_real_estate_delete_custom_field',
                     key: customFieldID
                 },
                 success: function(data){
@@ -262,7 +262,7 @@ jQuery(document).ready(function($) {
     //custom field select options
     $('.admin-module-custom-fields').on("click", ".add-custom-field-select", function() {
         var count = $(this).closest('.custom-field-item').index('.custom-field-item');
-        var selectOption = '<p><input type="text" name="rypecore_custom_fields['+count+'][select_options][]" placeholder="'+rao_real_estate_local_script.option_name_text+'" /><span class="delete-custom-field-select"><i class="fa fa-times"></i></span></p>';
+        var selectOption = '<p><input type="text" name="rypecore_custom_fields['+count+'][select_options][]" placeholder="'+rype_real_estate_local_script.option_name_text+'" /><span class="delete-custom-field-select"><i class="fa fa-times"></i></span></p>';
         $(this).parent().find('.custom-field-select-options-container').append(selectOption);
     });
 
@@ -303,13 +303,13 @@ jQuery(document).ready(function($) {
         });
 
         if($.inArray(customFilterFieldName, existingFilterFields) !== -1) { 
-            alert(rao_real_estate_local_script.custom_field_dup_error); 
+            alert(rype_real_estate_local_script.custom_field_dup_error); 
         } else {
             var customFilterField = '\
                 <li class="sortable-item custom-filter-field custom-filter-field-'+customFilterFieldID+'"> \
                     <div class="sortable-item-header"> \
                         <div class="sort-arrows"><i class="fa fa-bars"></i></div> \
-                        <span class="sortable-item-action remove right"><i class="fa fa-times"></i> '+rao_real_estate_local_script.remove_text+'</span> \
+                        <span class="sortable-item-action remove right"><i class="fa fa-times"></i> '+rype_real_estate_local_script.remove_text+'</span> \
                         <span class="sortable-item-title custom-filter-field-label">'+customFilterFieldName+'</span> \
                         <span class="admin-module-note">(Custom Field)</span> \
                         <div class="clear"></div> \
