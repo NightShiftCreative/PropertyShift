@@ -6,57 +6,57 @@
 function rype_real_estate_load_default_property_filter_items() {
     $property_filter_items_default = array(
         0 => array(
-            'name' => esc_html__('Property Type', 'rype-add-ons'),
-            'label' => esc_html__('Property Type', 'rype-add-ons'),
-            'placeholder' => esc_html__('Any', 'rype-add-ons'),
+            'name' => esc_html__('Property Type', 'rype-real-estate'),
+            'label' => esc_html__('Property Type', 'rype-real-estate'),
+            'placeholder' => esc_html__('Any', 'rype-real-estate'),
             'slug' => 'property_type',
             'active' => 'true',
             'custom' => 'false',
         ),
         1 => array(
-            'name' => esc_html__('Property Status', 'rype-add-ons'),
-            'label' => esc_html__('Property Status', 'rype-add-ons'),
-            'placeholder' => esc_html__('Any', 'rype-add-ons'),
+            'name' => esc_html__('Property Status', 'rype-real-estate'),
+            'label' => esc_html__('Property Status', 'rype-real-estate'),
+            'placeholder' => esc_html__('Any', 'rype-real-estate'),
             'slug' => 'property_status',
             'active' => 'true',
             'custom' => 'false',
         ),
         2 => array(
-            'name' => esc_html__('Property Location', 'rype-add-ons'),
-            'label' => esc_html__('Property Location', 'rype-add-ons'),
-            'placeholder' => esc_html__('Any', 'rype-add-ons'),
+            'name' => esc_html__('Property Location', 'rype-real-estate'),
+            'label' => esc_html__('Property Location', 'rype-real-estate'),
+            'placeholder' => esc_html__('Any', 'rype-real-estate'),
             'slug' => 'property_location',
             'active' => 'true',
             'custom' => 'false',
         ),
         3 => array(
-            'name' => esc_html__('Price Range', 'rype-add-ons'),
-            'label' => esc_html__('Price Range', 'rype-add-ons'),
+            'name' => esc_html__('Price Range', 'rype-real-estate'),
+            'label' => esc_html__('Price Range', 'rype-real-estate'),
             'slug' => 'price',
             'active' => 'true',
             'custom' => 'false',
         ),
         4 => array(
-            'name' => esc_html__('Bedrooms', 'rype-add-ons'),
-            'label' => esc_html__('Bedrooms', 'rype-add-ons'),
-            'placeholder' => esc_html__('Any', 'rype-add-ons'),
+            'name' => esc_html__('Bedrooms', 'rype-real-estate'),
+            'label' => esc_html__('Bedrooms', 'rype-real-estate'),
+            'placeholder' => esc_html__('Any', 'rype-real-estate'),
             'slug' => 'beds',
             'active' => 'true',
             'custom' => 'false',
         ),
         5 => array(
-            'name' => esc_html__('Bathrooms', 'rype-add-ons'),
-            'label' => esc_html__('Bathrooms', 'rype-add-ons'),
-            'placeholder' => esc_html__('Any', 'rype-add-ons'),
+            'name' => esc_html__('Bathrooms', 'rype-real-estate'),
+            'label' => esc_html__('Bathrooms', 'rype-real-estate'),
+            'placeholder' => esc_html__('Any', 'rype-real-estate'),
             'slug' => 'baths',
             'active' => 'true',
             'custom' => 'false',
         ),
         6 => array(
-            'name' => esc_html__('Area', 'rype-add-ons'),
-            'label' => esc_html__('Area', 'rype-add-ons'),
-            'placeholder' => esc_html__('Min', 'rype-add-ons'),
-            'placeholder_second' => esc_html__('Max', 'rype-add-ons'),
+            'name' => esc_html__('Area', 'rype-real-estate'),
+            'label' => esc_html__('Area', 'rype-real-estate'),
+            'placeholder' => esc_html__('Min', 'rype-real-estate'),
+            'placeholder_second' => esc_html__('Max', 'rype-real-estate'),
             'slug' => 'area',
             'active' => 'true',
             'custom' => 'false',
@@ -74,11 +74,11 @@ function rype_real_estate_create_property_filter_post_type() {
     register_post_type( 'rype-property-filter',
         array(
             'labels' => array(
-                'name' => __( 'Property Filters', 'rype-add-ons' ),
-                'singular_name' => __( 'Property Filter', 'rype-add-ons' ),
-                'add_new_item' => __( 'Add New Property Filter', 'rype-add-ons' ),
-                'search_items' => __( 'Search Property Filters', 'rype-add-ons' ),
-                'edit_item' => __( 'Edit Property Filter', 'rype-add-ons' ),
+                'name' => __( 'Property Filters', 'rype-real-estate' ),
+                'singular_name' => __( 'Property Filter', 'rype-real-estate' ),
+                'add_new_item' => __( 'Add New Property Filter', 'rype-real-estate' ),
+                'search_items' => __( 'Search Property Filters', 'rype-real-estate' ),
+                'edit_item' => __( 'Edit Property Filter', 'rype-real-estate' ),
             ),
         'public' => false,
 		'publicly_queryable' => true,
@@ -113,7 +113,7 @@ function rype_real_estate_property_filter_details($post) {
 	$price_range_max = isset( $values['rypecore_filter_price_max'] ) ? esc_attr( $values['rypecore_filter_price_max'][0] ) : 1000000;
 	$price_range_min_start = isset( $values['rypecore_filter_price_min_start'] ) ? esc_attr( $values['rypecore_filter_price_min_start'][0] ) : 200000;
 	$price_range_max_start = isset( $values['rypecore_filter_price_max_start'] ) ? esc_attr( $values['rypecore_filter_price_max_start'][0] ) : 600000;
-	$submit_text = isset( $values['rypecore_property_filter_submit_text'] ) ? esc_attr( $values['rypecore_property_filter_submit_text'][0] ) : esc_html__('Find Properties', 'rype-add-ons');
+	$submit_text = isset( $values['rypecore_property_filter_submit_text'] ) ? esc_attr( $values['rypecore_property_filter_submit_text'][0] ) : esc_html__('Find Properties', 'rype-real-estate');
 	$custom_fields = get_option('rypecore_custom_fields');
 	wp_nonce_field( 'rypecore_property_filter_details_meta_box_nonce', 'rypecore_property_filter_details_meta_box_nonce' );
 	?>
@@ -121,8 +121,8 @@ function rype_real_estate_property_filter_details($post) {
     <table class="admin-module admin-module-shortcode">
         <tr>
             <td class="admin-module-label">
-                <label><?php esc_html_e('Shortcode', 'rype-add-ons'); ?></label>
-                <span class="admin-module-note"><?php esc_html_e('Copy/paste it into your post, page, or text widget content:', 'rype-add-ons'); ?></span>
+                <label><?php esc_html_e('Shortcode', 'rype-real-estate'); ?></label>
+                <span class="admin-module-note"><?php esc_html_e('Copy/paste it into your post, page, or text widget content:', 'rype-real-estate'); ?></span>
             </td>
             <td class="admin-module-field"><pre>[rype_property_filter id="<?php echo $post->ID; ?>"]</pre></td>
         </tr>
@@ -130,12 +130,12 @@ function rype_real_estate_property_filter_details($post) {
 
     <table class="admin-module">
         <tr>
-            <td class="admin-module-label"><label><?php echo esc_html_e('Page Banner Position', 'rype-add-ons'); ?></label></td>
+            <td class="admin-module-label"><label><?php echo esc_html_e('Page Banner Position', 'rype-real-estate'); ?></label></td>
             <td class="admin-module-field">
                 <select name="rypecore_property_filter_position" id="property_filter_position">
-                    <option value="above" <?php if($filter_position == 'above') { echo 'selected'; } ?>><?php esc_html_e('Above Banner', 'rype-add-ons'); ?></option>
-                    <option value="middle" <?php if($filter_position == 'middle') { echo 'selected'; } ?>><?php esc_html_e('Inside Banner', 'rype-add-ons'); ?></option>
-                    <option value="below" <?php if($filter_position == 'below') { echo 'selected'; } ?>><?php esc_html_e('Below Banner', 'rype-add-ons'); ?></option>
+                    <option value="above" <?php if($filter_position == 'above') { echo 'selected'; } ?>><?php esc_html_e('Above Banner', 'rype-real-estate'); ?></option>
+                    <option value="middle" <?php if($filter_position == 'middle') { echo 'selected'; } ?>><?php esc_html_e('Inside Banner', 'rype-real-estate'); ?></option>
+                    <option value="below" <?php if($filter_position == 'below') { echo 'selected'; } ?>><?php esc_html_e('Below Banner', 'rype-real-estate'); ?></option>
                 </select>
             </td>
         </tr>
@@ -143,12 +143,12 @@ function rype_real_estate_property_filter_details($post) {
 
     <table class="admin-module">
         <tr>
-            <td class="admin-module-label"><label><?php echo esc_html_e('Filter Layout', 'rype-add-ons'); ?></label></td>
+            <td class="admin-module-label"><label><?php echo esc_html_e('Filter Layout', 'rype-real-estate'); ?></label></td>
             <td class="admin-module-field">
                 <select name="rypecore_property_filter_layout" id="property_filter_layout">
-                    <option value="full" <?php if($filter_layout == 'full') { echo 'selected'; } ?>><?php esc_html_e('Full Width', 'rype-add-ons'); ?></option>
-                    <option value="minimal" <?php if($filter_layout == 'minimal') { echo 'selected'; } ?>><?php esc_html_e('Minimal', 'rype-add-ons'); ?></option>
-                    <option value="boxed" <?php if($filter_layout == 'boxed') { echo 'selected'; } ?>><?php esc_html_e('Boxed', 'rype-add-ons'); ?></option>
+                    <option value="full" <?php if($filter_layout == 'full') { echo 'selected'; } ?>><?php esc_html_e('Full Width', 'rype-real-estate'); ?></option>
+                    <option value="minimal" <?php if($filter_layout == 'minimal') { echo 'selected'; } ?>><?php esc_html_e('Minimal', 'rype-real-estate'); ?></option>
+                    <option value="boxed" <?php if($filter_layout == 'boxed') { echo 'selected'; } ?>><?php esc_html_e('Boxed', 'rype-real-estate'); ?></option>
                 </select>
             </td>
         </tr>
@@ -156,7 +156,7 @@ function rype_real_estate_property_filter_details($post) {
 
     <table class="admin-module">
         <tr>
-            <td class="admin-module-label"><label><?php echo esc_html_e('Display Filter Tabs', 'rype-add-ons'); ?></label></td>
+            <td class="admin-module-label"><label><?php echo esc_html_e('Display Filter Tabs', 'rype-real-estate'); ?></label></td>
             <td class="admin-module-field">
                 <input type="checkbox" id="property_filter_display_tabs" name="rypecore_property_filter_display_tabs" value="true" <?php if($display_filter_tabs == 'true') { echo 'checked'; } ?> />
             </td>
@@ -164,7 +164,7 @@ function rype_real_estate_property_filter_details($post) {
     </table>
 
 	<div class="admin-module admin-module-filter-fields">
-        <div class="admin-module-label"><label><?php echo esc_html_e('Filter Fields', 'rype-add-ons'); ?> <span class="admin-module-note"><?php echo esc_html_e('(Drag & drop to rearrange order)', 'rype-add-ons'); ?></span></label></div>
+        <div class="admin-module-label"><label><?php echo esc_html_e('Filter Fields', 'rype-real-estate'); ?> <span class="admin-module-note"><?php echo esc_html_e('(Drag & drop to rearrange order)', 'rype-real-estate'); ?></span></label></div>
         <ul class="sortable-list filter-fields-list">
             <?php
             $count = 0;
@@ -184,9 +184,9 @@ function rype_real_estate_property_filter_details($post) {
                     <li class="sortable-item custom-filter-field custom-filter-field-<?php echo $slug; ?>">
                         <div class="sortable-item-header">
                             <div class="sort-arrows"><i class="fa fa-bars"></i></div>
-                            <span class="sortable-item-action remove right"><i class="fa fa-times"></i> <?php esc_html_e('Remove', 'rype-add-ons'); ?></span>
+                            <span class="sortable-item-action remove right"><i class="fa fa-times"></i> <?php esc_html_e('Remove', 'rype-real-estate'); ?></span>
                             <span class="sortable-item-title custom-filter-field-label"><?php echo esc_attr($name); ?></span> 
-                            <span class="admin-module-note"><?php esc_html_e('(Custom Field)', 'rype-add-ons'); ?></span>
+                            <span class="admin-module-note"><?php esc_html_e('(Custom Field)', 'rype-real-estate'); ?></span>
                             <div class="clear"></div>
                             <input type="hidden" name="rypecore_property_filter_items[<?php echo $count; ?>][active]" value="true" />
                             <input type="hidden" name="rypecore_property_filter_items[<?php echo $count; ?>][name]" value="<?php echo $name; ?>" class="custom-filter-field-name" />
@@ -200,9 +200,9 @@ function rype_real_estate_property_filter_details($post) {
 
                         <div class="sortable-item-header">
                             <div class="sort-arrows"><i class="fa fa-bars"></i></div>
-                            <div class="toggle-switch" title="<?php if($active == 'true') { esc_html_e('Active', 'rype-add-ons'); } else { esc_html_e('Disabled', 'rype-add-ons'); } ?>">
+                            <div class="toggle-switch" title="<?php if($active == 'true') { esc_html_e('Active', 'rype-real-estate'); } else { esc_html_e('Disabled', 'rype-real-estate'); } ?>">
                                 <input type="checkbox" name="rypecore_property_filter_items[<?php echo $count; ?>][active]" value="true" class="toggle-switch-checkbox" id="property_filter_item_<?php echo esc_attr($slug); ?>" <?php checked('true', $active, true) ?>>
-                                <label class="toggle-switch-label" for="property_filter_item_<?php echo esc_attr($slug); ?>"><?php if($active == 'true') { echo '<span class="on">'.esc_html__('On', 'rype-add-ons').'</span>'; } else { echo '<span>'.esc_html__('Off', 'rype-add-ons').'</span>'; } ?></label>
+                                <label class="toggle-switch-label" for="property_filter_item_<?php echo esc_attr($slug); ?>"><?php if($active == 'true') { echo '<span class="on">'.esc_html__('On', 'rype-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'rype-real-estate').'</span>'; } ?></label>
                             </div>
                             <span class="sortable-item-title"><?php echo esc_attr($name); ?></span><div class="clear"></div>
                             <input type="hidden" name="rypecore_property_filter_items[<?php echo $count; ?>][name]" value="<?php echo $name; ?>" />
@@ -210,12 +210,12 @@ function rype_real_estate_property_filter_details($post) {
                             <input type="hidden" name="rypecore_property_filter_items[<?php echo $count; ?>][custom]" value="<?php echo $custom; ?>" />
                         </div>
 
-                        <a href="#advanced-options-content-<?php echo esc_attr($slug); ?>" class="sortable-item-action advanced-options-toggle right"><i class="fa fa-gear"></i> <?php echo esc_html_e('Additional Settings', 'rype-add-ons'); ?></a>
+                        <a href="#advanced-options-content-<?php echo esc_attr($slug); ?>" class="sortable-item-action advanced-options-toggle right"><i class="fa fa-gear"></i> <?php echo esc_html_e('Additional Settings', 'rype-real-estate'); ?></a>
                         <div id="advanced-options-content-<?php echo esc_attr($slug); ?>" class="advanced-options-content hide-soft">
 
                             <table class="admin-module">
                                 <tr>
-                                    <td class="admin-module-label"><label><?php esc_html_e('Label:', 'rype-add-ons'); ?></label></td>
+                                    <td class="admin-module-label"><label><?php esc_html_e('Label:', 'rype-real-estate'); ?></label></td>
                                     <td class="admin-module-field">
                                         <input type="text" name="rypecore_property_filter_items[<?php echo $count; ?>][label]" value="<?php echo $label; ?>" />
                                     </td>
@@ -225,7 +225,7 @@ function rype_real_estate_property_filter_details($post) {
                             <?php if(isset($placeholder)) { ?>
                             <table class="admin-module">
                                 <tr>
-                                    <td class="admin-module-label"><label><?php esc_html_e('Placeholder:', 'rype-add-ons'); ?></label></td>
+                                    <td class="admin-module-label"><label><?php esc_html_e('Placeholder:', 'rype-real-estate'); ?></label></td>
                                     <td class="admin-module-field">
                                         <input type="text" name="rypecore_property_filter_items[<?php echo $count; ?>][placeholder]" value="<?php echo $placeholder; ?>" />
                                     </td>
@@ -236,7 +236,7 @@ function rype_real_estate_property_filter_details($post) {
                             <?php if(isset($placeholder_second)) { ?>
                             <table class="admin-module">
                                 <tr>
-                                    <td class="admin-module-label"><label><?php esc_html_e('Placeholder Second:', 'rype-add-ons'); ?></label></td>
+                                    <td class="admin-module-label"><label><?php esc_html_e('Placeholder Second:', 'rype-real-estate'); ?></label></td>
                                     <td class="admin-module-field">
                                         <input type="text" name="rypecore_property_filter_items[<?php echo $count; ?>][placeholder_second]" value="<?php echo $placeholder_second; ?>" />
                                     </td>
@@ -248,35 +248,35 @@ function rype_real_estate_property_filter_details($post) {
 
                                 <table class="admin-module">
                                     <tr>
-                                        <td class="admin-module-label"><label><?php esc_html_e('Price Range Minimum', 'rype-add-ons'); ?></label></td>
+                                        <td class="admin-module-label"><label><?php esc_html_e('Price Range Minimum', 'rype-real-estate'); ?></label></td>
                                         <td class="admin-module-field"><input type="number" id="filter_price_min" name="rypecore_filter_price_min" value="<?php echo $price_range_min; ?>" /></td>
                                     </tr>
                                 </table>
 
                                 <table class="admin-module">
                                     <tr>
-                                        <td class="admin-module-label"><label><?php esc_html_e('Price Range Maximum', 'rype-add-ons'); ?></label></td>
+                                        <td class="admin-module-label"><label><?php esc_html_e('Price Range Maximum', 'rype-real-estate'); ?></label></td>
                                         <td class="admin-module-field"><input type="number" id="filter_price_max" name="rypecore_filter_price_max" value="<?php echo $price_range_max; ?>" /></td>
                                     </tr>
                                 </table>
 
                                 <table class="admin-module">
                                     <tr>
-                                        <td class="admin-module-label"><label><?php esc_html_e('Price Range Minimum Start', 'rype-add-ons'); ?></label></td>
+                                        <td class="admin-module-label"><label><?php esc_html_e('Price Range Minimum Start', 'rype-real-estate'); ?></label></td>
                                         <td class="admin-module-field"><input type="number" id="filter_price_min_start" name="rypecore_filter_price_min_start" value="<?php echo $price_range_min_start; ?>" /></td>
                                     </tr>
                                 </table>
 
                                 <table class="admin-module">
                                     <tr>
-                                        <td class="admin-module-label"><label><?php esc_html_e('Price Range Maximum Start', 'rype-add-ons'); ?></label></td>
+                                        <td class="admin-module-label"><label><?php esc_html_e('Price Range Maximum Start', 'rype-real-estate'); ?></label></td>
                                         <td class="admin-module-field"><input type="number" id="filter_price_max_start" name="rypecore_filter_price_max_start" value="<?php echo $price_range_max_start; ?>" /></td>
                                     </tr>
                                 </table>
 
                                 <div class="admin-module-note">
-                                    <?php esc_html_e('You can override these setting for specific property statuses ', 'rype-add-ons'); ?>
-                                    <a href="<?php echo admin_url().'edit-tags.php?taxonomy=property_status&post_type=properties'; ?>"><?php esc_html_e('here', 'rype-add-ons'); ?></a>
+                                    <?php esc_html_e('You can override these setting for specific property statuses ', 'rype-real-estate'); ?>
+                                    <a href="<?php echo admin_url().'edit-tags.php?taxonomy=property_status&post_type=properties'; ?>"><?php esc_html_e('here', 'rype-real-estate'); ?></a>
                                 </div>
                             <?php } ?>                                      
                         </div>
@@ -290,8 +290,8 @@ function rype_real_estate_property_filter_details($post) {
          <table class="admin-module no-border no-padding-bottom">
             <tr>
                 <td class="admin-module-label">
-                    <label><?php esc_html_e('Add Custom Field to Filter', 'rype-add-ons'); ?></label>
-                    <span class="admin-module-note"><a href="<?php echo admin_url('themes.php?page=theme_options#custom-property-fields'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage custom fields', 'rype-add-ons'); ?></a></span>
+                    <label><?php esc_html_e('Add Custom Field to Filter', 'rype-real-estate'); ?></label>
+                    <span class="admin-module-note"><a href="<?php echo admin_url('themes.php?page=theme_options#custom-property-fields'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage custom fields', 'rype-real-estate'); ?></a></span>
                 </td>
                 <td class="admin-module-field">
                     <?php 
@@ -310,9 +310,9 @@ function rype_real_estate_property_filter_details($post) {
                             echo '<option value="'.$custom_field['id'].'">'.$custom_field['name'].'</option>';
                         }
                         echo '</select>'; ?>
-                        <div class="add-filter-custom-field button button-secondary"><?php esc_html_e('Insert Field', 'rype-add-ons'); ?></div>
+                        <div class="add-filter-custom-field button button-secondary"><?php esc_html_e('Insert Field', 'rype-real-estate'); ?></div>
                     <?php } else { ?> 
-                        <span class="admin-module-note"><?php esc_html_e('No custom fields have been created.', 'rype-add-ons'); ?></span>
+                        <span class="admin-module-note"><?php esc_html_e('No custom fields have been created.', 'rype-real-estate'); ?></span>
                     <?php } ?>
                 </td>
             </tr>
@@ -322,7 +322,7 @@ function rype_real_estate_property_filter_details($post) {
 
     <table class="admin-module no-border">
         <tr>
-            <td class="admin-module-label"><label><?php echo esc_html_e('Submit Button Text', 'rype-add-ons'); ?></label></td>
+            <td class="admin-module-label"><label><?php echo esc_html_e('Submit Button Text', 'rype-real-estate'); ?></label></td>
             <td class="admin-module-field">
                 <input type="text" name="rypecore_property_filter_submit_text" id="property_filter_submit_text" value="<?php echo $submit_text; ?>" />
             </td>
@@ -393,9 +393,9 @@ function rype_real_estate_edit_property_filter_columns( $columns ) {
 
     $columns = array(
         'cb' => '<input type="checkbox" />',
-        'title' => __( 'Property', 'rype-add-ons' ),
-        'shortcode' => __( 'Shortcode', 'rype-add-ons' ),
-        'date' => __( 'Date', 'rype-add-ons' )
+        'title' => __( 'Property', 'rype-real-estate' ),
+        'shortcode' => __( 'Shortcode', 'rype-real-estate' ),
+        'date' => __( 'Date', 'rype-real-estate' )
     );
 
     return $columns;
