@@ -155,18 +155,18 @@ jQuery(document).ready(function($) {
 
             function o() {
                 var e = "<form id='homenote' role='form'>";
-                return e += "<div class='form-group'><label for='purchasePrice'>"+ rao_real_estate_local_script.purchase_price +" (" + p.currencysym + ")</label>", e += "<input type='text' class='border' id='purchasePrice' value='" + p.principal + "'></div></hr>", e += "<div class='form-group'><label for='downPayment'>"+rao_real_estate_local_script.down_payment+"</label><input type='text' class='border' id='dpamount' value='" + p.dpamount + "'></div>", e += "<label class='label-radio'><input type='radio' name='dptype' id='downpercentage' value='percentage'", "percentage" === p.dptype && (e += " checked"), e += ">"+rao_real_estate_local_script.percent+" (%)</label>", e += "<label class='label-radio'><input type='radio' name='dptype' id='downlump' value='downlump'", "downlump" === p.dptype && (e += " checked"), e += ">" + p.currency + " (" + p.currencysym + ")</label><hr>", e += "<div class='form-group'><label for='rate'>"+rao_real_estate_local_script.rate+" (%)</label><input type='text' class='border' id='rate' value='" + p.rate + "'></div><hr>", e += "<div class='form-group'><label for='rate'>"+rao_real_estate_local_script.term+"</label><input type='text' class='border' id='term' value='" + p.term + "'></div>", e += "<label class='label-radio'><input type='radio' name='termtype' id='years' value='years' ", "years" === p.termtype && (e += "checked"), e += ">"+rao_real_estate_local_script.years+"</label>", e += "<label class='label-radio'><input type='radio' name='termtype' id='months' value='months'", "months" === p.termtype && (e += "checked"), e += ">"+rao_real_estate_local_script.months+"</label><hr>", e += "<div class='alert-box success' style='display:none;' id='results'></div>", e += "<button type='submit' class='button' id='calchomenote'>"+rao_real_estate_local_script.calculate+"</button></form>"
+                return e += "<div class='form-group'><label for='purchasePrice'>"+ rype_real_estate_local_script.purchase_price +" (" + p.currencysym + ")</label>", e += "<input type='text' class='border' id='purchasePrice' value='" + p.principal + "'></div></hr>", e += "<div class='form-group'><label for='downPayment'>"+rype_real_estate_local_script.down_payment+"</label><input type='text' class='border' id='dpamount' value='" + p.dpamount + "'></div>", e += "<label class='label-radio'><input type='radio' name='dptype' id='downpercentage' value='percentage'", "percentage" === p.dptype && (e += " checked"), e += ">"+rype_real_estate_local_script.percent+" (%)</label>", e += "<label class='label-radio'><input type='radio' name='dptype' id='downlump' value='downlump'", "downlump" === p.dptype && (e += " checked"), e += ">" + p.currency + " (" + p.currencysym + ")</label><hr>", e += "<div class='form-group'><label for='rate'>"+rype_real_estate_local_script.rate+" (%)</label><input type='text' class='border' id='rate' value='" + p.rate + "'></div><hr>", e += "<div class='form-group'><label for='rate'>"+rype_real_estate_local_script.term+"</label><input type='text' class='border' id='term' value='" + p.term + "'></div>", e += "<label class='label-radio'><input type='radio' name='termtype' id='years' value='years' ", "years" === p.termtype && (e += "checked"), e += ">"+rype_real_estate_local_script.years+"</label>", e += "<label class='label-radio'><input type='radio' name='termtype' id='months' value='months'", "months" === p.termtype && (e += "checked"), e += ">"+rype_real_estate_local_script.months+"</label><hr>", e += "<div class='alert-box success' style='display:none;' id='results'></div>", e += "<button type='submit' class='button' id='calchomenote'>"+rype_real_estate_local_script.calculate+"</button></form>"
             }
             var p = e.extend({
                 currencysym: currency_symbol,
-                currency: rao_real_estate_local_script.fixed,
+                currency: rype_real_estate_local_script.fixed,
                 termtype: "years",
                 term: "30",
                 principal: "250,000",
                 dptype: "percentage",
                 dpamount: "20%",
                 rate: "6.5",
-                resulttext: rao_real_estate_local_script.monthly_payment
+                resulttext: rype_real_estate_local_script.monthly_payment
             }, t);
             t = e.extend(p, t), e(document).on("change", 'input[name="termtype"]', function() {
                 p.termtype = e(this).val(), e("#term").val(a())
@@ -282,7 +282,7 @@ jQuery(document).ready(function($) {
         $('.multi-page-form').find('.error').remove();
         $(".multi-page-form .multi-page-form-content.active input.required" ).each(function( index ) {
             if(!$(this).val()) {
-                $(this).parent().prepend('<span class="error"> '+rao_real_estate_local_script.required_field+'</span>');
+                $(this).parent().prepend('<span class="error"> '+rype_real_estate_local_script.required_field+'</span>');
                 errors.push(index);
             }
         });
@@ -360,21 +360,21 @@ jQuery(document).ready(function($) {
         var count = $('.property-floor-plans .accordion .floor-plan-item').length;
 
         var floorPlanItem = '\
-            <h3 class="accordion-tab"><span class="floor-plan-title-mirror">'+ rao_real_estate_local_script.new_floor_plan +'</span> <span class="delete-floor-plan right"><i class="fa fa-trash"></i> '+ rao_real_estate_local_script.delete_text +'</span></h3> \
+            <h3 class="accordion-tab"><span class="floor-plan-title-mirror">'+ rype_real_estate_local_script.new_floor_plan +'</span> <span class="delete-floor-plan right"><i class="fa fa-trash"></i> '+ rype_real_estate_local_script.delete_text +'</span></h3> \
             <div class="floor-plan-item"> \
                 <div class="floor-plan-left"> \
-                    <label>'+ rao_real_estate_local_script.floor_plan_title +' </label> <input class="floor-plan-title border" type="text" name="rypecore_floor_plans['+count+'][title]" placeholder="'+ rao_real_estate_local_script.new_floor_plan +'" /><br/> \
-                    <label>'+ rao_real_estate_local_script.floor_plan_size +' </label> <input class="border" type="text" name="rypecore_floor_plans['+count+'][size]" /><br/> \
-                    <label>'+ rao_real_estate_local_script.floor_plan_rooms +' </label> <input class="border" type="number" name="rypecore_floor_plans['+count+'][rooms]" /><br/> \
-                    <label>'+ rao_real_estate_local_script.floor_plan_bathrooms +' </label> <input class="border" type="number" name="rypecore_floor_plans['+count+'][baths]" /><br/> \
+                    <label>'+ rype_real_estate_local_script.floor_plan_title +' </label> <input class="floor-plan-title border" type="text" name="rypecore_floor_plans['+count+'][title]" placeholder="'+ rype_real_estate_local_script.new_floor_plan +'" /><br/> \
+                    <label>'+ rype_real_estate_local_script.floor_plan_size +' </label> <input class="border" type="text" name="rypecore_floor_plans['+count+'][size]" /><br/> \
+                    <label>'+ rype_real_estate_local_script.floor_plan_rooms +' </label> <input class="border" type="number" name="rypecore_floor_plans['+count+'][rooms]" /><br/> \
+                    <label>'+ rype_real_estate_local_script.floor_plan_bathrooms +' </label> <input class="border" type="number" name="rypecore_floor_plans['+count+'][baths]" /><br/> \
                 </div> \
                 <div class="floor-plan-right"> \
-                    <label>'+ rao_real_estate_local_script.floor_plan_description +' </label> \
+                    <label>'+ rype_real_estate_local_script.floor_plan_description +' </label> \
                     <textarea class="border" name="rypecore_floor_plans['+count+'][description]"></textarea> \
                     <div> \
-                        <label>'+ rao_real_estate_local_script.floor_plan_img +' </label> \
+                        <label>'+ rype_real_estate_local_script.floor_plan_img +' </label> \
                         <input class="border" type="text" name="rypecore_floor_plans['+count+'][img]" /> \
-                        <span><em>'+rao_real_estate_local_script.floor_plan_note+'</em></span> \
+                        <span><em>'+rype_real_estate_local_script.floor_plan_note+'</em></span> \
                     </div> \
                 </div> \
                 <div class="clear"></div> \
@@ -405,7 +405,7 @@ jQuery(document).ready(function($) {
     var files_count = $('.additional-img-container .additional-image').length + 1;
     $('.add-additional-img').click(function() {
         files_count++;
-        $('.additional-img-container').append('<table><tr><td><div class="media-uploader-additional-img"><input type="file" class="additional_img" name="additional_img'+ files_count +'" value="" /><span class="delete-additional-img appended right"><i class="fa fa-trash"></i> '+ rao_real_estate_local_script.delete_text +'</span></div></td></tr></table>');
+        $('.additional-img-container').append('<table><tr><td><div class="media-uploader-additional-img"><input type="file" class="additional_img" name="additional_img'+ files_count +'" value="" /><span class="delete-additional-img appended right"><i class="fa fa-trash"></i> '+ rype_real_estate_local_script.delete_text +'</span></div></td></tr></table>');
     });
 
     $('.additional-img-container').on("click", ".delete-additional-img", function() {
