@@ -2,21 +2,21 @@
 /*-----------------------------------------------------------------------------------*/
 /*  Add top bar member links
 /*-----------------------------------------------------------------------------------*/
-function rao_add_property_member_top_bar_links() { 
+function rype_real_estate_add_member_top_bar_links() { 
 	$icon_set = esc_attr(get_option('rypecore_icon_set', 'fa'));
 	$members_my_properties_page = get_option('rypecore_members_my_properties_page'); 
 	$members_submit_property_page = get_option('rypecore_members_submit_property_page'); ?>
 	<?php if(!empty($members_my_properties_page)) { ?><li><a href="<?php echo $members_my_properties_page; ?>"><?php echo rypecore_get_icon($header_vars['icon_set'], 'home'); ?><?php esc_html_e( 'My Properties', 'rype-add-ons' ); ?></a></li><?php } ?>
 	<?php if(!empty($members_submit_property_page)) { ?><li><a href="<?php echo $members_submit_property_page; ?>"><?php echo rypecore_get_icon($header_vars['icon_set'], 'plus'); ?><?php esc_html_e( 'Submit Property', 'rype-add-ons' ); ?></a></li><?php } ?>
 <?php }
-add_filter( 'rao_after_top_bar_member_menu', 'rao_add_property_member_top_bar_links');
+add_filter( 'rao_after_top_bar_member_menu', 'rype_real_estate_add_member_top_bar_links');
 
 /*-----------------------------------------------------------------------------------*/
 /* Build property submit form
 /*-----------------------------------------------------------------------------------*/
 
 /* Get attachment id by url */
-function rao_get_attachment_id_by_url( $url ) {
+function rype_real_estate_get_attachment_id_by_url( $url ) {
     // Split the $url into two parts with the wp-content directory as the separator
     $parsed_url = explode( parse_url( WP_CONTENT_URL, PHP_URL_PATH ), $url );
     // Get the host of the current site and the host of the $url, ignoring www
@@ -34,7 +34,7 @@ function rao_get_attachment_id_by_url( $url ) {
 } 
 
 /* Insert or update property post */
-function rao_insert_property_post($edit_property_id = null) {
+function rype_real_estate_insert_property_post($edit_property_id = null) {
 
 	$members_submit_property_approval = esc_attr(get_option('rypecore_members_submit_property_approval', 'true'));
 	if($members_submit_property_approval == 'true') {$members_submit_property_approval = 'pending';} else {$members_submit_property_approval = 'publish'; }
@@ -78,7 +78,7 @@ function rao_insert_property_post($edit_property_id = null) {
 	            'ID'           => $edit_property_id,
 	            'post_title' => wp_strip_all_tags( $title ),
 	            'post_content' => $_POST['description'],
-	            'post_type' => 'rao-property'
+	            'post_type' => 'rype-property'
 	        );
 	        wp_update_post( $post_information );
 	        $post_ID = $edit_property_id;
@@ -86,7 +86,7 @@ function rao_insert_property_post($edit_property_id = null) {
 			$post_information = array(
 		        'post_title' => wp_strip_all_tags( $title ),
 		        'post_content' => $_POST['description'],
-		        'post_type' => 'rao-property',
+		        'post_type' => 'rype-property',
 		        'post_status' => $members_submit_property_approval
 		    );
 		    $post_ID = wp_insert_post( $post_information );
@@ -210,7 +210,7 @@ function rao_insert_property_post($edit_property_id = null) {
 /*-----------------------------------------------------------------------------------*/
 /* Output and process property submit form
 /*-----------------------------------------------------------------------------------*/
-function rao_property_submit_form() { 
+function rype_real_estate_property_submit_form() { 
 
 	//global settings
 	$icon_set = esc_attr(get_option('rypecore_icon_set', 'fa'));
@@ -281,9 +281,9 @@ function rao_property_submit_form() {
 	if (!empty($_POST)) {
 
 		if(isset($_GET['edit_property']) && !empty($_GET['edit_property'])) {
-    		$inserted_post = rao_insert_property_post($_GET['edit_property']);
+    		$inserted_post = rype_real_estate_insert_property_post($_GET['edit_property']);
     	} else {
-    		$inserted_post = rao_insert_property_post();
+    		$inserted_post = rype_real_estate_insert_property_post();
     	}
 		$errors = $inserted_post['errors'];
 		$success = $inserted_post['success'];
