@@ -165,6 +165,8 @@ if(rype_real_estate_is_plugin_active('rype-add-ons/rype-add-ons.php')) {
 	/*  Includes Property Related Functions
 	/*-----------------------------------------------------------------------------------*/
 	include( plugin_dir_path( __FILE__ ) . '/includes/property-functions.php');
+	include( plugin_dir_path( __FILE__ ) . '/includes/property-submit-functions.php');
+	include( plugin_dir_path( __FILE__ ) . '/includes/filter-functions.php');
 
 }
 ?>
