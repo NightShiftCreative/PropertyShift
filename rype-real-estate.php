@@ -39,7 +39,7 @@ function rype_real_estate_register_required_plugins() {
 			'source'       => 'https://github.com/RypeCreative/Rype-Add-Ons/archive/1.0.0.zip', // The plugin source.
 			'required'     => true, // If false, the plugin is only 'recommended' instead of required.
 			'version'	   => '1.0.0',
-			'force_activation'   => fasle,
+			'force_activation'   => true,
 			'force_deactivation' => false,
 		),
     );

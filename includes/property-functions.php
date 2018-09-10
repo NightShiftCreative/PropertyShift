@@ -5,12 +5,12 @@
 /*-----------------------------------------------------------------------------------*/
 
 //displays properties loop
-function rao_get_custom_properties(array $custom_args, $custom_show_filter, $custom_layout, $custom_pagination, $no_post_message = 'Sorry, no properties were found.' ) {
+function rype_real_estate_get_custom_properties(array $custom_args, $custom_show_filter, $custom_layout, $custom_pagination, $no_post_message = 'Sorry, no properties were found.' ) {
     include(get_parent_theme_file_path('/template_parts/real_estate/loop_properties.php')); 
 }
 
 //returns property count (supply user ID to return property count for that user)
-function rao_count_properties($type, $user_id = null) {
+function rype_real_estate_count_properties($type, $user_id = null) {
         $args_total_properties = array(
             'post_type' => 'rao-property',
             'showposts' => -1,
@@ -25,7 +25,7 @@ function rao_count_properties($type, $user_id = null) {
 }
 
 // returns formatted area
-function rao_format_area($area) {
+function rype_real_estate_format_area($area) {
     $currency_thousand_area = get_option('rypecore_thousand_separator_area', ',');
     $currency_decimal_area = get_option('rypecore_decimal_separator_area', '.');
     $currency_num_decimal_area = get_option('rypecore_num_decimal_area', 0);
@@ -36,19 +36,19 @@ function rao_format_area($area) {
 }
 
 //delete property custom field
-function rao_delete_custom_field() {
+function rype_real_estate_delete_custom_field() {
     $key = isset($_POST['key']) ? $_POST['key'] : '';
     delete_post_meta_by_key('rypecore_custom_field_'.$key);
     die();
 }
-add_action('wp_ajax_rypecore_delete_custom_field', 'rao_delete_custom_field');
+add_action('wp_ajax_rypecore_delete_custom_field', 'rype_real_estate_delete_custom_field');
 
 /*-----------------------------------------------------------------------------------*/
 /*  Get Property Details
 /*-----------------------------------------------------------------------------------*/
 
 /* get property type */
-function rao_get_property_type($post_id, $array = null) {
+function rype_real_estate_get_property_type($post_id, $array = null) {
     $property_type = '';
     $property_type_terms = get_the_terms( $post_id, 'property_type' );
     if ( $property_type_terms && ! is_wp_error( $property_type_terms) ) : 
@@ -66,7 +66,7 @@ function rao_get_property_type($post_id, $array = null) {
 }
 
 /* get property status */
-function rao_get_property_status($post_id, $array = null) {
+function rype_real_estate_get_property_status($post_id, $array = null) {
     $property_status = '';
     $property_status_terms = get_the_terms( $post_id, 'property_status' );
     if ( $property_status_terms && ! is_wp_error( $property_status_terms) ) : 
@@ -84,7 +84,7 @@ function rao_get_property_status($post_id, $array = null) {
 }
 
 /* get property location */
-function rao_get_property_location($post_id, $output = null, $array = null) {
+function rype_real_estate_get_property_location($post_id, $output = null, $array = null) {
     $property_location = '';
     $property_location_output = '';
     $property_location_terms = get_the_terms( $post_id, 'property_location');
@@ -128,7 +128,7 @@ function rao_get_property_location($post_id, $output = null, $array = null) {
 }
 
 /* get property full address */
-function rao_get_property_address($post_id) {
+function rype_real_estate_get_property_address($post_id) {
     $icon_set = esc_attr(get_option('rypecore_icon_set', 'fa'));
     $values = get_post_custom($post_id);
     $street_address = isset( $values['rypecore_property_address'] ) ? esc_attr( $values['rypecore_property_address'][0] ) : '';
@@ -142,7 +142,7 @@ function rao_get_property_address($post_id) {
 }
 
 /* get property amenities */
-function rao_get_property_amenities($post_id, $hide_empty = true, $array = null) {
+function rype_real_estate_get_property_amenities($post_id, $hide_empty = true, $array = null) {
     $property_amenities = '';
     $property_amenities_links = array();
 
@@ -177,8 +177,8 @@ function rao_get_property_amenities($post_id, $hide_empty = true, $array = null)
 /*-----------------------------------------------------------------------------------*/
 /*  Properties Custom Post Type
 /*-----------------------------------------------------------------------------------*/
-add_action( 'init', 'rao_create_properties_post_type' );
-function rao_create_properties_post_type() {
+add_action( 'init', 'rype_real_estate_create_properties_post_type' );
+function rype_real_estate_create_properties_post_type() {
     $properties_slug = get_option('rypecore_property_detail_slug', 'properties');
     register_post_type( 'rao-property',
         array(
@@ -199,13 +199,13 @@ function rao_create_properties_post_type() {
 }
 
  /* Add property details (meta box) */ 
- function rao_add_meta_box() {
-    add_meta_box( 'property-details-meta-box', 'Property Details', 'rao_property_details', 'rao-property', 'normal', 'high' );
+ function rype_real_estate_add_meta_box() {
+    add_meta_box( 'property-details-meta-box', 'Property Details', 'rype_real_estate_property_details', 'rao-property', 'normal', 'high' );
  }
-add_action( 'add_meta_boxes', 'rao_add_meta_box' );
+add_action( 'add_meta_boxes', 'rype_real_estate_add_meta_box' );
 
 /* Ouput property details form */
-function rao_property_details($post) {
+function rype_real_estate_property_details($post) {
 
     $values = get_post_custom( $post->ID );
     $featured = isset( $values['rypecore_property_featured'] ) ? esc_attr( $values['rypecore_property_featured'][0] ) : 'false';
@@ -566,8 +566,8 @@ function rao_property_details($post) {
 }
 
 /* Save property details form */
-add_action( 'save_post', 'rao_save_meta_box' );
-function rao_save_meta_box( $post_id ) {
+add_action( 'save_post', 'rype_real_estate_save_meta_box' );
+function rype_real_estate_save_meta_box( $post_id ) {
 
     // Bail if we're doing an auto save
     if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
@@ -673,7 +673,7 @@ function rao_save_meta_box( $post_id ) {
 /*-----------------------------------------------------------------------------------*/
 /*  Register Custom Taxonomies
 /*-----------------------------------------------------------------------------------*/
-function rao_property_type_init() {
+function rype_real_estate_property_type_init() {
     $property_type_tax_slug = get_option('rypecore_property_type_tax_slug', 'property-type');
     $labels = array(
     'name'                          => __( 'Property Type', 'rype-real-estate' ),
@@ -702,9 +702,9 @@ function rao_property_type_init() {
         )
     );
 }
-add_action( 'init', 'rao_property_type_init' );
+add_action( 'init', 'rype_real_estate_property_type_init' );
 
-function rao_property_status_init() {
+function rype_real_estate_property_status_init() {
     $property_status_tax_slug = get_option('rypecore_property_status_tax_slug', 'property-status');
     $labels = array(
     'name'                          => __( 'Property Status', 'rype-real-estate' ),
@@ -733,9 +733,9 @@ function rao_property_status_init() {
         )
     );
 }
-add_action( 'init', 'rao_property_status_init' );
+add_action( 'init', 'rype_real_estate_property_status_init' );
 
-function rao_property_location_init() {
+function rype_real_estate_property_location_init() {
     $property_location_tax_slug = get_option('rypecore_property_location_tax_slug', 'property-location');
     $labels = array(
     'name'                          => __( 'Property Location', 'rype-real-estate' ),
@@ -764,9 +764,9 @@ function rao_property_location_init() {
         )
     );
 }
-add_action( 'init', 'rao_property_location_init' );
+add_action( 'init', 'rype_real_estate_property_location_init' );
 
-function rao_property_amenities_init() {
+function rype_real_estate_property_amenities_init() {
     $property_amenities_tax_slug = get_option('rypecore_property_amenities_tax_slug', 'property-amenity');
     $labels = array(
     'name'                          => __( 'Amenities', 'rype-real-estate' ),
@@ -795,14 +795,14 @@ function rao_property_amenities_init() {
         )
     );
 }
-add_action( 'init', 'rao_property_amenities_init' );
+add_action( 'init', 'rype_real_estate_property_amenities_init' );
 
 /*-----------------------------------------------------------------------------------*/
 /*  Add Custom Columns to Properties Post Type
 /*-----------------------------------------------------------------------------------*/
-add_filter( 'manage_edit-rao-property_columns', 'rao_edit_properties_columns' ) ;
+add_filter( 'manage_edit-rao-property_columns', 'rype_real_estate_edit_properties_columns' ) ;
 
-function rao_edit_properties_columns( $columns ) {
+function rype_real_estate_edit_properties_columns( $columns ) {
 
     $columns = array(
         'cb' => '<input type="checkbox" />',
@@ -820,9 +820,9 @@ function rao_edit_properties_columns( $columns ) {
 }
 
 
-add_action( 'manage_rao-property_posts_custom_column', 'rao_manage_properties_columns', 10, 2 );
+add_action( 'manage_rao-property_posts_custom_column', 'rype_real_estate_manage_properties_columns', 10, 2 );
 
-function rao_manage_properties_columns( $column, $post_id ) {
+function rype_real_estate_manage_properties_columns( $column, $post_id ) {
     global $post;
 
     switch( $column ) {
@@ -924,24 +924,24 @@ function rao_manage_properties_columns( $column, $post_id ) {
 /*-----------------------------------------------------------------------------------*/
 /*  Customize Property Taxonomies Admin Page
 /*-----------------------------------------------------------------------------------*/
-add_action( 'property_type_edit_form_fields', 'rao_properties_extra_tax_fields', 10, 2);
-add_action( 'edited_property_type', 'rao_properties_save_extra_taxonomy_fields', 10, 2);
-add_action('property_type_add_form_fields','rao_properties_extra_tax_fields', 10, 2 );  
-add_action('created_property_type','rao_properties_save_extra_taxonomy_fields', 10, 2);
+add_action( 'property_type_edit_form_fields', 'rype_real_estate_properties_extra_tax_fields', 10, 2);
+add_action( 'edited_property_type', 'rype_real_estate_properties_save_extra_taxonomy_fields', 10, 2);
+add_action('property_type_add_form_fields','rype_real_estate_properties_extra_tax_fields', 10, 2 );  
+add_action('created_property_type','rype_real_estate_properties_save_extra_taxonomy_fields', 10, 2);
 
-add_action( 'property_status_edit_form_fields', 'rao_properties_extra_tax_fields', 10, 2);
-add_action( 'property_status_edit_form_fields', 'rao_properties_tax_price_range_fields', 10, 2);
-add_action( 'edited_property_status', 'rao_properties_save_extra_taxonomy_fields', 10, 2);
-add_action('property_status_add_form_fields','rao_properties_extra_tax_fields', 10, 2 ); 
-add_action('property_status_add_form_fields','rao_properties_tax_price_range_fields', 10, 2 );
-add_action('created_property_status','rao_properties_save_extra_taxonomy_fields', 10, 2);
+add_action( 'property_status_edit_form_fields', 'rype_real_estate_properties_extra_tax_fields', 10, 2);
+add_action( 'property_status_edit_form_fields', 'rype_real_estate_properties_tax_price_range_fields', 10, 2);
+add_action( 'edited_property_status', 'rype_real_estate_properties_save_extra_taxonomy_fields', 10, 2);
+add_action('property_status_add_form_fields','rype_real_estate_properties_extra_tax_fields', 10, 2 ); 
+add_action('property_status_add_form_fields','rype_real_estate_properties_tax_price_range_fields', 10, 2 );
+add_action('created_property_status','rype_real_estate_properties_save_extra_taxonomy_fields', 10, 2);
 
-add_action( 'property_location_edit_form_fields', 'rao_properties_extra_tax_fields', 10, 2);
-add_action( 'edited_property_location', 'rao_properties_save_extra_taxonomy_fields', 10, 2);
-add_action('property_location_add_form_fields','rao_properties_extra_tax_fields', 10, 2 );  
-add_action('created_property_location','rao_properties_save_extra_taxonomy_fields', 10, 2);
+add_action( 'property_location_edit_form_fields', 'rype_real_estate_properties_extra_tax_fields', 10, 2);
+add_action( 'edited_property_location', 'rype_real_estate_properties_save_extra_taxonomy_fields', 10, 2);
+add_action('property_location_add_form_fields','rype_real_estate_properties_extra_tax_fields', 10, 2 );  
+add_action('created_property_location','rype_real_estate_properties_save_extra_taxonomy_fields', 10, 2);
 
-function rao_properties_extra_tax_fields($tag) {
+function rype_real_estate_properties_extra_tax_fields($tag) {
    //check for existing taxonomy meta for term ID
     if(is_object($tag)) { $t_id = $tag->term_id; } else { $t_id = ''; }
     $term_meta = get_option( "taxonomy_$t_id");
@@ -960,7 +960,7 @@ function rao_properties_extra_tax_fields($tag) {
 <?php
 }
 
-function rao_properties_tax_price_range_fields($tag) {
+function rype_real_estate_properties_tax_price_range_fields($tag) {
     if(is_object($tag)) { $t_id = $tag->term_id; } else { $t_id = ''; }
     $term_meta = get_option( "taxonomy_$t_id");
     ?>
@@ -991,7 +991,7 @@ function rao_properties_tax_price_range_fields($tag) {
 <?php }
 
 // save extra taxonomy fields callback function
-function rao_properties_save_extra_taxonomy_fields( $term_id ) {
+function rype_real_estate_properties_save_extra_taxonomy_fields( $term_id ) {
     if ( isset( $_POST['term_meta'] ) ) {
         $t_id = $term_id;
         $term_meta = get_option( "taxonomy_$t_id");
@@ -1009,24 +1009,24 @@ function rao_properties_save_extra_taxonomy_fields( $term_id ) {
 /*-----------------------------------------------------------------------------------*/
 /*  Output Properties Map Banner
 /*-----------------------------------------------------------------------------------*/
-function rao_properties_map_banner($banner_source) { 
+function rype_real_estate_properties_map_banner($banner_source) { 
     if($banner_source == 'properties_map') { rypecore_get_template_part('template_parts/real_estate/properties_map'); }
 }
-add_filter( 'rao_custom_banner_source', 'rao_properties_map_banner');
+add_filter( 'rao_custom_banner_source', 'rype_real_estate_properties_map_banner');
 
-function rao_properties_map_custom_header_var($header_vars) { 
+function rype_real_estate_properties_map_custom_header_var($header_vars) { 
     $page_id = rypecore_get_page_id();
     $values = get_post_custom( $page_id);
     $banner_source = isset( $values['rypecore_banner_source'] ) ? esc_attr( $values['rypecore_banner_source'][0] ) : 'image_banner';
     if($banner_source == 'properties_map' && $header_vars['header_style'] == 'transparent') { $header_vars['header_style'] = ''; }
     return $header_vars;
 }
-add_filter( 'rao_custom_header_vars', 'rao_properties_map_custom_header_var');
+add_filter( 'rao_custom_header_vars', 'rype_real_estate_properties_map_custom_header_var');
 
 /*-----------------------------------------------------------------------------------*/
 /*  Output Property Dashboard Widgets
 /*-----------------------------------------------------------------------------------*/
-function rao_property_dashboard_widgets($banner_source) {
+function rype_real_estate_property_dashboard_widgets($banner_source) {
     global $current_user; ?>
     <div class="user-dashboard-widget stat">
         <span><?php echo rao_count_properties(array('publish', 'pending'), $current_user->user_login); ?></span> 
@@ -1052,20 +1052,20 @@ function rao_property_dashboard_widgets($banner_source) {
         ?>
     </div>
 <?php }
-add_filter( 'rao_after_dashboard', 'rao_property_dashboard_widgets');
+add_filter( 'rao_after_dashboard', 'rype_real_estate_property_dashboard_widgets');
 
 /*-----------------------------------------------------------------------------------*/
 /*  Add Property Image Size
 /*-----------------------------------------------------------------------------------*/
-function rao_add_real_estate_image_size() {
+function rype_real_estate_add_real_estate_image_size() {
     add_image_size( 'property-thumbnail', 800, 600, array( 'center', 'center' ) );
 }
-add_action( 'rao_theme_support', 'rao_add_real_estate_image_size' );
+add_action( 'rao_theme_support', 'rype_real_estate_add_real_estate_image_size' );
 
 /*-----------------------------------------------------------------------------------*/
 /*  Register Properties Sidebar
 /*-----------------------------------------------------------------------------------*/
-function rao_properties_sidebar_init() {
+function rype_real_estate_properties_sidebar_init() {
     register_sidebar( array(
         'name' => esc_html__( 'Properties Sidebar', 'rype-real-estate' ),
         'id' => 'properties_sidebar',
@@ -1075,6 +1075,6 @@ function rao_properties_sidebar_init() {
         'after_title' => '</h4>',
     ) );
 }
-add_action( 'widgets_init', 'rao_properties_sidebar_init' );
+add_action( 'widgets_init', 'rype_real_estate_properties_sidebar_init' );
 
 ?>
