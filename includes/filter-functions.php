@@ -3,7 +3,7 @@
 /*-----------------------------------------------------------------------------------*/
 /*  Load default Property Filter Items
 /*-----------------------------------------------------------------------------------*/
-function rao_load_default_property_filter_items() {
+function rype_real_estate_load_default_property_filter_items() {
     $property_filter_items_default = array(
         0 => array(
             'name' => esc_html__('Property Type', 'rype-add-ons'),
@@ -69,9 +69,9 @@ function rao_load_default_property_filter_items() {
 /*-----------------------------------------------------------------------------------*/
 /*  Property Filter Custom Post Type
 /*-----------------------------------------------------------------------------------*/
-add_action( 'init', 'rao_create_property_filter_post_type' );
-function rao_create_property_filter_post_type() {
-    register_post_type( 'rao-property-filter',
+add_action( 'init', 'rype_real_estate_create_property_filter_post_type' );
+function rype_real_estate_create_property_filter_post_type() {
+    register_post_type( 'rype-property-filter',
         array(
             'labels' => array(
                 'name' => __( 'Property Filters', 'rype-add-ons' ),
@@ -91,13 +91,13 @@ function rao_create_property_filter_post_type() {
 }
 
 /* Add property filter details (meta box) */ 
-function rao_add_property_filter_meta_box() {
-    add_meta_box( 'property-filter-details-meta-box', 'Filter Details', 'rao_property_filter_details', 'rao-property-filter', 'normal', 'high' );
+function rype_real_estate_add_property_filter_meta_box() {
+    add_meta_box( 'property-filter-details-meta-box', 'Filter Details', 'rype_real_estate_property_filter_details', 'rype-property-filter', 'normal', 'high' );
 }
-add_action( 'add_meta_boxes', 'rao_add_property_filter_meta_box' );
+add_action( 'add_meta_boxes', 'rype_real_estate_add_property_filter_meta_box' );
 
 /* Ouput property filter details form */
-function rao_property_filter_details($post) {
+function rype_real_estate_property_filter_details($post) {
 
 	$values = get_post_custom( $post->ID );
 	$filter_position = isset( $values['rypecore_property_filter_position'] ) ? esc_attr( $values['rypecore_property_filter_position'][0] ) : 'middle';
@@ -107,7 +107,7 @@ function rao_property_filter_details($post) {
 		$property_filter_items = $values['rypecore_property_filter_items'];
 		$property_filter_items = unserialize($property_filter_items[0]);
 	} else {
-		$property_filter_items = rao_load_default_property_filter_items();
+		$property_filter_items = rype_real_estate_load_default_property_filter_items();
 	}
 	$price_range_min = isset( $values['rypecore_filter_price_min'] ) ? esc_attr( $values['rypecore_filter_price_min'][0] ) : 0;
 	$price_range_max = isset( $values['rypecore_filter_price_max'] ) ? esc_attr( $values['rypecore_filter_price_max'][0] ) : 1000000;
@@ -124,7 +124,7 @@ function rao_property_filter_details($post) {
                 <label><?php esc_html_e('Shortcode', 'rype-add-ons'); ?></label>
                 <span class="admin-module-note"><?php esc_html_e('Copy/paste it into your post, page, or text widget content:', 'rype-add-ons'); ?></span>
             </td>
-            <td class="admin-module-field"><pre>[rao_property_filter id="<?php echo $post->ID; ?>"]</pre></td>
+            <td class="admin-module-field"><pre>[rype_property_filter id="<?php echo $post->ID; ?>"]</pre></td>
         </tr>
     </table>
 
@@ -332,8 +332,8 @@ function rao_property_filter_details($post) {
 <?php }
 
 /* Save property filter details form */
-add_action( 'save_post', 'rao_save_property_filter_meta_box' );
-function rao_save_property_filter_meta_box( $post_id ) {
+add_action( 'save_post', 'rype_real_estate_save_property_filter_meta_box' );
+function rype_real_estate_save_property_filter_meta_box( $post_id ) {
 
 	 // Bail if we're doing an auto save
     if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
@@ -388,8 +388,8 @@ function rao_save_property_filter_meta_box( $post_id ) {
 /*-----------------------------------------------------------------------------------*/
 /*  Add Custom Columns to Property Filter Post Type
 /*-----------------------------------------------------------------------------------*/
-add_filter( 'manage_edit-rao-property-filter_columns', 'rao_edit_property_filter_columns' ) ;
-function rao_edit_property_filter_columns( $columns ) {
+add_filter( 'manage_edit-rype-property-filter_columns', 'rype_real_estate_edit_property_filter_columns' ) ;
+function rype_real_estate_edit_property_filter_columns( $columns ) {
 
     $columns = array(
         'cb' => '<input type="checkbox" />',
@@ -401,14 +401,14 @@ function rao_edit_property_filter_columns( $columns ) {
     return $columns;
 }
 
-add_action( 'manage_rao-property-filter_posts_custom_column', 'rao_manage_property_filter_columns', 10, 2 );
-function rao_manage_property_filter_columns( $column, $post_id ) {
+add_action( 'manage_rype-property-filter_posts_custom_column', 'rype_real_estate_manage_property_filter_columns', 10, 2 );
+function rype_real_estate_manage_property_filter_columns( $column, $post_id ) {
     global $post;
 
     switch( $column ) {
 
         case 'shortcode' :
-            echo '<pre>[rao_property_filter id="'.$post_id.'"]</pre>';
+            echo '<pre>[rype_property_filter id="'.$post_id.'"]</pre>';
             break;
 
         /* Just break out of the switch statement for everything else. */
@@ -420,7 +420,7 @@ function rao_manage_property_filter_columns( $column, $post_id ) {
 /*-----------------------------------------------------------------------------------*/
 /*  Output Page Banner Property Filter
 /*-----------------------------------------------------------------------------------*/
-function rao_page_banner_property_filter_global() {
+function rype_real_estate_page_banner_property_filter_global() {
 
     //Global settings
     $property_filter_display = esc_attr(get_option('rypecore_property_filter_display', 'true'));
@@ -442,11 +442,11 @@ function rao_page_banner_property_filter_global() {
 
     //If filter position above, change to classic header
     if($property_filter_position == 'above') {
-        function rao_properties_filter_custom_header_var($header_vars) { 
+        function rype_real_estate_properties_filter_custom_header_var($header_vars) { 
             if($header_vars['header_style'] == 'transparent') { $header_vars['header_style'] = ''; }
             return $header_vars;
         }
-        add_filter( 'rao_custom_header_vars', 'rao_properties_filter_custom_header_var');
+        add_filter( 'rao_custom_header_vars', 'rype_real_estate_properties_filter_custom_header_var');
     }
 
     //generate filter position hook name
@@ -460,7 +460,7 @@ function rao_page_banner_property_filter_global() {
 
     //output filter template
     if($property_filter_display == 'true') {
-        function rao_page_banner_property_filter($values) {
+        function rype_real_estate_page_banner_property_filter($values) {
             $banner_property_filter_override = isset( $values['rypecore_banner_property_filter_override'] ) ? esc_attr( $values['rypecore_banner_property_filter_override'][0] ) : 'true'; 
             if($banner_property_filter_override != 'true') {
                 $property_filter_id = isset( $values['rypecore_banner_property_filter_id'] ) ? esc_attr( $values['rypecore_banner_property_filter_id'][0] ) : '';
@@ -479,9 +479,9 @@ function rao_page_banner_property_filter_global() {
             }
             
         }
-        add_filter( $property_filter_position, 'rao_page_banner_property_filter');
+        add_filter( $property_filter_position, 'rype_real_estate_page_banner_property_filter');
     }
 }
-add_action('template_redirect', 'rao_page_banner_property_filter_global');
+add_action('template_redirect', 'rype_real_estate_page_banner_property_filter_global');
 
 ?>
