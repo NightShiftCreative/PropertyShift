@@ -34,9 +34,9 @@ function rype_real_estate_register_required_plugins() {
 
     $plugins = array(
         array(
-			'name'         => 'Rype Add-Ons', // The plugin name.
-			'slug'         => 'rype-add-ons', // The plugin slug (typically the folder name).
-			'source'       => 'https://github.com/RypeCreative/Rype-Add-Ons/archive/1.0.0.zip', // The plugin source.
+			'name'         => 'Rype Basics', // The plugin name.
+			'slug'         => 'rype-basics', // The plugin slug (typically the folder name).
+			'source'       => 'https://github.com/RypeCreative/Rype-Basics/archive/1.0.0.zip', // The plugin source.
 			'required'     => true, // If false, the plugin is only 'recommended' instead of required.
 			'version'	   => '1.0.0',
 			'force_activation'   => false,
