@@ -159,7 +159,9 @@ if(rype_real_estate_is_plugin_active('rype-basics/rype-basics.php')) {
 	/*-----------------------------------------------------------------------------------*/
 	/*  ADD ADMIN PAGES AND SETTINGS
 	/*-----------------------------------------------------------------------------------*/
-	include( plugin_dir_path( __FILE__ ) . 'includes/admin-pages.php');
+	include( plugin_dir_path( __FILE__ ) . 'includes/admin-settings-page.php');
+	include( plugin_dir_path( __FILE__ ) . 'includes/admin-add-ons-page.php');
+	include( plugin_dir_path( __FILE__ ) . 'includes/admin-help-page.php');
 
 	/*-----------------------------------------------------------------------------------*/
 	/*  Includes Property Related Functions
