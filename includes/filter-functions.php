@@ -180,7 +180,7 @@ function rype_real_estate_property_filter_details($post) {
                 ?>
 
                 <?php if($custom == 'true') {
-                    if(rao_is_in_array($custom_fields, 'id', $slug)) { ?>
+                    if(rype_basics_in_array($custom_fields, 'id', $slug)) { ?>
                     <li class="sortable-item custom-filter-field custom-filter-field-<?php echo $slug; ?>">
                         <div class="sortable-item-header">
                             <div class="sort-arrows"><i class="fa fa-bars"></i></div>
