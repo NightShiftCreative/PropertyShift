@@ -74,7 +74,7 @@ jQuery(document).ready(function($) {
 				    <div class="floor-plan-img"> \
                         <label>'+ rype_real_estate_local_script.floor_plan_img +' </label> \
                         <input type="text" name="rypecore_floor_plans['+count+'][img]" /> \
-                        <input id="_btn" class="rao_upload_image_button" type="button" value="'+ rype_real_estate_local_script.upload_img +'" /> \
+                        <input id="_btn" class="rype_upload_image_button" type="button" value="'+ rype_real_estate_local_script.upload_img +'" /> \
                         <span class="button-secondary remove">'+ rype_real_estate_local_script.remove_text +'</span> \
                     </div> \
                 </div> \
