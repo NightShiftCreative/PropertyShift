@@ -14,26 +14,36 @@ function rype_real_estate_license_keys_page() {
 
 function rype_real_estate_license_keys_page_content() {
     ob_start(); ?>
-    
-    <h3><?php esc_html_e('Open Houses License Key', 'rype-real-estate'); ?></h3>
-    <table class="admin-module no-border">
-        <tr>
-            <td class="admin-module-label">
-                <label><?php esc_html_e('License Key', 'rype-real-estate'); ?></label>
-                <span class="admin-module-note"><?php esc_html_e('Provide your license key. You can find your key in your account.', 'rype-real-estate'); ?></span>
-            </td>
-            <td class="admin-module-field"><input type="text" name="rype_real_estate_open_houses_license_key" /></td>
-        </tr>
-    </table>
-    <table class="admin-module no-border">
-        <tr>
-            <td class="admin-module-label">
-                <label><?php esc_html_e('Email', 'rype-real-estate'); ?></label>
-                <span class="admin-module-note"><?php esc_html_e('Provide the email you used when you purchased the license key.', 'rype-real-estate'); ?></span>
-            </td>
-            <td class="admin-module-field"><input type="email" name="rype_real_estate_open_houses_license_email" /></td>
-        </tr>
-    </table>
+
+    <div class="accordion rc-accordion">
+
+        <h3 class="accordion-tab">
+            <i class="fa fa-chevron-right icon"></i> 
+            <?php esc_html_e('Open Houses License Key', 'rype-real-estate'); ?>
+            <?php echo rao_get_license_status($add_on['slug'], '', 'true'); ?>
+        </h3>
+        <div>
+            <table class="admin-module no-border">
+                <tr>
+                    <td class="admin-module-label">
+                        <label><?php esc_html_e('License Key', 'rype-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide your license key. You can find your key in your account.', 'rype-real-estate'); ?></span>
+                    </td>
+                    <td class="admin-module-field"><input type="text" name="rype_real_estate_open_houses_license_key" /></td>
+                </tr>
+            </table>
+            <table class="admin-module no-border">
+                <tr>
+                    <td class="admin-module-label">
+                        <label><?php esc_html_e('Email', 'rype-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide the email you used when you purchased the license key.', 'rype-real-estate'); ?></span>
+                    </td>
+                    <td class="admin-module-field"><input type="email" name="rype_real_estate_open_houses_license_email" /></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
 
     <?php $output = ob_get_clean();
     return $output;
