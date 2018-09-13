@@ -31,9 +31,26 @@ function rype_real_estate_settings_page() {
 } 
 
 function rype_real_estate_settings_page_content() {
-    ob_start();
-    //content goes here
-    $output = ob_get_clean();
+    ob_start(); ?>
+    
+    <h3><?php esc_html_e('Open Houses License Key', 'rype-real-estate'); ?></h3>
+    <table class="admin-module no-border">
+        <tr>
+            <td class="admin-module-label"><label><?php esc_html_e('License Key', 'rype-real-estate'); ?></label></td>
+            <td class="admin-module-field"><input type="text" name="" /></td>
+        </tr>
+    </table>
+    <table class="admin-module no-border">
+        <tr>
+            <td class="admin-module-label">
+                <label><?php esc_html_e('Email', 'rype-real-estate'); ?></label>
+                <span class="admin-module-note"><?php esc_html_e('Provide the email you used when you purchased the license key.', 'rype-real-estate'); ?></span>
+            </td>
+            <td class="admin-module-field"><input type="email" name="" /></td>
+        </tr>
+    </table>
+
+    <?php $output = ob_get_clean();
     return $output;
 }
 

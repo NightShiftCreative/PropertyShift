@@ -21,8 +21,7 @@ function rype_real_estate_add_ons_page() {
 function rype_real_estate_add_ons_page_content() {
     ob_start(); ?>
     
-    <div class="rype-module-group rype-module-group-basic">
-
+    <div class="rype-module-group rype-module-group-real-estate">
         <div class="admin-module">
             <div class="rype-module-header">
                 <div class="rype-module-icon"><img src="" alt="" /></div>
@@ -32,15 +31,16 @@ function rype_real_estate_add_ons_page_content() {
                 <span class="admin-module-note"><?php esc_html_e('Sell more properties by advertising open houses. Add unlimited open houses dates and times to your listings.', 'rype-real-estate'); ?></span>
                 <?php if(rype_real_estate_is_paid_plugin_active('rype-open-houses')) { ?>
                     <a href="#" class="view-details rype-meta-item"><?php esc_html_e('Register License Key', 'rype-real-estate'); ?></a>
-                    <input type="text" name="" placeholder="Enter License Key" />
-                    <input type="email" name="" placeholder="Enter email" />
                 <?php } else { ?>
-                    <a href="#" target="_blank" class="view-details rype-meta-item"><?php esc_html_e('Get Add-On', 'rype-real-estate'); ?> </a>
+                    <a href="#" target="_blank" class="rype-meta-item"><?php esc_html_e('Get Add-On', 'rype-real-estate'); ?> </a>
                 <?php } ?>
+                <a href="#" target="_blank" class="rype-meta-item"><?php esc_html_e('View Details', 'rype-real-estate'); ?> </a>
             </div>
         </div>
 
         <div class="admin-module coming-soon"><div class="rype-module-content"><i class="fa fa-plus"></i> <span>More Coming Soon...</span></div></div>
+    
+        <div class="clear"></div>
     </div>
 
     <?php $output = ob_get_clean();
