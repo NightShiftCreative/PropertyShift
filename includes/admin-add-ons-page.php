@@ -4,12 +4,9 @@
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_add_ons_page() { 
 	$page_name = 'Rype Real Estate';
-    $settings_group = 'ype-real-estate-add-ons-group';
-    $pages = array();
-    $pages[] = array('slug' => 'rype-real-estate-settings', 'name' => 'Settings', 'active' => 'false');
-    $pages[] = array('slug' => 'rype-real-estate-add-ons', 'name' => 'Add-Ons', 'active' => 'true');
-    $pages[] = array('slug' => 'rype-real-estate-help', 'name' => 'Help', 'active' => 'false');
-    $display_actions = 'true';
+    $settings_group = null;
+    $pages = rype_real_estate_get_admin_pages();
+    $display_actions = 'false';
     $content = rype_real_estate_add_ons_page_content();
     $content_class = 'rype-modules';
     echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class);

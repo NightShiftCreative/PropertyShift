@@ -161,6 +161,7 @@ if(rype_real_estate_is_plugin_active('rype-basics/rype-basics.php')) {
 	/*-----------------------------------------------------------------------------------*/
 	include( plugin_dir_path( __FILE__ ) . 'includes/admin-settings-page.php');
 	include( plugin_dir_path( __FILE__ ) . 'includes/admin-add-ons-page.php');
+	include( plugin_dir_path( __FILE__ ) . 'includes/admin-license-keys-page.php');
 	include( plugin_dir_path( __FILE__ ) . 'includes/admin-help-page.php');
 
 	/*-----------------------------------------------------------------------------------*/
