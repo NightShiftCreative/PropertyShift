@@ -13,7 +13,12 @@ function rype_real_estate_plugin_menu() {
 /*  REGISTER SETTINGS
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_register_options() {
+
+    //MAIN SETTINGS
     register_setting( 'rype-real-estate-settings-group', 'properties_page');
+
+    //LICENSE KEY SETTINGS
+    register_setting( 'rype-real-estate-license-keys-group', 'rype_real_estate_open_houses_license');
 }
 
 /*-----------------------------------------------------------------------------------*/
