@@ -17,20 +17,21 @@ function rype_real_estate_add_ons_page() {
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_add_ons_page_content() {
     ob_start(); ?>
+
+    <?php 
+    $open_houses_license_default = array('slug' => 'rype-open-houses', 'key' => null, 'email' => null, 'registered' => false, 'error' => null);
+    $open_houses_license = get_option('rype_real_estate_open_houses_license', $open_houses_license_default);
+    ?>
     
     <div class="rype-module-group rype-module-group-real-estate">
         <div class="admin-module">
             <div class="rype-module-header">
                 <div class="rype-module-icon"><img src="" alt="" /></div>
+                <?php echo rype_basics_get_license_status($open_houses_license, '#', 'true'); ?>
                 <h4><?php esc_html_e('Open Houses', 'rype-real-estate'); ?></h4>
             </div>
             <div class="rype-module-content">
                 <span class="admin-module-note"><?php esc_html_e('Sell more properties by advertising open houses. Add unlimited open houses dates and times to your listings.', 'rype-real-estate'); ?></span>
-                <?php if(rype_basics_is_paid_plugin_active('rype-open-houses')) { ?>
-                    <a href="?page=rype-real-estate-license-keys" class="view-details rype-meta-item"><?php esc_html_e('Register License Key', 'rype-real-estate'); ?></a>
-                <?php } else { ?>
-                    <a href="#" target="_blank" class="rype-meta-item"><?php esc_html_e('Get Add-On', 'rype-real-estate'); ?> </a>
-                <?php } ?>
                 <a href="#" target="_blank" class="rype-meta-item"><?php esc_html_e('View Details', 'rype-real-estate'); ?> </a>
             </div>
         </div>
