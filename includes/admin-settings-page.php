@@ -18,9 +18,19 @@ function rype_real_estate_register_options() {
 
     //MAIN SETTINGS
     register_setting( 'rype-real-estate-settings-group', 'properties_page');
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_property_detail_slug', 'rype_real_estate_sanitize_slug');
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_property_type_tax_slug', 'rype_real_estate_sanitize_slug');
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_property_status_tax_slug', 'rype_real_estate_sanitize_slug');
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_property_location_tax_slug', 'rype_real_estate_sanitize_slug');
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_property_amenities_tax_slug', 'rype_real_estate_sanitize_slug');
 
     //LICENSE KEY SETTINGS
     register_setting( 'rype-real-estate-license-keys-group', 'rype_real_estate_open_houses_license');
+}
+
+function rype_real_estate_sanitize_slug($option) {
+    $option = sanitize_title($option);
+    return $option;
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -45,9 +55,79 @@ function rype_real_estate_settings_page() {
 } 
 
 function rype_real_estate_settings_page_content() {
-    ob_start(); 
-    //content goes here
-    $output = ob_get_clean();
+    ob_start(); ?>
+    
+    <div class="accordion rc-accordion">
+        <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property URL Options', 'rype-real-estate'); ?></h3>
+        <div>
+
+            <p class="admin-module-note"><?php esc_html_e('After changing slugs, make sure you re-save your permalinks in Settings > Permalinks.', 'rype-real-estate'); ?></p>
+                <br/>
+
+                <table class="admin-module admin-module-property-slug">
+                    <tr>
+                        <td class="admin-module-label">
+                            <label><?php echo esc_html_e('Properties Slug', 'rype-real-estate'); ?></label>
+                            <span class="admin-module-note"><?php esc_html_e('Default: properties', 'rype-real-estate'); ?></span>
+                        </td>
+                        <td class="admin-module-field">
+                            <span><?php echo esc_url(home_url('/')); ?></span> <input type="text" style="width:150px;" id="property_detail_slug" name="rypecore_property_detail_slug" value="<?php echo esc_attr( get_option('rypecore_property_detail_slug', 'properties') ); ?>" />
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="admin-module">
+                    <tr>
+                        <td class="admin-module-label">
+                            <label><?php echo esc_html_e('Property Type Taxonomy Slug', 'rype-real-estate'); ?></label>
+                            <span class="admin-module-note"><?php esc_html_e('Default: property-type', 'rype-real-estate'); ?></span>
+                        </td>
+                        <td class="admin-module-field">
+                            <span><?php echo esc_url(home_url('/')); ?></span> <input type="text" style="width:150px;" id="property_type_tax_slug" name="rypecore_property_type_tax_slug" value="<?php echo esc_attr( get_option('rypecore_property_type_tax_slug', 'property-type') ); ?>" />
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="admin-module">
+                    <tr>
+                        <td class="admin-module-label">
+                            <label><?php echo esc_html_e('Property Status Taxonomy Slug', 'rype-real-estate'); ?></label>
+                            <span class="admin-module-note"><?php esc_html_e('Default: property-status', 'rype-real-estate'); ?></span>
+                        </td>
+                        <td class="admin-module-field">
+                            <span><?php echo esc_url(home_url('/')); ?></span> <input type="text" style="width:150px;" id="property_status_tax_slug" name="rypecore_property_status_tax_slug" value="<?php echo esc_attr( get_option('rypecore_property_status_tax_slug', 'property-status') ); ?>" />
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="admin-module">
+                    <tr>
+                        <td class="admin-module-label">
+                            <label><?php echo esc_html_e('Property Location Taxonomy Slug', 'rype-real-estate'); ?></label>
+                            <span class="admin-module-note"><?php esc_html_e('Default: property-location', 'rype-real-estate'); ?></span>
+                        </td>
+                        <td class="admin-module-field">
+                            <span><?php echo esc_url(home_url('/')); ?></span> <input type="text" style="width:150px;" id="property_location_tax_slug" name="rypecore_property_location_tax_slug" value="<?php echo esc_attr( get_option('rypecore_property_location_tax_slug', 'property-location') ); ?>" />
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="admin-module no-border">
+                    <tr>
+                        <td class="admin-module-label">
+                            <label><?php echo esc_html_e('Property Amenities Taxonomy Slug', 'rype-real-estate'); ?></label>
+                            <span class="admin-module-note"><?php esc_html_e('Default: property-amenity', 'rype-real-estate'); ?></span>
+                        </td>
+                        <td class="admin-module-field">
+                            <span><?php echo esc_url(home_url('/')); ?></span> <input type="text" style="width:150px;" id="property_amenities_tax_slug" name="rypecore_property_amenities_tax_slug" value="<?php echo esc_attr( get_option('rypecore_property_amenities_tax_slug', 'property-amenity') ); ?>" />
+                        </td>
+                    </tr>
+                </table>
+
+        </div>
+    </div>
+
+    <?php $output = ob_get_clean();
     return $output;
 }
 
