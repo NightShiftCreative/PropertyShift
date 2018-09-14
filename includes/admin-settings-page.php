@@ -16,7 +16,7 @@ function rype_real_estate_plugin_menu() {
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_register_options() {
 
-    //MAIN SETTINGS
+    //PROPERTY SETTINGS
     register_setting( 'rype-real-estate-settings-group', 'properties_page');
     register_setting( 'rype-real-estate-settings-group', 'rypecore_property_detail_slug', 'rype_real_estate_sanitize_slug');
     register_setting( 'rype-real-estate-settings-group', 'rypecore_property_type_tax_slug', 'rype_real_estate_sanitize_slug');
@@ -47,6 +47,22 @@ function rype_real_estate_register_options() {
     register_setting( 'rype-real-estate-settings-group', 'rypecore_property_detail_agent_contact_form' );
 
     register_setting( 'rype-real-estate-settings-group', 'rypecore_custom_fields' );
+
+    //AGENT SETTINGS
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_num_agents_per_page' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_agent_detail_slug', 'rype_real_estate_sanitize_slug' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_agent_listing_crop' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_agent_detail_items' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_agent_form_message_placeholder' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_agent_form_success' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_agent_form_submit_text' );
+
+    //MEMBER SETTINGS
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_members_my_properties_page' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_members_submit_property_page' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_members_submit_property_approval' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_members_add_locations' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_members_add_amenities' );
 
     //LICENSE KEY SETTINGS
     register_setting( 'rype-real-estate-license-keys-group', 'rype_real_estate_open_houses_license');
@@ -80,6 +96,7 @@ function rype_real_estate_settings_page() {
         array('name' => 'General', 'link' => '#general', 'icon' => 'fa-globe'),
         array('name' => 'Properties', 'link' => '#properties', 'icon' => 'fa-home'),
         array('name' => 'Agents', 'link' => '#agents', 'icon' => 'fa-group'),
+        array('name' => 'Members', 'link' => '#members', 'icon' => 'fa-key'),
     );
     echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class, $content_nav);
 } 
@@ -610,7 +627,213 @@ function rype_real_estate_settings_page_content() {
 
     <div id="agents" class="tab-content">
         <h2><?php echo esc_html_e('Agent Settings', 'rype-real-estate'); ?></h2>
-    </div>
+
+        <div class="accordion rc-accordion">
+            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Agent Listing Options', 'rype-real-estate'); ?></h3>
+            <div>
+
+                <table class="admin-module">
+                    <tr>
+                        <td class="admin-module-label">
+                            <label><?php echo esc_html_e('Agents Slug', 'rype-real-estate'); ?></label>
+                            <span class="admin-module-note"><?php esc_html_e('After changing the slug, make sure you re-save your permalinks in Settings > Permalinks. The default slug is agents.', 'rype-real-estate'); ?></span>
+                        </td>
+                        <td class="admin-module-field">
+                            <span><?php echo esc_url(home_url('/')); ?></span> <input type="text" style="width:150px;" id="agent_detail_slug" name="rypecore_agent_detail_slug" value="<?php echo esc_attr( get_option('rypecore_agent_detail_slug', 'agents') ); ?>" />
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="admin-module">
+                    <tr>
+                        <td class="admin-module-label"><label><?php echo esc_html_e('Number of Agents Per Page', 'rype-real-estate'); ?></label></td>
+                        <td class="admin-module-field"><input type="number" id="num_agents_per_page" name="rypecore_num_agents_per_page" value="<?php echo esc_attr( get_option('rypecore_num_agents_per_page', 12) ); ?>" /></td>
+                    </tr>
+                </table>
+
+                <table class="admin-module no-border">
+                    <tr>
+                        <td class="admin-module-label">
+                            <label><?php echo esc_html_e('Hard crop agent listing featured images?', 'rype-real-estate'); ?></label>
+                            <span class="admin-module-note"><?php esc_html_e('If active, agent listing thumbnails will be cropped to 800 x 600 pixels.', 'rype-real-estate'); ?></span>
+                        </td>
+                        <td class="admin-module-field">
+                            <div class="toggle-switch" title="<?php if(get_option('rypecore_agent_listing_crop', 'true') == 'true') { esc_html_e('Active', 'rype-real-estate'); } else { esc_html_e('Disabled', 'rype-real-estate'); } ?>">
+                                <input type="checkbox" name="rypecore_agent_listing_crop" value="true" class="toggle-switch-checkbox" id="agent_listing_crop" <?php checked('true', get_option('rypecore_agent_listing_crop', 'true'), true) ?>>
+                                <label class="toggle-switch-label" for="agent_listing_crop"><?php if(get_option('rypecore_agent_listing_crop', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'rype-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'rype-real-estate').'</span>'; } ?></label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div><!-- end agent listing options -->
+
+        <div class="accordion rc-accordion">
+            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Agent Detail Options', 'rype-real-estate'); ?></h3>
+            <div>
+
+                <div class="admin-module no-border">
+                    <div class="admin-module-label"><label><?php echo esc_html_e('Agent Detail Sections', 'rype-real-estate'); ?> <span class="admin-module-note"><?php echo esc_html_e('(Drag & drop to rearrange order)', 'rype-real-estate'); ?></span></label></div>
+
+                    <ul class="sortable-list agent-detail-items-list">
+                        <?php
+                        $agent_detail_items_default = rype_real_estate_load_default_agent_detail_items();
+                        $agent_detail_items = get_option('rypecore_agent_detail_items', $agent_detail_items_default);
+                        $count = 0;
+
+                        foreach($agent_detail_items as $value) { ?>
+                            <?php
+                                if(isset($value['name'])) { $name = $value['name']; }
+                                if(isset($value['label'])) { $label = $value['label']; }
+                                if(isset($value['slug'])) { $slug = $value['slug']; }
+                                if(isset($value['active']) && $value['active'] == 'true') { $active = 'true'; } else { $active = 'false'; }
+                                if(isset($value['sidebar']) && $value['sidebar'] == 'true') { $sidebar = 'true'; } else { $sidebar = 'false'; }
+                            ?>
+                            <li class="sortable-item">
+                                
+                                <div class="sortable-item-header">
+                                    <div class="sort-arrows"><i class="fa fa-bars"></i></div>
+                                    <div class="toggle-switch" title="<?php if($active == 'true') { esc_html_e('Active', 'rype-real-estate'); } else { esc_html_e('Disabled', 'rype-real-estate'); } ?>">
+                                        <input type="checkbox" name="rypecore_agent_detail_items[<?php echo $count; ?>][active]" value="true" class="toggle-switch-checkbox" id="agent_detail_item_<?php echo esc_attr($slug); ?>" <?php checked('true', $active, true) ?>>
+                                        <label class="toggle-switch-label" for="agent_detail_item_<?php echo esc_attr($slug); ?>"><?php if($active == 'true') { echo '<span class="on">'.esc_html__('On', 'rype-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'rype-real-estate').'</span>'; } ?></label>
+                                    </div>
+                                    <span class="sortable-item-title"><?php echo esc_attr($name); ?></span><div class="clear"></div>
+                                    <input type="hidden" name="rypecore_agent_detail_items[<?php echo $count; ?>][name]" value="<?php echo $name; ?>" />
+                                    <input type="hidden" name="rypecore_agent_detail_items[<?php echo $count; ?>][slug]" value="<?php echo $slug; ?>" />
+                                </div>
+                            
+                                <a href="#advanced-options-content-<?php echo esc_attr($slug); ?>" class="sortable-item-action advanced-options-toggle right"><i class="fa fa-gear"></i> <?php esc_html_e('Additional Settings', 'rype-real-estate'); ?></a>
+                                <div id="advanced-options-content-<?php echo esc_attr($slug); ?>" class="advanced-options-content hide-soft">  
+                                    
+                                    <table class="admin-module">
+                                        <tr>
+                                            <td class="admin-module-label"><label><?php esc_html_e('Label:', 'rype-real-estate'); ?></label></td>
+                                            <td class="admin-module-field">
+                                                <input type="text" class="sortable-item-label-input" name="rypecore_agent_detail_items[<?php echo $count; ?>][label]" value="<?php echo $label; ?>" /> 
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <table class="admin-module">
+                                        <tr>
+                                            <td class="admin-module-label"><label><?php esc_html_e('Display in Sidebar', 'rype-real-estate'); ?></label></td>
+                                            <td class="admin-module-field">
+                                                <input type="checkbox" name="rypecore_agent_detail_items[<?php echo $count; ?>][sidebar]" value="true" <?php checked('true', $sidebar, true) ?> />
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <?php if($slug == 'contact') { ?>
+                                        <div class="admin-module">
+                                            <label><?php echo esc_html_e('Message Placeholder on Property Pages', 'rype-real-estate'); ?></label><br/>
+                                            <input type="text" name="rypecore_agent_form_message_placeholder" value="<?php echo esc_attr( get_option('rypecore_agent_form_message_placeholder', esc_html__('I am interested in this property and would like to know more.', 'rype-real-estate')) ); ?>" />
+                                        </div>
+                                        <div class="admin-module">
+                                            <label><?php echo esc_html_e('Success Message', 'rype-real-estate'); ?></label><br/>
+                                            <input type="text" name="rypecore_agent_form_success" value="<?php echo esc_attr( get_option('rypecore_agent_form_success', esc_html__('Thanks! Your email has been delivered!', 'rype-real-estate')) ); ?>" />
+                                        </div>
+                                        <div class="admin-module">
+                                            <label for="agent_form_submit_text"><?php esc_html_e('Submit Button Text', 'rype-real-estate'); ?></label><br/>
+                                            <input type="text" id="agent_form_submit_text" name="rypecore_agent_form_submit_text" value="<?php echo esc_attr( get_option('rypecore_agent_form_submit_text', esc_html__('Contact Agent', 'rype-real-estate')) ); ?>" />
+                                        </div>
+                                    <?php } ?>
+
+                                </div>
+
+                            </li>
+                            <?php $count++; ?>
+                        <?php } ?>
+                    </ul>
+                </div>
+
+            </div>
+        </div><!-- end agent detail options -->
+
+    </div><!-- end agent options -->
+
+    <div id="members" class="tab-content">
+        <h2><?php echo esc_html_e('Member Settings', 'rype-real-estate'); ?></h2>
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label">
+                    <label><?php echo esc_html_e('Select My Properties Page', 'rype-real-estate'); ?></label>
+                    <span class="admin-module-note"><?php esc_html_e('Create a page and assign it the My Properties template.', 'rype-real-estate'); ?></span>
+                </td>
+                <td class="admin-module-field">
+                    <select name="rypecore_members_my_properties_page">
+                        <option value="">
+                        <?php echo esc_attr( esc_html__( 'Select page', 'rype-real-estate' ) ); ?></option> 
+                            <?php 
+                            $pages = get_pages(); 
+                            foreach ( $pages as $page ) { ?>
+                            <option value="<?php echo get_page_link( $page->ID ); ?>" <?php if(esc_attr(get_option('rypecore_members_my_properties_page')) == get_page_link( $page->ID )) { echo 'selected'; } ?>>
+                                <?php echo esc_attr($page->post_title); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label">
+                    <label><?php echo esc_html_e('Select Submit Property Page', 'rype-real-estate'); ?></label>
+                    <span class="admin-module-note"><?php esc_html_e('Create a page and assign it the Submit Property template.', 'rype-real-estate'); ?></span>
+                </td>
+                <td class="admin-module-field">
+                    <select name="rypecore_members_submit_property_page">
+                        <option value="">
+                        <?php echo esc_attr( esc_html__( 'Select page', 'rype-real-estate' ) ); ?></option> 
+                            <?php 
+                            $pages = get_pages(); 
+                            foreach ( $pages as $page ) { ?>
+                            <option value="<?php echo get_page_link( $page->ID ); ?>" <?php if(esc_attr(get_option('rypecore_members_submit_property_page')) == get_page_link( $page->ID )) { echo 'selected'; } ?>>
+                                <?php echo esc_attr($page->post_title); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label"><label><?php echo esc_html_e('Front-end property submissions must be approved before being published', 'rype-real-estate'); ?></label></td>
+                <td class="admin-module-field">
+                    <div class="toggle-switch" title="<?php if(get_option('rypecore_members_submit_property_approval', 'true') == 'true') { esc_html_e('Active', 'rype-real-estate'); } else { esc_html_e('Disabled', 'rype-real-estate'); } ?>">
+                        <input type="checkbox" name="rypecore_members_submit_property_approval" value="true" class="toggle-switch-checkbox" id="members_submit_property_approval" <?php checked('true', get_option('rypecore_members_submit_property_approval', 'true'), true) ?>>
+                        <label class="toggle-switch-label" for="members_submit_property_approval"><?php if(get_option('rypecore_members_submit_property_approval', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'rype-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'rype-real-estate').'</span>'; } ?></label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label"><label><?php echo esc_html_e('Allow members to add new property locations from the front-end', 'rype-real-estate'); ?></label></td>
+                <td class="admin-module-field">
+                    <div class="toggle-switch" title="<?php if(get_option('rypecore_members_add_locations', 'true') == 'true') { esc_html_e('Active', 'rype-real-estate'); } else { esc_html_e('Disabled', 'rype-real-estate'); } ?>">
+                        <input type="checkbox" name="rypecore_members_add_locations" value="true" class="toggle-switch-checkbox" id="members_add_locations" <?php checked('true', get_option('rypecore_members_add_locations', 'true'), true) ?>>
+                        <label class="toggle-switch-label" for="members_add_locations"><?php if(get_option('rypecore_members_add_locations', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'rype-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'rype-real-estate').'</span>'; } ?></label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table class="admin-module no-border">
+            <tr>
+                <td class="admin-module-label"><label><?php echo esc_html_e('Allow members to add new property amenities from the front-end', 'rype-real-estate'); ?></label></td>
+                <td class="admin-module-field">
+                    <div class="toggle-switch" title="<?php if(get_option('rypecore_members_add_amenities', 'true') == 'true') { esc_html_e('Active', 'rype-real-estate'); } else { esc_html_e('Disabled', 'rype-real-estate'); } ?>">
+                        <input type="checkbox" name="rypecore_members_add_amenities" value="true" class="toggle-switch-checkbox" id="members_add_amenities" <?php checked('true', get_option('rypecore_members_add_amenities', 'true'), true) ?>>
+                        <label class="toggle-switch-label" for="members_add_amenities"><?php if(get_option('rypecore_members_add_amenities', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'rype-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'rype-real-estate').'</span>'; } ?></label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div><!-- end member options -->
 
     <?php $output = ob_get_clean();
     return $output;
@@ -694,6 +917,44 @@ function rype_real_estate_load_default_property_detail_items() {
     );
 
     return $property_detail_items_default;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  Load default Agent Detail Items
+/*-----------------------------------------------------------------------------------*/
+function rype_real_estate_load_default_agent_detail_items() {
+    $agent_detail_items_default = array(
+        0 => array(
+            'name' => esc_html__('Overview', 'rype-real-estate'),
+            'label' => esc_html__('Overview', 'rype-real-estate'),
+            'slug' => 'overview',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        1 => array(
+            'name' => esc_html__('Description', 'rype-real-estate'),
+            'label' => esc_html__('Description', 'rype-real-estate'),
+            'slug' => 'description',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        2 => array(
+            'name' => esc_html__('Contact', 'rype-real-estate'),
+            'label' => esc_html__('Contact', 'rype-real-estate'),
+            'slug' => 'contact',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        3 => array(
+            'name' => esc_html__('Properties', 'rype-real-estate'),
+            'label' => esc_html__('Properties', 'rype-real-estate'),
+            'slug' => 'properties',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+    );
+
+    return $agent_detail_items_default;
 }
 
 ?>
