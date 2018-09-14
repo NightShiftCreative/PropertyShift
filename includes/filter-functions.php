@@ -446,7 +446,7 @@ function rype_real_estate_page_banner_property_filter_global() {
             if($header_vars['header_style'] == 'transparent') { $header_vars['header_style'] = ''; }
             return $header_vars;
         }
-        add_filter( 'rao_custom_header_vars', 'rype_real_estate_properties_filter_custom_header_var');
+        add_filter( 'rype_basics_custom_header_vars', 'rype_real_estate_properties_filter_custom_header_var');
     }
 
     //generate filter position hook name

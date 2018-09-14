@@ -1012,7 +1012,7 @@ function rype_real_estate_properties_save_extra_taxonomy_fields( $term_id ) {
 function rype_real_estate_properties_map_banner($banner_source) { 
     if($banner_source == 'properties_map') { rypecore_get_template_part('template_parts/real_estate/properties_map'); }
 }
-add_filter( 'rao_custom_banner_source', 'rype_real_estate_properties_map_banner');
+add_filter( 'rype_basics_custom_banner_source', 'rype_real_estate_properties_map_banner');
 
 function rype_real_estate_properties_map_custom_header_var($header_vars) { 
     $page_id = rypecore_get_page_id();
@@ -1021,7 +1021,7 @@ function rype_real_estate_properties_map_custom_header_var($header_vars) {
     if($banner_source == 'properties_map' && $header_vars['header_style'] == 'transparent') { $header_vars['header_style'] = ''; }
     return $header_vars;
 }
-add_filter( 'rao_custom_header_vars', 'rype_real_estate_properties_map_custom_header_var');
+add_filter( 'rype_basics_custom_header_vars', 'rype_real_estate_properties_map_custom_header_var');
 
 /*-----------------------------------------------------------------------------------*/
 /*  Output Property Dashboard Widgets
@@ -1052,7 +1052,7 @@ function rype_real_estate_property_dashboard_widgets($banner_source) {
         ?>
     </div>
 <?php }
-add_filter( 'rao_after_dashboard', 'rype_real_estate_property_dashboard_widgets');
+add_filter( 'rype_basics_after_dashboard', 'rype_real_estate_property_dashboard_widgets');
 
 /*-----------------------------------------------------------------------------------*/
 /*  Add Property Image Size
@@ -1060,7 +1060,7 @@ add_filter( 'rao_after_dashboard', 'rype_real_estate_property_dashboard_widgets'
 function rype_real_estate_add_real_estate_image_size() {
     add_image_size( 'property-thumbnail', 800, 600, array( 'center', 'center' ) );
 }
-add_action( 'rao_theme_support', 'rype_real_estate_add_real_estate_image_size' );
+add_action( 'rype_basics_theme_support', 'rype_real_estate_add_real_estate_image_size' );
 
 /*-----------------------------------------------------------------------------------*/
 /*  Register Properties Sidebar
