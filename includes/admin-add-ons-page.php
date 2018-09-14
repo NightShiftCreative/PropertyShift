@@ -27,7 +27,7 @@ function rype_real_estate_add_ons_page_content() {
         <div class="admin-module">
             <div class="rype-module-header">
                 <div class="rype-module-icon"><img src="" alt="" /></div>
-                <?php echo rype_basics_get_license_status($open_houses_license, '#', 'true'); ?>
+                <?php echo rype_basics_get_license_status($open_houses_license, '#', '?page=rype-real-estate-license-keys', 'true'); ?>
                 <h4><?php esc_html_e('Open Houses', 'rype-real-estate'); ?></h4>
             </div>
             <div class="rype-module-content">
