@@ -1,0 +1,1482 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Rype Real Estate\n"
+"POT-Creation-Date: 2018-09-13 22:32-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: \n"
+"Language-Team: Rype Creative\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.8\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x;_ex;_nx;esc_attr__;esc_attr_e;esc_attr_x;"
+"esc_html__;esc_html_e;esc_html_x;_n_noop;_nx_noop\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/admin-add-ons-page.php:31
+msgid "Open Houses"
+msgstr ""
+
+#: includes/admin-add-ons-page.php:34
+msgid ""
+"Sell more properties by advertising open houses. Add unlimited open houses "
+"dates and times to your listings."
+msgstr ""
+
+#: includes/admin-add-ons-page.php:35
+msgid "View Details"
+msgstr ""
+
+#: includes/admin-license-keys-page.php:33
+msgid "Open Houses License Key"
+msgstr ""
+
+#: includes/admin-license-keys-page.php:40
+msgid "License Key"
+msgstr ""
+
+#: includes/admin-license-keys-page.php:41
+msgid "Provide your license key. You can find your key in your account."
+msgstr ""
+
+#: includes/admin-license-keys-page.php:53
+#: includes/property-submit-functions.php:675
+msgid "Email"
+msgstr ""
+
+#: includes/admin-license-keys-page.php:54
+msgid "Provide the email you used when purchasing this license key."
+msgstr ""
+
+#: includes/admin_map.php:12
+msgid "Clear Location"
+msgstr ""
+
+#: includes/filter-functions.php:9 includes/filter-functions.php:10
+#: includes/property-functions.php:679 includes/property-functions.php:680
+#: includes/property-submit-functions.php:455
+msgid "Property Type"
+msgstr ""
+
+#: includes/filter-functions.php:11 includes/filter-functions.php:19
+#: includes/filter-functions.php:27 includes/filter-functions.php:42
+#: includes/filter-functions.php:50
+msgid "Any"
+msgstr ""
+
+#: includes/filter-functions.php:17 includes/filter-functions.php:18
+#: includes/property-functions.php:710 includes/property-functions.php:711
+#: includes/property-functions.php:729
+msgid "Property Status"
+msgstr ""
+
+#: includes/filter-functions.php:25 includes/filter-functions.php:26
+#: includes/property-functions.php:741 includes/property-functions.php:742
+#: includes/property-functions.php:760
+#: includes/property-submit-functions.php:385
+msgid "Property Location"
+msgstr ""
+
+#: includes/filter-functions.php:33 includes/filter-functions.php:34
+msgid "Price Range"
+msgstr ""
+
+#: includes/filter-functions.php:40 includes/filter-functions.php:41
+#: includes/property-functions.php:302
+#: includes/property-submit-functions.php:338
+msgid "Bedrooms"
+msgstr ""
+
+#: includes/filter-functions.php:48 includes/filter-functions.php:49
+#: includes/property-functions.php:312
+#: includes/property-submit-functions.php:343
+msgid "Bathrooms"
+msgstr ""
+
+#: includes/filter-functions.php:56 includes/filter-functions.php:57
+#: includes/property-functions.php:332
+#: includes/property-submit-functions.php:354
+msgid "Area"
+msgstr ""
+
+#: includes/filter-functions.php:58
+msgid "Min"
+msgstr ""
+
+#: includes/filter-functions.php:59
+msgid "Max"
+msgstr ""
+
+#: includes/filter-functions.php:77
+msgid "Property Filters"
+msgstr ""
+
+#: includes/filter-functions.php:78
+msgid "Property Filter"
+msgstr ""
+
+#: includes/filter-functions.php:79
+msgid "Add New Property Filter"
+msgstr ""
+
+#: includes/filter-functions.php:80
+msgid "Search Property Filters"
+msgstr ""
+
+#: includes/filter-functions.php:81
+msgid "Edit Property Filter"
+msgstr ""
+
+#: includes/filter-functions.php:116
+msgid "Find Properties"
+msgstr ""
+
+#: includes/filter-functions.php:124 includes/filter-functions.php:397
+msgid "Shortcode"
+msgstr ""
+
+#: includes/filter-functions.php:125
+msgid "Copy/paste it into your post, page, or text widget content:"
+msgstr ""
+
+#: includes/filter-functions.php:133
+msgid "Page Banner Position"
+msgstr ""
+
+#: includes/filter-functions.php:136
+msgid "Above Banner"
+msgstr ""
+
+#: includes/filter-functions.php:137
+msgid "Inside Banner"
+msgstr ""
+
+#: includes/filter-functions.php:138
+msgid "Below Banner"
+msgstr ""
+
+#: includes/filter-functions.php:146
+msgid "Filter Layout"
+msgstr ""
+
+#: includes/filter-functions.php:149
+msgid "Full Width"
+msgstr ""
+
+#: includes/filter-functions.php:150
+msgid "Minimal"
+msgstr ""
+
+#: includes/filter-functions.php:151
+msgid "Boxed"
+msgstr ""
+
+#: includes/filter-functions.php:159
+msgid "Display Filter Tabs"
+msgstr ""
+
+#: includes/filter-functions.php:167
+msgid "Filter Fields"
+msgstr ""
+
+#: includes/filter-functions.php:167
+msgid "(Drag & drop to rearrange order)"
+msgstr ""
+
+#: includes/filter-functions.php:187 includes/property-functions.php:434
+#: includes/property-functions.php:493 includes/property-functions.php:955
+#: rype-real-estate.php:88
+msgid "Remove"
+msgstr ""
+
+#: includes/filter-functions.php:189
+msgid "(Custom Field)"
+msgstr ""
+
+#: includes/filter-functions.php:203
+#: includes/plugins/class-tgm-plugin-activation.php:2414
+msgid "Active"
+msgstr ""
+
+#: includes/filter-functions.php:203
+msgid "Disabled"
+msgstr ""
+
+#: includes/filter-functions.php:205
+msgid "On"
+msgstr ""
+
+#: includes/filter-functions.php:205
+msgid "Off"
+msgstr ""
+
+#: includes/filter-functions.php:213
+msgid "Additional Settings"
+msgstr ""
+
+#: includes/filter-functions.php:218
+msgid "Label:"
+msgstr ""
+
+#: includes/filter-functions.php:228
+msgid "Placeholder:"
+msgstr ""
+
+#: includes/filter-functions.php:239
+msgid "Placeholder Second:"
+msgstr ""
+
+#: includes/filter-functions.php:251
+msgid "Price Range Minimum"
+msgstr ""
+
+#: includes/filter-functions.php:258
+msgid "Price Range Maximum"
+msgstr ""
+
+#: includes/filter-functions.php:265
+msgid "Price Range Minimum Start"
+msgstr ""
+
+#: includes/filter-functions.php:272
+msgid "Price Range Maximum Start"
+msgstr ""
+
+#: includes/filter-functions.php:278
+msgid "You can override these setting for specific property statuses "
+msgstr ""
+
+#: includes/filter-functions.php:279
+msgid "here"
+msgstr ""
+
+#: includes/filter-functions.php:293
+msgid "Add Custom Field to Filter"
+msgstr ""
+
+#: includes/filter-functions.php:294 includes/property-functions.php:394
+msgid "Manage custom fields"
+msgstr ""
+
+#: includes/filter-functions.php:313
+msgid "Insert Field"
+msgstr ""
+
+#: includes/filter-functions.php:315 includes/property-functions.php:391
+msgid "No custom fields have been created."
+msgstr ""
+
+#: includes/filter-functions.php:325
+msgid "Submit Button Text"
+msgstr ""
+
+#: includes/filter-functions.php:396 includes/property-functions.php:187
+#: includes/property-functions.php:809
+msgid "Property"
+msgstr ""
+
+#: includes/filter-functions.php:398 includes/property-functions.php:816
+msgid "Date"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:334
+msgid "Install Required Plugins"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:335
+msgid "Install Plugins"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:337
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:339
+#, php-format
+msgid "Updating Plugin: %s"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:340
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:343
+#, php-format
+msgid "This theme requires the following plugin: %1$s."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:349
+#, php-format
+msgid "This theme recommends the following plugin: %1$s."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:355
+#, php-format
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:361
+#, php-format
+msgid "There is an update available for: %1$s."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:367
+#, php-format
+msgid "The following required plugin is currently inactive: %1$s."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:373
+#, php-format
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:378
+msgid "Begin installing plugin"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:383
+msgid "Begin updating plugin"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:388
+msgid "Begin activating plugin"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:392
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:393
+#: includes/plugins/class-tgm-plugin-activation.php:920
+#: includes/plugins/class-tgm-plugin-activation.php:2626
+#: includes/plugins/class-tgm-plugin-activation.php:3673
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:394
+#: includes/plugins/class-tgm-plugin-activation.php:3252
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:395
+#: includes/plugins/class-tgm-plugin-activation.php:3045
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:397
+#, php-format
+msgid "No action taken. Plugin %1$s was already active."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:399
+#, php-format
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. "
+"Please update the plugin."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:401
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:402
+msgid "Dismiss this notice"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:403
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:404
+msgid "Please contact the administrator of this site for help."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:607
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:608
+msgid "Update Required"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:725
+msgid "Set the parent_slug config variable instead."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:1027
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug "
+"and renaming did not work."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:1027
+#: includes/plugins/class-tgm-plugin-activation.php:1030
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:1030
+msgid ""
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:1214
+#: includes/plugins/class-tgm-plugin-activation.php:3041
+msgid "and"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2075
+#, php-format
+msgid "TGMPA v%s"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2366
+msgid "Required"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2369
+msgid "Recommended"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2385
+msgid "WordPress Repository"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2388
+msgid "External Source"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2391
+msgid "Pre-Packaged"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2408
+msgid "Not Installed"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2412
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2420
+msgid "Required Update not Available"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2423
+msgid "Requires Update"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2426
+msgid "Update recommended"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2435
+#, php-format
+msgid "%1$s, %2$s"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2481
+#, php-format
+msgid "All <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2485
+#, php-format
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2489
+#, php-format
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2493
+#, php-format
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2575
+msgid "unknown"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2583
+msgid "Installed version:"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2591
+msgid "Minimum required version:"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2603
+msgid "Available version:"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2626
+msgid "No plugins to install, update or activate."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2640
+msgid "Plugin"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2641
+msgid "Source"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2642
+#: includes/property-functions.php:812
+msgid "Type"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2646
+msgid "Version"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2647
+#: includes/property-functions.php:813
+msgid "Status"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2696
+#, php-format
+msgid "Install %2$s"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2701
+#, php-format
+msgid "Update %2$s"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2707
+#, php-format
+msgid "Activate %2$s"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2777
+msgid "Upgrade message from the plugin author:"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2810
+msgid "Install"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2816
+msgid "Update"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2819
+msgid "Activate"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2850
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2852
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2893
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:2895
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3001
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3027
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3251
+msgid "Plugin activation failed."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3591
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3594
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3596
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3600
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3602
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3602
+#: includes/plugins/class-tgm-plugin-activation.php:3610
+msgid "Show Details"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3602
+#: includes/plugins/class-tgm-plugin-activation.php:3610
+msgid "Hide Details"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3603
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3605
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3608
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3610
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3611
+msgid "All installations have been completed."
+msgstr ""
+
+#: includes/plugins/class-tgm-plugin-activation.php:3613
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: includes/plugins/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:395
+msgid "Check for updates"
+msgstr ""
+
+#: includes/plugins/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:432
+msgid "View details"
+msgstr ""
+
+#: includes/plugins/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:455
+#, php-format
+msgid "More information about %s"
+msgstr ""
+
+#: includes/plugins/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:548
+#, php-format
+msgid "The %s plugin is up to date."
+msgstr ""
+
+#: includes/plugins/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:550
+#, php-format
+msgid "A new version of the %s plugin is available."
+msgstr ""
+
+#: includes/plugins/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:552
+#, php-format
+msgid "Could not determine if updates are available for %s."
+msgstr ""
+
+#: includes/plugins/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:558
+#, php-format
+msgid "Unknown update checker status \"%s\""
+msgstr ""
+
+#: includes/plugins/plugin-update-checker/Puc/v4p4/Vcs/PluginUpdateChecker.php:98
+msgid "There is no changelog available."
+msgstr ""
+
+#: includes/property-functions.php:186
+msgid "Properties"
+msgstr ""
+
+#: includes/property-functions.php:188
+msgid "Add New Property"
+msgstr ""
+
+#: includes/property-functions.php:189
+msgid "Search Properties"
+msgstr ""
+
+#: includes/property-functions.php:190
+msgid "Edit Property"
+msgstr ""
+
+#: includes/property-functions.php:238 includes/property-functions.php:253
+#: includes/property-submit-functions.php:302
+#: includes/property-submit-functions.php:309
+msgid "General Info"
+msgstr ""
+
+#: includes/property-functions.php:239 includes/property-functions.php:403
+msgid "Gallery"
+msgstr ""
+
+#: includes/property-functions.php:240 includes/property-functions.php:411
+#: includes/property-submit-functions.php:486
+msgid "Floor Plans"
+msgstr ""
+
+#: includes/property-functions.php:241 includes/property-functions.php:452
+#: includes/property-submit-functions.php:304
+#: includes/property-submit-functions.php:619
+msgid "Map"
+msgstr ""
+
+#: includes/property-functions.php:242 includes/property-functions.php:478
+msgid "Video"
+msgstr ""
+
+#: includes/property-functions.php:243 includes/property-functions.php:503
+#: includes/property-submit-functions.php:305
+#: includes/property-submit-functions.php:635
+msgid "Owner Info"
+msgstr ""
+
+#: includes/property-functions.php:247
+msgid "Loading..."
+msgstr ""
+
+#: includes/property-functions.php:257
+msgid "Property ID"
+msgstr ""
+
+#: includes/property-functions.php:264
+msgid "Featured Property"
+msgstr ""
+
+#: includes/property-functions.php:272
+msgid "Street Address"
+msgstr ""
+
+#: includes/property-functions.php:273
+msgid "Provide the address for the property"
+msgstr ""
+
+#: includes/property-functions.php:282 includes/property-functions.php:814
+msgid "Price"
+msgstr ""
+
+#: includes/property-functions.php:283
+msgid "Use only numbers. Do not include commas or dollar sign (ex.- 250000)"
+msgstr ""
+
+#: includes/property-functions.php:292
+#: includes/property-submit-functions.php:332
+msgid "Price Postfix"
+msgstr ""
+
+#: includes/property-functions.php:293
+msgid "Provide the text displayed after the price (ex.- Per Month)"
+msgstr ""
+
+#: includes/property-functions.php:303
+msgid "Provide the number of bedrooms"
+msgstr ""
+
+#: includes/property-functions.php:313
+msgid "Provide the number of bathrooms"
+msgstr ""
+
+#: includes/property-functions.php:322
+#: includes/property-submit-functions.php:348
+msgid "Garages"
+msgstr ""
+
+#: includes/property-functions.php:323
+msgid "Provide the number of garages"
+msgstr ""
+
+#: includes/property-functions.php:333
+msgid "Provide the area. Use only numbers and decimals, do not include commas."
+msgstr ""
+
+#: includes/property-functions.php:342
+#: includes/property-submit-functions.php:359
+msgid "Area Postfix"
+msgstr ""
+
+#: includes/property-functions.php:343
+msgid "Provide the text to display directly after the area (ex. - Sq Ft)"
+msgstr ""
+
+#: includes/property-functions.php:350
+msgid "Custom Fields"
+msgstr ""
+
+#: includes/property-functions.php:371
+#: includes/property-submit-functions.php:538
+#: includes/property-submit-functions.php:658
+msgid "Select an option..."
+msgstr ""
+
+#: includes/property-functions.php:422
+#: includes/property-submit-functions.php:497 rype-real-estate.php:91
+#: rype-real-estate.php:141
+msgid "Title:"
+msgstr ""
+
+#: includes/property-functions.php:423
+#: includes/property-submit-functions.php:498 rype-real-estate.php:92
+#: rype-real-estate.php:142
+msgid "Size:"
+msgstr ""
+
+#: includes/property-functions.php:424
+#: includes/property-submit-functions.php:499
+msgid "Rooms:"
+msgstr ""
+
+#: includes/property-functions.php:425
+#: includes/property-submit-functions.php:500 rype-real-estate.php:94
+#: rype-real-estate.php:144
+msgid "Bathrooms:"
+msgstr ""
+
+#: includes/property-functions.php:428
+#: includes/property-submit-functions.php:503 rype-real-estate.php:96
+#: rype-real-estate.php:146
+msgid "Description:"
+msgstr ""
+
+#: includes/property-functions.php:431 rype-real-estate.php:95
+#: rype-real-estate.php:145
+msgid "Image:"
+msgstr ""
+
+#: includes/property-functions.php:433 includes/property-functions.php:492
+#: includes/property-functions.php:954 rype-real-estate.php:90
+msgid "Upload Image"
+msgstr ""
+
+#: includes/property-functions.php:443
+msgid "No floor plans were found."
+msgstr ""
+
+#: includes/property-functions.php:444
+#: includes/property-submit-functions.php:518
+msgid "Create New Floor Plan"
+msgstr ""
+
+#: includes/property-functions.php:458
+#: includes/property-submit-functions.php:623
+msgid "Latitude"
+msgstr ""
+
+#: includes/property-functions.php:465
+#: includes/property-submit-functions.php:627
+msgid "Longitude"
+msgstr ""
+
+#: includes/property-functions.php:482
+#: includes/property-submit-functions.php:365
+msgid "Video URL"
+msgstr ""
+
+#: includes/property-functions.php:489
+#: includes/property-submit-functions.php:370
+msgid "Video Cover Image"
+msgstr ""
+
+#: includes/property-functions.php:507
+msgid "What to display for owner information?"
+msgstr ""
+
+#: includes/property-functions.php:509
+#: includes/property-submit-functions.php:642
+msgid "None"
+msgstr ""
+
+#: includes/property-functions.php:510
+msgid "Author Info"
+msgstr ""
+
+#: includes/property-functions.php:511
+msgid "Agent Info (select agent below)"
+msgstr ""
+
+#: includes/property-functions.php:512
+msgid "Custom Info (fill out details below)"
+msgstr ""
+
+#: includes/property-functions.php:526
+#: includes/property-submit-functions.php:655
+msgid "Select Agent"
+msgstr ""
+
+#: includes/property-functions.php:545
+#: includes/property-submit-functions.php:673
+msgid "Custom Owner/Agent Details"
+msgstr ""
+
+#: includes/property-functions.php:547
+msgid "Name:"
+msgstr ""
+
+#: includes/property-functions.php:548
+msgid "Email:"
+msgstr ""
+
+#: includes/property-functions.php:549
+msgid "Phone:"
+msgstr ""
+
+#: includes/property-functions.php:550
+msgid "Website:"
+msgstr ""
+
+#: includes/property-functions.php:681
+msgid "Search Property Types"
+msgstr ""
+
+#: includes/property-functions.php:682
+msgid "Popular Property Types"
+msgstr ""
+
+#: includes/property-functions.php:683
+msgid "All Property Types"
+msgstr ""
+
+#: includes/property-functions.php:684
+msgid "Parent Property Type"
+msgstr ""
+
+#: includes/property-functions.php:685
+msgid "Edit Property Type"
+msgstr ""
+
+#: includes/property-functions.php:686
+msgid "Update Property Type"
+msgstr ""
+
+#: includes/property-functions.php:687
+msgid "Add New Property Type"
+msgstr ""
+
+#: includes/property-functions.php:688
+msgid "New Property Type"
+msgstr ""
+
+#: includes/property-functions.php:689
+msgid "Separate property types with commas"
+msgstr ""
+
+#: includes/property-functions.php:690
+msgid "Add or remove property types"
+msgstr ""
+
+#: includes/property-functions.php:691
+msgid "Choose from most used property types"
+msgstr ""
+
+#: includes/property-functions.php:698
+msgid "Property Types"
+msgstr ""
+
+#: includes/property-functions.php:712
+msgid "Search Property Statuses"
+msgstr ""
+
+#: includes/property-functions.php:713
+msgid "Popular Property Statuses"
+msgstr ""
+
+#: includes/property-functions.php:714
+msgid "All Property Statuses"
+msgstr ""
+
+#: includes/property-functions.php:715
+msgid "Parent Property Status"
+msgstr ""
+
+#: includes/property-functions.php:716
+msgid "Edit Property Status"
+msgstr ""
+
+#: includes/property-functions.php:717
+msgid "Update Property Status"
+msgstr ""
+
+#: includes/property-functions.php:718
+msgid "Add New Property Status"
+msgstr ""
+
+#: includes/property-functions.php:719
+msgid "New Property Status"
+msgstr ""
+
+#: includes/property-functions.php:720
+msgid "Separate property statuses with commas"
+msgstr ""
+
+#: includes/property-functions.php:721
+msgid "Add or remove property statuses"
+msgstr ""
+
+#: includes/property-functions.php:722
+msgid "Choose from most used property statuses"
+msgstr ""
+
+#: includes/property-functions.php:743
+msgid "Search Property Locations"
+msgstr ""
+
+#: includes/property-functions.php:744
+msgid "Popular Property Locations"
+msgstr ""
+
+#: includes/property-functions.php:745
+msgid "All Property Locations"
+msgstr ""
+
+#: includes/property-functions.php:746
+msgid "Parent Property Location"
+msgstr ""
+
+#: includes/property-functions.php:747
+msgid "Edit Property Location"
+msgstr ""
+
+#: includes/property-functions.php:748
+msgid "Update Property Location"
+msgstr ""
+
+#: includes/property-functions.php:749
+msgid "Add New Property Location"
+msgstr ""
+
+#: includes/property-functions.php:750
+msgid "New Property Location"
+msgstr ""
+
+#: includes/property-functions.php:751
+msgid "Separate property locations with commas"
+msgstr ""
+
+#: includes/property-functions.php:752
+msgid "Add or remove property locations"
+msgstr ""
+
+#: includes/property-functions.php:753
+msgid "Choose from most used property locations"
+msgstr ""
+
+#: includes/property-functions.php:772 includes/property-functions.php:791
+#: includes/property-submit-functions.php:420
+msgid "Amenities"
+msgstr ""
+
+#: includes/property-functions.php:773
+msgid "Amenity"
+msgstr ""
+
+#: includes/property-functions.php:774
+msgid "Search Amenities"
+msgstr ""
+
+#: includes/property-functions.php:775
+msgid "Popular Amenities"
+msgstr ""
+
+#: includes/property-functions.php:776
+msgid "All Amenities"
+msgstr ""
+
+#: includes/property-functions.php:777
+msgid "Parent Amenity"
+msgstr ""
+
+#: includes/property-functions.php:778
+msgid "Edit Amenity"
+msgstr ""
+
+#: includes/property-functions.php:779
+msgid "Update Amenity"
+msgstr ""
+
+#: includes/property-functions.php:780
+msgid "Add New Amenity"
+msgstr ""
+
+#: includes/property-functions.php:781
+msgid "New Amenity"
+msgstr ""
+
+#: includes/property-functions.php:782
+msgid "Separate amenities with commas"
+msgstr ""
+
+#: includes/property-functions.php:783
+msgid "Add or remove amenities"
+msgstr ""
+
+#: includes/property-functions.php:784
+msgid "Choose from most used amenities"
+msgstr ""
+
+#: includes/property-functions.php:810
+#: includes/property-submit-functions.php:506
+msgid "Image"
+msgstr ""
+
+#: includes/property-functions.php:811
+msgid "Location"
+msgstr ""
+
+#: includes/property-functions.php:815
+msgid "Author"
+msgstr ""
+
+#: includes/property-functions.php:950
+msgid "Category Image Url"
+msgstr ""
+
+#: includes/property-functions.php:956
+msgid "Image for Term, use full url"
+msgstr ""
+
+#: includes/property-functions.php:969
+msgid "Price Range Settings"
+msgstr ""
+
+#: includes/property-functions.php:970
+msgid ""
+"Settings here will override the defaults set in the theme options for this "
+"term only."
+msgstr ""
+
+#: includes/property-functions.php:974
+msgid "Minimum"
+msgstr ""
+
+#: includes/property-functions.php:978
+msgid "Maximum"
+msgstr ""
+
+#: includes/property-functions.php:982
+msgid "Minimum Start"
+msgstr ""
+
+#: includes/property-functions.php:986
+msgid "Maximum Start"
+msgstr ""
+
+#: includes/property-functions.php:1033
+msgid "Total Properties"
+msgstr ""
+
+#: includes/property-functions.php:1038
+msgid "Pending Properties"
+msgstr ""
+
+#: includes/property-functions.php:1043
+msgid "Recent Properties"
+msgstr ""
+
+#: includes/property-functions.php:1051
+msgid "Sorry, no recent properties were found."
+msgstr ""
+
+#: includes/property-functions.php:1070
+msgid "Properties Sidebar"
+msgstr ""
+
+#: includes/property-submit-functions.php:9
+msgid "My Properties"
+msgstr ""
+
+#: includes/property-submit-functions.php:10
+#: includes/property-submit-functions.php:277
+msgid "Submit Property"
+msgstr ""
+
+#: includes/property-submit-functions.php:47
+msgid "Please enter a title!"
+msgstr ""
+
+#: includes/property-submit-functions.php:54
+msgid "Please enter an address!"
+msgstr ""
+
+#: includes/property-submit-functions.php:61
+msgid "Please enter a price!"
+msgstr ""
+
+#: includes/property-submit-functions.php:198
+#: includes/property-submit-functions.php:200
+msgid "Your property,"
+msgstr ""
+
+#: includes/property-submit-functions.php:198
+msgid "was submitted for review!"
+msgstr ""
+
+#: includes/property-submit-functions.php:200
+msgid "was published!"
+msgstr ""
+
+#: includes/property-submit-functions.php:227
+msgid "Update Property"
+msgstr ""
+
+#: includes/property-submit-functions.php:296
+msgid "View your properties."
+msgstr ""
+
+#: includes/property-submit-functions.php:303
+#: includes/property-submit-functions.php:567
+msgid "Property Images"
+msgstr ""
+
+#: includes/property-submit-functions.php:315
+msgid "Title*"
+msgstr ""
+
+#: includes/property-submit-functions.php:327
+msgid "Price*"
+msgstr ""
+
+#: includes/property-submit-functions.php:377
+msgid "Street Address*"
+msgstr ""
+
+#: includes/property-submit-functions.php:386
+msgid "Select a location..."
+msgstr ""
+
+#: includes/property-submit-functions.php:409
+msgid "Don't see your location?"
+msgstr ""
+
+#: includes/property-submit-functions.php:409
+#: includes/property-submit-functions.php:444
+msgid "Add a new one."
+msgstr ""
+
+#: includes/property-submit-functions.php:412
+#: includes/property-submit-functions.php:447
+msgid "Add"
+msgstr ""
+
+#: includes/property-submit-functions.php:421
+msgid "Select an amenity..."
+msgstr ""
+
+#: includes/property-submit-functions.php:444
+msgid "Don't see your amenity?"
+msgstr ""
+
+#: includes/property-submit-functions.php:457
+msgid "Select a property type..."
+msgstr ""
+
+#: includes/property-submit-functions.php:467
+msgid "Contract Type"
+msgstr ""
+
+#: includes/property-submit-functions.php:469
+msgid "Select a contract type..."
+msgstr ""
+
+#: includes/property-submit-functions.php:479
+msgid "Description"
+msgstr ""
+
+#: includes/property-submit-functions.php:494
+#: includes/property-submit-functions.php:592
+#: includes/property-submit-functions.php:607 rype-real-estate.php:87
+#: rype-real-estate.php:129
+msgid "Delete"
+msgstr ""
+
+#: includes/property-submit-functions.php:497 rype-real-estate.php:97
+#: rype-real-estate.php:147
+msgid "New Floor Plan"
+msgstr ""
+
+#: includes/property-submit-functions.php:508 rype-real-estate.php:148
+msgid "Provide the absolute url to a hosted image."
+msgstr ""
+
+#: includes/property-submit-functions.php:526
+msgid "Additional Details"
+msgstr ""
+
+#: includes/property-submit-functions.php:571
+msgid "Featured Image"
+msgstr ""
+
+#: includes/property-submit-functions.php:576
+msgid "Gallery Images"
+msgstr ""
+
+#: includes/property-submit-functions.php:613
+msgid "Add Image"
+msgstr ""
+
+#: includes/property-submit-functions.php:638
+msgid "What do you want displayed for the agent info?"
+msgstr ""
+
+#: includes/property-submit-functions.php:639
+msgid "Your Profile Info"
+msgstr ""
+
+#: includes/property-submit-functions.php:640
+msgid "Existing Agent"
+msgstr ""
+
+#: includes/property-submit-functions.php:641
+msgid "Custom"
+msgstr ""
+
+#: includes/property-submit-functions.php:666
+msgid "Sorry, no agents have been posted yet."
+msgstr ""
+
+#: includes/property-submit-functions.php:674
+msgid "Name"
+msgstr ""
+
+#: includes/property-submit-functions.php:676
+msgid "Phone"
+msgstr ""
+
+#: includes/property-submit-functions.php:677
+msgid "Website"
+msgstr ""
+
+#: includes/property-submit-functions.php:682
+#: includes/property-submit-functions.php:683
+msgid "Previous"
+msgstr ""
+
+#: includes/property-submit-functions.php:684
+msgid "Next"
+msgstr ""
+
+#: rype-real-estate.php:58
+#, php-format
+msgid "Rype Real Estate requires the following plugin: %1$s."
+msgstr ""
+
+#: rype-real-estate.php:89
+msgid "Edit"
+msgstr ""
+
+#: rype-real-estate.php:93 rype-real-estate.php:143
+msgid "Bedrooms:"
+msgstr ""
+
+#: rype-real-estate.php:98
+msgid "Field Name:"
+msgstr ""
+
+#: rype-real-estate.php:99
+msgid "Option name"
+msgstr ""
+
+#: rype-real-estate.php:100
+msgid "A custom field with the same name is already in use!"
+msgstr ""
+
+#: rype-real-estate.php:101
+msgid "Field Type"
+msgstr ""
+
+#: rype-real-estate.php:102
+msgid "Text Input"
+msgstr ""
+
+#: rype-real-estate.php:103
+msgid "Number Input"
+msgstr ""
+
+#: rype-real-estate.php:104
+msgid "Select Dropdown"
+msgstr ""
+
+#: rype-real-estate.php:105
+msgid "Select Options:"
+msgstr ""
+
+#: rype-real-estate.php:106
+msgid "Add Select Option"
+msgstr ""
+
+#: rype-real-estate.php:107
+msgid ""
+"Removing this field will remove it from all properties. Are you sure you "
+"want to proceed?"
+msgstr ""
+
+#: rype-real-estate.php:108
+msgid "Display in Front-end Property Submit Form"
+msgstr ""
+
+#: rype-real-estate.php:130
+msgid "Purchase Price"
+msgstr ""
+
+#: rype-real-estate.php:131
+msgid "Down Payment"
+msgstr ""
+
+#: rype-real-estate.php:132
+msgid "Percent"
+msgstr ""
+
+#: rype-real-estate.php:133
+msgid "Fixed"
+msgstr ""
+
+#: rype-real-estate.php:134
+msgid "Rate"
+msgstr ""
+
+#: rype-real-estate.php:135
+msgid "Term"
+msgstr ""
+
+#: rype-real-estate.php:136
+msgid "Years"
+msgstr ""
+
+#: rype-real-estate.php:137
+msgid "Months"
+msgstr ""
+
+#: rype-real-estate.php:138
+msgid "Calculate"
+msgstr ""
+
+#: rype-real-estate.php:139
+msgid "Your monthly payment:"
+msgstr ""
+
+#: rype-real-estate.php:140
+msgid "This field is required"
+msgstr ""

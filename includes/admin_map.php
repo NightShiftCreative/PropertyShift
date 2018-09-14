@@ -9,7 +9,7 @@
     if(empty($google_maps_pin)) { $google_maps_pin = esc_url( get_template_directory_uri() ).'/images/pin.png'; }
 ?>
 
-<input type=button id="remove-pin" class="remove-pin right" value="<?php echo esc_html_e('Clear Location', 'rypecore'); ?>">
+<input type=button id="remove-pin" class="remove-pin right" value="<?php echo esc_html_e('Clear Location', 'rype-real-estate'); ?>">
 <div class="clear"></div>
                                 
 <input size="25" id="pac-input" class="controls" type="text" placeholder="Search" value="">
