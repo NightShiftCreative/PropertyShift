@@ -78,10 +78,10 @@ function rype_real_estate_sanitize_slug($option) {
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_get_admin_pages() {
     $pages = array();
-    $pages[] = array('slug' => 'rype-real-estate-settings', 'name' => 'Settings');
-    $pages[] = array('slug' => 'rype-real-estate-add-ons', 'name' => 'Add-Ons');
-    $pages[] = array('slug' => 'rype-real-estate-license-keys', 'name' => 'License Keys');
-    $pages[] = array('slug' => 'rype-real-estate-help', 'name' => 'Help');
+    $pages[] = array('slug' => 'rype-real-estate-settings', 'name' => esc_html__('Settings', 'rype-real-estate'));
+    $pages[] = array('slug' => 'rype-real-estate-add-ons', 'name' => esc_html__('Add-Ons', 'rype-real-estate'));
+    $pages[] = array('slug' => 'rype-real-estate-license-keys', 'name' => esc_html__('License', 'rype-real-estate'));
+    $pages[] = array('slug' => 'rype-real-estate-help', 'name' => esc_html__('Help', 'rype-real-estate'));
     return $pages;
 }
 
@@ -956,5 +956,94 @@ function rype_real_estate_load_default_agent_detail_items() {
 
     return $agent_detail_items_default;
 }
+
+/*-----------------------------------------------------------------------------------*/
+/*  Add Real Estate Invidiual Page Options
+/*-----------------------------------------------------------------------------------*/
+function rype_real_estate_map_options($values) { 
+    $banner_source = isset( $values['rypecore_banner_source'] ) ? esc_attr( $values['rypecore_banner_source'][0] ) : 'image_banner';
+    ?> 
+    <label class="selectable-item <?php if($banner_source == 'properties_map') { echo 'active'; } ?>" for="banner_source_properties_map">
+        <img src="<?php echo plugins_url('/rype-basics/images/google-maps-icon.png'); ?>" alt="" /><br/>
+        <input type="radio" id="banner_source_properties_map" name="rypecore_banner_source" value="properties_map" <?php checked('properties_map', $banner_source, true) ?> /> <?php esc_html_e('Properties Map', 'rype-real-estate'); ?><br/>
+    </label>
+<?php }
+add_action( 'rype_basics_before_page_banner_options', 'rype_real_estate_map_options' );
+
+function rype_real_estate_page_banner_filter_options($values) { ?>
+    <?php 
+    $banner_property_filter_override = isset( $values['rypecore_banner_property_filter_override'] ) ? esc_attr( $values['rypecore_banner_property_filter_override'][0] ) : 'true'; 
+    $banner_property_filter_display = isset( $values['rypecore_banner_property_filter_display'] ) ? esc_attr( $values['rypecore_banner_property_filter_display'][0] ) : 'true';
+    $banner_property_filter_id = isset( $values['rypecore_banner_property_filter_id'] ) ? esc_attr( $values['rypecore_banner_property_filter_id'][0] ) : '';
+    ?>
+
+    <h4 style="font-size:15px;"><?php esc_html_e('Property Filter', 'rype-real-estate'); ?></h4>
+
+    <table class="admin-module">
+        <tr>
+            <td class="admin-module-label"><label><?php echo esc_html_e('Use Global Property Filter Settings', 'rype-real-estate'); ?></label></td>
+            <td class="admin-module-field"><input id="banner_property_filter_override" type="checkbox" name="rypecore_banner_property_filter_override" value="true" <?php if($banner_property_filter_override == 'true') { echo 'checked'; } ?> /></td>
+        </tr>
+    </table>
+
+    <div class="admin-module no-border no-padding-top admin-module-page-banner-property-filter-options <?php if($banner_property_filter_override == 'true') { echo 'hide-soft'; } ?>">
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label"><label><?php echo esc_html_e('Display Property Filter', 'rype-real-estate'); ?></label></td>
+                <td class="admin-module-field"><input id="banner_property_filter_display" type="checkbox" name="rypecore_banner_property_filter_display" value="true" <?php if($banner_property_filter_display == 'true') { echo 'checked'; } ?> /></td>
+            </tr>
+        </table>
+
+        <table class="admin-module no-border">
+            <tr>
+                <td class="admin-module-label">
+                    <label><?php esc_html_e('Select a Filter', 'rype-real-estate'); ?></label>
+                    <span class="admin-module-note"><a href="<?php echo admin_url('edit.php?post_type=rype-property-filter'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage property filters', 'rype-real-estate'); ?></a></span>
+                </td>
+                <td class="admin-module-field">
+                    <select name="rypecore_banner_property_filter_id" id="banner_property_filter_id">
+                        <?php
+                            $filter_listing_args = array(
+                                'post_type' => 'rype-property-filter',
+                                'posts_per_page' => -1
+                                );
+                            $filter_listing_query = new WP_Query( $filter_listing_args );
+                        ?>
+                        <?php if ( $filter_listing_query->have_posts() ) : while ( $filter_listing_query->have_posts() ) : $filter_listing_query->the_post(); ?>
+                            <option value="<?php echo get_the_id(); ?>" <?php if($banner_property_filter_id == get_the_id()) { echo 'selected'; } ?>><?php echo get_the_title().' (#'.get_the_id().')'; ?></option>
+                            <?php wp_reset_postdata(); ?>
+                        <?php endwhile; ?>
+                        <?php else: ?>
+                        <?php endif; ?>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+<?php }
+add_action( 'rype_basics_banner_options_end', 'rype_real_estate_page_banner_filter_options' );
+
+function rype_real_estate_save_page_banner_options($post_id) {
+    $allowed = array();
+
+    if( isset( $_POST['rypecore_banner_property_filter_override'] ) ) {
+        update_post_meta( $post_id, 'rypecore_banner_property_filter_override', wp_kses( $_POST['rypecore_banner_property_filter_override'], $allowed ) );
+    } else {
+        update_post_meta( $post_id, 'rypecore_banner_property_filter_override', wp_kses( '', $allowed ) );
+    }
+
+    if( isset( $_POST['rypecore_banner_property_filter_display'] ) ) {
+        update_post_meta( $post_id, 'rypecore_banner_property_filter_display', wp_kses( $_POST['rypecore_banner_property_filter_display'], $allowed ) );
+    } else {
+        update_post_meta( $post_id, 'rypecore_banner_property_filter_display', wp_kses( '', $allowed ) );
+    }
+
+    if( isset( $_POST['rypecore_banner_property_filter_id'] ) )
+        update_post_meta( $post_id, 'rypecore_banner_property_filter_id', wp_kses( $_POST['rypecore_banner_property_filter_id'], $allowed ) );
+            
+}
+add_action( 'rype_basics_after_page_settings_save', 'rype_real_estate_save_page_banner_options' );
 
 ?>
