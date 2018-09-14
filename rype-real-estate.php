@@ -172,6 +172,11 @@ if(rype_real_estate_is_plugin_active('rype-basics/rype-basics.php')) {
 	include( plugin_dir_path( __FILE__ ) . '/includes/filter-functions.php');
 
 	/*-----------------------------------------------------------------------------------*/
+	/*  Includes Agent Related Functions
+	/*-----------------------------------------------------------------------------------*/
+	include( plugin_dir_path( __FILE__ ) . '/includes/agent-functions.php');
+
+	/*-----------------------------------------------------------------------------------*/
 	/*  Includes Shortcodes
 	/*-----------------------------------------------------------------------------------*/
 	include( plugin_dir_path( __FILE__ ) . '/includes/shortcodes.php');
