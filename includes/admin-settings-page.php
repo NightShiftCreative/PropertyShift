@@ -51,7 +51,13 @@ function rype_real_estate_settings_page() {
     $pages = rype_real_estate_get_admin_pages();
     $display_actions = 'true';
     $content = rype_real_estate_settings_page_content();
-    echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content);
+    $content_class = null;
+    $content_nav = array(
+        array('name' => 'General', 'link' => '#general', 'icon' => 'fa-globe'),
+        array('name' => 'Properties', 'link' => '#properties', 'icon' => 'fa-home'),
+        array('name' => 'Agents', 'link' => '#agents', 'icon' => 'fa-group'),
+    );
+    echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class, $content_nav);
 } 
 
 function rype_real_estate_settings_page_content() {
