@@ -66,6 +66,9 @@ function rype_real_estate_register_options() {
 
     //LICENSE KEY SETTINGS
     register_setting( 'rype-real-estate-license-keys-group', 'rype_real_estate_open_houses_license');
+
+    //ADD-ON SETTINGS
+    do_action( 'rype_real_estate_register_settings');
 }
 
 function rype_real_estate_sanitize_slug($option) {
