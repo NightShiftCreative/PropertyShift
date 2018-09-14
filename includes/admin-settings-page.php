@@ -63,9 +63,12 @@ function rype_real_estate_settings_page() {
 function rype_real_estate_settings_page_content() {
     ob_start(); ?>
     
-    <div class="accordion rc-accordion">
-        <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property URL Options', 'rype-real-estate'); ?></h3>
-        <div>
+    <div id="general" class="tab-content">
+        <h2><?php echo esc_html_e('General Settings', 'rype-real-estate'); ?></h2>
+        
+        <div class="accordion rc-accordion">
+            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property URL Options', 'rype-real-estate'); ?></h3>
+            <div>
 
             <p class="admin-module-note"><?php esc_html_e('After changing slugs, make sure you re-save your permalinks in Settings > Permalinks.', 'rype-real-estate'); ?></p>
                 <br/>
@@ -130,7 +133,16 @@ function rype_real_estate_settings_page_content() {
                     </tr>
                 </table>
 
+            </div>
         </div>
+    </div><!-- end general -->
+
+    <div id="properties" class="tab-content">
+        <h2><?php echo esc_html_e('Properties Settings', 'rype-real-estate'); ?></h2>
+    </div>
+
+    <div id="agents" class="tab-content">
+        <h2><?php echo esc_html_e('Agent Settings', 'rype-real-estate'); ?></h2>
     </div>
 
     <?php $output = ob_get_clean();
