@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
             var propertyType = $('.shortcode-selector-options .list-properties-type').val();
             var propertyLocation = $('.shortcode-selector-options .list-properties-location').val();
             if ($('.shortcode-selector-options .list-properties-featured').is(':checked')) { var featured = 'true'; } else { var featured = 'false'; }
-            shortcodeOutput = "[rao_list_properties show_posts='"+showPosts+"' show_header='"+showHeader+"' show_pagination='"+showPagination+"' layout='"+layout+"' property_status='"+propertyStatus+"' property_type='"+propertyType+"' property_location='"+propertyLocation+"' featured='"+featured+"'][/rao_list_properties]";
+            shortcodeOutput = "[rype_list_properties show_posts='"+showPosts+"' show_header='"+showHeader+"' show_pagination='"+showPagination+"' layout='"+layout+"' property_status='"+propertyStatus+"' property_type='"+propertyType+"' property_location='"+propertyLocation+"' featured='"+featured+"'][/rype_list_properties]";
         }
 
         //set list property taxonomy shortcode
@@ -28,14 +28,14 @@ jQuery(document).ready(function($) {
             var taxOrderBy = $('.shortcode-selector-options .list-property-tax-orderby').val();
         	var taxOrder = $('.shortcode-selector-options .list-property-tax-order').val();
             var taxHideEmpty = $('.shortcode-selector-options .list-property-tax-hide-empty').val();
-        	shortcodeOutput = "[rao_list_property_tax tax='"+tax+"' show_posts='"+taxShowPosts+"' layout='"+taxLayout+"' orderby='"+taxOrderBy+"' order='"+taxOrder+"' hide_empty='"+taxHideEmpty+"'][/rao_list_property_tax]";
+        	shortcodeOutput = "[rype_list_property_tax tax='"+tax+"' show_posts='"+taxShowPosts+"' layout='"+taxLayout+"' orderby='"+taxOrderBy+"' order='"+taxOrder+"' hide_empty='"+taxHideEmpty+"'][/rype_list_property_tax]";
         }
 
         //set list agents shortcode
         if(shortcode == 'real-estate-list-agents') {
             var showAgentPosts = $('.shortcode-selector-options .list-agents-show-posts').val();
             if ($('.shortcode-selector-options .list-agents-show-pagination').is(':checked')) { var showAgentPagination = 'true'; } else { var showAgentPagination = 'false'; }
-            shortcodeOutput = "[rao_list_agents show_posts='"+showAgentPosts+"' show_pagination='"+showAgentPagination+"'][/rao_list_agents]";
+            shortcodeOutput = "[rype_list_agents show_posts='"+showAgentPosts+"' show_pagination='"+showAgentPagination+"'][/rype_list_agents]";
         }
 
         //insert shortcode
