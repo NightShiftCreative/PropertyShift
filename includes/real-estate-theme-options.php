@@ -72,7 +72,7 @@ add_action( 'rao_after_theme_option_menu', 'rao_add_real_estate_theme_options_me
 /*-----------------------------------------------------------------------------------*/
 /*  Load default Property Detail Items
 /*-----------------------------------------------------------------------------------*/
-function rao_load_default_property_detail_items() {
+function rype_real_estate_load_default_property_detail_items() {
     $property_detail_items_default = array(
         0 => array(
             'name' => esc_html__('Overview', 'rype-add-ons'),
@@ -490,7 +490,7 @@ function rao_add_real_estate_theme_options_content() { ?>
                     <div class="admin-module-label"><label><?php echo esc_html_e('Property Detail Sections', 'rype-add-ons'); ?> <span class="admin-module-note"><?php echo esc_html_e('(Drag & drop to rearrange order)', 'rype-add-ons'); ?></span></label></div>
                     <ul class="sortable-list property-detail-items-list">
                         <?php
-                        $property_detail_items_default = rao_load_default_property_detail_items();
+                        $property_detail_items_default = rype_real_estate_load_default_property_detail_items();
                         $property_detail_items = get_option('rypecore_property_detail_items', $property_detail_items_default);
                         $count = 0;
 
