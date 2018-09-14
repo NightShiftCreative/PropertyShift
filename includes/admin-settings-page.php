@@ -1,5 +1,7 @@
 <?php
-
+/*-----------------------------------------------------------------------------------*/
+/*  ADD ADMIN MENU PAGES
+/*-----------------------------------------------------------------------------------*/
 add_action('admin_menu', 'rype_real_estate_plugin_menu');
 function rype_real_estate_plugin_menu() {
     add_menu_page('Rype Real Estate', 'Rype Real Estate', 'administrator', 'rype-real-estate-settings', 'rype_real_estate_settings_page', 'dashicons-admin-home');
@@ -22,7 +24,7 @@ function rype_real_estate_register_options() {
 }
 
 /*-----------------------------------------------------------------------------------*/
-/*  GET ALL PAGES
+/*  OUTPUT SETTINGS PAGE
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_get_admin_pages() {
     $pages = array();
@@ -33,9 +35,6 @@ function rype_real_estate_get_admin_pages() {
     return $pages;
 }
 
-/*-----------------------------------------------------------------------------------*/
-/*  OUTPUT SETTINGS PAGE
-/*-----------------------------------------------------------------------------------*/
 function rype_real_estate_settings_page() {
     $page_name = 'Rype Real Estate';
     $settings_group = 'rype-real-estate-settings-group';
@@ -47,12 +46,89 @@ function rype_real_estate_settings_page() {
 
 function rype_real_estate_settings_page_content() {
     ob_start(); 
-    
     //content goes here
-
     $output = ob_get_clean();
     return $output;
 }
 
+/*-----------------------------------------------------------------------------------*/
+/*  Load default Property Detail Items
+/*-----------------------------------------------------------------------------------*/
+function rao_load_default_property_detail_items() {
+    $property_detail_items_default = array(
+        0 => array(
+            'name' => esc_html__('Overview', 'rype-real-estate'),
+            'label' => esc_html__('Overview', 'rype-real-estate'),
+            'slug' => 'overview',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        1 => array(
+            'name' => esc_html__('Description', 'rype-real-estate'),
+            'label' => esc_html__('Description', 'rype-real-estate'),
+            'slug' => 'description',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        2 => array(
+            'name' => esc_html__('Gallery', 'rype-real-estate'),
+            'label' => esc_html__('Gallery', 'rype-real-estate'),
+            'slug' => 'gallery',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        3 => array(
+            'name' => esc_html__('Video', 'rype-real-estate'),
+            'label' => esc_html__('Video', 'rype-real-estate'),
+            'slug' => 'video',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        4 => array(
+            'name' => esc_html__('Amenities', 'rype-real-estate'),
+            'label' => esc_html__('Amenities', 'rype-real-estate'),
+            'slug' => 'amenities',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        5 => array(
+            'name' => esc_html__('Floor Plans', 'rype-real-estate'),
+            'label' => esc_html__('Floor Plans', 'rype-real-estate'),
+            'slug' => 'floor_plans',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        6 => array(
+            'name' => esc_html__('Location', 'rype-real-estate'),
+            'label' => esc_html__('Location', 'rype-real-estate'),
+            'slug' => 'location',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        7 => array(
+            'name' => esc_html__('Walk Score', 'rype-real-estate'),
+            'label' => esc_html__('Walk Score', 'rype-real-estate'),
+            'slug' => 'walk_score',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        8 => array(
+            'name' => esc_html__('Agent Info', 'rype-real-estate'),
+            'label' => 'Agent Information',
+            'slug' => 'agent_info',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        9 => array(
+            'name' => esc_html__('Related Properties', 'rype-real-estate'),
+            'label' => 'Related Properties',
+            'slug' => 'related',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+    );
+
+    return $property_detail_items_default;
+}
 
 ?>
