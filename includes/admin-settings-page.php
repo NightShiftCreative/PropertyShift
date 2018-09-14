@@ -825,7 +825,7 @@ function rype_real_estate_settings_page_content() {
             </tr>
         </table>
 
-        <table class="admin-module no-border">
+        <table class="admin-module">
             <tr>
                 <td class="admin-module-label"><label><?php echo esc_html_e('Allow members to add new property amenities from the front-end', 'rype-real-estate'); ?></label></td>
                 <td class="admin-module-field">
@@ -836,6 +836,9 @@ function rype_real_estate_settings_page_content() {
                 </td>
             </tr>
         </table>
+
+        <!-- Hook in for Add-Ons -->
+        <?php do_action( 'rype_real_estate_after_member_settings'); ?>
     </div><!-- end member options -->
 
     <?php $output = ob_get_clean();
