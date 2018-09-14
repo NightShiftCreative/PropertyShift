@@ -1,71 +1,10 @@
 <?php
 /*-----------------------------------------------------------------------------------*/
-/* VALIDATE LICENSE KEY
-/*-----------------------------------------------------------------------------------*/
-function rype_basics_is_valid_license_key($license) {
-    if(empty($license['key']) || empty($license['email'])) {
-        return array('result' => false, 'error' => '');
-    } else {
-        $data_args = array('timeout' => 15, 'sslverify' => false);
-        $data = wp_remote_get('http://rypecreative.com/rype-test/woocommerce/?wc-api=software-api&request=check&email='.$license['email'].'&license_key='.$license['key'].'&product_id='.$license['slug'], $data_args);
-        if(!is_wp_error($data)) {
-            $data = $data['body'];
-            $obj = json_decode($data);
-            if($obj->success == true) {
-                return array('result' => true, 'error' => '');
-            } else {
-                return array('result' => false, 'error' => esc_html__('Your license key and/or license email is invalid.', 'rype-basics'));
-            }
-        } else {
-            return array('result' => false, 'error' => $data->get_error_message());
-        }
-    }
-}
-
-/*-----------------------------------------------------------------------------------*/
-/*  UPDATE LICENSE KEY STATUS (fires only when settings are saved)
+/*  UPDATE LICENSE KEY STATUS
+/*  - fires only when settings are saved
+/*  - processed in Rype Basics plugin (rype-basics/add-ons/license-keys.php)
 /*-----------------------------------------------------------------------------------*/
 add_action( 'update_option_rype_real_estate_open_houses_license', 'rype_real_estate_activate_license_key', 10, 3 );
-
-function rype_real_estate_activate_license_key( $old_value, $new_value, $option ) {
-    $valid_key = rype_basics_is_valid_license_key($new_value);
-    if($valid_key['result'] == true) {
-        $new_value['registered'] = true;
-        $new_value['error'] = '';
-    } else {
-        $new_value['registered'] = false;
-        $new_value['error'] = $valid_key['error'];
-    }
-    update_option($option, $new_value);
-}
-
-/*-----------------------------------------------------------------------------------*/
-/* GET LICENSE KEY STATUS
-/*-----------------------------------------------------------------------------------*/
-function rype_basics_get_license_status($license, $product_link = null, $show_errors = null) {
-    if(!rype_basics_is_paid_plugin_active($license['slug'])) { ?>
-        <?php if(!empty($product_link)) { ?><a href="<?php echo $product_link; ?>" target="_blank" class="button button-purchase button-green"><?php esc_html_e('Purchase', 'rype-basics'); ?></a><?php } ?>
-    <?php } else {
-        if($license['registered'] == true) {
-            echo '<div class="button button-activated button-green"><i class="fa fa-check"></i> '.esc_html__('Registered', 'rype-basics').'</div>';
-        } else {
-            echo '<div class="button button-activated button-red">'.esc_html__('Unregistered', 'rype-basics').'</div>';
-            if($show_errors == 'true' && !empty($license['error'])) { echo '<span class="admin-module-note license-error">'.$license['error'].'</span>'; }
-        }
-    }
-}
-
-/*-----------------------------------------------------------------------------------*/
-/* CHECK IF PAID ADD-ON PLUGIN IS ACTIVE
-/*-----------------------------------------------------------------------------------*/
-function rype_basics_is_paid_plugin_active($add_on_slug) {
-    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-    if(is_plugin_active($add_on_slug.'/'.$add_on_slug.'.php')) { 
-        return true; 
-    } else { 
-        return false;
-    }
-}
 
 /*-----------------------------------------------------------------------------------*/
 /*  OUTPUT LICENSE KEYS PAGE
