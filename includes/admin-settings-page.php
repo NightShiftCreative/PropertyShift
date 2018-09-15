@@ -1127,4 +1127,19 @@ function rype_real_estate_save_page_banner_options($post_id) {
 }
 add_action( 'rype_basics_after_page_settings_save', 'rype_real_estate_save_page_banner_options' );
 
+
+/*-----------------------------------------------------------------------------------*/
+/*  Add Google Maps API Key notice
+/*-----------------------------------------------------------------------------------*/
+function rype_real_estate_google_maps_api_notice() {
+    $google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
+
+    if(empty($google_maps_api)) {
+        $class = 'notice notice-error is-dismissible';
+        $message = wp_kses_post(__( 'Rype Real Estate <strong>requires</strong> a Google Maps API key! Please provide your key in the plugin settings. If you do not have one, <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">click here</a>.', 'rype-real-estate' ));
+        printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), $message ); 
+    }
+}
+add_action( 'admin_notices', 'rype_real_estate_google_maps_api_notice' );
+
 ?>
