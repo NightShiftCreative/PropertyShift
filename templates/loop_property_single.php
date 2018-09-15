@@ -90,7 +90,7 @@
                                             
                                 <?php if(!empty($price)) { ?>
                                     <div class="property-price-single right">
-                                        <?php echo rypecore_format_price($price); ?>
+                                        <?php echo rype_basics_format_price($price); ?>
                                         <?php if(!empty($price_postfix)) { ?><span class="price-postfix"><?php echo esc_attr($price_postfix); ?></span><?php } ?>
                                     </div>
                                 <?php } ?>
