@@ -180,5 +180,14 @@ if(rype_real_estate_is_plugin_active('rype-basics/rype-basics.php')) {
 	/*  Includes Shortcodes
 	/*-----------------------------------------------------------------------------------*/
 	include( plugin_dir_path( __FILE__ ) . '/includes/shortcodes.php');
+
+	/*-----------------------------------------------------------------------------------*/
+	/*  Includes Widgets
+	/*-----------------------------------------------------------------------------------*/
+	include( plugin_dir_path( __FILE__ ) . '/includes/custom_widgets/list_properties_widget.php');
+	include( plugin_dir_path( __FILE__ ) . '/includes/custom_widgets/list_agents_widget.php');
+	include( plugin_dir_path( __FILE__ ) . '/includes/custom_widgets/list_property_categories_widget.php');
+	include( plugin_dir_path( __FILE__ ) . '/includes/custom_widgets/mortgage_widget.php');
+	include( plugin_dir_path( __FILE__ ) . '/includes/custom_widgets/property_filter_widget.php');
 }
 ?>
