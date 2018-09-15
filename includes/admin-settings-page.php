@@ -101,7 +101,15 @@ function rype_real_estate_settings_page() {
         array('name' => 'Agents', 'link' => '#agents', 'icon' => 'fa-group'),
         array('name' => 'Members', 'link' => '#members', 'icon' => 'fa-key'),
     );
-    echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class, $content_nav);
+    
+    $alerts = array();
+    if(!current_theme_supports('rype-real-estate')) {
+        $current_theme = wp_get_theme();
+        $incompatible_theme_alert = rype_basics_admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not support Rype Real Estate.', 'rype-real-estate'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'rype-real-estate'), true); 
+        $alerts[] = $incompatible_theme_alert; 
+    }
+
+    echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class, $content_nav, $alerts);
 } 
 
 function rype_real_estate_settings_page_content() {
