@@ -57,6 +57,13 @@ function rype_real_estate_register_options() {
     register_setting( 'rype-real-estate-settings-group', 'rypecore_agent_form_success' );
     register_setting( 'rype-real-estate-settings-group', 'rypecore_agent_form_submit_text' );
 
+    //MAP SETTINGS
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_google_maps_api' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_home_default_map_zoom' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_home_default_map_latitude' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_home_default_map_longitude' );
+    register_setting( 'rype-real-estate-settings-group', 'rypecore_google_maps_pin' );
+
     //MEMBER SETTINGS
     register_setting( 'rype-real-estate-settings-group', 'rypecore_members_my_properties_page' );
     register_setting( 'rype-real-estate-settings-group', 'rypecore_members_submit_property_page' );
@@ -96,9 +103,9 @@ function rype_real_estate_settings_page() {
     $content = rype_real_estate_settings_page_content();
     $content_class = null;
     $content_nav = array(
-        array('name' => 'General', 'link' => '#general', 'icon' => 'fa-globe'),
         array('name' => 'Properties', 'link' => '#properties', 'icon' => 'fa-home'),
         array('name' => 'Agents', 'link' => '#agents', 'icon' => 'fa-group'),
+        array('name' => 'Maps', 'link' => '#maps', 'icon' => 'fa-map'),
         array('name' => 'Members', 'link' => '#members', 'icon' => 'fa-key'),
     );
     
@@ -114,10 +121,6 @@ function rype_real_estate_settings_page() {
 
 function rype_real_estate_settings_page_content() {
     ob_start(); ?>
-    
-    <div id="general" class="tab-content">
-        <h2><?php echo esc_html_e('General Settings', 'rype-real-estate'); ?></h2>
-    </div><!-- end general -->
 
     <div id="properties" class="tab-content">
         <h2><?php echo esc_html_e('Properties Settings', 'rype-real-estate'); ?></h2>
@@ -761,6 +764,70 @@ function rype_real_estate_settings_page_content() {
         </div><!-- end agent detail options -->
 
     </div><!-- end agent options -->
+
+    <div id="maps" class="tab-content">
+        <h2><?php echo esc_html_e('Map Settings', 'rype-real-estate'); ?></h2>
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label">
+                    <label><?php esc_html_e('Google Maps API Key', 'rype-real-estate'); ?></label>
+                    <div class="admin-module-note"><?php echo wp_kses_post(__('Provide your unique Google maps API key. <a target="_blank" href="https://developers.google.com/maps/documentation/javascript/get-api-key">Click here</a> to get a key.', 'rype-real-estate')); ?></div>
+                </td>
+                <td class="admin-module-field">
+                    <input type="text" id="google_maps_api" name="rypecore_google_maps_api" value="<?php echo esc_attr( get_option('rypecore_google_maps_api') ); ?>" />
+                </td>
+            </tr>
+        </table>
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label">
+                    <label><?php esc_html_e('Default Map Zoom', 'rype-real-estate'); ?></label>
+                    <div class="admin-module-note"><?php echo esc_html_e('The map zoom ranges from 1 - 19. Zoom level 1 being the most zoomed out.', 'rype-real-estate'); ?></div>
+                </td>
+                <td class="admin-module-field">
+                    <input type="number" min="1" max="19" id="home_default_map_zoom" name="rypecore_home_default_map_zoom" value="<?php echo esc_attr( get_option('rypecore_home_default_map_zoom', 10) ); ?>" />
+                </td>
+            </tr>
+        </table>
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label">
+                    <label><?php esc_html_e('Default Map Latitude', 'rype-real-estate'); ?></label>
+                </td>
+                <td class="admin-module-field">
+                    <input type="text" id="home_default_map_latitude" name="rypecore_home_default_map_latitude" value="<?php echo esc_attr( get_option('rypecore_home_default_map_latitude', 39.2904) ); ?>" />
+                </td>
+            </tr>
+        </table>
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label">
+                    <label><?php esc_html_e('Default Map Longitude', 'rype-real-estate'); ?></label>
+                </td>
+                <td class="admin-module-field">
+                    <input type="text" id="home_default_map_longitude" name="rypecore_home_default_map_longitude" value="<?php echo esc_attr( get_option('rypecore_home_default_map_longitude', -76.5000) ); ?>" />
+                </td>
+            </tr>
+        </table>
+
+        <table class="admin-module no-border">
+            <tr>
+                <td class="admin-module-label">
+                    <label><?php esc_html_e('Custom Pin Image', 'rype-real-estate'); ?></label>
+                    <div class="admin-module-note"><?php echo esc_html_e('Replace the default map pin with a custom image. Recommended size: 50x50 pixels.', 'rype-real-estate'); ?></div>
+                </td>
+                <td class="admin-module-field">
+                    <input type="text" id="google_maps_pin" name="rypecore_google_maps_pin" value="<?php echo esc_attr( get_option('rypecore_google_maps_pin') ); ?>" />
+                    <input id="_btn" class="rype_upload_image_button" type="button" value="<?php echo esc_html_e('Upload Image', 'rype-real-estate'); ?>" />
+                    <span class="button-secondary remove"><?php echo esc_html_e('Remove', 'rype-real-estate'); ?></span>
+                </td>
+            </tr>
+        </table>
+    </div><!-- end maps -->
 
     <div id="members" class="tab-content">
         <h2><?php echo esc_html_e('Member Settings', 'rype-real-estate'); ?></h2>
