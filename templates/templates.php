@@ -3,16 +3,21 @@
 /*-----------------------------------------------------------------------------------*/
 /*  Load property single template
 /*-----------------------------------------------------------------------------------*/
-function rype_real_estate_load_property_single_template($template) {
-    global $post;
+function rype_real_estate_the_content_filter( $content ) {
+	ob_start();
 
-    if ($post->post_type == "rype-property" && $template !== locate_template(array("single-rype-property.php"))){
-        return plugin_dir_path( __FILE__ ) . "single-rype-property.php";
-    }
+	$template = 'loop_property_single.php';
+	$theme_file = locate_template(array( 'template_parts/real_estate/' . $template));
 
-    return $template;
+	if(is_singular('rype-property')) {
+		if(empty($theme_file)) {
+	    	include( plugin_dir_path( __FILE__ ) . 'loop_property_single.php');
+	    }
+	}
+
+    $content = ob_get_clean();
+    return $content;
 }
-
-add_filter('single_template', 'rype_real_estate_load_property_single_template');
+add_filter( 'the_content', 'rype_real_estate_the_content_filter', 20 );
 
 ?>

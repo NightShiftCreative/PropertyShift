@@ -1,5 +1,7 @@
 <?php
+
 	//Get global settings
+    $postID = get_the_id();
     $icon_set = esc_attr(get_option('rypecore_icon_set', 'fa'));
     $properties_page = esc_attr(get_option('rypecore_properties_page'));
     $property_detail_template = esc_attr(get_option('rypecore_property_detail_template', 'classic'));
@@ -21,9 +23,9 @@
     }
 
 	//Get property details
-    $values = get_post_custom( $post->ID );
+    $values = get_post_custom( $postID );
     $featured = isset( $values['rypecore_property_featured'] ) ? esc_attr( $values['rypecore_property_featured'][0] ) : 'false';
-	if(function_exists('rype_real_estate_get_property_address')) { $address = rype_real_estate_get_property_address($post->ID); } else { $address = ''; }
+	if(function_exists('rype_real_estate_get_property_address')) { $address = rype_real_estate_get_property_address($postID); } else { $address = ''; }
 	$price = isset( $values['rypecore_property_price'] ) ? esc_attr( $values['rypecore_property_price'][0] ) : '';
 	$price_postfix = isset( $values['rypecore_property_price_postfix'] ) ? esc_attr( $values['rypecore_property_price_postfix'][0] ) : '';
     $area = isset( $values['rypecore_property_area'] ) ? esc_attr( $values['rypecore_property_area'][0] ) : '';
@@ -46,14 +48,14 @@
 	$agent_custom_url = isset( $values['rypecore_agent_custom_url'] ) ? esc_attr( $values['rypecore_agent_custom_url'][0] ) : '';
 
 	//Get property taxonomies
-    $property_type = rype_real_estate_get_property_type($post->ID);
-    $property_status = rype_real_estate_get_property_status($post->ID);
-    $property_location = rype_real_estate_get_property_location($post->ID, 'parent');
-    $property_location_children = rype_real_estate_get_property_location($post->ID, 'children');
-    $property_amenities = rype_real_estate_get_property_amenities($post->ID, $property_detail_amenities_hide_empty);
+    $property_type = rype_real_estate_get_property_type($postID);
+    $property_status = rype_real_estate_get_property_status($postID);
+    $property_location = rype_real_estate_get_property_location($postID, 'parent');
+    $property_location_children = rype_real_estate_get_property_location($postID, 'children');
+    $property_amenities = rype_real_estate_get_property_amenities($postID, $property_detail_amenities_hide_empty);
 
     //Get custom post meta count
-    $post_meta = get_post_meta($post->ID);
+    $post_meta = get_post_meta($postID);
     $custom_fields_count = 0;
     foreach($post_meta as $key => $value) {
         if(substr($key, 0, strlen('rypecore_custom_field_')) === 'rypecore_custom_field_' && !empty($value[0])) {
@@ -61,8 +63,6 @@
         }
     }
 ?>	
-
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 	<div class="property-single">
 	
@@ -136,7 +136,7 @@
                             <?php } ?>
 
 							<?php if(empty($additional_images[0])) { 
-								if ( has_post_thumbnail() ) { the_post_thumbnail('full'); } else { echo '<img src="'.esc_url( get_template_directory_uri() ).'/images/property-img-default.gif" alt="" />'; }
+								if ( has_post_thumbnail() ) { the_post_thumbnail('full'); } else { echo '<img src="'.plugins_url( 'images/property-img-default.gif', dirname(__FILE__) ).'" alt="" />'; }
 							 } else { ?>
 							
 								<div class="slider-nav slider-nav-gallery">
@@ -188,7 +188,7 @@
                                     $count = 0; ?>
                                     <ul class="additional-details-list clean-list <?php if($custom_fields_count <= 3) { echo 'one-col'; } ?>">                    
                                     <?php foreach ($custom_fields as $custom_field) { 
-                                        $fieldValue = get_post_meta($post->ID, 'rypecore_custom_field_'.$custom_field['id'], true);  
+                                        $fieldValue = get_post_meta($postID, 'rypecore_custom_field_'.$custom_field['id'], true);  
                                         if(!empty($fieldValue)) { ?>
                                             <li>   
                                                 <?php echo $custom_field['name']; ?>: 
@@ -454,7 +454,7 @@
                                                 <div class="img-fade"></div>
                                                 <?php the_post_thumbnail('full'); ?>
                                             <?php } else { ?>
-                                                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/agent-img-default.gif" alt="" />
+                                                <img src="<?php echo plugins_url( 'images/agent-img-default.gif', dirname(__FILE__) ); ?>" alt="" />
                                             <?php } ?>
                                         </a>
 
@@ -546,9 +546,9 @@
                                         ),
                                     ),
                                 'orderby' => 'rand',
-                                'post__not_in' => array( $post->ID )
+                                'post__not_in' => array( $postID )
                                 );
-                                rype_real_estate_get_custom_properties($args_related_properties, false, 'grid', false, esc_html__('Sorry, no related properties were found.', 'rypecore') );
+                                //rype_real_estate_get_custom_properties($args_related_properties, false, 'grid', false, esc_html__('Sorry, no related properties were found.', 'rypecore') );
                             ?>
 						</div>
 					<?php } ?>
@@ -566,7 +566,3 @@
 
 
 	</div><!-- end property single -->
-
-<?php endwhile; wp_reset_postdata(); else : ?>
-	<p><?php esc_html_e( 'Sorry, no properties were found.', 'rypecore' ); ?></p>
-<?php endif; ?>
