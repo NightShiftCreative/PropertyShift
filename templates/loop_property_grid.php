@@ -43,7 +43,7 @@
                 <?php if($property_listing_crop == 'true') { the_post_thumbnail('property-thumbnail'); } else { the_post_thumbnail('full'); } ?>
             </a>
 		<?php } else { ?>
-			<a href="<?php the_permalink(); ?>" class="property-img-link"><img src="<?php echo plugins_url( 'images/property-img-default.gif', dirname(__FILE__) ); ?>" alt="" /></a>
+			<a href="<?php the_permalink(); ?>" class="property-img-link"><img src="<?php echo plugins_url( '/rype-real-estate/images/property-img-default.gif' ); ?>" alt="" /></a>
 		<?php } ?>
 	</div>
 	

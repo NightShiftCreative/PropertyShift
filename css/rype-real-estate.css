@@ -1,3 +1,34 @@
 /****************************************************************/
 /* RYPE REAL ESTATE - FRONT-END STYLESHEET
 /****************************************************************/
+
+/** GLOBAL **/
+.right { float:right; }
+.left { float:left; }
+.clear { clear:both; }
+
+.clean-list, .clean-list li { margin-left:0 !important; list-style-type:none !important; }
+.clean-list li:before { content:''; display:none !important; }
+
+/** PROPERTIES LISTINGS HEADER **/
+.property-listing-header { margin-bottom:30px; }
+.property-listing-header select, .property-listing-header .chosen-container { min-width:180px; margin-bottom:0px; }
+.property-count { margin-top:14px; }
+.property-listing-header .clear-property-filters { font-size:11px; margin-left:10px; margin-top:-4px; padding:6px 10px;}
+.property-layout-toggle { margin-right:20px; }
+.property-layout-toggle-item {
+	color:#9eaab2;
+    display: inline-block;
+    width: 47px;
+    height: 47px;
+    text-align: center;
+    padding-top: 13px;
+    box-shadow:none;
+    border:1px solid rgba(0, 0, 0, 0.1);
+}
+.property-layout-toggle-item.active { color:#4dbc15; border: 1px solid rgba(0, 0, 0, 0.1); }
+
+/** PROPERTIES LISTINGS GRID **/
+.rype-property { margin-bottom:30px; }
+.rype-property .property-content { padding:8% 5% 5% 5%; position:relative; border:1px solid rgba(0, 0, 0, 0.1); }
+.rype-property .property-content p { margin:0; }
