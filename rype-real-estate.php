@@ -72,7 +72,6 @@ function rype_real_estate_is_plugin_active( $plugin ) {
 
 if(rype_real_estate_is_plugin_active('rype-basics/rype-basics.php')) {
 
-
 	/*-----------------------------------------------------------------------------------*/
 	/*	Include Admin Plugin Scripts and Stylesheets
 	/*-----------------------------------------------------------------------------------*/
@@ -149,6 +148,9 @@ if(rype_real_estate_is_plugin_active('rype-basics/rype-basics.php')) {
 	        );
 	        wp_localize_script( 'rype-real-estate', 'rype_real_estate_local_script', $translation_array );
 	    
+	        /* dynamic scripts */
+        	include( plugin_dir_path( __FILE__ ) . '/js/dynamic_scripts.php');
+
 	        //dynamic styles
         	wp_enqueue_style('rype-real-estate-dynamic-styles', plugins_url('/css/dynamic-styles.css', __FILE__));
         	include( plugin_dir_path( __FILE__ ) . '/css/dynamic_styles.php');
