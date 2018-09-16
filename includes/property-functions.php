@@ -168,6 +168,16 @@ function rype_real_estate_get_property_amenities($post_id, $hide_empty = true, $
     return $property_amenities;
 }
 
+/* get property walkscore */
+function getWalkScore($lat, $lon, $address) {
+    $address=urlencode($address);
+    $url = "http://api.walkscore.com/score?format=json&address=$address";
+    $url .= "&lat=$lat&lon=$lon&wsapikey=f6c3f50b09a7ce69d6d276015e57e996";
+    $request = wp_remote_get($url);
+    $str = wp_remote_retrieve_body($request);
+    return $str; 
+} 
+
 
 /*-----------------------------------------------------------------------------------*/
 /*  Properties Custom Post Type

@@ -6,7 +6,7 @@
     $properties_page = esc_attr(get_option('rypecore_properties_page'));
     $property_detail_template = esc_attr(get_option('rypecore_property_detail_template', 'classic'));
     $google_maps_pin = esc_attr(get_option('rypecore_google_maps_pin'));
-    if(empty($google_maps_pin)) { $google_maps_pin = esc_url( get_template_directory_uri() ).'/images/pin.png'; }
+    if(empty($google_maps_pin)) { $google_maps_pin = plugins_url( '/rype-real-estate/images/pin.png'); }
     $property_detail_amenities_hide_empty = esc_attr(get_option('rypecore_property_detail_amenities_hide_empty', 'false'));
     $property_detail_map_zoom = esc_attr(get_option('rypecore_property_detail_map_zoom', 13));
     $property_detail_items_default = rype_real_estate_load_default_property_detail_items();
@@ -303,15 +303,6 @@
 						<div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
 						
 							<?php 
-							function getWalkScore($lat, $lon, $address) {
-								$address=urlencode($address);
-								$url = "http://api.walkscore.com/score?format=json&address=$address";
-								$url .= "&lat=$lat&lon=$lon&wsapikey=f6c3f50b09a7ce69d6d276015e57e996";
-                                $request = wp_remote_get($url);
-                                $str = wp_remote_retrieve_body($request);
-								return $str; 
-							} 
-
 							$json = getWalkScore($latitude,$longitude,$address);
 							$walkScoreData = json_decode($json, true);
 							?>

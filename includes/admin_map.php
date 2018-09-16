@@ -6,7 +6,7 @@
     if(empty($home_default_map_longitude)) { $home_default_map_longitude = -76.5000; }
 
     $google_maps_pin = esc_attr(get_option('rypecore_google_maps_pin'));
-    if(empty($google_maps_pin)) { $google_maps_pin = esc_url( get_template_directory_uri() ).'/images/pin.png'; }
+    if(empty($google_maps_pin)) { $google_maps_pin = plugins_url( '/rype-real-estate/images/pin.png'); }
 ?>
 
 <input type=button id="remove-pin" class="remove-pin right" value="<?php echo esc_html_e('Clear Location', 'rype-real-estate'); ?>">

@@ -77,8 +77,12 @@ if(rype_real_estate_is_plugin_active('rype-basics/rype-basics.php')) {
 	/*-----------------------------------------------------------------------------------*/
 	function rype_real_estate_admin_scripts() {
 		if (is_admin()) {
+
+			$google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
+
 			wp_enqueue_script('rype-real-estate-admin-js', plugins_url('/js/rype-real-estate-admin.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'media-upload', 'thickbox'), '', true);
 			wp_enqueue_style('rype-real-estate-admin-css', plugins_url('/css/rype-real-estate-admin.css',  __FILE__), array(), '1.0', 'all');
+			wp_enqueue_script( 'rype-real-estate-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
 
 			/* localize scripts */
 	        $translation_array = array(
@@ -116,12 +120,16 @@ if(rype_real_estate_is_plugin_active('rype-basics/rype-basics.php')) {
 	/*-----------------------------------------------------------------------------------*/
 	function rype_real_estate_front_end_scripts() {
 	    if (!is_admin()) {
+
+	    	$google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
+	    	
 	    	wp_enqueue_script('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.js', __FILE__), array('jquery'), '', true);
 	        wp_enqueue_style('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.css',  __FILE__), array(), '1.0', 'all');
 	        wp_enqueue_script('wnumb', plugins_url('/assets/noUiSlider/wNumb.js', __FILE__), array('jquery'), '', true);
 	        wp_enqueue_style('rype-real-estate', plugins_url('/css/rype-real-estate.css',  __FILE__), array(), '1.0', 'all');
 	    	wp_enqueue_script('rype-real-estate', plugins_url('/js/rype-real-estate.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), '', true);
-	    
+	    	wp_enqueue_script( 'rype-real-estate-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
+
 	    	/* localize scripts */
 	        $translation_array = array(
 	            'admin_url' => esc_url(get_admin_url()),
