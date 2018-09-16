@@ -12,14 +12,14 @@
 .clean-list li:before { content:''; display:none !important; }
 
 /** TOOLTIPS **/
-.rc-tooltip { display:inline-block; position:relative; }
-.rc-tooltip-toggle { cursor:pointer; }
+.rype-tooltip { display:inline-block; position:relative; }
+.rype-tooltip-toggle { cursor:pointer; }
 
-.rc-tooltip:hover .rc-tooltip-content { opacity:1; height:auto;}
-.rc-tooltip:hover .rc-tooltip-content-inner { margin-top:10px; }
-.rc-tooltip:hover .rc-tooltip-content-inner:before { top:-4px; }
+.rype-tooltip:hover .rype-tooltip-content { opacity:1; height:auto;}
+.rype-tooltip:hover .rype-tooltip-content-inner { margin-top:10px; }
+.rype-tooltip:hover .rype-tooltip-content-inner:before { top:-4px; }
 
-.rc-tooltip .rc-tooltip-content { 
+.rype-tooltip .rype-tooltip-content { 
 	opacity:0;
 	height:0;
 	overflow:hidden;
@@ -32,7 +32,7 @@
     transform:translateX(-50%);
     transition:all 0.4s;
 }
-.rc-tooltip .rc-tooltip-content-inner {
+.rype-tooltip .rype-tooltip-content-inner {
 	background:white;
 	border:1px solid rgba(0, 0, 0, 0.14);
 	border-top:2px solid #4dbc15;
@@ -48,7 +48,7 @@
     line-height:normal;
     transition:all 0.4s;
 }
-.rc-tooltip .rc-tooltip-content-inner:before {
+.rype-tooltip .rype-tooltip-content-inner:before {
     content: ' ';
     height: 0;
     position: absolute;
@@ -83,7 +83,11 @@
 .property-layout-toggle-item.active { color:#4dbc15; border:1px solid rgba(0, 0, 0, 0.1); }
 
 /** PROPERTIES LISTINGS GRID **/
-.rype-property-listing .rype-property, .rype-property-listing .hentry.rype-property { margin-bottom:30px; padding-top:0; }
+.rype-property-listing .rype-property, .rype-property-listing .hentry.rype-property { 
+	margin-bottom:30px; 
+	padding-top:0; 
+	position:relative;
+}
 .rype-property .property-content { padding:5%; position:relative; border:1px solid rgba(0, 0, 0, 0.1); }
 .rype-property .property-content p { margin:0; }
 
@@ -102,3 +106,7 @@
 	margin-top:10px; 
 	background:#db7e40; 
 }
+
+.rype-property .property-title h4 { margin:15px 0px; }
+
+.rype-property .property-details { margin-top:10px; margin-bottom:0; }
