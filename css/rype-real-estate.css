@@ -3,13 +3,23 @@
 /* Note: These styles are meant to be expanded upon with theme stylesheets
 /**************************************************************************/
 
+/*********************************************/
 /** GLOBAL **/
+/*********************************************/
 .right { float:right; }
 .left { float:left; }
 .clear { clear:both; }
 
+.icon { margin-right:6px; }
+
 .clean-list, .clean-list li { margin-left:0 !important; list-style-type:none !important; }
 .clean-list li:before { content:''; display:none !important; }
+
+/** POST LIKES **/
+.sl-wrapper a.liked .fa { color:#4dbc15 !important; }
+.sl-wrapper .sl-button-text { display:none; }
+.sl-wrapper-button .sl-button-text { display:inline-block; }
+.sl-wrapper-button .button.outline { float:none !important; width:100% !important; }
 
 /** TOOLTIPS **/
 .rype-tooltip { display:inline-block; position:relative; }
@@ -63,8 +73,54 @@
     transition:all 0.4s;
 }
 
+.post-share .rype-tooltip-content ul { margin:0 !important; position:relative; }
+.post-share .rype-tooltip-content ul li { display:inline-block; width:auto; margin:0; position:static !important;}
+.post-share .rype-tooltip-content ul li a { 
+    padding:0px 4px !important;
+    display:block; 
+    border-right:1px solid rgba(255, 255, 255, 0.2);
+    text-align:center; 
+}
 
+/** VIDEO **/
+.video-cover { 
+    position:relative; 
+    display:block; 
+    background:#f0f4f8;
+    text-align:center;
+}
+.video-cover img { max-width:100%; height:auto; }
+.video-cover:hover .icon { border-color:#4dbc15; background:#4dbc15; }
+.video-cover-content {
+    position:absolute;
+    padding:0px 20px;
+    text-align:center;
+    left:0;
+    right:0;
+    top:50%;
+    margin-top:-27px;
+    color:white;
+    font-size:18px;
+}
+.video-cover-content .icon {
+    margin:0;
+    margin-bottom:10px;
+    border:2px solid white;
+    width:60px;
+    height:60px;
+    padding-top:17px;
+    padding-left:3px;
+    border-radius:100%;
+    font-size:25px;
+    transition:all 0.4s;
+}
+.video-cover-content p { margin-bottom:0; }
+
+.video-cover-no-img { min-height:300px; }
+
+/*********************************************/
 /** PROPERTIES LISTINGS HEADER **/
+/*********************************************/
 .property-listing-header { margin-bottom:30px; }
 .property-listing-header select, .property-listing-header .chosen-container { min-width:180px; margin-bottom:0px; }
 .property-count { margin-top:14px; }
@@ -75,15 +131,18 @@
     display: inline-block;
     width: 47px;
     height: 47px;
+    line-height:47px;
     text-align: center;
-    padding-top: 13px;
     box-shadow:none;
     border:1px solid rgba(0, 0, 0, 0.1);
 }
 .property-layout-toggle-item.active { color:#4dbc15; border:1px solid rgba(0, 0, 0, 0.1); }
 
+/*********************************************/
 /** PROPERTIES LISTINGS GRID **/
+/*********************************************/
 .rype-property-listing .rype-property, .rype-property-listing .hentry.rype-property { 
+	margin:0;
 	margin-bottom:30px; 
 	padding-top:0; 
 	position:relative;
@@ -115,7 +174,7 @@
 }
 .rype-property .property-actions .rype-tooltip { margin-right:10px; }
 
-.rype-property .property-price {
+.rype-property .property-price , .rype-property .property-price-single {
 	color:#db7e40;
 	font-weight:700;
 	font-size:25px;
@@ -124,3 +183,31 @@
 .rype-property .property-title h4 { margin:15px 0px; }
 
 .rype-property .property-details { margin-top:10px; margin-bottom:0; }
+
+/*********************************************/
+/** PROPERTIES SINGLE **/
+/*********************************************/
+.rype-property .property-single { position:relative; }
+
+.rype-property .property-single .property-address { margin-bottom:15px; }
+
+.rype-property .property-single-tags { margin-bottom:30px; }
+.rype-property .property-single-tags .property-tag { 
+	float:none; 
+	position:relative;
+	right:0;
+	margin-top:0;
+}
+
+.rype-property .property-single-item.widget { 
+	padding:0; 
+	margin-bottom:30px;
+}
+
+.rype-property .property-single .gallery-images > a {
+	width:24%;
+	display:block;
+	float:left;
+	margin-right:1%;
+	margin-top:1%;
+}

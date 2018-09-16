@@ -104,8 +104,8 @@
                                 <?php if(!empty($property_status)) { ?>
                                     <div class="property-tag button status"><?php echo wp_kses_post($property_status); ?></div>
                                 <?php } ?>
-                                <?php if($property_detail_id == 'true') { ?><div class="property-id right"><?php esc_html_e('Property ID', 'rypecore'); ?>: <?php echo get_the_id(); ?></div><?php } ?>
-                                <?php if(!empty($property_type)) { ?><div class="property-type right"><?php esc_html_e('Property Type:', 'rypecore'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
+                                <?php if($property_detail_id == 'true') { ?><div class="property-id"><?php esc_html_e('Property ID', 'rypecore'); ?>: <?php echo get_the_id(); ?></div><?php } ?>
+                                <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'rypecore'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
                             </div>
                             <div class="clear"></div>
 
@@ -135,37 +135,24 @@
                                 </div>
                             <?php } ?>
 
-							<?php if(empty($additional_images[0])) { 
-								if ( has_post_thumbnail() ) { the_post_thumbnail('full'); } else { echo '<img src="'.plugins_url( 'images/property-img-default.gif', dirname(__FILE__) ).'" alt="" />'; }
-							 } else { ?>
-							
-								<div class="slider-nav slider-nav-gallery">
-						            <span class="slider-prev"><i class="fa fa-angle-left"></i></span>
-						            <span class="slider-next"><i class="fa fa-angle-right"></i></span>
-						        </div>
+                            <?php if ( has_post_thumbnail() ) { 
+                                the_post_thumbnail('full'); 
+                            } else { 
+                                echo '<img src="'.plugins_url( 'images/property-img-default.gif', dirname(__FILE__) ).'" alt="" />'; 
+                            } ?>
 
-								<div class="slide-counter <?php if(!empty($label)) { echo 'has-label'; } ?>"></div>
-						        <div class="slider slider-gallery">
+							<?php if(!empty($additional_images[0])) { ?>
+						        <div class="gallery-images">
                                     <?php 
                                         $additional_images = explode(",", $additional_images[0]);
                                         foreach ($additional_images as $additional_image) {
                                             if(!empty($additional_image)) {
-                                                echo '<div class="slide"><div data-fancybox="gallery" data-src="'. $additional_image .'" class="gallery-toggle">'.rypecore_get_icon($icon_set, 'expand').'</div><img src="'. $additional_image .'" alt="" /></div>';
+                                                echo '<a href="'.$additional_image.'" target="_blank"><img src="'. $additional_image .'" alt="" /></a>';
                                             }
                                         } ?>
+                                    <div class="clear"></div>
                                 </div>
-						        <div class="slider gallery-pager">
-                                <?php
-                                    $count = 1;
-                                    foreach ($additional_images as $additional_image) {
-                                        if(!empty($additional_image)) {
-                                            echo '<a class="gallery-thumb"><img src="'. $additional_image .'" alt="" /></a>';
-                                            $count++;
-                                        }
-                                    }
-                                ?>
-                            </div>
-						<?php } ?>
+						    <?php } ?>
 						</div>
                 	<?php } ?>
 
