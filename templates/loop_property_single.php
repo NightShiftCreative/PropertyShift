@@ -548,7 +548,7 @@
                                 'orderby' => 'rand',
                                 'post__not_in' => array( $postID )
                                 );
-                                //rype_real_estate_get_custom_properties($args_related_properties, false, 'grid', false, esc_html__('Sorry, no related properties were found.', 'rypecore') );
+                                //rype_real_estate_template_properties($args_related_properties, false, 'grid', false, esc_html__('Sorry, no related properties were found.', 'rypecore') );
                             ?>
 						</div>
 					<?php } ?>

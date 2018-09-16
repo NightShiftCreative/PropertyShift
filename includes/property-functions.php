@@ -4,11 +4,6 @@
 /*  Global Property Functions
 /*-----------------------------------------------------------------------------------*/
 
-//displays properties loop
-function rype_real_estate_get_custom_properties(array $custom_args, $custom_show_filter, $custom_layout, $custom_pagination, $no_post_message = 'Sorry, no properties were found.' ) {
-    include(get_parent_theme_file_path('/template_parts/real_estate/loop_properties.php')); 
-}
-
 //returns property count (supply user ID to return property count for that user)
 function rype_real_estate_count_properties($type, $user_id = null) {
         $args_total_properties = array(
@@ -1048,7 +1043,7 @@ function rype_real_estate_property_dashboard_widgets($banner_source) {
                 'showposts' => 4,
                 'author_name' => $current_user->user_login
             );
-            rype_real_estate_get_custom_properties($args_recent, false, 'grid', false, esc_html__('Sorry, no recent properties were found.', 'rype-real-estate') );
+            rype_real_estate_template_properties($args_recent, false, 'grid', false, esc_html__('Sorry, no recent properties were found.', 'rype-real-estate') );
         ?>
     </div>
 <?php }

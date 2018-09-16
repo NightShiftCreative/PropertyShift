@@ -191,8 +191,8 @@ function rype_list_properties($atts, $content = null) {
     );
 
     ob_start();
-    if(function_exists('rype_real_estate_get_custom_properties')){ 
-        rype_real_estate_get_custom_properties($args, $atts['show_header'], $atts['layout'], $atts['show_pagination'], 'Sorry, no properties were found.');
+    if(function_exists('rype_real_estate_template_properties')){ 
+        rype_real_estate_template_properties($args, $atts['show_header'], $atts['layout'], $atts['show_pagination'], 'Sorry, no properties were found.');
     }
     $output = ob_get_clean();
 
