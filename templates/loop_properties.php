@@ -218,7 +218,7 @@ if($property_listing_header_display == 'true') {
 }
 ?>
 
-<div class="row listing">
+<div class="row rype-property-listing">
 <?php 
 $i = 0;
 

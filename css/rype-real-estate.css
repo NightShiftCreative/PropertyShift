@@ -1,6 +1,7 @@
-/****************************************************************/
-/* RYPE REAL ESTATE - FRONT-END STYLESHEET
-/****************************************************************/
+/**************************************************************************/
+/* RYPE REAL ESTATE - BOILERPLATE THEME
+/* Note: These styles are meant to be expanded upon with theme stylesheets
+/**************************************************************************/
 
 /** GLOBAL **/
 .right { float:right; }
@@ -9,6 +10,59 @@
 
 .clean-list, .clean-list li { margin-left:0 !important; list-style-type:none !important; }
 .clean-list li:before { content:''; display:none !important; }
+
+/** TOOLTIPS **/
+.rc-tooltip { display:inline-block; position:relative; }
+.rc-tooltip-toggle { cursor:pointer; }
+
+.rc-tooltip:hover .rc-tooltip-content { opacity:1; height:auto;}
+.rc-tooltip:hover .rc-tooltip-content-inner { margin-top:10px; }
+.rc-tooltip:hover .rc-tooltip-content-inner:before { top:-4px; }
+
+.rc-tooltip .rc-tooltip-content { 
+	opacity:0;
+	height:0;
+	overflow:hidden;
+	position:absolute; 
+	z-index:10; 
+	left:50%; 
+	box-shadow:0px 10px 30px rgba(0, 0, 0, 0.1);
+    -webkit-transform:translateX(-50%);
+    -ms-transform:translateX(-50%);
+    transform:translateX(-50%);
+    transition:all 0.4s;
+}
+.rc-tooltip .rc-tooltip-content-inner {
+	background:white;
+	border:1px solid rgba(0, 0, 0, 0.14);
+	border-top:2px solid #4dbc15;
+    font-size:13px;
+    top:0px;
+    min-width:50px;
+    width:auto;
+    color:#3b3b3b;
+    text-align:center;
+    white-space: nowrap;
+    margin-top:0px;
+    padding:10px;
+    line-height:normal;
+    transition:all 0.4s;
+}
+.rc-tooltip .rc-tooltip-content-inner:before {
+    content: ' ';
+    height: 0;
+    position: absolute;
+    width: 0;
+    border: 8px solid transparent;
+    border-bottom-color: #4dbc15; 
+    position: absolute;
+    top: -14px;
+    left:50%;
+    margin-left:-8px;
+    z-index: 2;
+    transition:all 0.4s;
+}
+
 
 /** PROPERTIES LISTINGS HEADER **/
 .property-listing-header { margin-bottom:30px; }
@@ -26,9 +80,25 @@
     box-shadow:none;
     border:1px solid rgba(0, 0, 0, 0.1);
 }
-.property-layout-toggle-item.active { color:#4dbc15; border: 1px solid rgba(0, 0, 0, 0.1); }
+.property-layout-toggle-item.active { color:#4dbc15; border:1px solid rgba(0, 0, 0, 0.1); }
 
 /** PROPERTIES LISTINGS GRID **/
-.rype-property { margin-bottom:30px; }
-.rype-property .property-content { padding:8% 5% 5% 5%; position:relative; border:1px solid rgba(0, 0, 0, 0.1); }
+.rype-property-listing .rype-property, .rype-property-listing .hentry.rype-property { margin-bottom:30px; padding-top:0; }
+.rype-property .property-content { padding:5%; position:relative; border:1px solid rgba(0, 0, 0, 0.1); }
 .rype-property .property-content p { margin:0; }
+
+.rype-property .property-tag {
+    max-width:50%;
+    display:inline-block;
+	padding:3px 8px;
+	font-size:12px;
+	z-index:10;
+	border:1px solid rgba(0, 0, 0, 0.1);
+}
+.rype-property .property-tag.featured { 
+	position:absolute; 
+	color:white; 
+	right:10px; 
+	margin-top:10px; 
+	background:#db7e40; 
+}
