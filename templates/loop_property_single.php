@@ -167,7 +167,7 @@
                                     <div class="widget-divider"><div class="bar"></div></div>
                                 </div>
                             <?php } ?>
-							<?php the_content(); ?>
+							<?php //the_content(); ?>
 
                             <?php 
                                 $custom_fields = get_option('rypecore_custom_fields');

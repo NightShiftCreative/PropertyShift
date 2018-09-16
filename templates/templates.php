@@ -62,7 +62,7 @@ function rype_real_estate_template_property_single( $content ) {
 	    }
 	}
 
-    $content = ob_get_clean().$content;
+    $content = $content.ob_get_clean();
     return $content;
 }
 add_filter( 'the_content', 'rype_real_estate_template_property_single', 20 );
