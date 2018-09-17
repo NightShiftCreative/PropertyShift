@@ -1,5 +1,18 @@
 <?php
 /*-----------------------------------------------------------------------------------*/
+/*  Global
+/*-----------------------------------------------------------------------------------*/
+function rype_real_estate_template_loader($template) {
+	$theme_file = locate_template(array( 'template_parts/real_estate/' . $template));
+
+	if(empty($theme_file)) {
+		include( plugin_dir_path( __FILE__ ) . $template);
+	} else {
+		include(get_parent_theme_file_path('/template_parts/real_estate/'.$template));
+	}
+}
+
+/*-----------------------------------------------------------------------------------*/
 /*  Property Templates
 /*-----------------------------------------------------------------------------------*/
 
@@ -31,20 +44,6 @@ function rype_real_estate_template_properties_listing_header($property_listing_q
      
 }
 
-/*  Load property grid template */
-function rype_real_estate_template_property_grid() {
-
-    $template = 'loop_property_grid.php';
-	$theme_file = locate_template(array( 'template_parts/real_estate/' . $template));
-
-	if(empty($theme_file)) {
-		include( plugin_dir_path( __FILE__ ) . $template);
-	} else {
-		include(get_parent_theme_file_path('/template_parts/real_estate/'.$template));
-	}
-     
-}
-
 /*  Load property single template */
 function rype_real_estate_template_property_single( $content ) {
 	ob_start();
@@ -62,34 +61,6 @@ function rype_real_estate_template_property_single( $content ) {
     return $content;
 }
 add_filter( 'the_content', 'rype_real_estate_template_property_single', 20 );
-
-/*  Load property filter template */
-function rype_real_estate_template_property_filter() {
-
-    $template = 'property-filter.php';
-	$theme_file = locate_template(array( 'template_parts/real_estate/' . $template));
-
-	if(empty($theme_file)) {
-		include( plugin_dir_path( __FILE__ ) . $template);
-	} else {
-		include(get_parent_theme_file_path('/template_parts/real_estate/'.$template));
-	}
-     
-}
-
-/*  Load property filter minimal template */
-function rype_real_estate_template_property_filter_minimal() {
-
-    $template = 'property-filter-minimal.php';
-	$theme_file = locate_template(array( 'template_parts/real_estate/' . $template));
-
-	if(empty($theme_file)) {
-		include( plugin_dir_path( __FILE__ ) . $template);
-	} else {
-		include(get_parent_theme_file_path('/template_parts/real_estate/'.$template));
-	}
-     
-}
 
 
 /*-----------------------------------------------------------------------------------*/

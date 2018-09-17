@@ -302,9 +302,9 @@ function rype_property_filter($atts, $content = null) {
     $property_filter_layout = isset( $values['rypecore_property_filter_layout'] ) ? esc_attr( $values['rypecore_property_filter_layout'][0] ) : 'middle';      
     $shortcode_filter = 'true';
     if($property_filter_layout == 'minimal') {
-        echo rype_real_estate_template_property_filter_minimal();
+        rype_real_estate_template_loader('property-filter-minimal.php');
     } else {
-        echo rype_real_estate_template_property_filter();
+        rype_real_estate_template_loader('property-filter.php');
     }
 
     $output = ob_get_clean();

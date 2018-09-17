@@ -229,13 +229,13 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
         <?php if ($property_layout == 'row') { ?>
             <div class="col-lg-12"><?php get_template_part('template_parts/real_estate/loop_property_row'); ?></div>
         <?php } else { ?>
-            <div class="<?php echo esc_attr($property_col_class); ?>"><?php rype_real_estate_template_property_grid(); ?></div>
+            <div class="<?php echo esc_attr($property_col_class); ?>"><?php rype_real_estate_template_loader('loop_property_grid.php'); ?></div>
         <?php } ?>
 
         <?php if($i % $columns_num == $columns_num - 1 ) {  echo '</div> <div class="row listing">'; } $i++; ?>
 
     <?php } else if($property_layout == 'tile') {
-        rype_real_estate_template_property_grid();
+        rype_real_estate_template_loader('loop_property_grid.php');
     } ?>
 
 <?php endwhile; ?>
