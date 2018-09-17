@@ -31,9 +31,9 @@ class rype_real_estate_property_filter_widget extends WP_Widget {
         $values = get_post_custom( $property_filter_id );
         $property_filter_layout = isset( $values['rypecore_property_filter_layout'] ) ? esc_attr( $values['rypecore_property_filter_layout'][0] ) : 'middle';      
         if($property_filter_layout == 'minimal') {
-            include(get_parent_theme_file_path('/template_parts/real_estate/property-filter-minimal.php'));
+            rype_real_estate_template_loader('property-filter-minimal.php');
         } else {
-            include(get_parent_theme_file_path('/template_parts/real_estate/property-filter.php'));
+            rype_real_estate_template_loader('property-filter.php');
         }
 
         echo wp_kses_post($after_widget);
