@@ -203,6 +203,6 @@ if(rype_real_estate_is_plugin_active('rype-basics/rype-basics.php')) {
 	/*-----------------------------------------------------------------------------------*/
 	/*  Includes Templates
 	/*-----------------------------------------------------------------------------------*/
-	include( plugin_dir_path( __FILE__ ) . '/templates/templates.php');
+	include( plugin_dir_path( __FILE__ ) . '/includes/templates/templates.php');
 }
 ?>
