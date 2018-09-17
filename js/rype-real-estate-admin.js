@@ -31,6 +31,12 @@ jQuery(document).ready(function($) {
         	shortcodeOutput = "[rype_list_property_tax tax='"+tax+"' show_posts='"+taxShowPosts+"' layout='"+taxLayout+"' orderby='"+taxOrderBy+"' order='"+taxOrder+"' hide_empty='"+taxHideEmpty+"'][/rype_list_property_tax]";
         }
 
+        //set property filter shortcode
+        if(shortcode == 'real-estate-filter') {
+            var propertyFilter = $('.shortcode-selector-options .property-filter-select').val();
+            shortcodeOutput = "[rype_property_filter id='"+propertyFilter+"'][/rype_property_filter]";
+        }
+
         //set list agents shortcode
         if(shortcode == 'real-estate-list-agents') {
             var showAgentPosts = $('.shortcode-selector-options .list-agents-show-posts').val();

@@ -12,6 +12,7 @@ add_action( 'media_buttons', function($editor_id) { ?>
                 <p><?php esc_html_e('Choose a shortcode to insert from the list below:', 'rype-real-estate'); ?></p>
                 <a href="#real-estate-list-properties" class="button has-options"><i class="fa fa-align-justify"></i><?php esc_html_e('List Properties', 'rype-real-estate'); ?></a>
                 <a href="#real-estate-list-property-tax" class="button has-options"><i class="fa fa-align-justify"></i><?php esc_html_e('List Property Taxonomy', 'rype-real-estate'); ?></a>
+                <a href="#real-estate-filter" class="button has-options"><i class="fa fa-filter"></i><?php esc_html_e('Property Filter', 'rype-real-estate'); ?></a>
                 <a href="#real-estate-list-agents" class="button has-options"><i class="fa fa-group"></i><?php esc_html_e('List Agents', 'rype-real-estate'); ?></a>
             </div>
             <div class="shortcode-selector-options">
@@ -120,6 +121,25 @@ add_action( 'media_buttons', function($editor_id) { ?>
                         <select class="list-property-tax-hide-empty" >
                             <option value="true"><?php esc_html_e('True', 'rype-real-estate'); ?></option>
                             <option value="false"><?php esc_html_e('False', 'rype-real-estate'); ?></option>
+                        </select>
+                    </div>
+                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'rype-real-estate'); ?></a>
+                </div>
+
+                <div id="real-estate-filter" class="admin-module no-border">
+                    <h3><strong><?php esc_html_e('Property Filter', 'rype-real-estate'); ?></strong></h3>
+                    <div class="form-block">
+                        <label><?php esc_html_e('Select Filter', 'rype-real-estate'); ?></label>
+                        <select class="property-filter-select">
+                            <?php
+                            $filter_listing_args = array(
+                                'post_type' => 'rype-property-filter',
+                                'posts_per_page' => -1
+                            );
+                            $propertyFilters = get_posts($filter_listing_args);
+                            foreach($propertyFilters as $filter) { ?>
+                                <option value="<?php echo $filter->ID; ?>"><?php echo $filter->post_title.' (#'.$filter->ID.')'; ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'rype-real-estate'); ?></a>
@@ -282,9 +302,9 @@ function rype_property_filter($atts, $content = null) {
     $property_filter_layout = isset( $values['rypecore_property_filter_layout'] ) ? esc_attr( $values['rypecore_property_filter_layout'][0] ) : 'middle';      
     $shortcode_filter = 'true';
     if($property_filter_layout == 'minimal') {
-        include(get_parent_theme_file_path('/template_parts/real_estate/property-filter-minimal.php'));
+        echo rype_real_estate_template_property_filter_minimal();
     } else {
-        include(get_parent_theme_file_path('/template_parts/real_estate/property-filter.php'));
+        echo rype_real_estate_template_property_filter();
     }
 
     $output = ob_get_clean();

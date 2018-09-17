@@ -1,7 +1,9 @@
 <?php
 /*-----------------------------------------------------------------------------------*/
-/*  Load properties template
+/*  Property Templates
 /*-----------------------------------------------------------------------------------*/
+
+/*  Load properties template */
 function rype_real_estate_template_properties(array $custom_args, $custom_show_filter, $custom_layout, $custom_pagination, $no_post_message = 'Sorry, no properties were found.' ) {
     
     $template = 'loop_properties.php';
@@ -15,9 +17,7 @@ function rype_real_estate_template_properties(array $custom_args, $custom_show_f
      
 }
 
-/*-----------------------------------------------------------------------------------*/
-/*  Load properties listing header template
-/*-----------------------------------------------------------------------------------*/
+/*  Load properties listing header template */
 function rype_real_estate_template_properties_listing_header($property_listing_query) {
 
     $template = 'property-listing-header.php';
@@ -31,9 +31,7 @@ function rype_real_estate_template_properties_listing_header($property_listing_q
      
 }
 
-/*-----------------------------------------------------------------------------------*/
-/*  Load property grid template
-/*-----------------------------------------------------------------------------------*/
+/*  Load property grid template */
 function rype_real_estate_template_property_grid() {
 
     $template = 'loop_property_grid.php';
@@ -47,9 +45,7 @@ function rype_real_estate_template_property_grid() {
      
 }
 
-/*-----------------------------------------------------------------------------------*/
-/*  Load property single template
-/*-----------------------------------------------------------------------------------*/
+/*  Load property single template */
 function rype_real_estate_template_property_single( $content ) {
 	ob_start();
 
@@ -66,5 +62,38 @@ function rype_real_estate_template_property_single( $content ) {
     return $content;
 }
 add_filter( 'the_content', 'rype_real_estate_template_property_single', 20 );
+
+/*  Load property filter template */
+function rype_real_estate_template_property_filter() {
+
+    $template = 'property-filter.php';
+	$theme_file = locate_template(array( 'template_parts/real_estate/' . $template));
+
+	if(empty($theme_file)) {
+		include( plugin_dir_path( __FILE__ ) . $template);
+	} else {
+		include(get_parent_theme_file_path('/template_parts/real_estate/'.$template));
+	}
+     
+}
+
+/*  Load property filter minimal template */
+function rype_real_estate_template_property_filter_minimal() {
+
+    $template = 'property-filter-minimal.php';
+	$theme_file = locate_template(array( 'template_parts/real_estate/' . $template));
+
+	if(empty($theme_file)) {
+		include( plugin_dir_path( __FILE__ ) . $template);
+	} else {
+		include(get_parent_theme_file_path('/template_parts/real_estate/'.$template));
+	}
+     
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+/*  Agent Templates
+/*-----------------------------------------------------------------------------------*/
 
 ?>
