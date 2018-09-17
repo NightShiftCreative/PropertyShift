@@ -90,7 +90,7 @@
     text-align:center;
 }
 .video-cover img { max-width:100%; height:auto; }
-.video-cover:hover .icon { border-color:#4dbc15; background:#4dbc15; }
+.video-cover:hover .icon { border-color:#db7e40; background:#db7e40; }
 .video-cover-content {
     position:absolute;
     padding:0px 20px;
@@ -191,12 +191,13 @@
 
 .rype-property .property-single .property-address { margin-bottom:15px; }
 
-.rype-property .property-single-tags { margin-bottom:30px; }
+.rype-property .property-single-tags { margin-bottom:30px; font-size:14px; }
 .rype-property .property-single-tags .property-tag { 
 	float:none; 
 	position:relative;
 	right:0;
 	margin-top:0;
+    margin-bottom:10px;
 }
 
 .rype-property .property-single-item.widget { 
@@ -211,3 +212,5 @@
 	margin-right:1%;
 	margin-top:1%;
 }
+
+.rype-property .property-single-item .walk-score h2 { margin:0; }

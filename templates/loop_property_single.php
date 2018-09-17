@@ -100,22 +100,22 @@
                             </div>
 
                             <div class="property-single-tags">
-                                <?php if($featured == 'true') { ?><a href="<?php if(!empty($properties_page)) { echo esc_url($properties_page).'/?featured=true'; } ?>" class="property-tag button alt featured"><?php esc_html_e('Featured', 'rypecore'); ?></a><?php } ?>
+                                <?php if($featured == 'true') { ?><a href="<?php if(!empty($properties_page)) { echo esc_url($properties_page).'/?featured=true'; } ?>" class="property-tag button alt featured"><?php esc_html_e('Featured', 'rype-real-estate'); ?></a><?php } ?>
                                 <?php if(!empty($property_status)) { ?>
                                     <div class="property-tag button status"><?php echo wp_kses_post($property_status); ?></div>
                                 <?php } ?>
-                                <?php if($property_detail_id == 'true') { ?><div class="property-id"><?php esc_html_e('Property ID', 'rypecore'); ?>: <?php echo get_the_id(); ?></div><?php } ?>
-                                <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'rypecore'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
+                                <?php if($property_detail_id == 'true') { ?><div class="property-id"><?php esc_html_e('Property ID', 'rype-real-estate'); ?>: <?php echo get_the_id(); ?></div><?php } ?>
+                                <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'rype-real-estate'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
                             </div>
                             <div class="clear"></div>
 
                             <?php if(!empty($bedrooms) || !empty($bathrooms) || !empty($area) || !empty($garages)) { ?>
                             <table class="property-details-single">
                                 <tr>
-                                    <?php if(!empty($bedrooms)) { ?><td><?php echo rypecore_get_icon($icon_set, 'bed', 'bed', 'n/a'); ?> <span><?php echo esc_attr($bedrooms); ?></span> <?php esc_html_e('Beds', 'rypecore'); ?></td><?php } ?>
-                                    <?php if(!empty($bathrooms)) { ?><td><?php echo rypecore_get_icon($icon_set, 'tint', 'bathtub', 'n/a'); ?> <span><?php echo esc_attr($bathrooms); ?></span> <?php esc_html_e('Baths', 'rypecore'); ?></td><?php } ?>
+                                    <?php if(!empty($bedrooms)) { ?><td><?php echo rypecore_get_icon($icon_set, 'bed', 'bed', 'n/a'); ?> <span><?php echo esc_attr($bedrooms); ?></span> <?php esc_html_e('Beds', 'rype-real-estate'); ?></td><?php } ?>
+                                    <?php if(!empty($bathrooms)) { ?><td><?php echo rypecore_get_icon($icon_set, 'tint', 'bathtub', 'n/a'); ?> <span><?php echo esc_attr($bathrooms); ?></span> <?php esc_html_e('Baths', 'rype-real-estate'); ?></td><?php } ?>
                                     <?php if(!empty($area)) { ?><td><?php echo rypecore_get_icon($icon_set, 'expand'); ?> <span><?php echo esc_attr($area); ?></span> <?php echo esc_attr($area_postfix); ?></td><?php } ?>
-                                    <?php if(!empty($garages)) { ?><td><?php echo rypecore_get_icon($icon_set, 'car', 'car2', 'n/a'); ?> <span><?php echo esc_attr($garages); ?></span> <?php esc_html_e('Garages', 'rypecore'); ?></td><?php } ?>
+                                    <?php if(!empty($garages)) { ?><td><?php echo rypecore_get_icon($icon_set, 'car', 'car2', 'n/a'); ?> <span><?php echo esc_attr($garages); ?></span> <?php esc_html_e('Garages', 'rype-real-estate'); ?></td><?php } ?>
                                 </tr>
                             </table>
                             <?php } ?>
@@ -223,13 +223,13 @@
 
                                     if(!empty($floor_plans)) {   
                                         foreach ($floor_plans as $floor_plan) { ?>
-                                            <h3 class="accordion-tab"><?php echo esc_html_e($floor_plan['title'], 'rypecore'); ?></h3>
+                                            <h3 class="accordion-tab"><?php echo esc_html_e($floor_plan['title'], 'rype-real-estate'); ?></h3>
                                             <div class="floor-plan-item"> 
                                                 <table>
                                                     <tr>
-                                                        <td><strong><?php esc_html_e('Size', 'rypecore'); ?></strong></td>
-                                                        <td><strong><?php esc_html_e('Rooms', 'rypecore'); ?></strong></td>
-                                                        <td><strong><?php esc_html_e('Bathrooms', 'rypecore'); ?></strong></td>
+                                                        <td><strong><?php esc_html_e('Size', 'rype-real-estate'); ?></strong></td>
+                                                        <td><strong><?php esc_html_e('Rooms', 'rype-real-estate'); ?></strong></td>
+                                                        <td><strong><?php esc_html_e('Bathrooms', 'rype-real-estate'); ?></strong></td>
                                                     </tr>
                                                     <tr>
                                                         <td><?php if(!empty($floor_plan['size'])) { echo esc_attr($floor_plan['size']); } else { echo '--'; } ?></td>
@@ -237,7 +237,7 @@
                                                         <td><?php if(!empty($floor_plan['baths'])) { echo esc_attr($floor_plan['baths']); } else { echo '--'; } ?></td>
                                                     </tr>
                                                 </table>
-                                                <?php if(!empty($floor_plan['description'])) { echo '<p>'.esc_html__($floor_plan['description'], 'rypecore').'</p>'; } ?>
+                                                <?php if(!empty($floor_plan['description'])) { echo '<p>'.esc_html__($floor_plan['description'], 'rype-real-estate').'</p>'; } ?>
                                                 <?php if(!empty($floor_plan['img'])) { echo '<img class="floor-plan-img" src="'.$floor_plan['img'].'" alt="" />'; } ?>
                                             </div> 
                                         <?php }
@@ -320,10 +320,10 @@
                                 </div>
                             <?php } ?>
 							
-							<a href="<?php echo esc_url($walkScoreData['ws_link']); ?>" target="_blank" class="button right"><?php esc_html_e('View More Details', 'rypecore'); ?></a>
 							<div class="walk-score">
 								<h2><?php echo esc_attr($walkScoreData['walkscore']); ?><span>/100</span></h2>
-								<span><?php echo esc_attr($walkScoreData['description']); ?></span>
+								<p><?php echo esc_attr($walkScoreData['description']); ?></p>
+                                <a href="<?php echo esc_url($walkScoreData['ws_link']); ?>" target="_blank" class="button"><?php esc_html_e('View More Details', 'rype-real-estate'); ?></a>
 							</div>
 						</div>
 					<?php } ?>
@@ -426,7 +426,7 @@
                                         
                                         <a href="<?php the_permalink(); ?>" class="agent-img">
                                             <?php if(isset($meta_post_count) && $meta_post_count > 0) { ?>
-                                                <div class="button alt agent-tag"><?php echo esc_attr($meta_post_count); ?> <?php if($meta_post_count <= 1) { esc_html_e('Property', 'rypecore'); } else { esc_html_e('Properties', 'rypecore'); } ?></div>
+                                                <div class="button alt agent-tag"><?php echo esc_attr($meta_post_count); ?> <?php if($meta_post_count <= 1) { esc_html_e('Property', 'rype-real-estate'); } else { esc_html_e('Properties', 'rype-real-estate'); } ?></div>
                                             <?php } ?>
                                             <?php if ( has_post_thumbnail() ) {  ?>
                                                 <div class="img-fade"></div>
@@ -437,7 +437,7 @@
                                         </a>
 
                                         <div class="agent-content">
-                                            <a href="<?php the_permalink(); ?>" class="button button-icon right"><i class="fa fa-angle-right"></i><?php esc_html_e('Contact Agent', 'rypecore'); ?></a>
+                                            <a href="<?php the_permalink(); ?>" class="button button-icon right"><i class="fa fa-angle-right"></i><?php esc_html_e('Contact Agent', 'rype-real-estate'); ?></a>
                                             <div class="agent-details">
                                                 <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                                                 <?php if(!empty($agent_title)) { ?><p><?php echo rypecore_get_icon($icon_set, 'tag'); ?><?php echo esc_attr($agent_title); ?></p><?php } ?>
@@ -468,7 +468,7 @@
                                                         rype_real_estate_agent_contact_form($agent_email); 
                                                     }
                                                 } else {
-                                                    esc_html_e('Please install required plugins to display the contact form.', 'rypecore');
+                                                    esc_html_e('Please install required plugins to display the contact form.', 'rype-real-estate');
                                                 }
                                             } 
                                         }
@@ -478,7 +478,7 @@
                                 <?php endwhile; ?>
                                     <?php wp_reset_postdata(); ?>
                                 <?php else: ?>
-                                    <div class="col-lg-12"><p><?php esc_html_e('Sorry, no agents have been posted yet.', 'rypecore'); ?></p></div>
+                                    <div class="col-lg-12"><p><?php esc_html_e('Sorry, no agents have been posted yet.', 'rype-real-estate'); ?></p></div>
                                 <?php endif; ?>
 
                             <?php } else if($agent_display == 'custom') { ?>
@@ -526,7 +526,7 @@
                                 'orderby' => 'rand',
                                 'post__not_in' => array( $postID )
                                 );
-                                //rype_real_estate_template_properties($args_related_properties, false, 'grid', false, esc_html__('Sorry, no related properties were found.', 'rypecore') );
+                                rype_real_estate_template_properties($args_related_properties, false, 'grid', false, esc_html__('Sorry, no related properties were found.', 'rype-real-estate') );
                             ?>
 						</div>
 					<?php } ?>
