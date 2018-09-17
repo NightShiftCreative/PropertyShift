@@ -227,7 +227,7 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
     <?php if ($property_layout == 'row' || $property_layout == 'grid') { ?>
 
         <?php if ($property_layout == 'row') { ?>
-            <div class="col-lg-12"><?php get_template_part('template_parts/real_estate/loop_property_row'); ?></div>
+            <div class="col-lg-12"><?php rype_real_estate_template_loader('loop_property_row.php'); ?></div>
         <?php } else { ?>
             <div class="<?php echo esc_attr($property_col_class); ?>"><?php rype_real_estate_template_loader('loop_property_grid.php'); ?></div>
         <?php } ?>
