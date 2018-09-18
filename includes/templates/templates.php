@@ -67,4 +67,18 @@ add_filter( 'the_content', 'rype_real_estate_template_property_single', 20 );
 /*  Agent Templates
 /*-----------------------------------------------------------------------------------*/
 
+/*  Load a template */
+function rype_real_estate_template_agents(array $custom_args, $custom_pagination, $no_post_message = 'Sorry, no agents were found.') {
+    
+    $template = 'loop_agents.php';
+	$theme_file = locate_template(array( 'template_parts/real_estate/' . $template));
+
+	if(empty($theme_file)) {
+		include( plugin_dir_path( __FILE__ ) . $template);
+	} else {
+		include(get_parent_theme_file_path('/template_parts/real_estate/'.$template));
+	}
+     
+}
+
 ?>

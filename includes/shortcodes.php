@@ -331,8 +331,8 @@ function rype_list_agents($atts, $content = null) {
     );
 
     ob_start();
-    if(function_exists('rype_real_estate_get_custom_agents')){ 
-        rype_real_estate_get_custom_agents($args, $atts['show_pagination'], esc_html__( 'Sorry, no agents were found.', 'rype-real-estate' )); 
+    if(function_exists('rype_real_estate_template_agents')){ 
+        rype_real_estate_template_agents($args, $atts['show_pagination'], esc_html__( 'Sorry, no agents were found.', 'rype-real-estate' )); 
     }
     $output = ob_get_clean();
 

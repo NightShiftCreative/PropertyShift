@@ -4,11 +4,6 @@
 /*  Global Agent Functions
 /*-----------------------------------------------------------------------------------*/
 
-//displays agents loop
-function rype_real_estate_get_custom_agents(array $custom_args, $custom_pagination, $no_post_message = 'Sorry, no agents were found.') {
-    include(get_parent_theme_file_path('/template_parts/real_estate/loop_agents.php')); 
-}
-
 //allow pagination on agent single page
 add_action( 'template_redirect', function() {
     if ( is_singular( 'rype-agent' ) ) {

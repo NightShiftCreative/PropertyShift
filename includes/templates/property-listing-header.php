@@ -31,19 +31,5 @@ if(!array_key_exists("advancedSearch",$currentFilters)) { $currentFilters = null
 		}
 		?>
 	</form>
-	<div class="property-layout-toggle right">
-		<?php
-		$query_string = '';
-		foreach($_GET as $name => $value) {
-			if($name != 'property_layout' && $name != 'custom_layout') {
-				$name = htmlspecialchars($name);
-				$value = htmlspecialchars($value);
-				$query_string .= '&'.$name.'='.$value;
-			}
-		}
-		?>
-		<a href="<?php echo $currentUrl; ?><?php if(isset($custom_layout)) { echo '?custom_layout=grid'; } else { echo '?property_layout=grid'; } ?><?php echo wp_kses_post($query_string); ?>" class="property-layout-toggle-item <?php if($property_layout == 'grid') { echo 'active'; } ?>"><i class="fa fa-th-large"></i></a>
-		<a href="<?php echo $currentUrl; ?><?php if(isset($custom_layout)) { echo '?custom_layout=row'; } else { echo '?property_layout=row'; } ?><?php echo wp_kses_post($query_string); ?>" class="property-layout-toggle-item <?php if($property_layout == 'row') { echo 'active'; } ?>"><i class="fa fa-bars"></i></a>
-	</div>
 	<div class="clear"></div>
 </div>
