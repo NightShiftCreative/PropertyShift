@@ -67,7 +67,7 @@ add_filter( 'the_content', 'rype_real_estate_template_property_single', 20 );
 /*  Agent Templates
 /*-----------------------------------------------------------------------------------*/
 
-/*  Load a template */
+/*  Load agents template */
 function rype_real_estate_template_agents(array $custom_args, $custom_pagination, $no_post_message = 'Sorry, no agents were found.') {
     
     $template = 'loop_agents.php';
