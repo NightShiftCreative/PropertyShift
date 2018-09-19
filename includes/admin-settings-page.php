@@ -112,7 +112,7 @@ function rype_real_estate_settings_page() {
     $alerts = array();
     if(!current_theme_supports('rype-real-estate')) {
         $current_theme = wp_get_theme();
-        $incompatible_theme_alert = rype_basics_admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not support Rype Real Estate.', 'rype-real-estate'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'rype-real-estate'), true); 
+        $incompatible_theme_alert = rype_basics_admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not declare support for Rype Real Estate.', 'rype-real-estate'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'rype-real-estate'), true); 
         $alerts[] = $incompatible_theme_alert; 
     }
 
@@ -433,7 +433,7 @@ function rype_real_estate_settings_page_content() {
                                 
                                 //If item is an add-on, check if it is active
                                 if(isset($value['add_on'])) { 
-                                    if(rype_basics_is_active($value['add_on']) && rype_basics_is_paid_plugin_active($value['add_on'])) { $add_on = 'true'; } else { $add_on = 'false'; }
+                                    if(rype_basics_is_paid_plugin_active($value['add_on'])) { $add_on = 'true'; } else { $add_on = 'false'; }
                                 } else {
                                     $add_on = 'true'; 
                                 }

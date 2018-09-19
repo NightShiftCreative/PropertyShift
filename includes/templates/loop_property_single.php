@@ -138,7 +138,7 @@
                             <?php if ( has_post_thumbnail() ) { 
                                 the_post_thumbnail('full'); 
                             } else { 
-                                echo '<img src="'.plugins_url( 'images/property-img-default.gif', dirname(__FILE__) ).'" alt="" />'; 
+                                echo '<img src="'.plugins_url( '/rype-real-estate/images/property-img-default.gif' ).'" alt="" />'; 
                             } ?>
 
 							<?php if(!empty($additional_images[0])) { ?>
@@ -432,7 +432,7 @@
                                                 <div class="img-fade"></div>
                                                 <?php the_post_thumbnail('full'); ?>
                                             <?php } else { ?>
-                                                <img src="<?php echo plugins_url( 'images/agent-img-default.gif', dirname(__FILE__) ); ?>" alt="" />
+                                                <img src="<?php echo plugins_url( '/rype-real-estate/images/agent-img-default.gif' ); ?>" alt="" />
                                             <?php } ?>
                                         </a>
 
