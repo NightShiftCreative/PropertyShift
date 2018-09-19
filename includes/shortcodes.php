@@ -301,11 +301,12 @@ function rype_property_filter($atts, $content = null) {
     $values = get_post_custom( $property_filter_id );
     $property_filter_layout = isset( $values['rypecore_property_filter_layout'] ) ? esc_attr( $values['rypecore_property_filter_layout'][0] ) : 'middle';
 
-    //Assign template args
+    //Set template args
     $template_args = array();
     $template_args['id'] = $property_filter_id;
     $template_args['shortcode_filter'] = 'true';
 
+    //Load template
     if($property_filter_layout == 'minimal') {
         rype_real_estate_template_loader('property-filter-minimal.php', $template_args);
     } else {
@@ -337,10 +338,14 @@ function rype_list_agents($atts, $content = null) {
 
     ob_start();
     if(function_exists('rype_real_estate_template_loader')){ 
+        
+        //Set template args
         $template_args = array();
         $template_args['custom_args'] = $args;
         $template_args['custom_pagination'] = $atts['show_pagination'];
         $template_args['no_post_message'] = esc_html__( 'Sorry, no agents were found.', 'rype-real-estate' );
+        
+        //Load template
         rype_real_estate_template_loader('loop_agents.php', $template_args);
     }
     $output = ob_get_clean();
