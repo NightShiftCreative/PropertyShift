@@ -1,12 +1,19 @@
 <?php
+    //Get global settings
 	global $post;
-	
     $values = get_post_custom( $post->ID );
     $page_layout = isset( $values['rypecore_page_layout'] ) ? esc_attr( $values['rypecore_page_layout'][0] ) : 'full';
     $num_agents_per_page = esc_attr(get_option('rypecore_num_agents_per_page', 12));
-
 	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
+    //Get template args
+    if(isset($template_args)) {
+        $custom_args = $template_args['custom_args'];
+        $custom_pagination = $template_args['custom_pagination'];
+        $no_post_message = $template_args['no_post_message'];
+    }
+
+    //Set pagination
     if(isset($custom_pagination)) { 
         if ($custom_pagination === false || $custom_pagination === 'false') { $custom_pagination = false; } else { $custom_pagination = true; }
         $show_pagination = $custom_pagination; 
@@ -14,6 +21,7 @@
         $show_pagination = true; 
     }
 
+    //Set the query
     if(isset($custom_args)) {
         if($show_pagination === true) { $custom_args['paged'] = $paged; }
         $agent_listing_args = $custom_args;
@@ -53,8 +61,8 @@
         'end_size'     => 1,
         'mid_size'     => 2,
         'prev_next'    => True,
-        'prev_text'    => esc_html__('&raquo; Previous', 'rypecore'),
-        'next_text'    => esc_html__('Next &raquo;', 'rypecore'),
+        'prev_text'    => esc_html__('&raquo; Previous', 'rype-real-estate'),
+        'next_text'    => esc_html__('Next &raquo;', 'rype-real-estate'),
         'type'         => 'plain',
         'add_args'     => False,
         'add_fragment' => '',
@@ -72,10 +80,11 @@
 <?php else: ?>
 	<div class="col-lg-12">
 		<p>
-            <?php esc_html_e('Sorry, no agents were found.', 'rypecore'); 
+            <?php
+            if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no agents were found.', 'rype-real-estate'); } 
             if(is_user_logged_in() && current_user_can('administrator')) { 
                 $new_agent_url = esc_url(home_url('/')).'wp-admin/post-new.php?post_type=rype-agent';
-                printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new agent.</b></em>', 'rypecore'), $new_agent_url );  
+                printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new agent.</b></em>', 'rype-real-estate'), $new_agent_url );  
             } ?>
         </p>
 	</div>

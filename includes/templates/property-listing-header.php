@@ -4,7 +4,7 @@ global $wp;
 $currentUrl = home_url( $wp->request );
 $icon_set = esc_attr(get_option('rypecore_icon_set', 'fa'));
 
-//Get template args [passed from rype_real_estate_template_loader()]
+//Get template args
 $property_listing_query = $template_args['query'];
 
 //Get all current filters from URL

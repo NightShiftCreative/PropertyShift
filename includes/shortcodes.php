@@ -336,8 +336,12 @@ function rype_list_agents($atts, $content = null) {
     );
 
     ob_start();
-    if(function_exists('rype_real_estate_template_agents')){ 
-        rype_real_estate_template_agents($args, $atts['show_pagination'], esc_html__( 'Sorry, no agents were found.', 'rype-real-estate' )); 
+    if(function_exists('rype_real_estate_template_loader')){ 
+        $template_args = array();
+        $template_args['custom_args'] = $args;
+        $template_args['custom_pagination'] = $atts['show_pagination'];
+        $template_args['no_post_message'] = esc_html__( 'Sorry, no agents were found.', 'rype-real-estate' );
+        rype_real_estate_template_loader('loop_agents.php', $template_args);
     }
     $output = ob_get_clean();
 
