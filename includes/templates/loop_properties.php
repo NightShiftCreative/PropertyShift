@@ -213,7 +213,7 @@ if($property_listing_header_display == 'true') {
     if(isset($custom_show_filter) && $custom_show_filter != 'true') {
 	   //do nothing
     } else {
-        rype_real_estate_template_properties_listing_header($property_listing_query);
+        rype_real_estate_template_loader('property-listing-header.php', ['query' => $property_listing_query]); 
     }
 }
 ?>
