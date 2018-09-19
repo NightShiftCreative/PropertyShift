@@ -15,7 +15,11 @@ function rype_real_estate_license_keys_page() {
     $pages = rype_real_estate_get_admin_pages();
     $display_actions = 'true';
     $content = rype_real_estate_license_keys_page_content();
-    echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content);
+    $content_class = null;
+    $content_nav = null;
+    $alerts = null;
+    $ajax = false;
+    echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_classl, $content_nav, $alerts, $ajax);
 } 
 
 function rype_real_estate_license_keys_page_content() {
