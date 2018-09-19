@@ -3,6 +3,11 @@
 //Get global settings
 $properties_page = esc_attr(get_option('rypecore_properties_page'));
 
+//Get template args
+$property_filter_id = $template_args['id'];
+$shortcode_filter = $template_args['shortcode_filter'];
+$widget_filter = $template_args['widget_filter'];
+
 //Get filter details
 $values = get_post_custom( $property_filter_id );
 $filter_position = isset( $values['rypecore_property_filter_position'] ) ? esc_attr( $values['rypecore_property_filter_position'][0] ) : 'middle';

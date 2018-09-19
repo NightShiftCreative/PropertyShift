@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /*  Global
 /*-----------------------------------------------------------------------------------*/
-function rype_real_estate_template_loader($template) {
+function rype_real_estate_template_loader($template, $template_args = array()) {
 	$theme_file = locate_template(array( 'template_parts/real_estate/' . $template));
 
 	if(empty($theme_file)) {

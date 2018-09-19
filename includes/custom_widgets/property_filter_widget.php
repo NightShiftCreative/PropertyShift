@@ -21,19 +21,24 @@ class rype_real_estate_property_filter_widget extends WP_Widget {
         extract( $args );
         global $wpdb;
 
+        //Get filter details
         $title = apply_filters('widget_title', $instance['title']);
         $property_filter_id = isset( $instance['property_filter_id'] ) ? strip_tags($instance['property_filter_id']) : '';
-        $widget_filter = true;
+        $values = get_post_custom( $property_filter_id );
+        $property_filter_layout = isset( $values['rypecore_property_filter_layout'] ) ? esc_attr( $values['rypecore_property_filter_layout'][0] ) : 'middle';      
+        
+        //Assign template args
+        $template_args = array();
+        $template_args['id'] = $property_filter_id;
+        $template_args['widget_filter'] = 'true';
 
         echo wp_kses_post($before_widget); 
         if($title) { echo '<div class="filter-widget-title">'.$before_title . $title . $after_title.'</div>';  }   
 
-        $values = get_post_custom( $property_filter_id );
-        $property_filter_layout = isset( $values['rypecore_property_filter_layout'] ) ? esc_attr( $values['rypecore_property_filter_layout'][0] ) : 'middle';      
         if($property_filter_layout == 'minimal') {
-            rype_real_estate_template_loader('property-filter-minimal.php');
+            rype_real_estate_template_loader('property-filter-minimal.php', $template_args);
         } else {
-            rype_real_estate_template_loader('property-filter.php');
+            rype_real_estate_template_loader('property-filter.php', $template_args);
         }
 
         echo wp_kses_post($after_widget);

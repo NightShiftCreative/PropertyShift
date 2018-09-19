@@ -1,7 +1,12 @@
 <?php
-    //Get global settings url
+    //Get global settings
     $properties_page = esc_attr(get_option('rypecore_properties_page'));
     $icon_set = esc_attr(get_option('rypecore_icon_set', 'fa'));
+
+    //Get template args
+    $property_filter_id = $template_args['id'];
+    $shortcode_filter = $template_args['shortcode_filter'];
+    $widget_filter = $template_args['widget_filter'];
 
     //Get filter details
     $values = get_post_custom( $property_filter_id );

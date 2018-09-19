@@ -299,12 +299,17 @@ function rype_property_filter($atts, $content = null) {
 
     $property_filter_id = $atts['id'];
     $values = get_post_custom( $property_filter_id );
-    $property_filter_layout = isset( $values['rypecore_property_filter_layout'] ) ? esc_attr( $values['rypecore_property_filter_layout'][0] ) : 'middle';      
-    $shortcode_filter = 'true';
+    $property_filter_layout = isset( $values['rypecore_property_filter_layout'] ) ? esc_attr( $values['rypecore_property_filter_layout'][0] ) : 'middle';
+
+    //Assign template args
+    $template_args = array();
+    $template_args['id'] = $property_filter_id;
+    $template_args['shortcode_filter'] = 'true';
+
     if($property_filter_layout == 'minimal') {
-        rype_real_estate_template_loader('property-filter-minimal.php');
+        rype_real_estate_template_loader('property-filter-minimal.php', $template_args);
     } else {
-        rype_real_estate_template_loader('property-filter.php');
+        rype_real_estate_template_loader('property-filter.php', $template_args);
     }
 
     $output = ob_get_clean();
