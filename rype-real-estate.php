@@ -41,6 +41,7 @@ function rype_real_estate_register_required_plugins() {
 			'version'	   => '1.0.0',
 			'force_activation'   => false,
 			'force_deactivation' => false,
+			'external_url' => 'http://rypecreative.com',
 		),
     );
 
