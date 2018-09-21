@@ -211,8 +211,18 @@ function rype_list_properties($atts, $content = null) {
     );
 
     ob_start();
-    if(function_exists('rype_real_estate_template_properties')){ 
-        rype_real_estate_template_properties($args, $atts['show_header'], $atts['layout'], $atts['show_pagination'], 'Sorry, no properties were found.');
+    if(function_exists('rype_real_estate_template_loader')) {
+
+        //Set template args
+        $template_args = array();
+        $template_args['custom_args'] = $args;
+        $template_args['custom_show_filter'] = $atts['show_header'];
+        $template_args['custom_layout'] = $atts['layout'];
+        $template_args['custom_pagination'] = $atts['show_pagination'];
+        $template_args['no_post_message'] = esc_html__( 'Sorry, no properties were found.', 'rype-real-estate' );
+
+        //Load template
+        rype_real_estate_template_loader('loop_properties.php', $template_args);
     }
     $output = ob_get_clean();
 

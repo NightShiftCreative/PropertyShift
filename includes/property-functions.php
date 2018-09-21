@@ -1053,7 +1053,17 @@ function rype_real_estate_property_dashboard_widgets($banner_source) {
                 'showposts' => 4,
                 'author_name' => $current_user->user_login
             );
-            rype_real_estate_template_properties($args_recent, false, 'grid', false, esc_html__('Sorry, no recent properties were found.', 'rype-real-estate') );
+            
+            //Set template args
+            $template_args = array();
+            $template_args['custom_args'] = $args_recent;
+            $template_args['custom_show_filter'] = false;
+            $template_args['custom_layout'] = 'grid';
+            $template_args['custom_pagination'] = false;
+            $template_args['no_post_message'] = esc_html__( 'Sorry, no recent properties were found.', 'rype-real-estate' );
+                                
+            //Load template
+            rype_real_estate_template_loader('loop_properties.php', $template_args_related_properties);
         ?>
     </div>
 <?php }

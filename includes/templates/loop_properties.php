@@ -1,7 +1,6 @@
 <?php
-	global $post;
-
-    //GLOBAL SETTINGS
+    //Get global settings
+    global $post;
     $properties_page = get_option('rypecore_properties_page');
     $properties_tax_layout = get_option('rypecore_properties_default_layout', 'grid');
     $num_properties_per_page = esc_attr(get_option('rypecore_num_properties_per_page', 12));
@@ -12,6 +11,15 @@
         $paged = (get_query_var('page')) ? get_query_var('page') : 1;
     } else {  
         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    }
+
+    //Get template args
+    if(isset($template_args)) {
+        $custom_args = $template_args['custom_args'];
+        $custom_show_filter = $template_args['custom_show_filter'];
+        $custom_layout = $template_args['custom_layout'];
+        $custom_pagination = $template_args['custom_pagination'];
+        $no_post_message = $template_args['no_post_message'];
     }
 	
     //PAGE SETTINGS

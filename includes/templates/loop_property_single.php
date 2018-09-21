@@ -526,7 +526,17 @@
                                 'orderby' => 'rand',
                                 'post__not_in' => array( $postID )
                                 );
-                                rype_real_estate_template_properties($args_related_properties, false, 'grid', false, esc_html__('Sorry, no related properties were found.', 'rype-real-estate') );
+
+                                //Set template args
+                                $template_args_related_properties = array();
+                                $template_args_related_properties['custom_args'] = $args_related_properties;
+                                $template_args_related_properties['custom_show_filter'] = false;
+                                $template_args_related_properties['custom_layout'] = 'grid';
+                                $template_args_related_properties['custom_pagination'] = false;
+                                $template_args_related_properties['no_post_message'] = esc_html__( 'Sorry, no related properties were found.', 'rype-real-estate' );
+                                
+                                //Load template
+                                rype_real_estate_template_loader('loop_properties.php', $template_args_related_properties);
                             ?>
 						</div>
 					<?php } ?>
