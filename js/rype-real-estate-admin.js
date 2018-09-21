@@ -31,6 +31,11 @@ jQuery(document).ready(function($) {
         	shortcodeOutput = "[rype_list_property_tax tax='"+tax+"' show_posts='"+taxShowPosts+"' layout='"+taxLayout+"' orderby='"+taxOrderBy+"' order='"+taxOrder+"' hide_empty='"+taxHideEmpty+"'][/rype_list_property_tax]";
         }
 
+        //set submit property shortcode
+        if(shortcode == 'real-estate-submit-property') {
+            shortcodeOutput = "[rype_submit_property][/rype_submit_property]";
+        }
+
         //set property filter shortcode
         if(shortcode == 'real-estate-filter') {
             var propertyFilter = $('.shortcode-selector-options .property-filter-select').val();

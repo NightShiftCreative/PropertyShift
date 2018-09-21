@@ -12,6 +12,7 @@ add_action( 'media_buttons', function($editor_id) { ?>
                 <p><?php esc_html_e('Choose a shortcode to insert from the list below:', 'rype-real-estate'); ?></p>
                 <a href="#real-estate-list-properties" class="button has-options"><i class="fa fa-align-justify"></i><?php esc_html_e('List Properties', 'rype-real-estate'); ?></a>
                 <a href="#real-estate-list-property-tax" class="button has-options"><i class="fa fa-align-justify"></i><?php esc_html_e('List Property Taxonomy', 'rype-real-estate'); ?></a>
+                <a href="#real-estate-submit-property" class="button has-options"><i class="fa fa-plus"></i><?php esc_html_e('Submit Property Form', 'rype-real-estate'); ?></a>
                 <a href="#real-estate-filter" class="button has-options"><i class="fa fa-filter"></i><?php esc_html_e('Property Filter', 'rype-real-estate'); ?></a>
                 <a href="#real-estate-list-agents" class="button has-options"><i class="fa fa-group"></i><?php esc_html_e('List Agents', 'rype-real-estate'); ?></a>
             </div>
@@ -126,6 +127,11 @@ add_action( 'media_buttons', function($editor_id) { ?>
                     <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'rype-real-estate'); ?></a>
                 </div>
 
+                <div id="real-estate-submit-property" class="admin-module no-border">
+                    <h3><strong><?php esc_html_e('Submit Property Form', 'rype-real-estate'); ?></strong></h3>
+                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'rype-real-estate'); ?></a>
+                </div>
+
                 <div id="real-estate-filter" class="admin-module no-border">
                     <h3><strong><?php esc_html_e('Property Filter', 'rype-real-estate'); ?></strong></h3>
                     <div class="form-block">
@@ -166,7 +172,7 @@ add_action( 'media_buttons', function($editor_id) { ?>
 
 //REMOVE <p> AND <br/> TAGS FROM SHORTCODE CONTENT
 function rype_real_estate_content_filter($content) {
-    $block = join("|",array('rype_list_properties', 'rype_list_property_tax', 'rype_property_filter', 'rype_list_agents'));
+    $block = join("|",array('rype_list_properties', 'rype_list_property_tax', 'rype_submit_property', 'rype_property_filter', 'rype_list_agents'));
     $rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
     $rep = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
 return $rep;
@@ -297,6 +303,15 @@ function rype_list_property_tax($atts, $content = null) {
         }
     }
 
+    return $output;
+}
+
+/** SUBMIT PROPERTY FORM **/
+add_shortcode('rype_submit_property', 'rype_submit_property');
+function rype_submit_property($atts, $content = null) {
+    ob_start();
+    rype_real_estate_template_loader('submit_property.php');
+    $output = ob_get_clean();
     return $output;
 }
 
