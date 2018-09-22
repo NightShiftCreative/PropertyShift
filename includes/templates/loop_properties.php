@@ -221,7 +221,7 @@ if($property_listing_header_display == 'true') {
     if(isset($custom_show_filter) && $custom_show_filter != 'true') {
 	   //do nothing
     } else {
-        rype_real_estate_template_loader('property-listing-header.php', ['query' => $property_listing_query]); 
+        rype_real_estate_template_loader('property-listing-header.php', ['query' => $property_listing_query], false); 
     }
 }
 ?>
@@ -235,15 +235,15 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
     <?php if ($property_layout == 'row' || $property_layout == 'grid') { ?>
 
         <?php if ($property_layout == 'row') { ?>
-            <div class="col-lg-12"><?php rype_real_estate_template_loader('loop_property_row.php'); ?></div>
+            <div class="col-lg-12"><?php rype_real_estate_template_loader('loop_property_row.php', null, false); ?></div>
         <?php } else { ?>
-            <div class="<?php echo esc_attr($property_col_class); ?>"><?php rype_real_estate_template_loader('loop_property_grid.php'); ?></div>
+            <div class="<?php echo esc_attr($property_col_class); ?>"><?php rype_real_estate_template_loader('loop_property_grid.php', null, false); ?></div>
         <?php } ?>
 
         <?php if($i % $columns_num == $columns_num - 1 ) {  echo '</div> <div class="row listing">'; } $i++; ?>
 
     <?php } else if($property_layout == 'tile') {
-        rype_real_estate_template_loader('loop_property_grid.php');
+        rype_real_estate_template_loader('loop_property_grid.php', null, false);
     } ?>
 
 <?php endwhile; ?>

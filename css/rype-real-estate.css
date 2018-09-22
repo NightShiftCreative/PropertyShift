@@ -17,6 +17,13 @@
 .clean-list, .clean-list li { margin-left:0 !important; list-style-type:none !important; }
 .clean-list li:before { content:''; display:none !important; }
 
+/** FORM ELEMENTS **/
+input, textarea, select {
+    width:100%;
+    padding:14px;
+    margin-bottom:20px;
+} 
+
 /** POST LIKES **/
 .sl-wrapper a.liked .fa { color:#4dbc15 !important; }
 .sl-wrapper .sl-button-text { display:none; }
