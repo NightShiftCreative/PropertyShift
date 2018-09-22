@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /*  Global Template Loader
 /*-----------------------------------------------------------------------------------*/
-function rype_real_estate_template_loader($template, $template_args = array(), $wrapper = true, $class = null) {
+function rype_real_estate_template_loader($template, $template_args = array(), $wrapper = true) {
 	$theme_file = locate_template(array( 'template_parts/real_estate/' . $template));
 
 	if($wrapper == true) { echo '<div class="rype-real-estate">'; }

@@ -5,6 +5,6 @@
 	<?php if(is_user_logged_in()) { 
 		if(function_exists('rype_real_estate_property_submit_form')) { echo rype_real_estate_property_submit_form(); }
 	} else {
-        get_template_part('template_parts/members/alert_not_logged_in');
+        rype_real_estate_template_loader('alert_not_logged_in.php');
     } ?>
 </div><!-- end user dashboard -->
