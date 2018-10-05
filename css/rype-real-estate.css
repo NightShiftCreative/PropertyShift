@@ -177,12 +177,12 @@
 /*********************************************/
 /** PROPERTIES LISTINGS GRID **/
 /*********************************************/
-.rype-property-listing > .rype-property-col {
+.rype-listing-col {
     width:48%;
     margin-right:4%;
     float:left;
 }
-.rype-property-listing > div:nth-child(2n) { margin-right:0; }
+.rype-listing-col:nth-child(2n) { margin-right:0; }
 
 .rype-property-listing .rype-property, .rype-property-listing .hentry.rype-property { 
 	margin:0;
@@ -263,6 +263,7 @@
 /*********************************************/
 .rype-agent-listing .rype-agent, .rype-agent-listing .hentry.rype-agent {
     margin:0;
+    margin-bottom:30px; 
     padding:0;
 }
 

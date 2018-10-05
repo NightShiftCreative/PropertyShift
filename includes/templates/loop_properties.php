@@ -39,10 +39,10 @@
 	//GENERATE PROPERTY CLASS BASED ON PAGE LAYOUT
 	if($page_layout == 'full') { 
         $columns_num = 3;
-        $property_col_class = 'col-lg-4 col-md-4 col-sm-4 rype-property-col'; 
+        $property_col_class = 'col-lg-4 col-md-4 col-sm-4 rype-listing-col'; 
     } else { 
         $columns_num = 2;
-        $property_col_class = 'col-lg-6 col-md-6 col-sm-6 rype-property-col'; 
+        $property_col_class = 'col-lg-6 col-md-6 col-sm-6 rype-listing-col'; 
     }
 
     //GET PROPERTY LAYOUT

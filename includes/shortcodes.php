@@ -351,9 +351,10 @@ function rype_property_filter($atts, $content = null) {
 add_shortcode('rype_list_agents', 'rype_list_agents');
 function rype_list_agents($atts, $content = null) {
 
+    $num_agents_per_page = esc_attr(get_option('rypecore_num_agents_per_page', 12));
     $atts = shortcode_atts(
     array (
-        'show_posts' => '4',
+        'show_posts' => $num_agents_per_page,
         'show_pagination' => false,
     ), $atts);
 
