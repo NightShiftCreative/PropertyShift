@@ -19,14 +19,40 @@ function rype_real_estate_count_properties($type, $user_id = null) {
         return $meta_post_count;
 }
 
+//returns curreny options
+function rype_real_estate_get_curreny_options() {
+    $currency_options = array();
+    $currency_options['symbol'] = esc_attr(get_option('rype_real_estate_currency_symbol', '$'));
+    $currency_options['symbol_position'] = esc_attr(get_option('rype_real_estate_currency_symbol_position', 'before'));
+    $currency_options['thousand'] = esc_attr(get_option('rype_real_estate_thousand_separator', ','));
+    $currency_options['decimal'] = esc_attr(get_option('rype_real_estate_decimal_separator', '.'));
+    $currency_options['decimal_num'] = esc_attr(get_option('rype_real_estate_num_decimal', '0'));
+    $currency_options['default_area_postfix'] = esc_attr(get_option('rype_real_estate_default_area_postfix', 'Sq Ft'));
+    $currency_options['thousand_area'] = esc_attr(get_option('rype_real_estate_thousand_separator_area', ','));
+    $currency_options['decimal_area'] = esc_attr(get_option('rype_real_estate_decimal_separator_area', '.'));
+    $currency_options['decimal_num_area'] = esc_attr(get_option('rype_real_estate_num_decimal_area', 0));
+    return $currency_options;
+}
+
+// returns formatted price
+function rype_basics_format_price($price) {
+    $currency_options = rype_real_estate_get_curreny_options();
+    $currency_symbol = $currency_options['symbol'];
+    $currency_symbol_position = $currency_options['symbol_position'];
+    $currency_thousand = $currency_options['thousand'];
+    $currency_decimal = $currency_options['decimal'];
+    $currency_decimal_num = $currency_options['decimal_num'];
+
+    if(!empty($price)) { $price = number_format($price, $currency_decimal_num, $currency_decimal, $currency_thousand); }
+    if($currency_symbol_position == 'before') { $price = $currency_symbol.$price; } else { $price = $price.$currency_symbol; }
+
+    return $price;
+}
+
 // returns formatted area
 function rype_real_estate_format_area($area) {
-    $currency_thousand_area = get_option('rypecore_thousand_separator_area', ',');
-    $currency_decimal_area = get_option('rypecore_decimal_separator_area', '.');
-    $currency_num_decimal_area = get_option('rypecore_num_decimal_area', 0);
-
-    if(!empty($area)) { $area = number_format($area, $currency_num_decimal_area, $currency_decimal_area, $currency_thousand_area); }
-
+    $currency_options = rype_real_estate_get_curreny_options();
+    if(!empty($area)) { $area = number_format($area, $currency_options['decimal_num_area'], $currency_options['decimal_area'], $currency_options['thousand_area']); }
     return $area;
 }
 
