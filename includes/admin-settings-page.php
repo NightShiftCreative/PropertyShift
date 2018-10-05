@@ -71,6 +71,13 @@ function rype_real_estate_register_options() {
     register_setting( 'rype-real-estate-settings-group', 'rypecore_members_add_locations' );
     register_setting( 'rype-real-estate-settings-group', 'rypecore_members_add_amenities' );
 
+    //CURRENCY SETTINGS
+    register_setting( 'rype-real-estate-settings-group', 'rype_real_estate_currency_symbol' );
+    register_setting( 'rype-real-estate-settings-group', 'rype_real_estate_currency_symbol_position' );
+    register_setting( 'rype-real-estate-settings-group', 'rype_real_estate_thousand_separator' );
+    register_setting( 'rype-real-estate-settings-group', 'rype_real_estate_decimal_separator' );
+    register_setting( 'rype-real-estate-settings-group', 'rype_real_estate_num_decimal' );
+
     //LICENSE KEY SETTINGS
     register_setting( 'rype-real-estate-license-keys-group', 'rype_real_estate_open_houses_license');
 
@@ -107,6 +114,7 @@ function rype_real_estate_settings_page() {
         array('name' => 'Agents', 'link' => '#agents', 'icon' => 'fa-group'),
         array('name' => 'Maps', 'link' => '#maps', 'icon' => 'fa-map'),
         array('name' => 'Members', 'link' => '#members', 'icon' => 'fa-key'),
+        array('name' => 'Currency & Numbers', 'link' => '#currency', 'icon' => 'fa-money'),
     );
     
     $alerts = array();
@@ -915,6 +923,56 @@ function rype_real_estate_settings_page_content() {
         <!-- Hook in for Add-Ons -->
         <?php do_action( 'rype_real_estate_after_member_settings'); ?>
     </div><!-- end member options -->
+
+    <div id="currency" class="tab-content">
+        <h2><?php echo esc_html_e('Currency & Numbers', 'rype-real-estate'); ?></h2>
+
+        <?php
+        $currency_symbol_default = '$';
+        $currency_symbol_position_default = 'before';
+        $thousand_separator_default = ',';
+        $decimal_separator_default = '.';
+        $num_decimal_default = '0';
+        ?>
+
+        <table class="admin-module">
+             <tr>
+                <td class="admin-module-label"><label><?php echo esc_html_e('Currency Symbol', 'rype-real-estate'); ?></label></td>
+                <td class="admin-module-field"><input type="text" id="currency_symbol" name="rype_real_estate_currency_symbol" value="<?php echo esc_attr( get_option('rype_real_estate_currency_symbol', $currency_symbol_default) ); ?>" /></td>
+            </tr>
+        </table>
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label"><label><?php echo esc_html_e('Currency Symbol Position', 'rype-real-estate'); ?></label></td>
+                <td class="admin-module-field">
+                    <p><input type="radio" id="currency_symbol_position" name="rype_real_estate_currency_symbol_position" value="before" <?php if(esc_attr( get_option('rype_real_estate_currency_symbol_position', $currency_symbol_position_default)) == 'before') { echo 'checked'; } ?> /><?php echo esc_html_e('Display before price', 'rype-real-estate'); ?></p>
+                    <p><input type="radio" id="currency_symbol_position" name="rype_real_estate_currency_symbol_position" value="after" <?php if(esc_attr( get_option('rype_real_estate_currency_symbol_position', $currency_symbol_position_default)) == 'after') { echo 'checked'; } ?> /><?php echo esc_html_e('Display after price', 'rype-real-estate'); ?></p>
+                </td>
+            </tr>
+        </table>
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label"><label><?php echo esc_html_e('Thousand Separator', 'rype-real-estate'); ?></label></td>
+                <td class="admin-module-field"><input type="text" id="thousand_separator" name="rype_real_estate_thousand_separator" value="<?php echo esc_attr( get_option('rype_real_estate_thousand_separator', $thousand_separator_default) ); ?>" /></td>
+            </tr>
+        </table>
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label"><label><?php echo esc_html_e('Decimal Separator', 'rype-real-estate'); ?></label></td>
+                <td class="admin-module-field"><input type="text" id="decimal_separator" name="rype_real_estate_decimal_separator" value="<?php echo esc_attr( get_option('rype_real_estate_decimal_separator', $decimal_separator_default) ); ?>" /></td>
+            </tr>
+        </table>
+
+        <table class="admin-module no-border">
+            <tr>
+                <td class="admin-module-label"><label for="num_decimal"><?php echo esc_html_e('Number of Decimals', 'rype-real-estate'); ?></label></td>
+                <td class="admin-module-field"><input type="number" min="0" max="5" id="num_decimal" name="rype_real_estate_num_decimal" value="<?php echo esc_attr( get_option('rype_real_estate_num_decimal', $num_decimal_default) ); ?>" /></td>
+            </tr>
+        </table>
+    </div>
 
     <?php $output = ob_get_clean();
     return $output;
