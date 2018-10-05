@@ -131,6 +131,10 @@
 
 .video-cover-no-img { min-height:300px; }
 
+/** TABS **/
+.tabs .ui-tabs-nav li { opacity:0.8; }
+.tabs .ui-tabs-nav li.ui-state-active { font-weight:700; opacity:1.0; }
+
 /*********************************************/
 /** PROPERTIES LISTINGS HEADER **/
 /*********************************************/
