@@ -187,9 +187,10 @@ add_filter("the_content", "rype_real_estate_content_filter");
 add_shortcode('rype_list_properties', 'rype_list_properties');
 function rype_list_properties($atts, $content = null) {
 
+    $num_properties_per_page = esc_attr(get_option('rypecore_num_properties_per_page', 12));
     $atts = shortcode_atts(
         array (
-            'show_posts' => '3',
+            'show_posts' => $num_properties_per_page,
             'show_header' => false,
             'show_pagination' => false,
             'layout' => 'grid',

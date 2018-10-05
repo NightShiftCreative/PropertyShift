@@ -39,10 +39,10 @@
 	//GENERATE PROPERTY CLASS BASED ON PAGE LAYOUT
 	if($page_layout == 'full') { 
         $columns_num = 3;
-        $property_col_class = 'col-lg-4 col-md-4 col-sm-4'; 
+        $property_col_class = 'col-lg-4 col-md-4 col-sm-4 rype-property-col'; 
     } else { 
         $columns_num = 2;
-        $property_col_class = 'col-lg-6 col-md-6 col-sm-6'; 
+        $property_col_class = 'col-lg-6 col-md-6 col-sm-6 rype-property-col'; 
     }
 
     //GET PROPERTY LAYOUT
@@ -239,18 +239,19 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
     <?php if ($property_layout == 'row' || $property_layout == 'grid') { ?>
 
         <?php if ($property_layout == 'row') { ?>
-            <div class="col-lg-12"><?php rype_real_estate_template_loader('loop_property_row.php', null, false); ?></div>
+            <div class="col-lg-12"><?php rype_real_estate_template_loader('loop_property_grid.php', null, false); ?></div>
         <?php } else { ?>
             <div class="<?php echo esc_attr($property_col_class); ?>"><?php rype_real_estate_template_loader('loop_property_grid.php', null, false); ?></div>
         <?php } ?>
 
-        <?php if($i % $columns_num == $columns_num - 1 ) {  echo '</div> <div class="row listing">'; } $i++; ?>
+        <?php //if($i % $columns_num == $columns_num - 1 ) {  echo '</div> <div class="row rype-property-listing">'; } $i++; ?>
 
     <?php } else if($property_layout == 'tile') {
         rype_real_estate_template_loader('loop_property_grid.php', null, false);
     } ?>
 
 <?php endwhile; ?>
+    <div class="clear"></div>
 	</div><!-- end row -->
 	
 	<?php 
@@ -303,5 +304,6 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
             } ?>
         </p>
     </div>
+    <div class="clear"></div>
 	</div><!-- end row -->
 <?php endif; ?>

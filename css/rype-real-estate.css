@@ -136,6 +136,25 @@
 .tabs .ui-tabs-nav li.ui-state-active { font-weight:700; opacity:1.0; }
 
 /*********************************************/
+/** PROPERTY FILTERS **/
+/*********************************************/
+.filter-minimal .advanced-options-toggle { 
+    display:inline-block; 
+    float:right;
+    font-weight:600;
+    font-size:13px;
+    padding:15px 10px;
+    text-align:center;
+    cursor:pointer;
+}
+.filter-minimal button[type="submit"] { width:55%; }
+
+.filter-minimal .hide-advanced .advanced-options-toggle { display:none; }
+.filter-minimal .hide-advanced button[type="submit"] { width:100%; float:none; }
+
+.filter-minimal-mobile-toggle { display:none; }
+
+/*********************************************/
 /** PROPERTIES LISTINGS HEADER **/
 /*********************************************/
 .property-listing-header { margin-bottom:30px; }
@@ -158,13 +177,20 @@
 /*********************************************/
 /** PROPERTIES LISTINGS GRID **/
 /*********************************************/
+.rype-property-listing > .rype-property-col {
+    width:48%;
+    margin-right:4%;
+    float:left;
+}
+.rype-property-listing > div:nth-child(2n) { margin-right:0; }
+
 .rype-property-listing .rype-property, .rype-property-listing .hentry.rype-property { 
 	margin:0;
 	margin-bottom:30px; 
 	padding-top:0; 
 	position:relative;
 }
-.rype-property .property-content { padding:5%; position:relative; border:1px solid rgba(0, 0, 0, 0.1); }
+.rype-property .property-content { padding:5%; position:relative; border:1px solid rgba(0, 0, 0, 0.1); font-size:15px; }
 .rype-property .property-content p { margin:0; }
 
 .rype-property .property-tag {
