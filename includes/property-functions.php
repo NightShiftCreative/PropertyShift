@@ -4,6 +4,12 @@
 /*  Global Property Functions
 /*-----------------------------------------------------------------------------------*/
 
+//rewrite for properties page url conflict
+function rype_real_estate_properties_rewrite_rule() {
+    add_rewrite_rule('^properties/page/([0-9]+)','index.php?pagename=properties&paged=$matches[1]', 'top');
+}
+add_action('init', 'rype_real_estate_properties_rewrite_rule');
+
 //returns property count (supply user ID to return property count for that user)
 function rype_real_estate_count_properties($type, $user_id = null) {
         $args_total_properties = array(

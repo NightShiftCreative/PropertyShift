@@ -4,6 +4,12 @@
 /*  Global Agent Functions
 /*-----------------------------------------------------------------------------------*/
 
+//rewrite for agents page url conflict
+function rype_real_estate_agents_rewrite_rule() {
+    add_rewrite_rule('^agents/page/([0-9]+)','index.php?pagename=agents&paged=$matches[1]', 'top');
+}
+add_action('init', 'rype_real_estate_agents_rewrite_rule');
+
 //allow pagination on agent single page
 add_action( 'template_redirect', function() {
     if ( is_singular( 'rype-agent' ) ) {
