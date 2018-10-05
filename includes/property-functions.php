@@ -869,26 +869,14 @@ function rype_real_estate_manage_properties_columns( $column, $post_id ) {
 
         case 'price' :
 
-            //Get currency options
-            $currency_symbol = get_option('rypecore_currency_symbol', '$');
-            $currency_symbol_position = get_option('rypecore_currency_symbol_position', 'before');
-            $currency_thousand = get_option('rypecore_thousand_separator', ',');
-            $currency_decimal = get_option('rypecore_decimal_separator', '.');
-            $currency_decimal_num = get_option('rypecore_num_decimal', '0');
-            
             $values = get_post_custom( $post_id );
             $price = isset( $values['rypecore_property_price'] ) ? esc_attr( $values['rypecore_property_price'][0] ) : '';
-            
-            if(!empty($price)) { $price = number_format($price, $currency_decimal_num, $currency_decimal, $currency_thousand); }
+            if(!empty($price)) { $price = rype_basics_format_price($price); }
 
-            if ( empty( $price ) ) {
+            if(empty($price)) {
                 echo '--';
             } else {
-                if($currency_symbol_position == 'before') {
-                    echo $currency_symbol.$price;
-                } else {
-                    echo $price.$currency_symbol;
-                }
+                echo $price;
             }
             break;
 
