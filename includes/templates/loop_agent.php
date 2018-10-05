@@ -32,10 +32,6 @@
 <div <?php post_class(); ?>>
 
 	<div class="agent-img">
-        <?php if(isset($meta_post_count) && $meta_post_count > 0) { ?>
-            <a href="<?php the_permalink(); ?>" class="button alt agent-tag"><?php echo esc_attr($meta_post_count); ?> <?php if($meta_post_count <= 1) { esc_html_e('Property', 'rypecore'); } else { esc_html_e('Properties', 'rypecore'); } ?></a>
-        <?php } ?>
-
 		<?php if ( has_post_thumbnail() ) {  ?>
             <div class="img-fade"></div>
 			<a href="<?php the_permalink(); ?>" class="agent-img-link">
@@ -50,10 +46,15 @@
 		  
         <div class="agent-details">
 
-            <div class="agent-title">
+            <?php if(isset($meta_post_count) && $meta_post_count > 0) { ?>
+                <a href="<?php the_permalink(); ?>" class="right"><?php echo esc_attr($meta_post_count); ?> <?php if($meta_post_count <= 1) { esc_html_e('Property', 'rypecore'); } else { esc_html_e('Properties', 'rypecore'); } ?></a>
+            <?php } ?>
+
+            <div class="agent-title left">
                 <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                 <?php if(!empty($agent_title)) { ?><p title="<?php echo esc_attr($agent_title); ?>"><?php echo esc_attr($agent_title); ?></p><?php } ?>
             </div>
+            <div class="clear"></div>
 
             <?php if(!empty($agent_email)) { ?><p title="<?php echo esc_attr($agent_email); ?>"><?php echo rypecore_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php echo esc_attr($agent_email); ?></p><?php } ?>
             <?php if(!empty($agent_mobile_phone)) { ?><p title="<?php echo esc_attr($agent_mobile_phone); ?>"><?php echo rypecore_get_icon($icon_set, 'phone', 'telephone'); ?><?php echo esc_attr($agent_mobile_phone); ?></p><?php } ?>

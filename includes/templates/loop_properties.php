@@ -184,6 +184,10 @@
 	        'paged' => $paged
 	    );
     } else if(isset($custom_args)) {
+        if(!empty($_GET['propertyLocation'])) { $custom_args['property_location'] = $_GET['propertyLocation']; }
+        if(!empty($_GET['propertyStatus'])) { $custom_args['property_status'] = $_GET['propertyStatus']; }
+        if(!empty($_GET['propertyType'])) { $custom_args['property_type'] = $_GET['propertyType']; }
+        
         if(!array_key_exists("order", $custom_args)) { $custom_args['order'] = $order; }
         if(!array_key_exists("orderby", $custom_args)) { $custom_args['orderby'] = $sort_by; }
         if(!array_key_exists("meta_key", $custom_args)) { $custom_args['meta_key'] = $meta_key; }
