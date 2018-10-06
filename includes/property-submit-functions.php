@@ -12,10 +12,8 @@ function rype_real_estate_add_member_top_bar_links() {
 add_filter( 'rype_basics_after_top_bar_member_menu', 'rype_real_estate_add_member_top_bar_links');
 
 /*-----------------------------------------------------------------------------------*/
-/* Build property submit form
-/*-----------------------------------------------------------------------------------*/
-
 /* Get attachment id by url */
+/*-----------------------------------------------------------------------------------*/
 function rype_real_estate_get_attachment_id_by_url( $url ) {
     // Split the $url into two parts with the wp-content directory as the separator
     $parsed_url = explode( parse_url( WP_CONTENT_URL, PHP_URL_PATH ), $url );
@@ -33,7 +31,9 @@ function rype_real_estate_get_attachment_id_by_url( $url ) {
     return $attachment[0];
 } 
 
+/*-----------------------------------------------------------------------------------*/
 /* Insert or update property post */
+/*-----------------------------------------------------------------------------------*/
 function rype_real_estate_insert_property_post($edit_property_id = null) {
 
 	$members_submit_property_approval = esc_attr(get_option('rypecore_members_submit_property_approval', 'true'));

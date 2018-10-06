@@ -2,7 +2,7 @@
 /*-----------------------------------------------------------------------------------*/
 /*  UPDATE LICENSE KEY STATUS
 /*  - fires only when settings are saved
-/*  - processed in Rype Basics plugin (rype-basics/add-ons/license-keys.php)
+/*  - processed in Rype Basics plugin (rype-basics/includes/license-keys.php)
 /*-----------------------------------------------------------------------------------*/
 add_action( 'update_option_rype_real_estate_open_houses_license', 'rype_real_estate_activate_license_key', 10, 3 );
 
