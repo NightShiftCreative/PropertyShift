@@ -1051,7 +1051,7 @@ add_filter( 'rype_basics_custom_header_vars', 'rype_real_estate_properties_map_c
 /*-----------------------------------------------------------------------------------*/
 /*  Output Property Dashboard Widgets
 /*-----------------------------------------------------------------------------------*/
-function rype_real_estate_property_dashboard_widgets($banner_source) {
+function rype_real_estate_dashboard_stats() {
     global $current_user; ?>
     <div class="user-dashboard-widget stat">
         <span><?php echo rype_real_estate_count_properties(array('publish', 'pending'), $current_user->user_login); ?></span> 
@@ -1062,6 +1062,11 @@ function rype_real_estate_property_dashboard_widgets($banner_source) {
         <span><?php echo rype_real_estate_count_properties(array('pending'), $current_user->user_login); ?></span> 
         <?php esc_html_e('Pending Properties', 'rypecore'); ?>
     </div>
+<?php }
+add_filter( 'rype_basics_dashboard_stats', 'rype_real_estate_dashboard_stats');
+
+function rype_real_estate_dashboard_widgets($banner_source) {
+    global $current_user; ?>
 
     <div class="user-dashboard-widget user-dashboard-widget-full">
         <div class="module-header module-header-left">
@@ -1087,7 +1092,7 @@ function rype_real_estate_property_dashboard_widgets($banner_source) {
         ?>
     </div>
 <?php }
-add_filter( 'rype_basics_after_dashboard', 'rype_real_estate_property_dashboard_widgets');
+add_filter( 'rype_basics_after_dashboard', 'rype_real_estate_dashboard_widgets');
 
 /*-----------------------------------------------------------------------------------*/
 /*  Add Property Image Size
