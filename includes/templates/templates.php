@@ -25,7 +25,9 @@ function rype_real_estate_template_property_single( $content ) {
 
 	if(is_singular('rype-property')) {
 		if(empty($theme_file)) {
+			echo '<div class="rype-real-estate">'; 
 	    	include( plugin_dir_path( __FILE__ ) . $template);
+	    	echo '</div>';
 	    }
 	}
 
@@ -46,7 +48,9 @@ function rype_real_estate_template_agent_single( $content ) {
 
 	if(is_singular('rype-agent')) {
 		if(empty($theme_file)) {
+			echo '<div class="rype-real-estate">'; 
 	    	include( plugin_dir_path( __FILE__ ) . $template);
+	    	echo '</div>';
 	    }
 	}
 
