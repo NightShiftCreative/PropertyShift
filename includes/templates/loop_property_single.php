@@ -506,7 +506,7 @@
                                     'post_type' => 'rype-property',
                                     'showposts' => 2,
                                     'tax_query' => array(
-                                    'relation' => 'OR',
+                                        'relation' => 'OR',
                                         array(
                                             'taxonomy' => 'property_status',
                                             'field' => 'slug',
@@ -523,8 +523,8 @@
                                             'terms' => $property_location
                                         ),
                                     ),
-                                'orderby' => 'rand',
-                                'post__not_in' => array( $postID )
+                                    'orderby' => 'rand',
+                                    'post__not_in' => array( $postID )
                                 );
 
                                 //Set template args
