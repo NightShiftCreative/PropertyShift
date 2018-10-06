@@ -33,7 +33,12 @@ jQuery(document).ready(function($) {
 
         //set submit property shortcode
         if(shortcode == 'real-estate-submit-property') {
-            shortcodeOutput = "[rype_submit_property][/rype_submit_property]";
+            shortcodeOutput = "[rype_submit_property]";
+        }
+
+        //set my properties shortcode
+        if(shortcode == 'real-estate-my-properties') {
+            shortcodeOutput = "[rype_my_properties]";
         }
 
         //set property filter shortcode
