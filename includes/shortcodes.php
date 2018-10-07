@@ -204,7 +204,7 @@ function rype_list_properties($atts, $content = null) {
             'property_location' => '',
             'property_type' => '',
             'featured' => 'false'
-        ), $atts);
+    ), $atts);
 
     $meta_query_featured = array();
     if ($atts['featured'] != 'false') {
@@ -215,8 +215,7 @@ function rype_list_properties($atts, $content = null) {
     }
 
     $args = array(
-        'post_type' => 'rype-property',
-        'showposts' => $atts['show_posts'],
+        'posts_per_page' => $atts['show_posts'],
         'property_status' => $atts['property_status'],
         'property_location' => $atts['property_location'],
         'property_type' => $atts['property_type'],

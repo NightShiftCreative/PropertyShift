@@ -1,19 +1,13 @@
 <?php
-    //Get global settings
+    //GET GLOBAL SETTINGS
     global $post;
     $properties_page = get_option('rypecore_properties_page');
     $properties_tax_layout = get_option('rypecore_properties_default_layout', 'grid');
     $num_properties_per_page = esc_attr(get_option('rypecore_num_properties_per_page', 12));
     $page_template = get_post_meta($post->ID, '_wp_page_template', true);
     $property_listing_header_display = esc_attr(get_option('rypecore_property_listing_header_display', 'true'));
-    
-    if(is_front_page()) {  
-        $paged = (get_query_var('page')) ? get_query_var('page') : 1;
-    } else {  
-        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-    }
 
-    //Get template args
+    //GET CUSTOM ARGS
     if(isset($template_args)) {
         $custom_args = $template_args['custom_args'];
         $custom_show_filter = $template_args['custom_show_filter'];
@@ -66,51 +60,60 @@
         $property_layout = 'grid'; 
     }
 
+    /***************************************************************************/
+    /** SET QUERY ARGS **/
+    /***************************************************************************/
+
+    //SET PAGED VARIABLE
+    if(is_front_page()) {  
+        $paged = (get_query_var('page')) ? get_query_var('page') : 1;
+    } else {  
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    }
+
     //DETERMINE HOW POSTS ARE SORTED
     $meta_key = '';
-    
-    if(isset($_GET['sort_by'])) {
-        $sort_by = $_GET['sort_by'];
-    } else {
-        $sort_by = 'date_desc';
+    $order_by = 'date_desc';
+    if(isset($_GET['sort_by'])) { $order_by = $_GET['sort_by']; }
+
+    if ($order_by == 'date_desc') {
+        $order = 'DESC';
+    } else if($order_by == 'date_asc') {
+        $order = 'ASC';
+    } else if($order_by == 'price_asc') {
+        $order = 'ASC';
+        $order_by = 'meta_value_num';
+        $meta_key = 'rypecore_property_price';
+    } else if($order_by == 'price_desc') {
+        $order = 'DESC';
+        $order_by = 'meta_value_num';
+        $meta_key = 'rypecore_property_price';
     }
 
-    if ($sort_by == 'date_desc') {
-        $order = 'DESC';
-    } else if($sort_by == 'date_asc') {
-        $order = 'ASC';
-    } else if($sort_by == 'price_asc') {
-        $order = 'ASC';
-        $sort_by = 'meta_value_num';
-        $meta_key = 'rypecore_property_price';
-    } else if($sort_by == 'price_desc') {
-        $order = 'DESC';
-        $sort_by = 'meta_value_num';
-        $meta_key = 'rypecore_property_price';
-    }
+    //SET TAXONOMIES
+    if(empty($property_location)) { if(!empty($_GET['propertyLocation'])) { $property_location = $_GET['propertyLocation']; } else { $property_location = ''; } }
+    if(empty($property_status)) { if(!empty($_GET['propertyStatus'])) { $property_status = $_GET['propertyStatus']; } else { $property_status = ''; } }
+    if(empty($property_type)) { if(!empty($_GET['propertyType'])) { $property_type = $_GET['propertyType']; } else { $property_type = ''; } }
+
+    //SET META QUERY
+    $meta_query = array();
 
     //FILTER FEATURED PROPERTIES
-    $meta_query_featured = array();
     if (isset($_GET['featured'])) {
-        $meta_query_featured[] = array(
+        $meta_query[] = array(
             'key' => 'rypecore_property_featured',
             'value'   => 'true'
         );
     }
 
-	//ADVANCED SEARCH QUERY
-    if(isset($_GET['advancedSearch']) && !isset($custom_args)) {
+    //ADVANCED META QUERY
+    if(isset($_GET['advancedSearch'])) {
 
-    	if(isset($_GET['priceMin'])) { $priceMin = preg_replace("/[^0-9]/","", $_GET['priceMin']); } else { $priceMin = null; }
+        if(isset($_GET['priceMin'])) { $priceMin = preg_replace("/[^0-9]/","", $_GET['priceMin']); } else { $priceMin = null; }
         if(isset($_GET['priceMax'])) { $priceMax = preg_replace("/[^0-9]/","", $_GET['priceMax']); } else { $priceMax = null; }
 
         $areaCompare = '';
-
-        if(empty($_GET['areaMin'])) {
-            $areaMin = 0;
-        } else {
-            $areaMin = preg_replace("/[^0-9]/","", $_GET['areaMin']); 
-        }
+        if(empty($_GET['areaMin'])) { $areaMin = 0; } else { $areaMin = preg_replace("/[^0-9]/","", $_GET['areaMin']); }
 
         if(empty($_GET['areaMax'])) {
             $areaValue = $areaMin;
@@ -121,102 +124,82 @@
             $areaValue = array( $areaMin, $areaMax );
         }
 
-    	//define meta query
-        $meta_query = array();
-
-            if(isset($_GET['priceMin']) && isset($_GET['priceMax'])) {
-            	$meta_query[] = array(
-                    'key' => 'rypecore_property_price',
-                    'value'   => array( $priceMin, $priceMax ),
-                    'type'    => 'numeric',
-                    'compare' => 'BETWEEN',
-                );
-            }
-
-            if(!empty($_GET['beds'])) {
-                $meta_query[] = array(
-                    'key'     => 'rypecore_property_bedrooms',
-                    'value'   => $_GET['beds']
-                );
-            }
-
-            if (!empty($_GET['baths'])) {
-                $numBaths = intval($_GET['baths']);
-                $numBathsDemical = $numBaths + 0.5;
-                $meta_query[] = array(
-                    'key' => 'rypecore_property_bathrooms',
-                    'compare' => 'IN',
-                    'value'   => array($_GET['baths'], $numBathsDemical)
-                );
-            }
-
+        if(isset($_GET['priceMin']) && isset($_GET['priceMax'])) {
             $meta_query[] = array(
-                'key' => 'rypecore_property_area',
-                'value'   => $areaValue,
+                'key' => 'rypecore_property_price',
+                'value'   => array( $priceMin, $priceMax ),
                 'type'    => 'numeric',
-                'compare' => $areaCompare,
+                'compare' => 'BETWEEN',
             );
+        }
 
-            //custom fields query
-            $custom_fields = get_option('rypecore_custom_fields');
-            if(!empty($custom_fields)) {
-                foreach($custom_fields as $field) {
-                    $custom_field_key = strtolower(str_replace(' ', '_', $field['name'])); 
-                    if(!empty($_GET[$custom_field_key])) {
-                        $meta_query[] = array(
-                            'key'     => 'rypecore_custom_field_'.$field['id'],
-                            'value'   => $_GET[$custom_field_key]
-                        );
-                    }
+        if(!empty($_GET['beds'])) {
+            $meta_query[] = array(
+                'key'     => 'rypecore_property_bedrooms',
+                'value'   => $_GET['beds']
+            );
+        }
+
+        if (!empty($_GET['baths'])) {
+            $numBaths = intval($_GET['baths']);
+            $numBathsDemical = $numBaths + 0.5;
+            $meta_query[] = array(
+                'key' => 'rypecore_property_bathrooms',
+                'compare' => 'IN',
+                'value'   => array($_GET['baths'], $numBathsDemical)
+            );
+        }
+
+        $meta_query[] = array(
+            'key' => 'rypecore_property_area',
+            'value'   => $areaValue,
+            'type'    => 'numeric',
+            'compare' => $areaCompare,
+        );
+
+        //custom fields query
+        $custom_fields = get_option('rypecore_custom_fields');
+        if(!empty($custom_fields)) {
+            foreach($custom_fields as $field) {
+                $custom_field_key = strtolower(str_replace(' ', '_', $field['name'])); 
+                if(!empty($_GET[$custom_field_key])) {
+                    $meta_query[] = array(
+                        'key'     => 'rypecore_custom_field_'.$field['id'],
+                        'value'   => $_GET[$custom_field_key]
+                    );
                 }
             }
-
-    	$property_listing_args = array(
-	        'post_type' => 'rype-property',
-	        'posts_per_page' => $num_properties_per_page,
-	        'property_status' => $_GET['propertyStatus'],
-            'property_location' => $_GET['propertyLocation'],
-            'property_type' => $_GET['propertyType'],
-            'meta_query' => $meta_query,
-            'order' => $order,
-            'orderby' => $sort_by,
-            'meta_key' => $meta_key,
-	        'paged' => $paged
-	    );
-    } else if(isset($custom_args)) {
-        if(!empty($_GET['propertyLocation'])) { $custom_args['property_location'] = $_GET['propertyLocation']; }
-        if(!empty($_GET['propertyStatus'])) { $custom_args['property_status'] = $_GET['propertyStatus']; }
-        if(!empty($_GET['propertyType'])) { $custom_args['property_type'] = $_GET['propertyType']; }
-        
-        if(!array_key_exists("order", $custom_args)) { $custom_args['order'] = $order; }
-        if(!array_key_exists("orderby", $custom_args)) { $custom_args['orderby'] = $sort_by; }
-        if(!array_key_exists("meta_key", $custom_args)) { $custom_args['meta_key'] = $meta_key; }
-        if(is_front_page()) {
-            if(!array_key_exists("page", $custom_args)) { $custom_args['page'] = $paged; }
-        } else {
-            if(!array_key_exists("paged", $custom_args)) { $custom_args['paged'] = $paged; }
         }
-        $property_listing_args = $custom_args;
-    } else {
-
-        if(empty($property_location)) { $property_location = ''; }
-        if(empty($property_status)) { $property_status = ''; }
-        if(empty($property_type)) { $property_type = ''; }
-
-    	$property_listing_args = array(
-	        'post_type' => 'rype-property',
-	        'posts_per_page' => $num_properties_per_page,
-            'meta_query' => $meta_query_featured,
-            'order' => $order,
-            'orderby' => $sort_by,
-            'meta_key' => $meta_key,
-	        'paged' => $paged,
-            'property_location' => $property_location,
-            'property_status' => $property_status,
-            'property_type' => $property_type,
-	    );
     }
 
+	$property_listing_args = array(
+        'post_type' => 'rype-property',
+        'posts_per_page' => $num_properties_per_page,
+        'property_location' => $property_location,
+        'property_status' => $property_status,
+        'property_type' => $property_type,
+        'order' => $order,
+        'orderby' => $order_by,
+        'meta_key' => $meta_key,
+        'paged' => $paged,
+        'meta_query' => $meta_query,
+    );
+
+    //OVERWRITE QUERY WITH CUSTOM ARGS
+    if(isset($custom_args) && !isset($_GET['advancedSearch'])) {
+        foreach($property_listing_args as $key=>$value) {
+            if(array_key_exists($key, $custom_args)) { 
+                if(!empty($custom_args[$key])) { $property_listing_args[$key] = $custom_args[$key]; }
+            } 
+        }
+        foreach($custom_args as $key=>$value) {
+            if(!array_key_exists($key, $property_listing_args)) { 
+                if(!empty($custom_args[$key])) { $property_listing_args[$key] = $custom_args[$key]; }
+            } 
+        }
+    }
+
+    foreach($property_listing_args as $key=>$value) { echo $key.': '; print_r($value); echo '<br/>'; }
 	$property_listing_query = new WP_Query( $property_listing_args );
 ?>
 
@@ -243,8 +226,6 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
         <?php } else { ?>
             <div class="<?php echo esc_attr($property_col_class); ?>"><?php rype_real_estate_template_loader('loop_property_grid.php', null, false); ?></div>
         <?php } ?>
-
-        <?php //if($i % $columns_num == $columns_num - 1 ) {  echo '</div> <div class="row rype-property-listing">'; } $i++; ?>
 
     <?php } else if($property_layout == 'tile') {
         rype_real_estate_template_loader('loop_property_grid.php', null, false);
