@@ -58,7 +58,7 @@
                     <!--******************************************************-->
                     <!-- OVERVIEW -->
                     <!--******************************************************-->
-                    <div class="rype-agent agent-single">
+                   
                 		<div class="agent-single-item agent-<?php echo esc_attr($slug); ?>">
 
                             <a href="<?php the_permalink(); ?>" class="agent-img">
@@ -75,7 +75,6 @@
 
                             <div class="agent-content">
                                 <div class="agent-details">
-        	                		<h4><?php the_title(); ?></h4>
         	                		<?php if(!empty($agent_title)) { ?><p><span><?php echo esc_attr($agent_title); ?></span><?php echo rypecore_get_icon($icon_set, 'tag'); ?><?php esc_html_e('Title', 'rype-real-estate'); ?>:</p><?php } ?>
         	                		<?php if(!empty($agent_email)) { ?><p><span><?php echo esc_attr($agent_email); ?></span><?php echo rypecore_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php esc_html_e('Email', 'rype-real-estate'); ?>:</p><?php } ?>
         	                		<?php if(!empty($agent_mobile_phone)) { ?><p><span><?php echo esc_attr($agent_mobile_phone); ?></span><?php echo rypecore_get_icon($icon_set, 'phone', 'telephone'); ?><?php esc_html_e('Mobile', 'rype-real-estate'); ?>:</p><?php } ?>
@@ -101,7 +100,7 @@
                             <div class="clear"></div>
 
 	                	</div>
-                    </div><!-- end agent single -->
+                    
                 	<?php } ?>
 
                 	<?php if($slug == 'description' && !empty($post->post_content)) { ?>

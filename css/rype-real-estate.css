@@ -135,6 +135,17 @@
 .tabs .ui-tabs-nav li { opacity:0.8; }
 .tabs .ui-tabs-nav li.ui-state-active { font-weight:700; opacity:1.0; }
 
+/* SOCIAL ICONS */
+.social-icons { margin-bottom:0; }
+.social-icons li { margin-left:0 !important; display:inline-block; padding-left:5px; padding-right:5px; line-height:1.4; }
+.social-icons li:first-child { padding-left:0px; }
+.social-icons li:last-child { padding-right:0px; }
+.social-icons.circle li a {
+    border:none;
+    display:inline-block;
+    border-radius:100%;
+}
+
 /*********************************************/
 /** PROPERTY FILTERS **/
 /*********************************************/
@@ -279,3 +290,11 @@
     padding:0; 
     margin-bottom:30px;
 }
+
+.rype-agent .agent-single-item .agent-content { padding:0; padding-top:30px; }
+.rype-agent .agent-single-item .agent-details p {
+    border-bottom:1px solid rgba(0, 0, 0, 0.1);
+    padding-top:4px;
+    padding-bottom:4px;
+}
+.rype-agent .agent-single-item .agent-details p span { float:right; font-weight:600; }
