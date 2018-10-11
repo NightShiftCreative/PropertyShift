@@ -130,7 +130,7 @@ function rype_real_estate_settings_page() {
     }
     $google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
     if(empty($google_maps_api)) {
-        $google_api_key_alert = rype_basics_admin_alert('error', esc_html__('Please provide a Google Maps API Key', 'rype-real-estate'), $action = null, $action_text = null, true);
+        $google_api_key_alert = rype_basics_admin_alert('error', esc_html__('Please provide a Google Maps API Key within the Maps tab.', 'rype-real-estate'), $action = null, $action_text = null, true);
         $alerts[] = $google_api_key_alert; 
     }
 
