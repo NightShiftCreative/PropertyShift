@@ -90,7 +90,7 @@
         <?php endif; ?>
 
     <?php } else {
-        rype_basics_template_loader('alert_not_logged_in.php');
+        rype_basics_template_loader('alert_not_logged_in.php', null, false);
     } ?>
 
 </div>
