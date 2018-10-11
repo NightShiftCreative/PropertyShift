@@ -80,7 +80,7 @@ class rype_real_estate_list_agents_widget extends WP_Widget {
                                             <?php if (!empty($agent['img'])) {  ?>
                                                 <a href="<?php echo esc_url($agent['permalink']); ?>" class="property-img-link"><?php echo wp_kses_post($agent['img']); ?></a>
                                             <?php } else { ?>
-                                                <a href="<?php echo esc_url($agent['permalink']); ?>" class="property-img-link"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/agent-img-default.gif" alt="" /></a>
+                                                <a href="<?php echo esc_url($agent['permalink']); ?>" class="property-img-link"><img src="<?php echo plugins_url( '/rype-real-estate/images/agent-img-default.gif' ); ?>" alt="" /></a>
                                             <?php } ?>
                                         </div>
                                     </div>
