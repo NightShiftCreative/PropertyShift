@@ -327,6 +327,16 @@ function rype_real_estate_add_agent_image_size() {
 add_action( 'rype_basics_theme_support', 'rype_real_estate_add_agent_image_size' );
 
 /*-----------------------------------------------------------------------------------*/
+/*  Add Page Settings Metabox to Edit Agent Page
+/*-----------------------------------------------------------------------------------*/
+if(function_exists('rype_basics_is_active') && rype_basics_is_active('rype_basics_page_settings')) {
+    function rype_real_estate_agents_add_page_settings_metabox() {
+        add_meta_box( 'page-layout-meta-box', 'Page Settings', 'rype_basics_page_layout_meta_box', array('rype-agent'), 'normal', 'low' );
+    }
+    add_action('init', 'rype_real_estate_agents_add_page_settings_metabox');
+}
+
+/*-----------------------------------------------------------------------------------*/
 /*  Agent Contact Form
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_agent_contact_form($agent_email) {
