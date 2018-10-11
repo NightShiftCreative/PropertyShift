@@ -132,6 +132,7 @@ class rype_real_estate_list_property_categories_widget extends WP_Widget {
                 <option value="property_type" <?php if($category == 'property_type') { echo 'selected'; } ?>><?php esc_html_e('Property Type', 'rype-real-estate'); ?></option>
                 <option value="property_status" <?php if($category == 'property_status') { echo 'selected'; } ?>><?php esc_html_e('Property Status', 'rype-real-estate'); ?></option>
                 <option value="property_location" <?php if($category == 'property_location') { echo 'selected'; } ?>><?php esc_html_e('Property Location', 'rype-real-estate'); ?></option>
+                <option value="property_amenities" <?php if($category == 'property_amenities') { echo 'selected'; } ?>><?php esc_html_e('Property Amenities', 'rype-real-estate'); ?></option>
             </select>
         </p>
 
