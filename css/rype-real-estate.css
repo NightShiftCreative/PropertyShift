@@ -9,7 +9,7 @@
 .right { float:right; }
 .left { float:left; }
 .clear { clear:both; }
-.show-none { display:none; }
+.show-none, .hide { display:none; }
 .show { display:block; }
 
 .icon { margin-right:6px; }
@@ -27,6 +27,18 @@
 .rype-real-estate input[type="checkbox"], .rype-real-estate input[type="radio"] { width:auto; margin-right:5px; }
 
 .rype-real-estate .form-loader { display:none; }
+
+/** ALERT BOXES **/
+.alert-box {
+    background:#e2e795;
+    border-left:3px solid #b3b4a0;
+    padding:15px;
+    margin-bottom:20px;
+}
+.alert-box.success { background:#dbefd4; border-color:#acc7a1; }
+.alert-box.error { background:#fad7d7; border-color:#c08585; }
+.alert-box.info { background:#d2daef; border-color:#8a97b9; }
+.alert-box h4 { font-size:15px; margin:0;}
 
 /** POST LIKES **/
 .sl-wrapper a.liked .fa { color:#4dbc15 !important; }

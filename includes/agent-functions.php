@@ -407,23 +407,17 @@ function rype_real_estate_agent_contact_form($agent_email) {
 
         <div class="contact-form-fields">
             <div>
-                <?php if($nameError != '') { ?>
-                    <div class="alert-box error"><?php echo $nameError;?></div> 
-                <?php } ?>
+                <?php if($nameError != '') { ?><div class="alert-box error"><?php echo $nameError;?></div> <?php } ?>
                 <input type="text" name="agent-contact-name" placeholder="<?php esc_html_e( 'Name', 'rype-real-estate' ); ?>*" value="<?php if(isset($agent_contact_name)){ echo $agent_contact_name; } ?>" class="border requiredField" />
             </div>
 
             <div>
-                <?php if($emailError != '') { ?>
-                    <div class="alert-box error"><?php echo $emailError;?></div> 
-                <?php } ?>
+                <?php if($emailError != '') { ?><div class="alert-box error"><?php echo $emailError;?></div> <?php } ?>
                 <input type="email" name="agent-contact-email" placeholder="<?php esc_html_e( 'Email', 'rype-real-estate' ); ?>*" value="<?php if(isset($agent_contact_email)) { echo $agent_contact_email; } ?>" class="border requiredField email" />
             </div>
 
             <div>
-                <?php if($commentError != '') { ?>
-                    <div class="alert-box error"><?php echo $commentError;?></div> 
-                <?php } ?>
+                <?php if($commentError != '') { ?><div class="alert-box error"><?php echo $commentError;?></div> <?php } ?>
                 <textarea name="agent-contact-message" class="border"><?php if(isset($agent_contact_message)) { echo $agent_contact_message; } else { echo $agent_form_message_placeholder; } ?></textarea>
             </div>
 

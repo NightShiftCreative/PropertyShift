@@ -58,7 +58,7 @@
                     <!--******************************************************-->
                     <!-- OVERVIEW -->
                     <!--******************************************************-->
-                	<div class="agent-single-item agent-<?php echo esc_attr($slug); ?>">
+                	<div class="agent-single-item property-single-item widget agent-<?php echo esc_attr($slug); ?>">
 
                         <a href="<?php the_permalink(); ?>" class="agent-img">
                             <?php if(isset($meta_post_count) && $meta_post_count > 0) { ?>
