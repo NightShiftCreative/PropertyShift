@@ -199,7 +199,6 @@
         }
     }
 
-    foreach($property_listing_args as $key=>$value) { echo $key.': '; print_r($value); echo '<br/>'; }
 	$property_listing_query = new WP_Query( $property_listing_args );
 ?>
 

@@ -121,11 +121,17 @@ function rype_real_estate_settings_page() {
         array('name' => 'Currency & Numbers', 'link' => '#currency', 'icon' => 'fa-money'),
     );
     
+    //add alerts
     $alerts = array();
     if(!current_theme_supports('rype-real-estate')) {
         $current_theme = wp_get_theme();
         $incompatible_theme_alert = rype_basics_admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not declare support for Rype Real Estate.', 'rype-real-estate'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'rype-real-estate'), true); 
         $alerts[] = $incompatible_theme_alert; 
+    }
+    $google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
+    if(empty($google_maps_api)) {
+        $google_api_key_alert = rype_basics_admin_alert('error', esc_html__('Please provide a Google Maps API Key', 'rype-real-estate'), $action = null, $action_text = null, true);
+        $alerts[] = $google_api_key_alert; 
     }
 
     echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class, $content_nav, $alerts);
