@@ -5,6 +5,7 @@
 add_action('admin_menu', 'rype_real_estate_plugin_menu');
 function rype_real_estate_plugin_menu() {
     add_menu_page('Rype Real Estate', 'Rype Real Estate', 'administrator', 'rype-real-estate-settings', 'rype_real_estate_settings_page', 'dashicons-admin-home');
+    add_submenu_page('rype-real-estate-settings', 'Settings', 'Settings', 'administrator', 'rype-real-estate-settings');
     add_submenu_page('rype-real-estate-settings', 'Add-Ons', 'Add-Ons', 'administrator', 'rype-real-estate-add-ons', 'rype_real_estate_add_ons_page');
     add_submenu_page('rype-real-estate-settings', 'License Keys', 'License Keys', 'administrator', 'rype-real-estate-license-keys', 'rype_real_estate_license_keys_page');
     add_submenu_page('rype-real-estate-settings', 'Help', 'Help', 'administrator', 'rype-real-estate-help', 'rype_real_estate_help_page');
@@ -128,10 +129,17 @@ function rype_real_estate_settings_page() {
         $incompatible_theme_alert = rype_basics_admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not declare support for Rype Real Estate.', 'rype-real-estate'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'rype-real-estate'), true); 
         $alerts[] = $incompatible_theme_alert; 
     }
+
     $google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
     if(empty($google_maps_api)) {
-        $google_api_key_alert = rype_basics_admin_alert('error', esc_html__('Please provide a Google Maps API Key within the Maps tab.', 'rype-real-estate'), $action = null, $action_text = null, true);
+        $google_api_key_alert = rype_basics_admin_alert('warning', esc_html__('Please provide a Google Maps API Key within the Maps tab.', 'rype-real-estate'), $action = null, $action_text = null, true);
         $alerts[] = $google_api_key_alert; 
+    }
+
+    $properties_page = esc_attr(get_option('rypecore_properties_page'));
+    if(empty($properties_page)) {
+        $properties_page_alert = rype_basics_admin_alert('warning', esc_html__('You have not set your properties listing page. Go to Properties > Property Listing Options, to set this field.', 'rype-real-estate'), $action = null, $action_text = null, true);
+        $alerts[] = $properties_page_alert; 
     }
 
     echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class, $content_nav, $alerts);
