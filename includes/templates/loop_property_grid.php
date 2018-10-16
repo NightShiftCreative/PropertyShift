@@ -58,7 +58,7 @@
 				<?php if($property_listing_display_time == 'true') {
 					$toggle = rypecore_get_icon($icon_set, 'calendar-o', 'clock3', 'clock');
 					$content = human_time_diff( get_the_time('U'), current_time('timestamp') ) . esc_html__(' ago', 'rypecore'); 
-					echo rype_basics_tooltip($toggle, $content); 
+					echo ns_basics_tooltip($toggle, $content); 
 				} ?>
 		        <?php if($property_listing_display_favorite == 'true' && function_exists('rype_basics_get_post_likes_button')) { echo rype_basics_get_post_likes_button(get_the_ID()); } ?>
 		        <?php if($property_listing_display_share == 'true' && function_exists('rype_basics_get_social_share')) { echo rype_basics_get_social_share(); } ?>
