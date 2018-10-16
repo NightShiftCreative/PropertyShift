@@ -7,26 +7,26 @@
 * Version: 1.0.0
 * Author: NightShift Creative
 * Author URI: http://nightshiftcreative.co/
-* Text Domain: rype-real-estate
+* Text Domain: ns-real-estate
 **/
 
 /*-----------------------------------------------------------------------------------*/
 /*  Load Text Domain
 /*-----------------------------------------------------------------------------------*/
-load_plugin_textdomain( 'rype-real-estate', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+load_plugin_textdomain( 'ns-real-estate', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
 /*-----------------------------------------------------------------------------------*/
 /*  Automatic Update Checker (checks for new releases on github)
 /*-----------------------------------------------------------------------------------*/
 require 'includes/plugins/plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-    'https://github.com/RypeCreative/Rype-Real-Estate/',
+    'https://github.com/NightShiftCreative/NS-Real-Estate/',
     __FILE__,
-    'rype-real-estate'
+    'ns-real-estate'
 );
 
 /*-----------------------------------------------------------------------------------*/
-/*  Require Rype Basics
+/*  Require NS Basics
 /*-----------------------------------------------------------------------------------*/
 require_once( plugin_dir_path( __FILE__ ) . '/includes/plugins/class-tgm-plugin-activation.php');
 add_action( 'tgmpa_register', 'rype_real_estate_register_required_plugins' );
@@ -34,19 +34,19 @@ function rype_real_estate_register_required_plugins() {
 
     $plugins = array(
         array(
-			'name'         => 'Rype Basics', // The plugin name.
-			'slug'         => 'rype-basics', // The plugin slug (typically the folder name).
-			'source'       => 'https://github.com/RypeCreative/Rype-Basics/archive/1.0.0.zip', // The plugin source.
+			'name'         => 'NightShift Basics', // The plugin name.
+			'slug'         => 'ns-basics', // The plugin slug (typically the folder name).
+			'source'       => 'https://github.com/NightShiftCreative/NS-Basics/archive/1.0.0.zip', // The plugin source.
 			'required'     => true, // If false, the plugin is only 'recommended' instead of required.
 			'version'	   => '1.0.0',
 			'force_activation'   => false,
 			'force_deactivation' => false,
-			'external_url' => 'http://rypecreative.com',
+			'external_url' => 'http://nightshiftcreative.co/',
 		),
     );
 
     $config = array(
-        'id'           => 'rype-real-estate',       // Unique ID for hashing notices for multiple instances of TGMPA.
+        'id'           => 'ns-real-estate',       // Unique ID for hashing notices for multiple instances of TGMPA.
         'default_path' => '',                      // Default absolute path to bundled plugins.
         'menu'         => 'tgmpa-install-plugins', // Menu slug.
         'has_notices'  => true,                    // Show admin notices or not.
@@ -56,9 +56,9 @@ function rype_real_estate_register_required_plugins() {
         'message'      => '',                      // Message to output right before the plugins table.
         'strings'      => array(
 			'notice_can_install_required'     => _n_noop(
-				'Rype Real Estate requires the following plugin: %1$s.',
-				'Rype Real Estate requires the following plugins: %1$s.',
-				'rype-real-estate'
+				'NightShift Real Estate requires the following plugin: %1$s.',
+				'NightShift Real Estate requires the following plugins: %1$s.',
+				'ns-real-estate'
 			),
 		),
     );
