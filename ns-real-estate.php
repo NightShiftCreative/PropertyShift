@@ -119,7 +119,7 @@ if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
 	/*-----------------------------------------------------------------------------------*/
 	/*  Include Front-End Scripts and Styles
 	/*-----------------------------------------------------------------------------------*/
-	function rype_real_estate_front_end_scripts() {
+	function ns_real_estate_front_end_scripts() {
 	    if (!is_admin()) {
 
 	    	$google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
@@ -165,7 +165,7 @@ if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
         	include( plugin_dir_path( __FILE__ ) . '/css/dynamic_styles.php');
 	    }
 	}
-	add_action('wp_enqueue_scripts', 'rype_real_estate_front_end_scripts');
+	add_action('wp_enqueue_scripts', 'ns_real_estate_front_end_scripts');
 
 	/*-----------------------------------------------------------------------------------*/
 	/*  ADD ADMIN PAGES AND SETTINGS

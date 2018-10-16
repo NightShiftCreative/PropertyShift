@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 add_action('admin_menu', 'rype_real_estate_plugin_menu');
 function rype_real_estate_plugin_menu() {
-    add_menu_page('Rype Real Estate', 'Rype Real Estate', 'administrator', 'rype-real-estate-settings', 'rype_real_estate_settings_page', 'dashicons-admin-home');
+    add_menu_page('NS Real Estate', 'NS Real Estate', 'administrator', 'rype-real-estate-settings', 'rype_real_estate_settings_page', 'dashicons-admin-home');
     add_submenu_page('rype-real-estate-settings', 'Settings', 'Settings', 'administrator', 'rype-real-estate-settings');
     add_submenu_page('rype-real-estate-settings', 'Add-Ons', 'Add-Ons', 'administrator', 'rype-real-estate-add-ons', 'rype_real_estate_add_ons_page');
     add_submenu_page('rype-real-estate-settings', 'License Keys', 'License Keys', 'administrator', 'rype-real-estate-license-keys', 'rype_real_estate_license_keys_page');
