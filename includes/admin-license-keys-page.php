@@ -30,9 +30,9 @@ function rype_real_estate_license_keys_page_content() {
         $open_houses_license = get_option('rype_real_estate_open_houses_license', $open_houses_license_default);
     ?>
 
-    <div class="accordion rc-accordion">
+    <div class="accordion ns-accordion">
 
-        <h3 class="accordion-tab rype-license-tab">
+        <h3 class="accordion-tab ns-license-tab">
             <i class="fa fa-chevron-right icon"></i> 
             <?php esc_html_e('Open Houses License Key', 'rype-real-estate'); ?>
             <?php echo rype_basics_get_license_status($open_houses_license, '#', null, 'true'); ?>

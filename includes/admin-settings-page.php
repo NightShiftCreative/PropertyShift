@@ -151,7 +151,7 @@ function rype_real_estate_settings_page_content() {
     <div id="properties" class="tab-content">
         <h2><?php echo esc_html_e('Properties Settings', 'rype-real-estate'); ?></h2>
 
-        <div class="accordion rc-accordion">
+        <div class="accordion ns-accordion">
             <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property URL Options', 'rype-real-estate'); ?></h3>
             <div>
                 <p class="admin-module-note"><?php esc_html_e('After changing slugs, make sure you re-save your permalinks in Settings > Permalinks.', 'rype-real-estate'); ?></p>
@@ -219,7 +219,7 @@ function rype_real_estate_settings_page_content() {
             </div>
         </div><!-- end property url options -->
 
-        <div class="accordion rc-accordion">
+        <div class="accordion ns-accordion">
             <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property Filter Options', 'rype-real-estate'); ?></h3>
             <div>
 
@@ -268,7 +268,7 @@ function rype_real_estate_settings_page_content() {
             </div>
         </div><!-- end property filter options -->
 
-        <div class="accordion rc-accordion">
+        <div class="accordion ns-accordion">
             <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property Listing Options', 'rype-real-estate'); ?></h3>
             <div>
 
@@ -377,7 +377,7 @@ function rype_real_estate_settings_page_content() {
             </div>
         </div><!-- end property listing options -->
 
-        <div class="accordion rc-accordion">
+        <div class="accordion ns-accordion">
             <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property Detail Options', 'rype-real-estate'); ?></h3>
             <div>
 
@@ -572,7 +572,7 @@ function rype_real_estate_settings_page_content() {
             </div>
         </div><!-- end property detail options -->
 
-        <div class="accordion rc-accordion" id="accordion-custom-fields">
+        <div class="accordion ns-accordion" id="accordion-custom-fields">
             <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property Custom Fields', 'rype-real-estate'); ?></h3>
             <div>
                 <div class="admin-module admin-module-custom-fields admin-module-custom-fields-theme-options no-border">
@@ -668,7 +668,7 @@ function rype_real_estate_settings_page_content() {
     <div id="agents" class="tab-content">
         <h2><?php echo esc_html_e('Agent Settings', 'rype-real-estate'); ?></h2>
 
-        <div class="accordion rc-accordion">
+        <div class="accordion ns-accordion">
             <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Agent Listing Options', 'rype-real-estate'); ?></h3>
             <div>
 
@@ -708,7 +708,7 @@ function rype_real_estate_settings_page_content() {
             </div>
         </div><!-- end agent listing options -->
 
-        <div class="accordion rc-accordion">
+        <div class="accordion ns-accordion">
             <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Agent Detail Options', 'rype-real-estate'); ?></h3>
             <div>
 

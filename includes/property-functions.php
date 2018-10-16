@@ -447,7 +447,7 @@ function rype_real_estate_property_details($post) {
         <div id="floor-plans" class="tab-content">
             <h3><?php echo esc_html_e('Floor Plans', 'rype-real-estate'); ?></h3>
             <div class="admin-module admin-module-floor-plans admin-module-repeater no-border">  
-                <div class="accordion rc-accordion">  
+                <div class="accordion ns-accordion">  
                     <?php 
                     if(!empty($floor_plans) && !empty($floor_plans[0])) {  
                         $floor_plans = unserialize($floor_plans[0]); 
