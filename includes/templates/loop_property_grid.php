@@ -56,7 +56,7 @@
 		<?php if($property_listing_display_time == 'true' || $property_listing_display_favorite == 'true' || $property_listing_display_share == 'true') { ?>
 			<div class="property-actions">
 				<?php if($property_listing_display_time == 'true') {
-					$toggle = rypecore_get_icon($icon_set, 'calendar-o', 'clock3', 'clock');
+					$toggle = ns_core_get_icon($icon_set, 'calendar-o', 'clock3', 'clock');
 					$content = human_time_diff( get_the_time('U'), current_time('timestamp') ) . esc_html__(' ago', 'rypecore'); 
 					echo ns_basics_tooltip($toggle, $content); 
 				} ?>
@@ -79,9 +79,9 @@
 
         <table class="property-details">
             <tr>
-				<?php if(!empty($bedrooms)) { ?><td><?php echo rypecore_get_icon($icon_set, 'bed', 'bed', 'n/a'); ?> <?php echo esc_attr($bedrooms).' '; esc_html_e('Beds', 'rypecore'); ?></td><?php } ?>
-				<?php if(!empty($bathrooms)) { ?><td><?php echo rypecore_get_icon($icon_set, 'tint', 'bathtub', 'n/a'); ?> <?php echo esc_attr($bathrooms).' '; esc_html_e('Baths', 'rypecore'); ?></td><?php } ?>
-            	<?php if(!empty($area)) { ?><td><?php echo rypecore_get_icon($icon_set, 'expand'); ?> <?php echo esc_attr($area); ?> <?php if(!empty($area_postfix)) { echo '<span class="area-postfix">'.esc_attr($area_postfix).'</span>'; } ?></td><?php } ?>
+				<?php if(!empty($bedrooms)) { ?><td><?php echo ns_core_get_icon($icon_set, 'bed', 'bed', 'n/a'); ?> <?php echo esc_attr($bedrooms).' '; esc_html_e('Beds', 'rypecore'); ?></td><?php } ?>
+				<?php if(!empty($bathrooms)) { ?><td><?php echo ns_core_get_icon($icon_set, 'tint', 'bathtub', 'n/a'); ?> <?php echo esc_attr($bathrooms).' '; esc_html_e('Baths', 'rypecore'); ?></td><?php } ?>
+            	<?php if(!empty($area)) { ?><td><?php echo ns_core_get_icon($icon_set, 'expand'); ?> <?php echo esc_attr($area); ?> <?php if(!empty($area_postfix)) { echo '<span class="area-postfix">'.esc_attr($area_postfix).'</span>'; } ?></td><?php } ?>
             </tr>
         </table>
 	</div>

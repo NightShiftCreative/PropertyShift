@@ -16,7 +16,7 @@ if(!array_key_exists("advancedSearch",$currentFilters)) { $currentFilters = null
 <div class="property-listing-header">
 	<span class="property-count left">
 		<?php echo esc_attr($property_listing_query->found_posts); ?> <?php esc_html_e('properties found', 'rypecore'); ?>
-		<?php if(!empty($currentFilters)) { echo '<a href="'.get_the_permalink().'" class="button small outline clear-property-filters">'.rypecore_get_icon($icon_set, 'times', 'cross', 'cross').esc_html__('Clear Filters', 'rypecore').'</a>'; } ?>
+		<?php if(!empty($currentFilters)) { echo '<a href="'.get_the_permalink().'" class="button small outline clear-property-filters">'.ns_core_get_icon($icon_set, 'times', 'cross', 'cross').esc_html__('Clear Filters', 'rypecore').'</a>'; } ?>
 	</span>
 	<form action="<?php echo $currentUrl; ?>" method="get" class="right">
 		<select name="sort_by" onchange="this.form.submit();">

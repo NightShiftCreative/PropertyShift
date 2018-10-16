@@ -112,10 +112,10 @@
                             <?php if(!empty($bedrooms) || !empty($bathrooms) || !empty($area) || !empty($garages)) { ?>
                             <table class="property-details-single">
                                 <tr>
-                                    <?php if(!empty($bedrooms)) { ?><td><?php echo rypecore_get_icon($icon_set, 'bed', 'bed', 'n/a'); ?> <span><?php echo esc_attr($bedrooms); ?></span> <?php esc_html_e('Beds', 'rype-real-estate'); ?></td><?php } ?>
-                                    <?php if(!empty($bathrooms)) { ?><td><?php echo rypecore_get_icon($icon_set, 'tint', 'bathtub', 'n/a'); ?> <span><?php echo esc_attr($bathrooms); ?></span> <?php esc_html_e('Baths', 'rype-real-estate'); ?></td><?php } ?>
-                                    <?php if(!empty($area)) { ?><td><?php echo rypecore_get_icon($icon_set, 'expand'); ?> <span><?php echo esc_attr($area); ?></span> <?php echo esc_attr($area_postfix); ?></td><?php } ?>
-                                    <?php if(!empty($garages)) { ?><td><?php echo rypecore_get_icon($icon_set, 'car', 'car2', 'n/a'); ?> <span><?php echo esc_attr($garages); ?></span> <?php esc_html_e('Garages', 'rype-real-estate'); ?></td><?php } ?>
+                                    <?php if(!empty($bedrooms)) { ?><td><?php echo ns_core_get_icon($icon_set, 'bed', 'bed', 'n/a'); ?> <span><?php echo esc_attr($bedrooms); ?></span> <?php esc_html_e('Beds', 'rype-real-estate'); ?></td><?php } ?>
+                                    <?php if(!empty($bathrooms)) { ?><td><?php echo ns_core_get_icon($icon_set, 'tint', 'bathtub', 'n/a'); ?> <span><?php echo esc_attr($bathrooms); ?></span> <?php esc_html_e('Baths', 'rype-real-estate'); ?></td><?php } ?>
+                                    <?php if(!empty($area)) { ?><td><?php echo ns_core_get_icon($icon_set, 'expand'); ?> <span><?php echo esc_attr($area); ?></span> <?php echo esc_attr($area_postfix); ?></td><?php } ?>
+                                    <?php if(!empty($garages)) { ?><td><?php echo ns_core_get_icon($icon_set, 'car', 'car2', 'n/a'); ?> <span><?php echo esc_attr($garages); ?></span> <?php esc_html_e('Garages', 'rype-real-estate'); ?></td><?php } ?>
                                 </tr>
                             </table>
                             <?php } ?>
@@ -372,9 +372,9 @@
                                             echo '<img src="'. esc_url( get_template_directory_uri() ) .'/images/avatar-default.png" alt="avatar" />';
                                         }
                                     ?>
-                                    <p><?php echo rypecore_get_icon($icon_set, 'user'); ?> <?php the_author_meta('display_name'); ?></p>
-                                    <p><?php echo rypecore_get_icon($icon_set, 'envelope'); ?> <?php the_author_meta('user_email'); ?></p>
-                                    <?php if (get_the_author_meta('user_url')  != '') { ?><a href="<?php the_author_meta('user_url'); ?>" target="_blank"><?php echo rypecore_get_icon($icon_set, 'globe', 'link'); ?> <?php the_author_meta('user_url'); ?> </a><?php } ?>
+                                    <p><?php echo ns_core_get_icon($icon_set, 'user'); ?> <?php the_author_meta('display_name'); ?></p>
+                                    <p><?php echo ns_core_get_icon($icon_set, 'envelope'); ?> <?php the_author_meta('user_email'); ?></p>
+                                    <?php if (get_the_author_meta('user_url')  != '') { ?><a href="<?php the_author_meta('user_url'); ?>" target="_blank"><?php echo ns_core_get_icon($icon_set, 'globe', 'link'); ?> <?php the_author_meta('user_url'); ?> </a><?php } ?>
 									<div class="clear"></div>
 								</div>
 
@@ -440,10 +440,10 @@
                                             <a href="<?php the_permalink(); ?>" class="button button-icon right"><i class="fa fa-angle-right"></i><?php esc_html_e('Contact Agent', 'rype-real-estate'); ?></a>
                                             <div class="agent-details">
                                                 <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                                                <?php if(!empty($agent_title)) { ?><p><?php echo rypecore_get_icon($icon_set, 'tag'); ?><?php echo esc_attr($agent_title); ?></p><?php } ?>
-                                                <?php if(!empty($agent_email)) { ?><p><?php echo rypecore_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php echo esc_attr($agent_email); ?></p><?php } ?>
-                                                <?php if(!empty($agent_mobile_phone)) { ?><p><?php echo rypecore_get_icon($icon_set, 'phone', 'telephone'); ?><?php echo esc_attr($agent_mobile_phone); ?></p><?php } ?>
-                                                <?php if(!empty($agent_office_phone)) { ?><p><?php echo rypecore_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php echo esc_attr($agent_office_phone); ?></p><?php } ?>
+                                                <?php if(!empty($agent_title)) { ?><p><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php echo esc_attr($agent_title); ?></p><?php } ?>
+                                                <?php if(!empty($agent_email)) { ?><p><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php echo esc_attr($agent_email); ?></p><?php } ?>
+                                                <?php if(!empty($agent_mobile_phone)) { ?><p><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php echo esc_attr($agent_mobile_phone); ?></p><?php } ?>
+                                                <?php if(!empty($agent_office_phone)) { ?><p><?php echo ns_core_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php echo esc_attr($agent_office_phone); ?></p><?php } ?>
                                             </div>
                                             <?php if(!empty($agent_fb) || !empty($agent_twitter) || !empty($agent_google) || !empty($agent_linkedin) || !empty($agent_youtube) || !empty($agent_instagram)) { ?>
                                                 <ul class="social-icons circle clean-list">
@@ -482,10 +482,10 @@
                                 <?php endif; ?>
 
                             <?php } else if($agent_display == 'custom') { ?>
-                            	<?php if(!empty($agent_custom_name)) { echo '<p>'.rypecore_get_icon($icon_set, 'user').' '.$agent_custom_name.'</p>'; } ?>
-                            	<?php if(!empty($agent_custom_email)) { echo '<p>'.rypecore_get_icon($icon_set, 'envelope', 'envelope', 'mail').' '.$agent_custom_email.'</p>'; } ?>
-                            	<?php if(!empty($agent_custom_phone)) { echo '<p>'.rypecore_get_icon($icon_set, 'phone', 'telephone').' '.$agent_custom_phone.'</p>'; } ?>
-                            	<?php if(!empty($agent_custom_url)) { echo '<p><a href="'.$agent_custom_url.'" target="_blank">'.rypecore_get_icon($icon_set, 'globe', 'link').' '.$agent_custom_url.'</a></p>'; } ?>
+                            	<?php if(!empty($agent_custom_name)) { echo '<p>'.ns_core_get_icon($icon_set, 'user').' '.$agent_custom_name.'</p>'; } ?>
+                            	<?php if(!empty($agent_custom_email)) { echo '<p>'.ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail').' '.$agent_custom_email.'</p>'; } ?>
+                            	<?php if(!empty($agent_custom_phone)) { echo '<p>'.ns_core_get_icon($icon_set, 'phone', 'telephone').' '.$agent_custom_phone.'</p>'; } ?>
+                            	<?php if(!empty($agent_custom_url)) { echo '<p><a href="'.$agent_custom_url.'" target="_blank">'.ns_core_get_icon($icon_set, 'globe', 'link').' '.$agent_custom_url.'</a></p>'; } ?>
                             <?php } ?>
 						</div>
                     <?php } ?>

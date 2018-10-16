@@ -161,7 +161,7 @@ function rype_real_estate_get_property_address($post_id) {
     $street_address = isset( $values['rypecore_property_address'] ) ? esc_attr( $values['rypecore_property_address'][0] ) : '';
     $property_address = '';
     $property_location = rype_real_estate_get_property_location($post_id);
-    if(!empty($street_address) || !empty($property_location)) { $property_address .= rypecore_get_icon($icon_set, 'map-marker', 'map-marker', 'location'); }
+    if(!empty($street_address) || !empty($property_location)) { $property_address .= ns_core_get_icon($icon_set, 'map-marker', 'map-marker', 'location'); }
     if(!empty($street_address)) { $property_address .= $street_address; }
     if(!empty($street_address) && !empty($property_location)) { $property_address .= ', '; }
     if(!empty($property_location)) { $property_address .= $property_location; }
@@ -1045,18 +1045,18 @@ if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page
 /*  Output Properties Map Banner
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_properties_map_banner($banner_source) { 
-    if($banner_source == 'properties_map') { rypecore_get_template_part('template_parts/real_estate/properties_map'); }
+    if($banner_source == 'properties_map') { ns_core_get_template_part('template_parts/real_estate/properties_map'); }
 }
 add_filter( 'rype_basics_custom_banner_source', 'rype_real_estate_properties_map_banner');
 
 function rype_real_estate_properties_map_custom_header_var($header_vars) { 
-    $page_id = rypecore_get_page_id();
+    $page_id = ns_core_get_page_id();
     $values = get_post_custom( $page_id);
     $banner_source = isset( $values['rypecore_banner_source'] ) ? esc_attr( $values['rypecore_banner_source'][0] ) : 'image_banner';
     if($banner_source == 'properties_map' && $header_vars['header_style'] == 'transparent') { $header_vars['header_style'] = ''; }
     return $header_vars;
 }
-add_filter( 'rype_basics_custom_header_vars', 'rype_real_estate_properties_map_custom_header_var');
+add_filter( 'ns_basics_custom_header_vars', 'rype_real_estate_properties_map_custom_header_var');
 
 /*-----------------------------------------------------------------------------------*/
 /*  Output Property Dashboard Widgets

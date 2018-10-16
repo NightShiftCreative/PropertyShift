@@ -86,8 +86,8 @@ class rype_real_estate_list_agents_widget extends WP_Widget {
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                         <h5 title="<?php the_title(); ?>"><a href="<?php echo esc_url($agent['permalink']); ?>"><?php echo esc_attr($agent['name']); ?></a></h5>
-                                        <?php if(!empty($agent['title'])) { ?><p><?php echo rypecore_get_icon($icon_set, 'tag'); ?><?php echo esc_attr($agent['title']); ?></p><?php } ?>
-                                        <?php if(!empty($agent['email'])) { ?><p><?php echo rypecore_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php echo esc_attr($agent['email']); ?></p><?php } ?>
+                                        <?php if(!empty($agent['title'])) { ?><p><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php echo esc_attr($agent['title']); ?></p><?php } ?>
+                                        <?php if(!empty($agent['email'])) { ?><p><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php echo esc_attr($agent['email']); ?></p><?php } ?>
                                         <p><a href="<?php echo esc_url($agent['permalink']); ?>"><i class="fa fa-angle-right icon"></i><?php esc_html_e('View Details', 'rype-real-estate'); ?></a></p>
                                     </div>
                                 </div>

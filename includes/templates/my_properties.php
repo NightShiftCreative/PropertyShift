@@ -49,14 +49,14 @@
                     <td class="my-property-status"><?php echo get_post_status(); ?></td>
                     <td class="my-property-date"><?php the_time('F jS, Y') ?></td>
                     <td class="user-dashboard-table-actions my-property-actions">
-                        <span><a href="<?php echo esc_url($members_submit_property_page); ?>?edit_property=<?php echo get_the_ID(); ?>"><?php echo rypecore_get_icon($icon_set, 'pencil'); ?> <?php esc_html_e('EDIT', 'rype-real-estate'); ?></a></span>
+                        <span><a href="<?php echo esc_url($members_submit_property_page); ?>?edit_property=<?php echo get_the_ID(); ?>"><?php echo ns_core_get_icon($icon_set, 'pencil'); ?> <?php esc_html_e('EDIT', 'rype-real-estate'); ?></a></span>
                         <span>
                             <?php 
                                 if ($post->post_author == $current_user->ID) { ?>
-                                    <a onclick="return confirm('Are you sure you want to delete this property?')" href="<?php echo get_delete_post_link( $post->ID ) ?>"><?php echo rypecore_get_icon($icon_set, 'trash'); ?> <?php esc_html_e('REMOVE', 'rype-real-estate'); ?></a>
+                                    <a onclick="return confirm('Are you sure you want to delete this property?')" href="<?php echo get_delete_post_link( $post->ID ) ?>"><?php echo ns_core_get_icon($icon_set, 'trash'); ?> <?php esc_html_e('REMOVE', 'rype-real-estate'); ?></a>
                             <?php } ?>
                         </span>
-                        <span><a href="<?php the_permalink(); ?>" target="_blank"><?php echo rypecore_get_icon($icon_set, 'eye', 'eye', 'preview'); ?> <?php esc_html_e('VIEW', 'rype-real-estate'); ?></a></span>
+                        <span><a href="<?php the_permalink(); ?>" target="_blank"><?php echo ns_core_get_icon($icon_set, 'eye', 'eye', 'preview'); ?> <?php esc_html_e('VIEW', 'rype-real-estate'); ?></a></span>
                     </td>
                 </tr>
         <?php endwhile; ?>

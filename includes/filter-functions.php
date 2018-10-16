@@ -428,7 +428,7 @@ function rype_real_estate_page_banner_property_filter_global() {
 
     //Individual page settings
     global $post;
-    if(function_exists('rypecore_get_page_id')) { $page_id = rypecore_get_page_id(); } else { $page_id = $post->ID; }
+    if(function_exists('ns_core_get_page_id')) { $page_id = ns_core_get_page_id(); } else { $page_id = $post->ID; }
     $values = get_post_custom( $page_id );
     $banner_property_filter_override = isset( $values['rypecore_banner_property_filter_override'] ) ? esc_attr( $values['rypecore_banner_property_filter_override'][0] ) : 'true'; 
     if($banner_property_filter_override != 'true') {
@@ -446,7 +446,7 @@ function rype_real_estate_page_banner_property_filter_global() {
             if($header_vars['header_style'] == 'transparent') { $header_vars['header_style'] = ''; }
             return $header_vars;
         }
-        add_filter( 'rype_basics_custom_header_vars', 'rype_real_estate_properties_filter_custom_header_var');
+        add_filter( 'ns_basics_custom_header_vars', 'rype_real_estate_properties_filter_custom_header_var');
     }
 
     //generate filter position hook name

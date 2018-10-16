@@ -106,9 +106,9 @@
                     <?php 
                     if($count == 4) { ?>
                         <div style="margin-right:0;" class="form-block filter-item filter-item-submit <?php if($label_count > 0) { echo 'has-label'; } ?> <?php if($show_advanced == false) { echo 'hide-advanced'; } ?> <?php echo esc_attr($filter_class); ?>">
-                            <div class="advanced-options-toggle"><?php echo rypecore_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'rypecore' ); ?></span></div>
+                            <div class="advanced-options-toggle"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'rypecore' ); ?></span></div>
                             <input type="hidden" name="advancedSearch" value="true" />
-                            <button type="submit" class="button alt"><?php echo rypecore_get_icon($icon_set, 'search', 'magnifier', 'search' ); ?></button>
+                            <button type="submit" class="button alt"><?php echo ns_core_get_icon($icon_set, 'search', 'magnifier', 'search' ); ?></button>
                         </div>
                     <?php }
 
@@ -263,9 +263,9 @@
 
                     if($filter_num <= 4 && $count >= ($filter_num - 1)) { ?>
                         <div style="margin-right:0;" class="form-block filter-item filter-item-submit <?php if($label_count > 0) { echo 'has-label'; } ?> <?php if($show_advanced == false) { echo 'hide-advanced'; } ?> <?php echo esc_attr($filter_class); ?>">
-                            <div class="advanced-options-toggle"><?php echo rypecore_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'rypecore' ); ?></span></div>
+                            <div class="advanced-options-toggle"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'rypecore' ); ?></span></div>
                             <input type="hidden" name="advancedSearch" value="true" />
-                            <button type="submit" class="button alt"><?php echo rypecore_get_icon($icon_set, 'search', 'magnifier', 'search' ); ?></button>
+                            <button type="submit" class="button alt"><?php echo ns_core_get_icon($icon_set, 'search', 'magnifier', 'search' ); ?></button>
                         </div>
                     <?php } ?>
 
@@ -275,7 +275,7 @@
             <?php } ?>
             <div class="clear"></div>
 
-            <div class="filter-minimal-mobile-toggle button alt"><?php echo rypecore_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><?php echo $submit_text; ?></div>
+            <div class="filter-minimal-mobile-toggle button alt"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><?php echo $submit_text; ?></div>
             
         </form>
     
