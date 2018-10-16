@@ -29,8 +29,8 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 /*  Require NS Basics
 /*-----------------------------------------------------------------------------------*/
 require_once( plugin_dir_path( __FILE__ ) . '/includes/plugins/class-tgm-plugin-activation.php');
-add_action( 'tgmpa_register', 'rype_real_estate_register_required_plugins' );
-function rype_real_estate_register_required_plugins() {
+add_action( 'tgmpa_register', 'ns_real_estate_register_required_plugins' );
+function ns_real_estate_register_required_plugins() {
 
     $plugins = array(
         array(
@@ -67,16 +67,16 @@ function rype_real_estate_register_required_plugins() {
 }
 
 /** Check if plugin is activated **/
-function rype_real_estate_is_plugin_active( $plugin ) {
+function ns_real_estate_is_plugin_active( $plugin ) {
     return in_array( $plugin, (array) get_option( 'active_plugins', array() ) );
 }
 
-if(rype_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
+if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
 
 	/*-----------------------------------------------------------------------------------*/
 	/*	Include Admin Plugin Scripts and Stylesheets
 	/*-----------------------------------------------------------------------------------*/
-	function rype_real_estate_admin_scripts() {
+	function ns_real_estate_admin_scripts() {
 		if (is_admin()) {
 
 			$google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
@@ -114,7 +114,7 @@ if(rype_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
 	        wp_localize_script( 'rype-real-estate-admin-js', 'rype_real_estate_local_script', $translation_array );
 		}
 	}
-	add_action('admin_enqueue_scripts', 'rype_real_estate_admin_scripts');
+	add_action('admin_enqueue_scripts', 'ns_real_estate_admin_scripts');
 
 	/*-----------------------------------------------------------------------------------*/
 	/*  Include Front-End Scripts and Styles
