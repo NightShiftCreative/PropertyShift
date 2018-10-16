@@ -71,7 +71,7 @@ function rype_real_estate_is_plugin_active( $plugin ) {
     return in_array( $plugin, (array) get_option( 'active_plugins', array() ) );
 }
 
-if(rype_real_estate_is_plugin_active('rype-basics/rype-basics.php')) {
+if(rype_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
 
 	/*-----------------------------------------------------------------------------------*/
 	/*	Include Admin Plugin Scripts and Stylesheets
