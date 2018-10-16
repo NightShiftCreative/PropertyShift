@@ -61,7 +61,7 @@
 					echo ns_basics_tooltip($toggle, $content); 
 				} ?>
 		        <?php if($property_listing_display_favorite == 'true' && function_exists('ns_basics_get_post_likes_button')) { echo ns_basics_get_post_likes_button(get_the_ID()); } ?>
-		        <?php if($property_listing_display_share == 'true' && function_exists('rype_basics_get_social_share')) { echo rype_basics_get_social_share(); } ?>
+		        <?php if($property_listing_display_share == 'true' && function_exists('ns_basics_get_social_share')) { echo ns_basics_get_social_share(); } ?>
 			</div>
 		<?php } ?>
 
