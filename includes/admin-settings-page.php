@@ -459,7 +459,7 @@ function rype_real_estate_settings_page_content() {
                                 
                                 //If item is an add-on, check if it is active
                                 if(isset($value['add_on'])) { 
-                                    if(rype_basics_is_paid_plugin_active($value['add_on'])) { $add_on = 'true'; } else { $add_on = 'false'; }
+                                    if(ns_basics_is_paid_plugin_active($value['add_on'])) { $add_on = 'true'; } else { $add_on = 'false'; }
                                 } else {
                                     $add_on = 'true'; 
                                 }

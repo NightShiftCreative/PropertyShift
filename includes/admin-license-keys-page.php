@@ -4,7 +4,7 @@
 /*  - fires only when settings are saved
 /*  - processed in Rype Basics plugin (rype-basics/includes/license-keys.php)
 /*-----------------------------------------------------------------------------------*/
-add_action( 'update_option_rype_real_estate_open_houses_license', 'rype_real_estate_activate_license_key', 10, 3 );
+add_action( 'update_option_rype_real_estate_open_houses_license', 'ns_basics_activate_license_key', 10, 3 );
 
 /*-----------------------------------------------------------------------------------*/
 /*  OUTPUT LICENSE KEYS PAGE
@@ -35,7 +35,7 @@ function rype_real_estate_license_keys_page_content() {
         <h3 class="accordion-tab ns-license-tab">
             <i class="fa fa-chevron-right icon"></i> 
             <?php esc_html_e('Open Houses License Key', 'rype-real-estate'); ?>
-            <?php echo rype_basics_get_license_status($open_houses_license, '#', null, 'true'); ?>
+            <?php echo ns_basics_get_license_status($open_houses_license, '#', null, 'true'); ?>
         </h3>
         <div>
             <table class="admin-module">

@@ -27,7 +27,7 @@ function rype_real_estate_add_ons_page_content() {
         <div class="admin-module">
             <div class="ns-module-header">
                 <div class="ns-module-icon"><img src="<?php echo plugins_url('/rype-basics/images/icon-post-sharing.svg'); ?>" alt="" /></div>
-                <?php echo rype_basics_get_license_status($open_houses_license, '#', '?page=rype-real-estate-license-keys', 'true'); ?>
+                <?php echo ns_basics_get_license_status($open_houses_license, '#', '?page=rype-real-estate-license-keys', 'true'); ?>
                 <h4><?php esc_html_e('Open Houses', 'rype-real-estate'); ?></h4>
             </div>
             <div class="ns-module-content">

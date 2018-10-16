@@ -1102,7 +1102,7 @@ function rype_real_estate_dashboard_widgets($banner_source) {
         ?>
     </div>
 <?php }
-add_filter( 'rype_basics_after_dashboard', 'rype_real_estate_dashboard_widgets');
+add_filter( 'ns_basics_after_dashboard', 'rype_real_estate_dashboard_widgets');
 
 /*-----------------------------------------------------------------------------------*/
 /*  Add Property Image Size
