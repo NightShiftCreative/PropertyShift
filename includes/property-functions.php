@@ -1110,7 +1110,7 @@ add_filter( 'ns_basics_after_dashboard', 'rype_real_estate_dashboard_widgets');
 function rype_real_estate_add_real_estate_image_size() {
     add_image_size( 'property-thumbnail', 800, 600, array( 'center', 'center' ) );
 }
-add_action( 'rype_basics_theme_support', 'rype_real_estate_add_real_estate_image_size' );
+add_action( 'ns_basics_theme_support', 'rype_real_estate_add_real_estate_image_size' );
 
 /*-----------------------------------------------------------------------------------*/
 /*  Register Properties Sidebar
