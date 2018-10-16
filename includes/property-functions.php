@@ -467,7 +467,7 @@ function rype_real_estate_property_details($post) {
                                     <div class="floor-plan-img">
                                         <label><?php esc_html_e('Image:', 'rype-real-estate'); ?> </label> 
                                         <input type="text" name="rypecore_floor_plans[<?php echo $count; ?>][img]" value="<?php echo $floor_plan['img']; ?>" />
-                                        <input id="_btn" class="rype_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'rype-real-estate'); ?>" />
+                                        <input id="_btn" class="ns_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'rype-real-estate'); ?>" />
                                         <span class="button-secondary remove"><?php esc_html_e('Remove', 'rype-real-estate'); ?></span>
                                     </div>
                                 </div>
@@ -526,7 +526,7 @@ function rype_real_estate_property_details($post) {
                     <td class="admin-module-label"><label><?php echo esc_html_e('Video Cover Image', 'rype-real-estate'); ?></label></td>
                     <td class="admin-module-field">
                         <input type="text" id="property_video_img" name="rypecore_property_video_img" value="<?php echo $video_img; ?>" />
-                        <input id="_btn" class="rype_upload_image_button" type="button" value="<?php echo esc_html_e('Upload Image', 'rype-real-estate'); ?>" />
+                        <input id="_btn" class="ns_upload_image_button" type="button" value="<?php echo esc_html_e('Upload Image', 'rype-real-estate'); ?>" />
                         <span class="button-secondary remove"><?php echo esc_html_e('Remove', 'rype-real-estate'); ?></span>
                     </td>
                 </tr>
@@ -976,7 +976,7 @@ function rype_real_estate_properties_extra_tax_fields($tag) {
         <td>
             <div class="admin-module admin-module-tax-field admin-module-tax-img no-border">
                 <input type="text" class="property-tax-img" name="term_meta[img]" id="term_meta[img]" size="3" style="width:60%;" value="<?php echo $term_meta['img'] ? $term_meta['img'] : ''; ?>">
-                <input id="_btn" class="button-secondary rype_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'rype-real-estate'); ?>" />
+                <input id="_btn" class="button-secondary ns_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'rype-real-estate'); ?>" />
                 <span class="button button-secondary remove"><?php esc_html_e('Remove', 'rype-real-estate'); ?></span><br/>
                 <span class="description" style="font-size:13px;"><?php esc_html_e('Image for Term, use full url', 'rype-real-estate'); ?></span><br/><br/>
             </div>
@@ -1036,7 +1036,7 @@ function rype_real_estate_properties_save_extra_taxonomy_fields( $term_id ) {
 /*-----------------------------------------------------------------------------------*/
 if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page_settings')) {
     function rype_real_estate_properties_add_page_settings_metabox() {
-        add_meta_box( 'page-layout-meta-box', 'Page Settings', 'rype_basics_page_layout_meta_box', array('rype-property'), 'normal', 'low' );
+        add_meta_box( 'page-layout-meta-box', 'Page Settings', 'ns_basics_page_layout_meta_box', array('rype-property'), 'normal', 'low' );
     }
     add_action('init', 'rype_real_estate_properties_add_page_settings_metabox');
 }

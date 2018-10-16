@@ -848,7 +848,7 @@ function rype_real_estate_settings_page_content() {
                 </td>
                 <td class="admin-module-field">
                     <input type="text" id="google_maps_pin" name="rypecore_google_maps_pin" value="<?php echo esc_attr( get_option('rypecore_google_maps_pin') ); ?>" />
-                    <input id="_btn" class="rype_upload_image_button" type="button" value="<?php echo esc_html_e('Upload Image', 'rype-real-estate'); ?>" />
+                    <input id="_btn" class="ns_upload_image_button" type="button" value="<?php echo esc_html_e('Upload Image', 'rype-real-estate'); ?>" />
                     <span class="button-secondary remove"><?php echo esc_html_e('Remove', 'rype-real-estate'); ?></span>
                 </td>
             </tr>
