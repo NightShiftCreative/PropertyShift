@@ -5,7 +5,7 @@
 * Plugin URI: http://rypecreative.com/
 * Description: Robust real estate listing system for agents and agencies of any size. 
 * Version: 1.0.0
-* Author: Rype Creative
+* Author: NightShift Creative
 * Author URI: http://rypecreative.com/
 * Text Domain: rype-real-estate
 **/

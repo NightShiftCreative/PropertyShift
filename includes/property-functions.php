@@ -1034,7 +1034,7 @@ function rype_real_estate_properties_save_extra_taxonomy_fields( $term_id ) {
 /*-----------------------------------------------------------------------------------*/
 /*  Add Page Settings Metabox to Edit Property Page
 /*-----------------------------------------------------------------------------------*/
-if(function_exists('rype_basics_is_active') && rype_basics_is_active('rype_basics_page_settings')) {
+if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page_settings')) {
     function rype_real_estate_properties_add_page_settings_metabox() {
         add_meta_box( 'page-layout-meta-box', 'Page Settings', 'rype_basics_page_layout_meta_box', array('rype-property'), 'normal', 'low' );
     }

@@ -19,7 +19,7 @@ function rype_real_estate_license_keys_page() {
     $content_nav = null;
     $alerts = null;
     $ajax = false;
-    echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_classl, $content_nav, $alerts, $ajax);
+    echo ns_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_classl, $content_nav, $alerts, $ajax);
 } 
 
 function rype_real_estate_license_keys_page_content() {

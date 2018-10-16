@@ -142,7 +142,7 @@ function rype_real_estate_settings_page() {
         $alerts[] = $properties_page_alert; 
     }
 
-    echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class, $content_nav, $alerts);
+    echo ns_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class, $content_nav, $alerts);
 } 
 
 function rype_real_estate_settings_page_content() {

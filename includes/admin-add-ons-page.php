@@ -8,8 +8,8 @@ function rype_real_estate_add_ons_page() {
     $pages = rype_real_estate_get_admin_pages();
     $display_actions = 'false';
     $content = rype_real_estate_add_ons_page_content();
-    $content_class = 'rype-modules';
-    echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class);
+    $content_class = 'ns-modules';
+    echo ns_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class);
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -23,20 +23,20 @@ function rype_real_estate_add_ons_page_content() {
     $open_houses_license = get_option('rype_real_estate_open_houses_license', $open_houses_license_default);
     ?>
     
-    <div class="rype-module-group rype-module-group-real-estate">
+    <div class="ns-module-group ns-module-group-real-estate">
         <div class="admin-module">
-            <div class="rype-module-header">
-                <div class="rype-module-icon"><img src="<?php echo plugins_url('/rype-basics/images/icon-post-sharing.svg'); ?>" alt="" /></div>
+            <div class="ns-module-header">
+                <div class="ns-module-icon"><img src="<?php echo plugins_url('/rype-basics/images/icon-post-sharing.svg'); ?>" alt="" /></div>
                 <?php echo rype_basics_get_license_status($open_houses_license, '#', '?page=rype-real-estate-license-keys', 'true'); ?>
                 <h4><?php esc_html_e('Open Houses', 'rype-real-estate'); ?></h4>
             </div>
-            <div class="rype-module-content">
+            <div class="ns-module-content">
                 <span class="admin-module-note"><?php esc_html_e('Sell more properties by advertising open houses. Add unlimited open houses dates and times to your listings.', 'rype-real-estate'); ?></span>
-                <a href="#" target="_blank" class="rype-meta-item"><?php esc_html_e('View Details', 'rype-real-estate'); ?> </a>
+                <a href="#" target="_blank" class="ns-meta-item"><?php esc_html_e('View Details', 'rype-real-estate'); ?> </a>
             </div>
         </div>
 
-        <div class="admin-module coming-soon"><div class="rype-module-content"><i class="fa fa-plus"></i> <span>More Coming Soon...</span></div></div>
+        <div class="admin-module coming-soon"><div class="ns-module-content"><i class="fa fa-plus"></i> <span>More Coming Soon...</span></div></div>
     
         <div class="clear"></div>
     </div>

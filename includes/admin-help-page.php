@@ -9,7 +9,7 @@ function rype_real_estate_help_page() {
     $pages = rype_real_estate_get_admin_pages();
     $display_actions = 'false';
     $content = rype_real_estate_help_page_content();
-    echo rype_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content);
+    echo ns_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content);
 }
 
 function rype_real_estate_help_page_content() {
