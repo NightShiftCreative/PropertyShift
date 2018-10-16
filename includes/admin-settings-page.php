@@ -126,19 +126,19 @@ function rype_real_estate_settings_page() {
     $alerts = array();
     if(!current_theme_supports('rype-real-estate')) {
         $current_theme = wp_get_theme();
-        $incompatible_theme_alert = rype_basics_admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not declare support for Rype Real Estate.', 'rype-real-estate'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'rype-real-estate'), true); 
+        $incompatible_theme_alert = ns_basics_admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not declare support for Rype Real Estate.', 'rype-real-estate'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'rype-real-estate'), true); 
         $alerts[] = $incompatible_theme_alert; 
     }
 
     $google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
     if(empty($google_maps_api)) {
-        $google_api_key_alert = rype_basics_admin_alert('warning', esc_html__('Please provide a Google Maps API Key within the Maps tab.', 'rype-real-estate'), $action = null, $action_text = null, true);
+        $google_api_key_alert = ns_basics_admin_alert('warning', esc_html__('Please provide a Google Maps API Key within the Maps tab.', 'rype-real-estate'), $action = null, $action_text = null, true);
         $alerts[] = $google_api_key_alert; 
     }
 
     $properties_page = esc_attr(get_option('rypecore_properties_page'));
     if(empty($properties_page)) {
-        $properties_page_alert = rype_basics_admin_alert('warning', esc_html__('You have not set your properties listing page. Go to Properties > Property Listing Options, to set this field.', 'rype-real-estate'), $action = null, $action_text = null, true);
+        $properties_page_alert = ns_basics_admin_alert('warning', esc_html__('You have not set your properties listing page. Go to Properties > Property Listing Options, to set this field.', 'rype-real-estate'), $action = null, $action_text = null, true);
         $alerts[] = $properties_page_alert; 
     }
 

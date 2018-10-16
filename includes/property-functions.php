@@ -438,7 +438,7 @@ function rype_real_estate_property_details($post) {
         <!--*************************************************-->
         <div id="gallery" class="tab-content">
             <h3><?php echo esc_html_e('Gallery', 'rype-real-estate'); ?></h3>
-            <?php if(function_exists('rype_basics_generate_gallery')) { echo rype_basics_generate_gallery($additional_images); } ?>
+            <?php if(function_exists('ns_basics_generate_gallery')) { echo ns_basics_generate_gallery($additional_images); } ?>
         </div>
         
         <!--*************************************************-->
