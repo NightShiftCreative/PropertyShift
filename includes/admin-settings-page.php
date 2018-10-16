@@ -1146,11 +1146,11 @@ function rype_real_estate_map_options($values) {
     $banner_source = isset( $values['rypecore_banner_source'] ) ? esc_attr( $values['rypecore_banner_source'][0] ) : 'image_banner';
     ?> 
     <label class="selectable-item <?php if($banner_source == 'properties_map') { echo 'active'; } ?>" for="banner_source_properties_map">
-        <img src="<?php echo plugins_url('/rype-basics/images/google-maps-icon.png'); ?>" alt="" /><br/>
+        <img src="<?php echo plugins_url('/ns-basics/images/google-maps-icon.png'); ?>" alt="" /><br/>
         <input type="radio" id="banner_source_properties_map" name="rypecore_banner_source" value="properties_map" <?php checked('properties_map', $banner_source, true) ?> /> <?php esc_html_e('Properties Map', 'rype-real-estate'); ?><br/>
     </label>
 <?php }
-add_action( 'rype_basics_before_page_banner_options', 'rype_real_estate_map_options' );
+add_action( 'ns_basics_before_page_banner_options', 'rype_real_estate_map_options' );
 
 function rype_real_estate_page_banner_filter_options($values) { ?>
     <?php 
@@ -1205,7 +1205,7 @@ function rype_real_estate_page_banner_filter_options($values) { ?>
 
     </div>
 <?php }
-add_action( 'rype_basics_banner_options_end', 'rype_real_estate_page_banner_filter_options' );
+add_action( 'ns_basics_banner_options_end', 'rype_real_estate_page_banner_filter_options' );
 
 function rype_real_estate_save_page_banner_options($post_id) {
     $allowed = array();
@@ -1226,7 +1226,7 @@ function rype_real_estate_save_page_banner_options($post_id) {
         update_post_meta( $post_id, 'rypecore_banner_property_filter_id', wp_kses( $_POST['rypecore_banner_property_filter_id'], $allowed ) );
             
 }
-add_action( 'rype_basics_after_page_settings_save', 'rype_real_estate_save_page_banner_options' );
+add_action( 'ns_basics_after_page_settings_save', 'rype_real_estate_save_page_banner_options' );
 
 
 /*-----------------------------------------------------------------------------------*/

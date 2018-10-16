@@ -1073,7 +1073,7 @@ function rype_real_estate_dashboard_stats() {
         <?php esc_html_e('Pending Properties', 'rypecore'); ?>
     </div>
 <?php }
-add_filter( 'rype_basics_dashboard_stats', 'rype_real_estate_dashboard_stats');
+add_filter( 'ns_basics_dashboard_stats', 'rype_real_estate_dashboard_stats');
 
 function rype_real_estate_dashboard_widgets($banner_source) {
     global $current_user; ?>
