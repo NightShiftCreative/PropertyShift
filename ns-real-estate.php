@@ -2,11 +2,11 @@
 
 /**
 * Plugin Name: NightShift Real Estate
-* Plugin URI: http://rypecreative.com/
+* Plugin URI: http://nightshiftcreative.co/
 * Description: Robust real estate listing system for agents and agencies of any size. 
 * Version: 1.0.0
 * Author: NightShift Creative
-* Author URI: http://rypecreative.com/
+* Author URI: http://nightshiftcreative.co/
 * Text Domain: rype-real-estate
 **/
 
