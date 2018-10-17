@@ -451,11 +451,11 @@ function rype_real_estate_page_banner_property_filter_global() {
 
     //generate filter position hook name
     if($property_filter_position == 'above') { 
-        $property_filter_position = 'rype_basics_before_page_banner'; 
+        $property_filter_position = 'ns_basics_before_page_banner'; 
     } else if($property_filter_position == 'middle') {
-        $property_filter_position = 'rype_basics_after_subheader_title'; 
+        $property_filter_position = 'ns_basics_after_subheader_title'; 
     } else { 
-        $property_filter_position = 'rype_basics_after_page_banner'; 
+        $property_filter_position = 'ns_basics_after_page_banner'; 
     }
 
     //output filter template
