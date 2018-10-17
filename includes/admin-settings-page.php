@@ -4,11 +4,11 @@
 /*-----------------------------------------------------------------------------------*/
 add_action('admin_menu', 'ns_real_estate_plugin_menu');
 function ns_real_estate_plugin_menu() {
-    add_menu_page('NS Real Estate', 'NS Real Estate', 'administrator', 'rype-real-estate-settings', 'ns_real_estate_settings_page', 'dashicons-admin-home');
-    add_submenu_page('rype-real-estate-settings', 'Settings', 'Settings', 'administrator', 'rype-real-estate-settings');
-    add_submenu_page('rype-real-estate-settings', 'Add-Ons', 'Add-Ons', 'administrator', 'rype-real-estate-add-ons', 'ns_real_estate_add_ons_page');
-    add_submenu_page('rype-real-estate-settings', 'License Keys', 'License Keys', 'administrator', 'rype-real-estate-license-keys', 'ns_real_estate_license_keys_page');
-    add_submenu_page('rype-real-estate-settings', 'Help', 'Help', 'administrator', 'rype-real-estate-help', 'ns_real_estate_help_page');
+    add_menu_page('NS Real Estate', 'NS Real Estate', 'administrator', 'ns-real-estate-settings', 'ns_real_estate_settings_page', 'dashicons-admin-home');
+    add_submenu_page('ns-real-estate-settings', 'Settings', 'Settings', 'administrator', 'ns-real-estate-settings');
+    add_submenu_page('ns-real-estate-settings', 'Add-Ons', 'Add-Ons', 'administrator', 'ns-real-estate-add-ons', 'ns_real_estate_add_ons_page');
+    add_submenu_page('ns-real-estate-settings', 'License Keys', 'License Keys', 'administrator', 'ns-real-estate-license-keys', 'ns_real_estate_license_keys_page');
+    add_submenu_page('ns-real-estate-settings', 'Help', 'Help', 'administrator', 'ns-real-estate-help', 'ns_real_estate_help_page');
     add_action( 'admin_init', 'ns_real_estate_register_options' );
 }
 
@@ -84,7 +84,7 @@ function ns_real_estate_register_options() {
     register_setting( 'ns-real-estate-settings-group', 'rype_real_estate_num_decimal_area' );
 
     //LICENSE KEY SETTINGS
-    register_setting( 'rype-real-estate-license-keys-group', 'rype_real_estate_open_houses_license');
+    register_setting( 'ns-real-estate-license-keys-group', 'rype_real_estate_open_houses_license');
 
     //ADD-ON SETTINGS
     do_action( 'rype_real_estate_register_settings');
@@ -100,10 +100,10 @@ function ns_real_estate_sanitize_slug($option) {
 /*-----------------------------------------------------------------------------------*/
 function ns_real_estate_get_admin_pages() {
     $pages = array();
-    $pages[] = array('slug' => 'rype-real-estate-settings', 'name' => esc_html__('Settings', 'ns-real-estate'));
-    $pages[] = array('slug' => 'rype-real-estate-add-ons', 'name' => esc_html__('Add-Ons', 'ns-real-estate'));
-    $pages[] = array('slug' => 'rype-real-estate-license-keys', 'name' => esc_html__('License', 'ns-real-estate'));
-    $pages[] = array('slug' => 'rype-real-estate-help', 'name' => esc_html__('Help', 'ns-real-estate'));
+    $pages[] = array('slug' => 'ns-real-estate-settings', 'name' => esc_html__('Settings', 'ns-real-estate'));
+    $pages[] = array('slug' => 'ns-real-estate-add-ons', 'name' => esc_html__('Add-Ons', 'ns-real-estate'));
+    $pages[] = array('slug' => 'ns-real-estate-license-keys', 'name' => esc_html__('License', 'ns-real-estate'));
+    $pages[] = array('slug' => 'ns-real-estate-help', 'name' => esc_html__('Help', 'ns-real-estate'));
     return $pages;
 }
 
