@@ -15,7 +15,7 @@
     /************************************************************************/
     /* RTL(Right to Left) STYLES */
     /************************************************************************/
-    if(isset($_GET['rtl'])) { $rtl = $_GET['rtl']; } else { $rtl = esc_attr(get_option('rypecore_rtl')); }  
+    if(isset($_GET['rtl'])) { $rtl = $_GET['rtl']; } else { $rtl = esc_attr(get_option('ns_core_rtl')); }  
 
     if($rtl == 'true') {
         $rtl_css = "";

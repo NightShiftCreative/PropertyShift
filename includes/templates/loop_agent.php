@@ -1,6 +1,6 @@
 <?php
     //global settings
-    $icon_set = esc_attr(get_option('rypecore_icon_set', 'fa'));
+    $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     $agent_listing_crop = esc_attr(get_option('rypecore_agent_listing_crop', 'true'));
 
 	//Get agent details

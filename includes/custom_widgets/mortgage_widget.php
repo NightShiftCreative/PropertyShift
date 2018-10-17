@@ -20,7 +20,7 @@ class rype_real_estate_mortgage_calculator_widget extends WP_Widget {
         extract( $args );
         global $wpdb;
 
-        $icon_set = get_option('rypecore_icon_set', 'fa');
+        $icon_set = get_option('ns_core_icon_set', 'fa');
         $title = apply_filters('widget_title', $instance['title']);
 
         ?>

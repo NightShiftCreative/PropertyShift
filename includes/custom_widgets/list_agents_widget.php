@@ -21,7 +21,7 @@ class rype_real_estate_list_agents_widget extends WP_Widget {
         global $wpdb;
 		global $post;
 
-        $icon_set = get_option('rypecore_icon_set', 'fa');
+        $icon_set = get_option('ns_core_icon_set', 'fa');
 
         $title = isset( $instance['title'] ) ? apply_filters( 'widget_title', $instance['title'] ) : '';
         $num = isset( $instance['num'] ) ? $instance['num'] : '';

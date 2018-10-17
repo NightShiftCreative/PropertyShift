@@ -1,5 +1,5 @@
 <?php
-    $icon_set = esc_attr(get_option('rypecore_icon_set', 'fa'));
+    $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     $current_user = wp_get_current_user();
     $author = $current_user->user_login;

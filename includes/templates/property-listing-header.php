@@ -2,7 +2,7 @@
 //Get global settings
 global $wp;
 $currentUrl = home_url( $wp->request );
-$icon_set = esc_attr(get_option('rypecore_icon_set', 'fa'));
+$icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
 
 //Get template args
 $property_listing_query = $template_args['query'];

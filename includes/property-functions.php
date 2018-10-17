@@ -156,7 +156,7 @@ function rype_real_estate_get_property_location($post_id, $output = null, $array
 
 /* get property full address */
 function rype_real_estate_get_property_address($post_id) {
-    $icon_set = esc_attr(get_option('rypecore_icon_set', 'fa'));
+    $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     $values = get_post_custom($post_id);
     $street_address = isset( $values['rypecore_property_address'] ) ? esc_attr( $values['rypecore_property_address'][0] ) : '';
     $property_address = '';

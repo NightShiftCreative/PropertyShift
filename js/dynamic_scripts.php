@@ -1,6 +1,6 @@
 <?php
 //Get RTL (right to left)
-if(isset($_GET['rtl'])) { $rtl = $_GET['rtl']; } else { $rtl = esc_attr(get_option('rypecore_rtl')); } 
+if(isset($_GET['rtl'])) { $rtl = $_GET['rtl']; } else { $rtl = esc_attr(get_option('ns_core_rtl')); } 
 
 //Get currency options
 $currency_options = rype_real_estate_get_curreny_options();
