@@ -18,8 +18,8 @@ function ns_real_estate_plugin_menu() {
 function ns_real_estate_register_options() {
 
     //PROPERTY SETTINGS
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_slug', 'ns_real_estate_sanitize_slug');
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_property_type_tax_slug', 'ns_real_estate_sanitize_slug');
+    register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_slug', 'ns_real_estate_sanitize_slug');
+    register_setting( 'ns-real-estate-settings-group', 'ns_property_type_tax_slug', 'ns_real_estate_sanitize_slug');
     register_setting( 'ns-real-estate-settings-group', 'rypecore_property_status_tax_slug', 'ns_real_estate_sanitize_slug');
     register_setting( 'ns-real-estate-settings-group', 'rypecore_property_location_tax_slug', 'ns_real_estate_sanitize_slug');
     register_setting( 'ns-real-estate-settings-group', 'rypecore_property_amenities_tax_slug', 'ns_real_estate_sanitize_slug');
@@ -163,7 +163,7 @@ function ns_real_estate_settings_page_content() {
                             <span class="admin-module-note"><?php esc_html_e('Default: properties', 'ns-real-estate'); ?></span>
                         </td>
                         <td class="admin-module-field">
-                            <span><?php echo esc_url(home_url('/')); ?></span> <input type="text" style="width:150px;" id="property_detail_slug" name="rypecore_property_detail_slug" value="<?php echo esc_attr( get_option('rypecore_property_detail_slug', 'properties') ); ?>" />
+                            <span><?php echo esc_url(home_url('/')); ?></span> <input type="text" style="width:150px;" id="property_detail_slug" name="ns_property_detail_slug" value="<?php echo esc_attr( get_option('ns_property_detail_slug', 'properties') ); ?>" />
                         </td>
                     </tr>
                 </table>
@@ -175,7 +175,7 @@ function ns_real_estate_settings_page_content() {
                             <span class="admin-module-note"><?php esc_html_e('Default: property-type', 'ns-real-estate'); ?></span>
                         </td>
                         <td class="admin-module-field">
-                            <span><?php echo esc_url(home_url('/')); ?></span> <input type="text" style="width:150px;" id="property_type_tax_slug" name="rypecore_property_type_tax_slug" value="<?php echo esc_attr( get_option('rypecore_property_type_tax_slug', 'property-type') ); ?>" />
+                            <span><?php echo esc_url(home_url('/')); ?></span> <input type="text" style="width:150px;" id="property_type_tax_slug" name="ns_property_type_tax_slug" value="<?php echo esc_attr( get_option('ns_property_type_tax_slug', 'property-type') ); ?>" />
                         </td>
                     </tr>
                 </table>

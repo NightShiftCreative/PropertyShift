@@ -216,7 +216,7 @@ function getWalkScore($lat, $lon, $address) {
 /*-----------------------------------------------------------------------------------*/
 add_action( 'init', 'rype_real_estate_create_properties_post_type' );
 function rype_real_estate_create_properties_post_type() {
-    $properties_slug = get_option('rypecore_property_detail_slug', 'properties');
+    $properties_slug = get_option('ns_property_detail_slug', 'properties');
     register_post_type( 'rype-property',
         array(
             'labels' => array(
@@ -711,7 +711,7 @@ function rype_real_estate_save_meta_box( $post_id ) {
 /*  Register Custom Taxonomies
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_property_type_init() {
-    $property_type_tax_slug = get_option('rypecore_property_type_tax_slug', 'property-type');
+    $property_type_tax_slug = get_option('ns_property_type_tax_slug', 'property-type');
     $labels = array(
     'name'                          => __( 'Property Type', 'rype-real-estate' ),
     'singular_name'                 => __( 'Property Type', 'rype-real-estate' ),
