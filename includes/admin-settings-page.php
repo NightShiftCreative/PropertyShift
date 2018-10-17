@@ -18,7 +18,6 @@ function ns_real_estate_plugin_menu() {
 function ns_real_estate_register_options() {
 
     //PROPERTY SETTINGS
-    register_setting( 'ns-real-estate-settings-group', 'properties_page');
     register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_slug', 'ns_real_estate_sanitize_slug');
     register_setting( 'ns-real-estate-settings-group', 'rypecore_property_type_tax_slug', 'ns_real_estate_sanitize_slug');
     register_setting( 'ns-real-estate-settings-group', 'rypecore_property_status_tax_slug', 'ns_real_estate_sanitize_slug');
@@ -28,7 +27,7 @@ function ns_real_estate_register_options() {
     register_setting( 'ns-real-estate-settings-group', 'rypecore_property_filter_display' );
     register_setting( 'ns-real-estate-settings-group', 'rypecore_property_filter_id' );
 
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_properties_page' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_properties_page' );
     register_setting( 'ns-real-estate-settings-group', 'rypecore_num_properties_per_page' );
     register_setting( 'ns-real-estate-settings-group', 'rypecore_properties_default_layout' );
     register_setting( 'ns-real-estate-settings-group', 'rypecore_property_listing_header_display' );
@@ -136,7 +135,7 @@ function ns_real_estate_settings_page() {
         $alerts[] = $google_api_key_alert; 
     }
 
-    $properties_page = esc_attr(get_option('rypecore_properties_page'));
+    $properties_page = esc_attr(get_option('ns_properties_page'));
     if(empty($properties_page)) {
         $properties_page_alert = ns_basics_admin_alert('warning', esc_html__('You have not set your properties listing page. Go to Properties > Property Listing Options, to set this field.', 'ns-real-estate'), $action = null, $action_text = null, true);
         $alerts[] = $properties_page_alert; 
@@ -276,13 +275,13 @@ function ns_real_estate_settings_page_content() {
                     <tr>
                         <td class="admin-module-label"><label><?php echo esc_html_e('Select Your Property Listings Page', 'ns-real-estate'); ?></label></td>
                         <td class="admin-module-field">
-                            <select name="rypecore_properties_page">
+                            <select name="ns_properties_page">
                                 <option value="">
                                 <?php echo esc_attr( esc_html__( 'Select page', 'ns-real-estate' ) ); ?></option> 
                                     <?php 
                                     $pages = get_pages(); 
                                     foreach ( $pages as $page ) { ?>
-                                    <option value="<?php echo get_page_link( $page->ID ); ?>" <?php if(esc_attr(get_option('rypecore_properties_page')) == get_page_link( $page->ID )) { echo 'selected'; } ?>>
+                                    <option value="<?php echo get_page_link( $page->ID ); ?>" <?php if(esc_attr(get_option('ns_properties_page')) == get_page_link( $page->ID )) { echo 'selected'; } ?>>
                                         <?php echo esc_attr($page->post_title); ?>
                                     </option>
                                 <?php } ?>

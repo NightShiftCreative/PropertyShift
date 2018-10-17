@@ -1,6 +1,6 @@
 <?php
     //Get global settings
-    $properties_page = esc_attr(get_option('rypecore_properties_page'));
+    $properties_page = esc_attr(get_option('ns_properties_page'));
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
 
     //Get template args

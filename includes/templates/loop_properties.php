@@ -1,7 +1,7 @@
 <?php
     //GET GLOBAL SETTINGS
     global $post;
-    $properties_page = get_option('rypecore_properties_page');
+    $properties_page = get_option('ns_properties_page');
     $properties_tax_layout = get_option('rypecore_properties_default_layout', 'grid');
     $num_properties_per_page = esc_attr(get_option('rypecore_num_properties_per_page', 12));
     $page_template = get_post_meta($post->ID, '_wp_page_template', true);

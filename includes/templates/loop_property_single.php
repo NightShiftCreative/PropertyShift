@@ -3,7 +3,7 @@
 	//Get global settings
     $postID = get_the_id();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
-    $properties_page = esc_attr(get_option('rypecore_properties_page'));
+    $properties_page = esc_attr(get_option('ns_properties_page'));
     $property_detail_template = esc_attr(get_option('rypecore_property_detail_template', 'classic'));
     $google_maps_pin = esc_attr(get_option('rypecore_google_maps_pin'));
     if(empty($google_maps_pin)) { $google_maps_pin = plugins_url( '/rype-real-estate/images/pin.png'); }

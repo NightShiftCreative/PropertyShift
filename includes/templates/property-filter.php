@@ -1,7 +1,7 @@
 <?php
 
 //Get global settings
-$properties_page = esc_attr(get_option('rypecore_properties_page'));
+$properties_page = esc_attr(get_option('ns_properties_page'));
 
 //Get template args
 $property_filter_id = $template_args['id'];
