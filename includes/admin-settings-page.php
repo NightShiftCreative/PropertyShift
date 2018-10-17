@@ -1143,11 +1143,11 @@ function rype_real_estate_load_default_agent_detail_items() {
 /*  Add Real Estate Invidiual Page Options
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_map_options($values) { 
-    $banner_source = isset( $values['rypecore_banner_source'] ) ? esc_attr( $values['rypecore_banner_source'][0] ) : 'image_banner';
+    $banner_source = isset( $values['ns_basics_banner_source'] ) ? esc_attr( $values['ns_basics_banner_source'][0] ) : 'image_banner';
     ?> 
     <label class="selectable-item <?php if($banner_source == 'properties_map') { echo 'active'; } ?>" for="banner_source_properties_map">
         <img src="<?php echo plugins_url('/ns-basics/images/google-maps-icon.png'); ?>" alt="" /><br/>
-        <input type="radio" id="banner_source_properties_map" name="rypecore_banner_source" value="properties_map" <?php checked('properties_map', $banner_source, true) ?> /> <?php esc_html_e('Properties Map', 'rype-real-estate'); ?><br/>
+        <input type="radio" id="banner_source_properties_map" name="ns_basics_banner_source" value="properties_map" <?php checked('properties_map', $banner_source, true) ?> /> <?php esc_html_e('Properties Map', 'rype-real-estate'); ?><br/>
     </label>
 <?php }
 add_action( 'ns_basics_before_page_banner_options', 'rype_real_estate_map_options' );

@@ -1052,7 +1052,7 @@ add_filter( 'rype_basics_custom_banner_source', 'rype_real_estate_properties_map
 function rype_real_estate_properties_map_custom_header_var($header_vars) { 
     $page_id = ns_core_get_page_id();
     $values = get_post_custom( $page_id);
-    $banner_source = isset( $values['rypecore_banner_source'] ) ? esc_attr( $values['rypecore_banner_source'][0] ) : 'image_banner';
+    $banner_source = isset( $values['ns_basics_banner_source'] ) ? esc_attr( $values['ns_basics_banner_source'][0] ) : 'image_banner';
     if($banner_source == 'properties_map' && $header_vars['header_style'] == 'transparent') { $header_vars['header_style'] = ''; }
     return $header_vars;
 }

@@ -21,13 +21,13 @@
         if(!empty($properties_page)) {
             $properties_page_id = url_to_postid( $properties_page ); 
             $values = get_post_custom( $properties_page_id ); 
-            $page_layout = isset( $values['rypecore_page_layout'] ) ? esc_attr( $values['rypecore_page_layout'][0] ) : 'full';
+            $page_layout = isset( $values['ns_basics_page_layout'] ) ? esc_attr( $values['ns_basics_page_layout'][0] ) : 'full';
         } else {
             $page_layout = 'full';
         }
     } else { 
         $values = get_post_custom( $post->ID ); 
-        $page_layout = isset( $values['rypecore_page_layout'] ) ? esc_attr( $values['rypecore_page_layout'][0] ) : 'full';
+        $page_layout = isset( $values['ns_basics_page_layout'] ) ? esc_attr( $values['ns_basics_page_layout'][0] ) : 'full';
     }
 	
 	//GENERATE PROPERTY CLASS BASED ON PAGE LAYOUT
