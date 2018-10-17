@@ -5,7 +5,7 @@
 function ns_real_estate_add_ons_page() { 
 	$page_name = 'NightShift Real Estate';
     $settings_group = null;
-    $pages = rype_real_estate_get_admin_pages();
+    $pages = ns_real_estate_get_admin_pages();
     $display_actions = 'false';
     $content = ns_real_estate_add_ons_page_content();
     $content_class = 'ns-modules';

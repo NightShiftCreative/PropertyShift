@@ -12,7 +12,7 @@ add_action( 'update_option_rype_real_estate_open_houses_license', 'ns_basics_act
 function ns_real_estate_license_keys_page() {
     $page_name = 'NightShift Real Estate';
     $settings_group = 'rype-real-estate-license-keys-group';
-    $pages = rype_real_estate_get_admin_pages();
+    $pages = ns_real_estate_get_admin_pages();
     $display_actions = 'true';
     $content = ns_real_estate_license_keys_page_content();
     $content_class = null;
