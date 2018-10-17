@@ -9,7 +9,7 @@
     //PROPERTIES
     $misc_css .= ".property-single-item #map-canvas-one-pin { height:{$property_detail_map_height}px; }";
 
-    wp_add_inline_style( 'rype-real-estate-dynamic-styles', $misc_css );
+    wp_add_inline_style( 'ns-real-estate-dynamic-styles', $misc_css );
 
 
     /************************************************************************/
@@ -22,7 +22,7 @@
         
         //RTL STYLES GO HERE
 
-        wp_add_inline_style( 'rype-real-estate-dynamic-styles', $rtl_css );
+        wp_add_inline_style( 'ns-real-estate-dynamic-styles', $rtl_css );
     }
     
 ?>

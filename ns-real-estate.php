@@ -81,37 +81,37 @@ if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
 
 			$google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
 
-			wp_enqueue_script('rype-real-estate-admin-js', plugins_url('/js/rype-real-estate-admin.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'media-upload', 'thickbox'), '', true);
-			wp_enqueue_style('rype-real-estate-admin-css', plugins_url('/css/rype-real-estate-admin.css',  __FILE__), array(), '1.0', 'all');
-			wp_enqueue_script( 'rype-real-estate-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
+			wp_enqueue_script('ns-real-estate-admin-js', plugins_url('/js/ns-real-estate-admin.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'media-upload', 'thickbox'), '', true);
+			wp_enqueue_style('ns-real-estate-admin-css', plugins_url('/css/ns-real-estate-admin.css',  __FILE__), array(), '1.0', 'all');
+			wp_enqueue_script( 'ns-real-estate-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
 
 			/* localize scripts */
 	        $translation_array = array(
 	            'admin_url' => esc_url(get_admin_url()),
-	            'delete_text' => __( 'Delete', 'rype-real-estate' ),
-	            'remove_text' => __( 'Remove', 'rype-real-estate' ),
-	            'edit_text' => __( 'Edit', 'rype-real-estate' ),
-	            'upload_img' => __( 'Upload Image', 'rype-real-estate' ),
-	            'floor_plan_title' => __( 'Title:', 'rype-real-estate' ),
-	            'floor_plan_size' => __( 'Size:', 'rype-real-estate' ),
-	            'floor_plan_rooms' => __( 'Bedrooms:', 'rype-real-estate' ),
-	            'floor_plan_bathrooms' => __( 'Bathrooms:', 'rype-real-estate' ),
-	            'floor_plan_img' => __( 'Image:', 'rype-real-estate' ),
-	            'floor_plan_description' => __( 'Description:', 'rype-real-estate' ),
-	            'new_floor_plan' => __( 'New Floor Plan', 'rype-real-estate' ),
-	            'value_text' => __( 'Field Name:', 'rype-real-estate' ),
-	            'option_name_text' => __( 'Option name', 'rype-real-estate' ),
-	            'custom_field_dup_error' => __( 'A custom field with the same name is already in use!', 'rype-real-estate' ),
-	            'field_type_text' => __( 'Field Type', 'rype-real-estate' ),
-	            'text_input_text' => __( 'Text Input', 'rype-real-estate' ),
-	            'num_input_text' => __( 'Number Input', 'rype-real-estate' ),
-	            'select_text' => __( 'Select Dropdown', 'rype-real-estate' ),
-	            'select_options_text' => __( 'Select Options:', 'rype-real-estate' ),
-	            'select_options_add' => __( 'Add Select Option', 'rype-real-estate' ),
-	            'delete_custom_field_confirm' =>  __( 'Removing this field will remove it from all properties. Are you sure you want to proceed?', 'rype-real-estate' ),
-	            'front_end_text' => __( 'Display in Front-end Property Submit Form', 'rype-real-estate' ),
+	            'delete_text' => __( 'Delete', 'ns-real-estate' ),
+	            'remove_text' => __( 'Remove', 'ns-real-estate' ),
+	            'edit_text' => __( 'Edit', 'ns-real-estate' ),
+	            'upload_img' => __( 'Upload Image', 'ns-real-estate' ),
+	            'floor_plan_title' => __( 'Title:', 'ns-real-estate' ),
+	            'floor_plan_size' => __( 'Size:', 'ns-real-estate' ),
+	            'floor_plan_rooms' => __( 'Bedrooms:', 'ns-real-estate' ),
+	            'floor_plan_bathrooms' => __( 'Bathrooms:', 'ns-real-estate' ),
+	            'floor_plan_img' => __( 'Image:', 'ns-real-estate' ),
+	            'floor_plan_description' => __( 'Description:', 'ns-real-estate' ),
+	            'new_floor_plan' => __( 'New Floor Plan', 'ns-real-estate' ),
+	            'value_text' => __( 'Field Name:', 'ns-real-estate' ),
+	            'option_name_text' => __( 'Option name', 'ns-real-estate' ),
+	            'custom_field_dup_error' => __( 'A custom field with the same name is already in use!', 'ns-real-estate' ),
+	            'field_type_text' => __( 'Field Type', 'ns-real-estate' ),
+	            'text_input_text' => __( 'Text Input', 'ns-real-estate' ),
+	            'num_input_text' => __( 'Number Input', 'ns-real-estate' ),
+	            'select_text' => __( 'Select Dropdown', 'ns-real-estate' ),
+	            'select_options_text' => __( 'Select Options:', 'ns-real-estate' ),
+	            'select_options_add' => __( 'Add Select Option', 'ns-real-estate' ),
+	            'delete_custom_field_confirm' =>  __( 'Removing this field will remove it from all properties. Are you sure you want to proceed?', 'ns-real-estate' ),
+	            'front_end_text' => __( 'Display in Front-end Property Submit Form', 'ns-real-estate' ),
 	        );
-	        wp_localize_script( 'rype-real-estate-admin-js', 'rype_real_estate_local_script', $translation_array );
+	        wp_localize_script( 'ns-real-estate-admin-js', 'ns_real_estate_local_script', $translation_array );
 		}
 	}
 	add_action('admin_enqueue_scripts', 'ns_real_estate_admin_scripts');
@@ -127,41 +127,41 @@ if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
 	    	wp_enqueue_script('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.js', __FILE__), array('jquery'), '', true);
 	        wp_enqueue_style('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.css',  __FILE__), array(), '1.0', 'all');
 	        wp_enqueue_script('wnumb', plugins_url('/assets/noUiSlider/wNumb.js', __FILE__), array('jquery'), '', true);
-	        wp_enqueue_style('rype-real-estate', plugins_url('/css/rype-real-estate.css',  __FILE__), array(), '1.0', 'all');
-	    	wp_enqueue_script('rype-real-estate', plugins_url('/js/rype-real-estate.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), '', true);
-	    	wp_enqueue_script( 'rype-real-estate-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
+	        wp_enqueue_style('ns-real-estate', plugins_url('/css/ns-real-estate.css',  __FILE__), array(), '1.0', 'all');
+	    	wp_enqueue_script('ns-real-estate', plugins_url('/js/ns-real-estate.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), '', true);
+	    	wp_enqueue_script( 'ns-real-estate-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
 
 	    	/* localize scripts */
 	        $translation_array = array(
 	            'admin_url' => esc_url(get_admin_url()),
-	            'delete_text' => __( 'Delete', 'rype-real-estate' ),
-	            'purchase_price' => __( 'Purchase Price', 'rype-real-estate' ),
-	            'down_payment' => __( 'Down Payment', 'rype-real-estate' ),
-	            'percent' => __( 'Percent', 'rype-real-estate' ),
-	            'fixed' => __( 'Fixed', 'rype-real-estate' ),
-	            'rate' => __( 'Rate', 'rype-real-estate' ),
-	            'term' => __( 'Term', 'rype-real-estate' ),
-	            'years' => __( 'Years', 'rype-real-estate' ),
-	            'months' => __( 'Months', 'rype-real-estate' ),
-	            'calculate' => __( 'Calculate', 'rype-real-estate' ),
-	            'monthly_payment' => __( 'Your monthly payment:', 'rype-real-estate' ),
-	            'required_field' => __( 'This field is required', 'rype-real-estate' ),
-	            'floor_plan_title' => __( 'Title:', 'rype-real-estate' ),
-	            'floor_plan_size' => __( 'Size:', 'rype-real-estate' ),
-	            'floor_plan_rooms' => __( 'Bedrooms:', 'rype-real-estate' ),
-	            'floor_plan_bathrooms' => __( 'Bathrooms:', 'rype-real-estate' ),
-	            'floor_plan_img' => __( 'Image:', 'rype-real-estate' ),
-	            'floor_plan_description' => __( 'Description:', 'rype-real-estate' ),
-	            'new_floor_plan' => __( 'New Floor Plan', 'rype-real-estate' ),
-	            'floor_plan_note' => __( 'Provide the absolute url to a hosted image.', 'rype-real-estate' ),
+	            'delete_text' => __( 'Delete', 'ns-real-estate' ),
+	            'purchase_price' => __( 'Purchase Price', 'ns-real-estate' ),
+	            'down_payment' => __( 'Down Payment', 'ns-real-estate' ),
+	            'percent' => __( 'Percent', 'ns-real-estate' ),
+	            'fixed' => __( 'Fixed', 'ns-real-estate' ),
+	            'rate' => __( 'Rate', 'ns-real-estate' ),
+	            'term' => __( 'Term', 'ns-real-estate' ),
+	            'years' => __( 'Years', 'ns-real-estate' ),
+	            'months' => __( 'Months', 'ns-real-estate' ),
+	            'calculate' => __( 'Calculate', 'ns-real-estate' ),
+	            'monthly_payment' => __( 'Your monthly payment:', 'ns-real-estate' ),
+	            'required_field' => __( 'This field is required', 'ns-real-estate' ),
+	            'floor_plan_title' => __( 'Title:', 'ns-real-estate' ),
+	            'floor_plan_size' => __( 'Size:', 'ns-real-estate' ),
+	            'floor_plan_rooms' => __( 'Bedrooms:', 'ns-real-estate' ),
+	            'floor_plan_bathrooms' => __( 'Bathrooms:', 'ns-real-estate' ),
+	            'floor_plan_img' => __( 'Image:', 'ns-real-estate' ),
+	            'floor_plan_description' => __( 'Description:', 'ns-real-estate' ),
+	            'new_floor_plan' => __( 'New Floor Plan', 'ns-real-estate' ),
+	            'floor_plan_note' => __( 'Provide the absolute url to a hosted image.', 'ns-real-estate' ),
 	        );
-	        wp_localize_script( 'rype-real-estate', 'rype_real_estate_local_script', $translation_array );
+	        wp_localize_script( 'ns-real-estate', 'ns_real_estate_local_script', $translation_array );
 	    
 	        /* dynamic scripts */
         	include( plugin_dir_path( __FILE__ ) . '/js/dynamic_scripts.php');
 
 	        //dynamic styles
-        	wp_enqueue_style('rype-real-estate-dynamic-styles', plugins_url('/css/dynamic-styles.css', __FILE__));
+        	wp_enqueue_style('ns-real-estate-dynamic-styles', plugins_url('/css/dynamic-styles.css', __FILE__));
         	include( plugin_dir_path( __FILE__ ) . '/css/dynamic_styles.php');
 	    }
 	}
