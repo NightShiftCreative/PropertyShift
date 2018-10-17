@@ -2,17 +2,17 @@
 /**
  * List Property Taxonomies Widget Class
  */
-class rype_real_estate_list_property_categories_widget extends WP_Widget {
+class ns_real_estate_list_property_categories_widget extends WP_Widget {
 
     /** constructor */
     function __construct() {
 
         $widget_options = array(
           'classname'=>'list-property-categories-widget',
-          'description'=> esc_html__('Display a list of property categories.', 'rype-real-estate'),
-          'panels_groups' => array('rype-real-estate')
+          'description'=> esc_html__('Display a list of property categories.', 'ns-real-estate'),
+          'panels_groups' => array('ns-real-estate')
         );
-        parent::__construct('rype_real_estate_list_property_categories_widget', esc_html__('(Rype) List Property Categories', 'rype-real-estate'), $widget_options);
+        parent::__construct('ns_real_estate_list_property_categories_widget', esc_html__('(NightShift) List Property Categories', 'ns-real-estate'), $widget_options);
     }
 
     /** @see WP_Widget::widget */
@@ -49,7 +49,7 @@ class rype_real_estate_list_property_categories_widget extends WP_Widget {
                                     <a href="<?php echo esc_attr(get_term_link($property_type->slug, $category)); ?>" style="background:url(<?php echo $term_img; ?>) no-repeat center; background-size:cover;" class="property-cat">
                                         <div class="img-overlay black"></div>
                                         <h3><?php echo $property_type->name; ?></h3>
-                                        <?php if($show_count == true) { ?><span class="button small"><?php echo $property_type->count.' '. esc_html__( 'Properties', 'rype-real-estate' ); ?></span><?php } ?>
+                                        <?php if($show_count == true) { ?><span class="button small"><?php echo $property_type->count.' '. esc_html__( 'Properties', 'ns-real-estate' ); ?></span><?php } ?>
                                     </a>
                                     <?php echo '</div>';
                                     $count++;
@@ -109,59 +109,59 @@ class rype_real_estate_list_property_categories_widget extends WP_Widget {
         ?>
 
         <p>
-           <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title:', 'rype-real-estate'); ?></label>
+           <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title:', 'ns-real-estate'); ?></label>
            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
         </p>
 
         <p>
-          <label for="<?php echo esc_attr($this->get_field_id('num')); ?>"><?php esc_html_e('Number of Categories:', 'rype-real-estate'); ?></label>
+          <label for="<?php echo esc_attr($this->get_field_id('num')); ?>"><?php esc_html_e('Number of Categories:', 'ns-real-estate'); ?></label>
           <input class="widefat" id="<?php echo esc_attr($this->get_field_id('num')); ?>" name="<?php echo esc_attr($this->get_field_name('num')); ?>" type="number" value="<?php echo esc_attr($num); ?>" />
         </p>
 
         <p>
-          <label for="<?php echo esc_attr($this->get_field_id('layout')); ?>"><?php esc_html_e('Listing Layout:', 'rype-real-estate'); ?></label>
+          <label for="<?php echo esc_attr($this->get_field_id('layout')); ?>"><?php esc_html_e('Listing Layout:', 'ns-real-estate'); ?></label>
           <select class="widefat" name="<?php echo esc_attr($this->get_field_name('layout')); ?>">
-            <option value="tile" <?php if($layout == 'tile') { echo 'selected'; } ?>><?php esc_html_e('Tile', 'rype-real-estate'); ?></option>
-            <option value="list" <?php if($layout == 'list') { echo 'selected'; } ?>><?php esc_html_e('List', 'rype-real-estate'); ?></option>
+            <option value="tile" <?php if($layout == 'tile') { echo 'selected'; } ?>><?php esc_html_e('Tile', 'ns-real-estate'); ?></option>
+            <option value="list" <?php if($layout == 'list') { echo 'selected'; } ?>><?php esc_html_e('List', 'ns-real-estate'); ?></option>
           </select>
         </p>
 
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('category')); ?>"><?php esc_html_e('Category:', 'rype-real-estate'); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('category')); ?>"><?php esc_html_e('Category:', 'ns-real-estate'); ?></label>
             <select class="widefat" name="<?php echo esc_attr($this->get_field_name('category')); ?>">
-                <option value="property_type" <?php if($category == 'property_type') { echo 'selected'; } ?>><?php esc_html_e('Property Type', 'rype-real-estate'); ?></option>
-                <option value="property_status" <?php if($category == 'property_status') { echo 'selected'; } ?>><?php esc_html_e('Property Status', 'rype-real-estate'); ?></option>
-                <option value="property_location" <?php if($category == 'property_location') { echo 'selected'; } ?>><?php esc_html_e('Property Location', 'rype-real-estate'); ?></option>
-                <option value="property_amenities" <?php if($category == 'property_amenities') { echo 'selected'; } ?>><?php esc_html_e('Property Amenities', 'rype-real-estate'); ?></option>
+                <option value="property_type" <?php if($category == 'property_type') { echo 'selected'; } ?>><?php esc_html_e('Property Type', 'ns-real-estate'); ?></option>
+                <option value="property_status" <?php if($category == 'property_status') { echo 'selected'; } ?>><?php esc_html_e('Property Status', 'ns-real-estate'); ?></option>
+                <option value="property_location" <?php if($category == 'property_location') { echo 'selected'; } ?>><?php esc_html_e('Property Location', 'ns-real-estate'); ?></option>
+                <option value="property_amenities" <?php if($category == 'property_amenities') { echo 'selected'; } ?>><?php esc_html_e('Property Amenities', 'ns-real-estate'); ?></option>
             </select>
         </p>
 
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('order')); ?>"><?php esc_html_e('Order:', 'rype-real-estate'); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('order')); ?>"><?php esc_html_e('Order:', 'ns-real-estate'); ?></label>
             <select class="widefat" id="<?php echo esc_attr($this->get_field_id('order')); ?>" name="<?php echo esc_attr($this->get_field_name('order')); ?>">
-                <option value="desc" <?php if($order == 'desc') { echo 'selected'; } ?>><?php esc_html_e('Descending', 'rype-real-estate'); ?></option>
-                <option value="asc" <?php if($order == 'asc') { echo 'selected'; } ?>><?php esc_html_e('Ascending', 'rype-real-estate'); ?></option>
+                <option value="desc" <?php if($order == 'desc') { echo 'selected'; } ?>><?php esc_html_e('Descending', 'ns-real-estate'); ?></option>
+                <option value="asc" <?php if($order == 'asc') { echo 'selected'; } ?>><?php esc_html_e('Ascending', 'ns-real-estate'); ?></option>
             </select>
         </p>
 
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('order_by')); ?>"><?php esc_html_e('Order By:', 'rype-real-estate'); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('order_by')); ?>"><?php esc_html_e('Order By:', 'ns-real-estate'); ?></label>
             <select class="widefat" id="<?php echo esc_attr($this->get_field_id('order_by')); ?>" name="<?php echo esc_attr($this->get_field_name('order_by')); ?>">
-                <option value="count" <?php if($order_by == 'count') { echo 'selected'; } ?>><?php esc_html_e('Count', 'rype-real-estate'); ?></option>
-                <option value="date" <?php if($order_by == 'date') { echo 'selected'; } ?>><?php esc_html_e('Date', 'rype-real-estate'); ?></option>
-                <option value="title" <?php if($order_by == 'title') { echo 'selected'; } ?>><?php esc_html_e('Title', 'rype-real-estate'); ?></option>
+                <option value="count" <?php if($order_by == 'count') { echo 'selected'; } ?>><?php esc_html_e('Count', 'ns-real-estate'); ?></option>
+                <option value="date" <?php if($order_by == 'date') { echo 'selected'; } ?>><?php esc_html_e('Date', 'ns-real-estate'); ?></option>
+                <option value="title" <?php if($order_by == 'title') { echo 'selected'; } ?>><?php esc_html_e('Title', 'ns-real-estate'); ?></option>
             </select>
         </p>
 
         <p>
           <input id="<?php echo esc_attr($this->get_field_id('show_count')); ?>" name="<?php echo esc_attr($this->get_field_name('show_count')); ?>" type="checkbox" value="true" <?php if($show_count == 'true') { echo 'checked'; } ?> />
-          <label for="<?php echo esc_attr($this->get_field_id('show_count')); ?>"><?php esc_html_e('Show Count', 'rype-real-estate'); ?></label>
+          <label for="<?php echo esc_attr($this->get_field_id('show_count')); ?>"><?php esc_html_e('Show Count', 'ns-real-estate'); ?></label>
         </p>
 
         <?php
     }
 
 } // class utopian_recent_posts
-add_action('widgets_init', create_function('', 'return register_widget("rype_real_estate_list_property_categories_widget");'));
+add_action('widgets_init', create_function('', 'return register_widget("ns_real_estate_list_property_categories_widget");'));
 
 ?>

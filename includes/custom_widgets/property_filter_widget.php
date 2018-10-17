@@ -3,17 +3,17 @@
  * Property Filter Widget Class
  */
 
-class rype_real_estate_property_filter_widget extends WP_Widget {
+class ns_real_estate_property_filter_widget extends WP_Widget {
 
     /** constructor */
     function __construct() {
 
         $widget_options = array(
           'classname'=>'property-filter-widget',
-          'description'=> esc_html__('Display property filter.', 'rype-real-estate'),
-          'panels_groups' => array('rype-real-estate')
+          'description'=> esc_html__('Display property filter.', 'ns-real-estate'),
+          'panels_groups' => array('ns-real-estate')
         );
-		parent::__construct('rype_real_estate_property_filter_widget', esc_html__('(Rype) Property Filter', 'rype-real-estate'), $widget_options);
+		parent::__construct('ns_real_estate_property_filter_widget', esc_html__('(NightShift) Property Filter', 'ns-real-estate'), $widget_options);
     }
 
     /** @see WP_Widget::widget */
@@ -61,12 +61,12 @@ class rype_real_estate_property_filter_widget extends WP_Widget {
         ?>
 
         <p>
-           <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title:', 'rype-real-estate'); ?></label>
+           <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title:', 'ns-real-estate'); ?></label>
            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
         </p>
 
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('property_filter_id')); ?>"><?php esc_html_e('Select a Filter', 'rype-real-estate'); ?></label><br/>
+            <label for="<?php echo esc_attr($this->get_field_id('property_filter_id')); ?>"><?php esc_html_e('Select a Filter', 'ns-real-estate'); ?></label><br/>
             <select style="width:100%" name="<?php echo esc_attr($this->get_field_name('property_filter_id')); ?>">
                 <?php
                     $filter_listing_args = array(
@@ -82,12 +82,12 @@ class rype_real_estate_property_filter_widget extends WP_Widget {
                 <?php else: ?>
                 <?php endif; ?>
             </select>
-            <span class="admin-module-note"><a href="<?php echo admin_url('edit.php?post_type=rype-property-filter'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage property filters', 'rype-real-estate'); ?></a></span><br/>
+            <span class="admin-module-note"><a href="<?php echo admin_url('edit.php?post_type=rype-property-filter'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage property filters', 'ns-real-estate'); ?></a></span><br/>
         </p>
 
     <?php }
 
 } // class utopian_recent_posts
-add_action('widgets_init', create_function('', 'return register_widget("rype_real_estate_property_filter_widget");'));
+add_action('widgets_init', create_function('', 'return register_widget("ns_real_estate_property_filter_widget");'));
 
 ?>

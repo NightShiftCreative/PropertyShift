@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 	/********************************************/
 	/* REAL ESTATE SHORTCODE SELECTOR */
 	/********************************************/
-	function rypeRealEstateInsertShortcode(shortcode) {
+	function nsRealEstateInsertShortcode(shortcode) {
         var shortcodeOutput = '';
         var visualEditor = (typeof tinyMCE != "undefined") && tinyMCE.activeEditor && !tinyMCE.activeEditor.isHidden();
 
@@ -65,7 +65,7 @@ jQuery(document).ready(function($) {
 
     $('.shortcode-selector-options').on('click', '.insert-shortcode-real-estate', function() { 
         var shortcode = $('.shortcode-selector-options .admin-module.active').attr('id');
-        rypeRealEstateInsertShortcode(shortcode);
+        nsRealEstateInsertShortcode(shortcode);
     });
 
 	/********************************************/

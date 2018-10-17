@@ -2,12 +2,12 @@
 /*-----------------------------------------------------------------------------------*/
 /*  OUTPUT ADD-ONS PAGE STRUCTURE
 /*-----------------------------------------------------------------------------------*/
-function rype_real_estate_add_ons_page() { 
-	$page_name = 'Rype Real Estate';
+function ns_real_estate_add_ons_page() { 
+	$page_name = 'NightShift Real Estate';
     $settings_group = null;
     $pages = rype_real_estate_get_admin_pages();
     $display_actions = 'false';
-    $content = rype_real_estate_add_ons_page_content();
+    $content = ns_real_estate_add_ons_page_content();
     $content_class = 'ns-modules';
     echo ns_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class);
 }
@@ -15,7 +15,7 @@ function rype_real_estate_add_ons_page() {
 /*-----------------------------------------------------------------------------------*/
 /*  OUTPUT ADD-ONS PAGE CONTENT
 /*-----------------------------------------------------------------------------------*/
-function rype_real_estate_add_ons_page_content() {
+function ns_real_estate_add_ons_page_content() {
     ob_start(); ?>
 
     <?php 
@@ -28,11 +28,11 @@ function rype_real_estate_add_ons_page_content() {
             <div class="ns-module-header">
                 <div class="ns-module-icon"><img src="<?php echo plugins_url('/rype-basics/images/icon-post-sharing.svg'); ?>" alt="" /></div>
                 <?php echo ns_basics_get_license_status($open_houses_license, '#', '?page=rype-real-estate-license-keys', 'true'); ?>
-                <h4><?php esc_html_e('Open Houses', 'rype-real-estate'); ?></h4>
+                <h4><?php esc_html_e('Open Houses', 'ns-real-estate'); ?></h4>
             </div>
             <div class="ns-module-content">
-                <span class="admin-module-note"><?php esc_html_e('Sell more properties by advertising open houses. Add unlimited open houses dates and times to your listings.', 'rype-real-estate'); ?></span>
-                <a href="#" target="_blank" class="ns-meta-item"><?php esc_html_e('View Details', 'rype-real-estate'); ?> </a>
+                <span class="admin-module-note"><?php esc_html_e('Sell more properties by advertising open houses. Add unlimited open houses dates and times to your listings.', 'ns-real-estate'); ?></span>
+                <a href="#" target="_blank" class="ns-meta-item"><?php esc_html_e('View Details', 'ns-real-estate'); ?> </a>
             </div>
         </div>
 
