@@ -21,7 +21,7 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
         global $wpdb;
 		global $post;
 
-        $property_listing_crop = esc_attr(get_option('rypecore_property_listing_crop', 'true'));
+        $property_listing_crop = esc_attr(get_option('ns_property_listing_crop', 'true'));
 
         $title = isset( $instance['title'] ) ? apply_filters('widget_title', $instance['title']) : '';
         $num = isset( $instance['num'] ) ? strip_tags($instance['num']) : 3;

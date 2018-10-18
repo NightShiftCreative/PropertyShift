@@ -742,7 +742,7 @@ function rype_real_estate_property_type_init() {
 add_action( 'init', 'rype_real_estate_property_type_init' );
 
 function rype_real_estate_property_status_init() {
-    $property_status_tax_slug = get_option('rypecore_property_status_tax_slug', 'property-status');
+    $property_status_tax_slug = get_option('ns_property_status_tax_slug', 'property-status');
     $labels = array(
     'name'                          => __( 'Property Status', 'rype-real-estate' ),
     'singular_name'                 => __( 'Property Status', 'rype-real-estate' ),
@@ -773,7 +773,7 @@ function rype_real_estate_property_status_init() {
 add_action( 'init', 'rype_real_estate_property_status_init' );
 
 function rype_real_estate_property_location_init() {
-    $property_location_tax_slug = get_option('rypecore_property_location_tax_slug', 'property-location');
+    $property_location_tax_slug = get_option('ns_property_location_tax_slug', 'property-location');
     $labels = array(
     'name'                          => __( 'Property Location', 'rype-real-estate' ),
     'singular_name'                 => __( 'Property Location', 'rype-real-estate' ),
@@ -804,7 +804,7 @@ function rype_real_estate_property_location_init() {
 add_action( 'init', 'rype_real_estate_property_location_init' );
 
 function rype_real_estate_property_amenities_init() {
-    $property_amenities_tax_slug = get_option('rypecore_property_amenities_tax_slug', 'property-amenity');
+    $property_amenities_tax_slug = get_option('ns_property_amenities_tax_slug', 'property-amenity');
     $labels = array(
     'name'                          => __( 'Amenities', 'rype-real-estate' ),
     'singular_name'                 => __( 'Amenity', 'rype-real-estate' ),

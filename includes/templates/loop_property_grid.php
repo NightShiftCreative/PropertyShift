@@ -2,10 +2,10 @@
     global $post; 
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
 	$properties_page = esc_attr(get_option('ns_properties_page'));
-    $property_listing_display_time = esc_attr(get_option('rypecore_property_listing_display_time', 'true'));
-    $property_listing_display_favorite = esc_attr(get_option('rypecore_property_listing_display_favorite', 'true'));
-    $property_listing_display_share = esc_attr(get_option('rypecore_property_listing_display_share', 'true'));
-    $property_listing_crop = esc_attr(get_option('rypecore_property_listing_crop', 'true'));
+    $property_listing_display_time = esc_attr(get_option('ns_property_listing_display_time', 'true'));
+    $property_listing_display_favorite = esc_attr(get_option('ns_property_listing_display_favorite', 'true'));
+    $property_listing_display_share = esc_attr(get_option('ns_property_listing_display_share', 'true'));
+    $property_listing_crop = esc_attr(get_option('ns_property_listing_crop', 'true'));
 	
 	//Get property details
     $values = get_post_custom( $post->ID );
