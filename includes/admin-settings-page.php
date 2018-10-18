@@ -108,7 +108,7 @@ function ns_real_estate_get_admin_pages() {
 }
 
 function ns_real_estate_settings_page() {
-    $page_name = 'Rype Real Estate';
+    $page_name = 'NightShift Real Estate';
     $settings_group = 'ns-real-estate-settings-group';
     $pages = ns_real_estate_get_admin_pages();
     $display_actions = 'true';
@@ -421,7 +421,7 @@ function ns_real_estate_settings_page_content() {
                             <table class="left right-bump">
                             <tr>
                             <td><input type="radio" name="ns_property_detail_default_layout" id="page_layout_full" value="full" <?php if($property_detail_default_layout == 'full') { echo 'checked="checked"'; } ?> /></td>
-                            <td><img class="sidebar-icon" src="<?php echo plugins_url('/rype-basics/images/full-width-icon.png'); ?>" alt="" /></td>
+                            <td><img class="sidebar-icon" src="<?php echo plugins_url('/ns-basics/images/full-width-icon.png'); ?>" alt="" /></td>
                             </tr>
                             <tr><td></td><td><?php echo esc_html_e('Full Width', 'ns-real-estate'); ?></td></tr>
                             </table>
@@ -429,7 +429,7 @@ function ns_real_estate_settings_page_content() {
                             <table class="left">
                             <tr>
                             <td><input type="radio" name="ns_property_detail_default_layout" id="page_layout_right_sidebar" value="right sidebar" <?php if($property_detail_default_layout == 'right sidebar') { echo 'checked="checked"'; } ?> /></td>
-                            <td><img class="sidebar-icon" src="<?php echo plugins_url('/rype-basics/images/right-sidebar-icon.png'); ?>" alt="" /></td>
+                            <td><img class="sidebar-icon" src="<?php echo plugins_url('/ns-basics/images/right-sidebar-icon.png'); ?>" alt="" /></td>
                             </tr>
                             <tr><td></td><td><?php echo esc_html_e('Right Sidebar', 'ns-real-estate'); ?></td></tr>
                             </table>
@@ -437,7 +437,7 @@ function ns_real_estate_settings_page_content() {
                             <table class="left">
                             <tr>
                             <td><input type="radio" name="ns_property_detail_default_layout" id="page_layout_left_sidebar" value="left sidebar" <?php if($property_detail_default_layout == 'left sidebar') { echo 'checked="checked"'; } ?> /></td>
-                            <td><img class="sidebar-icon" src="<?php echo plugins_url('/rype-basics/images/left-sidebar-icon.png'); ?>" alt="" /></td>
+                            <td><img class="sidebar-icon" src="<?php echo plugins_url('/ns-basics/images/left-sidebar-icon.png'); ?>" alt="" /></td>
                             </tr>
                             <tr><td></td><td><?php echo esc_html_e('Left Sidebar', 'ns-real-estate'); ?></td></tr>
                             </table>
