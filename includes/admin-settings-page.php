@@ -37,11 +37,11 @@ function ns_real_estate_register_options() {
     register_setting( 'ns-real-estate-settings-group', 'ns_property_listing_display_share' );
 
     register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_template' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_display_gallery_agent' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_default_layout' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_id' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_items' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_amenities_hide_empty' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_display_gallery_agent' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_default_layout' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_id' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_items' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_amenities_hide_empty' );
     register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_map_zoom' );
     register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_map_height' );
     register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_agent_contact_form' );
@@ -388,7 +388,7 @@ function ns_real_estate_settings_page_content() {
                             <p><input type="radio" id="property_detail_template_full" name="ns_property_detail_template" value="full" <?php if(esc_attr( get_option('ns_property_detail_template', 'classic')) == 'full') { echo 'checked'; } ?> /><?php echo esc_html_e('Full Width Gallery', 'ns-real-estate'); ?></p>
                             <p><input type="radio" id="property_detail_template_agent_contact" name="ns_property_detail_template" value="agent_contact" <?php if(esc_attr( get_option('ns_property_detail_template', 'classic')) == 'agent_contact') { echo 'checked'; } ?> /><?php echo esc_html_e('Boxed Gallery', 'ns-real-estate'); ?></p>
                             <p class="admin-module-property-detail-display-gallery-agent <?php if(get_option('ns_property_detail_template', 'classic') != 'agent_contact') { echo 'hide-soft'; } ?>">
-                                <input type="checkbox" id="property_detail_display_gallery_agent" name="rypecore_property_detail_display_gallery_agent" value="true" <?php checked('true', get_option('rypecore_property_detail_display_gallery_agent', 'true'), true) ?> />
+                                <input type="checkbox" id="property_detail_display_gallery_agent" name="ns_property_detail_display_gallery_agent" value="true" <?php checked('true', get_option('ns_property_detail_display_gallery_agent', 'true'), true) ?> />
                                 <label for="property_detail_display_gallery_agent"><?php echo esc_html_e('Display agent contact information in gallery?', 'ns-real-estate'); ?></label>
                             </p>
                         </td>
@@ -399,10 +399,10 @@ function ns_real_estate_settings_page_content() {
                     <tr>
                         <td class="admin-module-label"><label><?php echo esc_html_e('Select the default page layout for property detail pages', 'ns-real-estate'); ?></label></td>
                         <td class="admin-module-field">
-                            <?php $property_detail_default_layout = get_option('rypecore_property_detail_default_layout', 'right sidebar'); ?>
+                            <?php $property_detail_default_layout = get_option('ns_property_detail_default_layout', 'right sidebar'); ?>
                             <table class="left right-bump">
                             <tr>
-                            <td><input type="radio" name="rypecore_property_detail_default_layout" id="page_layout_full" value="full" <?php if($property_detail_default_layout == 'full') { echo 'checked="checked"'; } ?> /></td>
+                            <td><input type="radio" name="ns_property_detail_default_layout" id="page_layout_full" value="full" <?php if($property_detail_default_layout == 'full') { echo 'checked="checked"'; } ?> /></td>
                             <td><img class="sidebar-icon" src="<?php echo plugins_url('/rype-basics/images/full-width-icon.png'); ?>" alt="" /></td>
                             </tr>
                             <tr><td></td><td><?php echo esc_html_e('Full Width', 'ns-real-estate'); ?></td></tr>
@@ -410,7 +410,7 @@ function ns_real_estate_settings_page_content() {
 
                             <table class="left">
                             <tr>
-                            <td><input type="radio" name="rypecore_property_detail_default_layout" id="page_layout_right_sidebar" value="right sidebar" <?php if($property_detail_default_layout == 'right sidebar') { echo 'checked="checked"'; } ?> /></td>
+                            <td><input type="radio" name="ns_property_detail_default_layout" id="page_layout_right_sidebar" value="right sidebar" <?php if($property_detail_default_layout == 'right sidebar') { echo 'checked="checked"'; } ?> /></td>
                             <td><img class="sidebar-icon" src="<?php echo plugins_url('/rype-basics/images/right-sidebar-icon.png'); ?>" alt="" /></td>
                             </tr>
                             <tr><td></td><td><?php echo esc_html_e('Right Sidebar', 'ns-real-estate'); ?></td></tr>
@@ -418,7 +418,7 @@ function ns_real_estate_settings_page_content() {
 
                             <table class="left">
                             <tr>
-                            <td><input type="radio" name="rypecore_property_detail_default_layout" id="page_layout_left_sidebar" value="left sidebar" <?php if($property_detail_default_layout == 'left sidebar') { echo 'checked="checked"'; } ?> /></td>
+                            <td><input type="radio" name="ns_property_detail_default_layout" id="page_layout_left_sidebar" value="left sidebar" <?php if($property_detail_default_layout == 'left sidebar') { echo 'checked="checked"'; } ?> /></td>
                             <td><img class="sidebar-icon" src="<?php echo plugins_url('/rype-basics/images/left-sidebar-icon.png'); ?>" alt="" /></td>
                             </tr>
                             <tr><td></td><td><?php echo esc_html_e('Left Sidebar', 'ns-real-estate'); ?></td></tr>
@@ -432,9 +432,9 @@ function ns_real_estate_settings_page_content() {
                     <tr>
                         <td class="admin-module-label"><label><?php echo esc_html_e('Show Property ID on Front-End', 'ns-real-estate'); ?></label></td>
                         <td class="admin-module-field">
-                            <div class="toggle-switch" title="<?php if(get_option('rypecore_property_detail_id') == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
-                                <input type="checkbox" name="rypecore_property_detail_id" value="true" class="toggle-switch-checkbox" id="property_detail_id" <?php checked('true', get_option('rypecore_property_detail_id'), true) ?>>
-                                <label class="toggle-switch-label" for="property_detail_id"><?php if(get_option('rypecore_property_detail_id') == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
+                            <div class="toggle-switch" title="<?php if(get_option('ns_property_detail_id') == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
+                                <input type="checkbox" name="ns_property_detail_id" value="true" class="toggle-switch-checkbox" id="property_detail_id" <?php checked('true', get_option('ns_property_detail_id'), true) ?>>
+                                <label class="toggle-switch-label" for="property_detail_id"><?php if(get_option('ns_property_detail_id') == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
                             </div>
                         </td>
                     </tr>
@@ -445,7 +445,7 @@ function ns_real_estate_settings_page_content() {
                     <ul class="sortable-list property-detail-items-list">
                         <?php
                         $property_detail_items_default = rype_real_estate_load_default_property_detail_items();
-                        $property_detail_items = get_option('rypecore_property_detail_items', $property_detail_items_default);
+                        $property_detail_items = get_option('ns_property_detail_items', $property_detail_items_default);
                         $count = 0;
 
                         foreach($property_detail_items as $value) { ?>
@@ -470,13 +470,13 @@ function ns_real_estate_settings_page_content() {
                                 <div class="sortable-item-header">
                                     <div class="sort-arrows"><i class="fa fa-bars"></i></div>
                                     <div class="toggle-switch" title="<?php if($active == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
-                                        <input type="checkbox" name="rypecore_property_detail_items[<?php echo $count; ?>][active]" value="true" class="toggle-switch-checkbox" id="property_detail_item_<?php echo esc_attr($slug); ?>" <?php checked('true', $active, true) ?>>
+                                        <input type="checkbox" name="ns_property_detail_items[<?php echo $count; ?>][active]" value="true" class="toggle-switch-checkbox" id="property_detail_item_<?php echo esc_attr($slug); ?>" <?php checked('true', $active, true) ?>>
                                         <label class="toggle-switch-label" for="property_detail_item_<?php echo esc_attr($slug); ?>"><?php if($active == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
                                     </div>
                                     <span class="sortable-item-title"><?php echo esc_attr($name); ?></span><div class="clear"></div>
-                                    <input type="hidden" name="rypecore_property_detail_items[<?php echo $count; ?>][name]" value="<?php echo $name; ?>" />
-                                    <input type="hidden" name="rypecore_property_detail_items[<?php echo $count; ?>][slug]" value="<?php echo $slug; ?>" />
-                                    <?php if(isset($value['add_on'])) { ?><input type="hidden" name="rypecore_property_detail_items[<?php echo $count; ?>][add_on]" value="<?php echo $value['add_on']; ?>" /><?php } ?>
+                                    <input type="hidden" name="ns_property_detail_items[<?php echo $count; ?>][name]" value="<?php echo $name; ?>" />
+                                    <input type="hidden" name="ns_property_detail_items[<?php echo $count; ?>][slug]" value="<?php echo $slug; ?>" />
+                                    <?php if(isset($value['add_on'])) { ?><input type="hidden" name="ns_property_detail_items[<?php echo $count; ?>][add_on]" value="<?php echo $value['add_on']; ?>" /><?php } ?>
                                 </div>
 
                                 <a href="#advanced-options-content-<?php echo esc_attr($slug); ?>" class="sortable-item-action advanced-options-toggle right"><i class="fa fa-gear"></i> <?php echo esc_html_e('Additional Settings', 'ns-real-estate'); ?></a>
@@ -486,7 +486,7 @@ function ns_real_estate_settings_page_content() {
                                         <tr>
                                             <td class="admin-module-label"><label><?php esc_html_e('Label:', 'ns-real-estate'); ?></label></td>
                                             <td class="admin-module-field">
-                                                <input type="text" class="sortable-item-label-input" name="rypecore_property_detail_items[<?php echo $count; ?>][label]" value="<?php echo $label; ?>" />
+                                                <input type="text" class="sortable-item-label-input" name="ns_property_detail_items[<?php echo $count; ?>][label]" value="<?php echo $label; ?>" />
                                             </td>
                                         </tr>
                                     </table>
@@ -495,7 +495,7 @@ function ns_real_estate_settings_page_content() {
                                         <tr>
                                             <td class="admin-module-label"><label><?php esc_html_e('Display in Sidebar', 'ns-real-estate'); ?></label></td>
                                             <td class="admin-module-field">
-                                                <input type="checkbox" name="rypecore_property_detail_items[<?php echo $count; ?>][sidebar]" value="true" <?php checked('true', $sidebar, true) ?> />
+                                                <input type="checkbox" name="ns_property_detail_items[<?php echo $count; ?>][sidebar]" value="true" <?php checked('true', $sidebar, true) ?> />
                                             </td>
                                         </tr>
                                     </table>
@@ -505,7 +505,7 @@ function ns_real_estate_settings_page_content() {
                                             <tr>
                                                 <td class="admin-module-label"><label><?php echo esc_html_e('Hide empty amenities?', 'ns-real-estate'); ?></label></td>
                                                 <td class="admin-module-field">
-                                                    <input type="checkbox" id="property_detail_amenities_hide_empty" name="rypecore_property_detail_amenities_hide_empty" value="true" <?php checked('true', get_option('rypecore_property_detail_amenities_hide_empty'), true) ?> />
+                                                    <input type="checkbox" id="property_detail_amenities_hide_empty" name="ns_property_detail_amenities_hide_empty" value="true" <?php checked('true', get_option('ns_property_detail_amenities_hide_empty'), true) ?> />
                                                 </td>
                                             </tr>
                                         </table>
