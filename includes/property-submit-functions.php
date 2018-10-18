@@ -520,7 +520,7 @@ function rype_real_estate_property_submit_form() {
 	            </div>
 
 	            <?php 
-                $custom_fields = get_option('rypecore_custom_fields');
+                $custom_fields = get_option('ns_property_custom_fields');
                 if(!empty($custom_fields)) { ?>
                     <div class="module-border form-block-property-custom-fields">
                     <h3><?php esc_html_e('Additional Details', 'rype-real-estate'); ?></h3>

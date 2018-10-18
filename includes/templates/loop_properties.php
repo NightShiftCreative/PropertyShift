@@ -158,7 +158,7 @@
         );
 
         //custom fields query
-        $custom_fields = get_option('rypecore_custom_fields');
+        $custom_fields = get_option('ns_property_custom_fields');
         if(!empty($custom_fields)) {
             foreach($custom_fields as $field) {
                 $custom_field_key = strtolower(str_replace(' ', '_', $field['name'])); 

@@ -31,7 +31,7 @@ add_action( 'template_redirect', function() {
 /*-----------------------------------------------------------------------------------*/
 add_action( 'init', 'rype_real_estate_create_agents_post_type' );
 function rype_real_estate_create_agents_post_type() {
-    $agents_slug = get_option('rypecore_agent_detail_slug', 'agents');
+    $agents_slug = get_option('ns_agent_detail_slug', 'agents');
     register_post_type( 'rype-agent',
         array(
             'labels' => array(
@@ -342,11 +342,11 @@ if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page
 function rype_real_estate_agent_contact_form($agent_email) {
 
     $site_title = get_bloginfo('name');
-    $agent_form_submit_text = esc_attr(get_option('rypecore_agent_form_submit_text', esc_html__('Contact Agent', 'rype-real-estate')) );
-    $agent_form_success = esc_attr(get_option('rypecore_agent_form_success', esc_html__('Thanks! Your email has been delivered!', 'rype-real-estate')));
+    $agent_form_submit_text = esc_attr(get_option('ns_agent_form_submit_text', esc_html__('Contact Agent', 'rype-real-estate')) );
+    $agent_form_success = esc_attr(get_option('ns_agent_form_success', esc_html__('Thanks! Your email has been delivered!', 'rype-real-estate')));
     
     if(is_singular('rype-property')) {
-        $agent_form_message_placeholder = esc_attr(get_option('rypecore_agent_form_message_placeholder', esc_html__('I am interested in this property and would like to know more.', 'rype-real-estate')) );
+        $agent_form_message_placeholder = esc_attr(get_option('ns_agent_form_message_placeholder', esc_html__('I am interested in this property and would like to know more.', 'rype-real-estate')) );
     } else {
         $agent_form_message_placeholder =  esc_html__( 'Message', 'rype-real-estate' );
     }

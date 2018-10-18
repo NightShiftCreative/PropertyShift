@@ -1,7 +1,7 @@
 <?php
     //global settings
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
-    $agent_listing_crop = esc_attr(get_option('rypecore_agent_listing_crop', 'true'));
+    $agent_listing_crop = esc_attr(get_option('ns_agent_listing_crop', 'true'));
 
 	//Get agent details
 	$agent_details_values = get_post_custom( $post->ID );

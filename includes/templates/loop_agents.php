@@ -3,7 +3,7 @@
 	global $post;
     $values = get_post_custom( $post->ID );
     $page_layout = isset( $values['ns_basics_page_layout'] ) ? esc_attr( $values['ns_basics_page_layout'][0] ) : 'full';
-    $num_agents_per_page = esc_attr(get_option('rypecore_num_agents_per_page', 12));
+    $num_agents_per_page = esc_attr(get_option('ns_num_agents_per_page', 12));
 	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
     //Get template args

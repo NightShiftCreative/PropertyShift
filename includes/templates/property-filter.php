@@ -24,7 +24,7 @@ $price_range_max = isset( $values['rypecore_filter_price_max'] ) ? esc_attr( $va
 $price_range_min_start = isset( $values['rypecore_filter_price_min_start'] ) ? esc_attr( $values['rypecore_filter_price_min_start'][0] ) : 200000;
 $price_range_max_start = isset( $values['rypecore_filter_price_max_start'] ) ? esc_attr( $values['rypecore_filter_price_max_start'][0] ) : 600000;
 $submit_text = isset( $values['rypecore_property_filter_submit_text'] ) ? esc_attr( $values['rypecore_property_filter_submit_text'][0] ) : esc_html__('Find Properties', 'rypecore');
-$custom_fields = get_option('rypecore_custom_fields');
+$custom_fields = get_option('ns_property_custom_fields');
 
 //Get all current filters from URL
 $currentFilters = array();
@@ -230,7 +230,7 @@ if (!empty($filter_fields)) { ?>
 		                        <?php } ?>
 
 		                        <?php 
-		                        $custom_fields = get_option('rypecore_custom_fields');
+		                        $custom_fields = get_option('ns_property_custom_fields');
 		                        if($custom == 'true' && !empty($custom_fields)) { ?>
 		                            <?php 
 		                            foreach($custom_fields as $field) {
@@ -400,7 +400,7 @@ if (!empty($filter_fields)) { ?>
 
 	                            <?php if($custom == 'true') { ?>
 	                                <?php 
-	                                $custom_fields = get_option('rypecore_custom_fields');
+	                                $custom_fields = get_option('ns_property_custom_fields');
 	                                foreach($custom_fields as $field) {
 	                                    $custom_field_key = strtolower(str_replace(' ', '_', $field['name']));
 	                                    if($field['id'] == $slug) {

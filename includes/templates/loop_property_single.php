@@ -8,11 +8,11 @@
     $google_maps_pin = esc_attr(get_option('rypecore_google_maps_pin'));
     if(empty($google_maps_pin)) { $google_maps_pin = plugins_url( '/rype-real-estate/images/pin.png'); }
     $property_detail_amenities_hide_empty = esc_attr(get_option('ns_property_detail_amenities_hide_empty', 'false'));
-    $property_detail_map_zoom = esc_attr(get_option('rypecore_property_detail_map_zoom', 13));
+    $property_detail_map_zoom = esc_attr(get_option('ns_property_detail_map_zoom', 13));
     $property_detail_items_default = rype_real_estate_load_default_property_detail_items();
     $property_detail_items = get_option('ns_property_detail_items', $property_detail_items_default);
     $property_detail_id = esc_attr(get_option('ns_property_detail_id')); 
-    $property_detail_agent_contact_form = esc_attr(get_option('rypecore_property_detail_agent_contact_form'));
+    $property_detail_agent_contact_form = esc_attr(get_option('ns_property_detail_agent_contact_form'));
 
     //Get template location
     if(isset($template_args)) { $template_location = $template_args['location']; } else { $template_location = ''; }
@@ -170,7 +170,7 @@
 							<?php //the_content(); ?>
 
                             <?php 
-                                $custom_fields = get_option('rypecore_custom_fields');
+                                $custom_fields = get_option('ns_property_custom_fields');
                                 if(!empty($custom_fields)) { 
                                     $count = 0; ?>
                                     <ul class="additional-details-list clean-list <?php if($custom_fields_count <= 3) { echo 'one-col'; } ?>">                    

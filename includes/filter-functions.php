@@ -114,7 +114,7 @@ function rype_real_estate_property_filter_details($post) {
 	$price_range_min_start = isset( $values['rypecore_filter_price_min_start'] ) ? esc_attr( $values['rypecore_filter_price_min_start'][0] ) : 200000;
 	$price_range_max_start = isset( $values['rypecore_filter_price_max_start'] ) ? esc_attr( $values['rypecore_filter_price_max_start'][0] ) : 600000;
 	$submit_text = isset( $values['rypecore_property_filter_submit_text'] ) ? esc_attr( $values['rypecore_property_filter_submit_text'][0] ) : esc_html__('Find Properties', 'rype-real-estate');
-	$custom_fields = get_option('rypecore_custom_fields');
+	$custom_fields = get_option('ns_property_custom_fields');
 	wp_nonce_field( 'rypecore_property_filter_details_meta_box_nonce', 'rypecore_property_filter_details_meta_box_nonce' );
 	?>
 

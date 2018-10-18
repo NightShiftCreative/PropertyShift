@@ -386,7 +386,7 @@ function rype_real_estate_property_details($post) {
             <div class="admin-module admin-module-custom-fields admin-module-custom-fields-property no-border">
                 <label><strong><?php echo esc_html_e('Custom Fields', 'rype-real-estate'); ?></strong></label><br/>
                 <?php 
-                    $custom_fields = get_option('rypecore_custom_fields');
+                    $custom_fields = get_option('ns_property_custom_fields');
                     if(!empty($custom_fields)) { 
                         $count = 0;
                         echo '<div class="custom-fields-container">';                    

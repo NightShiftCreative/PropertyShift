@@ -3,7 +3,7 @@
     /************************************************************************/
     /* MISC STYLES */
     /************************************************************************/
-    $property_detail_map_height = esc_attr(get_option('rypecore_property_detail_map_height', 250));
+    $property_detail_map_height = esc_attr(get_option('ns_property_detail_map_height', 250));
     $misc_css = "";
 
     //PROPERTIES

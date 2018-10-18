@@ -177,14 +177,14 @@ jQuery(document).ready(function($) {
                     <tr> \
                         <td> \
                             <label>'+ns_real_estate_local_script.value_text+'</label> \
-                            <input type="text" class="custom-field-name-input" name="rypecore_custom_fields['+count+'][name]" value="'+fieldValue+'" /> \
-                            <input type="hidden" class="custom-field-id" name="rypecore_custom_fields['+count+'][id]" value="'+fieldID+'" readonly /> \
+                            <input type="text" class="custom-field-name-input" name="ns_property_custom_fields['+count+'][name]" value="'+fieldValue+'" /> \
+                            <input type="hidden" class="custom-field-id" name="ns_property_custom_fields['+count+'][id]" value="'+fieldID+'" readonly /> \
                             <div class="edit-custom-field-form hide-soft"> \
                                 <table class="admin-module"> \
                                     <tr> \
                                     <td class="admin-module-label"><label>'+ns_real_estate_local_script.field_type_text+'</label></td> \
                                     <td class="admin-module-field"> \
-                                        <select class="custom-field-type-select" name="rypecore_custom_fields['+count+'][type]"> \
+                                        <select class="custom-field-type-select" name="ns_property_custom_fields['+count+'][type]"> \
                                             <option value="text">'+ns_real_estate_local_script.text_input_text+'</option> \
                                             <option value="num">'+ns_real_estate_local_script.num_input_text+'</option> \
                                             <option value="select">'+ns_real_estate_local_script.select_text+'</option> \
@@ -204,7 +204,7 @@ jQuery(document).ready(function($) {
                                 <table class="admin-module no-border"> \
                                     <tr> \
                                     <td class="admin-module-label"><label>'+ns_real_estate_local_script.front_end_text+'</label></td> \
-                                    <td class="admin-module-field"><input type="checkbox" name="rypecore_custom_fields['+count+'][front_end]" checked /></td> \
+                                    <td class="admin-module-field"><input type="checkbox" name="ns_property_custom_fields['+count+'][front_end]" checked /></td> \
                                     </tr> \
                                 </table> \
                             </div> \
@@ -278,7 +278,7 @@ jQuery(document).ready(function($) {
     //custom field select options
     $('.admin-module-custom-fields').on("click", ".add-custom-field-select", function() {
         var count = $(this).closest('.custom-field-item').index('.custom-field-item');
-        var selectOption = '<p><input type="text" name="rypecore_custom_fields['+count+'][select_options][]" placeholder="'+ns_real_estate_local_script.option_name_text+'" /><span class="delete-custom-field-select"><i class="fa fa-times"></i></span></p>';
+        var selectOption = '<p><input type="text" name="ns_property_custom_fields['+count+'][select_options][]" placeholder="'+ns_real_estate_local_script.option_name_text+'" /><span class="delete-custom-field-select"><i class="fa fa-times"></i></span></p>';
         $(this).parent().find('.custom-field-select-options-container').append(selectOption);
     });
 

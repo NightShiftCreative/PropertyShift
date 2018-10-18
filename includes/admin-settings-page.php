@@ -42,20 +42,20 @@ function ns_real_estate_register_options() {
     register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_id' );
     register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_items' );
     register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_amenities_hide_empty' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_map_zoom' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_map_height' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_property_detail_agent_contact_form' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_map_zoom' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_map_height' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_agent_contact_form' );
 
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_custom_fields' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_property_custom_fields' );
 
     //AGENT SETTINGS
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_num_agents_per_page' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_agent_detail_slug', 'ns_real_estate_sanitize_slug' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_agent_listing_crop' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_agent_detail_items' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_agent_form_message_placeholder' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_agent_form_success' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_agent_form_submit_text' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_num_agents_per_page' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_agent_detail_slug', 'ns_real_estate_sanitize_slug' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_agent_listing_crop' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_agent_detail_items' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_agent_form_message_placeholder' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_agent_form_success' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_agent_form_submit_text' );
 
     //MAP SETTINGS
     register_setting( 'ns-real-estate-settings-group', 'rypecore_google_maps_api' );
@@ -516,22 +516,22 @@ function ns_real_estate_settings_page_content() {
                                             <tr>
                                                 <td class="admin-module-label"><label><?php echo esc_html_e('Map Zoom', 'ns-real-estate'); ?></label></td>
                                                 <td class="admin-module-field">
-                                                    <select name="rypecore_property_detail_map_zoom">
-                                                        <option value="1" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '1') { echo 'selected'; } ?>>1</option>
-                                                        <option value="2" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '2') { echo 'selected'; } ?>>2</option>
-                                                        <option value="3" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '3') { echo 'selected'; } ?>>3</option>
-                                                        <option value="4" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '4') { echo 'selected'; } ?>>4</option>
-                                                        <option value="5" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '5') { echo 'selected'; } ?>>5</option>
-                                                        <option value="6" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '6') { echo 'selected'; } ?>>6</option>
-                                                        <option value="7" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '7') { echo 'selected'; } ?>>7</option>
-                                                        <option value="8" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '8') { echo 'selected'; } ?>>8</option>
-                                                        <option value="9" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '9') { echo 'selected'; } ?>>9</option>
-                                                        <option value="10" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '10') { echo 'selected'; } ?>>10</option>
-                                                        <option value="11" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '11') { echo 'selected'; } ?>>11</option>
-                                                        <option value="12" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '12') { echo 'selected'; } ?>>12</option>
-                                                        <option value="13" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '13') { echo 'selected'; } ?>>13</option>
-                                                        <option value="14" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '14') { echo 'selected'; } ?>>14</option>
-                                                        <option value="15" <?php if(esc_attr(get_option('rypecore_property_detail_map_zoom', 13)) == '15') { echo 'selected'; } ?>>15</option>
+                                                    <select name="ns_property_detail_map_zoom">
+                                                        <option value="1" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '1') { echo 'selected'; } ?>>1</option>
+                                                        <option value="2" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '2') { echo 'selected'; } ?>>2</option>
+                                                        <option value="3" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '3') { echo 'selected'; } ?>>3</option>
+                                                        <option value="4" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '4') { echo 'selected'; } ?>>4</option>
+                                                        <option value="5" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '5') { echo 'selected'; } ?>>5</option>
+                                                        <option value="6" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '6') { echo 'selected'; } ?>>6</option>
+                                                        <option value="7" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '7') { echo 'selected'; } ?>>7</option>
+                                                        <option value="8" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '8') { echo 'selected'; } ?>>8</option>
+                                                        <option value="9" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '9') { echo 'selected'; } ?>>9</option>
+                                                        <option value="10" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '10') { echo 'selected'; } ?>>10</option>
+                                                        <option value="11" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '11') { echo 'selected'; } ?>>11</option>
+                                                        <option value="12" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '12') { echo 'selected'; } ?>>12</option>
+                                                        <option value="13" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '13') { echo 'selected'; } ?>>13</option>
+                                                        <option value="14" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '14') { echo 'selected'; } ?>>14</option>
+                                                        <option value="15" <?php if(esc_attr(get_option('ns_property_detail_map_zoom', 13)) == '15') { echo 'selected'; } ?>>15</option>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -541,7 +541,7 @@ function ns_real_estate_settings_page_content() {
                                             <tr>
                                                 <td class="admin-module-label"><label><?php echo esc_html_e('Map Height', 'ns-real-estate'); ?></label></td>
                                                 <td class="admin-module-field">
-                                                    <input type="number" id="property_detail_map_height" name="rypecore_property_detail_map_height" value="<?php echo esc_attr( get_option('rypecore_property_detail_map_height', 250) ); ?>" /> Px
+                                                    <input type="number" id="property_detail_map_height" name="ns_property_detail_map_height" value="<?php echo esc_attr( get_option('ns_property_detail_map_height', 250) ); ?>" /> Px
                                                 </td>
                                             </tr>
                                         </table>
@@ -555,7 +555,7 @@ function ns_real_estate_settings_page_content() {
                                                     <span class="admin-module-note"><?php esc_html_e('Configure the agent contact form options in Theme Options > Agents > Agent Detail Options.', 'ns-real-estate'); ?></span>
                                                 </td>
                                                 <td class="admin-module-field">
-                                                    <input type="checkbox" id="property_detail_agent_contact_form" name="rypecore_property_detail_agent_contact_form" value="true" <?php checked('true', get_option('rypecore_property_detail_agent_contact_form'), true) ?> />
+                                                    <input type="checkbox" id="property_detail_agent_contact_form" name="ns_property_detail_agent_contact_form" value="true" <?php checked('true', get_option('ns_property_detail_agent_contact_form'), true) ?> />
                                                 </td>
                                             </tr>
                                         </table>
@@ -577,7 +577,7 @@ function ns_real_estate_settings_page_content() {
                 <div class="admin-module admin-module-custom-fields admin-module-custom-fields-theme-options no-border">
                     <div class="sortable-list custom-fields-container">
                         <?php 
-                            $custom_fields = get_option('rypecore_custom_fields');
+                            $custom_fields = get_option('ns_property_custom_fields');
                             if(!empty($custom_fields)) {  
                                 $count = 0;                      
                                 foreach ($custom_fields as $custom_field) {
@@ -594,15 +594,15 @@ function ns_real_estate_settings_page_content() {
                                         <tr>
                                             <td>
                                                 <label><strong><?php esc_html_e('Field Name:', 'ns-real-estate'); ?></strong></label> 
-                                                <input type="text" class="custom-field-name-input" name="rypecore_custom_fields[<?php echo $count; ?>][name]" value="<?php echo $custom_field['name']; ?>" />
-                                                <input type="hidden" class="custom-field-id" name="rypecore_custom_fields[<?php echo $count; ?>][id]" value="<?php echo $custom_field['id']; ?>" readonly />
+                                                <input type="text" class="custom-field-name-input" name="ns_property_custom_fields[<?php echo $count; ?>][name]" value="<?php echo $custom_field['name']; ?>" />
+                                                <input type="hidden" class="custom-field-id" name="ns_property_custom_fields[<?php echo $count; ?>][id]" value="<?php echo $custom_field['id']; ?>" readonly />
                                                 <div class="edit-custom-field-form hide-soft">
 
                                                     <table class="admin-module">
                                                         <tr>
                                                             <td class="admin-module-label"><label><?php esc_html_e('Field Type', 'ns-real-estate'); ?></label></td>
                                                             <td class="admin-module-field">
-                                                                <select class="custom-field-type-select" name="rypecore_custom_fields[<?php echo $count; ?>][type]">
+                                                                <select class="custom-field-type-select" name="ns_property_custom_fields[<?php echo $count; ?>][type]">
                                                                     <option value="text" <?php if(isset($custom_field['type']) && $custom_field['type'] == 'text') { echo 'selected'; } ?>><?php esc_html_e('Text Input', 'ns-real-estate'); ?></option>
                                                                     <option value="num" <?php if(isset($custom_field['type']) && $custom_field['type'] == 'num') { echo 'selected'; } ?>><?php esc_html_e('Number Input', 'ns-real-estate'); ?></option>
                                                                     <option value="select" <?php if(isset($custom_field['type']) && $custom_field['type'] == 'select') { echo 'selected'; } ?>><?php esc_html_e('Select Dropdown', 'ns-real-estate'); ?></option>
@@ -620,7 +620,7 @@ function ns_real_estate_settings_page_content() {
                                                                         if(isset($custom_field['select_options'])) { $selectOptions = $custom_field['select_options']; } else { $selectOptions =  ''; }
                                                                         if(!empty($selectOptions)) {
                                                                             foreach($selectOptions as $option) {
-                                                                                echo '<p><input type="text" name="rypecore_custom_fields['.$count.'][select_options][]" value="'.$option.'" /><span class="delete-custom-field-select"><i class="fa fa-times"></i></span></p>';
+                                                                                echo '<p><input type="text" name="ns_property_custom_fields['.$count.'][select_options][]" value="'.$option.'" /><span class="delete-custom-field-select"><i class="fa fa-times"></i></span></p>';
                                                                             }
                                                                         } ?>
                                                                      </div>
@@ -634,7 +634,7 @@ function ns_real_estate_settings_page_content() {
                                                         <tr>
                                                             <td class="admin-module-label"><label><?php esc_html_e('Display in Front-end Property Submit Form', 'ns-real-estate'); ?></label></td>
                                                             <td class="admin-module-field">
-                                                                <input type="checkbox" value="true" name="rypecore_custom_fields[<?php echo $count; ?>][front_end]" <?php if(isset($custom_field['front_end'])) { echo 'checked'; } ?> />
+                                                                <input type="checkbox" value="true" name="ns_property_custom_fields[<?php echo $count; ?>][front_end]" <?php if(isset($custom_field['front_end'])) { echo 'checked'; } ?> />
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -678,7 +678,7 @@ function ns_real_estate_settings_page_content() {
                             <span class="admin-module-note"><?php esc_html_e('After changing the slug, make sure you re-save your permalinks in Settings > Permalinks. The default slug is agents.', 'ns-real-estate'); ?></span>
                         </td>
                         <td class="admin-module-field">
-                            <span><?php echo esc_url(home_url('/')); ?></span> <input type="text" style="width:150px;" id="agent_detail_slug" name="rypecore_agent_detail_slug" value="<?php echo esc_attr( get_option('rypecore_agent_detail_slug', 'agents') ); ?>" />
+                            <span><?php echo esc_url(home_url('/')); ?></span> <input type="text" style="width:150px;" id="agent_detail_slug" name="ns_agent_detail_slug" value="<?php echo esc_attr( get_option('ns_agent_detail_slug', 'agents') ); ?>" />
                         </td>
                     </tr>
                 </table>
@@ -686,7 +686,7 @@ function ns_real_estate_settings_page_content() {
                 <table class="admin-module">
                     <tr>
                         <td class="admin-module-label"><label><?php echo esc_html_e('Number of Agents Per Page', 'ns-real-estate'); ?></label></td>
-                        <td class="admin-module-field"><input type="number" id="num_agents_per_page" name="rypecore_num_agents_per_page" value="<?php echo esc_attr( get_option('rypecore_num_agents_per_page', 12) ); ?>" /></td>
+                        <td class="admin-module-field"><input type="number" id="num_agents_per_page" name="ns_num_agents_per_page" value="<?php echo esc_attr( get_option('ns_num_agents_per_page', 12) ); ?>" /></td>
                     </tr>
                 </table>
 
@@ -697,9 +697,9 @@ function ns_real_estate_settings_page_content() {
                             <span class="admin-module-note"><?php esc_html_e('If active, agent listing thumbnails will be cropped to 800 x 600 pixels.', 'ns-real-estate'); ?></span>
                         </td>
                         <td class="admin-module-field">
-                            <div class="toggle-switch" title="<?php if(get_option('rypecore_agent_listing_crop', 'true') == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
-                                <input type="checkbox" name="rypecore_agent_listing_crop" value="true" class="toggle-switch-checkbox" id="agent_listing_crop" <?php checked('true', get_option('rypecore_agent_listing_crop', 'true'), true) ?>>
-                                <label class="toggle-switch-label" for="agent_listing_crop"><?php if(get_option('rypecore_agent_listing_crop', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
+                            <div class="toggle-switch" title="<?php if(get_option('ns_agent_listing_crop', 'true') == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
+                                <input type="checkbox" name="ns_agent_listing_crop" value="true" class="toggle-switch-checkbox" id="agent_listing_crop" <?php checked('true', get_option('ns_agent_listing_crop', 'true'), true) ?>>
+                                <label class="toggle-switch-label" for="agent_listing_crop"><?php if(get_option('ns_agent_listing_crop', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
                             </div>
                         </td>
                     </tr>
@@ -717,7 +717,7 @@ function ns_real_estate_settings_page_content() {
                     <ul class="sortable-list agent-detail-items-list">
                         <?php
                         $agent_detail_items_default = rype_real_estate_load_default_agent_detail_items();
-                        $agent_detail_items = get_option('rypecore_agent_detail_items', $agent_detail_items_default);
+                        $agent_detail_items = get_option('ns_agent_detail_items', $agent_detail_items_default);
                         $count = 0;
 
                         foreach($agent_detail_items as $value) { ?>
@@ -733,12 +733,12 @@ function ns_real_estate_settings_page_content() {
                                 <div class="sortable-item-header">
                                     <div class="sort-arrows"><i class="fa fa-bars"></i></div>
                                     <div class="toggle-switch" title="<?php if($active == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
-                                        <input type="checkbox" name="rypecore_agent_detail_items[<?php echo $count; ?>][active]" value="true" class="toggle-switch-checkbox" id="agent_detail_item_<?php echo esc_attr($slug); ?>" <?php checked('true', $active, true) ?>>
+                                        <input type="checkbox" name="ns_agent_detail_items[<?php echo $count; ?>][active]" value="true" class="toggle-switch-checkbox" id="agent_detail_item_<?php echo esc_attr($slug); ?>" <?php checked('true', $active, true) ?>>
                                         <label class="toggle-switch-label" for="agent_detail_item_<?php echo esc_attr($slug); ?>"><?php if($active == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
                                     </div>
                                     <span class="sortable-item-title"><?php echo esc_attr($name); ?></span><div class="clear"></div>
-                                    <input type="hidden" name="rypecore_agent_detail_items[<?php echo $count; ?>][name]" value="<?php echo $name; ?>" />
-                                    <input type="hidden" name="rypecore_agent_detail_items[<?php echo $count; ?>][slug]" value="<?php echo $slug; ?>" />
+                                    <input type="hidden" name="ns_agent_detail_items[<?php echo $count; ?>][name]" value="<?php echo $name; ?>" />
+                                    <input type="hidden" name="ns_agent_detail_items[<?php echo $count; ?>][slug]" value="<?php echo $slug; ?>" />
                                 </div>
                             
                                 <a href="#advanced-options-content-<?php echo esc_attr($slug); ?>" class="sortable-item-action advanced-options-toggle right"><i class="fa fa-gear"></i> <?php esc_html_e('Additional Settings', 'ns-real-estate'); ?></a>
@@ -748,7 +748,7 @@ function ns_real_estate_settings_page_content() {
                                         <tr>
                                             <td class="admin-module-label"><label><?php esc_html_e('Label:', 'ns-real-estate'); ?></label></td>
                                             <td class="admin-module-field">
-                                                <input type="text" class="sortable-item-label-input" name="rypecore_agent_detail_items[<?php echo $count; ?>][label]" value="<?php echo $label; ?>" /> 
+                                                <input type="text" class="sortable-item-label-input" name="ns_agent_detail_items[<?php echo $count; ?>][label]" value="<?php echo $label; ?>" /> 
                                             </td>
                                         </tr>
                                     </table>
@@ -757,7 +757,7 @@ function ns_real_estate_settings_page_content() {
                                         <tr>
                                             <td class="admin-module-label"><label><?php esc_html_e('Display in Sidebar', 'ns-real-estate'); ?></label></td>
                                             <td class="admin-module-field">
-                                                <input type="checkbox" name="rypecore_agent_detail_items[<?php echo $count; ?>][sidebar]" value="true" <?php checked('true', $sidebar, true) ?> />
+                                                <input type="checkbox" name="ns_agent_detail_items[<?php echo $count; ?>][sidebar]" value="true" <?php checked('true', $sidebar, true) ?> />
                                             </td>
                                         </tr>
                                     </table>
@@ -765,15 +765,15 @@ function ns_real_estate_settings_page_content() {
                                     <?php if($slug == 'contact') { ?>
                                         <div class="admin-module">
                                             <label><?php echo esc_html_e('Message Placeholder on Property Pages', 'ns-real-estate'); ?></label><br/>
-                                            <input type="text" name="rypecore_agent_form_message_placeholder" value="<?php echo esc_attr( get_option('rypecore_agent_form_message_placeholder', esc_html__('I am interested in this property and would like to know more.', 'ns-real-estate')) ); ?>" />
+                                            <input type="text" name="ns_agent_form_message_placeholder" value="<?php echo esc_attr( get_option('ns_agent_form_message_placeholder', esc_html__('I am interested in this property and would like to know more.', 'ns-real-estate')) ); ?>" />
                                         </div>
                                         <div class="admin-module">
                                             <label><?php echo esc_html_e('Success Message', 'ns-real-estate'); ?></label><br/>
-                                            <input type="text" name="rypecore_agent_form_success" value="<?php echo esc_attr( get_option('rypecore_agent_form_success', esc_html__('Thanks! Your email has been delivered!', 'ns-real-estate')) ); ?>" />
+                                            <input type="text" name="ns_agent_form_success" value="<?php echo esc_attr( get_option('ns_agent_form_success', esc_html__('Thanks! Your email has been delivered!', 'ns-real-estate')) ); ?>" />
                                         </div>
                                         <div class="admin-module">
                                             <label for="agent_form_submit_text"><?php esc_html_e('Submit Button Text', 'ns-real-estate'); ?></label><br/>
-                                            <input type="text" id="agent_form_submit_text" name="rypecore_agent_form_submit_text" value="<?php echo esc_attr( get_option('rypecore_agent_form_submit_text', esc_html__('Contact Agent', 'ns-real-estate')) ); ?>" />
+                                            <input type="text" id="agent_form_submit_text" name="ns_agent_form_submit_text" value="<?php echo esc_attr( get_option('ns_agent_form_submit_text', esc_html__('Contact Agent', 'ns-real-estate')) ); ?>" />
                                         </div>
                                     <?php } ?>
 
