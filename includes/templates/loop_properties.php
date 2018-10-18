@@ -73,7 +73,7 @@
 
     //DETERMINE HOW POSTS ARE SORTED
     $meta_key = '';
-    $order_by = 'date_desc';
+    $order_by = get_option('ns_property_listing_default_sortby', 'date_desc');
     if(isset($_GET['sort_by'])) { $order_by = $_GET['sort_by']; }
 
     if ($order_by == 'date_desc') {

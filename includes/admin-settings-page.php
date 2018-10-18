@@ -31,6 +31,7 @@ function ns_real_estate_register_options() {
     register_setting( 'ns-real-estate-settings-group', 'ns_num_properties_per_page' );
     register_setting( 'ns-real-estate-settings-group', 'ns_properties_default_layout' );
     register_setting( 'ns-real-estate-settings-group', 'ns_property_listing_header_display' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_property_listing_default_sortby' );
     register_setting( 'ns-real-estate-settings-group', 'ns_property_listing_crop' );
     register_setting( 'ns-real-estate-settings-group', 'ns_property_listing_display_time' );
     register_setting( 'ns-real-estate-settings-group', 'ns_property_listing_display_favorite' );
@@ -318,6 +319,23 @@ function ns_real_estate_settings_page_content() {
                                 <input type="checkbox" name="ns_property_listing_header_display" value="true" class="toggle-switch-checkbox" id="property_listing_header_display" <?php checked('true', get_option('ns_property_listing_header_display', 'true'), true) ?>>
                                 <label class="toggle-switch-label" for="property_listing_header_display"><?php if(get_option('ns_property_listing_header_display', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
                             </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="admin-module">
+                    <tr>
+                        <td class="admin-module-label">
+                            <label><?php echo esc_html_e('Default Sort By', 'ns-real-estate'); ?></label>
+                            <div class="admin-module-note"><?php echo esc_html_e('Choose the default sorting for property listings.', 'ns-real-estate'); ?></div>
+                        </td>
+                        <td class="admin-module-field">
+                            <select name="ns_property_listing_default_sortby">
+                                <option value="date_desc" <?php if(esc_attr( get_option('ns_property_listing_default_sortby', 'date_desc')) == 'date_desc') { echo 'selected'; } ?>><?php echo esc_html_e('New to Old', 'ns-real-estate'); ?></option>
+                                <option value="date_asc" <?php if(esc_attr( get_option('ns_property_listing_default_sortby', 'date_desc')) == 'date_asc') { echo 'selected'; } ?>><?php echo esc_html_e('Old to New', 'ns-real-estate'); ?></option>
+                                <option value="price_desc" <?php if(esc_attr( get_option('ns_property_listing_default_sortby', 'date_desc')) == 'price_desc') { echo 'selected'; } ?>><?php echo esc_html_e('Price (High to Low)', 'ns-real-estate'); ?></option>
+                                <option value="price_asc" <?php if(esc_attr( get_option('ns_property_listing_default_sortby', 'date_desc')) == 'price_asc') { echo 'selected'; } ?>><?php echo esc_html_e('Price (Low to High)', 'ns-real-estate'); ?></option>
+                            </select>
                         </td>
                     </tr>
                 </table>

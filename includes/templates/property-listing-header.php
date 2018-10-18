@@ -3,6 +3,8 @@
 global $wp;
 $currentUrl = home_url( $wp->request );
 $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
+$order_by = get_option('ns_property_listing_default_sortby', 'date_desc');
+if(isset($_GET['sort_by'])) { $order_by = $_GET['sort_by']; }
 
 //Get template args
 $property_listing_query = $template_args['query'];
@@ -20,10 +22,10 @@ if(!array_key_exists("advancedSearch",$currentFilters)) { $currentFilters = null
 	</span>
 	<form action="<?php echo $currentUrl; ?>" method="get" class="right">
 		<select name="sort_by" onchange="this.form.submit();">
-			<option value="date_desc" <?php if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'date_desc') { echo 'selected'; } ?>><?php esc_html_e('New to Old', 'rypecore'); ?></option>
-			<option value="date_asc" <?php if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'date_asc') { echo 'selected'; } ?>><?php esc_html_e('Old to New', 'rypecore'); ?></option>
-			<option value="price_desc" <?php if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'price_desc') { echo 'selected'; } ?>><?php esc_html_e('Price (High to Low)', 'rypecore'); ?></option>
-			<option value="price_asc" <?php if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'price_asc') { echo 'selected'; } ?>><?php esc_html_e('Price (Low to High)', 'rypecore'); ?></option>
+			<option value="date_desc" <?php if($order_by == 'date_desc') { echo 'selected'; } ?>><?php esc_html_e('New to Old', 'rypecore'); ?></option>
+			<option value="date_asc" <?php if($order_by == 'date_asc') { echo 'selected'; } ?>><?php esc_html_e('Old to New', 'rypecore'); ?></option>
+			<option value="price_desc" <?php if($order_by == 'price_desc') { echo 'selected'; } ?>><?php esc_html_e('Price (High to Low)', 'rypecore'); ?></option>
+			<option value="price_asc" <?php if($order_by == 'price_asc') { echo 'selected'; } ?>><?php esc_html_e('Price (Low to High)', 'rypecore'); ?></option>
 		</select>
 		<?php
 		foreach($_GET as $name => $value) {
