@@ -9,7 +9,7 @@ function rype_real_estate_add_member_top_bar_links() {
 	<?php if(!empty($members_my_properties_page)) { ?><li><a href="<?php echo $members_my_properties_page; ?>"><?php echo ns_core_get_icon($header_vars['icon_set'], 'home'); ?><?php esc_html_e( 'My Properties', 'rype-real-estate' ); ?></a></li><?php } ?>
 	<?php if(!empty($members_submit_property_page)) { ?><li><a href="<?php echo $members_submit_property_page; ?>"><?php echo ns_core_get_icon($header_vars['icon_set'], 'plus'); ?><?php esc_html_e( 'Submit Property', 'rype-real-estate' ); ?></a></li><?php } ?>
 <?php }
-add_filter( 'rype_basics_after_top_bar_member_menu', 'rype_real_estate_add_member_top_bar_links');
+add_filter( 'ns_basics_after_top_bar_member_menu', 'rype_real_estate_add_member_top_bar_links');
 
 /*-----------------------------------------------------------------------------------*/
 /* Get attachment id by url */
