@@ -1,11 +1,11 @@
 <?php
-    $home_default_map_zoom = esc_attr(get_option('rypecore_home_default_map_zoom', 10));
-    $home_default_map_latitude = esc_attr(get_option('rypecore_home_default_map_latitude', 39.2904));
+    $home_default_map_zoom = esc_attr(get_option('ns_real_estate_default_map_zoom', 10));
+    $home_default_map_latitude = esc_attr(get_option('ns_real_estate_default_map_latitude', 39.2904));
     if(empty($home_default_map_latitude)) { $home_default_map_latitude = 39.2904; }
-    $home_default_map_longitude = esc_attr(get_option('rypecore_home_default_map_longitude', -76.5000));
+    $home_default_map_longitude = esc_attr(get_option('ns_real_estate_default_map_longitude', -76.5000));
     if(empty($home_default_map_longitude)) { $home_default_map_longitude = -76.5000; }
 
-    $google_maps_pin = esc_attr(get_option('rypecore_google_maps_pin'));
+    $google_maps_pin = esc_attr(get_option('ns_real_estate_google_maps_pin'));
     if(empty($google_maps_pin)) { $google_maps_pin = plugins_url( '/ns-real-estate/images/pin.png'); }
 ?>
 

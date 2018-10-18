@@ -20,7 +20,7 @@ function ns_real_estate_add_ons_page_content() {
 
     <?php 
     $open_houses_license_default = array('slug' => 'rype-open-houses', 'key' => null, 'email' => null, 'registered' => false, 'error' => null);
-    $open_houses_license = get_option('rype_real_estate_open_houses_license', $open_houses_license_default);
+    $open_houses_license = get_option('ns_real_estate_open_houses_license', $open_houses_license_default);
     ?>
     
     <div class="ns-module-group ns-module-group-real-estate">

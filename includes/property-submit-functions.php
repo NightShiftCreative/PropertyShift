@@ -4,8 +4,8 @@
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_add_member_top_bar_links() { 
 	$icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
-	$members_my_properties_page = get_option('rypecore_members_my_properties_page'); 
-	$members_submit_property_page = get_option('rypecore_members_submit_property_page'); ?>
+	$members_my_properties_page = get_option('ns_members_my_properties_page'); 
+	$members_submit_property_page = get_option('ns_members_submit_property_page'); ?>
 	<?php if(!empty($members_my_properties_page)) { ?><li><a href="<?php echo $members_my_properties_page; ?>"><?php echo ns_core_get_icon($header_vars['icon_set'], 'home'); ?><?php esc_html_e( 'My Properties', 'rype-real-estate' ); ?></a></li><?php } ?>
 	<?php if(!empty($members_submit_property_page)) { ?><li><a href="<?php echo $members_submit_property_page; ?>"><?php echo ns_core_get_icon($header_vars['icon_set'], 'plus'); ?><?php esc_html_e( 'Submit Property', 'rype-real-estate' ); ?></a></li><?php } ?>
 <?php }
@@ -36,7 +36,7 @@ function rype_real_estate_get_attachment_id_by_url( $url ) {
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_insert_property_post($edit_property_id = null) {
 
-	$members_submit_property_approval = esc_attr(get_option('rypecore_members_submit_property_approval', 'true'));
+	$members_submit_property_approval = esc_attr(get_option('ns_members_submit_property_approval', 'true'));
 	if($members_submit_property_approval == 'true') {$members_submit_property_approval = 'pending';} else {$members_submit_property_approval = 'publish'; }
 
 	$output = array();
@@ -214,9 +214,9 @@ function rype_real_estate_property_submit_form() {
 
 	//global settings
 	$icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
-	$members_my_properties_page = get_option('rypecore_members_my_properties_page');
-	$members_add_locations = esc_attr(get_option('rypecore_members_add_locations', 'true'));
-	$members_add_amenities = esc_attr(get_option('rypecore_members_add_amenities', 'true'));
+	$members_my_properties_page = get_option('ns_members_my_properties_page');
+	$members_add_locations = esc_attr(get_option('ns_members_add_locations', 'true'));
+	$members_add_amenities = esc_attr(get_option('ns_members_add_amenities', 'true'));
 
 	//intialize variables
 	$errors = '';

@@ -3,7 +3,7 @@
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     $current_user = wp_get_current_user();
     $author = $current_user->user_login;
-    $members_submit_property_page = get_option('rypecore_members_submit_property_page');
+    $members_submit_property_page = get_option('ns_members_submit_property_page');
 ?>
 
 <!-- start user my properties -->

@@ -58,35 +58,35 @@ function ns_real_estate_register_options() {
     register_setting( 'ns-real-estate-settings-group', 'ns_agent_form_submit_text' );
 
     //MAP SETTINGS
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_google_maps_api' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_home_default_map_zoom' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_home_default_map_latitude' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_home_default_map_longitude' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_google_maps_pin' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_google_maps_api' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_default_map_zoom' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_default_map_latitude' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_default_map_longitude' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_google_maps_pin' );
 
     //MEMBER SETTINGS
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_members_my_properties_page' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_members_submit_property_page' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_members_submit_property_approval' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_members_add_locations' );
-    register_setting( 'ns-real-estate-settings-group', 'rypecore_members_add_amenities' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_members_my_properties_page' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_members_submit_property_page' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_members_submit_property_approval' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_members_add_locations' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_members_add_amenities' );
 
     //CURRENCY SETTINGS
-    register_setting( 'ns-real-estate-settings-group', 'rype_real_estate_currency_symbol' );
-    register_setting( 'ns-real-estate-settings-group', 'rype_real_estate_currency_symbol_position' );
-    register_setting( 'ns-real-estate-settings-group', 'rype_real_estate_thousand_separator' );
-    register_setting( 'ns-real-estate-settings-group', 'rype_real_estate_decimal_separator' );
-    register_setting( 'ns-real-estate-settings-group', 'rype_real_estate_num_decimal' );
-    register_setting( 'ns-real-estate-settings-group', 'rype_real_estate_default_area_postfix' );
-    register_setting( 'ns-real-estate-settings-group', 'rype_real_estate_thousand_separator_area' );
-    register_setting( 'ns-real-estate-settings-group', 'rype_real_estate_decimal_separator_area' );
-    register_setting( 'ns-real-estate-settings-group', 'rype_real_estate_num_decimal_area' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_currency_symbol' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_currency_symbol_position' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_thousand_separator' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_decimal_separator' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_num_decimal' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_default_area_postfix' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_thousand_separator_area' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_decimal_separator_area' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_num_decimal_area' );
 
     //LICENSE KEY SETTINGS
-    register_setting( 'ns-real-estate-license-keys-group', 'rype_real_estate_open_houses_license');
+    register_setting( 'ns-real-estate-license-keys-group', 'ns_real_estate_open_houses_license');
 
     //ADD-ON SETTINGS
-    do_action( 'rype_real_estate_register_settings');
+    do_action( 'ns_real_estate_register_settings');
 }
 
 function ns_real_estate_sanitize_slug($option) {
@@ -123,13 +123,13 @@ function ns_real_estate_settings_page() {
     
     //add alerts
     $alerts = array();
-    if(!current_theme_supports('rype-real-estate')) {
+    if(!current_theme_supports('ns-real-estate')) {
         $current_theme = wp_get_theme();
-        $incompatible_theme_alert = ns_basics_admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not declare support for Rype Real Estate.', 'rype-real-estate'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'rype-real-estate'), true); 
+        $incompatible_theme_alert = ns_basics_admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not declare support for NS Real Estate.', 'ns-real-estate'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'ns-real-estate'), true); 
         $alerts[] = $incompatible_theme_alert; 
     }
 
-    $google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
+    $google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
     if(empty($google_maps_api)) {
         $google_api_key_alert = ns_basics_admin_alert('warning', esc_html__('Please provide a Google Maps API Key within the Maps tab.', 'ns-real-estate'), $action = null, $action_text = null, true);
         $alerts[] = $google_api_key_alert; 
@@ -444,7 +444,7 @@ function ns_real_estate_settings_page_content() {
                     <div class="admin-module-label"><label><?php echo esc_html_e('Property Detail Sections', 'ns-real-estate'); ?> <span class="admin-module-note"><?php echo esc_html_e('(Drag & drop to rearrange order)', 'ns-real-estate'); ?></span></label></div>
                     <ul class="sortable-list property-detail-items-list">
                         <?php
-                        $property_detail_items_default = rype_real_estate_load_default_property_detail_items();
+                        $property_detail_items_default = ns_real_estate_load_default_property_detail_items();
                         $property_detail_items = get_option('ns_property_detail_items', $property_detail_items_default);
                         $count = 0;
 
@@ -800,7 +800,7 @@ function ns_real_estate_settings_page_content() {
                     <div class="admin-module-note"><?php echo wp_kses_post(__('Provide your unique Google maps API key. <a target="_blank" href="https://developers.google.com/maps/documentation/javascript/get-api-key">Click here</a> to get a key.', 'ns-real-estate')); ?></div>
                 </td>
                 <td class="admin-module-field">
-                    <input type="text" id="google_maps_api" name="rypecore_google_maps_api" value="<?php echo esc_attr( get_option('rypecore_google_maps_api') ); ?>" />
+                    <input type="text" id="google_maps_api" name="ns_real_estate_google_maps_api" value="<?php echo esc_attr( get_option('ns_real_estate_google_maps_api') ); ?>" />
                 </td>
             </tr>
         </table>
@@ -812,7 +812,7 @@ function ns_real_estate_settings_page_content() {
                     <div class="admin-module-note"><?php echo esc_html_e('The map zoom ranges from 1 - 19. Zoom level 1 being the most zoomed out.', 'ns-real-estate'); ?></div>
                 </td>
                 <td class="admin-module-field">
-                    <input type="number" min="1" max="19" id="home_default_map_zoom" name="rypecore_home_default_map_zoom" value="<?php echo esc_attr( get_option('rypecore_home_default_map_zoom', 10) ); ?>" />
+                    <input type="number" min="1" max="19" id="home_default_map_zoom" name="ns_real_estate_default_map_zoom" value="<?php echo esc_attr( get_option('ns_real_estate_default_map_zoom', 10) ); ?>" />
                 </td>
             </tr>
         </table>
@@ -823,7 +823,7 @@ function ns_real_estate_settings_page_content() {
                     <label><?php esc_html_e('Default Map Latitude', 'ns-real-estate'); ?></label>
                 </td>
                 <td class="admin-module-field">
-                    <input type="text" id="home_default_map_latitude" name="rypecore_home_default_map_latitude" value="<?php echo esc_attr( get_option('rypecore_home_default_map_latitude', 39.2904) ); ?>" />
+                    <input type="text" id="home_default_map_latitude" name="ns_real_estate_default_map_latitude" value="<?php echo esc_attr( get_option('ns_real_estate_default_map_latitude', 39.2904) ); ?>" />
                 </td>
             </tr>
         </table>
@@ -834,7 +834,7 @@ function ns_real_estate_settings_page_content() {
                     <label><?php esc_html_e('Default Map Longitude', 'ns-real-estate'); ?></label>
                 </td>
                 <td class="admin-module-field">
-                    <input type="text" id="home_default_map_longitude" name="rypecore_home_default_map_longitude" value="<?php echo esc_attr( get_option('rypecore_home_default_map_longitude', -76.5000) ); ?>" />
+                    <input type="text" id="home_default_map_longitude" name="ns_real_estate_default_map_longitude" value="<?php echo esc_attr( get_option('ns_real_estate_default_map_longitude', -76.5000) ); ?>" />
                 </td>
             </tr>
         </table>
@@ -846,7 +846,7 @@ function ns_real_estate_settings_page_content() {
                     <div class="admin-module-note"><?php echo esc_html_e('Replace the default map pin with a custom image. Recommended size: 50x50 pixels.', 'ns-real-estate'); ?></div>
                 </td>
                 <td class="admin-module-field">
-                    <input type="text" id="google_maps_pin" name="rypecore_google_maps_pin" value="<?php echo esc_attr( get_option('rypecore_google_maps_pin') ); ?>" />
+                    <input type="text" id="google_maps_pin" name="ns_real_estate_google_maps_pin" value="<?php echo esc_attr( get_option('ns_real_estate_google_maps_pin') ); ?>" />
                     <input id="_btn" class="ns_upload_image_button" type="button" value="<?php echo esc_html_e('Upload Image', 'ns-real-estate'); ?>" />
                     <span class="button-secondary remove"><?php echo esc_html_e('Remove', 'ns-real-estate'); ?></span>
                 </td>
@@ -864,13 +864,13 @@ function ns_real_estate_settings_page_content() {
                     <span class="admin-module-note"><?php esc_html_e('Create a page and assign it the My Properties template.', 'ns-real-estate'); ?></span>
                 </td>
                 <td class="admin-module-field">
-                    <select name="rypecore_members_my_properties_page">
+                    <select name="ns_members_my_properties_page">
                         <option value="">
                         <?php echo esc_attr( esc_html__( 'Select page', 'ns-real-estate' ) ); ?></option> 
                             <?php 
                             $pages = get_pages(); 
                             foreach ( $pages as $page ) { ?>
-                            <option value="<?php echo get_page_link( $page->ID ); ?>" <?php if(esc_attr(get_option('rypecore_members_my_properties_page')) == get_page_link( $page->ID )) { echo 'selected'; } ?>>
+                            <option value="<?php echo get_page_link( $page->ID ); ?>" <?php if(esc_attr(get_option('ns_members_my_properties_page')) == get_page_link( $page->ID )) { echo 'selected'; } ?>>
                                 <?php echo esc_attr($page->post_title); ?>
                             </option>
                         <?php } ?>
@@ -886,13 +886,13 @@ function ns_real_estate_settings_page_content() {
                     <span class="admin-module-note"><?php esc_html_e('Create a page and assign it the Submit Property template.', 'ns-real-estate'); ?></span>
                 </td>
                 <td class="admin-module-field">
-                    <select name="rypecore_members_submit_property_page">
+                    <select name="ns_members_submit_property_page">
                         <option value="">
                         <?php echo esc_attr( esc_html__( 'Select page', 'ns-real-estate' ) ); ?></option> 
                             <?php 
                             $pages = get_pages(); 
                             foreach ( $pages as $page ) { ?>
-                            <option value="<?php echo get_page_link( $page->ID ); ?>" <?php if(esc_attr(get_option('rypecore_members_submit_property_page')) == get_page_link( $page->ID )) { echo 'selected'; } ?>>
+                            <option value="<?php echo get_page_link( $page->ID ); ?>" <?php if(esc_attr(get_option('ns_members_submit_property_page')) == get_page_link( $page->ID )) { echo 'selected'; } ?>>
                                 <?php echo esc_attr($page->post_title); ?>
                             </option>
                         <?php } ?>
@@ -905,9 +905,9 @@ function ns_real_estate_settings_page_content() {
             <tr>
                 <td class="admin-module-label"><label><?php echo esc_html_e('Front-end property submissions must be approved before being published', 'ns-real-estate'); ?></label></td>
                 <td class="admin-module-field">
-                    <div class="toggle-switch" title="<?php if(get_option('rypecore_members_submit_property_approval', 'true') == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
-                        <input type="checkbox" name="rypecore_members_submit_property_approval" value="true" class="toggle-switch-checkbox" id="members_submit_property_approval" <?php checked('true', get_option('rypecore_members_submit_property_approval', 'true'), true) ?>>
-                        <label class="toggle-switch-label" for="members_submit_property_approval"><?php if(get_option('rypecore_members_submit_property_approval', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
+                    <div class="toggle-switch" title="<?php if(get_option('ns_members_submit_property_approval', 'true') == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
+                        <input type="checkbox" name="ns_members_submit_property_approval" value="true" class="toggle-switch-checkbox" id="members_submit_property_approval" <?php checked('true', get_option('ns_members_submit_property_approval', 'true'), true) ?>>
+                        <label class="toggle-switch-label" for="members_submit_property_approval"><?php if(get_option('ns_members_submit_property_approval', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
                     </div>
                 </td>
             </tr>
@@ -917,9 +917,9 @@ function ns_real_estate_settings_page_content() {
             <tr>
                 <td class="admin-module-label"><label><?php echo esc_html_e('Allow members to add new property locations from the front-end', 'ns-real-estate'); ?></label></td>
                 <td class="admin-module-field">
-                    <div class="toggle-switch" title="<?php if(get_option('rypecore_members_add_locations', 'true') == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
-                        <input type="checkbox" name="rypecore_members_add_locations" value="true" class="toggle-switch-checkbox" id="members_add_locations" <?php checked('true', get_option('rypecore_members_add_locations', 'true'), true) ?>>
-                        <label class="toggle-switch-label" for="members_add_locations"><?php if(get_option('rypecore_members_add_locations', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
+                    <div class="toggle-switch" title="<?php if(get_option('ns_members_add_locations', 'true') == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
+                        <input type="checkbox" name="ns_members_add_locations" value="true" class="toggle-switch-checkbox" id="members_add_locations" <?php checked('true', get_option('ns_members_add_locations', 'true'), true) ?>>
+                        <label class="toggle-switch-label" for="members_add_locations"><?php if(get_option('ns_members_add_locations', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
                     </div>
                 </td>
             </tr>
@@ -929,9 +929,9 @@ function ns_real_estate_settings_page_content() {
             <tr>
                 <td class="admin-module-label"><label><?php echo esc_html_e('Allow members to add new property amenities from the front-end', 'ns-real-estate'); ?></label></td>
                 <td class="admin-module-field">
-                    <div class="toggle-switch" title="<?php if(get_option('rypecore_members_add_amenities', 'true') == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
-                        <input type="checkbox" name="rypecore_members_add_amenities" value="true" class="toggle-switch-checkbox" id="members_add_amenities" <?php checked('true', get_option('rypecore_members_add_amenities', 'true'), true) ?>>
-                        <label class="toggle-switch-label" for="members_add_amenities"><?php if(get_option('rypecore_members_add_amenities', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
+                    <div class="toggle-switch" title="<?php if(get_option('ns_members_add_amenities', 'true') == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
+                        <input type="checkbox" name="ns_members_add_amenities" value="true" class="toggle-switch-checkbox" id="members_add_amenities" <?php checked('true', get_option('ns_members_add_amenities', 'true'), true) ?>>
+                        <label class="toggle-switch-label" for="members_add_amenities"><?php if(get_option('ns_members_add_amenities', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
                     </div>
                 </td>
             </tr>
@@ -949,7 +949,7 @@ function ns_real_estate_settings_page_content() {
         <table class="admin-module">
              <tr>
                 <td class="admin-module-label"><label><?php echo esc_html_e('Currency Symbol', 'ns-real-estate'); ?></label></td>
-                <td class="admin-module-field"><input type="text" id="currency_symbol" name="rype_real_estate_currency_symbol" value="<?php echo $currency_options['symbol']; ?>" /></td>
+                <td class="admin-module-field"><input type="text" id="currency_symbol" name="ns_real_estate_currency_symbol" value="<?php echo $currency_options['symbol']; ?>" /></td>
             </tr>
         </table>
 
@@ -957,8 +957,8 @@ function ns_real_estate_settings_page_content() {
             <tr>
                 <td class="admin-module-label"><label><?php echo esc_html_e('Currency Symbol Position', 'ns-real-estate'); ?></label></td>
                 <td class="admin-module-field">
-                    <p><input type="radio" id="currency_symbol_position" name="rype_real_estate_currency_symbol_position" value="before" <?php if($currency_options['symbol_position'] == 'before') { echo 'checked'; } ?> /><?php echo esc_html_e('Display before price', 'ns-real-estate'); ?></p>
-                    <p><input type="radio" id="currency_symbol_position" name="rype_real_estate_currency_symbol_position" value="after" <?php if($currency_options['symbol_position'] == 'after') { echo 'checked'; } ?> /><?php echo esc_html_e('Display after price', 'ns-real-estate'); ?></p>
+                    <p><input type="radio" id="currency_symbol_position" name="ns_real_estate_currency_symbol_position" value="before" <?php if($currency_options['symbol_position'] == 'before') { echo 'checked'; } ?> /><?php echo esc_html_e('Display before price', 'ns-real-estate'); ?></p>
+                    <p><input type="radio" id="currency_symbol_position" name="ns_real_estate_currency_symbol_position" value="after" <?php if($currency_options['symbol_position'] == 'after') { echo 'checked'; } ?> /><?php echo esc_html_e('Display after price', 'ns-real-estate'); ?></p>
                 </td>
             </tr>
         </table>
@@ -966,21 +966,21 @@ function ns_real_estate_settings_page_content() {
         <table class="admin-module">
             <tr>
                 <td class="admin-module-label"><label><?php echo esc_html_e('Thousand Separator', 'ns-real-estate'); ?></label></td>
-                <td class="admin-module-field"><input type="text" id="thousand_separator" name="rype_real_estate_thousand_separator" value="<?php echo $currency_options['thousand']; ?>" /></td>
+                <td class="admin-module-field"><input type="text" id="thousand_separator" name="ns_real_estate_thousand_separator" value="<?php echo $currency_options['thousand']; ?>" /></td>
             </tr>
         </table>
 
         <table class="admin-module">
             <tr>
                 <td class="admin-module-label"><label><?php echo esc_html_e('Decimal Separator', 'ns-real-estate'); ?></label></td>
-                <td class="admin-module-field"><input type="text" id="decimal_separator" name="rype_real_estate_decimal_separator" value="<?php echo $currency_options['decimal']; ?>" /></td>
+                <td class="admin-module-field"><input type="text" id="decimal_separator" name="ns_real_estate_decimal_separator" value="<?php echo $currency_options['decimal']; ?>" /></td>
             </tr>
         </table>
 
         <table class="admin-module no-border">
             <tr>
                 <td class="admin-module-label"><label for="num_decimal"><?php echo esc_html_e('Number of Decimals', 'ns-real-estate'); ?></label></td>
-                <td class="admin-module-field"><input type="number" min="0" max="5" id="num_decimal" name="rype_real_estate_num_decimal" value="<?php echo $currency_options['decimal_num']; ?>" /></td>
+                <td class="admin-module-field"><input type="number" min="0" max="5" id="num_decimal" name="ns_real_estate_num_decimal" value="<?php echo $currency_options['decimal_num']; ?>" /></td>
             </tr>
         </table>
 
@@ -989,28 +989,28 @@ function ns_real_estate_settings_page_content() {
         <table class="admin-module no-border">
             <tr>
                 <td class="admin-module-label"><label for="default_area_postfix"><?php echo esc_html_e('Deafult Area Postfix', 'ns-real-estate'); ?></label></td>
-                <td class="admin-module-field"><input type="text" id="default_area_postfix" name="rype_real_estate_default_area_postfix" value="<?php echo $currency_options['default_area_postfix']; ?>" /></td>
+                <td class="admin-module-field"><input type="text" id="default_area_postfix" name="ns_real_estate_default_area_postfix" value="<?php echo $currency_options['default_area_postfix']; ?>" /></td>
             </tr>
         </table>
 
         <table class="admin-module no-border">
             <tr>
                 <td class="admin-module-label"><label for="thousand_separator_area"><?php echo esc_html_e('Area Thousand Separator', 'ns-real-estate'); ?></label></td>
-                <td class="admin-module-field"><input type="text" id="thousand_separator_area" name="rype_real_estate_thousand_separator_area" value="<?php echo $currency_options['thousand_area']; ?>" /></td>
+                <td class="admin-module-field"><input type="text" id="thousand_separator_area" name="ns_real_estate_thousand_separator_area" value="<?php echo $currency_options['thousand_area']; ?>" /></td>
             </tr>
         </table>
 
         <table class="admin-module no-border">
             <tr>
                 <td class="admin-module-label"><label for="decimal_separator_area"><?php echo esc_html_e('Area Decimal Separator', 'ns-real-estate'); ?></label></td>
-                <td class="admin-module-field"><input type="text" id="decimal_separator_area" name="rype_real_estate_decimal_separator_area" value="<?php echo $currency_options['decimal_area']; ?>" /></td>
+                <td class="admin-module-field"><input type="text" id="decimal_separator_area" name="ns_real_estate_decimal_separator_area" value="<?php echo $currency_options['decimal_area']; ?>" /></td>
             </tr>
         </table>
 
         <table class="admin-module no-border">
             <tr>
                 <td class="admin-module-label"><label for="num_decimal_area"><?php echo esc_html_e('Area Number of Decimals', 'ns-real-estate'); ?></label></td>
-                <td class="admin-module-field"><input type="number" min="0" max="5" id="num_decimal_area" name="rype_real_estate_num_decimal_area" value="<?php echo $currency_options['decimal_num_area']; ?>" /></td>
+                <td class="admin-module-field"><input type="number" min="0" max="5" id="num_decimal_area" name="ns_real_estate_num_decimal_area" value="<?php echo $currency_options['decimal_num_area']; ?>" /></td>
             </tr>
         </table>
 
@@ -1023,7 +1023,7 @@ function ns_real_estate_settings_page_content() {
 /*-----------------------------------------------------------------------------------*/
 /*  Load default Property Detail Items
 /*-----------------------------------------------------------------------------------*/
-function rype_real_estate_load_default_property_detail_items() {
+function ns_real_estate_load_default_property_detail_items() {
     $property_detail_items_default = array(
         0 => array(
             'name' => esc_html__('Overview', 'ns-real-estate'),
@@ -1232,7 +1232,7 @@ add_action( 'ns_basics_after_page_settings_save', 'rype_real_estate_save_page_ba
 /*  Add Google Maps API Key notice
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_google_maps_api_notice() {
-    $google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
+    $google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
 
     if(empty($google_maps_api)) {
         $class = 'notice notice-error is-dismissible';

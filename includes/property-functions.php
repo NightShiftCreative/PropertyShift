@@ -28,15 +28,15 @@ function rype_real_estate_count_properties($type, $user_id = null) {
 //returns curreny options
 function rype_real_estate_get_curreny_options() {
     $currency_options = array();
-    $currency_options['symbol'] = esc_attr(get_option('rype_real_estate_currency_symbol', '$'));
-    $currency_options['symbol_position'] = esc_attr(get_option('rype_real_estate_currency_symbol_position', 'before'));
-    $currency_options['thousand'] = esc_attr(get_option('rype_real_estate_thousand_separator', ','));
-    $currency_options['decimal'] = esc_attr(get_option('rype_real_estate_decimal_separator', '.'));
-    $currency_options['decimal_num'] = esc_attr(get_option('rype_real_estate_num_decimal', '0'));
-    $currency_options['default_area_postfix'] = esc_attr(get_option('rype_real_estate_default_area_postfix', 'Sq Ft'));
-    $currency_options['thousand_area'] = esc_attr(get_option('rype_real_estate_thousand_separator_area', ','));
-    $currency_options['decimal_area'] = esc_attr(get_option('rype_real_estate_decimal_separator_area', '.'));
-    $currency_options['decimal_num_area'] = esc_attr(get_option('rype_real_estate_num_decimal_area', 0));
+    $currency_options['symbol'] = esc_attr(get_option('ns_real_estate_currency_symbol', '$'));
+    $currency_options['symbol_position'] = esc_attr(get_option('ns_real_estate_currency_symbol_position', 'before'));
+    $currency_options['thousand'] = esc_attr(get_option('ns_real_estate_thousand_separator', ','));
+    $currency_options['decimal'] = esc_attr(get_option('ns_real_estate_decimal_separator', '.'));
+    $currency_options['decimal_num'] = esc_attr(get_option('ns_real_estate_num_decimal', '0'));
+    $currency_options['default_area_postfix'] = esc_attr(get_option('ns_real_estate_default_area_postfix', 'Sq Ft'));
+    $currency_options['thousand_area'] = esc_attr(get_option('ns_real_estate_thousand_separator_area', ','));
+    $currency_options['decimal_area'] = esc_attr(get_option('ns_real_estate_decimal_separator_area', '.'));
+    $currency_options['decimal_num_area'] = esc_attr(get_option('ns_real_estate_num_decimal_area', 0));
     return $currency_options;
 }
 

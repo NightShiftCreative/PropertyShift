@@ -79,7 +79,7 @@ if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
 	function ns_real_estate_admin_scripts() {
 		if (is_admin()) {
 
-			$google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
+			$google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
 
 			wp_enqueue_script('ns-real-estate-admin-js', plugins_url('/js/ns-real-estate-admin.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'media-upload', 'thickbox'), '', true);
 			wp_enqueue_style('ns-real-estate-admin-css', plugins_url('/css/ns-real-estate-admin.css',  __FILE__), array(), '1.0', 'all');
@@ -122,7 +122,7 @@ if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
 	function ns_real_estate_front_end_scripts() {
 	    if (!is_admin()) {
 
-	    	$google_maps_api = esc_attr(get_option('rypecore_google_maps_api'));
+	    	$google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
 	    	
 	    	wp_enqueue_script('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.js', __FILE__), array('jquery'), '', true);
 	        wp_enqueue_style('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.css',  __FILE__), array(), '1.0', 'all');
