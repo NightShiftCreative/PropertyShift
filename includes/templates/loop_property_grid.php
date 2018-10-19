@@ -56,7 +56,7 @@
 		<?php if($property_listing_display_time == 'true' || $property_listing_display_favorite == 'true' || $property_listing_display_share == 'true') { ?>
 			<div class="property-actions">
 				<?php if($property_listing_display_time == 'true') {
-					$toggle = ns_core_get_icon($icon_set, 'calendar-o', 'clock3', 'clock');
+					$toggle = ns_core_get_icon($icon_set, 'clock', 'clock3', 'clock');
 					$content = human_time_diff( get_the_time('U'), current_time('timestamp') ) . esc_html__(' ago', 'rypecore'); 
 					echo ns_basics_tooltip($toggle, $content); 
 				} ?>
