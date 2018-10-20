@@ -24,28 +24,28 @@
 
 	//Get property details
     $values = get_post_custom( $postID );
-    $featured = isset( $values['rypecore_property_featured'] ) ? esc_attr( $values['rypecore_property_featured'][0] ) : 'false';
+    $featured = isset( $values['ns_property_featured'] ) ? esc_attr( $values['ns_property_featured'][0] ) : 'false';
 	if(function_exists('ns_real_estate_get_property_address')) { $address = ns_real_estate_get_property_address($postID); } else { $address = ''; }
-	$price = isset( $values['rypecore_property_price'] ) ? esc_attr( $values['rypecore_property_price'][0] ) : '';
-	$price_postfix = isset( $values['rypecore_property_price_postfix'] ) ? esc_attr( $values['rypecore_property_price_postfix'][0] ) : '';
-    $area = isset( $values['rypecore_property_area'] ) ? esc_attr( $values['rypecore_property_area'][0] ) : '';
+	$price = isset( $values['ns_property_price'] ) ? esc_attr( $values['ns_property_price'][0] ) : '';
+	$price_postfix = isset( $values['ns_property_price_postfix'] ) ? esc_attr( $values['ns_property_price_postfix'][0] ) : '';
+    $area = isset( $values['ns_property_area'] ) ? esc_attr( $values['ns_property_area'][0] ) : '';
     if(!empty($area)) { $area = ns_real_estate_format_area($area); }
-    $area_postfix = isset( $values['rypecore_property_area_postfix'] ) ? esc_attr( $values['rypecore_property_area_postfix'][0] ) : '';
-    $bedrooms = isset( $values['rypecore_property_bedrooms'] ) ? esc_attr( $values['rypecore_property_bedrooms'][0] ) : '';
-    $bathrooms = isset( $values['rypecore_property_bathrooms'] ) ? esc_attr( $values['rypecore_property_bathrooms'][0] ) : '';
-    $garages = isset( $values['rypecore_property_garages'] ) ? esc_attr( $values['rypecore_property_garages'][0] ) : '';
-    $floor_plans = isset($values['rypecore_floor_plans']) ? $values['rypecore_floor_plans'] : '';
-	$latitude = isset( $values['rypecore_property_latitude'] ) ? esc_attr( $values['rypecore_property_latitude'][0] ) : '';
-	$longitude = isset( $values['rypecore_property_longitude'] ) ? esc_attr( $values['rypecore_property_longitude'][0] ) : '';
-	$video_url = isset( $values['rypecore_property_video_url'] ) ? esc_attr( $values['rypecore_property_video_url'][0] ) : '';
-	$video_img = isset( $values['rypecore_property_video_img'] ) ? esc_attr( $values['rypecore_property_video_img'][0] ) : '';
-    $additional_images = $values['rypecore_additional_img'];
-    $agent_display = isset( $values['rypecore_agent_display'] ) ? esc_attr( $values['rypecore_agent_display'][0] ) : 'none';
-    $agent_select = isset( $values['rypecore_agent_select'] ) ? esc_attr( $values['rypecore_agent_select'][0] ) : '';
-    $agent_custom_name = isset( $values['rypecore_agent_custom_name'] ) ? esc_attr( $values['rypecore_agent_custom_name'][0] ) : '';
-	$agent_custom_email = isset( $values['rypecore_agent_custom_email'] ) ? esc_attr( $values['rypecore_agent_custom_email'][0] ) : '';
-	$agent_custom_phone = isset( $values['rypecore_agent_custom_phone'] ) ? esc_attr( $values['rypecore_agent_custom_phone'][0] ) : '';
-	$agent_custom_url = isset( $values['rypecore_agent_custom_url'] ) ? esc_attr( $values['rypecore_agent_custom_url'][0] ) : '';
+    $area_postfix = isset( $values['ns_property_area_postfix'] ) ? esc_attr( $values['ns_property_area_postfix'][0] ) : '';
+    $bedrooms = isset( $values['ns_property_bedrooms'] ) ? esc_attr( $values['ns_property_bedrooms'][0] ) : '';
+    $bathrooms = isset( $values['ns_property_bathrooms'] ) ? esc_attr( $values['ns_property_bathrooms'][0] ) : '';
+    $garages = isset( $values['ns_property_garages'] ) ? esc_attr( $values['ns_property_garages'][0] ) : '';
+    $floor_plans = isset($values['ns_property_floor_plans']) ? $values['ns_property_floor_plans'] : '';
+	$latitude = isset( $values['ns_property_latitude'] ) ? esc_attr( $values['ns_property_latitude'][0] ) : '';
+	$longitude = isset( $values['ns_property_longitude'] ) ? esc_attr( $values['ns_property_longitude'][0] ) : '';
+	$video_url = isset( $values['ns_property_video_url'] ) ? esc_attr( $values['ns_property_video_url'][0] ) : '';
+	$video_img = isset( $values['ns_property_video_img'] ) ? esc_attr( $values['ns_property_video_img'][0] ) : '';
+    $additional_images = $values['ns_additional_img'];
+    $agent_display = isset( $values['ns_agent_display'] ) ? esc_attr( $values['ns_agent_display'][0] ) : 'none';
+    $agent_select = isset( $values['ns_agent_select'] ) ? esc_attr( $values['ns_agent_select'][0] ) : '';
+    $agent_custom_name = isset( $values['ns_agent_custom_name'] ) ? esc_attr( $values['ns_agent_custom_name'][0] ) : '';
+	$agent_custom_email = isset( $values['ns_agent_custom_email'] ) ? esc_attr( $values['ns_agent_custom_email'][0] ) : '';
+	$agent_custom_phone = isset( $values['ns_agent_custom_phone'] ) ? esc_attr( $values['ns_agent_custom_phone'][0] ) : '';
+	$agent_custom_url = isset( $values['ns_agent_custom_url'] ) ? esc_attr( $values['ns_agent_custom_url'][0] ) : '';
 
 	//Get property taxonomies
     $property_type = ns_real_estate_get_property_type($postID);
@@ -413,7 +413,7 @@
                                         $args = array(
                                             'post_type' => 'ns-property',
                                             'showposts' => -1,
-                                            'meta_key' => 'rypecore_agent_select',
+                                            'meta_key' => 'ns_agent_select',
                                             'meta_value' => get_the_ID()
                                         );
 

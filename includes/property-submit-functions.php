@@ -115,44 +115,44 @@ function rype_real_estate_insert_property_post($edit_property_id = null) {
 	    }  
 	    if(!empty($edit_property_id)) { 
 	    	$edit_values = get_post_custom( $edit_property_id );
-			$edit_additional_images = isset($edit_values['rypecore_additional_img']) ? $edit_values['rypecore_additional_img'] : '';
+			$edit_additional_images = isset($edit_values['ns_additional_img']) ? $edit_values['ns_additional_img'] : '';
 	    	$additional_img_urls = array_merge($edit_additional_images, $additional_img_urls); 
 	    }
 
 	    //Set Post Meta
 	    $allowed = '';
 	    if( isset( $_POST['street_address'] ) )
-	    	update_post_meta( $post_ID, 'rypecore_property_address', wp_kses( $_POST['street_address'], $allowed ) );
+	    	update_post_meta( $post_ID, 'ns_property_address', wp_kses( $_POST['street_address'], $allowed ) );
 
 	    if( isset( $_POST['price'] ) )
-	    	update_post_meta( $post_ID, 'rypecore_property_price', wp_kses( $_POST['price'], $allowed ) );
+	    	update_post_meta( $post_ID, 'ns_property_price', wp_kses( $_POST['price'], $allowed ) );
 
 	    if( isset( $_POST['price_post'] ) )
-	    	update_post_meta( $post_ID, 'rypecore_property_price_postfix', wp_kses( $_POST['price_post'], $allowed ) );
+	    	update_post_meta( $post_ID, 'ns_property_price_postfix', wp_kses( $_POST['price_post'], $allowed ) );
 
 	    if( isset( $_POST['beds'] ) )
-	    	update_post_meta( $post_ID, 'rypecore_property_bedrooms', wp_kses( $_POST['beds'], $allowed ) );
+	    	update_post_meta( $post_ID, 'ns_property_bedrooms', wp_kses( $_POST['beds'], $allowed ) );
 
 	    if( isset( $_POST['baths'] ) )
-	    	update_post_meta( $post_ID, 'rypecore_property_bathrooms', wp_kses( $_POST['baths'], $allowed ) );
+	    	update_post_meta( $post_ID, 'ns_property_bathrooms', wp_kses( $_POST['baths'], $allowed ) );
 
 	    if( isset( $_POST['garages'] ) )
-	    	update_post_meta( $post_ID, 'rypecore_property_garages', wp_kses( $_POST['garages'], $allowed ) );
+	    	update_post_meta( $post_ID, 'ns_property_garages', wp_kses( $_POST['garages'], $allowed ) );
 
 	    if( isset( $_POST['area'] ) )
-	    	update_post_meta( $post_ID, 'rypecore_property_area', wp_kses( $_POST['area'], $allowed ) );
+	    	update_post_meta( $post_ID, 'ns_property_area', wp_kses( $_POST['area'], $allowed ) );
 
 	    if( isset( $_POST['area_post'] ) )
-	    	update_post_meta( $post_ID, 'rypecore_property_area_postfix', wp_kses( $_POST['area_post'], $allowed ) );
+	    	update_post_meta( $post_ID, 'ns_property_area_postfix', wp_kses( $_POST['area_post'], $allowed ) );
 
 	    if( isset( $_POST['video_url'] ) )
-	    	update_post_meta( $post_ID, 'rypecore_property_video_url', wp_kses( $_POST['video_url'], $allowed ) );
+	    	update_post_meta( $post_ID, 'ns_property_video_url', wp_kses( $_POST['video_url'], $allowed ) );
 
 	    if( isset( $_POST['video_img'] ) )
-	    	update_post_meta( $post_ID, 'rypecore_property_video_img', wp_kses( $_POST['video_img'], $allowed ) );
+	    	update_post_meta( $post_ID, 'ns_property_video_img', wp_kses( $_POST['video_img'], $allowed ) );
 
-	    if (isset( $_POST['rypecore_floor_plans'] )) {
-	        update_post_meta( $post_ID, 'rypecore_floor_plans', $_POST['rypecore_floor_plans'] );
+	    if (isset( $_POST['ns_property_floor_plans'] )) {
+	        update_post_meta( $post_ID, 'ns_property_floor_plans', $_POST['ns_property_floor_plans'] );
 	    }
 
 	    if (isset( $_POST['rypecore_property_custom_fields'] )) {
@@ -164,35 +164,35 @@ function rype_real_estate_insert_property_post($edit_property_id = null) {
 
 	    if (!empty( $additional_img_urls )) { 
 	        $strAdditionalImgs = implode(",", $additional_img_urls);
-	        update_post_meta( $post_ID, 'rypecore_additional_img', $strAdditionalImgs );
+	        update_post_meta( $post_ID, 'ns_additional_img', $strAdditionalImgs );
 	    } else {
 	        $strAdditionalImgs = '';
-	        update_post_meta( $post_ID, 'rypecore_additional_img', $strAdditionalImgs );
+	        update_post_meta( $post_ID, 'ns_additional_img', $strAdditionalImgs );
 	    }
 
 	    if( isset( $_POST['latitude'] ) )
-        	update_post_meta( $post_ID, 'rypecore_property_latitude', wp_kses( $_POST['latitude'], $allowed ) );
+        	update_post_meta( $post_ID, 'ns_property_latitude', wp_kses( $_POST['latitude'], $allowed ) );
 
 	    if( isset( $_POST['longitude'] ) )
-	        update_post_meta( $post_ID, 'rypecore_property_longitude', wp_kses( $_POST['longitude'], $allowed ) );
+	        update_post_meta( $post_ID, 'ns_property_longitude', wp_kses( $_POST['longitude'], $allowed ) );
 
 	    if( isset( $_POST['agent_display'] ) )
-	        update_post_meta( $post_ID, 'rypecore_agent_display', wp_kses( $_POST['agent_display'], $allowed ) );
+	        update_post_meta( $post_ID, 'ns_agent_display', wp_kses( $_POST['agent_display'], $allowed ) );
 
 	    if( isset( $_POST['agent_select'] ) )
-	        update_post_meta( $post_ID, 'rypecore_agent_select', wp_kses( $_POST['agent_select'], $allowed ) );
+	        update_post_meta( $post_ID, 'ns_agent_select', wp_kses( $_POST['agent_select'], $allowed ) );
 
 	    if( isset( $_POST['agent_custom_name'] ) )
-	        update_post_meta( $post_ID, 'rypecore_agent_custom_name', wp_kses( $_POST['agent_custom_name'], $allowed ) );
+	        update_post_meta( $post_ID, 'ns_agent_custom_name', wp_kses( $_POST['agent_custom_name'], $allowed ) );
 
 	    if( isset( $_POST['agent_custom_email'] ) )
-	        update_post_meta( $post_ID, 'rypecore_agent_custom_email', wp_kses( $_POST['agent_custom_email'], $allowed ) );
+	        update_post_meta( $post_ID, 'ns_agent_custom_email', wp_kses( $_POST['agent_custom_email'], $allowed ) );
 
 	    if( isset( $_POST['agent_custom_phone'] ) )
-	        update_post_meta( $post_ID, 'rypecore_agent_custom_phone', wp_kses( $_POST['agent_custom_phone'], $allowed ) );
+	        update_post_meta( $post_ID, 'ns_agent_custom_phone', wp_kses( $_POST['agent_custom_phone'], $allowed ) );
 
 	    if( isset( $_POST['agent_custom_url'] ) )
-	        update_post_meta( $post_ID, 'rypecore_agent_custom_url', wp_kses( $_POST['agent_custom_url'], $allowed ) );
+	        update_post_meta( $post_ID, 'ns_agent_custom_url', wp_kses( $_POST['agent_custom_url'], $allowed ) );
 
 		if($members_submit_property_approval == 'true') {
 	        $output['success'] = esc_html__('Your property,', 'rype-real-estate') .' <b>'. $title .',</b> '. esc_html__('was submitted for review!', 'rype-real-estate');
@@ -228,27 +228,27 @@ function rype_real_estate_property_submit_form() {
 	    $edit_property_id = $_GET['edit_property'];
 	    $form_action = '?edit_property='.esc_attr($edit_property_id);
 	    $values = get_post_custom( $edit_property_id );
-	    $edit_address = isset( $values['rypecore_property_address'] ) ? esc_attr( $values['rypecore_property_address'][0] ) : '';
-    	$edit_price = isset( $values['rypecore_property_price'] ) ? esc_attr( $values['rypecore_property_price'][0] ) : '';
-    	$edit_price_postfix = isset( $values['rypecore_property_price_postfix'] ) ? esc_attr( $values['rypecore_property_price_postfix'][0] ) : '';
-    	$edit_bedrooms = isset( $values['rypecore_property_bedrooms'] ) ? esc_attr( $values['rypecore_property_bedrooms'][0] ) : '';
-    	$edit_bathrooms = isset( $values['rypecore_property_bathrooms'] ) ? esc_attr( $values['rypecore_property_bathrooms'][0] ) : '';
-    	$edit_garages = isset( $values['rypecore_property_garages'] ) ? esc_attr( $values['rypecore_property_garages'][0] ) : '';
-    	$edit_area = isset( $values['rypecore_property_area'] ) ? esc_attr( $values['rypecore_property_area'][0] ) : '';
+	    $edit_address = isset( $values['ns_property_address'] ) ? esc_attr( $values['ns_property_address'][0] ) : '';
+    	$edit_price = isset( $values['ns_property_price'] ) ? esc_attr( $values['ns_property_price'][0] ) : '';
+    	$edit_price_postfix = isset( $values['ns_property_price_postfix'] ) ? esc_attr( $values['ns_property_price_postfix'][0] ) : '';
+    	$edit_bedrooms = isset( $values['ns_property_bedrooms'] ) ? esc_attr( $values['ns_property_bedrooms'][0] ) : '';
+    	$edit_bathrooms = isset( $values['ns_property_bathrooms'] ) ? esc_attr( $values['ns_property_bathrooms'][0] ) : '';
+    	$edit_garages = isset( $values['ns_property_garages'] ) ? esc_attr( $values['ns_property_garages'][0] ) : '';
+    	$edit_area = isset( $values['ns_property_area'] ) ? esc_attr( $values['ns_property_area'][0] ) : '';
     	$area_postfix_default = esc_attr(get_option('rypecore_default_area_postfix', 'Sq Ft'));
-    	$edit_area_postfix = isset( $values['rypecore_property_area_postfix'] ) ? esc_attr( $values['rypecore_property_area_postfix'][0] ) : $area_postfix_default;
-    	$edit_floor_plans = isset($values['rypecore_floor_plans']) ? $values['rypecore_floor_plans'] : '';
-    	$edit_additional_images = isset($values['rypecore_additional_img']) ? $values['rypecore_additional_img'] : '';
-    	$edit_video_url = isset( $values['rypecore_property_video_url'] ) ? esc_attr( $values['rypecore_property_video_url'][0] ) : '';
-    	$edit_video_img = isset( $values['rypecore_property_video_img'] ) ? esc_attr( $values['rypecore_property_video_img'][0] ) : '';
-    	$latitude = isset( $values['rypecore_property_latitude'] ) ? esc_attr( $values['rypecore_property_latitude'][0] ) : '';
-    	$longitude = isset( $values['rypecore_property_longitude'] ) ? esc_attr( $values['rypecore_property_longitude'][0] ) : '';
-    	$edit_agent_display = isset( $values['rypecore_agent_display'] ) ? esc_attr( $values['rypecore_agent_display'][0] ) : 'none';
-    	$edit_agent_select = isset( $values['rypecore_agent_select'] ) ? esc_attr( $values['rypecore_agent_select'][0] ) : '';
-    	$edit_agent_custom_name = isset( $values['rypecore_agent_custom_name'] ) ? esc_attr( $values['rypecore_agent_custom_name'][0] ) : '';
-    	$edit_agent_custom_email = isset( $values['rypecore_agent_custom_email'] ) ? esc_attr( $values['rypecore_agent_custom_email'][0] ) : '';
-    	$edit_agent_custom_phone = isset( $values['rypecore_agent_custom_phone'] ) ? esc_attr( $values['rypecore_agent_custom_phone'][0] ) : '';
-    	$edit_agent_custom_url = isset( $values['rypecore_agent_custom_url'] ) ? esc_attr( $values['rypecore_agent_custom_url'][0] ) : '';
+    	$edit_area_postfix = isset( $values['ns_property_area_postfix'] ) ? esc_attr( $values['ns_property_area_postfix'][0] ) : $area_postfix_default;
+    	$edit_floor_plans = isset($values['ns_property_floor_plans']) ? $values['ns_property_floor_plans'] : '';
+    	$edit_additional_images = isset($values['ns_additional_img']) ? $values['ns_additional_img'] : '';
+    	$edit_video_url = isset( $values['ns_property_video_url'] ) ? esc_attr( $values['ns_property_video_url'][0] ) : '';
+    	$edit_video_img = isset( $values['ns_property_video_img'] ) ? esc_attr( $values['ns_property_video_img'][0] ) : '';
+    	$latitude = isset( $values['ns_property_latitude'] ) ? esc_attr( $values['ns_property_latitude'][0] ) : '';
+    	$longitude = isset( $values['ns_property_longitude'] ) ? esc_attr( $values['ns_property_longitude'][0] ) : '';
+    	$edit_agent_display = isset( $values['ns_agent_display'] ) ? esc_attr( $values['ns_agent_display'][0] ) : 'none';
+    	$edit_agent_select = isset( $values['ns_agent_select'] ) ? esc_attr( $values['ns_agent_select'][0] ) : '';
+    	$edit_agent_custom_name = isset( $values['ns_agent_custom_name'] ) ? esc_attr( $values['ns_agent_custom_name'][0] ) : '';
+    	$edit_agent_custom_email = isset( $values['ns_agent_custom_email'] ) ? esc_attr( $values['ns_agent_custom_email'][0] ) : '';
+    	$edit_agent_custom_phone = isset( $values['ns_agent_custom_phone'] ) ? esc_attr( $values['ns_agent_custom_phone'][0] ) : '';
+    	$edit_agent_custom_url = isset( $values['ns_agent_custom_url'] ) ? esc_attr( $values['ns_agent_custom_url'][0] ) : '';
     	$edit_property_location = ns_real_estate_get_property_location($edit_property_id , null, 'true');
     	$edit_property_amenities = ns_real_estate_get_property_amenities($edit_property_id , true, 'true');
     	$edit_property_status = ns_real_estate_get_property_status($edit_property_id, 'true');
@@ -268,7 +268,7 @@ function rype_real_estate_property_submit_form() {
 
 		    //update values
 		    $strAdditionalImgs = implode(",", $new_edit_additional_images);
-		    update_post_meta( $edit_property_id, 'rypecore_additional_img', $strAdditionalImgs );
+		    update_post_meta( $edit_property_id, 'ns_additional_img', $strAdditionalImgs );
 		}
     	
 	} else {
@@ -494,17 +494,17 @@ function rype_real_estate_property_submit_form() {
 	                                <h3 class="accordion-tab"><span class="floor-plan-title-mirror"><?php echo $floor_plan['title']; ?></span> <span class="delete-floor-plan right"><i class="fa fa-trash"></i> <?php esc_html_e('Delete', 'rype-real-estate'); ?></span></h3>
 	                                <div class="floor-plan-item"> 
 	                                    <div class="floor-plan-left"> 
-	                                        <label><?php esc_html_e('Title:', 'rype-real-estate'); ?> </label> <input class="border floor-plan-title" type="text" name="rypecore_floor_plans[<?php echo $count; ?>][title]" placeholder="<?php esc_html_e('New Floor Plan', 'rype-real-estate'); ?>" value="<?php echo $floor_plan['title']; ?>" /><br/>
-	                                        <label><?php esc_html_e('Size:', 'rype-real-estate'); ?> </label> <input class="border" type="text" name="rypecore_floor_plans[<?php echo $count; ?>][size]" value="<?php echo $floor_plan['size']; ?>" /><br/>
-	                                        <label><?php esc_html_e('Rooms:', 'rype-real-estate'); ?> </label> <input class="border" type="number" name="rypecore_floor_plans[<?php echo $count; ?>][rooms]" value="<?php echo $floor_plan['rooms']; ?>" /><br/>
-	                                        <label><?php esc_html_e('Bathrooms:', 'rype-real-estate'); ?> </label> <input class="border" type="number" name="rypecore_floor_plans[<?php echo $count; ?>][baths]" value="<?php echo $floor_plan['baths']; ?>" /><br/>
+	                                        <label><?php esc_html_e('Title:', 'rype-real-estate'); ?> </label> <input class="border floor-plan-title" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][title]" placeholder="<?php esc_html_e('New Floor Plan', 'rype-real-estate'); ?>" value="<?php echo $floor_plan['title']; ?>" /><br/>
+	                                        <label><?php esc_html_e('Size:', 'rype-real-estate'); ?> </label> <input class="border" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][size]" value="<?php echo $floor_plan['size']; ?>" /><br/>
+	                                        <label><?php esc_html_e('Rooms:', 'rype-real-estate'); ?> </label> <input class="border" type="number" name="ns_property_floor_plans[<?php echo $count; ?>][rooms]" value="<?php echo $floor_plan['rooms']; ?>" /><br/>
+	                                        <label><?php esc_html_e('Bathrooms:', 'rype-real-estate'); ?> </label> <input class="border" type="number" name="ns_property_floor_plans[<?php echo $count; ?>][baths]" value="<?php echo $floor_plan['baths']; ?>" /><br/>
 	                                    </div>
 	                                    <div class="floor-plan-right">
 	                                        <label><?php esc_html_e('Description:', 'rype-real-estate'); ?></label>
-	                                        <textarea class="border" name="rypecore_floor_plans[<?php echo $count; ?>][description]"><?php echo $floor_plan['description']; ?></textarea>
+	                                        <textarea class="border" name="ns_property_floor_plans[<?php echo $count; ?>][description]"><?php echo $floor_plan['description']; ?></textarea>
 	                                        <div>
 	                                            <label><?php esc_html_e('Image', 'rype-real-estate'); ?></label>
-	                                            <input class="border" type="text" name="rypecore_floor_plans[<?php echo $count; ?>][img]" value="<?php echo $floor_plan['img']; ?>" />
+	                                            <input class="border" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][img]" value="<?php echo $floor_plan['img']; ?>" />
 	                                            <span><em><?php esc_html_e('Provide the absolute url to a hosted image.', 'rype-real-estate'); ?></em></span>
 	                                        </div>
 	                                    </div>

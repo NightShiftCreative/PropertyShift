@@ -209,7 +209,7 @@ function rype_list_properties($atts, $content = null) {
     $meta_query_featured = array();
     if ($atts['featured'] != 'false') {
         $meta_query_featured[] = array(
-            'key' => 'rypecore_property_featured',
+            'key' => 'ns_property_featured',
             'value'   => 'true'
         );
     }

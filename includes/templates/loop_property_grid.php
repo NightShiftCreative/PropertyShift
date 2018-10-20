@@ -9,16 +9,16 @@
 	
 	//Get property details
     $values = get_post_custom( $post->ID );
-    $featured = isset( $values['rypecore_property_featured'] ) ? esc_attr( $values['rypecore_property_featured'][0] ) : 'false';
+    $featured = isset( $values['ns_property_featured'] ) ? esc_attr( $values['ns_property_featured'][0] ) : 'false';
 	if(function_exists('ns_real_estate_get_property_address')) { $address = ns_real_estate_get_property_address($post->ID); } else { $address = ''; } 
-    $price = isset( $values['rypecore_property_price'] ) ? esc_attr( $values['rypecore_property_price'][0] ) : '';
-	$price_postfix = isset( $values['rypecore_property_price_postfix'] ) ? esc_attr( $values['rypecore_property_price_postfix'][0] ) : '';
-	$area = isset( $values['rypecore_property_area'] ) ? esc_attr( $values['rypecore_property_area'][0] ) : '';
+    $price = isset( $values['ns_property_price'] ) ? esc_attr( $values['ns_property_price'][0] ) : '';
+	$price_postfix = isset( $values['ns_property_price_postfix'] ) ? esc_attr( $values['ns_property_price_postfix'][0] ) : '';
+	$area = isset( $values['ns_property_area'] ) ? esc_attr( $values['ns_property_area'][0] ) : '';
     if(!empty($area) && function_exists('ns_real_estate_format_area')) { $area = ns_real_estate_format_area($area); }
-    $area_postfix = isset( $values['rypecore_property_area_postfix'] ) ? esc_attr( $values['rypecore_property_area_postfix'][0] ) : '';
-    $bedrooms = isset( $values['rypecore_property_bedrooms'] ) ? esc_attr( $values['rypecore_property_bedrooms'][0] ) : '';
-    $bathrooms = isset( $values['rypecore_property_bathrooms'] ) ? esc_attr( $values['rypecore_property_bathrooms'][0] ) : '';
-	$garages = isset( $values['rypecore_property_garages'] ) ? esc_attr( $values['rypecore_property_garages'][0] ) : '';
+    $area_postfix = isset( $values['ns_property_area_postfix'] ) ? esc_attr( $values['ns_property_area_postfix'][0] ) : '';
+    $bedrooms = isset( $values['ns_property_bedrooms'] ) ? esc_attr( $values['ns_property_bedrooms'][0] ) : '';
+    $bathrooms = isset( $values['ns_property_bathrooms'] ) ? esc_attr( $values['ns_property_bathrooms'][0] ) : '';
+	$garages = isset( $values['ns_property_garages'] ) ? esc_attr( $values['ns_property_garages'][0] ) : '';
 	
 	//Get property taxonomies
 	if(function_exists('ns_real_estate_get_property_status')) { $property_status = ns_real_estate_get_property_status($post->ID); } else { $property_status = ''; }

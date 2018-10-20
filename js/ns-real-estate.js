@@ -363,17 +363,17 @@ jQuery(document).ready(function($) {
             <h3 class="accordion-tab"><span class="floor-plan-title-mirror">'+ ns_real_estate_local_script.new_floor_plan +'</span> <span class="delete-floor-plan right"><i class="fa fa-trash"></i> '+ ns_real_estate_local_script.delete_text +'</span></h3> \
             <div class="floor-plan-item"> \
                 <div class="floor-plan-left"> \
-                    <label>'+ ns_real_estate_local_script.floor_plan_title +' </label> <input class="floor-plan-title border" type="text" name="rypecore_floor_plans['+count+'][title]" placeholder="'+ ns_real_estate_local_script.new_floor_plan +'" /><br/> \
-                    <label>'+ ns_real_estate_local_script.floor_plan_size +' </label> <input class="border" type="text" name="rypecore_floor_plans['+count+'][size]" /><br/> \
-                    <label>'+ ns_real_estate_local_script.floor_plan_rooms +' </label> <input class="border" type="number" name="rypecore_floor_plans['+count+'][rooms]" /><br/> \
-                    <label>'+ ns_real_estate_local_script.floor_plan_bathrooms +' </label> <input class="border" type="number" name="rypecore_floor_plans['+count+'][baths]" /><br/> \
+                    <label>'+ ns_real_estate_local_script.floor_plan_title +' </label> <input class="floor-plan-title border" type="text" name="ns_property_floor_plans['+count+'][title]" placeholder="'+ ns_real_estate_local_script.new_floor_plan +'" /><br/> \
+                    <label>'+ ns_real_estate_local_script.floor_plan_size +' </label> <input class="border" type="text" name="ns_property_floor_plans['+count+'][size]" /><br/> \
+                    <label>'+ ns_real_estate_local_script.floor_plan_rooms +' </label> <input class="border" type="number" name="ns_property_floor_plans['+count+'][rooms]" /><br/> \
+                    <label>'+ ns_real_estate_local_script.floor_plan_bathrooms +' </label> <input class="border" type="number" name="ns_property_floor_plans['+count+'][baths]" /><br/> \
                 </div> \
                 <div class="floor-plan-right"> \
                     <label>'+ ns_real_estate_local_script.floor_plan_description +' </label> \
-                    <textarea class="border" name="rypecore_floor_plans['+count+'][description]"></textarea> \
+                    <textarea class="border" name="ns_property_floor_plans['+count+'][description]"></textarea> \
                     <div> \
                         <label>'+ ns_real_estate_local_script.floor_plan_img +' </label> \
-                        <input class="border" type="text" name="rypecore_floor_plans['+count+'][img]" /> \
+                        <input class="border" type="text" name="ns_property_floor_plans['+count+'][img]" /> \
                         <span><em>'+ns_real_estate_local_script.floor_plan_note+'</em></span> \
                     </div> \
                 </div> \

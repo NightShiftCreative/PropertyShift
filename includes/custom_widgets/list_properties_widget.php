@@ -38,7 +38,7 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
                         $meta_query_featured = array();
                         if ($filter == 'featured') {
                             $meta_query_featured[] = array(
-                                'key' => 'rypecore_property_featured',
+                                'key' => 'ns_property_featured',
                                 'value'   => 'true'
                             );
                         }
@@ -59,8 +59,8 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
 
                                 <?php
                                 $values = get_post_custom( $post->ID );
-                                $price = isset( $values['rypecore_property_price'] ) ? esc_attr( $values['rypecore_property_price'][0] ) : '';
-                                $price_postfix = isset( $values['rypecore_property_price_postfix'] ) ? esc_attr( $values['rypecore_property_price_postfix'][0] ) : '';
+                                $price = isset( $values['ns_property_price'] ) ? esc_attr( $values['ns_property_price'][0] ) : '';
+                                $price_postfix = isset( $values['ns_property_price_postfix'] ) ? esc_attr( $values['ns_property_price_postfix'][0] ) : '';
                                 ?>
 
                                 <div class="list-property">

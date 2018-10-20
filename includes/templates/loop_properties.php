@@ -83,11 +83,11 @@
     } else if($order_by == 'price_asc') {
         $order = 'ASC';
         $order_by = 'meta_value_num';
-        $meta_key = 'rypecore_property_price';
+        $meta_key = 'ns_property_price';
     } else if($order_by == 'price_desc') {
         $order = 'DESC';
         $order_by = 'meta_value_num';
-        $meta_key = 'rypecore_property_price';
+        $meta_key = 'ns_property_price';
     }
 
     //SET TAXONOMIES
@@ -101,7 +101,7 @@
     //FILTER FEATURED PROPERTIES
     if (isset($_GET['featured'])) {
         $meta_query[] = array(
-            'key' => 'rypecore_property_featured',
+            'key' => 'ns_property_featured',
             'value'   => 'true'
         );
     }
@@ -126,7 +126,7 @@
 
         if(isset($_GET['priceMin']) && isset($_GET['priceMax'])) {
             $meta_query[] = array(
-                'key' => 'rypecore_property_price',
+                'key' => 'ns_property_price',
                 'value'   => array( $priceMin, $priceMax ),
                 'type'    => 'numeric',
                 'compare' => 'BETWEEN',
@@ -135,7 +135,7 @@
 
         if(!empty($_GET['beds'])) {
             $meta_query[] = array(
-                'key'     => 'rypecore_property_bedrooms',
+                'key'     => 'ns_property_bedrooms',
                 'value'   => $_GET['beds']
             );
         }
@@ -144,14 +144,14 @@
             $numBaths = intval($_GET['baths']);
             $numBathsDemical = $numBaths + 0.5;
             $meta_query[] = array(
-                'key' => 'rypecore_property_bathrooms',
+                'key' => 'ns_property_bathrooms',
                 'compare' => 'IN',
                 'value'   => array($_GET['baths'], $numBathsDemical)
             );
         }
 
         $meta_query[] = array(
-            'key' => 'rypecore_property_area',
+            'key' => 'ns_property_area',
             'value'   => $areaValue,
             'type'    => 'numeric',
             'compare' => $areaCompare,

@@ -20,7 +20,7 @@
     $args = array(
         'post_type' => 'ns-property',
         'showposts' => -1,
-        'meta_key' => 'rypecore_agent_select',
+        'meta_key' => 'ns_agent_select',
         'meta_value' => get_the_ID()
     );
 
