@@ -22,7 +22,7 @@
 
             <?php
             $property_listing_args = array(
-                'post_type' => 'rype-property',
+                'post_type' => 'ns-property',
                 'posts_per_page' => 12,
                 'paged' => $paged,
                 'author_name' => $author,
@@ -35,7 +35,7 @@
                 
                 <?php
                 //Get property type
-                if(function_exists('rype_real_estate_get_property_type')) { $property_type = rype_real_estate_get_property_type($post->ID); } else { $property_type = ''; }
+                if(function_exists('ns_real_estate_get_property_type')) { $property_type = ns_real_estate_get_property_type($post->ID); } else { $property_type = ''; }
                 ?>
 
                 <tr class="my-properties-entry">

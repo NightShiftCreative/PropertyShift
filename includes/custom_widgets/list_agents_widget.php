@@ -50,7 +50,7 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
 
                             //property post count
                             $args = array(
-                                'post_type' => 'rype-property',
+                                'post_type' => 'ns-property',
                                 'meta_key' => 'rypecore_agent_select',
                                 'meta_value' => get_the_ID()
                             );

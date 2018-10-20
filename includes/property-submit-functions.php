@@ -78,7 +78,7 @@ function rype_real_estate_insert_property_post($edit_property_id = null) {
 	            'ID'           => $edit_property_id,
 	            'post_title' => wp_strip_all_tags( $title ),
 	            'post_content' => $_POST['description'],
-	            'post_type' => 'rype-property'
+	            'post_type' => 'ns-property'
 	        );
 	        wp_update_post( $post_information );
 	        $post_ID = $edit_property_id;
@@ -86,7 +86,7 @@ function rype_real_estate_insert_property_post($edit_property_id = null) {
 			$post_information = array(
 		        'post_title' => wp_strip_all_tags( $title ),
 		        'post_content' => $_POST['description'],
-		        'post_type' => 'rype-property',
+		        'post_type' => 'ns-property',
 		        'post_status' => $members_submit_property_approval
 		    );
 		    $post_ID = wp_insert_post( $post_information );
@@ -249,10 +249,10 @@ function rype_real_estate_property_submit_form() {
     	$edit_agent_custom_email = isset( $values['rypecore_agent_custom_email'] ) ? esc_attr( $values['rypecore_agent_custom_email'][0] ) : '';
     	$edit_agent_custom_phone = isset( $values['rypecore_agent_custom_phone'] ) ? esc_attr( $values['rypecore_agent_custom_phone'][0] ) : '';
     	$edit_agent_custom_url = isset( $values['rypecore_agent_custom_url'] ) ? esc_attr( $values['rypecore_agent_custom_url'][0] ) : '';
-    	$edit_property_location = rype_real_estate_get_property_location($edit_property_id , null, 'true');
-    	$edit_property_amenities = rype_real_estate_get_property_amenities($edit_property_id , true, 'true');
-    	$edit_property_status = rype_real_estate_get_property_status($edit_property_id, 'true');
-    	$edit_property_type = rype_real_estate_get_property_type($edit_property_id, 'true');
+    	$edit_property_location = ns_real_estate_get_property_location($edit_property_id , null, 'true');
+    	$edit_property_amenities = ns_real_estate_get_property_amenities($edit_property_id , true, 'true');
+    	$edit_property_status = ns_real_estate_get_property_status($edit_property_id, 'true');
+    	$edit_property_type = ns_real_estate_get_property_type($edit_property_id, 'true');
     	$edit_content_post = get_post($edit_property_id);
     	$edit_content = $edit_content_post->post_content;
     	$edit_content = str_replace(']]>', ']]&gt;', $edit_content);

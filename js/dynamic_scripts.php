@@ -3,7 +3,7 @@
 if(isset($_GET['rtl'])) { $rtl = $_GET['rtl']; } else { $rtl = esc_attr(get_option('ns_core_rtl')); } 
 
 //Get currency options
-$currency_options = rype_real_estate_get_curreny_options();
+$currency_options = ns_real_estate_get_curreny_options();
 
 $dynamic_script = '';
 

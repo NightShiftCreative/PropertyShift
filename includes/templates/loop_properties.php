@@ -173,7 +173,7 @@
     }
 
 	$property_listing_args = array(
-        'post_type' => 'rype-property',
+        'post_type' => 'ns-property',
         'posts_per_page' => $num_properties_per_page,
         'property_location' => $property_location,
         'property_status' => $property_status,
@@ -212,7 +212,7 @@ if($property_listing_header_display == 'true') {
 }
 ?>
 
-<div class="row rype-property-listing">
+<div class="row ns-property-listing">
 <?php 
 $i = 0;
 
@@ -279,7 +279,7 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
             <?php 
             if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no properties were found.', 'rypecore'); }
             if(is_user_logged_in() && current_user_can('administrator')) { 
-                $new_property_url = esc_url(home_url('/')).'wp-admin/post-new.php?post_type=rype-property';
+                $new_property_url = esc_url(home_url('/')).'wp-admin/post-new.php?post_type=ns-property';
                 printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new property.</b></em>', 'rypecore'), $new_property_url );  
             } ?>
         </p>

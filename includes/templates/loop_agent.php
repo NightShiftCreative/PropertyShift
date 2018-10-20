@@ -18,7 +18,7 @@
 
     //property post count
     $args = array(
-        'post_type' => 'rype-property',
+        'post_type' => 'ns-property',
         'showposts' => -1,
         'meta_key' => 'rypecore_agent_select',
         'meta_value' => get_the_ID()
@@ -38,7 +38,7 @@
                 <?php if($agent_listing_crop == 'true') { the_post_thumbnail('agent-thumbnail'); } else { the_post_thumbnail('full'); } ?>  
             </a>
 		<?php } else { ?>
-			<a href="<?php the_permalink(); ?>" class="agent-img-link"><img src="<?php echo plugins_url( '/rype-real-estate/images/agent-img-default.gif' ); ?>" alt="" /></a>
+			<a href="<?php the_permalink(); ?>" class="agent-img-link"><img src="<?php echo plugins_url( '/ns-real-estate/images/agent-img-default.gif' ); ?>" alt="" /></a>
 		<?php } ?>
 	</div>
 	
@@ -47,7 +47,7 @@
         <div class="agent-details">
 
             <?php if(isset($meta_post_count) && $meta_post_count > 0) { ?>
-                <a href="<?php the_permalink(); ?>" class="right"><?php echo esc_attr($meta_post_count); ?> <?php if($meta_post_count <= 1) { esc_html_e('Property', 'rypecore'); } else { esc_html_e('Properties', 'rypecore'); } ?></a>
+                <a href="<?php the_permalink(); ?>" class="right"><?php echo esc_attr($meta_post_count); ?> <?php if($meta_post_count <= 1) { esc_html_e('Property', 'ns-real-estate'); } else { esc_html_e('Properties', 'ns-real-estate'); } ?></a>
             <?php } ?>
 
             <div class="agent-title left">

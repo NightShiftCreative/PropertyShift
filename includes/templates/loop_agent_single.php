@@ -30,7 +30,7 @@
 
     //property post count
     $args = array(
-        'post_type' => 'rype-property',
+        'post_type' => 'ns-property',
         'showposts' => -1,
         'meta_key' => 'rypecore_agent_select',
         'meta_value' => get_the_ID()
@@ -156,7 +156,7 @@
                             <?php } ?>
                 	        <?php 
                                 $args_agent_properties = array(
-                                    'post_type' => 'rype-property',
+                                    'post_type' => 'ns-property',
                                     'posts_per_page' => $num_properties_per_page,
                                     'meta_key' => 'rypecore_agent_select',
                                     'meta_value' => get_the_ID(),

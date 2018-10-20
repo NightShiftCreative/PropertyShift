@@ -207,16 +207,16 @@
 }
 .rype-listing-col:nth-child(2n) { margin-right:0; }
 
-.rype-property-listing .rype-property, .rype-property-listing .hentry.rype-property { 
+.ns-property-listing .ns-property, .ns-property-listing .hentry.ns-property { 
 	margin:0;
 	margin-bottom:30px; 
 	padding-top:0; 
 	position:relative;
 }
-.rype-property .property-content { padding:5%; position:relative; border:1px solid rgba(0, 0, 0, 0.1); font-size:15px; }
-.rype-property .property-content p { margin:0; }
+.ns-property .property-content { padding:5%; position:relative; border:1px solid rgba(0, 0, 0, 0.1); font-size:15px; }
+.ns-property .property-content p { margin:0; }
 
-.rype-property .property-tag {
+.ns-property .property-tag {
     max-width:50%;
     display:inline-block;
 	padding:3px 8px;
@@ -224,8 +224,8 @@
 	z-index:10;
 	border:1px solid rgba(0, 0, 0, 0.1);
 }
-.rype-property .property-tag.status { float:right; }
-.rype-property .property-tag.featured { 
+.ns-property .property-tag.status { float:right; }
+.ns-property .property-tag.featured { 
 	position:absolute; 
 	color:white; 
 	right:10px; 
@@ -233,32 +233,32 @@
 	background:#db7e40; 
 }
 
-.rype-property .property-actions {
+.ns-property .property-actions {
 	border-bottom:1px solid rgba(0, 0, 0, 0.1);
 	padding-bottom:10px;
 	margin-bottom:10px; 
 }
-.rype-property .property-actions .ns-tooltip { margin-right:10px; }
+.ns-property .property-actions .ns-tooltip { margin-right:10px; }
 
-.rype-property .property-price , .rype-property .property-price-single {
+.ns-property .property-price , .ns-property .property-price-single {
 	color:#db7e40;
 	font-weight:700;
 	font-size:25px;
 }
 
-.rype-property .property-title h4 { margin:15px 0px; }
+.ns-property .property-title h4 { margin:15px 0px; }
 
-.rype-property .property-details { margin-top:10px; margin-bottom:0; }
+.ns-property .property-details { margin-top:10px; margin-bottom:0; }
 
 /*********************************************/
 /** PROPERTIES SINGLE **/
 /*********************************************/
-.rype-property .property-single { position:relative; }
+.ns-property .property-single { position:relative; }
 
-.rype-property .property-single .property-address { margin-bottom:15px; }
+.ns-property .property-single .property-address { margin-bottom:15px; }
 
-.rype-property .property-single-tags { margin-bottom:30px; font-size:14px; }
-.rype-property .property-single-tags .property-tag { 
+.ns-property .property-single-tags { margin-bottom:30px; font-size:14px; }
+.ns-property .property-single-tags .property-tag { 
 	float:none; 
 	position:relative;
 	right:0;
@@ -266,12 +266,12 @@
     margin-bottom:10px;
 }
 
-.rype-property .property-single-item.widget { 
+.ns-property .property-single-item.widget { 
 	padding:0; 
 	margin-bottom:30px;
 }
 
-.rype-property .property-single .gallery-images > a {
+.ns-property .property-single .gallery-images > a {
 	width:24%;
 	display:block;
 	float:left;
@@ -279,7 +279,7 @@
 	margin-top:1%;
 }
 
-.rype-property .property-single-item .walk-score h2 { margin:0; }
+.ns-property .property-single-item .walk-score h2 { margin:0; }
 
 /*********************************************/
 /** AGENTS **/

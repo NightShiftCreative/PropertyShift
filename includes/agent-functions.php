@@ -345,7 +345,7 @@ function rype_real_estate_agent_contact_form($agent_email) {
     $agent_form_submit_text = esc_attr(get_option('ns_agent_form_submit_text', esc_html__('Contact Agent', 'rype-real-estate')) );
     $agent_form_success = esc_attr(get_option('ns_agent_form_success', esc_html__('Thanks! Your email has been delivered!', 'rype-real-estate')));
     
-    if(is_singular('rype-property')) {
+    if(is_singular('ns-property')) {
         $agent_form_message_placeholder = esc_attr(get_option('ns_agent_form_message_placeholder', esc_html__('I am interested in this property and would like to know more.', 'rype-real-estate')) );
     } else {
         $agent_form_message_placeholder =  esc_html__( 'Message', 'rype-real-estate' );

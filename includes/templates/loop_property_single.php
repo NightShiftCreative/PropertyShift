@@ -25,11 +25,11 @@
 	//Get property details
     $values = get_post_custom( $postID );
     $featured = isset( $values['rypecore_property_featured'] ) ? esc_attr( $values['rypecore_property_featured'][0] ) : 'false';
-	if(function_exists('rype_real_estate_get_property_address')) { $address = rype_real_estate_get_property_address($postID); } else { $address = ''; }
+	if(function_exists('ns_real_estate_get_property_address')) { $address = ns_real_estate_get_property_address($postID); } else { $address = ''; }
 	$price = isset( $values['rypecore_property_price'] ) ? esc_attr( $values['rypecore_property_price'][0] ) : '';
 	$price_postfix = isset( $values['rypecore_property_price_postfix'] ) ? esc_attr( $values['rypecore_property_price_postfix'][0] ) : '';
     $area = isset( $values['rypecore_property_area'] ) ? esc_attr( $values['rypecore_property_area'][0] ) : '';
-    if(!empty($area)) { $area = rype_real_estate_format_area($area); }
+    if(!empty($area)) { $area = ns_real_estate_format_area($area); }
     $area_postfix = isset( $values['rypecore_property_area_postfix'] ) ? esc_attr( $values['rypecore_property_area_postfix'][0] ) : '';
     $bedrooms = isset( $values['rypecore_property_bedrooms'] ) ? esc_attr( $values['rypecore_property_bedrooms'][0] ) : '';
     $bathrooms = isset( $values['rypecore_property_bathrooms'] ) ? esc_attr( $values['rypecore_property_bathrooms'][0] ) : '';
@@ -48,11 +48,11 @@
 	$agent_custom_url = isset( $values['rypecore_agent_custom_url'] ) ? esc_attr( $values['rypecore_agent_custom_url'][0] ) : '';
 
 	//Get property taxonomies
-    $property_type = rype_real_estate_get_property_type($postID);
-    $property_status = rype_real_estate_get_property_status($postID);
-    $property_location = rype_real_estate_get_property_location($postID, 'parent');
-    $property_location_children = rype_real_estate_get_property_location($postID, 'children');
-    $property_amenities = rype_real_estate_get_property_amenities($postID, $property_detail_amenities_hide_empty);
+    $property_type = ns_real_estate_get_property_type($postID);
+    $property_status = ns_real_estate_get_property_status($postID);
+    $property_location = ns_real_estate_get_property_location($postID, 'parent');
+    $property_location_children = ns_real_estate_get_property_location($postID, 'children');
+    $property_amenities = ns_real_estate_get_property_amenities($postID, $property_detail_amenities_hide_empty);
 
     //Get custom post meta count
     $post_meta = get_post_meta($postID);
@@ -90,7 +90,7 @@
                                             
                                 <?php if(!empty($price)) { ?>
                                     <div class="property-price-single right">
-                                        <?php echo rype_basics_format_price($price); ?>
+                                        <?php echo ns_real_estate_format_price($price); ?>
                                         <?php if(!empty($price_postfix)) { ?><span class="price-postfix"><?php echo esc_attr($price_postfix); ?></span><?php } ?>
                                     </div>
                                 <?php } ?>
@@ -411,7 +411,7 @@
 
                                         //property post count
                                         $args = array(
-                                            'post_type' => 'rype-property',
+                                            'post_type' => 'ns-property',
                                             'showposts' => -1,
                                             'meta_key' => 'rypecore_agent_select',
                                             'meta_value' => get_the_ID()
@@ -503,7 +503,7 @@
                             <?php } ?>
                             <?php 
                                 $args_related_properties = array(
-                                    'post_type' => 'rype-property',
+                                    'post_type' => 'ns-property',
                                     'showposts' => 2,
                                     'tax_query' => array(
                                         'relation' => 'OR',

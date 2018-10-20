@@ -23,7 +23,7 @@ function rype_real_estate_template_property_single( $content ) {
 	$template = 'loop_property_single.php';
 	$theme_file = locate_template(array( 'rype-real-estate/' . $template));
 
-	if(is_singular('rype-property')) {
+	if(is_singular('ns-property')) {
 		if(empty($theme_file)) {
 			echo '<div class="rype-real-estate">'; 
 	    	include( plugin_dir_path( __FILE__ ) . $template);

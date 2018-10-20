@@ -5,15 +5,15 @@
 /*-----------------------------------------------------------------------------------*/
 
 //rewrite for properties page url conflict
-function rype_real_estate_properties_rewrite_rule() {
+function ns_real_estate_properties_rewrite_rule() {
     add_rewrite_rule('^properties/page/([0-9]+)','index.php?pagename=properties&paged=$matches[1]', 'top');
 }
-add_action('init', 'rype_real_estate_properties_rewrite_rule');
+add_action('init', 'ns_real_estate_properties_rewrite_rule');
 
 //returns property count (supply user ID to return property count for that user)
-function rype_real_estate_count_properties($type, $user_id = null) {
+function ns_real_estate_count_properties($type, $user_id = null) {
         $args_total_properties = array(
-            'post_type' => 'rype-property',
+            'post_type' => 'ns-property',
             'showposts' => -1,
             'author_name' => $user_id,
             'post_status' => $type 
@@ -26,7 +26,7 @@ function rype_real_estate_count_properties($type, $user_id = null) {
 }
 
 //returns curreny options
-function rype_real_estate_get_curreny_options() {
+function ns_real_estate_get_curreny_options() {
     $currency_options = array();
     $currency_options['symbol'] = esc_attr(get_option('ns_real_estate_currency_symbol', '$'));
     $currency_options['symbol_position'] = esc_attr(get_option('ns_real_estate_currency_symbol_position', 'before'));
@@ -41,8 +41,8 @@ function rype_real_estate_get_curreny_options() {
 }
 
 // returns formatted price
-function rype_basics_format_price($price) {
-    $currency_options = rype_real_estate_get_curreny_options();
+function ns_real_estate_format_price($price) {
+    $currency_options = ns_real_estate_get_curreny_options();
     $currency_symbol = $currency_options['symbol'];
     $currency_symbol_position = $currency_options['symbol_position'];
     $currency_thousand = $currency_options['thousand'];
@@ -56,26 +56,26 @@ function rype_basics_format_price($price) {
 }
 
 // returns formatted area
-function rype_real_estate_format_area($area) {
-    $currency_options = rype_real_estate_get_curreny_options();
+function ns_real_estate_format_area($area) {
+    $currency_options = ns_real_estate_get_curreny_options();
     if(!empty($area)) { $area = number_format($area, $currency_options['decimal_num_area'], $currency_options['decimal_area'], $currency_options['thousand_area']); }
     return $area;
 }
 
 //delete property custom field
-function rype_real_estate_delete_custom_field() {
+function ns_real_estate_delete_custom_field() {
     $key = isset($_POST['key']) ? $_POST['key'] : '';
     delete_post_meta_by_key('rypecore_custom_field_'.$key);
     die();
 }
-add_action('wp_ajax_rypecore_delete_custom_field', 'rype_real_estate_delete_custom_field');
+add_action('wp_ajax_rypecore_delete_custom_field', 'ns_real_estate_delete_custom_field');
 
 /*-----------------------------------------------------------------------------------*/
 /*  Get Property Details
 /*-----------------------------------------------------------------------------------*/
 
 /* get property type */
-function rype_real_estate_get_property_type($post_id, $array = null) {
+function ns_real_estate_get_property_type($post_id, $array = null) {
     $property_type = '';
     $property_type_terms = get_the_terms( $post_id, 'property_type' );
     if ( $property_type_terms && ! is_wp_error( $property_type_terms) ) : 
@@ -93,7 +93,7 @@ function rype_real_estate_get_property_type($post_id, $array = null) {
 }
 
 /* get property status */
-function rype_real_estate_get_property_status($post_id, $array = null) {
+function ns_real_estate_get_property_status($post_id, $array = null) {
     $property_status = '';
     $property_status_terms = get_the_terms( $post_id, 'property_status' );
     if ( $property_status_terms && ! is_wp_error( $property_status_terms) ) : 
@@ -111,7 +111,7 @@ function rype_real_estate_get_property_status($post_id, $array = null) {
 }
 
 /* get property location */
-function rype_real_estate_get_property_location($post_id, $output = null, $array = null) {
+function ns_real_estate_get_property_location($post_id, $output = null, $array = null) {
     $property_location = '';
     $property_location_output = '';
     $property_location_terms = get_the_terms( $post_id, 'property_location');
@@ -155,12 +155,12 @@ function rype_real_estate_get_property_location($post_id, $output = null, $array
 }
 
 /* get property full address */
-function rype_real_estate_get_property_address($post_id) {
+function ns_real_estate_get_property_address($post_id) {
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     $values = get_post_custom($post_id);
     $street_address = isset( $values['rypecore_property_address'] ) ? esc_attr( $values['rypecore_property_address'][0] ) : '';
     $property_address = '';
-    $property_location = rype_real_estate_get_property_location($post_id);
+    $property_location = ns_real_estate_get_property_location($post_id);
     if(!empty($street_address) || !empty($property_location)) { $property_address .= ns_core_get_icon($icon_set, 'map-marker', 'map-marker', 'location'); }
     if(!empty($street_address)) { $property_address .= $street_address; }
     if(!empty($street_address) && !empty($property_location)) { $property_address .= ', '; }
@@ -169,7 +169,7 @@ function rype_real_estate_get_property_address($post_id) {
 }
 
 /* get property amenities */
-function rype_real_estate_get_property_amenities($post_id, $hide_empty = true, $array = null) {
+function ns_real_estate_get_property_amenities($post_id, $hide_empty = true, $array = null) {
     $property_amenities = '';
     $property_amenities_links = array();
 
@@ -214,17 +214,17 @@ function getWalkScore($lat, $lon, $address) {
 /*-----------------------------------------------------------------------------------*/
 /*  Properties Custom Post Type
 /*-----------------------------------------------------------------------------------*/
-add_action( 'init', 'rype_real_estate_create_properties_post_type' );
-function rype_real_estate_create_properties_post_type() {
+add_action( 'init', 'ns_real_estate_create_properties_post_type' );
+function ns_real_estate_create_properties_post_type() {
     $properties_slug = get_option('ns_property_detail_slug', 'properties');
-    register_post_type( 'rype-property',
+    register_post_type( 'ns-property',
         array(
             'labels' => array(
-                'name' => __( 'Properties', 'rype-real-estate' ),
-                'singular_name' => __( 'Property', 'rype-real-estate' ),
-                'add_new_item' => __( 'Add New Property', 'rype-real-estate' ),
-                'search_items' => __( 'Search Properties', 'rype-real-estate' ),
-                'edit_item' => __( 'Edit Property', 'rype-real-estate' ),
+                'name' => __( 'Properties', 'ns-real-estate' ),
+                'singular_name' => __( 'Property', 'ns-real-estate' ),
+                'add_new_item' => __( 'Add New Property', 'ns-real-estate' ),
+                'search_items' => __( 'Search Properties', 'ns-real-estate' ),
+                'edit_item' => __( 'Edit Property', 'ns-real-estate' ),
             ),
         'public' => true,
         'show_in_menu' => true,
@@ -237,7 +237,7 @@ function rype_real_estate_create_properties_post_type() {
 
  /* Add property details (meta box) */ 
  function rype_real_estate_add_meta_box() {
-    add_meta_box( 'property-details-meta-box', 'Property Details', 'rype_real_estate_property_details', 'rype-property', 'normal', 'high' );
+    add_meta_box( 'property-details-meta-box', 'Property Details', 'rype_real_estate_property_details', 'ns-property', 'normal', 'high' );
  }
 add_action( 'add_meta_boxes', 'rype_real_estate_add_meta_box' );
 
@@ -730,7 +730,7 @@ function rype_real_estate_property_type_init() {
     
     register_taxonomy(
         'property_type',
-        'rype-property',
+        'ns-property',
         array(
             'label'         => __( 'Property Types', 'rype-real-estate' ),
             'labels'        => $labels,
@@ -761,7 +761,7 @@ function rype_real_estate_property_status_init() {
     
     register_taxonomy(
         'property_status',
-        'rype-property',
+        'ns-property',
         array(
             'label'         => __( 'Property Status', 'rype-real-estate' ),
             'labels'        => $labels,
@@ -792,7 +792,7 @@ function rype_real_estate_property_location_init() {
     
     register_taxonomy(
         'property_location',
-        'rype-property',
+        'ns-property',
         array(
             'label'         => __( 'Property Location', 'rype-real-estate' ),
             'labels'        => $labels,
@@ -823,7 +823,7 @@ function rype_real_estate_property_amenities_init() {
     
     register_taxonomy(
         'property_amenities',
-        'rype-property',
+        'ns-property',
         array(
             'label'         => __( 'Amenities', 'rype-real-estate' ),
             'labels'        => $labels,
@@ -837,7 +837,7 @@ add_action( 'init', 'rype_real_estate_property_amenities_init' );
 /*-----------------------------------------------------------------------------------*/
 /*  Add Custom Columns to Properties Post Type
 /*-----------------------------------------------------------------------------------*/
-add_filter( 'manage_edit-rype-property_columns', 'rype_real_estate_edit_properties_columns' ) ;
+add_filter( 'manage_edit-ns-property_columns', 'rype_real_estate_edit_properties_columns' ) ;
 
 function rype_real_estate_edit_properties_columns( $columns ) {
 
@@ -857,7 +857,7 @@ function rype_real_estate_edit_properties_columns( $columns ) {
 }
 
 
-add_action( 'manage_rype-property_posts_custom_column', 'rype_real_estate_manage_properties_columns', 10, 2 );
+add_action( 'manage_ns-property_posts_custom_column', 'rype_real_estate_manage_properties_columns', 10, 2 );
 
 function rype_real_estate_manage_properties_columns( $column, $post_id ) {
     global $post;
@@ -877,7 +877,7 @@ function rype_real_estate_manage_properties_columns( $column, $post_id ) {
 
             $values = get_post_custom( $post_id );
             $price = isset( $values['rypecore_property_price'] ) ? esc_attr( $values['rypecore_property_price'][0] ) : '';
-            if(!empty($price)) { $price = rype_basics_format_price($price); }
+            if(!empty($price)) { $price = ns_real_estate_format_price($price); }
 
             if(empty($price)) {
                 echo '--';
@@ -1036,7 +1036,7 @@ function rype_real_estate_properties_save_extra_taxonomy_fields( $term_id ) {
 /*-----------------------------------------------------------------------------------*/
 if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page_settings')) {
     function rype_real_estate_properties_add_page_settings_metabox() {
-        add_meta_box( 'page-layout-meta-box', 'Page Settings', 'ns_basics_page_layout_meta_box', array('rype-property'), 'normal', 'low' );
+        add_meta_box( 'page-layout-meta-box', 'Page Settings', 'ns_basics_page_layout_meta_box', array('ns-property'), 'normal', 'low' );
     }
     add_action('init', 'rype_real_estate_properties_add_page_settings_metabox');
 }
@@ -1064,12 +1064,12 @@ add_filter( 'ns_basics_custom_header_vars', 'rype_real_estate_properties_map_cus
 function rype_real_estate_dashboard_stats() {
     global $current_user; ?>
     <div class="user-dashboard-widget stat">
-        <span><?php echo rype_real_estate_count_properties(array('publish', 'pending'), $current_user->user_login); ?></span> 
+        <span><?php echo ns_real_estate_count_properties(array('publish', 'pending'), $current_user->user_login); ?></span> 
         <?php esc_html_e('Total Properties', 'rypecore'); ?>
     </div>
 
     <div class="user-dashboard-widget stat">
-        <span><?php echo rype_real_estate_count_properties(array('pending'), $current_user->user_login); ?></span> 
+        <span><?php echo ns_real_estate_count_properties(array('pending'), $current_user->user_login); ?></span> 
         <?php esc_html_e('Pending Properties', 'rypecore'); ?>
     </div>
 <?php }
@@ -1084,7 +1084,7 @@ function rype_real_estate_dashboard_widgets($banner_source) {
         </div>
         <?php 
             $args_recent = array(
-                'post_type' => 'rype-property',
+                'post_type' => 'ns-property',
                 'showposts' => 4,
                 'author_name' => $current_user->user_login
             );

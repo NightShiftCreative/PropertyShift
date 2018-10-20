@@ -962,7 +962,7 @@ function ns_real_estate_settings_page_content() {
     <div id="currency" class="tab-content">
         <h2><?php echo esc_html_e('Currency & Numbers', 'ns-real-estate'); ?></h2>
 
-        <?php $currency_options = rype_real_estate_get_curreny_options(); ?>
+        <?php $currency_options = ns_real_estate_get_curreny_options(); ?>
 
         <table class="admin-module">
              <tr>

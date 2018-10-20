@@ -265,7 +265,7 @@ jQuery(document).ready(function($) {
                 url: 'admin-ajax.php',
                 type: 'POST',
                 data: {
-                    action : 'rype_real_estate_delete_custom_field',
+                    action : 'ns_real_estate_delete_custom_field',
                     key: customFieldID
                 },
                 success: function(data){
