@@ -253,7 +253,7 @@ function ns_real_estate_property_details($post) {
     $bathrooms = isset( $values['ns_property_bathrooms'] ) ? esc_attr( $values['ns_property_bathrooms'][0] ) : '';
     $garages = isset( $values['ns_property_garages'] ) ? esc_attr( $values['ns_property_garages'][0] ) : '';
     $area = isset( $values['ns_property_area'] ) ? esc_attr( $values['ns_property_area'][0] ) : '';
-    $area_postfix_default = esc_attr(get_option('rypecore_default_area_postfix', 'Sq Ft'));
+    $area_postfix_default = esc_attr(get_option('ns_property_default_area_postfix', 'Sq Ft'));
     $area_postfix = isset( $values['ns_property_area_postfix'] ) ? esc_attr( $values['ns_property_area_postfix'][0] ) : $area_postfix_default;
     $additional_images = isset($values['ns_additional_img']) ? $values['ns_additional_img'] : '';
     $floor_plans = isset($values['ns_property_floor_plans']) ? $values['ns_property_floor_plans'] : '';
