@@ -236,13 +236,13 @@ function ns_real_estate_create_properties_post_type() {
 }
 
  /* Add property details (meta box) */ 
- function rype_real_estate_add_meta_box() {
-    add_meta_box( 'property-details-meta-box', 'Property Details', 'rype_real_estate_property_details', 'ns-property', 'normal', 'high' );
+ function ns_real_estate_add_meta_box() {
+    add_meta_box( 'property-details-meta-box', 'Property Details', 'ns_real_estate_property_details', 'ns-property', 'normal', 'high' );
  }
-add_action( 'add_meta_boxes', 'rype_real_estate_add_meta_box' );
+add_action( 'add_meta_boxes', 'ns_real_estate_add_meta_box' );
 
 /* Ouput property details form */
-function rype_real_estate_property_details($post) {
+function ns_real_estate_property_details($post) {
 
     $values = get_post_custom( $post->ID );
     $featured = isset( $values['rypecore_property_featured'] ) ? esc_attr( $values['rypecore_property_featured'][0] ) : 'false';
@@ -272,33 +272,33 @@ function rype_real_estate_property_details($post) {
 
     <div id="tabs" class="meta-box-form meta-box-form-property-details ui-tabs">
         <ul class="ui-tabs-nav">
-            <li><a href="#general" title="<?php esc_html_e('General Info', 'rype-real-estate'); ?>"><i class="fa fa-home"></i> <span class="tab-text"><?php echo esc_html_e('General Info', 'rype-real-estate'); ?></span></a></li>
-            <li><a href="#gallery" title="<?php esc_html_e('Gallery', 'rype-real-estate'); ?>"><i class="fa fa-image"></i> <span class="tab-text"><?php echo esc_html_e('Gallery', 'rype-real-estate'); ?></span></a></li>
-            <li><a href="#floor-plans" title="<?php esc_html_e('Floor Plans', 'rype-real-estate'); ?>"><i class="fa fa-th-large"></i> <span class="tab-text"><?php echo esc_html_e('Floor Plans', 'rype-real-estate'); ?></span></a></li>
-            <li><a href="#map" title="<?php esc_html_e('Map', 'rype-real-estate'); ?>" onclick="refreshMap()"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Map', 'rype-real-estate'); ?></span></a></li>
-            <li><a href="#video" title="<?php esc_html_e('Video', 'rype-real-estate'); ?>"><i class="fa fa-video-camera"></i> <span class="tab-text"><?php echo esc_html_e('Video', 'rype-real-estate'); ?></span></a></li>
-            <li><a href="#agent" title="<?php esc_html_e('Owner Info', 'rype-real-estate'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Owner Info', 'rype-real-estate'); ?></span></a></li>
+            <li><a href="#general" title="<?php esc_html_e('General Info', 'ns-real-estate'); ?>"><i class="fa fa-home"></i> <span class="tab-text"><?php echo esc_html_e('General Info', 'ns-real-estate'); ?></span></a></li>
+            <li><a href="#gallery" title="<?php esc_html_e('Gallery', 'ns-real-estate'); ?>"><i class="fa fa-image"></i> <span class="tab-text"><?php echo esc_html_e('Gallery', 'ns-real-estate'); ?></span></a></li>
+            <li><a href="#floor-plans" title="<?php esc_html_e('Floor Plans', 'ns-real-estate'); ?>"><i class="fa fa-th-large"></i> <span class="tab-text"><?php echo esc_html_e('Floor Plans', 'ns-real-estate'); ?></span></a></li>
+            <li><a href="#map" title="<?php esc_html_e('Map', 'ns-real-estate'); ?>" onclick="refreshMap()"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Map', 'ns-real-estate'); ?></span></a></li>
+            <li><a href="#video" title="<?php esc_html_e('Video', 'ns-real-estate'); ?>"><i class="fa fa-video-camera"></i> <span class="tab-text"><?php echo esc_html_e('Video', 'ns-real-estate'); ?></span></a></li>
+            <li><a href="#agent" title="<?php esc_html_e('Owner Info', 'ns-real-estate'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Owner Info', 'ns-real-estate'); ?></span></a></li>
             <?php do_action('rype_real_estate_after_property_tabs'); ?>
         </ul>
 
-        <div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php echo esc_html_e('Loading...', 'rype-real-estate'); ?></div>
+        <div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php echo esc_html_e('Loading...', 'ns-real-estate'); ?></div>
 
         <!--*************************************************-->
         <!-- GENERAL INFO -->
         <!--*************************************************-->
         <div id="general" class="tab-content">
-            <h3><?php echo esc_html_e('General Info', 'rype-real-estate'); ?></h3>
+            <h3><?php echo esc_html_e('General Info', 'ns-real-estate'); ?></h3>
 
             <table class="admin-module">
                 <tr>
-                    <td class="admin-module-label"><label><?php echo esc_html_e('Property ID', 'rype-real-estate'); ?></label></td>
+                    <td class="admin-module-label"><label><?php echo esc_html_e('Property ID', 'ns-real-estate'); ?></label></td>
                     <td class="admin-module-field"><?php echo get_the_id(); ?></td>
                  </tr>
             </table>
 
             <table class="admin-module">
                 <tr>
-                    <td class="admin-module-label"><label><?php echo esc_html_e('Featured Property', 'rype-real-estate'); ?></label></td>
+                    <td class="admin-module-label"><label><?php echo esc_html_e('Featured Property', 'ns-real-estate'); ?></label></td>
                     <td class="admin-module-field"><input type="checkbox" id="property_featured" name="rypecore_property_featured" value="true" <?php if($featured == 'true') { echo 'checked'; } ?> /></td>
                  </tr>
             </table>
@@ -306,8 +306,8 @@ function rype_real_estate_property_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php echo esc_html_e('Street Address', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php echo esc_html_e('Provide the address for the property', 'rype-real-estate'); ?></span>
+                        <label><?php echo esc_html_e('Street Address', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php echo esc_html_e('Provide the address for the property', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field"><input type="text" name="rypecore_property_address" id="property_address" value="<?php echo $address; ?>" /></td>
                  </tr>
@@ -316,8 +316,8 @@ function rype_real_estate_property_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php echo esc_html_e('Price', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php echo esc_html_e('Use only numbers. Do not include commas or dollar sign (ex.- 250000)', 'rype-real-estate'); ?></span>
+                        <label><?php echo esc_html_e('Price', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php echo esc_html_e('Use only numbers. Do not include commas or dollar sign (ex.- 250000)', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field"><input type="number" min="0" name="rypecore_property_price" value="<?php echo $price; ?>" /></td>
                  </tr>
@@ -326,8 +326,8 @@ function rype_real_estate_property_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php echo esc_html_e('Price Postfix', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php echo esc_html_e('Provide the text displayed after the price (ex.- Per Month)', 'rype-real-estate'); ?></span>
+                        <label><?php echo esc_html_e('Price Postfix', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php echo esc_html_e('Provide the text displayed after the price (ex.- Per Month)', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field"><input type="text" name="rypecore_property_price_postfix" value="<?php echo $price_postfix; ?>" /></td>
                  </tr>
@@ -336,8 +336,8 @@ function rype_real_estate_property_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php echo esc_html_e('Bedrooms', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php echo esc_html_e('Provide the number of bedrooms', 'rype-real-estate'); ?></span>
+                        <label><?php echo esc_html_e('Bedrooms', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php echo esc_html_e('Provide the number of bedrooms', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field"><input type="number" min="0" name="rypecore_property_bedrooms" value="<?php echo $bedrooms; ?>" /></td>
                  </tr>
@@ -346,8 +346,8 @@ function rype_real_estate_property_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php echo esc_html_e('Bathrooms', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php echo esc_html_e('Provide the number of bathrooms', 'rype-real-estate'); ?></span>
+                        <label><?php echo esc_html_e('Bathrooms', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php echo esc_html_e('Provide the number of bathrooms', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field"><input type="number" min="0" step="0.5" name="rypecore_property_bathrooms" value="<?php echo $bathrooms; ?>" /></td>
                  </tr>
@@ -356,8 +356,8 @@ function rype_real_estate_property_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php echo esc_html_e('Garages', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php echo esc_html_e('Provide the number of garages', 'rype-real-estate'); ?></span>
+                        <label><?php echo esc_html_e('Garages', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php echo esc_html_e('Provide the number of garages', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field"><input type="number" min="0" name="rypecore_property_garages" value="<?php echo $garages; ?>" /></td>
                  </tr>
@@ -366,8 +366,8 @@ function rype_real_estate_property_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php echo esc_html_e('Area', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php echo esc_html_e('Provide the area. Use only numbers and decimals, do not include commas.', 'rype-real-estate'); ?></span>
+                        <label><?php echo esc_html_e('Area', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php echo esc_html_e('Provide the area. Use only numbers and decimals, do not include commas.', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field"><input type="number" min="0" step="0.01" name="rypecore_property_area" value="<?php echo $area; ?>" /></td>
                  </tr>
@@ -376,15 +376,15 @@ function rype_real_estate_property_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php echo esc_html_e('Area Postfix', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php echo esc_html_e('Provide the text to display directly after the area (ex. - Sq Ft)', 'rype-real-estate'); ?></span>
+                        <label><?php echo esc_html_e('Area Postfix', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php echo esc_html_e('Provide the text to display directly after the area (ex. - Sq Ft)', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field"><input type="text" name="rypecore_property_area_postfix" value="<?php echo $area_postfix; ?>" /></td>
                  </tr>
             </table>
 
             <div class="admin-module admin-module-custom-fields admin-module-custom-fields-property no-border">
-                <label><strong><?php echo esc_html_e('Custom Fields', 'rype-real-estate'); ?></strong></label><br/>
+                <label><strong><?php echo esc_html_e('Custom Fields', 'ns-real-estate'); ?></strong></label><br/>
                 <?php 
                     $custom_fields = get_option('ns_property_custom_fields');
                     if(!empty($custom_fields)) { 
@@ -405,7 +405,7 @@ function rype_real_estate_property_details($post) {
                                         <label><?php echo $custom_field['name']; ?>:</label> 
                                         <?php if(isset($custom_field['type']) && $custom_field['type'] == 'select') { ?>
                                             <select name="rypecore_property_custom_fields[<?php echo $count; ?>][value]">
-                                                <option value=""><?php esc_html_e('Select an option...', 'rype-real-estate'); ?></option>
+                                                <option value=""><?php esc_html_e('Select an option...', 'ns-real-estate'); ?></option>
                                                 <?php 
                                                     if(isset($custom_field['select_options'])) { $selectOptions = $custom_field['select_options']; } else { $selectOptions =  ''; }
                                                     if(!empty($selectOptions)) {
@@ -425,10 +425,10 @@ function rype_real_estate_property_details($post) {
                         <?php $count++; }
                         echo '</div>';
                     } else { ?>
-                        <span class="admin-module-note"><?php esc_html_e('No custom fields have been created.', 'rype-real-estate'); ?></span>
+                        <span class="admin-module-note"><?php esc_html_e('No custom fields have been created.', 'ns-real-estate'); ?></span>
                     <?php }
                 ?>
-                <span class="admin-module-note"><a href="<?php echo admin_url('themes.php?page=theme_options#custom-property-fields'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage custom fields', 'rype-real-estate'); ?></a></span>
+                <span class="admin-module-note"><a href="<?php echo admin_url('themes.php?page=theme_options#custom-property-fields'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage custom fields', 'ns-real-estate'); ?></a></span>
             </div>
 
         </div>
@@ -437,7 +437,7 @@ function rype_real_estate_property_details($post) {
         <!-- GALLERY -->
         <!--*************************************************-->
         <div id="gallery" class="tab-content">
-            <h3><?php echo esc_html_e('Gallery', 'rype-real-estate'); ?></h3>
+            <h3><?php echo esc_html_e('Gallery', 'ns-real-estate'); ?></h3>
             <?php if(function_exists('ns_basics_generate_gallery')) { echo ns_basics_generate_gallery($additional_images); } ?>
         </div>
         
@@ -445,7 +445,7 @@ function rype_real_estate_property_details($post) {
         <!-- FLOOR PLANS -->
         <!--*************************************************-->
         <div id="floor-plans" class="tab-content">
-            <h3><?php echo esc_html_e('Floor Plans', 'rype-real-estate'); ?></h3>
+            <h3><?php echo esc_html_e('Floor Plans', 'ns-real-estate'); ?></h3>
             <div class="admin-module admin-module-floor-plans admin-module-repeater no-border">  
                 <div class="accordion ns-accordion">  
                     <?php 
@@ -456,19 +456,19 @@ function rype_real_estate_property_details($post) {
                             <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <span class="repeater-title-mirror floor-plan-title-mirror"><?php echo $floor_plan['title']; ?></span> <span class="delete delete-floor-plan right"><i class="fa fa-trash"></i> Delete</span></h3>
                             <div class="floor-plan-item"> 
                                 <div class="floor-plan-left"> 
-                                    <label><?php esc_html_e('Title:', 'rype-real-estate'); ?> </label> <input class="repeater-title floor-plan-title" type="text" name="rypecore_floor_plans[<?php echo $count; ?>][title]" placeholder="New Floor Plan" value="<?php echo $floor_plan['title']; ?>" /><br/>
-                                    <label><?php esc_html_e('Size:', 'rype-real-estate'); ?> </label> <input type="text" name="rypecore_floor_plans[<?php echo $count; ?>][size]" value="<?php echo $floor_plan['size']; ?>" /><br/>
-                                    <label><?php esc_html_e('Rooms:', 'rype-real-estate'); ?> </label> <input type="number" name="rypecore_floor_plans[<?php echo $count; ?>][rooms]" value="<?php echo $floor_plan['rooms']; ?>" /><br/>
-                                    <label><?php esc_html_e('Bathrooms:', 'rype-real-estate'); ?> </label> <input type="number" name="rypecore_floor_plans[<?php echo $count; ?>][baths]" value="<?php echo $floor_plan['baths']; ?>" /><br/>
+                                    <label><?php esc_html_e('Title:', 'ns-real-estate'); ?> </label> <input class="repeater-title floor-plan-title" type="text" name="rypecore_floor_plans[<?php echo $count; ?>][title]" placeholder="New Floor Plan" value="<?php echo $floor_plan['title']; ?>" /><br/>
+                                    <label><?php esc_html_e('Size:', 'ns-real-estate'); ?> </label> <input type="text" name="rypecore_floor_plans[<?php echo $count; ?>][size]" value="<?php echo $floor_plan['size']; ?>" /><br/>
+                                    <label><?php esc_html_e('Rooms:', 'ns-real-estate'); ?> </label> <input type="number" name="rypecore_floor_plans[<?php echo $count; ?>][rooms]" value="<?php echo $floor_plan['rooms']; ?>" /><br/>
+                                    <label><?php esc_html_e('Bathrooms:', 'ns-real-estate'); ?> </label> <input type="number" name="rypecore_floor_plans[<?php echo $count; ?>][baths]" value="<?php echo $floor_plan['baths']; ?>" /><br/>
                                 </div>
                                 <div class="floor-plan-right">
-                                    <label><?php esc_html_e('Description:', 'rype-real-estate'); ?></label>
+                                    <label><?php esc_html_e('Description:', 'ns-real-estate'); ?></label>
                                     <textarea name="rypecore_floor_plans[<?php echo $count; ?>][description]"><?php echo $floor_plan['description']; ?></textarea>
                                     <div class="floor-plan-img">
-                                        <label><?php esc_html_e('Image:', 'rype-real-estate'); ?> </label> 
+                                        <label><?php esc_html_e('Image:', 'ns-real-estate'); ?> </label> 
                                         <input type="text" name="rypecore_floor_plans[<?php echo $count; ?>][img]" value="<?php echo $floor_plan['img']; ?>" />
-                                        <input id="_btn" class="ns_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'rype-real-estate'); ?>" />
-                                        <span class="button-secondary remove"><?php esc_html_e('Remove', 'rype-real-estate'); ?></span>
+                                        <input id="_btn" class="ns_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'ns-real-estate'); ?>" />
+                                        <span class="button-secondary remove"><?php esc_html_e('Remove', 'ns-real-estate'); ?></span>
                                     </div>
                                 </div>
                                 <div class="clear"></div>
@@ -477,8 +477,8 @@ function rype_real_estate_property_details($post) {
                         <?php }
                     } ?>
                 </div>
-                <?php if(empty($floor_plans) && empty($floor_plans[0])) { echo '<p class="admin-module-note no-floor-plan">'.esc_html__('No floor plans were found.', 'rype-real-estate').'</p>'; } ?>
-                <span class="admin-button add-floor-plan"><i class="fa fa-plus"></i> <?php esc_html_e('Create New Floor Plan', 'rype-real-estate'); ?></span>
+                <?php if(empty($floor_plans) && empty($floor_plans[0])) { echo '<p class="admin-module-note no-floor-plan">'.esc_html__('No floor plans were found.', 'ns-real-estate').'</p>'; } ?>
+                <span class="admin-button add-floor-plan"><i class="fa fa-plus"></i> <?php esc_html_e('Create New Floor Plan', 'ns-real-estate'); ?></span>
             </div>
         </div>
 
@@ -486,20 +486,20 @@ function rype_real_estate_property_details($post) {
         <!-- MAP -->
         <!--*************************************************-->
         <div id="map" class="tab-content">
-            <h3><?php echo esc_html_e('Map', 'rype-real-estate'); ?></h3>
+            <h3><?php echo esc_html_e('Map', 'ns-real-estate'); ?></h3>
 
             <div class="admin-module admin-module-company-location no-border">
 
                 <table class="admin-module no-border">
                     <tr>
-                        <td class="admin-module-label"><label><?php echo esc_html_e('Latitude', 'rype-real-estate'); ?></label></td>
+                        <td class="admin-module-label"><label><?php echo esc_html_e('Latitude', 'ns-real-estate'); ?></label></td>
                         <td class="admin-module-field"><input type="text" name="rypecore_property_latitude" id="property_latitude" value="<?php echo $latitude; ?>" /></td>
                      </tr>
                 </table>
 
                 <table class="admin-module no-border">
                     <tr>
-                        <td class="admin-module-label"><label><?php echo esc_html_e('Longitude', 'rype-real-estate'); ?></label></td>
+                        <td class="admin-module-label"><label><?php echo esc_html_e('Longitude', 'ns-real-estate'); ?></label></td>
                         <td class="admin-module-field"><input type="text" name="rypecore_property_longitude" id="property_longitude" value="<?php echo $longitude; ?>" /></td>
                      </tr>
                 </table>
@@ -512,22 +512,22 @@ function rype_real_estate_property_details($post) {
         <!-- VIDEO -->
         <!--*************************************************-->
         <div id="video" class="tab-content">
-            <h3><?php echo esc_html_e('Video', 'rype-real-estate'); ?></h3>
+            <h3><?php echo esc_html_e('Video', 'ns-real-estate'); ?></h3>
 
             <table class="admin-module">
                 <tr>
-                    <td class="admin-module-label"><label><?php echo esc_html_e('Video URL', 'rype-real-estate'); ?></label></td>
+                    <td class="admin-module-label"><label><?php echo esc_html_e('Video URL', 'ns-real-estate'); ?></label></td>
                     <td class="admin-module-field"><input type="text" name="rypecore_property_video_url" id="property_video_url" value="<?php echo $video_url; ?>" /></td>
                 </tr>
             </table>
 
             <table class="admin-module admin-module-upload no-border">
                 <tr>
-                    <td class="admin-module-label"><label><?php echo esc_html_e('Video Cover Image', 'rype-real-estate'); ?></label></td>
+                    <td class="admin-module-label"><label><?php echo esc_html_e('Video Cover Image', 'ns-real-estate'); ?></label></td>
                     <td class="admin-module-field">
                         <input type="text" id="property_video_img" name="rypecore_property_video_img" value="<?php echo $video_img; ?>" />
-                        <input id="_btn" class="ns_upload_image_button" type="button" value="<?php echo esc_html_e('Upload Image', 'rype-real-estate'); ?>" />
-                        <span class="button-secondary remove"><?php echo esc_html_e('Remove', 'rype-real-estate'); ?></span>
+                        <input id="_btn" class="ns_upload_image_button" type="button" value="<?php echo esc_html_e('Upload Image', 'ns-real-estate'); ?>" />
+                        <span class="button-secondary remove"><?php echo esc_html_e('Remove', 'ns-real-estate'); ?></span>
                     </td>
                 </tr>
             </table>
@@ -537,16 +537,16 @@ function rype_real_estate_property_details($post) {
         <!-- OWNER INFO -->
         <!--*************************************************-->
         <div id="agent" class="tab-content">
-            <h3><?php echo esc_html_e('Owner Info', 'rype-real-estate'); ?></h3>
+            <h3><?php echo esc_html_e('Owner Info', 'ns-real-estate'); ?></h3>
 
             <table class="admin-module">
                 <tr>
-                    <td class="admin-module-label"><label><?php echo esc_html_e('What to display for owner information?', 'rype-real-estate'); ?></label></td>
+                    <td class="admin-module-label"><label><?php echo esc_html_e('What to display for owner information?', 'ns-real-estate'); ?></label></td>
                     <td class="admin-module-field">
-                        <p><input type="radio" name="rypecore_agent_display" id="agent_display_none" value="none" <?php if($agent_display == 'none') { echo 'checked="checked"'; } ?> /><?php echo esc_html_e('None', 'rype-real-estate'); ?></p>
-                        <p><input type="radio" name="rypecore_agent_display" id="agent_display_author" value="author" <?php if($agent_display == 'author') { echo 'checked="checked"'; } ?> /><?php echo esc_html_e('Author Info', 'rype-real-estate'); ?></p>
-                        <p><input type="radio" name="rypecore_agent_display" id="agent_display_agent" value="agent" <?php if($agent_display == 'agent') { echo 'checked="checked"'; } ?> /><?php echo esc_html_e('Agent Info (select agent below)', 'rype-real-estate'); ?></p>
-                        <p><input type="radio" name="rypecore_agent_display" id="agent_display_custom" value="custom" <?php if($agent_display == 'custom') { echo 'checked="checked"'; } ?> /><?php echo esc_html_e('Custom Info (fill out details below)', 'rype-real-estate'); ?></p>
+                        <p><input type="radio" name="rypecore_agent_display" id="agent_display_none" value="none" <?php if($agent_display == 'none') { echo 'checked="checked"'; } ?> /><?php echo esc_html_e('None', 'ns-real-estate'); ?></p>
+                        <p><input type="radio" name="rypecore_agent_display" id="agent_display_author" value="author" <?php if($agent_display == 'author') { echo 'checked="checked"'; } ?> /><?php echo esc_html_e('Author Info', 'ns-real-estate'); ?></p>
+                        <p><input type="radio" name="rypecore_agent_display" id="agent_display_agent" value="agent" <?php if($agent_display == 'agent') { echo 'checked="checked"'; } ?> /><?php echo esc_html_e('Agent Info (select agent below)', 'ns-real-estate'); ?></p>
+                        <p><input type="radio" name="rypecore_agent_display" id="agent_display_custom" value="custom" <?php if($agent_display == 'custom') { echo 'checked="checked"'; } ?> /><?php echo esc_html_e('Custom Info (fill out details below)', 'ns-real-estate'); ?></p>
                     </td>
                 </tr>
             </table>
@@ -560,7 +560,7 @@ function rype_real_estate_property_details($post) {
                     $agent_listing_query = new WP_Query( $agent_listing_args );
                 ?>
                 <tr>
-                    <td class="admin-module-label"><label><?php echo esc_html_e('Select Agent', 'rype-real-estate'); ?></label></td>
+                    <td class="admin-module-label"><label><?php echo esc_html_e('Select Agent', 'ns-real-estate'); ?></label></td>
                     <td class="admin-module-field">
                         <select name="rypecore_agent_select">
                          <option value=""></option>
@@ -579,12 +579,12 @@ function rype_real_estate_property_details($post) {
 
             <table class="admin-module no-border">
                 <tr>
-                    <td class="admin-module-label"><label><?php echo esc_html_e('Custom Owner/Agent Details', 'rype-real-estate'); ?></label></td>
+                    <td class="admin-module-label"><label><?php echo esc_html_e('Custom Owner/Agent Details', 'ns-real-estate'); ?></label></td>
                     <td class="admin-module-field">
-                        <p><label><?php echo esc_html_e('Name:', 'rype-real-estate'); ?></label><input type="text" name="rypecore_agent_custom_name" value="<?php echo $agent_custom_name; ?>" /></p>
-                        <p><label><?php echo esc_html_e('Email:', 'rype-real-estate'); ?></label><input type="text" name="rypecore_agent_custom_email" value="<?php echo $agent_custom_email; ?>" /></p>
-                        <p><label><?php echo esc_html_e('Phone:', 'rype-real-estate'); ?></label><input type="text" name="rypecore_agent_custom_phone" value="<?php echo $agent_custom_phone; ?>" /></p>
-                        <p><label><?php echo esc_html_e('Website:', 'rype-real-estate'); ?></label><input type="text" name="rypecore_agent_custom_url" value="<?php echo $agent_custom_url; ?>" /></p>
+                        <p><label><?php echo esc_html_e('Name:', 'ns-real-estate'); ?></label><input type="text" name="rypecore_agent_custom_name" value="<?php echo $agent_custom_name; ?>" /></p>
+                        <p><label><?php echo esc_html_e('Email:', 'ns-real-estate'); ?></label><input type="text" name="rypecore_agent_custom_email" value="<?php echo $agent_custom_email; ?>" /></p>
+                        <p><label><?php echo esc_html_e('Phone:', 'ns-real-estate'); ?></label><input type="text" name="rypecore_agent_custom_phone" value="<?php echo $agent_custom_phone; ?>" /></p>
+                        <p><label><?php echo esc_html_e('Website:', 'ns-real-estate'); ?></label><input type="text" name="rypecore_agent_custom_url" value="<?php echo $agent_custom_url; ?>" /></p>
                     </td>
                 </tr>
             </table>
@@ -713,26 +713,26 @@ function rype_real_estate_save_meta_box( $post_id ) {
 function rype_real_estate_property_type_init() {
     $property_type_tax_slug = get_option('ns_property_type_tax_slug', 'property-type');
     $labels = array(
-    'name'                          => __( 'Property Type', 'rype-real-estate' ),
-    'singular_name'                 => __( 'Property Type', 'rype-real-estate' ),
-    'search_items'                  => __( 'Search Property Types', 'rype-real-estate' ),
-    'popular_items'                 => __( 'Popular Property Types', 'rype-real-estate' ),
-    'all_items'                     => __( 'All Property Types', 'rype-real-estate' ),
-    'parent_item'                   => __( 'Parent Property Type', 'rype-real-estate' ),
-    'edit_item'                     => __( 'Edit Property Type', 'rype-real-estate' ),
-    'update_item'                   => __( 'Update Property Type', 'rype-real-estate' ),
-    'add_new_item'                  => __( 'Add New Property Type', 'rype-real-estate' ),
-    'new_item_name'                 => __( 'New Property Type', 'rype-real-estate' ),
-    'separate_items_with_commas'    => __( 'Separate property types with commas', 'rype-real-estate' ),
-    'add_or_remove_items'           => __( 'Add or remove property types', 'rype-real-estate' ),
-    'choose_from_most_used'         => __( 'Choose from most used property types', 'rype-real-estate' )
+    'name'                          => __( 'Property Type', 'ns-real-estate' ),
+    'singular_name'                 => __( 'Property Type', 'ns-real-estate' ),
+    'search_items'                  => __( 'Search Property Types', 'ns-real-estate' ),
+    'popular_items'                 => __( 'Popular Property Types', 'ns-real-estate' ),
+    'all_items'                     => __( 'All Property Types', 'ns-real-estate' ),
+    'parent_item'                   => __( 'Parent Property Type', 'ns-real-estate' ),
+    'edit_item'                     => __( 'Edit Property Type', 'ns-real-estate' ),
+    'update_item'                   => __( 'Update Property Type', 'ns-real-estate' ),
+    'add_new_item'                  => __( 'Add New Property Type', 'ns-real-estate' ),
+    'new_item_name'                 => __( 'New Property Type', 'ns-real-estate' ),
+    'separate_items_with_commas'    => __( 'Separate property types with commas', 'ns-real-estate' ),
+    'add_or_remove_items'           => __( 'Add or remove property types', 'ns-real-estate' ),
+    'choose_from_most_used'         => __( 'Choose from most used property types', 'ns-real-estate' )
     );
     
     register_taxonomy(
         'property_type',
         'ns-property',
         array(
-            'label'         => __( 'Property Types', 'rype-real-estate' ),
+            'label'         => __( 'Property Types', 'ns-real-estate' ),
             'labels'        => $labels,
             'hierarchical'  => true,
             'rewrite' => array( 'slug' => $property_type_tax_slug )
@@ -744,26 +744,26 @@ add_action( 'init', 'rype_real_estate_property_type_init' );
 function rype_real_estate_property_status_init() {
     $property_status_tax_slug = get_option('ns_property_status_tax_slug', 'property-status');
     $labels = array(
-    'name'                          => __( 'Property Status', 'rype-real-estate' ),
-    'singular_name'                 => __( 'Property Status', 'rype-real-estate' ),
-    'search_items'                  => __( 'Search Property Statuses', 'rype-real-estate' ),
-    'popular_items'                 => __( 'Popular Property Statuses', 'rype-real-estate' ),
-    'all_items'                     => __( 'All Property Statuses', 'rype-real-estate' ),
-    'parent_item'                   => __( 'Parent Property Status', 'rype-real-estate' ),
-    'edit_item'                     => __( 'Edit Property Status', 'rype-real-estate' ),
-    'update_item'                   => __( 'Update Property Status', 'rype-real-estate' ),
-    'add_new_item'                  => __( 'Add New Property Status', 'rype-real-estate' ),
-    'new_item_name'                 => __( 'New Property Status', 'rype-real-estate' ),
-    'separate_items_with_commas'    => __( 'Separate property statuses with commas', 'rype-real-estate' ),
-    'add_or_remove_items'           => __( 'Add or remove property statuses', 'rype-real-estate' ),
-    'choose_from_most_used'         => __( 'Choose from most used property statuses', 'rype-real-estate' )
+    'name'                          => __( 'Property Status', 'ns-real-estate' ),
+    'singular_name'                 => __( 'Property Status', 'ns-real-estate' ),
+    'search_items'                  => __( 'Search Property Statuses', 'ns-real-estate' ),
+    'popular_items'                 => __( 'Popular Property Statuses', 'ns-real-estate' ),
+    'all_items'                     => __( 'All Property Statuses', 'ns-real-estate' ),
+    'parent_item'                   => __( 'Parent Property Status', 'ns-real-estate' ),
+    'edit_item'                     => __( 'Edit Property Status', 'ns-real-estate' ),
+    'update_item'                   => __( 'Update Property Status', 'ns-real-estate' ),
+    'add_new_item'                  => __( 'Add New Property Status', 'ns-real-estate' ),
+    'new_item_name'                 => __( 'New Property Status', 'ns-real-estate' ),
+    'separate_items_with_commas'    => __( 'Separate property statuses with commas', 'ns-real-estate' ),
+    'add_or_remove_items'           => __( 'Add or remove property statuses', 'ns-real-estate' ),
+    'choose_from_most_used'         => __( 'Choose from most used property statuses', 'ns-real-estate' )
     );
     
     register_taxonomy(
         'property_status',
         'ns-property',
         array(
-            'label'         => __( 'Property Status', 'rype-real-estate' ),
+            'label'         => __( 'Property Status', 'ns-real-estate' ),
             'labels'        => $labels,
             'hierarchical'  => true,
             'rewrite' => array( 'slug' => $property_status_tax_slug )
@@ -775,26 +775,26 @@ add_action( 'init', 'rype_real_estate_property_status_init' );
 function rype_real_estate_property_location_init() {
     $property_location_tax_slug = get_option('ns_property_location_tax_slug', 'property-location');
     $labels = array(
-    'name'                          => __( 'Property Location', 'rype-real-estate' ),
-    'singular_name'                 => __( 'Property Location', 'rype-real-estate' ),
-    'search_items'                  => __( 'Search Property Locations', 'rype-real-estate' ),
-    'popular_items'                 => __( 'Popular Property Locations', 'rype-real-estate' ),
-    'all_items'                     => __( 'All Property Locations', 'rype-real-estate' ),
-    'parent_item'                   => __( 'Parent Property Location', 'rype-real-estate' ),
-    'edit_item'                     => __( 'Edit Property Location', 'rype-real-estate' ),
-    'update_item'                   => __( 'Update Property Location', 'rype-real-estate' ),
-    'add_new_item'                  => __( 'Add New Property Location', 'rype-real-estate' ),
-    'new_item_name'                 => __( 'New Property Location', 'rype-real-estate' ),
-    'separate_items_with_commas'    => __( 'Separate property locations with commas', 'rype-real-estate' ),
-    'add_or_remove_items'           => __( 'Add or remove property locations', 'rype-real-estate' ),
-    'choose_from_most_used'         => __( 'Choose from most used property locations', 'rype-real-estate' )
+    'name'                          => __( 'Property Location', 'ns-real-estate' ),
+    'singular_name'                 => __( 'Property Location', 'ns-real-estate' ),
+    'search_items'                  => __( 'Search Property Locations', 'ns-real-estate' ),
+    'popular_items'                 => __( 'Popular Property Locations', 'ns-real-estate' ),
+    'all_items'                     => __( 'All Property Locations', 'ns-real-estate' ),
+    'parent_item'                   => __( 'Parent Property Location', 'ns-real-estate' ),
+    'edit_item'                     => __( 'Edit Property Location', 'ns-real-estate' ),
+    'update_item'                   => __( 'Update Property Location', 'ns-real-estate' ),
+    'add_new_item'                  => __( 'Add New Property Location', 'ns-real-estate' ),
+    'new_item_name'                 => __( 'New Property Location', 'ns-real-estate' ),
+    'separate_items_with_commas'    => __( 'Separate property locations with commas', 'ns-real-estate' ),
+    'add_or_remove_items'           => __( 'Add or remove property locations', 'ns-real-estate' ),
+    'choose_from_most_used'         => __( 'Choose from most used property locations', 'ns-real-estate' )
     );
     
     register_taxonomy(
         'property_location',
         'ns-property',
         array(
-            'label'         => __( 'Property Location', 'rype-real-estate' ),
+            'label'         => __( 'Property Location', 'ns-real-estate' ),
             'labels'        => $labels,
             'hierarchical'  => true,
             'rewrite' => array( 'slug' => $property_location_tax_slug )
@@ -806,26 +806,26 @@ add_action( 'init', 'rype_real_estate_property_location_init' );
 function rype_real_estate_property_amenities_init() {
     $property_amenities_tax_slug = get_option('ns_property_amenities_tax_slug', 'property-amenity');
     $labels = array(
-    'name'                          => __( 'Amenities', 'rype-real-estate' ),
-    'singular_name'                 => __( 'Amenity', 'rype-real-estate' ),
-    'search_items'                  => __( 'Search Amenities', 'rype-real-estate' ),
-    'popular_items'                 => __( 'Popular Amenities', 'rype-real-estate' ),
-    'all_items'                     => __( 'All Amenities', 'rype-real-estate' ),
-    'parent_item'                   => __( 'Parent Amenity', 'rype-real-estate' ),
-    'edit_item'                     => __( 'Edit Amenity', 'rype-real-estate' ),
-    'update_item'                   => __( 'Update Amenity', 'rype-real-estate' ),
-    'add_new_item'                  => __( 'Add New Amenity', 'rype-real-estate' ),
-    'new_item_name'                 => __( 'New Amenity', 'rype-real-estate' ),
-    'separate_items_with_commas'    => __( 'Separate amenities with commas', 'rype-real-estate' ),
-    'add_or_remove_items'           => __( 'Add or remove amenities', 'rype-real-estate' ),
-    'choose_from_most_used'         => __( 'Choose from most used amenities', 'rype-real-estate' )
+    'name'                          => __( 'Amenities', 'ns-real-estate' ),
+    'singular_name'                 => __( 'Amenity', 'ns-real-estate' ),
+    'search_items'                  => __( 'Search Amenities', 'ns-real-estate' ),
+    'popular_items'                 => __( 'Popular Amenities', 'ns-real-estate' ),
+    'all_items'                     => __( 'All Amenities', 'ns-real-estate' ),
+    'parent_item'                   => __( 'Parent Amenity', 'ns-real-estate' ),
+    'edit_item'                     => __( 'Edit Amenity', 'ns-real-estate' ),
+    'update_item'                   => __( 'Update Amenity', 'ns-real-estate' ),
+    'add_new_item'                  => __( 'Add New Amenity', 'ns-real-estate' ),
+    'new_item_name'                 => __( 'New Amenity', 'ns-real-estate' ),
+    'separate_items_with_commas'    => __( 'Separate amenities with commas', 'ns-real-estate' ),
+    'add_or_remove_items'           => __( 'Add or remove amenities', 'ns-real-estate' ),
+    'choose_from_most_used'         => __( 'Choose from most used amenities', 'ns-real-estate' )
     );
     
     register_taxonomy(
         'property_amenities',
         'ns-property',
         array(
-            'label'         => __( 'Amenities', 'rype-real-estate' ),
+            'label'         => __( 'Amenities', 'ns-real-estate' ),
             'labels'        => $labels,
             'hierarchical'  => true,
             'rewrite' => array( 'slug' => $property_amenities_tax_slug )
@@ -843,14 +843,14 @@ function rype_real_estate_edit_properties_columns( $columns ) {
 
     $columns = array(
         'cb' => '<input type="checkbox" />',
-        'title' => __( 'Property', 'rype-real-estate' ),
-        'thumbnail' => __('Image', 'rype-real-estate'),
-        'location' => __( 'Location', 'rype-real-estate' ),
-        'type' => __( 'Type', 'rype-real-estate' ),
-        'status' => __( 'Status', 'rype-real-estate' ),
-        'price'  => __( 'Price','rype-real-estate' ),
-        'author' => __('Author', 'rype-real-estate'),
-        'date' => __( 'Date', 'rype-real-estate' )
+        'title' => __( 'Property', 'ns-real-estate' ),
+        'thumbnail' => __('Image', 'ns-real-estate'),
+        'location' => __( 'Location', 'ns-real-estate' ),
+        'type' => __( 'Type', 'ns-real-estate' ),
+        'status' => __( 'Status', 'ns-real-estate' ),
+        'price'  => __( 'Price','ns-real-estate' ),
+        'author' => __('Author', 'ns-real-estate'),
+        'date' => __( 'Date', 'ns-real-estate' )
     );
 
     return $columns;
@@ -972,13 +972,13 @@ function rype_real_estate_properties_extra_tax_fields($tag) {
     $term_meta = get_option( "taxonomy_$t_id");
     ?>
     <tr class="form-field">
-        <th scope="row" valign="top"><label for="cat_Image_url"><?php esc_html_e('Category Image Url', 'rype-real-estate'); ?></label></th>
+        <th scope="row" valign="top"><label for="cat_Image_url"><?php esc_html_e('Category Image Url', 'ns-real-estate'); ?></label></th>
         <td>
             <div class="admin-module admin-module-tax-field admin-module-tax-img no-border">
                 <input type="text" class="property-tax-img" name="term_meta[img]" id="term_meta[img]" size="3" style="width:60%;" value="<?php echo $term_meta['img'] ? $term_meta['img'] : ''; ?>">
-                <input id="_btn" class="button-secondary ns_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'rype-real-estate'); ?>" />
-                <span class="button button-secondary remove"><?php esc_html_e('Remove', 'rype-real-estate'); ?></span><br/>
-                <span class="description" style="font-size:13px;"><?php esc_html_e('Image for Term, use full url', 'rype-real-estate'); ?></span><br/><br/>
+                <input id="_btn" class="button-secondary ns_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'ns-real-estate'); ?>" />
+                <span class="button button-secondary remove"><?php esc_html_e('Remove', 'ns-real-estate'); ?></span><br/>
+                <span class="description" style="font-size:13px;"><?php esc_html_e('Image for Term, use full url', 'ns-real-estate'); ?></span><br/><br/>
             </div>
         </td>
     </tr>
@@ -991,24 +991,24 @@ function rype_real_estate_properties_tax_price_range_fields($tag) {
     ?>
     <tr class="form-field">
         <th scope="row" valign="top">
-            <strong><?php esc_html_e('Price Range Settings', 'rype-real-estate'); ?></strong>
-            <p class="admin-module-note"><?php esc_html_e('Settings here will override the defaults set in the theme options for this term only.', 'rype-real-estate'); ?></p>
+            <strong><?php esc_html_e('Price Range Settings', 'ns-real-estate'); ?></strong>
+            <p class="admin-module-note"><?php esc_html_e('Settings here will override the defaults set in the theme options for this term only.', 'ns-real-estate'); ?></p>
         </th>
         <td>
             <div class="admin-module admin-module-tax-field tax-price-range-field no-border">
-                <label for="price_range_min"><?php esc_html_e('Minimum', 'rype-real-estate'); ?></label>
+                <label for="price_range_min"><?php esc_html_e('Minimum', 'ns-real-estate'); ?></label>
                 <input type="number" class="property-tax-price-range-min" name="term_meta[price_range_min]" id="term_meta[price_range_min]" size="3" value="<?php echo $term_meta['price_range_min'] ? $term_meta['price_range_min'] : ''; ?>">
             </div>
             <div class="admin-module admin-module-tax-field tax-price-range-field no-border">
-                <label for="price_range_max"><?php esc_html_e('Maximum', 'rype-real-estate'); ?></label>
+                <label for="price_range_max"><?php esc_html_e('Maximum', 'ns-real-estate'); ?></label>
                 <input type="number" class="property-tax-price-range-max" name="term_meta[price_range_max]" id="term_meta[price_range_max]" size="3" value="<?php echo $term_meta['price_range_max'] ? $term_meta['price_range_max'] : ''; ?>">
             </div>
             <div class="admin-module admin-module-tax-field tax-price-range-field no-border">
-                <label for="price_range_min_start"><?php esc_html_e('Minimum Start', 'rype-real-estate'); ?></label>
+                <label for="price_range_min_start"><?php esc_html_e('Minimum Start', 'ns-real-estate'); ?></label>
                 <input type="number" class="property-tax-price-range-min-start" name="term_meta[price_range_min_start]" id="term_meta[price_range_min_start]" size="3" value="<?php echo $term_meta['price_range_min_start'] ? $term_meta['price_range_min_start'] : ''; ?>">
             </div>
             <div class="admin-module admin-module-tax-field tax-price-range-field no-border">
-                <label for="price_range_max_start"><?php esc_html_e('Maximum Start', 'rype-real-estate'); ?></label>
+                <label for="price_range_max_start"><?php esc_html_e('Maximum Start', 'ns-real-estate'); ?></label>
                 <input type="number" class="property-tax-price-range-max-start" name="term_meta[price_range_max_start]" id="term_meta[price_range_max_start]" size="3" value="<?php echo $term_meta['price_range_max_start'] ? $term_meta['price_range_max_start'] : ''; ?>">
             </div>
         </td>
@@ -1080,7 +1080,7 @@ function rype_real_estate_dashboard_widgets($banner_source) {
 
     <div class="user-dashboard-widget user-dashboard-widget-full">
         <div class="module-header module-header-left">
-            <h4><strong><?php esc_html_e('Recent Properties', 'rype-real-estate'); ?></strong></h4>
+            <h4><strong><?php esc_html_e('Recent Properties', 'ns-real-estate'); ?></strong></h4>
         </div>
         <?php 
             $args_recent = array(
@@ -1095,7 +1095,7 @@ function rype_real_estate_dashboard_widgets($banner_source) {
             $template_args['custom_show_filter'] = false;
             $template_args['custom_layout'] = 'grid';
             $template_args['custom_pagination'] = false;
-            $template_args['no_post_message'] = esc_html__( 'Sorry, no recent properties were found.', 'rype-real-estate' );
+            $template_args['no_post_message'] = esc_html__( 'Sorry, no recent properties were found.', 'ns-real-estate' );
                                 
             //Load template
             rype_real_estate_template_loader('loop_properties.php', $template_args_related_properties);
@@ -1117,7 +1117,7 @@ add_action( 'ns_basics_theme_support', 'rype_real_estate_add_real_estate_image_s
 /*-----------------------------------------------------------------------------------*/
 function rype_real_estate_properties_sidebar_init() {
     register_sidebar( array(
-        'name' => esc_html__( 'Properties Sidebar', 'rype-real-estate' ),
+        'name' => esc_html__( 'Properties Sidebar', 'ns-real-estate' ),
         'id' => 'properties_sidebar',
         'before_widget' => '<div class="widget widget-sidebar widget-sidebar-properties %2$s">',
         'after_widget' => '</div>',
