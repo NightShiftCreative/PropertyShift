@@ -5,16 +5,16 @@
 
 	//Get agent details
 	$agent_details_values = get_post_custom( $post->ID );
-    $agent_title = isset( $agent_details_values['rypecore_agent_title'] ) ? esc_attr( $agent_details_values['rypecore_agent_title'][0] ) : '';
-	$agent_email = isset( $agent_details_values['rypecore_agent_email'] ) ? esc_attr( $agent_details_values['rypecore_agent_email'][0] ) : '';
-	$agent_mobile_phone = isset( $agent_details_values['rypecore_agent_mobile_phone'] ) ? esc_attr( $agent_details_values['rypecore_agent_mobile_phone'][0] ) : '';
-	$agent_office_phone = isset( $agent_details_values['rypecore_agent_office_phone'] ) ? esc_attr( $agent_details_values['rypecore_agent_office_phone'][0] ) : '';
-	$agent_fb = isset( $agent_details_values['rypecore_agent_fb'] ) ? esc_attr( $agent_details_values['rypecore_agent_fb'][0] ) : '';
-	$agent_twitter = isset( $agent_details_values['rypecore_agent_twitter'] ) ? esc_attr( $agent_details_values['rypecore_agent_twitter'][0] ) : '';
-	$agent_google = isset( $agent_details_values['rypecore_agent_google'] ) ? esc_attr( $agent_details_values['rypecore_agent_google'][0] ) : '';
-	$agent_linkedin = isset( $agent_details_values['rypecore_agent_linkedin'] ) ? esc_attr( $agent_details_values['rypecore_agent_linkedin'][0] ) : '';
-	$agent_youtube = isset( $agent_details_values['rypecore_agent_youtube'] ) ? esc_attr( $agent_details_values['rypecore_agent_youtube'][0] ) : '';
-	$agent_instagram = isset( $agent_details_values['rypecore_agent_instagram'] ) ? esc_attr( $agent_details_values['rypecore_agent_instagram'][0] ) : '';
+    $agent_title = isset( $agent_details_values['ns_agent_title'] ) ? esc_attr( $agent_details_values['ns_agent_title'][0] ) : '';
+	$agent_email = isset( $agent_details_values['ns_agent_email'] ) ? esc_attr( $agent_details_values['ns_agent_email'][0] ) : '';
+	$agent_mobile_phone = isset( $agent_details_values['ns_agent_mobile_phone'] ) ? esc_attr( $agent_details_values['ns_agent_mobile_phone'][0] ) : '';
+	$agent_office_phone = isset( $agent_details_values['ns_agent_office_phone'] ) ? esc_attr( $agent_details_values['ns_agent_office_phone'][0] ) : '';
+	$agent_fb = isset( $agent_details_values['ns_agent_fb'] ) ? esc_attr( $agent_details_values['ns_agent_fb'][0] ) : '';
+	$agent_twitter = isset( $agent_details_values['ns_agent_twitter'] ) ? esc_attr( $agent_details_values['ns_agent_twitter'][0] ) : '';
+	$agent_google = isset( $agent_details_values['ns_agent_google'] ) ? esc_attr( $agent_details_values['ns_agent_google'][0] ) : '';
+	$agent_linkedin = isset( $agent_details_values['ns_agent_linkedin'] ) ? esc_attr( $agent_details_values['ns_agent_linkedin'][0] ) : '';
+	$agent_youtube = isset( $agent_details_values['ns_agent_youtube'] ) ? esc_attr( $agent_details_values['ns_agent_youtube'][0] ) : '';
+	$agent_instagram = isset( $agent_details_values['ns_agent_instagram'] ) ? esc_attr( $agent_details_values['ns_agent_instagram'][0] ) : '';
 
     //property post count
     $args = array(

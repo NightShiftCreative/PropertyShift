@@ -45,8 +45,8 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
                         if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post();
 
                             $values = get_post_custom( $post->ID );
-                            $agent_title = isset( $values['rypecore_agent_title'] ) ? esc_attr( $values['rypecore_agent_title'][0] ) : '';
-                            $agent_email = isset( $values['rypecore_agent_email'] ) ? esc_attr( $values['rypecore_agent_email'][0] ) : '';
+                            $agent_title = isset( $values['ns_agent_title'] ) ? esc_attr( $values['ns_agent_title'][0] ) : '';
+                            $agent_email = isset( $values['ns_agent_email'] ) ? esc_attr( $values['ns_agent_email'][0] ) : '';
 
                             //property post count
                             $args = array(

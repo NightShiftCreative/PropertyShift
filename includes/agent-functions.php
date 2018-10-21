@@ -51,26 +51,26 @@ function ns_real_estate_create_agents_post_type() {
 }
 
  /* Add Agent details (meta box) */ 
- function rype_real_estate_add_agent_details_meta_box() {
-    add_meta_box( 'agent-details-meta-box', 'Agent Details', 'rype_real_estate_agent_details', 'ns-agent', 'normal', 'high' );
+ function ns_real_estate_add_agent_details_meta_box() {
+    add_meta_box( 'agent-details-meta-box', 'Agent Details', 'ns_real_estate_agent_details', 'ns-agent', 'normal', 'high' );
  }
-add_action( 'add_meta_boxes', 'rype_real_estate_add_agent_details_meta_box' );
+add_action( 'add_meta_boxes', 'ns_real_estate_add_agent_details_meta_box' );
 
-function rype_real_estate_agent_details($post) {
+function ns_real_estate_agent_details($post) {
     $agent_details_values = get_post_custom( $post->ID );
-    $agent_title = isset( $agent_details_values['rypecore_agent_title'] ) ? esc_attr( $agent_details_values['rypecore_agent_title'][0] ) : '';
-    $agent_email = isset( $agent_details_values['rypecore_agent_email'] ) ? esc_attr( $agent_details_values['rypecore_agent_email'][0] ) : '';
-    $agent_mobile_phone = isset( $agent_details_values['rypecore_agent_mobile_phone'] ) ? esc_attr( $agent_details_values['rypecore_agent_mobile_phone'][0] ) : '';
-    $agent_office_phone = isset( $agent_details_values['rypecore_agent_office_phone'] ) ? esc_attr( $agent_details_values['rypecore_agent_office_phone'][0] ) : '';
-    $agent_fb = isset( $agent_details_values['rypecore_agent_fb'] ) ? esc_attr( $agent_details_values['rypecore_agent_fb'][0] ) : '';
-    $agent_twitter = isset( $agent_details_values['rypecore_agent_twitter'] ) ? esc_attr( $agent_details_values['rypecore_agent_twitter'][0] ) : '';
-    $agent_google = isset( $agent_details_values['rypecore_agent_google'] ) ? esc_attr( $agent_details_values['rypecore_agent_google'][0] ) : '';
-    $agent_linkedin = isset( $agent_details_values['rypecore_agent_linkedin'] ) ? esc_attr( $agent_details_values['rypecore_agent_linkedin'][0] ) : '';
-    $agent_youtube = isset( $agent_details_values['rypecore_agent_youtube'] ) ? esc_attr( $agent_details_values['rypecore_agent_youtube'][0] ) : '';
-    $agent_instagram = isset( $agent_details_values['rypecore_agent_instagram'] ) ? esc_attr( $agent_details_values['rypecore_agent_instagram'][0] ) : '';
-    $agent_form_source = isset( $agent_details_values['rypecore_agent_form_source'] ) ? esc_attr( $agent_details_values['rypecore_agent_form_source'][0] ) : 'default';
-    $agent_form_id = isset( $agent_details_values['rypecore_agent_form_id'] ) ? esc_attr( $agent_details_values['rypecore_agent_form_id'][0] ) : '';
-    wp_nonce_field( 'rypecore_agent_details_meta_box_nonce', 'rypecore_agent_details_meta_box_nonce' );
+    $agent_title = isset( $agent_details_values['ns_agent_title'] ) ? esc_attr( $agent_details_values['ns_agent_title'][0] ) : '';
+    $agent_email = isset( $agent_details_values['ns_agent_email'] ) ? esc_attr( $agent_details_values['ns_agent_email'][0] ) : '';
+    $agent_mobile_phone = isset( $agent_details_values['ns_agent_mobile_phone'] ) ? esc_attr( $agent_details_values['ns_agent_mobile_phone'][0] ) : '';
+    $agent_office_phone = isset( $agent_details_values['ns_agent_office_phone'] ) ? esc_attr( $agent_details_values['ns_agent_office_phone'][0] ) : '';
+    $agent_fb = isset( $agent_details_values['ns_agent_fb'] ) ? esc_attr( $agent_details_values['ns_agent_fb'][0] ) : '';
+    $agent_twitter = isset( $agent_details_values['ns_agent_twitter'] ) ? esc_attr( $agent_details_values['ns_agent_twitter'][0] ) : '';
+    $agent_google = isset( $agent_details_values['ns_agent_google'] ) ? esc_attr( $agent_details_values['ns_agent_google'][0] ) : '';
+    $agent_linkedin = isset( $agent_details_values['ns_agent_linkedin'] ) ? esc_attr( $agent_details_values['ns_agent_linkedin'][0] ) : '';
+    $agent_youtube = isset( $agent_details_values['ns_agent_youtube'] ) ? esc_attr( $agent_details_values['ns_agent_youtube'][0] ) : '';
+    $agent_instagram = isset( $agent_details_values['ns_agent_instagram'] ) ? esc_attr( $agent_details_values['ns_agent_instagram'][0] ) : '';
+    $agent_form_source = isset( $agent_details_values['ns_agent_form_source'] ) ? esc_attr( $agent_details_values['ns_agent_form_source'][0] ) : 'default';
+    $agent_form_id = isset( $agent_details_values['ns_agent_form_id'] ) ? esc_attr( $agent_details_values['ns_agent_form_id'][0] ) : '';
+    wp_nonce_field( 'ns_agent_details_meta_box_nonce', 'ns_agent_details_meta_box_nonce' );
     ?>
 
     <div id="tabs" class="meta-box-form meta-box-form-agent ui-tabs">
@@ -96,7 +96,7 @@ function rype_real_estate_agent_details($post) {
                         <span class="admin-module-note"><?php esc_html_e('Provide the agents job title.', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
-                        <input type="text" name="rypecore_agent_title" id="agent_title" value="<?php echo $agent_title; ?>" />
+                        <input type="text" name="ns_agent_title" id="agent_title" value="<?php echo $agent_title; ?>" />
                     </td>
                 </tr>
             </table>
@@ -108,7 +108,7 @@ function rype_real_estate_agent_details($post) {
                         <span class="admin-module-note"><?php esc_html_e('Provide the agents email address. This address will be used for the agent contact form.', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
-                        <input type="email" name="rypecore_agent_email" id="agent_email" value="<?php echo $agent_email; ?>" />
+                        <input type="email" name="ns_agent_email" id="agent_email" value="<?php echo $agent_email; ?>" />
                     </td>
                 </tr>
             </table>
@@ -120,7 +120,7 @@ function rype_real_estate_agent_details($post) {
                         <span class="admin-module-note"><?php esc_html_e('Provide the agents mobile phone number', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
-                        <input type="text" name="rypecore_agent_mobile_phone" id="agent_mobile_phone" value="<?php echo $agent_mobile_phone; ?>" />
+                        <input type="text" name="ns_agent_mobile_phone" id="agent_mobile_phone" value="<?php echo $agent_mobile_phone; ?>" />
                     </td>
                 </tr>
             </table>
@@ -132,7 +132,7 @@ function rype_real_estate_agent_details($post) {
                         <span class="admin-module-note"><?php esc_html_e('Provide the agents office phone number', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
-                        <input type="text" name="rypecore_agent_office_phone" id="agent_office_phone" value="<?php echo $agent_office_phone; ?>" />
+                        <input type="text" name="ns_agent_office_phone" id="agent_office_phone" value="<?php echo $agent_office_phone; ?>" />
                     </td>
                 </tr>
             </table>
@@ -152,7 +152,7 @@ function rype_real_estate_agent_details($post) {
                         <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Facebook profile', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
-                        <input type="text" name="rypecore_agent_fb" id="agent_fb" value="<?php echo $agent_fb; ?>" />
+                        <input type="text" name="ns_agent_fb" id="agent_fb" value="<?php echo $agent_fb; ?>" />
                     </td>
                 </tr>
             </table>
@@ -164,7 +164,7 @@ function rype_real_estate_agent_details($post) {
                         <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Twitter profile', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
-                        <input type="text" name="rypecore_agent_twitter" id="agent_twitter" value="<?php echo $agent_twitter; ?>" />
+                        <input type="text" name="ns_agent_twitter" id="agent_twitter" value="<?php echo $agent_twitter; ?>" />
                     </td>
                 </tr>
             </table>
@@ -176,7 +176,7 @@ function rype_real_estate_agent_details($post) {
                         <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Google Plus profile', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
-                        <input type="text" name="rypecore_agent_google" id="agent_google" value="<?php echo $agent_google; ?>" />
+                        <input type="text" name="ns_agent_google" id="agent_google" value="<?php echo $agent_google; ?>" />
                     </td>
                 </tr>
             </table>
@@ -188,7 +188,7 @@ function rype_real_estate_agent_details($post) {
                         <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Linkedin profile', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
-                        <input type="text" name="rypecore_agent_linkedin" id="agent_linkedin" value="<?php echo $agent_linkedin; ?>" />
+                        <input type="text" name="ns_agent_linkedin" id="agent_linkedin" value="<?php echo $agent_linkedin; ?>" />
                     </td>
                 </tr>
             </table>
@@ -200,7 +200,7 @@ function rype_real_estate_agent_details($post) {
                         <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Youtube profile', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
-                        <input type="text" name="rypecore_agent_youtube" id="agent_youtube" value="<?php echo $agent_youtube; ?>" />
+                        <input type="text" name="ns_agent_youtube" id="agent_youtube" value="<?php echo $agent_youtube; ?>" />
                     </td>
                 </tr>
             </table>
@@ -212,7 +212,7 @@ function rype_real_estate_agent_details($post) {
                         <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Instagram profile', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
-                        <input type="text" name="rypecore_agent_instagram" id="agent_instagram" value="<?php echo $agent_instagram; ?>" />
+                        <input type="text" name="ns_agent_instagram" id="agent_instagram" value="<?php echo $agent_instagram; ?>" />
                     </td>
                 </tr>
             </table>
@@ -228,8 +228,8 @@ function rype_real_estate_agent_details($post) {
                 <tr>
                     <td class="admin-module-label"><label><?php esc_html_e('Agent Contact Form Source:', 'ns-real-estate'); ?></label></td>
                     <td class="admin-module-field">
-                        <p><input type="radio" id="agent_form_source" name="rypecore_agent_form_source" value="default" <?php if(esc_attr($agent_form_source) == 'default') { echo 'checked'; } ?> /><?php esc_html_e('Default Theme Form', 'ns-real-estate'); ?></p>
-                        <p><input type="radio" id="agent_form_source_contact_7" name="rypecore_agent_form_source" value="contact-form-7" <?php if(esc_attr($agent_form_source) == 'contact-form-7') { echo 'checked'; } ?> /><?php esc_html_e('Contact Form 7', 'ns-real-estate'); ?></p>
+                        <p><input type="radio" id="agent_form_source" name="ns_agent_form_source" value="default" <?php if(esc_attr($agent_form_source) == 'default') { echo 'checked'; } ?> /><?php esc_html_e('Default Theme Form', 'ns-real-estate'); ?></p>
+                        <p><input type="radio" id="agent_form_source_contact_7" name="ns_agent_form_source" value="contact-form-7" <?php if(esc_attr($agent_form_source) == 'contact-form-7') { echo 'checked'; } ?> /><?php esc_html_e('Contact Form 7', 'ns-real-estate'); ?></p>
                     </td>
                 </tr>
             </table>
@@ -244,7 +244,7 @@ function rype_real_estate_agent_details($post) {
                         <?php 
                         include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
                         if( is_plugin_active('contact-form-7/wp-contact-form-7.php') ) { ?>
-                            <input type="number" min="0" name="rypecore_agent_form_id" value="<?php echo $agent_form_id; ?>" />
+                            <input type="number" min="0" name="ns_agent_form_id" value="<?php echo $agent_form_id; ?>" />
                         <?php } else {
                             echo '<i>You need to install and/or activate the <a href="https://wordpress.org/plugins/contact-form-7/" target="_blank">Contact Form 7</a> plugin.</i>';
                         } ?>
@@ -260,14 +260,14 @@ function rype_real_estate_agent_details($post) {
 }
 
 /* Save agent details */
-add_action( 'save_post', 'rype_real_estate_save_agent_details_meta_box' );
-function rype_real_estate_save_agent_details_meta_box( $post_id )
+add_action( 'save_post', 'ns_real_estate_save_agent_details_meta_box' );
+function ns_real_estate_save_agent_details_meta_box( $post_id )
 {
     // Bail if we're doing an auto save
     if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
 
     // if our nonce isn't there, or we can't verify it, bail
-    if( !isset( $_POST['rypecore_agent_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['rypecore_agent_details_meta_box_nonce'], 'rypecore_agent_details_meta_box_nonce' ) ) return;
+    if( !isset( $_POST['ns_agent_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['ns_agent_details_meta_box_nonce'], 'ns_agent_details_meta_box_nonce' ) ) return;
 
     // if our current user can't edit this post, bail
     if( !current_user_can( 'edit_post', $post_id ) ) return;
@@ -280,66 +280,66 @@ function rype_real_estate_save_agent_details_meta_box( $post_id )
     );
 
     // make sure data is set before saving
-    if( isset( $_POST['rypecore_agent_title'] ) )
-        update_post_meta( $post_id, 'rypecore_agent_title', wp_kses( $_POST['rypecore_agent_title'], $allowed ) );
+    if( isset( $_POST['ns_agent_title'] ) )
+        update_post_meta( $post_id, 'ns_agent_title', wp_kses( $_POST['ns_agent_title'], $allowed ) );
 
-    if( isset( $_POST['rypecore_agent_email'] ) )
-        update_post_meta( $post_id, 'rypecore_agent_email', wp_kses( $_POST['rypecore_agent_email'], $allowed ) );
+    if( isset( $_POST['ns_agent_email'] ) )
+        update_post_meta( $post_id, 'ns_agent_email', wp_kses( $_POST['ns_agent_email'], $allowed ) );
 
-    if( isset( $_POST['rypecore_agent_mobile_phone'] ) )
-        update_post_meta( $post_id, 'rypecore_agent_mobile_phone', wp_kses( $_POST['rypecore_agent_mobile_phone'], $allowed ) );
+    if( isset( $_POST['ns_agent_mobile_phone'] ) )
+        update_post_meta( $post_id, 'ns_agent_mobile_phone', wp_kses( $_POST['ns_agent_mobile_phone'], $allowed ) );
 
-    if( isset( $_POST['rypecore_agent_office_phone'] ) )
-        update_post_meta( $post_id, 'rypecore_agent_office_phone', wp_kses( $_POST['rypecore_agent_office_phone'], $allowed ) );
+    if( isset( $_POST['ns_agent_office_phone'] ) )
+        update_post_meta( $post_id, 'ns_agent_office_phone', wp_kses( $_POST['ns_agent_office_phone'], $allowed ) );
 
-    if( isset( $_POST['rypecore_agent_fb'] ) )
-        update_post_meta( $post_id, 'rypecore_agent_fb', wp_kses( $_POST['rypecore_agent_fb'], $allowed ) );
+    if( isset( $_POST['ns_agent_fb'] ) )
+        update_post_meta( $post_id, 'ns_agent_fb', wp_kses( $_POST['ns_agent_fb'], $allowed ) );
 
-    if( isset( $_POST['rypecore_agent_twitter'] ) )
-        update_post_meta( $post_id, 'rypecore_agent_twitter', wp_kses( $_POST['rypecore_agent_twitter'], $allowed ) );
+    if( isset( $_POST['ns_agent_twitter'] ) )
+        update_post_meta( $post_id, 'ns_agent_twitter', wp_kses( $_POST['ns_agent_twitter'], $allowed ) );
 
-    if( isset( $_POST['rypecore_agent_google'] ) )
-        update_post_meta( $post_id, 'rypecore_agent_google', wp_kses( $_POST['rypecore_agent_google'], $allowed ) );
+    if( isset( $_POST['ns_agent_google'] ) )
+        update_post_meta( $post_id, 'ns_agent_google', wp_kses( $_POST['ns_agent_google'], $allowed ) );
 
-    if( isset( $_POST['rypecore_agent_linkedin'] ) )
-        update_post_meta( $post_id, 'rypecore_agent_linkedin', wp_kses( $_POST['rypecore_agent_linkedin'], $allowed ) );
+    if( isset( $_POST['ns_agent_linkedin'] ) )
+        update_post_meta( $post_id, 'ns_agent_linkedin', wp_kses( $_POST['ns_agent_linkedin'], $allowed ) );
 
-    if( isset( $_POST['rypecore_agent_youtube'] ) )
-        update_post_meta( $post_id, 'rypecore_agent_youtube', wp_kses( $_POST['rypecore_agent_youtube'], $allowed ) );
+    if( isset( $_POST['ns_agent_youtube'] ) )
+        update_post_meta( $post_id, 'ns_agent_youtube', wp_kses( $_POST['ns_agent_youtube'], $allowed ) );
 
-    if( isset( $_POST['rypecore_agent_instagram'] ) )
-        update_post_meta( $post_id, 'rypecore_agent_instagram', wp_kses( $_POST['rypecore_agent_instagram'], $allowed ) );
+    if( isset( $_POST['ns_agent_instagram'] ) )
+        update_post_meta( $post_id, 'ns_agent_instagram', wp_kses( $_POST['ns_agent_instagram'], $allowed ) );
 
-    if( isset( $_POST['rypecore_agent_form_source'] ) )
-        update_post_meta( $post_id, 'rypecore_agent_form_source', wp_kses( $_POST['rypecore_agent_form_source'], $allowed ) );
+    if( isset( $_POST['ns_agent_form_source'] ) )
+        update_post_meta( $post_id, 'ns_agent_form_source', wp_kses( $_POST['ns_agent_form_source'], $allowed ) );
 
-    if( isset( $_POST['rypecore_agent_form_id'] ) )
-        update_post_meta( $post_id, 'rypecore_agent_form_id', wp_kses( $_POST['rypecore_agent_form_id'], $allowed ) );
+    if( isset( $_POST['ns_agent_form_id'] ) )
+        update_post_meta( $post_id, 'ns_agent_form_id', wp_kses( $_POST['ns_agent_form_id'], $allowed ) );
 
 }
 
 /*-----------------------------------------------------------------------------------*/
 /*  Add Agent Listing Image Size
 /*-----------------------------------------------------------------------------------*/
-function rype_real_estate_add_agent_image_size() {
+function ns_real_estate_add_agent_image_size() {
     add_image_size( 'agent-thumbnail', 800, 600, array( 'center', 'center' ) );
 }
-add_action( 'ns_basics_theme_support', 'rype_real_estate_add_agent_image_size' );
+add_action( 'ns_basics_theme_support', 'ns_real_estate_add_agent_image_size' );
 
 /*-----------------------------------------------------------------------------------*/
 /*  Add Page Settings Metabox to Edit Agent Page
 /*-----------------------------------------------------------------------------------*/
 if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page_settings')) {
-    function rype_real_estate_agents_add_page_settings_metabox() {
+    function ns_real_estate_agents_add_page_settings_metabox() {
         add_meta_box( 'page-layout-meta-box', 'Page Settings', 'ns_basics_page_layout_meta_box', array('ns-agent'), 'normal', 'low' );
     }
-    add_action('init', 'rype_real_estate_agents_add_page_settings_metabox');
+    add_action('init', 'ns_real_estate_agents_add_page_settings_metabox');
 }
 
 /*-----------------------------------------------------------------------------------*/
 /*  Agent Contact Form
 /*-----------------------------------------------------------------------------------*/
-function rype_real_estate_agent_contact_form($agent_email) {
+function ns_real_estate_agent_contact_form($agent_email) {
 
     $site_title = get_bloginfo('name');
     $agent_form_submit_text = esc_attr(get_option('ns_agent_form_submit_text', esc_html__('Contact Agent', 'ns-real-estate')) );
