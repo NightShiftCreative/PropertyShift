@@ -554,7 +554,7 @@ function ns_real_estate_property_details($post) {
             <table class="admin-module">
                 <?php
                     $agent_listing_args = array(
-                        'post_type' => 'rype-agent',
+                        'post_type' => 'ns-agent',
                         'posts_per_page' => -1
                         );
                     $agent_listing_query = new WP_Query( $agent_listing_args );

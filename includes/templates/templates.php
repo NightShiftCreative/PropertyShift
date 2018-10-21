@@ -46,7 +46,7 @@ function rype_real_estate_template_agent_single( $content ) {
 	$template = 'loop_agent_single.php';
 	$theme_file = locate_template(array( 'rype-real-estate/' . $template));
 
-	if(is_singular('rype-agent')) {
+	if(is_singular('ns-agent')) {
 		if(empty($theme_file)) {
 			echo '<div class="rype-real-estate">'; 
 	    	include( plugin_dir_path( __FILE__ ) . $template);

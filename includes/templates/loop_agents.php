@@ -27,7 +27,7 @@
         $agent_listing_args = $custom_args;
     } else {
         $agent_listing_args = array(
-            'post_type' => 'rype-agent',
+            'post_type' => 'ns-agent',
             'posts_per_page' => $num_agents_per_page,
             'paged' => $paged
         );
@@ -36,7 +36,7 @@
 	$agent_listing_query = new WP_Query( $agent_listing_args );
 ?>
 
-<div class="row rype-agent-listing">
+<div class="row ns-agent-listing">
 <?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
 
     <?php if($page_layout != 'full') { ?>
@@ -84,7 +84,7 @@
             <?php
             if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no agents were found.', 'rype-real-estate'); } 
             if(is_user_logged_in() && current_user_can('administrator')) { 
-                $new_agent_url = esc_url(home_url('/')).'wp-admin/post-new.php?post_type=rype-agent';
+                $new_agent_url = esc_url(home_url('/')).'wp-admin/post-new.php?post_type=ns-agent';
                 printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new agent.</b></em>', 'rype-real-estate'), $new_agent_url );  
             } ?>
         </p>

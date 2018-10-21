@@ -284,29 +284,29 @@
 /*********************************************/
 /** AGENTS **/
 /*********************************************/
-.rype-agent-listing .rype-agent, .rype-agent-listing .hentry.rype-agent {
+.ns-agent-listing .ns-agent, .ns-agent-listing .hentry.ns-agent {
     margin:0;
     margin-bottom:30px; 
     padding:0;
 }
 
-.rype-agent .agent-content { padding:5%; }
-.rype-agent .agent-title h4 { margin:15px 0px; }
-.rype-agent .agent-details p { margin-bottom:10px; }
-.rype-agent .social-icons { margin-bottom:0; }
+.ns-agent .agent-content { padding:5%; }
+.ns-agent .agent-title h4 { margin:15px 0px; }
+.ns-agent .agent-details p { margin-bottom:10px; }
+.ns-agent .social-icons { margin-bottom:0; }
 
 /*********************************************/
 /** AGENTS SINGLE **/
 /*********************************************/
-.rype-agent .agent-single-item.widget { 
+.ns-agent .agent-single-item.widget { 
     padding:0; 
     margin-bottom:30px;
 }
 
-.rype-agent .agent-single-item .agent-content { padding:0; padding-top:30px; }
-.rype-agent .agent-single-item .agent-details p {
+.ns-agent .agent-single-item .agent-content { padding:0; padding-top:30px; }
+.ns-agent .agent-single-item .agent-details p {
     border-bottom:1px solid rgba(0, 0, 0, 0.1);
     padding-top:4px;
     padding-bottom:4px;
 }
-.rype-agent .agent-single-item .agent-details p span { float:right; font-weight:600; }
+.ns-agent .agent-single-item .agent-details p span { float:right; font-weight:600; }

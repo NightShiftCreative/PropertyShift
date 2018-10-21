@@ -385,7 +385,7 @@ function rype_list_agents($atts, $content = null) {
     ), $atts);
 
     $args = array(
-        'post_type' => 'rype-agent',
+        'post_type' => 'ns-agent',
         'showposts' => $atts['show_posts'],
     );
 

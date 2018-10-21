@@ -37,7 +37,7 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
                         /*****************************************/
                         $agent_counts = array();
                         $agent_listing_args = array(
-                            'post_type' => 'rype-agent',
+                            'post_type' => 'ns-agent',
                             'showposts' => -1,
                         );
 

@@ -383,7 +383,7 @@
                                 <?php
 
                                     $agent_listing_args = array(
-                                        'post_type' => 'rype-agent',
+                                        'post_type' => 'ns-agent',
                                         'posts_per_page' => 1,
                                         'p' => $agent_select
                                         );

@@ -5,14 +5,14 @@
 /*-----------------------------------------------------------------------------------*/
 
 //rewrite for agents page url conflict
-function rype_real_estate_agents_rewrite_rule() {
+function ns_real_estate_agents_rewrite_rule() {
     add_rewrite_rule('^agents/page/([0-9]+)','index.php?pagename=agents&paged=$matches[1]', 'top');
 }
-add_action('init', 'rype_real_estate_agents_rewrite_rule');
+add_action('init', 'ns_real_estate_agents_rewrite_rule');
 
 //allow pagination on agent single page
 add_action( 'template_redirect', function() {
-    if ( is_singular( 'rype-agent' ) ) {
+    if ( is_singular( 'ns-agent' ) ) {
         global $wp_query;
         $page = ( int ) $wp_query->get( 'page' );
         if ( $page > 1 ) {
@@ -29,17 +29,17 @@ add_action( 'template_redirect', function() {
 /*-----------------------------------------------------------------------------------*/
 /*  Agents Custom Post Type
 /*-----------------------------------------------------------------------------------*/
-add_action( 'init', 'rype_real_estate_create_agents_post_type' );
-function rype_real_estate_create_agents_post_type() {
+add_action( 'init', 'ns_real_estate_create_agents_post_type' );
+function ns_real_estate_create_agents_post_type() {
     $agents_slug = get_option('ns_agent_detail_slug', 'agents');
-    register_post_type( 'rype-agent',
+    register_post_type( 'ns-agent',
         array(
             'labels' => array(
-                'name' => __( 'Agents', 'rype-real-estate' ),
-                'singular_name' => __( 'Agent', 'rype-real-estate' ),
-                'add_new_item' => __( 'Add New Agent', 'rype-real-estate' ),
-                'search_items' => __( 'Search Agents', 'rype-real-estate' ),
-                'edit_item' => __( 'Edit Agent', 'rype-real-estate' ),
+                'name' => __( 'Agents', 'ns-real-estate' ),
+                'singular_name' => __( 'Agent', 'ns-real-estate' ),
+                'add_new_item' => __( 'Add New Agent', 'ns-real-estate' ),
+                'search_items' => __( 'Search Agents', 'ns-real-estate' ),
+                'edit_item' => __( 'Edit Agent', 'ns-real-estate' ),
             ),
         'public' => true,
         'show_in_menu' => true,
@@ -52,7 +52,7 @@ function rype_real_estate_create_agents_post_type() {
 
  /* Add Agent details (meta box) */ 
  function rype_real_estate_add_agent_details_meta_box() {
-    add_meta_box( 'agent-details-meta-box', 'Agent Details', 'rype_real_estate_agent_details', 'rype-agent', 'normal', 'high' );
+    add_meta_box( 'agent-details-meta-box', 'Agent Details', 'rype_real_estate_agent_details', 'ns-agent', 'normal', 'high' );
  }
 add_action( 'add_meta_boxes', 'rype_real_estate_add_agent_details_meta_box' );
 
@@ -76,24 +76,24 @@ function rype_real_estate_agent_details($post) {
     <div id="tabs" class="meta-box-form meta-box-form-agent ui-tabs">
 
         <ul class="ui-tabs-nav">
-            <li><a href="#general"><i class="fa fa-user"></i> <span class="tab-text"><?php esc_html_e('General Info', 'rype-real-estate'); ?></span></a></li>
-            <li><a href="#social"><i class="fa fa-share-alt"></i> <span class="tab-text"><?php esc_html_e('Social', 'rype-real-estate'); ?></span></a></li>
-            <li><a href="#contact"><i class="fa fa-envelope"></i> <span class="tab-text"><?php esc_html_e('Contact Form', 'rype-real-estate'); ?></span></a></li>
+            <li><a href="#general"><i class="fa fa-user"></i> <span class="tab-text"><?php esc_html_e('General Info', 'ns-real-estate'); ?></span></a></li>
+            <li><a href="#social"><i class="fa fa-share-alt"></i> <span class="tab-text"><?php esc_html_e('Social', 'ns-real-estate'); ?></span></a></li>
+            <li><a href="#contact"><i class="fa fa-envelope"></i> <span class="tab-text"><?php esc_html_e('Contact Form', 'ns-real-estate'); ?></span></a></li>
         </ul>
 
-        <div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e('Loading...', 'rype-real-estate'); ?></div>
+        <div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e('Loading...', 'ns-real-estate'); ?></div>
 
         <!--*************************************************-->
         <!-- GENERAL INFO -->
         <!--*************************************************-->
         <div id="general" class="tab-content">
-            <h3><?php esc_html_e('General Info', 'rype-real-estate'); ?></h3>
+            <h3><?php esc_html_e('General Info', 'ns-real-estate'); ?></h3>
 
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php esc_html_e('Job Title', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide the agents job title.', 'rype-real-estate'); ?></span>
+                        <label><?php esc_html_e('Job Title', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide the agents job title.', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
                         <input type="text" name="rypecore_agent_title" id="agent_title" value="<?php echo $agent_title; ?>" />
@@ -104,8 +104,8 @@ function rype_real_estate_agent_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php esc_html_e('Email', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide the agents email address. This address will be used for the agent contact form.', 'rype-real-estate'); ?></span>
+                        <label><?php esc_html_e('Email', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide the agents email address. This address will be used for the agent contact form.', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
                         <input type="email" name="rypecore_agent_email" id="agent_email" value="<?php echo $agent_email; ?>" />
@@ -116,8 +116,8 @@ function rype_real_estate_agent_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php esc_html_e('Mobile Phone', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide the agents mobile phone number', 'rype-real-estate'); ?></span>
+                        <label><?php esc_html_e('Mobile Phone', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide the agents mobile phone number', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
                         <input type="text" name="rypecore_agent_mobile_phone" id="agent_mobile_phone" value="<?php echo $agent_mobile_phone; ?>" />
@@ -128,8 +128,8 @@ function rype_real_estate_agent_details($post) {
             <table class="admin-module no-border">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php esc_html_e('Office Phone', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide the agents office phone number', 'rype-real-estate'); ?></span>
+                        <label><?php esc_html_e('Office Phone', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide the agents office phone number', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
                         <input type="text" name="rypecore_agent_office_phone" id="agent_office_phone" value="<?php echo $agent_office_phone; ?>" />
@@ -143,13 +143,13 @@ function rype_real_estate_agent_details($post) {
         <!-- SOCIAL -->
         <!--*************************************************-->
         <div id="social" class="tab-content">
-            <h3><?php esc_html_e('Social', 'rype-real-estate'); ?></h3>
+            <h3><?php esc_html_e('Social', 'ns-real-estate'); ?></h3>
 
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php esc_html_e('Facebook', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Facebook profile', 'rype-real-estate'); ?></span>
+                        <label><?php esc_html_e('Facebook', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Facebook profile', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
                         <input type="text" name="rypecore_agent_fb" id="agent_fb" value="<?php echo $agent_fb; ?>" />
@@ -160,8 +160,8 @@ function rype_real_estate_agent_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php esc_html_e('Twitter', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Twitter profile', 'rype-real-estate'); ?></span>
+                        <label><?php esc_html_e('Twitter', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Twitter profile', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
                         <input type="text" name="rypecore_agent_twitter" id="agent_twitter" value="<?php echo $agent_twitter; ?>" />
@@ -172,8 +172,8 @@ function rype_real_estate_agent_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php esc_html_e('Google Plus', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Google Plus profile', 'rype-real-estate'); ?></span>
+                        <label><?php esc_html_e('Google Plus', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Google Plus profile', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
                         <input type="text" name="rypecore_agent_google" id="agent_google" value="<?php echo $agent_google; ?>" />
@@ -184,8 +184,8 @@ function rype_real_estate_agent_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php esc_html_e('Linkedin', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Linkedin profile', 'rype-real-estate'); ?></span>
+                        <label><?php esc_html_e('Linkedin', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Linkedin profile', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
                         <input type="text" name="rypecore_agent_linkedin" id="agent_linkedin" value="<?php echo $agent_linkedin; ?>" />
@@ -196,8 +196,8 @@ function rype_real_estate_agent_details($post) {
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php esc_html_e('Youtube', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Youtube profile', 'rype-real-estate'); ?></span>
+                        <label><?php esc_html_e('Youtube', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Youtube profile', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
                         <input type="text" name="rypecore_agent_youtube" id="agent_youtube" value="<?php echo $agent_youtube; ?>" />
@@ -208,8 +208,8 @@ function rype_real_estate_agent_details($post) {
             <table class="admin-module no-border">
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php esc_html_e('Instagram', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Instagram profile', 'rype-real-estate'); ?></span>
+                        <label><?php esc_html_e('Instagram', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide a url for the agents Instagram profile', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
                         <input type="text" name="rypecore_agent_instagram" id="agent_instagram" value="<?php echo $agent_instagram; ?>" />
@@ -222,14 +222,14 @@ function rype_real_estate_agent_details($post) {
         <!-- CONTACT -->
         <!--*************************************************-->
         <div id="contact" class="tab-content">
-            <h3><?php esc_html_e('Contact', 'rype-real-estate'); ?></h3>
+            <h3><?php esc_html_e('Contact', 'ns-real-estate'); ?></h3>
 
             <table class="admin-module">
                 <tr>
-                    <td class="admin-module-label"><label><?php esc_html_e('Agent Contact Form Source:', 'rype-real-estate'); ?></label></td>
+                    <td class="admin-module-label"><label><?php esc_html_e('Agent Contact Form Source:', 'ns-real-estate'); ?></label></td>
                     <td class="admin-module-field">
-                        <p><input type="radio" id="agent_form_source" name="rypecore_agent_form_source" value="default" <?php if(esc_attr($agent_form_source) == 'default') { echo 'checked'; } ?> /><?php esc_html_e('Default Theme Form', 'rype-real-estate'); ?></p>
-                        <p><input type="radio" id="agent_form_source_contact_7" name="rypecore_agent_form_source" value="contact-form-7" <?php if(esc_attr($agent_form_source) == 'contact-form-7') { echo 'checked'; } ?> /><?php esc_html_e('Contact Form 7', 'rype-real-estate'); ?></p>
+                        <p><input type="radio" id="agent_form_source" name="rypecore_agent_form_source" value="default" <?php if(esc_attr($agent_form_source) == 'default') { echo 'checked'; } ?> /><?php esc_html_e('Default Theme Form', 'ns-real-estate'); ?></p>
+                        <p><input type="radio" id="agent_form_source_contact_7" name="rypecore_agent_form_source" value="contact-form-7" <?php if(esc_attr($agent_form_source) == 'contact-form-7') { echo 'checked'; } ?> /><?php esc_html_e('Contact Form 7', 'ns-real-estate'); ?></p>
                     </td>
                 </tr>
             </table>
@@ -237,8 +237,8 @@ function rype_real_estate_agent_details($post) {
             <table class="admin-module admin-module-agent-form-id hide-soft no-border" <?php if($agent_form_source == 'contact-form-7') { echo 'style="display:block;"'; } ?>>
                 <tr>
                     <td class="admin-module-label">
-                        <label><?php esc_html_e('Contact From 7 ID', 'rype-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide the ID of the contact form you would like displayed', 'rype-real-estate'); ?></span>
+                        <label><?php esc_html_e('Contact From 7 ID', 'ns-real-estate'); ?></label>
+                        <span class="admin-module-note"><?php esc_html_e('Provide the ID of the contact form you would like displayed', 'ns-real-estate'); ?></span>
                     </td>
                     <td class="admin-module-field">
                         <?php 
@@ -331,7 +331,7 @@ add_action( 'ns_basics_theme_support', 'rype_real_estate_add_agent_image_size' )
 /*-----------------------------------------------------------------------------------*/
 if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page_settings')) {
     function rype_real_estate_agents_add_page_settings_metabox() {
-        add_meta_box( 'page-layout-meta-box', 'Page Settings', 'ns_basics_page_layout_meta_box', array('rype-agent'), 'normal', 'low' );
+        add_meta_box( 'page-layout-meta-box', 'Page Settings', 'ns_basics_page_layout_meta_box', array('ns-agent'), 'normal', 'low' );
     }
     add_action('init', 'rype_real_estate_agents_add_page_settings_metabox');
 }
@@ -342,13 +342,13 @@ if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page
 function rype_real_estate_agent_contact_form($agent_email) {
 
     $site_title = get_bloginfo('name');
-    $agent_form_submit_text = esc_attr(get_option('ns_agent_form_submit_text', esc_html__('Contact Agent', 'rype-real-estate')) );
-    $agent_form_success = esc_attr(get_option('ns_agent_form_success', esc_html__('Thanks! Your email has been delivered!', 'rype-real-estate')));
+    $agent_form_submit_text = esc_attr(get_option('ns_agent_form_submit_text', esc_html__('Contact Agent', 'ns-real-estate')) );
+    $agent_form_success = esc_attr(get_option('ns_agent_form_success', esc_html__('Thanks! Your email has been delivered!', 'ns-real-estate')));
     
     if(is_singular('ns-property')) {
-        $agent_form_message_placeholder = esc_attr(get_option('ns_agent_form_message_placeholder', esc_html__('I am interested in this property and would like to know more.', 'rype-real-estate')) );
+        $agent_form_message_placeholder = esc_attr(get_option('ns_agent_form_message_placeholder', esc_html__('I am interested in this property and would like to know more.', 'ns-real-estate')) );
     } else {
-        $agent_form_message_placeholder =  esc_html__( 'Message', 'rype-real-estate' );
+        $agent_form_message_placeholder =  esc_html__( 'Message', 'ns-real-estate' );
     }
     
     $nameError = '';
@@ -360,7 +360,7 @@ function rype_real_estate_agent_contact_form($agent_email) {
       
       // require a name from user
       if(trim($_POST['agent-contact-name']) === '') {
-        $nameError =  esc_html__('Forgot your name!', 'rype-real-estate'); 
+        $nameError =  esc_html__('Forgot your name!', 'ns-real-estate'); 
         $hasError = true;
       } else {
         $agent_contact_name = trim($_POST['agent-contact-name']);
@@ -368,7 +368,7 @@ function rype_real_estate_agent_contact_form($agent_email) {
       
       // need valid email
       if(trim($_POST['agent-contact-email']) === '')  {
-        $emailError = esc_html__('Forgot to enter in your e-mail address.', 'rype-real-estate');
+        $emailError = esc_html__('Forgot to enter in your e-mail address.', 'ns-real-estate');
         $hasError = true;
       } else if (!preg_match("/^[[:alnum:]][a-z0-9_.-]*@[a-z0-9.-]+\.[a-z]{2,4}$/i", trim($_POST['agent-contact-email']))) {
         $emailError = 'You entered an invalid email address.';
@@ -379,7 +379,7 @@ function rype_real_estate_agent_contact_form($agent_email) {
         
       // we need at least some content
       if(trim($_POST['agent-contact-message']) === '') {
-        $commentError = esc_html__('You forgot to enter a message!', 'rype-real-estate');
+        $commentError = esc_html__('You forgot to enter a message!', 'ns-real-estate');
         $hasError = true;
       } else {
         if(function_exists('stripslashes')) {
@@ -418,12 +418,12 @@ function rype_real_estate_agent_contact_form($agent_email) {
         <div class="contact-form-fields">
             <div>
                 <?php if($nameError != '') { ?><div class="alert-box error"><?php echo $nameError;?></div> <?php } ?>
-                <input type="text" name="agent-contact-name" placeholder="<?php esc_html_e( 'Name', 'rype-real-estate' ); ?>*" value="<?php if(isset($agent_contact_name)){ echo $agent_contact_name; } ?>" class="border requiredField" />
+                <input type="text" name="agent-contact-name" placeholder="<?php esc_html_e( 'Name', 'ns-real-estate' ); ?>*" value="<?php if(isset($agent_contact_name)){ echo $agent_contact_name; } ?>" class="border requiredField" />
             </div>
 
             <div>
                 <?php if($emailError != '') { ?><div class="alert-box error"><?php echo $emailError;?></div> <?php } ?>
-                <input type="email" name="agent-contact-email" placeholder="<?php esc_html_e( 'Email', 'rype-real-estate' ); ?>*" value="<?php if(isset($agent_contact_email)) { echo $agent_contact_email; } ?>" class="border requiredField email" />
+                <input type="email" name="agent-contact-email" placeholder="<?php esc_html_e( 'Email', 'ns-real-estate' ); ?>*" value="<?php if(isset($agent_contact_email)) { echo $agent_contact_email; } ?>" class="border requiredField email" />
             </div>
 
             <div>
@@ -436,7 +436,7 @@ function rype_real_estate_agent_contact_form($agent_email) {
                 <input type="hidden" name="current_url" value="<?php echo $current_url; ?>" />
                 <input type="hidden" name="submitted" id="submitted" value="true" />
                 <input type="submit" name="submit" value="<?php echo $agent_form_submit_text; ?>" />
-                <div class="form-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e( 'Loading...', 'rype-real-estate' ); ?></div>
+                <div class="form-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e( 'Loading...', 'ns-real-estate' ); ?></div>
             </div>
         </div>
     </form>
