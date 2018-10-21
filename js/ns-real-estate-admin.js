@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
             var propertyType = $('.shortcode-selector-options .list-properties-type').val();
             var propertyLocation = $('.shortcode-selector-options .list-properties-location').val();
             if ($('.shortcode-selector-options .list-properties-featured').is(':checked')) { var featured = 'true'; } else { var featured = 'false'; }
-            shortcodeOutput = "[rype_list_properties show_posts='"+showPosts+"' show_header='"+showHeader+"' show_pagination='"+showPagination+"' layout='"+layout+"' property_status='"+propertyStatus+"' property_type='"+propertyType+"' property_location='"+propertyLocation+"' featured='"+featured+"'][/rype_list_properties]";
+            shortcodeOutput = "[ns_list_properties show_posts='"+showPosts+"' show_header='"+showHeader+"' show_pagination='"+showPagination+"' layout='"+layout+"' property_status='"+propertyStatus+"' property_type='"+propertyType+"' property_location='"+propertyLocation+"' featured='"+featured+"'][/ns_list_properties]";
         }
 
         //set list property taxonomy shortcode
@@ -28,30 +28,30 @@ jQuery(document).ready(function($) {
             var taxOrderBy = $('.shortcode-selector-options .list-property-tax-orderby').val();
         	var taxOrder = $('.shortcode-selector-options .list-property-tax-order').val();
             var taxHideEmpty = $('.shortcode-selector-options .list-property-tax-hide-empty').val();
-        	shortcodeOutput = "[rype_list_property_tax tax='"+tax+"' show_posts='"+taxShowPosts+"' layout='"+taxLayout+"' orderby='"+taxOrderBy+"' order='"+taxOrder+"' hide_empty='"+taxHideEmpty+"'][/rype_list_property_tax]";
+        	shortcodeOutput = "[ns_list_property_tax tax='"+tax+"' show_posts='"+taxShowPosts+"' layout='"+taxLayout+"' orderby='"+taxOrderBy+"' order='"+taxOrder+"' hide_empty='"+taxHideEmpty+"'][/ns_list_property_tax]";
         }
 
         //set submit property shortcode
         if(shortcode == 'real-estate-submit-property') {
-            shortcodeOutput = "[rype_submit_property]";
+            shortcodeOutput = "[ns_submit_property]";
         }
 
         //set my properties shortcode
         if(shortcode == 'real-estate-my-properties') {
-            shortcodeOutput = "[rype_my_properties]";
+            shortcodeOutput = "[ns_my_properties]";
         }
 
         //set property filter shortcode
         if(shortcode == 'real-estate-filter') {
             var propertyFilter = $('.shortcode-selector-options .property-filter-select').val();
-            shortcodeOutput = "[rype_property_filter id='"+propertyFilter+"'][/rype_property_filter]";
+            shortcodeOutput = "[ns_property_filter id='"+propertyFilter+"'][/ns_property_filter]";
         }
 
         //set list agents shortcode
         if(shortcode == 'real-estate-list-agents') {
             var showAgentPosts = $('.shortcode-selector-options .list-agents-show-posts').val();
             if ($('.shortcode-selector-options .list-agents-show-pagination').is(':checked')) { var showAgentPagination = 'true'; } else { var showAgentPagination = 'false'; }
-            shortcodeOutput = "[rype_list_agents show_posts='"+showAgentPosts+"' show_pagination='"+showAgentPagination+"'][/rype_list_agents]";
+            shortcodeOutput = "[ns_list_agents show_posts='"+showAgentPosts+"' show_pagination='"+showAgentPagination+"'][/ns_list_agents]";
         }
 
         //insert shortcode

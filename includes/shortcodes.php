@@ -1,50 +1,50 @@
 <?php 
 add_action( 'media_buttons', function($editor_id) { ?>
     
-    <a href="#" data-featherlight="#shortcode-selector-real-estate" data-featherlight-persist="true" class="button add-shortcode" title="<?php esc_html_e('Add Real Estate Shortcode', 'rype-real-estate'); ?>">
-        <span class="wp-media-buttons-icon add-shortcode-icon"></span><?php esc_html_e('Real Estate Shortcodes', 'rype-real-estate'); ?>
+    <a href="#" data-featherlight="#shortcode-selector-real-estate" data-featherlight-persist="true" class="button add-shortcode" title="<?php esc_html_e('Add Real Estate Shortcode', 'ns-real-estate'); ?>">
+        <span class="wp-media-buttons-icon add-shortcode-icon"></span><?php esc_html_e('Real Estate Shortcodes', 'ns-real-estate'); ?>
     </a>
 
     <div class="shortcode-selector" id="shortcode-selector-real-estate">
-        <div class="featherlight-header"><?php esc_html_e('Insert a Shortcode', 'rype-real-estate'); ?></div>
+        <div class="featherlight-header"><?php esc_html_e('Insert a Shortcode', 'ns-real-estate'); ?></div>
         <div class="shortcode-selector-inner">
             <div class="shortcode-selector-list">
-                <p><?php esc_html_e('Choose a shortcode to insert from the list below:', 'rype-real-estate'); ?></p>
-                <a href="#real-estate-list-properties" class="button has-options"><i class="fa fa-align-justify"></i><?php esc_html_e('List Properties', 'rype-real-estate'); ?></a>
-                <a href="#real-estate-list-property-tax" class="button has-options"><i class="fa fa-align-justify"></i><?php esc_html_e('List Property Taxonomy', 'rype-real-estate'); ?></a>
-                <a href="#real-estate-submit-property" class="button has-options"><i class="fa fa-plus"></i><?php esc_html_e('Submit Property Form', 'rype-real-estate'); ?></a>
-                <a href="#real-estate-my-properties" class="button has-options"><i class="fa fa-plus"></i><?php esc_html_e('My Properties', 'rype-real-estate'); ?></a>
-                <a href="#real-estate-filter" class="button has-options"><i class="fa fa-filter"></i><?php esc_html_e('Property Filter', 'rype-real-estate'); ?></a>
-                <a href="#real-estate-list-agents" class="button has-options"><i class="fa fa-group"></i><?php esc_html_e('List Agents', 'rype-real-estate'); ?></a>
+                <p><?php esc_html_e('Choose a shortcode to insert from the list below:', 'ns-real-estate'); ?></p>
+                <a href="#real-estate-list-properties" class="button has-options"><i class="fa fa-align-justify"></i><?php esc_html_e('List Properties', 'ns-real-estate'); ?></a>
+                <a href="#real-estate-list-property-tax" class="button has-options"><i class="fa fa-align-justify"></i><?php esc_html_e('List Property Taxonomy', 'ns-real-estate'); ?></a>
+                <a href="#real-estate-submit-property" class="button has-options"><i class="fa fa-plus"></i><?php esc_html_e('Submit Property Form', 'ns-real-estate'); ?></a>
+                <a href="#real-estate-my-properties" class="button has-options"><i class="fa fa-plus"></i><?php esc_html_e('My Properties', 'ns-real-estate'); ?></a>
+                <a href="#real-estate-filter" class="button has-options"><i class="fa fa-filter"></i><?php esc_html_e('Property Filter', 'ns-real-estate'); ?></a>
+                <a href="#real-estate-list-agents" class="button has-options"><i class="fa fa-group"></i><?php esc_html_e('List Agents', 'ns-real-estate'); ?></a>
             </div>
             <div class="shortcode-selector-options">
-                <div class="button cancel-shortcode"><i class="fa fa-reply"></i> <?php esc_html_e('Go Back', 'rype-real-estate'); ?></div>
+                <div class="button cancel-shortcode"><i class="fa fa-reply"></i> <?php esc_html_e('Go Back', 'ns-real-estate'); ?></div>
 
                 <div id="real-estate-list-properties" class="admin-module no-border">
-                    <h3><strong><?php esc_html_e('List Properties', 'rype-real-estate'); ?></strong></h3>
+                    <h3><strong><?php esc_html_e('List Properties', 'ns-real-estate'); ?></strong></h3>
                     <div class="form-block">
-                        <label><?php esc_html_e('Show Posts', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Show Posts', 'ns-real-estate'); ?></label>
                         <input type="number" value="3" class="list-properties-show-posts" />
                     </div>
                     <div class="form-block">
                         <input type="checkbox" value="false" class="list-properties-show-header" />
-                        <label style="display:inline;"><?php esc_html_e('Show Header', 'rype-real-estate'); ?></label>
+                        <label style="display:inline;"><?php esc_html_e('Show Header', 'ns-real-estate'); ?></label>
                     </div>
                     <div class="form-block">
                         <input type="checkbox" value="false" class="list-properties-show-pagination" />
-                        <label style="display:inline;"><?php esc_html_e('Show Pagination', 'rype-real-estate'); ?></label>
+                        <label style="display:inline;"><?php esc_html_e('Show Pagination', 'ns-real-estate'); ?></label>
                     </div>
                     <div class="form-block">
-                        <label><?php esc_html_e('Layout', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Layout', 'ns-real-estate'); ?></label>
                         <select class="list-properties-layout" >
-                            <option value="grid"><?php esc_html_e('Grid', 'rype-real-estate'); ?></option>
-                            <option value="row"><?php esc_html_e('Row', 'rype-real-estate'); ?></option>
+                            <option value="grid"><?php esc_html_e('Grid', 'ns-real-estate'); ?></option>
+                            <option value="row"><?php esc_html_e('Row', 'ns-real-estate'); ?></option>
                         </select>
                     </div>
                     <div class="form-block">
-                        <label><?php esc_html_e('Property Status', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Property Status', 'ns-real-estate'); ?></label>
                         <select class="list-properties-status">
-                            <option value=""><?php esc_html_e('Any', 'rype-real-estate'); ?></option>
+                            <option value=""><?php esc_html_e('Any', 'ns-real-estate'); ?></option>
                             <?php
                             $property_statuses = get_terms(['taxonomy' => 'property_status','hide_empty' => false,]);
                             foreach($property_statuses as $property_status) { ?>
@@ -53,9 +53,9 @@ add_action( 'media_buttons', function($editor_id) { ?>
                         </select>
                     </div>
                     <div class="form-block">
-                        <label><?php esc_html_e('Property Type', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Property Type', 'ns-real-estate'); ?></label>
                         <select class="list-properties-type">
-                            <option value=""><?php esc_html_e('Any', 'rype-real-estate'); ?></option>
+                            <option value=""><?php esc_html_e('Any', 'ns-real-estate'); ?></option>
                             <?php
                             $property_types = get_terms(['taxonomy' => 'property_type','hide_empty' => false,]);
                             foreach($property_types as $property_type) { ?>
@@ -64,9 +64,9 @@ add_action( 'media_buttons', function($editor_id) { ?>
                         </select>
                     </div>
                     <div class="form-block">
-                        <label><?php esc_html_e('Property Location', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Property Location', 'ns-real-estate'); ?></label>
                         <select class="list-properties-location">
-                            <option value=""><?php esc_html_e('Any', 'rype-real-estate'); ?></option>
+                            <option value=""><?php esc_html_e('Any', 'ns-real-estate'); ?></option>
                             <?php
                             $property_locations = get_terms(['taxonomy' => 'property_location','hide_empty' => false,]);
                             foreach($property_locations as $property_location) { ?>
@@ -76,72 +76,72 @@ add_action( 'media_buttons', function($editor_id) { ?>
                     </div>
                     <div class="form-block">
                         <input type="checkbox" value="false" class="list-properties-featured" />
-                        <label style="display:inline;"><?php esc_html_e('Featured', 'rype-real-estate'); ?></label>
+                        <label style="display:inline;"><?php esc_html_e('Featured', 'ns-real-estate'); ?></label>
                     </div>
-                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'rype-real-estate'); ?></a>
+                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'ns-real-estate'); ?></a>
                 </div>
 
                 <div id="real-estate-list-property-tax" class="admin-module no-border">
-                    <h3><strong><?php esc_html_e('List Property Taxonomy', 'rype-real-estate'); ?></strong></h3>
+                    <h3><strong><?php esc_html_e('List Property Taxonomy', 'ns-real-estate'); ?></strong></h3>
                     <div class="form-block">
-                        <label><?php esc_html_e('Taxonomy', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Taxonomy', 'ns-real-estate'); ?></label>
                         <select class="list-property-tax-type" >
-                            <option value="property_type"><?php esc_html_e('Property Type', 'rype-real-estate'); ?></option>
-                            <option value="property_status"><?php esc_html_e('Property Status', 'rype-real-estate'); ?></option>
-                            <option value="property_location"><?php esc_html_e('Property Location', 'rype-real-estate'); ?></option>
+                            <option value="property_type"><?php esc_html_e('Property Type', 'ns-real-estate'); ?></option>
+                            <option value="property_status"><?php esc_html_e('Property Status', 'ns-real-estate'); ?></option>
+                            <option value="property_location"><?php esc_html_e('Property Location', 'ns-real-estate'); ?></option>
                         </select>
                     </div>
                     <div class="form-block">
-                        <label><?php esc_html_e('Show Posts', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Show Posts', 'ns-real-estate'); ?></label>
                         <input type="number" value="5" class="list-property-tax-show-posts" />
                     </div>
                     <div class="form-block">
-                        <label><?php esc_html_e('Layout', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Layout', 'ns-real-estate'); ?></label>
                         <select class="list-property-tax-layout" >
-                            <option value="grid"><?php esc_html_e('Grid', 'rype-real-estate'); ?></option>
-                            <option value="carousel"><?php esc_html_e('Carousel', 'rype-real-estate'); ?></option>
+                            <option value="grid"><?php esc_html_e('Grid', 'ns-real-estate'); ?></option>
+                            <option value="carousel"><?php esc_html_e('Carousel', 'ns-real-estate'); ?></option>
                         </select>
                     </div>
                     <div class="form-block">
-                        <label><?php esc_html_e('Order By', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Order By', 'ns-real-estate'); ?></label>
                         <select class="list-property-tax-orderby" >
-                            <option value="count"><?php esc_html_e('Count', 'rype-real-estate'); ?></option>
-                            <option value="date"><?php esc_html_e('Date', 'rype-real-estate'); ?></option>
-                            <option value="name"><?php esc_html_e('Name', 'rype-real-estate'); ?></option>
-                            <option value="rand"><?php esc_html_e('Random', 'rype-real-estate'); ?></option>
+                            <option value="count"><?php esc_html_e('Count', 'ns-real-estate'); ?></option>
+                            <option value="date"><?php esc_html_e('Date', 'ns-real-estate'); ?></option>
+                            <option value="name"><?php esc_html_e('Name', 'ns-real-estate'); ?></option>
+                            <option value="rand"><?php esc_html_e('Random', 'ns-real-estate'); ?></option>
                         </select>
                     </div>
                     <div class="form-block">
-                        <label><?php esc_html_e('Order Direction', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Order Direction', 'ns-real-estate'); ?></label>
                         <select class="list-property-tax-order" >
-                            <option value="DESC"><?php esc_html_e('Descending', 'rype-real-estate'); ?></option>
-                            <option value="ASC"><?php esc_html_e('Ascending', 'rype-real-estate'); ?></option>
+                            <option value="DESC"><?php esc_html_e('Descending', 'ns-real-estate'); ?></option>
+                            <option value="ASC"><?php esc_html_e('Ascending', 'ns-real-estate'); ?></option>
                         </select>
                     </div>
                     <div class="form-block">
-                        <label><?php esc_html_e('Hide Empty', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Hide Empty', 'ns-real-estate'); ?></label>
                         <select class="list-property-tax-hide-empty" >
-                            <option value="true"><?php esc_html_e('True', 'rype-real-estate'); ?></option>
-                            <option value="false"><?php esc_html_e('False', 'rype-real-estate'); ?></option>
+                            <option value="true"><?php esc_html_e('True', 'ns-real-estate'); ?></option>
+                            <option value="false"><?php esc_html_e('False', 'ns-real-estate'); ?></option>
                         </select>
                     </div>
-                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'rype-real-estate'); ?></a>
+                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'ns-real-estate'); ?></a>
                 </div>
 
                 <div id="real-estate-submit-property" class="admin-module no-border">
-                    <h3><strong><?php esc_html_e('Submit Property Form', 'rype-real-estate'); ?></strong></h3>
-                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'rype-real-estate'); ?></a>
+                    <h3><strong><?php esc_html_e('Submit Property Form', 'ns-real-estate'); ?></strong></h3>
+                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'ns-real-estate'); ?></a>
                 </div>
 
                 <div id="real-estate-my-properties" class="admin-module no-border">
-                    <h3><strong><?php esc_html_e('My Properties', 'rype-real-estate'); ?></strong></h3>
-                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'rype-real-estate'); ?></a>
+                    <h3><strong><?php esc_html_e('My Properties', 'ns-real-estate'); ?></strong></h3>
+                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'ns-real-estate'); ?></a>
                 </div>
 
                 <div id="real-estate-filter" class="admin-module no-border">
-                    <h3><strong><?php esc_html_e('Property Filter', 'rype-real-estate'); ?></strong></h3>
+                    <h3><strong><?php esc_html_e('Property Filter', 'ns-real-estate'); ?></strong></h3>
                     <div class="form-block">
-                        <label><?php esc_html_e('Select Filter', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Select Filter', 'ns-real-estate'); ?></label>
                         <select class="property-filter-select">
                             <?php
                             $filter_listing_args = array(
@@ -154,20 +154,20 @@ add_action( 'media_buttons', function($editor_id) { ?>
                             <?php } ?>
                         </select>
                     </div>
-                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'rype-real-estate'); ?></a>
+                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'ns-real-estate'); ?></a>
                 </div>
 
                 <div id="real-estate-list-agents" class="admin-module no-border">
-                    <h3><strong><?php esc_html_e('List Agents', 'rype-real-estate'); ?></strong></h3>
+                    <h3><strong><?php esc_html_e('List Agents', 'ns-real-estate'); ?></strong></h3>
                     <div class="form-block">
-                        <label><?php esc_html_e('Show Posts', 'rype-real-estate'); ?></label>
+                        <label><?php esc_html_e('Show Posts', 'ns-real-estate'); ?></label>
                         <input type="number" value="4" class="list-agents-show-posts" />
                     </div>
                     <div class="form-block">
                         <input type="checkbox" value="false" class="list-agents-show-pagination" />
-                        <label style="display:inline;"><?php esc_html_e('Show Pagination', 'rype-real-estate'); ?></label>
+                        <label style="display:inline;"><?php esc_html_e('Show Pagination', 'ns-real-estate'); ?></label>
                     </div>
-                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'rype-real-estate'); ?></a>
+                    <a href="#" class="admin-button insert-shortcode insert-shortcode-real-estate"><?php esc_html_e('Insert', 'ns-real-estate'); ?></a>
                 </div>
 
             </div>
@@ -177,21 +177,21 @@ add_action( 'media_buttons', function($editor_id) { ?>
 
 
 //REMOVE <p> AND <br/> TAGS FROM SHORTCODE CONTENT
-function rype_real_estate_content_filter($content) {
-    $block = join("|",array('rype_list_properties', 'rype_list_property_tax', 'rype_submit_property', 'rype_my_properties', 'rype_property_filter', 'rype_list_agents'));
+function ns_real_estate_content_filter($content) {
+    $block = join("|",array('ns_list_properties', 'ns_list_property_tax', 'ns_submit_property', 'ns_my_properties', 'ns_property_filter', 'ns_list_agents'));
     $rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
     $rep = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
 return $rep;
 }
-add_filter("the_content", "rype_real_estate_content_filter");
+add_filter("the_content", "ns_real_estate_content_filter");
 
 /****************************************************************************/
 /* PROPERTY SHORTCODES */
 /****************************************************************************/
 
 /** LIST PROPERTIES **/
-add_shortcode('rype_list_properties', 'rype_list_properties');
-function rype_list_properties($atts, $content = null) {
+add_shortcode('ns_list_properties', 'ns_list_properties');
+function ns_list_properties($atts, $content = null) {
 
     $num_properties_per_page = esc_attr(get_option('ns_num_properties_per_page', 12));
     $atts = shortcode_atts(
@@ -231,7 +231,7 @@ function rype_list_properties($atts, $content = null) {
         $template_args['custom_show_filter'] = $atts['show_header'];
         $template_args['custom_layout'] = $atts['layout'];
         $template_args['custom_pagination'] = $atts['show_pagination'];
-        $template_args['no_post_message'] = esc_html__( 'Sorry, no properties were found.', 'rype-real-estate' );
+        $template_args['no_post_message'] = esc_html__( 'Sorry, no properties were found.', 'ns-real-estate' );
 
         //Load template
         rype_real_estate_template_loader('loop_properties.php', $template_args);
@@ -242,8 +242,8 @@ function rype_list_properties($atts, $content = null) {
 }
 
 /** LIST PROPERTY TAXONOMY **/
-add_shortcode('rype_list_property_tax', 'rype_list_property_tax');
-function rype_list_property_tax($atts, $content = null) {
+add_shortcode('ns_list_property_tax', 'ns_list_property_tax');
+function ns_list_property_tax($atts, $content = null) {
 
     $atts = shortcode_atts(
     array (
@@ -279,7 +279,7 @@ function rype_list_property_tax($atts, $content = null) {
                     $output .= '<a href="'. esc_attr(get_term_link($property_type->slug, $atts['tax'])) .'">';
                     if(!empty($term_img)) { $output .= '<img src="'.$term_img.'" alt="" />'; }
                     $output .= '<h4>'.$property_type->name.'</h4>';
-                    $output .= '<span>'.$property_type->count.' '.esc_html__( 'Properties', 'rype-real-estate' ).'</span>';
+                    $output .= '<span>'.$property_type->count.' '.esc_html__( 'Properties', 'ns-real-estate' ).'</span>';
                     $output .= '</a>';
                     $output .= '</div>';
                     $count++;
@@ -298,7 +298,7 @@ function rype_list_property_tax($atts, $content = null) {
                     if (isset($term_data['img'])) { $term_img = $term_data['img']; } else { $term_img = ''; } 
 
                     if($count == 1) { $output .= '<div class="col-lg-8 col-md-8 col-property-tax">'; } else { $output .= '<div class="col-lg-4 col-md-4 col-property-tax">'; }
-                    $output .= '<a href="'. esc_attr(get_term_link($property_type->slug, $atts['tax'])) .'" style="background:url('. $term_img .') no-repeat center; background-size:cover;" class="property-cat"><div class="img-overlay black"></div><h3>'. $property_type->name .'</h3><span class="button outline small">'.$property_type->count.' '. esc_html__( 'Properties', 'rype-real-estate' ) .'</span></a>'; 
+                    $output .= '<a href="'. esc_attr(get_term_link($property_type->slug, $atts['tax'])) .'" style="background:url('. $term_img .') no-repeat center; background-size:cover;" class="property-cat"><div class="img-overlay black"></div><h3>'. $property_type->name .'</h3><span class="button outline small">'.$property_type->count.' '. esc_html__( 'Properties', 'ns-real-estate' ) .'</span></a>'; 
                     $output .= '</div>';
                     $count++;
                 } else {
@@ -313,8 +313,8 @@ function rype_list_property_tax($atts, $content = null) {
 }
 
 /** SUBMIT PROPERTY FORM **/
-add_shortcode('rype_submit_property', 'rype_submit_property');
-function rype_submit_property($atts, $content = null) {
+add_shortcode('ns_submit_property', 'ns_submit_property');
+function ns_submit_property($atts, $content = null) {
     ob_start();
     rype_real_estate_template_loader('submit_property.php');
     $output = ob_get_clean();
@@ -322,8 +322,8 @@ function rype_submit_property($atts, $content = null) {
 }
 
 /** MY PROPERTIES **/
-add_shortcode('rype_my_properties', 'rype_my_properties');
-function rype_my_properties($atts, $content=null) {
+add_shortcode('ns_my_properties', 'ns_my_properties');
+function ns_my_properties($atts, $content=null) {
     $atts = shortcode_atts(
         array (
         'show_posts' => '',
@@ -343,8 +343,8 @@ function rype_my_properties($atts, $content=null) {
 }
 
 /** PROPERTY FILTER **/
-add_shortcode('rype_property_filter', 'rype_property_filter');
-function rype_property_filter($atts, $content = null) {
+add_shortcode('ns_property_filter', 'ns_property_filter');
+function ns_property_filter($atts, $content = null) {
 
     $atts = shortcode_atts(array ('id' => '',), $atts);
     ob_start();
@@ -374,8 +374,8 @@ function rype_property_filter($atts, $content = null) {
 /****************************************************************************/
 
 /** LIST AGENTS **/
-add_shortcode('rype_list_agents', 'rype_list_agents');
-function rype_list_agents($atts, $content = null) {
+add_shortcode('ns_list_agents', 'ns_list_agents');
+function ns_list_agents($atts, $content = null) {
 
     $num_agents_per_page = esc_attr(get_option('ns_num_agents_per_page', 12));
     $atts = shortcode_atts(
@@ -396,7 +396,7 @@ function rype_list_agents($atts, $content = null) {
         $template_args = array();
         $template_args['custom_args'] = $args;
         $template_args['custom_pagination'] = $atts['show_pagination'];
-        $template_args['no_post_message'] = esc_html__( 'Sorry, no agents were found.', 'rype-real-estate' );
+        $template_args['no_post_message'] = esc_html__( 'Sorry, no agents were found.', 'ns-real-estate' );
         
         //Load template
         rype_real_estate_template_loader('loop_agents.php', $template_args);

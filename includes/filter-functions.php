@@ -124,7 +124,7 @@ function ns_real_estate_property_filter_details($post) {
                 <label><?php esc_html_e('Shortcode', 'ns-real-estate'); ?></label>
                 <span class="admin-module-note"><?php esc_html_e('Copy/paste it into your post, page, or text widget content:', 'ns-real-estate'); ?></span>
             </td>
-            <td class="admin-module-field"><pre>[rype_property_filter id="<?php echo $post->ID; ?>"]</pre></td>
+            <td class="admin-module-field"><pre>[ns_property_filter id="<?php echo $post->ID; ?>"]</pre></td>
         </tr>
     </table>
 
@@ -408,7 +408,7 @@ function ns_real_estate_manage_property_filter_columns( $column, $post_id ) {
     switch( $column ) {
 
         case 'shortcode' :
-            echo '<pre>[rype_property_filter id="'.$post_id.'"]</pre>';
+            echo '<pre>[ns_property_filter id="'.$post_id.'"]</pre>';
             break;
 
         /* Just break out of the switch statement for everything else. */
