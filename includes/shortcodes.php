@@ -351,7 +351,7 @@ function rype_property_filter($atts, $content = null) {
 
     $property_filter_id = $atts['id'];
     $values = get_post_custom( $property_filter_id );
-    $property_filter_layout = isset( $values['rypecore_property_filter_layout'] ) ? esc_attr( $values['rypecore_property_filter_layout'][0] ) : 'middle';
+    $property_filter_layout = isset( $values['ns_property_filter_layout'] ) ? esc_attr( $values['ns_property_filter_layout'][0] ) : 'middle';
 
     //Set template args
     $template_args = array();

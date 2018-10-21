@@ -25,7 +25,7 @@ class ns_real_estate_property_filter_widget extends WP_Widget {
         $title = apply_filters('widget_title', $instance['title']);
         $property_filter_id = isset( $instance['property_filter_id'] ) ? strip_tags($instance['property_filter_id']) : '';
         $values = get_post_custom( $property_filter_id );
-        $property_filter_layout = isset( $values['rypecore_property_filter_layout'] ) ? esc_attr( $values['rypecore_property_filter_layout'][0] ) : 'middle';      
+        $property_filter_layout = isset( $values['ns_property_filter_layout'] ) ? esc_attr( $values['ns_property_filter_layout'][0] ) : 'middle';      
         
         //Assign template args
         $template_args = array();

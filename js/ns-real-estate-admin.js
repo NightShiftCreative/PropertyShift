@@ -329,10 +329,10 @@ jQuery(document).ready(function($) {
                         <span class="sortable-item-title custom-filter-field-label">'+customFilterFieldName+'</span> \
                         <span class="admin-module-note">(Custom Field)</span> \
                         <div class="clear"></div> \
-                        <input type="hidden" name="rypecore_property_filter_items['+count+'][active]" value="true" /> \
-                        <input type="hidden" name="rypecore_property_filter_items['+count+'][name]" value="'+customFilterFieldName+'" class="custom-filter-field-name" /> \
-                        <input type="hidden" name="rypecore_property_filter_items['+count+'][slug]" value="'+customFilterFieldID+'" class="custom-filter-field-slug" /> \
-                        <input type="hidden" name="rypecore_property_filter_items['+count+'][custom]" value="true" /> \
+                        <input type="hidden" name="ns_property_filter_items['+count+'][active]" value="true" /> \
+                        <input type="hidden" name="ns_property_filter_items['+count+'][name]" value="'+customFilterFieldName+'" class="custom-filter-field-name" /> \
+                        <input type="hidden" name="ns_property_filter_items['+count+'][slug]" value="'+customFilterFieldID+'" class="custom-filter-field-slug" /> \
+                        <input type="hidden" name="ns_property_filter_items['+count+'][custom]" value="true" /> \
                     </div> \
                 </li> \
             ';
