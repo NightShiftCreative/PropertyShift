@@ -17,7 +17,7 @@ if(isset($values['rypecore_property_filter_items'])) {
 	$filter_fields = $values['rypecore_property_filter_items'];
 	$filter_fields = unserialize($filter_fields[0]);
 } else {
-	$filter_fields = rype_real_estate_load_default_property_filter_items();
+	$filter_fields = ns_real_estate_load_default_property_filter_items();
 }
 $price_range_min = isset( $values['rypecore_filter_price_min'] ) ? esc_attr( $values['rypecore_filter_price_min'][0] ) : 0;
 $price_range_max = isset( $values['rypecore_filter_price_max'] ) ? esc_attr( $values['rypecore_filter_price_max'][0] ) : 1000000;

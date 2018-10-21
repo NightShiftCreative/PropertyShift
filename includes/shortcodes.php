@@ -145,7 +145,7 @@ add_action( 'media_buttons', function($editor_id) { ?>
                         <select class="property-filter-select">
                             <?php
                             $filter_listing_args = array(
-                                'post_type' => 'rype-property-filter',
+                                'post_type' => 'ns-property-filter',
                                 'posts_per_page' => -1
                             );
                             $propertyFilters = get_posts($filter_listing_args);

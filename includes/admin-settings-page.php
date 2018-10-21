@@ -248,7 +248,7 @@ function ns_real_estate_settings_page_content() {
                                 <option value=""></option>
                                 <?php
                                     $filter_listing_args = array(
-                                        'post_type' => 'rype-property-filter',
+                                        'post_type' => 'ns-property-filter',
                                         'posts_per_page' => -1
                                         );
                                     $filter_listing_query = new WP_Query( $filter_listing_args );
@@ -260,7 +260,7 @@ function ns_real_estate_settings_page_content() {
                                 <?php else: ?>
                                 <?php endif; ?>
                             </select>
-                            <div><br/><a href="<?php echo admin_url('edit.php?post_type=rype-property-filter'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage property filters', 'ns-real-estate'); ?></a></div>
+                            <div><br/><a href="<?php echo admin_url('edit.php?post_type=ns-property-filter'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage property filters', 'ns-real-estate'); ?></a></div>
                         </td>
                     </tr>
                 </table>
@@ -1198,13 +1198,13 @@ function rype_real_estate_page_banner_filter_options($values) { ?>
             <tr>
                 <td class="admin-module-label">
                     <label><?php esc_html_e('Select a Filter', 'ns-real-estate'); ?></label>
-                    <span class="admin-module-note"><a href="<?php echo admin_url('edit.php?post_type=rype-property-filter'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage property filters', 'ns-real-estate'); ?></a></span>
+                    <span class="admin-module-note"><a href="<?php echo admin_url('edit.php?post_type=ns-property-filter'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage property filters', 'ns-real-estate'); ?></a></span>
                 </td>
                 <td class="admin-module-field">
                     <select name="rypecore_banner_property_filter_id" id="banner_property_filter_id">
                         <?php
                             $filter_listing_args = array(
-                                'post_type' => 'rype-property-filter',
+                                'post_type' => 'ns-property-filter',
                                 'posts_per_page' => -1
                                 );
                             $filter_listing_query = new WP_Query( $filter_listing_args );

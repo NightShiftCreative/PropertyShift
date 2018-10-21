@@ -70,7 +70,7 @@ class ns_real_estate_property_filter_widget extends WP_Widget {
             <select style="width:100%" name="<?php echo esc_attr($this->get_field_name('property_filter_id')); ?>">
                 <?php
                     $filter_listing_args = array(
-                        'post_type' => 'rype-property-filter',
+                        'post_type' => 'ns-property-filter',
                         'posts_per_page' => -1
                         );
                     $filter_listing_query = new WP_Query( $filter_listing_args );
@@ -82,7 +82,7 @@ class ns_real_estate_property_filter_widget extends WP_Widget {
                 <?php else: ?>
                 <?php endif; ?>
             </select>
-            <span class="admin-module-note"><a href="<?php echo admin_url('edit.php?post_type=rype-property-filter'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage property filters', 'ns-real-estate'); ?></a></span><br/>
+            <span class="admin-module-note"><a href="<?php echo admin_url('edit.php?post_type=ns-property-filter'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage property filters', 'ns-real-estate'); ?></a></span><br/>
         </p>
 
     <?php }
