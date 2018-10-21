@@ -164,7 +164,7 @@
                 $custom_field_key = strtolower(str_replace(' ', '_', $field['name'])); 
                 if(!empty($_GET[$custom_field_key])) {
                     $meta_query[] = array(
-                        'key'     => 'rypecore_custom_field_'.$field['id'],
+                        'key'     => 'ns_property_custom_field_'.$field['id'],
                         'value'   => $_GET[$custom_field_key]
                     );
                 }

@@ -58,7 +58,7 @@
     $post_meta = get_post_meta($postID);
     $custom_fields_count = 0;
     foreach($post_meta as $key => $value) {
-        if(substr($key, 0, strlen('rypecore_custom_field_')) === 'rypecore_custom_field_' && !empty($value[0])) {
+        if(substr($key, 0, strlen('ns_property_custom_field_')) === 'ns_property_custom_field_' && !empty($value[0])) {
             $custom_fields_count++;
         }
     }
@@ -175,7 +175,7 @@
                                     $count = 0; ?>
                                     <ul class="additional-details-list clean-list <?php if($custom_fields_count <= 3) { echo 'one-col'; } ?>">                    
                                     <?php foreach ($custom_fields as $custom_field) { 
-                                        $fieldValue = get_post_meta($postID, 'rypecore_custom_field_'.$custom_field['id'], true);  
+                                        $fieldValue = get_post_meta($postID, 'ns_property_custom_field_'.$custom_field['id'], true);  
                                         if(!empty($fieldValue)) { ?>
                                             <li>   
                                                 <?php echo $custom_field['name']; ?>: 

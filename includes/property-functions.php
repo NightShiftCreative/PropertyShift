@@ -65,10 +65,10 @@ function ns_real_estate_format_area($area) {
 //delete property custom field
 function ns_real_estate_delete_custom_field() {
     $key = isset($_POST['key']) ? $_POST['key'] : '';
-    delete_post_meta_by_key('rypecore_custom_field_'.$key);
+    delete_post_meta_by_key('ns_property_custom_field_'.$key);
     die();
 }
-add_action('wp_ajax_rypecore_delete_custom_field', 'ns_real_estate_delete_custom_field');
+add_action('wp_ajax_ns_real_estate_delete_custom_field', 'ns_real_estate_delete_custom_field');
 
 /*-----------------------------------------------------------------------------------*/
 /*  Get Property Details
@@ -404,21 +404,21 @@ function ns_real_estate_property_details($post) {
                                     <td>   
                                         <label><?php echo $custom_field['name']; ?>:</label> 
                                         <?php if(isset($custom_field['type']) && $custom_field['type'] == 'select') { ?>
-                                            <select name="rypecore_property_custom_fields[<?php echo $count; ?>][value]">
+                                            <select name="ns_property_custom_fields[<?php echo $count; ?>][value]">
                                                 <option value=""><?php esc_html_e('Select an option...', 'ns-real-estate'); ?></option>
                                                 <?php 
                                                     if(isset($custom_field['select_options'])) { $selectOptions = $custom_field['select_options']; } else { $selectOptions =  ''; }
                                                     if(!empty($selectOptions)) {
                                                         foreach($selectOptions as $option) { ?>
-                                                            <option value="<?php echo $option; ?>" <?php if(get_post_meta($post->ID, 'rypecore_custom_field_'.$custom_field['id'], true) == $option) { echo 'selected'; } ?>><?php echo $option; ?></option>
+                                                            <option value="<?php echo $option; ?>" <?php if(get_post_meta($post->ID, 'ns_property_custom_field_'.$custom_field['id'], true) == $option) { echo 'selected'; } ?>><?php echo $option; ?></option>
                                                         <?php }
                                                     }
                                                 ?>
                                             </select>
                                         <?php } else { ?>
-                                            <input type="<?php if(isset($custom_field['type']) && $custom_field['type'] == 'num') { echo 'number'; } else { echo 'text'; } ?>" name="rypecore_property_custom_fields[<?php echo $count; ?>][value]" value="<?php echo get_post_meta($post->ID, 'rypecore_custom_field_'.$custom_field['id'], true); ?>" />
+                                            <input type="<?php if(isset($custom_field['type']) && $custom_field['type'] == 'num') { echo 'number'; } else { echo 'text'; } ?>" name="ns_property_custom_fields[<?php echo $count; ?>][value]" value="<?php echo get_post_meta($post->ID, 'ns_property_custom_field_'.$custom_field['id'], true); ?>" />
                                         <?php } ?>
-                                        <input type="hidden" name="rypecore_property_custom_fields[<?php echo $count; ?>][key]" value="rypecore_custom_field_<?php echo $custom_field['id']; ?>" />
+                                        <input type="hidden" name="ns_property_custom_fields[<?php echo $count; ?>][key]" value="ns_property_custom_field_<?php echo $custom_field['id']; ?>" />
                                     </td>
                                 </tr>
                             </table>
@@ -652,8 +652,8 @@ function ns_real_estate_save_meta_box( $post_id ) {
     if( isset( $_POST['ns_property_area_postfix'] ) )
         update_post_meta( $post_id, 'ns_property_area_postfix', wp_kses( $_POST['ns_property_area_postfix'], $allowed ) );
 
-    if (isset( $_POST['rypecore_property_custom_fields'] )) {
-        $property_custom_fields = $_POST['rypecore_property_custom_fields'];
+    if (isset( $_POST['ns_property_custom_fields'] )) {
+        $property_custom_fields = $_POST['ns_property_custom_fields'];
         foreach($property_custom_fields as $custom_field) {
             update_post_meta( $post_id, $custom_field['key'], $custom_field['value'] );
         }

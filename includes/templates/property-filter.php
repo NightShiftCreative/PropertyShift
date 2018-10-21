@@ -232,7 +232,7 @@ if (!empty($filter_fields)) { ?>
 		                        <?php 
 		                        $custom_fields = get_option('ns_property_custom_fields');
 		                        if($custom == 'true' && !empty($custom_fields)) { ?>
-		                            <?php 
+		                            <?php
 		                            foreach($custom_fields as $field) {
 		                                $custom_field_key = strtolower(str_replace(' ', '_', $field['name']));
 		                                if($field['id'] == $slug) {

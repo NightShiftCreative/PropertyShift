@@ -155,8 +155,8 @@ function rype_real_estate_insert_property_post($edit_property_id = null) {
 	        update_post_meta( $post_ID, 'ns_property_floor_plans', $_POST['ns_property_floor_plans'] );
 	    }
 
-	    if (isset( $_POST['rypecore_property_custom_fields'] )) {
-	        $property_custom_fields = $_POST['rypecore_property_custom_fields'];
+	    if (isset( $_POST['ns_property_custom_fields'] )) {
+	        $property_custom_fields = $_POST['ns_property_custom_fields'];
 	        foreach($property_custom_fields as $custom_field) {
 	            update_post_meta( $post_ID, $custom_field['key'], $custom_field['value'] );
 	        }
@@ -529,26 +529,26 @@ function rype_real_estate_property_submit_form() {
                     foreach ($custom_fields as $custom_field) { 
                         if(isset($custom_field['front_end'])) {
                             $custom_field_key = strtolower(str_replace(' ', '_', $custom_field['name'])); 
-                            if(isset($edit_property_id) && !empty($edit_property_id)) { $fieldValue = get_post_meta($edit_property_id, 'rypecore_custom_field_'.$custom_field['id'], true); }  ?>
+                            if(isset($edit_property_id) && !empty($edit_property_id)) { $fieldValue = get_post_meta($edit_property_id, 'ns_property_custom_field_'.$custom_field['id'], true); }  ?>
                             <div class="col-lg-4 col-md-4 custom-field-item custom-field-<?php echo $custom_field_key; ?>">
                                 <div class="form-block border">
                                     <label title="<?php echo $custom_field['name']; ?>"><?php echo $custom_field['name']; ?>:</label> 
                                     <?php if(isset($custom_field['type']) && $custom_field['type'] == 'select') { ?>
-                                        <select name="rypecore_property_custom_fields[<?php echo $count; ?>][value]">
+                                        <select name="ns_property_custom_fields[<?php echo $count; ?>][value]">
                                             <option value=""><?php esc_html_e('Select an option...', 'rype-real-estate'); ?></option>
                                             <?php 
                                                 if(isset($custom_field['select_options'])) { $selectOptions = $custom_field['select_options']; } else { $selectOptions =  ''; }
                                                 if(!empty($selectOptions)) {
                                                     foreach($selectOptions as $option) { ?>
-                                                        <option value="<?php echo $option; ?>" <?php if(isset($fieldValue) && $fieldValue == $option) { echo 'selected'; } else { if($_POST['rypecore_property_custom_fields'][$count]['value'] == $option) { echo 'selected'; } } ?>><?php echo $option; ?></option>
+                                                        <option value="<?php echo $option; ?>" <?php if(isset($fieldValue) && $fieldValue == $option) { echo 'selected'; } else { if($_POST['ns_property_custom_fields'][$count]['value'] == $option) { echo 'selected'; } } ?>><?php echo $option; ?></option>
                                                     <?php }
                                                 }
                                             ?>
                                         </select>
                                     <?php } else { ?>
-                                        <input type="<?php if(isset($custom_field['type']) && $custom_field['type'] == 'num') { echo 'number'; } else { echo 'text'; } ?>" class="border" name="rypecore_property_custom_fields[<?php echo $count; ?>][value]" value="<?php if(isset($fieldValue)) { echo $fieldValue; } else { echo esc_attr($_POST['rypecore_property_custom_fields'][$count]['value']); } ?>" />
+                                        <input type="<?php if(isset($custom_field['type']) && $custom_field['type'] == 'num') { echo 'number'; } else { echo 'text'; } ?>" class="border" name="ns_property_custom_fields[<?php echo $count; ?>][value]" value="<?php if(isset($fieldValue)) { echo $fieldValue; } else { echo esc_attr($_POST['ns_property_custom_fields'][$count]['value']); } ?>" />
                                     <?php } ?>
-                                    <input type="hidden" name="rypecore_property_custom_fields[<?php echo $count; ?>][key]" value="rypecore_custom_field_<?php echo $custom_field['id']; ?>" />
+                                    <input type="hidden" name="ns_property_custom_fields[<?php echo $count; ?>][key]" value="ns_property_custom_field_<?php echo $custom_field['id']; ?>" />
                                 </div>
                             </div>
                             <?php $count++; ?>

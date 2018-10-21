@@ -472,10 +472,14 @@ function rype_real_estate_page_banner_property_filter_global() {
             $values = get_post_custom( $property_filter_id );
             $property_filter_layout = isset( $values['rypecore_property_filter_layout'] ) ? esc_attr( $values['rypecore_property_filter_layout'][0] ) : 'middle';
             
+            //Set Template Args
+            $template_args = array();
+            $template_args['id'] = $property_filter_id;
+
             if($property_filter_layout == 'minimal') {
-                rype_real_estate_template_loader('property-filter-minimal.php');
+                rype_real_estate_template_loader('property-filter-minimal.php', $template_args);
             } else {
-                rype_real_estate_template_loader('property-filter.php');
+                rype_real_estate_template_loader('property-filter.php', $template_args);
             }
             
         }
