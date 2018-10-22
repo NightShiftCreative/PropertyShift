@@ -477,9 +477,9 @@ function ns_real_estate_page_banner_property_filter_global() {
             $template_args['id'] = $property_filter_id;
 
             if($property_filter_layout == 'minimal') {
-                rype_real_estate_template_loader('property-filter-minimal.php', $template_args);
+                ns_real_estate_template_loader('property-filter-minimal.php', $template_args);
             } else {
-                rype_real_estate_template_loader('property-filter.php', $template_args);
+                ns_real_estate_template_loader('property-filter.php', $template_args);
             }
             
         }

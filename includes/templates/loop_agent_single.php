@@ -171,7 +171,7 @@
                                 $template_args_properties['no_post_message'] = esc_html__( 'Sorry, no properties were found.', 'rype-real-estate' );
                                 
                                 //Load template
-                                rype_real_estate_template_loader('loop_properties.php', $template_args_properties);
+                                ns_real_estate_template_loader('loop_properties.php', $template_args_properties);
                             ?>
                         </div>
                 	<?php } ?>

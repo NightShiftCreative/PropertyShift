@@ -223,7 +223,7 @@ function ns_list_properties($atts, $content = null) {
     );
 
     ob_start();
-    if(function_exists('rype_real_estate_template_loader')) {
+    if(function_exists('ns_real_estate_template_loader')) {
 
         //Set template args
         $template_args = array();
@@ -234,7 +234,7 @@ function ns_list_properties($atts, $content = null) {
         $template_args['no_post_message'] = esc_html__( 'Sorry, no properties were found.', 'ns-real-estate' );
 
         //Load template
-        rype_real_estate_template_loader('loop_properties.php', $template_args);
+        ns_real_estate_template_loader('loop_properties.php', $template_args);
     }
     $output = ob_get_clean();
 
@@ -316,7 +316,7 @@ function ns_list_property_tax($atts, $content = null) {
 add_shortcode('ns_submit_property', 'ns_submit_property');
 function ns_submit_property($atts, $content = null) {
     ob_start();
-    rype_real_estate_template_loader('submit_property.php');
+    ns_real_estate_template_loader('submit_property.php');
     $output = ob_get_clean();
     return $output;
 }
@@ -335,7 +335,7 @@ function ns_my_properties($atts, $content=null) {
     $template_args = array();
         
     //Load template
-    rype_real_estate_template_loader('my_properties.php', $template_args);
+    ns_real_estate_template_loader('my_properties.php', $template_args);
 
     $output = ob_get_clean();
 
@@ -360,9 +360,9 @@ function ns_property_filter($atts, $content = null) {
 
     //Load template
     if($property_filter_layout == 'minimal') {
-        rype_real_estate_template_loader('property-filter-minimal.php', $template_args);
+        ns_real_estate_template_loader('property-filter-minimal.php', $template_args);
     } else {
-        rype_real_estate_template_loader('property-filter.php', $template_args);
+        ns_real_estate_template_loader('property-filter.php', $template_args);
     }
 
     $output = ob_get_clean();
@@ -390,7 +390,7 @@ function ns_list_agents($atts, $content = null) {
     );
 
     ob_start();
-    if(function_exists('rype_real_estate_template_loader')){ 
+    if(function_exists('ns_real_estate_template_loader')){ 
         
         //Set template args
         $template_args = array();
@@ -399,7 +399,7 @@ function ns_list_agents($atts, $content = null) {
         $template_args['no_post_message'] = esc_html__( 'Sorry, no agents were found.', 'ns-real-estate' );
         
         //Load template
-        rype_real_estate_template_loader('loop_agents.php', $template_args);
+        ns_real_estate_template_loader('loop_agents.php', $template_args);
     }
     $output = ob_get_clean();
 

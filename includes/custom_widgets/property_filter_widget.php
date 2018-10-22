@@ -36,9 +36,9 @@ class ns_real_estate_property_filter_widget extends WP_Widget {
         if($title) { echo '<div class="filter-widget-title">'.$before_title . $title . $after_title.'</div>';  }   
 
         if($property_filter_layout == 'minimal') {
-            rype_real_estate_template_loader('property-filter-minimal.php', $template_args);
+            ns_real_estate_template_loader('property-filter-minimal.php', $template_args);
         } else {
-            rype_real_estate_template_loader('property-filter.php', $template_args);
+            ns_real_estate_template_loader('property-filter.php', $template_args);
         }
 
         echo wp_kses_post($after_widget);

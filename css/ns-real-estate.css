@@ -18,15 +18,15 @@
 .clean-list li:before { content:''; display:none !important; }
 
 /** FORM ELEMENTS **/
-.rype-real-estate input, .rype-real-estate textarea, .rype-real-estate select {
+.ns-real-estate input, .ns-real-estate textarea, .ns-real-estate select {
     width:100%;
     padding:14px;
     margin-bottom:20px;
 } 
 
-.rype-real-estate input[type="checkbox"], .rype-real-estate input[type="radio"] { width:auto; margin-right:5px; }
+.ns-real-estate input[type="checkbox"], .ns-real-estate input[type="radio"] { width:auto; margin-right:5px; }
 
-.rype-real-estate .form-loader { display:none; }
+.ns-real-estate .form-loader { display:none; }
 
 /** ALERT BOXES **/
 .alert-box {

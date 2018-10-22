@@ -1098,7 +1098,7 @@ function ns_real_estate_dashboard_widgets($banner_source) {
             $template_args['no_post_message'] = esc_html__( 'Sorry, no recent properties were found.', 'ns-real-estate' );
                                 
             //Load template
-            rype_real_estate_template_loader('loop_properties.php', $template_args_related_properties);
+            ns_real_estate_template_loader('loop_properties.php', $template_args_related_properties);
         ?>
     </div>
 <?php }

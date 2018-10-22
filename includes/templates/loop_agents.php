@@ -40,9 +40,9 @@
 <?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
 
     <?php if($page_layout != 'full') { ?>
-        <div class="col-lg-4 col-md-4 col-sm-6 rype-listing-col"><?php rype_real_estate_template_loader('loop_agent.php', null, false); ?></div>
+        <div class="col-lg-4 col-md-4 col-sm-6 rype-listing-col"><?php ns_real_estate_template_loader('loop_agent.php', null, false); ?></div>
     <?php } else {  ?>
-	   <div class="col-lg-3 col-md-3 col-sm-6 rype-listing-col"><?php rype_real_estate_template_loader('loop_agent.php', null, false); ?></div>
+	   <div class="col-lg-3 col-md-3 col-sm-6 rype-listing-col"><?php ns_real_estate_template_loader('loop_agent.php', null, false); ?></div>
     <?php } ?>
 
 <?php endwhile; ?>
