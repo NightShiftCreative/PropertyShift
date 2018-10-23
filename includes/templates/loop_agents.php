@@ -40,9 +40,9 @@
 <?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
 
     <?php if($page_layout != 'full') { ?>
-        <div class="col-lg-4 col-md-4 col-sm-6 rype-listing-col"><?php ns_real_estate_template_loader('loop_agent.php', null, false); ?></div>
+        <div class="col-lg-4 col-md-4 col-sm-6 ns-listing-col"><?php ns_real_estate_template_loader('loop_agent.php', null, false); ?></div>
     <?php } else {  ?>
-	   <div class="col-lg-3 col-md-3 col-sm-6 rype-listing-col"><?php ns_real_estate_template_loader('loop_agent.php', null, false); ?></div>
+	   <div class="col-lg-3 col-md-3 col-sm-6 ns-listing-col"><?php ns_real_estate_template_loader('loop_agent.php', null, false); ?></div>
     <?php } ?>
 
 <?php endwhile; ?>
@@ -62,8 +62,8 @@
         'end_size'     => 1,
         'mid_size'     => 2,
         'prev_next'    => True,
-        'prev_text'    => esc_html__('&raquo; Previous', 'rype-real-estate'),
-        'next_text'    => esc_html__('Next &raquo;', 'rype-real-estate'),
+        'prev_text'    => esc_html__('&raquo; Previous', 'ns-real-estate'),
+        'next_text'    => esc_html__('Next &raquo;', 'ns-real-estate'),
         'type'         => 'plain',
         'add_args'     => False,
         'add_fragment' => '',
@@ -82,10 +82,10 @@
 	<div class="col-lg-12">
 		<p>
             <?php
-            if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no agents were found.', 'rype-real-estate'); } 
+            if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no agents were found.', 'ns-real-estate'); } 
             if(is_user_logged_in() && current_user_can('administrator')) { 
                 $new_agent_url = esc_url(home_url('/')).'wp-admin/post-new.php?post_type=ns-agent';
-                printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new agent.</b></em>', 'rype-real-estate'), $new_agent_url );  
+                printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new agent.</b></em>', 'ns-real-estate'), $new_agent_url );  
             } ?>
         </p>
 	</div>

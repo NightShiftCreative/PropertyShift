@@ -33,10 +33,10 @@
 	//GENERATE PROPERTY CLASS BASED ON PAGE LAYOUT
 	if($page_layout == 'full') { 
         $columns_num = 3;
-        $property_col_class = 'col-lg-4 col-md-4 col-sm-4 rype-listing-col'; 
+        $property_col_class = 'col-lg-4 col-md-4 col-sm-4 ns-listing-col'; 
     } else { 
         $columns_num = 2;
-        $property_col_class = 'col-lg-6 col-md-6 col-sm-6 rype-listing-col'; 
+        $property_col_class = 'col-lg-6 col-md-6 col-sm-6 ns-listing-col'; 
     }
 
     //GET PROPERTY LAYOUT
@@ -248,8 +248,8 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
         'end_size'     => 1,
         'mid_size'     => 2,
         'prev_next'    => True,
-        'prev_text'    => esc_html__('&raquo; Previous', 'rypecore'),
-        'next_text'    => esc_html__('Next &raquo;', 'rypecore'),
+        'prev_text'    => esc_html__('&raquo; Previous', 'ns-real-estate'),
+        'next_text'    => esc_html__('Next &raquo;', 'ns-real-estate'),
         'type'         => 'plain',
         'add_args'     => False,
         'add_fragment' => '',
@@ -277,10 +277,10 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
 	<div class="col-lg-12">
         <p>
             <?php 
-            if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no properties were found.', 'rypecore'); }
+            if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no properties were found.', 'ns-real-estate'); }
             if(is_user_logged_in() && current_user_can('administrator')) { 
                 $new_property_url = esc_url(home_url('/')).'wp-admin/post-new.php?post_type=ns-property';
-                printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new property.</b></em>', 'rypecore'), $new_property_url );  
+                printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new property.</b></em>', 'ns-real-estate'), $new_property_url );  
             } ?>
         </p>
     </div>

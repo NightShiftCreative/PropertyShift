@@ -35,7 +35,7 @@
 
 	<div class="property-img">
 
-		<?php if($featured == 'true') { ?><a href="<?php if(!empty($properties_page)) { echo esc_url($properties_page).'/?featured=true'; } ?>" class="property-tag button alt featured"><?php esc_html_e('Featured', 'rypecore'); ?></a><?php } ?>
+		<?php if($featured == 'true') { ?><a href="<?php if(!empty($properties_page)) { echo esc_url($properties_page).'/?featured=true'; } ?>" class="property-tag button alt featured"><?php esc_html_e('Featured', 'ns-real-estate'); ?></a><?php } ?>
 
 		<?php if ( has_post_thumbnail() ) {  ?>
             <div class="img-fade"></div>
@@ -57,7 +57,7 @@
 			<div class="property-actions">
 				<?php if($property_listing_display_time == 'true') {
 					$toggle = ns_core_get_icon($icon_set, 'clock', 'clock3', 'clock');
-					$content = human_time_diff( get_the_time('U'), current_time('timestamp') ) . esc_html__(' ago', 'rypecore'); 
+					$content = human_time_diff( get_the_time('U'), current_time('timestamp') ) . esc_html__(' ago', 'ns-real-estate'); 
 					echo ns_basics_tooltip($toggle, $content); 
 				} ?>
 		        <?php if($property_listing_display_favorite == 'true' && function_exists('ns_basics_get_post_likes_button')) { echo ns_basics_get_post_likes_button(get_the_ID()); } ?>
@@ -79,8 +79,8 @@
 
         <table class="property-details">
             <tr>
-				<?php if(!empty($bedrooms)) { ?><td><?php echo ns_core_get_icon($icon_set, 'bed', 'bed', 'n/a'); ?> <?php echo esc_attr($bedrooms).' '; esc_html_e('Beds', 'rypecore'); ?></td><?php } ?>
-				<?php if(!empty($bathrooms)) { ?><td><?php echo ns_core_get_icon($icon_set, 'tint', 'bathtub', 'n/a'); ?> <?php echo esc_attr($bathrooms).' '; esc_html_e('Baths', 'rypecore'); ?></td><?php } ?>
+				<?php if(!empty($bedrooms)) { ?><td><?php echo ns_core_get_icon($icon_set, 'bed', 'bed', 'n/a'); ?> <?php echo esc_attr($bedrooms).' '; esc_html_e('Beds', 'ns-real-estate'); ?></td><?php } ?>
+				<?php if(!empty($bathrooms)) { ?><td><?php echo ns_core_get_icon($icon_set, 'tint', 'bathtub', 'n/a'); ?> <?php echo esc_attr($bathrooms).' '; esc_html_e('Baths', 'ns-real-estate'); ?></td><?php } ?>
             	<?php if(!empty($area)) { ?><td><?php echo ns_core_get_icon($icon_set, 'expand'); ?> <?php echo esc_attr($area); ?> <?php if(!empty($area_postfix)) { echo '<span class="area-postfix">'.esc_attr($area_postfix).'</span>'; } ?></td><?php } ?>
             </tr>
         </table>

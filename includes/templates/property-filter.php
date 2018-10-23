@@ -23,7 +23,7 @@ $price_range_min = isset( $values['ns_property_filter_price_min'] ) ? esc_attr( 
 $price_range_max = isset( $values['ns_property_filter_price_max'] ) ? esc_attr( $values['ns_property_filter_price_max'][0] ) : 1000000;
 $price_range_min_start = isset( $values['ns_property_filter_price_min_start'] ) ? esc_attr( $values['ns_property_filter_price_min_start'][0] ) : 200000;
 $price_range_max_start = isset( $values['ns_property_filter_price_max_start'] ) ? esc_attr( $values['ns_property_filter_price_max_start'][0] ) : 600000;
-$submit_text = isset( $values['ns_property_filter_submit_text'] ) ? esc_attr( $values['ns_property_filter_submit_text'][0] ) : esc_html__('Find Properties', 'rypecore');
+$submit_text = isset( $values['ns_property_filter_submit_text'] ) ? esc_attr( $values['ns_property_filter_submit_text'][0] ) : esc_html__('Find Properties', 'ns-real-estate');
 $custom_fields = get_option('ns_property_custom_fields');
 
 //Get all current filters from URL
@@ -88,7 +88,7 @@ if (!empty($filter_fields)) { ?>
 	            <?php
 	            if ( !empty( $property_statuses ) && !is_wp_error( $property_statuses ) ){
 	                echo "<ul>"; ?>
-	                <li><a href="#tabs-1"><?php esc_html_e( 'All', 'rypecore' ); ?></a></li>
+	                <li><a href="#tabs-1"><?php esc_html_e( 'All', 'ns-real-estate' ); ?></a></li>
 	                <?php $count = 0; ?>
 	                <?php foreach ( $property_statuses as $property_status ) { ?>
 	                    <?php $count++; ?>
@@ -96,7 +96,7 @@ if (!empty($filter_fields)) { ?>
 	                <?php } 
 	                echo "</ul>";
 	            } else {
-	                echo '<ul><li><a href="#tabs-1">'. esc_html__('All', 'rypecore') .'</a></li></ul>';
+	                echo '<ul><li><a href="#tabs-1">'. esc_html__('All', 'ns-real-estate') .'</a></li></ul>';
 	            } ?>
 	        </div><!-- end filter header -->
 
@@ -238,7 +238,7 @@ if (!empty($filter_fields)) { ?>
 		                                if($field['id'] == $slug) {
 		                                    if($field['type'] == 'select') {  ?>
 		                                        <select name="<?php echo $custom_field_key; ?>">
-		                                            <option value=""><?php esc_html_e( 'Select an option...', 'rypecore' ); ?></option>
+		                                            <option value=""><?php esc_html_e( 'Select an option...', 'ns-real-estate' ); ?></option>
 		                                            <?php
 		                                                $field_select_options = $field['select_options'];
 		                                                foreach($field_select_options as $option) { ?>
@@ -406,7 +406,7 @@ if (!empty($filter_fields)) { ?>
 	                                    if($field['id'] == $slug) {
 	                                        if($field['type'] == 'select') {  ?>
 	                                            <select name="<?php echo $custom_field_key; ?>">
-	                                                <option value=""><?php esc_html_e( 'Select an option...', 'rypecore' ); ?></option>
+	                                                <option value=""><?php esc_html_e( 'Select an option...', 'ns-real-estate' ); ?></option>
 	                                                <?php
 	                                                    $field_select_options = $field['select_options'];
 	                                                    foreach($field_select_options as $option) {

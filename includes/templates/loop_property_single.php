@@ -6,7 +6,7 @@
     $properties_page = esc_attr(get_option('ns_properties_page'));
     $property_detail_template = esc_attr(get_option('ns_property_detail_template', 'classic'));
     $google_maps_pin = esc_attr(get_option('ns_real_estate_google_maps_pin'));
-    if(empty($google_maps_pin)) { $google_maps_pin = plugins_url( '/rype-real-estate/images/pin.png'); }
+    if(empty($google_maps_pin)) { $google_maps_pin = plugins_url( '/ns-real-estate/images/pin.png'); }
     $property_detail_amenities_hide_empty = esc_attr(get_option('ns_property_detail_amenities_hide_empty', 'false'));
     $property_detail_map_zoom = esc_attr(get_option('ns_property_detail_map_zoom', 13));
     $property_detail_items_default = ns_real_estate_load_default_property_detail_items();
@@ -100,22 +100,22 @@
                             </div>
 
                             <div class="property-single-tags">
-                                <?php if($featured == 'true') { ?><a href="<?php if(!empty($properties_page)) { echo esc_url($properties_page).'/?featured=true'; } ?>" class="property-tag button alt featured"><?php esc_html_e('Featured', 'rype-real-estate'); ?></a><?php } ?>
+                                <?php if($featured == 'true') { ?><a href="<?php if(!empty($properties_page)) { echo esc_url($properties_page).'/?featured=true'; } ?>" class="property-tag button alt featured"><?php esc_html_e('Featured', 'ns-real-estate'); ?></a><?php } ?>
                                 <?php if(!empty($property_status)) { ?>
                                     <div class="property-tag button status"><?php echo wp_kses_post($property_status); ?></div>
                                 <?php } ?>
-                                <?php if($property_detail_id == 'true') { ?><div class="property-id"><?php esc_html_e('Property ID', 'rype-real-estate'); ?>: <?php echo get_the_id(); ?></div><?php } ?>
-                                <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'rype-real-estate'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
+                                <?php if($property_detail_id == 'true') { ?><div class="property-id"><?php esc_html_e('Property ID', 'ns-real-estate'); ?>: <?php echo get_the_id(); ?></div><?php } ?>
+                                <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'ns-real-estate'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
                             </div>
                             <div class="clear"></div>
 
                             <?php if(!empty($bedrooms) || !empty($bathrooms) || !empty($area) || !empty($garages)) { ?>
                             <table class="property-details-single">
                                 <tr>
-                                    <?php if(!empty($bedrooms)) { ?><td><?php echo ns_core_get_icon($icon_set, 'bed', 'bed', 'n/a'); ?> <span><?php echo esc_attr($bedrooms); ?></span> <?php esc_html_e('Beds', 'rype-real-estate'); ?></td><?php } ?>
-                                    <?php if(!empty($bathrooms)) { ?><td><?php echo ns_core_get_icon($icon_set, 'tint', 'bathtub', 'n/a'); ?> <span><?php echo esc_attr($bathrooms); ?></span> <?php esc_html_e('Baths', 'rype-real-estate'); ?></td><?php } ?>
+                                    <?php if(!empty($bedrooms)) { ?><td><?php echo ns_core_get_icon($icon_set, 'bed', 'bed', 'n/a'); ?> <span><?php echo esc_attr($bedrooms); ?></span> <?php esc_html_e('Beds', 'ns-real-estate'); ?></td><?php } ?>
+                                    <?php if(!empty($bathrooms)) { ?><td><?php echo ns_core_get_icon($icon_set, 'tint', 'bathtub', 'n/a'); ?> <span><?php echo esc_attr($bathrooms); ?></span> <?php esc_html_e('Baths', 'ns-real-estate'); ?></td><?php } ?>
                                     <?php if(!empty($area)) { ?><td><?php echo ns_core_get_icon($icon_set, 'expand'); ?> <span><?php echo esc_attr($area); ?></span> <?php echo esc_attr($area_postfix); ?></td><?php } ?>
-                                    <?php if(!empty($garages)) { ?><td><?php echo ns_core_get_icon($icon_set, 'car', 'car2', 'n/a'); ?> <span><?php echo esc_attr($garages); ?></span> <?php esc_html_e('Garages', 'rype-real-estate'); ?></td><?php } ?>
+                                    <?php if(!empty($garages)) { ?><td><?php echo ns_core_get_icon($icon_set, 'car', 'car2', 'n/a'); ?> <span><?php echo esc_attr($garages); ?></span> <?php esc_html_e('Garages', 'ns-real-estate'); ?></td><?php } ?>
                                 </tr>
                             </table>
                             <?php } ?>
@@ -138,7 +138,7 @@
                             <?php if ( has_post_thumbnail() ) { 
                                 the_post_thumbnail('full'); 
                             } else { 
-                                echo '<img src="'.plugins_url( '/rype-real-estate/images/property-img-default.gif' ).'" alt="" />'; 
+                                echo '<img src="'.plugins_url( '/ns-real-estate/images/property-img-default.gif' ).'" alt="" />'; 
                             } ?>
 
 							<?php if(!empty($additional_images[0])) { ?>
@@ -223,13 +223,13 @@
 
                                     if(!empty($floor_plans)) {   
                                         foreach ($floor_plans as $floor_plan) { ?>
-                                            <h3 class="accordion-tab"><?php echo esc_html_e($floor_plan['title'], 'rype-real-estate'); ?></h3>
+                                            <h3 class="accordion-tab"><?php echo esc_html_e($floor_plan['title'], 'ns-real-estate'); ?></h3>
                                             <div class="floor-plan-item"> 
                                                 <table>
                                                     <tr>
-                                                        <td><strong><?php esc_html_e('Size', 'rype-real-estate'); ?></strong></td>
-                                                        <td><strong><?php esc_html_e('Rooms', 'rype-real-estate'); ?></strong></td>
-                                                        <td><strong><?php esc_html_e('Bathrooms', 'rype-real-estate'); ?></strong></td>
+                                                        <td><strong><?php esc_html_e('Size', 'ns-real-estate'); ?></strong></td>
+                                                        <td><strong><?php esc_html_e('Rooms', 'ns-real-estate'); ?></strong></td>
+                                                        <td><strong><?php esc_html_e('Bathrooms', 'ns-real-estate'); ?></strong></td>
                                                     </tr>
                                                     <tr>
                                                         <td><?php if(!empty($floor_plan['size'])) { echo esc_attr($floor_plan['size']); } else { echo '--'; } ?></td>
@@ -237,7 +237,7 @@
                                                         <td><?php if(!empty($floor_plan['baths'])) { echo esc_attr($floor_plan['baths']); } else { echo '--'; } ?></td>
                                                     </tr>
                                                 </table>
-                                                <?php if(!empty($floor_plan['description'])) { echo '<p>'.esc_html__($floor_plan['description'], 'rype-real-estate').'</p>'; } ?>
+                                                <?php if(!empty($floor_plan['description'])) { echo '<p>'.esc_html__($floor_plan['description'], 'ns-real-estate').'</p>'; } ?>
                                                 <?php if(!empty($floor_plan['img'])) { echo '<img class="floor-plan-img" src="'.$floor_plan['img'].'" alt="" />'; } ?>
                                             </div> 
                                         <?php }
@@ -323,7 +323,7 @@
 							<div class="walk-score">
 								<h2><?php echo esc_attr($walkScoreData['walkscore']); ?><span>/100</span></h2>
 								<p><?php echo esc_attr($walkScoreData['description']); ?></p>
-                                <a href="<?php echo esc_url($walkScoreData['ws_link']); ?>" target="_blank" class="button"><?php esc_html_e('View More Details', 'rype-real-estate'); ?></a>
+                                <a href="<?php echo esc_url($walkScoreData['ws_link']); ?>" target="_blank" class="button"><?php esc_html_e('View More Details', 'ns-real-estate'); ?></a>
 							</div>
 						</div>
 					<?php } ?>
@@ -426,18 +426,18 @@
                                         
                                         <a href="<?php the_permalink(); ?>" class="agent-img">
                                             <?php if(isset($meta_post_count) && $meta_post_count > 0) { ?>
-                                                <div class="button alt agent-tag"><?php echo esc_attr($meta_post_count); ?> <?php if($meta_post_count <= 1) { esc_html_e('Property', 'rype-real-estate'); } else { esc_html_e('Properties', 'rype-real-estate'); } ?></div>
+                                                <div class="button alt agent-tag"><?php echo esc_attr($meta_post_count); ?> <?php if($meta_post_count <= 1) { esc_html_e('Property', 'ns-real-estate'); } else { esc_html_e('Properties', 'ns-real-estate'); } ?></div>
                                             <?php } ?>
                                             <?php if ( has_post_thumbnail() ) {  ?>
                                                 <div class="img-fade"></div>
                                                 <?php the_post_thumbnail('full'); ?>
                                             <?php } else { ?>
-                                                <img src="<?php echo plugins_url( '/rype-real-estate/images/agent-img-default.gif' ); ?>" alt="" />
+                                                <img src="<?php echo plugins_url( '/ns-real-estate/images/agent-img-default.gif' ); ?>" alt="" />
                                             <?php } ?>
                                         </a>
 
                                         <div class="agent-content">
-                                            <a href="<?php the_permalink(); ?>" class="button button-icon right"><i class="fa fa-angle-right"></i><?php esc_html_e('Contact Agent', 'rype-real-estate'); ?></a>
+                                            <a href="<?php the_permalink(); ?>" class="button button-icon right"><i class="fa fa-angle-right"></i><?php esc_html_e('Contact Agent', 'ns-real-estate'); ?></a>
                                             <div class="agent-details">
                                                 <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                                                 <?php if(!empty($agent_title)) { ?><p><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php echo esc_attr($agent_title); ?></p><?php } ?>
@@ -468,7 +468,7 @@
                                                         ns_real_estate_agent_contact_form($agent_email); 
                                                     }
                                                 } else {
-                                                    esc_html_e('Please install required plugins to display the contact form.', 'rype-real-estate');
+                                                    esc_html_e('Please install required plugins to display the contact form.', 'ns-real-estate');
                                                 }
                                             } 
                                         }
@@ -478,7 +478,7 @@
                                 <?php endwhile; ?>
                                     <?php wp_reset_postdata(); ?>
                                 <?php else: ?>
-                                    <div class="col-lg-12"><p><?php esc_html_e('Sorry, no agents have been posted yet.', 'rype-real-estate'); ?></p></div>
+                                    <div class="col-lg-12"><p><?php esc_html_e('Sorry, no agents have been posted yet.', 'ns-real-estate'); ?></p></div>
                                 <?php endif; ?>
 
                             <?php } else if($agent_display == 'custom') { ?>
@@ -533,7 +533,7 @@
                                 $template_args_related_properties['custom_show_filter'] = false;
                                 $template_args_related_properties['custom_layout'] = 'grid';
                                 $template_args_related_properties['custom_pagination'] = false;
-                                $template_args_related_properties['no_post_message'] = esc_html__( 'Sorry, no related properties were found.', 'rype-real-estate' );
+                                $template_args_related_properties['no_post_message'] = esc_html__( 'Sorry, no related properties were found.', 'ns-real-estate' );
                                 
                                 //Load template
                                 ns_real_estate_template_loader('loop_properties.php', $template_args_related_properties);
@@ -545,7 +545,7 @@
                         <!--******************************************************-->
                         <!-- ADD-ONS -->
                         <!--******************************************************-->
-                        <?php do_action('rype_real_estate_property_detail_items', $values, $value); ?>
+                        <?php do_action('ns_real_estate_property_detail_items', $values, $value); ?>
                     <?php } ?>
 
                 <?php } ?>

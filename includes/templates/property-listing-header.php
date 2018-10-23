@@ -17,15 +17,15 @@ if(!array_key_exists("advancedSearch",$currentFilters)) { $currentFilters = null
 
 <div class="property-listing-header">
 	<span class="property-count left">
-		<?php echo esc_attr($property_listing_query->found_posts); ?> <?php esc_html_e('properties found', 'rypecore'); ?>
-		<?php if(!empty($currentFilters)) { echo '<a href="'.get_the_permalink().'" class="button small outline clear-property-filters">'.ns_core_get_icon($icon_set, 'times', 'cross', 'cross').esc_html__('Clear Filters', 'rypecore').'</a>'; } ?>
+		<?php echo esc_attr($property_listing_query->found_posts); ?> <?php esc_html_e('properties found', 'ns-real-estate'); ?>
+		<?php if(!empty($currentFilters)) { echo '<a href="'.get_the_permalink().'" class="button small outline clear-property-filters">'.ns_core_get_icon($icon_set, 'times', 'cross', 'cross').esc_html__('Clear Filters', 'ns-real-estate').'</a>'; } ?>
 	</span>
 	<form action="<?php echo $currentUrl; ?>" method="get" class="right">
 		<select name="sort_by" onchange="this.form.submit();">
-			<option value="date_desc" <?php if($order_by == 'date_desc') { echo 'selected'; } ?>><?php esc_html_e('New to Old', 'rypecore'); ?></option>
-			<option value="date_asc" <?php if($order_by == 'date_asc') { echo 'selected'; } ?>><?php esc_html_e('Old to New', 'rypecore'); ?></option>
-			<option value="price_desc" <?php if($order_by == 'price_desc') { echo 'selected'; } ?>><?php esc_html_e('Price (High to Low)', 'rypecore'); ?></option>
-			<option value="price_asc" <?php if($order_by == 'price_asc') { echo 'selected'; } ?>><?php esc_html_e('Price (Low to High)', 'rypecore'); ?></option>
+			<option value="date_desc" <?php if($order_by == 'date_desc') { echo 'selected'; } ?>><?php esc_html_e('New to Old', 'ns-real-estate'); ?></option>
+			<option value="date_asc" <?php if($order_by == 'date_asc') { echo 'selected'; } ?>><?php esc_html_e('Old to New', 'ns-real-estate'); ?></option>
+			<option value="price_desc" <?php if($order_by == 'price_desc') { echo 'selected'; } ?>><?php esc_html_e('Price (High to Low)', 'ns-real-estate'); ?></option>
+			<option value="price_asc" <?php if($order_by == 'price_asc') { echo 'selected'; } ?>><?php esc_html_e('Price (Low to High)', 'ns-real-estate'); ?></option>
 		</select>
 		<?php
 		foreach($_GET as $name => $value) {

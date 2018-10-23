@@ -1,6 +1,6 @@
 /************************************************************/
-/* RYPE ADD-ONS */
-/* REAL ESTATE - FRONT-END SCRIPTS */
+/* NS REAL ESTATE */
+/* FRONT-END SCRIPTS */
 /************************************************************/
 
 jQuery(document).ready(function($) {

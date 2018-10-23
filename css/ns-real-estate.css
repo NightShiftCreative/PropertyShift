@@ -200,12 +200,12 @@
 /*********************************************/
 /** PROPERTIES LISTINGS GRID **/
 /*********************************************/
-.rype-listing-col {
+.ns-listing-col {
     width:48%;
     margin-right:4%;
     float:left;
 }
-.rype-listing-col:nth-child(2n) { margin-right:0; }
+.ns-listing-col:nth-child(2n) { margin-right:0; }
 
 .ns-property-listing .ns-property, .ns-property-listing .hentry.ns-property { 
 	margin:0;

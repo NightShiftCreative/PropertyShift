@@ -23,7 +23,7 @@
     $price_range_max = isset( $values['ns_property_filter_price_max'] ) ? esc_attr( $values['ns_property_filter_price_max'][0] ) : 1000000;
     $price_range_min_start = isset( $values['ns_property_filter_price_min_start'] ) ? esc_attr( $values['ns_property_filter_price_min_start'][0] ) : 200000;
     $price_range_max_start = isset( $values['ns_property_filter_price_max_start'] ) ? esc_attr( $values['ns_property_filter_price_max_start'][0] ) : 600000;
-    $submit_text = isset( $values['ns_property_filter_submit_text'] ) ? esc_attr( $values['ns_property_filter_submit_text'][0] ) : esc_html__('Find Properties', 'rypecore');
+    $submit_text = isset( $values['ns_property_filter_submit_text'] ) ? esc_attr( $values['ns_property_filter_submit_text'][0] ) : esc_html__('Find Properties', 'ns-real-estate');
     $custom_fields = get_option('ns_property_custom_fields');
 
     //Get all current filters from URL
@@ -106,7 +106,7 @@
                     <?php 
                     if($count == 4) { ?>
                         <div style="margin-right:0;" class="form-block filter-item filter-item-submit <?php if($label_count > 0) { echo 'has-label'; } ?> <?php if($show_advanced == false) { echo 'hide-advanced'; } ?> <?php echo esc_attr($filter_class); ?>">
-                            <div class="advanced-options-toggle"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'rypecore' ); ?></span></div>
+                            <div class="advanced-options-toggle"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'ns-real-estate' ); ?></span></div>
                             <input type="hidden" name="advancedSearch" value="true" />
                             <button type="submit" class="button alt"><?php echo ns_core_get_icon($icon_set, 'search', 'magnifier', 'search' ); ?></button>
                         </div>
@@ -197,7 +197,7 @@
                         <?php if($slug == 'beds') { ?>
                             <select name="beds" class="filter-input">
                                 <option value="" disabled selected><?php echo $placeholder; ?></option>
-                                <option value=""><?php esc_html_e( 'Any', 'rypecore' ); ?></option>
+                                <option value=""><?php esc_html_e( 'Any', 'ns-real-estate' ); ?></option>
                                 <option value="1" <?php if($currentFilters['beds'] == '1') { echo 'selected'; } ?>>1</option>
                                 <option value="2" <?php if($currentFilters['beds'] == '2') { echo 'selected'; } ?>>2</option>
                                 <option value="3" <?php if($currentFilters['beds'] == '3') { echo 'selected'; } ?>>3</option>
@@ -214,7 +214,7 @@
                         <?php if($slug == 'baths') { ?>
                             <select name="baths" class="filter-input">
                                 <option value="" disabled selected><?php echo $placeholder; ?></option>
-                                <option value=""><?php esc_html_e( 'Any', 'rypecore' ); ?></option>
+                                <option value=""><?php esc_html_e( 'Any', 'ns-real-estate' ); ?></option>
                                 <option value="1" <?php if($currentFilters['baths'] == '1') { echo 'selected'; } ?>>1</option>
                                 <option value="2" <?php if($currentFilters['baths'] == '2') { echo 'selected'; } ?>>2</option>
                                 <option value="3" <?php if($currentFilters['baths'] == '3') { echo 'selected'; } ?>>3</option>
@@ -263,7 +263,7 @@
 
                     if($filter_num <= 4 && $count >= ($filter_num - 1)) { ?>
                         <div style="margin-right:0;" class="form-block filter-item filter-item-submit <?php if($label_count > 0) { echo 'has-label'; } ?> <?php if($show_advanced == false) { echo 'hide-advanced'; } ?> <?php echo esc_attr($filter_class); ?>">
-                            <div class="advanced-options-toggle"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'rypecore' ); ?></span></div>
+                            <div class="advanced-options-toggle"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'ns-real-estate' ); ?></span></div>
                             <input type="hidden" name="advancedSearch" value="true" />
                             <button type="submit" class="button alt"><?php echo ns_core_get_icon($icon_set, 'search', 'magnifier', 'search' ); ?></button>
                         </div>

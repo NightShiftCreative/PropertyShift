@@ -1,11 +1,11 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Rype Real Estate\n"
-"POT-Creation-Date: 2018-09-14 07:00-0400\n"
+"Project-Id-Version: NightShift Real Estate\n"
+"POT-Creation-Date: 2018-10-22 22:21-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
-"Language-Team: Rype Creative\n"
+"Language-Team: NightShift Creative\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,749 +27,1087 @@ msgid ""
 msgstr ""
 
 #: includes/admin-add-ons-page.php:35
+#: includes/custom_widgets/list_agents_widget.php:91
 msgid "View Details"
 msgstr ""
 
-#: includes/admin-license-keys-page.php:33
+#: includes/admin-license-keys-page.php:37
 msgid "Open Houses License Key"
 msgstr ""
 
-#: includes/admin-license-keys-page.php:40
+#: includes/admin-license-keys-page.php:44
 msgid "License Key"
 msgstr ""
 
-#: includes/admin-license-keys-page.php:41
+#: includes/admin-license-keys-page.php:45
 msgid "Provide your license key. You can find your key in your account."
 msgstr ""
 
-#: includes/admin-license-keys-page.php:53 includes/agent-functions.php:106
-#: includes/agent-functions.php:419 includes/property-submit-functions.php:675
+#: includes/admin-license-keys-page.php:57 includes/agent-functions.php:107
+#: includes/agent-functions.php:426 includes/property-submit-functions.php:675
+#: includes/templates/loop_agent_single.php:78
 msgid "Email"
 msgstr ""
 
-#: includes/admin-license-keys-page.php:54
+#: includes/admin-license-keys-page.php:58
 msgid "Provide the email you used when purchasing this license key."
 msgstr ""
 
-#: includes/admin-settings-page.php:81
+#: includes/admin-settings-page.php:103
 msgid "Settings"
 msgstr ""
 
-#: includes/admin-settings-page.php:82
+#: includes/admin-settings-page.php:104
 msgid "Add-Ons"
 msgstr ""
 
-#: includes/admin-settings-page.php:83
+#: includes/admin-settings-page.php:105
 msgid "License"
 msgstr ""
 
-#: includes/admin-settings-page.php:84
+#: includes/admin-settings-page.php:106
 msgid "Help"
 msgstr ""
 
-#: includes/admin-settings-page.php:108
-msgid "General Settings"
+#: includes/admin-settings-page.php:129
+msgid "The active theme ("
 msgstr ""
 
-#: includes/admin-settings-page.php:112
+#: includes/admin-settings-page.php:129
+msgid "Get a compatible theme"
+msgstr ""
+
+#: includes/admin-settings-page.php:135
+msgid "Please provide a Google Maps API Key within the Maps tab."
+msgstr ""
+
+#: includes/admin-settings-page.php:141
+msgid ""
+"You have not set your properties listing page. Go to Properties > Property "
+"Listing Options, to set this field."
+msgstr ""
+
+#: includes/admin-settings-page.php:152
 msgid "Properties Settings"
 msgstr ""
 
-#: includes/admin-settings-page.php:115
+#: includes/admin-settings-page.php:155
 msgid "Property URL Options"
 msgstr ""
 
-#: includes/admin-settings-page.php:117
+#: includes/admin-settings-page.php:157
 msgid ""
 "After changing slugs, make sure you re-save your permalinks in Settings > "
 "Permalinks."
 msgstr ""
 
-#: includes/admin-settings-page.php:123
+#: includes/admin-settings-page.php:163
 msgid "Properties Slug"
 msgstr ""
 
-#: includes/admin-settings-page.php:124
+#: includes/admin-settings-page.php:164
 msgid "Default: properties"
 msgstr ""
 
-#: includes/admin-settings-page.php:135
+#: includes/admin-settings-page.php:175
 msgid "Property Type Taxonomy Slug"
 msgstr ""
 
-#: includes/admin-settings-page.php:136
+#: includes/admin-settings-page.php:176
 msgid "Default: property-type"
 msgstr ""
 
-#: includes/admin-settings-page.php:147
+#: includes/admin-settings-page.php:187
 msgid "Property Status Taxonomy Slug"
 msgstr ""
 
-#: includes/admin-settings-page.php:148
+#: includes/admin-settings-page.php:188
 msgid "Default: property-status"
 msgstr ""
 
-#: includes/admin-settings-page.php:159
+#: includes/admin-settings-page.php:199
 msgid "Property Location Taxonomy Slug"
 msgstr ""
 
-#: includes/admin-settings-page.php:160
+#: includes/admin-settings-page.php:200
 msgid "Default: property-location"
 msgstr ""
 
-#: includes/admin-settings-page.php:171
+#: includes/admin-settings-page.php:211
 msgid "Property Amenities Taxonomy Slug"
 msgstr ""
 
-#: includes/admin-settings-page.php:172
+#: includes/admin-settings-page.php:212
 msgid "Default: property-amenity"
 msgstr ""
 
-#: includes/admin-settings-page.php:183
+#: includes/admin-settings-page.php:223
 msgid "Property Filter Options"
 msgstr ""
 
-#: includes/admin-settings-page.php:188
+#: includes/admin-settings-page.php:228
 msgid "Display Property Filter in Page Banners"
 msgstr ""
 
-#: includes/admin-settings-page.php:190 includes/admin-settings-page.php:278
-#: includes/admin-settings-page.php:293 includes/admin-settings-page.php:305
-#: includes/admin-settings-page.php:317 includes/admin-settings-page.php:329
-#: includes/admin-settings-page.php:396 includes/admin-settings-page.php:433
-#: includes/admin-settings-page.php:661 includes/admin-settings-page.php:696
-#: includes/admin-settings-page.php:805 includes/admin-settings-page.php:817
-#: includes/admin-settings-page.php:829 includes/filter-functions.php:203
+#: includes/admin-settings-page.php:230 includes/admin-settings-page.php:318
+#: includes/admin-settings-page.php:350 includes/admin-settings-page.php:362
+#: includes/admin-settings-page.php:374 includes/admin-settings-page.php:386
+#: includes/admin-settings-page.php:453 includes/admin-settings-page.php:490
+#: includes/admin-settings-page.php:718 includes/admin-settings-page.php:753
+#: includes/admin-settings-page.php:926 includes/admin-settings-page.php:938
+#: includes/admin-settings-page.php:950 includes/filter-functions.php:203
 #: includes/plugins/class-tgm-plugin-activation.php:2414
 msgid "Active"
 msgstr ""
 
-#: includes/admin-settings-page.php:190 includes/admin-settings-page.php:278
-#: includes/admin-settings-page.php:293 includes/admin-settings-page.php:305
-#: includes/admin-settings-page.php:317 includes/admin-settings-page.php:329
-#: includes/admin-settings-page.php:396 includes/admin-settings-page.php:433
-#: includes/admin-settings-page.php:661 includes/admin-settings-page.php:696
-#: includes/admin-settings-page.php:805 includes/admin-settings-page.php:817
-#: includes/admin-settings-page.php:829 includes/filter-functions.php:203
+#: includes/admin-settings-page.php:230 includes/admin-settings-page.php:318
+#: includes/admin-settings-page.php:350 includes/admin-settings-page.php:362
+#: includes/admin-settings-page.php:374 includes/admin-settings-page.php:386
+#: includes/admin-settings-page.php:453 includes/admin-settings-page.php:490
+#: includes/admin-settings-page.php:718 includes/admin-settings-page.php:753
+#: includes/admin-settings-page.php:926 includes/admin-settings-page.php:938
+#: includes/admin-settings-page.php:950 includes/filter-functions.php:203
 msgid "Disabled"
 msgstr ""
 
-#: includes/admin-settings-page.php:192 includes/admin-settings-page.php:280
-#: includes/admin-settings-page.php:295 includes/admin-settings-page.php:307
-#: includes/admin-settings-page.php:319 includes/admin-settings-page.php:331
-#: includes/admin-settings-page.php:398 includes/admin-settings-page.php:435
-#: includes/admin-settings-page.php:663 includes/admin-settings-page.php:698
-#: includes/admin-settings-page.php:807 includes/admin-settings-page.php:819
-#: includes/admin-settings-page.php:831 includes/filter-functions.php:205
+#: includes/admin-settings-page.php:232 includes/admin-settings-page.php:320
+#: includes/admin-settings-page.php:352 includes/admin-settings-page.php:364
+#: includes/admin-settings-page.php:376 includes/admin-settings-page.php:388
+#: includes/admin-settings-page.php:455 includes/admin-settings-page.php:492
+#: includes/admin-settings-page.php:720 includes/admin-settings-page.php:755
+#: includes/admin-settings-page.php:928 includes/admin-settings-page.php:940
+#: includes/admin-settings-page.php:952 includes/filter-functions.php:205
 msgid "On"
 msgstr ""
 
-#: includes/admin-settings-page.php:192 includes/admin-settings-page.php:280
-#: includes/admin-settings-page.php:295 includes/admin-settings-page.php:307
-#: includes/admin-settings-page.php:319 includes/admin-settings-page.php:331
-#: includes/admin-settings-page.php:398 includes/admin-settings-page.php:435
-#: includes/admin-settings-page.php:663 includes/admin-settings-page.php:698
-#: includes/admin-settings-page.php:807 includes/admin-settings-page.php:819
-#: includes/admin-settings-page.php:831 includes/filter-functions.php:205
+#: includes/admin-settings-page.php:232 includes/admin-settings-page.php:320
+#: includes/admin-settings-page.php:352 includes/admin-settings-page.php:364
+#: includes/admin-settings-page.php:376 includes/admin-settings-page.php:388
+#: includes/admin-settings-page.php:455 includes/admin-settings-page.php:492
+#: includes/admin-settings-page.php:720 includes/admin-settings-page.php:755
+#: includes/admin-settings-page.php:928 includes/admin-settings-page.php:940
+#: includes/admin-settings-page.php:952 includes/filter-functions.php:205
 msgid "Off"
 msgstr ""
 
-#: includes/admin-settings-page.php:201
+#: includes/admin-settings-page.php:241
 msgid "Default Banner Filter"
 msgstr ""
 
-#: includes/admin-settings-page.php:203
+#: includes/admin-settings-page.php:243
 msgid ""
 "This can be overriden on individual pages from the page settings meta box."
 msgstr ""
 
-#: includes/admin-settings-page.php:223 includes/admin-settings-page.php:1002
+#: includes/admin-settings-page.php:263 includes/admin-settings-page.php:1201
+#: includes/custom_widgets/property_filter_widget.php:85
 msgid "Manage property filters"
 msgstr ""
 
-#: includes/admin-settings-page.php:232
+#: includes/admin-settings-page.php:272
 msgid "Property Listing Options"
 msgstr ""
 
-#: includes/admin-settings-page.php:237
+#: includes/admin-settings-page.php:277
 msgid "Select Your Property Listings Page"
 msgstr ""
 
-#: includes/admin-settings-page.php:241 includes/admin-settings-page.php:766
-#: includes/admin-settings-page.php:788
+#: includes/admin-settings-page.php:281 includes/admin-settings-page.php:887
+#: includes/admin-settings-page.php:909
 msgid "Select page"
 msgstr ""
 
-#: includes/admin-settings-page.php:256
+#: includes/admin-settings-page.php:296
 msgid "Number of Properties Per Page"
 msgstr ""
 
-#: includes/admin-settings-page.php:263
+#: includes/admin-settings-page.php:303
 msgid "Properties Taxonomy Layout"
 msgstr ""
 
-#: includes/admin-settings-page.php:265 includes/shortcodes.php:37
-#: includes/shortcodes.php:98
+#: includes/admin-settings-page.php:305 includes/shortcodes.php:40
+#: includes/shortcodes.php:101
 msgid "Grid"
 msgstr ""
 
-#: includes/admin-settings-page.php:266 includes/shortcodes.php:38
+#: includes/admin-settings-page.php:306 includes/shortcodes.php:41
 msgid "Row"
 msgstr ""
 
-#: includes/admin-settings-page.php:274
+#: includes/admin-settings-page.php:314
 msgid "Display Listing Header?"
 msgstr ""
 
-#: includes/admin-settings-page.php:275
+#: includes/admin-settings-page.php:315
 msgid ""
 "Toggle on/off the filter options that display directly above property "
 "listings."
 msgstr ""
 
-#: includes/admin-settings-page.php:289
+#: includes/admin-settings-page.php:329
+msgid "Default Sort By"
+msgstr ""
+
+#: includes/admin-settings-page.php:330
+msgid "Choose the default sorting for property listings."
+msgstr ""
+
+#: includes/admin-settings-page.php:334
+#: includes/templates/property-listing-header.php:25
+msgid "New to Old"
+msgstr ""
+
+#: includes/admin-settings-page.php:335
+#: includes/templates/property-listing-header.php:26
+msgid "Old to New"
+msgstr ""
+
+#: includes/admin-settings-page.php:336
+#: includes/templates/property-listing-header.php:27
+msgid "Price (High to Low)"
+msgstr ""
+
+#: includes/admin-settings-page.php:337
+#: includes/templates/property-listing-header.php:28
+msgid "Price (Low to High)"
+msgstr ""
+
+#: includes/admin-settings-page.php:346
 msgid "Hard crop property listing featured images?"
 msgstr ""
 
-#: includes/admin-settings-page.php:290
+#: includes/admin-settings-page.php:347
 msgid ""
 "If active, property listing thumbnails will be cropped to 800 x 600 pixels."
 msgstr ""
 
-#: includes/admin-settings-page.php:303
+#: includes/admin-settings-page.php:360
 msgid "Display Time Stamp?"
 msgstr ""
 
-#: includes/admin-settings-page.php:315
+#: includes/admin-settings-page.php:372
 msgid "Allow users to favorite properties?"
 msgstr ""
 
-#: includes/admin-settings-page.php:327
+#: includes/admin-settings-page.php:384
 msgid "Allow users to share properties?"
 msgstr ""
 
-#: includes/admin-settings-page.php:341
+#: includes/admin-settings-page.php:398
 msgid "Property Detail Options"
 msgstr ""
 
-#: includes/admin-settings-page.php:346
+#: includes/admin-settings-page.php:403
 msgid "Property Detail Template"
 msgstr ""
 
-#: includes/admin-settings-page.php:348
+#: includes/admin-settings-page.php:405
 msgid "Classic"
 msgstr ""
 
-#: includes/admin-settings-page.php:349
+#: includes/admin-settings-page.php:406
 msgid "Full Width Gallery"
 msgstr ""
 
-#: includes/admin-settings-page.php:350
+#: includes/admin-settings-page.php:407
 msgid "Boxed Gallery"
 msgstr ""
 
-#: includes/admin-settings-page.php:353
+#: includes/admin-settings-page.php:410
 msgid "Display agent contact information in gallery?"
 msgstr ""
 
-#: includes/admin-settings-page.php:361
+#: includes/admin-settings-page.php:418
 msgid "Select the default page layout for property detail pages"
 msgstr ""
 
-#: includes/admin-settings-page.php:369 includes/filter-functions.php:149
+#: includes/admin-settings-page.php:426 includes/filter-functions.php:149
 msgid "Full Width"
 msgstr ""
 
-#: includes/admin-settings-page.php:377
+#: includes/admin-settings-page.php:434
 msgid "Right Sidebar"
 msgstr ""
 
-#: includes/admin-settings-page.php:385
+#: includes/admin-settings-page.php:442
 msgid "Left Sidebar"
 msgstr ""
 
-#: includes/admin-settings-page.php:394
+#: includes/admin-settings-page.php:451
 msgid "Show Property ID on Front-End"
 msgstr ""
 
-#: includes/admin-settings-page.php:405
+#: includes/admin-settings-page.php:462
 msgid "Property Detail Sections"
 msgstr ""
 
-#: includes/admin-settings-page.php:405 includes/admin-settings-page.php:676
+#: includes/admin-settings-page.php:462 includes/admin-settings-page.php:733
 #: includes/filter-functions.php:167
 msgid "(Drag & drop to rearrange order)"
 msgstr ""
 
-#: includes/admin-settings-page.php:443 includes/admin-settings-page.php:705
+#: includes/admin-settings-page.php:500 includes/admin-settings-page.php:762
 #: includes/filter-functions.php:213
 msgid "Additional Settings"
 msgstr ""
 
-#: includes/admin-settings-page.php:448 includes/admin-settings-page.php:710
+#: includes/admin-settings-page.php:505 includes/admin-settings-page.php:767
 #: includes/filter-functions.php:218
 msgid "Label:"
 msgstr ""
 
-#: includes/admin-settings-page.php:457 includes/admin-settings-page.php:719
+#: includes/admin-settings-page.php:514 includes/admin-settings-page.php:776
 msgid "Display in Sidebar"
 msgstr ""
 
-#: includes/admin-settings-page.php:467
+#: includes/admin-settings-page.php:524
 msgid "Hide empty amenities?"
 msgstr ""
 
-#: includes/admin-settings-page.php:478
+#: includes/admin-settings-page.php:535
 msgid "Map Zoom"
 msgstr ""
 
-#: includes/admin-settings-page.php:503
+#: includes/admin-settings-page.php:560
 msgid "Map Height"
 msgstr ""
 
-#: includes/admin-settings-page.php:515
+#: includes/admin-settings-page.php:572
 msgid "Display agent contact form underneath agent information?"
 msgstr ""
 
-#: includes/admin-settings-page.php:516
+#: includes/admin-settings-page.php:573
 msgid ""
 "Configure the agent contact form options in Theme Options > Agents > Agent "
 "Detail Options."
 msgstr ""
 
-#: includes/admin-settings-page.php:536
+#: includes/admin-settings-page.php:593
 msgid "Property Custom Fields"
 msgstr ""
 
-#: includes/admin-settings-page.php:557 rype-real-estate.php:98
+#: includes/admin-settings-page.php:614 ns-real-estate.php:102
 msgid "Field Name:"
 msgstr ""
 
-#: includes/admin-settings-page.php:564 rype-real-estate.php:101
+#: includes/admin-settings-page.php:621 ns-real-estate.php:105
 msgid "Field Type"
 msgstr ""
 
-#: includes/admin-settings-page.php:567 rype-real-estate.php:102
+#: includes/admin-settings-page.php:624 ns-real-estate.php:106
 msgid "Text Input"
 msgstr ""
 
-#: includes/admin-settings-page.php:568 rype-real-estate.php:103
+#: includes/admin-settings-page.php:625 ns-real-estate.php:107
 msgid "Number Input"
 msgstr ""
 
-#: includes/admin-settings-page.php:569 rype-real-estate.php:104
+#: includes/admin-settings-page.php:626 ns-real-estate.php:108
 msgid "Select Dropdown"
 msgstr ""
 
-#: includes/admin-settings-page.php:577 rype-real-estate.php:105
+#: includes/admin-settings-page.php:634 ns-real-estate.php:109
 msgid "Select Options:"
 msgstr ""
 
-#: includes/admin-settings-page.php:588 rype-real-estate.php:106
+#: includes/admin-settings-page.php:645 ns-real-estate.php:110
 msgid "Add Select Option"
 msgstr ""
 
-#: includes/admin-settings-page.php:596 rype-real-estate.php:108
+#: includes/admin-settings-page.php:653 ns-real-estate.php:112
 msgid "Display in Front-end Property Submit Form"
 msgstr ""
 
-#: includes/admin-settings-page.php:605 rype-real-estate.php:89
+#: includes/admin-settings-page.php:662 ns-real-estate.php:93
 msgid "Edit"
 msgstr ""
 
-#: includes/admin-settings-page.php:606 includes/filter-functions.php:187
-#: includes/property-functions.php:434 includes/property-functions.php:493
-#: includes/property-functions.php:955 rype-real-estate.php:88
+#: includes/admin-settings-page.php:663 includes/admin-settings-page.php:869
+#: includes/filter-functions.php:187 includes/property-functions.php:471
+#: includes/property-functions.php:530 includes/property-functions.php:980
+#: ns-real-estate.php:92
 msgid "Remove"
 msgstr ""
 
-#: includes/admin-settings-page.php:611 includes/filter-functions.php:315
-#: includes/property-functions.php:391
+#: includes/admin-settings-page.php:668 includes/filter-functions.php:315
+#: includes/property-functions.php:428
 msgid "No custom fields have been created."
 msgstr ""
 
-#: includes/admin-settings-page.php:616
+#: includes/admin-settings-page.php:673
 msgid "Field Name"
 msgstr ""
 
-#: includes/admin-settings-page.php:617
+#: includes/admin-settings-page.php:674
 msgid "Add Field"
 msgstr ""
 
-#: includes/admin-settings-page.php:618
+#: includes/admin-settings-page.php:675
 msgid "Cancel"
 msgstr ""
 
-#: includes/admin-settings-page.php:620
+#: includes/admin-settings-page.php:677
 msgid "Create New Field"
 msgstr ""
 
-#: includes/admin-settings-page.php:629
+#: includes/admin-settings-page.php:686
 msgid "Agent Settings"
 msgstr ""
 
-#: includes/admin-settings-page.php:632
+#: includes/admin-settings-page.php:689
 msgid "Agent Listing Options"
 msgstr ""
 
-#: includes/admin-settings-page.php:638
+#: includes/admin-settings-page.php:695
 msgid "Agents Slug"
 msgstr ""
 
-#: includes/admin-settings-page.php:639
+#: includes/admin-settings-page.php:696
 msgid ""
 "After changing the slug, make sure you re-save your permalinks in Settings > "
 "Permalinks. The default slug is agents."
 msgstr ""
 
-#: includes/admin-settings-page.php:649
+#: includes/admin-settings-page.php:706
 msgid "Number of Agents Per Page"
 msgstr ""
 
-#: includes/admin-settings-page.php:657
+#: includes/admin-settings-page.php:714
 msgid "Hard crop agent listing featured images?"
 msgstr ""
 
-#: includes/admin-settings-page.php:658
+#: includes/admin-settings-page.php:715
 msgid ""
 "If active, agent listing thumbnails will be cropped to 800 x 600 pixels."
 msgstr ""
 
-#: includes/admin-settings-page.php:672
+#: includes/admin-settings-page.php:729
 msgid "Agent Detail Options"
 msgstr ""
 
-#: includes/admin-settings-page.php:676
+#: includes/admin-settings-page.php:733
 msgid "Agent Detail Sections"
 msgstr ""
 
-#: includes/admin-settings-page.php:728
+#: includes/admin-settings-page.php:785
 msgid "Message Placeholder on Property Pages"
 msgstr ""
 
-#: includes/admin-settings-page.php:729 includes/agent-functions.php:338
+#: includes/admin-settings-page.php:786 includes/agent-functions.php:349
 msgid "I am interested in this property and would like to know more."
 msgstr ""
 
-#: includes/admin-settings-page.php:732
+#: includes/admin-settings-page.php:789
 msgid "Success Message"
 msgstr ""
 
-#: includes/admin-settings-page.php:733 includes/agent-functions.php:335
+#: includes/admin-settings-page.php:790 includes/agent-functions.php:346
 msgid "Thanks! Your email has been delivered!"
 msgstr ""
 
-#: includes/admin-settings-page.php:736 includes/filter-functions.php:325
+#: includes/admin-settings-page.php:793 includes/filter-functions.php:325
 msgid "Submit Button Text"
 msgstr ""
 
-#: includes/admin-settings-page.php:737 includes/agent-functions.php:334
+#: includes/admin-settings-page.php:794 includes/agent-functions.php:345
+#: includes/templates/loop_property_single.php:440
 msgid "Contact Agent"
 msgstr ""
 
-#: includes/admin-settings-page.php:755
+#: includes/admin-settings-page.php:812
+msgid "Map Settings"
+msgstr ""
+
+#: includes/admin-settings-page.php:817
+msgid "Google Maps API Key"
+msgstr ""
+
+#: includes/admin-settings-page.php:818
+msgid ""
+"Provide your unique Google maps API key. <a target=\"_blank\" href=\"https://"
+"developers.google.com/maps/documentation/javascript/get-api-key\">Click "
+"here</a> to get a key."
+msgstr ""
+
+#: includes/admin-settings-page.php:829
+msgid "Default Map Zoom"
+msgstr ""
+
+#: includes/admin-settings-page.php:830
+msgid ""
+"The map zoom ranges from 1 - 19. Zoom level 1 being the most zoomed out."
+msgstr ""
+
+#: includes/admin-settings-page.php:841
+msgid "Default Map Latitude"
+msgstr ""
+
+#: includes/admin-settings-page.php:852
+msgid "Default Map Longitude"
+msgstr ""
+
+#: includes/admin-settings-page.php:863
+msgid "Custom Pin Image"
+msgstr ""
+
+#: includes/admin-settings-page.php:864
+msgid ""
+"Replace the default map pin with a custom image. Recommended size: 50x50 "
+"pixels."
+msgstr ""
+
+#: includes/admin-settings-page.php:868 includes/property-functions.php:470
+#: includes/property-functions.php:529 includes/property-functions.php:979
+#: ns-real-estate.php:94
+msgid "Upload Image"
+msgstr ""
+
+#: includes/admin-settings-page.php:876
 msgid "Member Settings"
 msgstr ""
 
-#: includes/admin-settings-page.php:760
+#: includes/admin-settings-page.php:881
 msgid "Select My Properties Page"
 msgstr ""
 
-#: includes/admin-settings-page.php:761
+#: includes/admin-settings-page.php:882
 msgid "Create a page and assign it the My Properties template."
 msgstr ""
 
-#: includes/admin-settings-page.php:782
+#: includes/admin-settings-page.php:903
 msgid "Select Submit Property Page"
 msgstr ""
 
-#: includes/admin-settings-page.php:783
+#: includes/admin-settings-page.php:904
 msgid "Create a page and assign it the Submit Property template."
 msgstr ""
 
-#: includes/admin-settings-page.php:803
+#: includes/admin-settings-page.php:924
 msgid "Front-end property submissions must be approved before being published"
 msgstr ""
 
-#: includes/admin-settings-page.php:815
+#: includes/admin-settings-page.php:936
 msgid "Allow members to add new property locations from the front-end"
 msgstr ""
 
-#: includes/admin-settings-page.php:827
+#: includes/admin-settings-page.php:948
 msgid "Allow members to add new property amenities from the front-end"
 msgstr ""
 
-#: includes/admin-settings-page.php:848 includes/admin-settings-page.php:849
-#: includes/admin-settings-page.php:928 includes/admin-settings-page.php:929
+#: includes/admin-settings-page.php:963
+msgid "Currency & Numbers"
+msgstr ""
+
+#: includes/admin-settings-page.php:969
+msgid "Currency Symbol"
+msgstr ""
+
+#: includes/admin-settings-page.php:976
+msgid "Currency Symbol Position"
+msgstr ""
+
+#: includes/admin-settings-page.php:978
+msgid "Display before price"
+msgstr ""
+
+#: includes/admin-settings-page.php:979
+msgid "Display after price"
+msgstr ""
+
+#: includes/admin-settings-page.php:986
+msgid "Thousand Separator"
+msgstr ""
+
+#: includes/admin-settings-page.php:993
+msgid "Decimal Separator"
+msgstr ""
+
+#: includes/admin-settings-page.php:1000
+msgid "Number of Decimals"
+msgstr ""
+
+#: includes/admin-settings-page.php:1005
+msgid "Area Formatting"
+msgstr ""
+
+#: includes/admin-settings-page.php:1009
+msgid "Deafult Area Postfix"
+msgstr ""
+
+#: includes/admin-settings-page.php:1016
+msgid "Area Thousand Separator"
+msgstr ""
+
+#: includes/admin-settings-page.php:1023
+msgid "Area Decimal Separator"
+msgstr ""
+
+#: includes/admin-settings-page.php:1030
+msgid "Area Number of Decimals"
+msgstr ""
+
+#: includes/admin-settings-page.php:1047 includes/admin-settings-page.php:1048
+#: includes/admin-settings-page.php:1127 includes/admin-settings-page.php:1128
 msgid "Overview"
 msgstr ""
 
-#: includes/admin-settings-page.php:855 includes/admin-settings-page.php:856
-#: includes/admin-settings-page.php:935 includes/admin-settings-page.php:936
+#: includes/admin-settings-page.php:1054 includes/admin-settings-page.php:1055
+#: includes/admin-settings-page.php:1134 includes/admin-settings-page.php:1135
 #: includes/property-submit-functions.php:479
 msgid "Description"
 msgstr ""
 
-#: includes/admin-settings-page.php:862 includes/admin-settings-page.php:863
-#: includes/property-functions.php:239 includes/property-functions.php:403
+#: includes/admin-settings-page.php:1061 includes/admin-settings-page.php:1062
+#: includes/property-functions.php:276 includes/property-functions.php:440
 msgid "Gallery"
 msgstr ""
 
-#: includes/admin-settings-page.php:869 includes/admin-settings-page.php:870
-#: includes/property-functions.php:242 includes/property-functions.php:478
+#: includes/admin-settings-page.php:1068 includes/admin-settings-page.php:1069
+#: includes/property-functions.php:279 includes/property-functions.php:515
 msgid "Video"
 msgstr ""
 
-#: includes/admin-settings-page.php:876 includes/admin-settings-page.php:877
-#: includes/property-functions.php:772 includes/property-functions.php:791
+#: includes/admin-settings-page.php:1075 includes/admin-settings-page.php:1076
+#: includes/property-functions.php:809 includes/property-functions.php:828
 #: includes/property-submit-functions.php:420
 msgid "Amenities"
 msgstr ""
 
-#: includes/admin-settings-page.php:883 includes/admin-settings-page.php:884
-#: includes/property-functions.php:240 includes/property-functions.php:411
+#: includes/admin-settings-page.php:1082 includes/admin-settings-page.php:1083
+#: includes/property-functions.php:277 includes/property-functions.php:448
 #: includes/property-submit-functions.php:486
 msgid "Floor Plans"
 msgstr ""
 
-#: includes/admin-settings-page.php:890 includes/admin-settings-page.php:891
-#: includes/property-functions.php:811
+#: includes/admin-settings-page.php:1089 includes/admin-settings-page.php:1090
+#: includes/property-functions.php:848
 msgid "Location"
 msgstr ""
 
-#: includes/admin-settings-page.php:897 includes/admin-settings-page.php:898
+#: includes/admin-settings-page.php:1096 includes/admin-settings-page.php:1097
 msgid "Walk Score"
 msgstr ""
 
-#: includes/admin-settings-page.php:904
+#: includes/admin-settings-page.php:1103
 msgid "Agent Info"
 msgstr ""
 
-#: includes/admin-settings-page.php:911
+#: includes/admin-settings-page.php:1110
 msgid "Related Properties"
 msgstr ""
 
-#: includes/admin-settings-page.php:942 includes/admin-settings-page.php:943
-#: includes/agent-functions.php:224
+#: includes/admin-settings-page.php:1141 includes/admin-settings-page.php:1142
+#: includes/agent-functions.php:225
 msgid "Contact"
 msgstr ""
 
-#: includes/admin-settings-page.php:949 includes/admin-settings-page.php:950
-#: includes/property-functions.php:186 includes/shortcodes.php:240
-#: includes/shortcodes.php:259
+#: includes/admin-settings-page.php:1148 includes/admin-settings-page.php:1149
+#: includes/custom_widgets/list_property_categories_widget.php:52
+#: includes/property-functions.php:223 includes/shortcodes.php:282
+#: includes/shortcodes.php:301 includes/templates/loop_agent.php:50
+#: includes/templates/loop_property_single.php:429
 msgid "Properties"
 msgstr ""
 
-#: includes/admin-settings-page.php:968
+#: includes/admin-settings-page.php:1167
 msgid "Properties Map"
 msgstr ""
 
-#: includes/admin-settings-page.php:980 includes/filter-functions.php:78
+#: includes/admin-settings-page.php:1179 includes/filter-functions.php:78
+#: includes/shortcodes.php:17 includes/shortcodes.php:142
 msgid "Property Filter"
 msgstr ""
 
-#: includes/admin-settings-page.php:984
+#: includes/admin-settings-page.php:1183
 msgid "Use Global Property Filter Settings"
 msgstr ""
 
-#: includes/admin-settings-page.php:993
+#: includes/admin-settings-page.php:1192
 msgid "Display Property Filter"
 msgstr ""
 
-#: includes/admin-settings-page.php:1001
+#: includes/admin-settings-page.php:1200
+#: includes/custom_widgets/property_filter_widget.php:69
 msgid "Select a Filter"
+msgstr ""
+
+#: includes/admin-settings-page.php:1257
+msgid ""
+"NightShift Real Estate <strong>requires</strong> a Google Maps API key! "
+"Please provide your key in the plugin settings. If you do not have one, <a "
+"href=\"https://developers.google.com/maps/documentation/javascript/get-api-"
+"key\" target=\"_blank\">click here</a>."
 msgstr ""
 
 #: includes/admin_map.php:12
 msgid "Clear Location"
 msgstr ""
 
-#: includes/agent-functions.php:37
+#: includes/agent-functions.php:38
 msgid "Agents"
 msgstr ""
 
-#: includes/agent-functions.php:38
+#: includes/agent-functions.php:39
 msgid "Agent"
 msgstr ""
 
-#: includes/agent-functions.php:39
+#: includes/agent-functions.php:40
 msgid "Add New Agent"
 msgstr ""
 
-#: includes/agent-functions.php:40
+#: includes/agent-functions.php:41
 msgid "Search Agents"
 msgstr ""
 
-#: includes/agent-functions.php:41
+#: includes/agent-functions.php:42
 msgid "Edit Agent"
 msgstr ""
 
-#: includes/agent-functions.php:78 includes/agent-functions.php:89
-#: includes/property-functions.php:238 includes/property-functions.php:253
+#: includes/agent-functions.php:79 includes/agent-functions.php:90
+#: includes/property-functions.php:275 includes/property-functions.php:290
 #: includes/property-submit-functions.php:302
 #: includes/property-submit-functions.php:309
 msgid "General Info"
 msgstr ""
 
-#: includes/agent-functions.php:79 includes/agent-functions.php:145
+#: includes/agent-functions.php:80 includes/agent-functions.php:146
 msgid "Social"
 msgstr ""
 
-#: includes/agent-functions.php:80
+#: includes/agent-functions.php:81
 msgid "Contact Form"
 msgstr ""
 
-#: includes/agent-functions.php:83 includes/agent-functions.php:434
-#: includes/property-functions.php:247
+#: includes/agent-functions.php:84 includes/agent-functions.php:439
+#: includes/property-functions.php:284
 msgid "Loading..."
 msgstr ""
 
-#: includes/agent-functions.php:94
+#: includes/agent-functions.php:95
 msgid "Job Title"
 msgstr ""
 
-#: includes/agent-functions.php:95
+#: includes/agent-functions.php:96
 msgid "Provide the agents job title."
 msgstr ""
 
-#: includes/agent-functions.php:107
+#: includes/agent-functions.php:108
 msgid ""
 "Provide the agents email address. This address will be used for the agent "
 "contact form."
 msgstr ""
 
-#: includes/agent-functions.php:118
+#: includes/agent-functions.php:119
 msgid "Mobile Phone"
 msgstr ""
 
-#: includes/agent-functions.php:119
+#: includes/agent-functions.php:120
 msgid "Provide the agents mobile phone number"
 msgstr ""
 
-#: includes/agent-functions.php:130
+#: includes/agent-functions.php:131
 msgid "Office Phone"
 msgstr ""
 
-#: includes/agent-functions.php:131
+#: includes/agent-functions.php:132
 msgid "Provide the agents office phone number"
 msgstr ""
 
-#: includes/agent-functions.php:150
+#: includes/agent-functions.php:151
 msgid "Facebook"
 msgstr ""
 
-#: includes/agent-functions.php:151
+#: includes/agent-functions.php:152
 msgid "Provide a url for the agents Facebook profile"
 msgstr ""
 
-#: includes/agent-functions.php:162
+#: includes/agent-functions.php:163
 msgid "Twitter"
 msgstr ""
 
-#: includes/agent-functions.php:163
+#: includes/agent-functions.php:164
 msgid "Provide a url for the agents Twitter profile"
 msgstr ""
 
-#: includes/agent-functions.php:174
+#: includes/agent-functions.php:175
 msgid "Google Plus"
 msgstr ""
 
-#: includes/agent-functions.php:175
+#: includes/agent-functions.php:176
 msgid "Provide a url for the agents Google Plus profile"
 msgstr ""
 
-#: includes/agent-functions.php:186
+#: includes/agent-functions.php:187
 msgid "Linkedin"
 msgstr ""
 
-#: includes/agent-functions.php:187
+#: includes/agent-functions.php:188
 msgid "Provide a url for the agents Linkedin profile"
 msgstr ""
 
-#: includes/agent-functions.php:198
+#: includes/agent-functions.php:199
 msgid "Youtube"
 msgstr ""
 
-#: includes/agent-functions.php:199
+#: includes/agent-functions.php:200
 msgid "Provide a url for the agents Youtube profile"
 msgstr ""
 
-#: includes/agent-functions.php:210
+#: includes/agent-functions.php:211
 msgid "Instagram"
 msgstr ""
 
-#: includes/agent-functions.php:211
+#: includes/agent-functions.php:212
 msgid "Provide a url for the agents Instagram profile"
 msgstr ""
 
-#: includes/agent-functions.php:228
+#: includes/agent-functions.php:229
 msgid "Agent Contact Form Source:"
 msgstr ""
 
-#: includes/agent-functions.php:230
+#: includes/agent-functions.php:231
 msgid "Default Theme Form"
 msgstr ""
 
-#: includes/agent-functions.php:231
+#: includes/agent-functions.php:232
 msgid "Contact Form 7"
 msgstr ""
 
-#: includes/agent-functions.php:239
+#: includes/agent-functions.php:240
 msgid "Contact From 7 ID"
 msgstr ""
 
-#: includes/agent-functions.php:240
+#: includes/agent-functions.php:241
 msgid "Provide the ID of the contact form you would like displayed"
 msgstr ""
 
-#: includes/agent-functions.php:340
+#: includes/agent-functions.php:351
 msgid "Message"
 msgstr ""
 
-#: includes/agent-functions.php:352
+#: includes/agent-functions.php:363
 msgid "Forgot your name!"
 msgstr ""
 
-#: includes/agent-functions.php:360
+#: includes/agent-functions.php:371
 msgid "Forgot to enter in your e-mail address."
 msgstr ""
 
-#: includes/agent-functions.php:371
+#: includes/agent-functions.php:382
 msgid "You forgot to enter a message!"
 msgstr ""
 
-#: includes/agent-functions.php:412 includes/property-submit-functions.php:674
-#: includes/shortcodes.php:107
+#: includes/agent-functions.php:421 includes/property-submit-functions.php:674
+#: includes/shortcodes.php:110
 msgid "Name"
 msgstr ""
 
+#: includes/custom_widgets/list_agents_widget.php:12
+msgid "Display a list of agents."
+msgstr ""
+
+#: includes/custom_widgets/list_agents_widget.php:15
+msgid "(NightShift) List Agents"
+msgstr ""
+
+#: includes/custom_widgets/list_agents_widget.php:100
+#: includes/shortcodes.php:399 includes/templates/loop_agents.php:85
+msgid "Sorry, no agents were found."
+msgstr ""
+
+#: includes/custom_widgets/list_agents_widget.php:128
+#: includes/custom_widgets/list_properties_widget.php:121
+#: includes/custom_widgets/list_property_categories_widget.php:112
+#: includes/custom_widgets/mortgage_widget.php:51
+#: includes/custom_widgets/property_filter_widget.php:64
+#: includes/property-functions.php:459
+#: includes/property-submit-functions.php:497 ns-real-estate.php:95
+#: ns-real-estate.php:149
+msgid "Title:"
+msgstr ""
+
+#: includes/custom_widgets/list_agents_widget.php:133
+msgid "Number of Agents:"
+msgstr ""
+
+#: includes/custom_widgets/list_agents_widget.php:138
+#: includes/custom_widgets/list_properties_widget.php:173
+msgid "Filter By:"
+msgstr ""
+
+#: includes/custom_widgets/list_agents_widget.php:140
+#: includes/custom_widgets/list_properties_widget.php:175
+msgid "Most Recent"
+msgstr ""
+
+#: includes/custom_widgets/list_agents_widget.php:141
+msgid "Number of Assigned Properties"
+msgstr ""
+
+#: includes/custom_widgets/list_properties_widget.php:12
+msgid "Display a list of properties."
+msgstr ""
+
+#: includes/custom_widgets/list_properties_widget.php:15
+msgid "(NightShift) List Properties"
+msgstr ""
+
+#: includes/custom_widgets/list_properties_widget.php:88
+#: includes/shortcodes.php:234 includes/templates/loop_agent_single.php:171
+#: includes/templates/loop_properties.php:280
+msgid "Sorry, no properties were found."
+msgstr ""
+
+#: includes/custom_widgets/list_properties_widget.php:126
+msgid "Number of Properties:"
+msgstr ""
+
+#: includes/custom_widgets/list_properties_widget.php:131
+msgid "Property Status:"
+msgstr ""
+
+#: includes/custom_widgets/list_properties_widget.php:133
+#: includes/custom_widgets/list_properties_widget.php:147
+#: includes/custom_widgets/list_properties_widget.php:161
+#: includes/templates/property-filter.php:91
+#: includes/templates/property-filter.php:99
+msgid "All"
+msgstr ""
+
+#: includes/custom_widgets/list_properties_widget.php:145
+msgid "Property Location:"
+msgstr ""
+
+#: includes/custom_widgets/list_properties_widget.php:159
+#: includes/templates/loop_property_single.php:108
+msgid "Property Type:"
+msgstr ""
+
+#: includes/custom_widgets/list_properties_widget.php:176
+#: includes/shortcodes.php:79 includes/templates/loop_property_grid.php:38
+#: includes/templates/loop_property_single.php:103
+msgid "Featured"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:12
+msgid "Display a list of property categories."
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:15
+msgid "(NightShift) List Property Categories"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:117
+msgid "Number of Categories:"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:122
+msgid "Listing Layout:"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:124
+msgid "Tile"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:125
+msgid "List"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:130
+msgid "Category:"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:132
 #: includes/filter-functions.php:9 includes/filter-functions.php:10
-#: includes/property-functions.php:679 includes/property-functions.php:680
-#: includes/property-submit-functions.php:455 includes/shortcodes.php:53
-#: includes/shortcodes.php:86
+#: includes/property-functions.php:716 includes/property-functions.php:717
+#: includes/property-submit-functions.php:455 includes/shortcodes.php:56
+#: includes/shortcodes.php:89
 msgid "Property Type"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:133
+#: includes/filter-functions.php:17 includes/filter-functions.php:18
+#: includes/property-functions.php:747 includes/property-functions.php:748
+#: includes/property-functions.php:766 includes/shortcodes.php:45
+#: includes/shortcodes.php:90
+msgid "Property Status"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:134
+#: includes/filter-functions.php:25 includes/filter-functions.php:26
+#: includes/property-functions.php:778 includes/property-functions.php:779
+#: includes/property-functions.php:797
+#: includes/property-submit-functions.php:385 includes/shortcodes.php:67
+#: includes/shortcodes.php:91
+msgid "Property Location"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:135
+msgid "Property Amenities"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:140
+msgid "Order:"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:142
+#: includes/shortcodes.php:117
+msgid "Descending"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:143
+#: includes/shortcodes.php:118
+msgid "Ascending"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:148
+msgid "Order By:"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:150
+#: includes/shortcodes.php:108
+msgid "Count"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:151
+#: includes/filter-functions.php:398 includes/property-functions.php:853
+#: includes/shortcodes.php:109
+msgid "Date"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:152
+#: includes/templates/loop_agent_single.php:77
+#: includes/templates/my_properties.php:16
+msgid "Title"
+msgstr ""
+
+#: includes/custom_widgets/list_property_categories_widget.php:158
+msgid "Show Count"
+msgstr ""
+
+#: includes/custom_widgets/mortgage_widget.php:12
+msgid "Display a mortgage calculator."
+msgstr ""
+
+#: includes/custom_widgets/mortgage_widget.php:15
+msgid "(NightShift) Mortgage Calculator"
+msgstr ""
+
+#: includes/custom_widgets/property_filter_widget.php:13
+msgid "Display property filter."
+msgstr ""
+
+#: includes/custom_widgets/property_filter_widget.php:16
+msgid "(NightShift) Property Filter"
 msgstr ""
 
 #: includes/filter-functions.php:11 includes/filter-functions.php:19
 #: includes/filter-functions.php:27 includes/filter-functions.php:42
-#: includes/filter-functions.php:50 includes/shortcodes.php:44
-#: includes/shortcodes.php:55 includes/shortcodes.php:66
+#: includes/filter-functions.php:50 includes/shortcodes.php:47
+#: includes/shortcodes.php:58 includes/shortcodes.php:69
+#: includes/templates/property-filter-minimal.php:200
+#: includes/templates/property-filter-minimal.php:217
 msgid "Any"
-msgstr ""
-
-#: includes/filter-functions.php:17 includes/filter-functions.php:18
-#: includes/property-functions.php:710 includes/property-functions.php:711
-#: includes/property-functions.php:729 includes/shortcodes.php:42
-#: includes/shortcodes.php:87
-msgid "Property Status"
-msgstr ""
-
-#: includes/filter-functions.php:25 includes/filter-functions.php:26
-#: includes/property-functions.php:741 includes/property-functions.php:742
-#: includes/property-functions.php:760
-#: includes/property-submit-functions.php:385 includes/shortcodes.php:64
-#: includes/shortcodes.php:88
-msgid "Property Location"
 msgstr ""
 
 #: includes/filter-functions.php:33 includes/filter-functions.php:34
@@ -777,19 +1115,20 @@ msgid "Price Range"
 msgstr ""
 
 #: includes/filter-functions.php:40 includes/filter-functions.php:41
-#: includes/property-functions.php:302
+#: includes/property-functions.php:339
 #: includes/property-submit-functions.php:338
 msgid "Bedrooms"
 msgstr ""
 
 #: includes/filter-functions.php:48 includes/filter-functions.php:49
-#: includes/property-functions.php:312
+#: includes/property-functions.php:349
 #: includes/property-submit-functions.php:343
+#: includes/templates/loop_property_single.php:232
 msgid "Bathrooms"
 msgstr ""
 
 #: includes/filter-functions.php:56 includes/filter-functions.php:57
-#: includes/property-functions.php:332
+#: includes/property-functions.php:369
 #: includes/property-submit-functions.php:354
 msgid "Area"
 msgstr ""
@@ -819,6 +1158,8 @@ msgid "Edit Property Filter"
 msgstr ""
 
 #: includes/filter-functions.php:116
+#: includes/templates/property-filter-minimal.php:26
+#: includes/templates/property-filter.php:26
 msgid "Find Properties"
 msgstr ""
 
@@ -906,7 +1247,7 @@ msgstr ""
 msgid "Add Custom Field to Filter"
 msgstr ""
 
-#: includes/filter-functions.php:294 includes/property-functions.php:394
+#: includes/filter-functions.php:294 includes/property-functions.php:431
 msgid "Manage custom fields"
 msgstr ""
 
@@ -914,14 +1255,10 @@ msgstr ""
 msgid "Insert Field"
 msgstr ""
 
-#: includes/filter-functions.php:396 includes/property-functions.php:187
-#: includes/property-functions.php:809
+#: includes/filter-functions.php:396 includes/property-functions.php:224
+#: includes/property-functions.php:846 includes/templates/loop_agent.php:50
+#: includes/templates/loop_property_single.php:429
 msgid "Property"
-msgstr ""
-
-#: includes/filter-functions.php:398 includes/property-functions.php:816
-#: includes/shortcodes.php:106
-msgid "Date"
 msgstr ""
 
 #: includes/plugins/class-tgm-plugin-activation.php:334
@@ -1177,7 +1514,7 @@ msgid "Source"
 msgstr ""
 
 #: includes/plugins/class-tgm-plugin-activation.php:2642
-#: includes/property-functions.php:812
+#: includes/property-functions.php:849 includes/templates/my_properties.php:17
 msgid "Type"
 msgstr ""
 
@@ -1186,7 +1523,7 @@ msgid "Version"
 msgstr ""
 
 #: includes/plugins/class-tgm-plugin-activation.php:2647
-#: includes/property-functions.php:813
+#: includes/property-functions.php:850 includes/templates/my_properties.php:18
 msgid "Status"
 msgstr ""
 
@@ -1351,466 +1688,461 @@ msgstr ""
 msgid "There is no changelog available."
 msgstr ""
 
-#: includes/property-functions.php:188
+#: includes/property-functions.php:225
 msgid "Add New Property"
 msgstr ""
 
-#: includes/property-functions.php:189
+#: includes/property-functions.php:226
 msgid "Search Properties"
 msgstr ""
 
-#: includes/property-functions.php:190
+#: includes/property-functions.php:227
 msgid "Edit Property"
 msgstr ""
 
-#: includes/property-functions.php:241 includes/property-functions.php:452
+#: includes/property-functions.php:278 includes/property-functions.php:489
 #: includes/property-submit-functions.php:304
 #: includes/property-submit-functions.php:619
 msgid "Map"
 msgstr ""
 
-#: includes/property-functions.php:243 includes/property-functions.php:503
+#: includes/property-functions.php:280 includes/property-functions.php:540
 #: includes/property-submit-functions.php:305
 #: includes/property-submit-functions.php:635
 msgid "Owner Info"
 msgstr ""
 
-#: includes/property-functions.php:257
+#: includes/property-functions.php:294
+#: includes/templates/loop_property_single.php:107
 msgid "Property ID"
 msgstr ""
 
-#: includes/property-functions.php:264
+#: includes/property-functions.php:301
 msgid "Featured Property"
 msgstr ""
 
-#: includes/property-functions.php:272
+#: includes/property-functions.php:309
 msgid "Street Address"
 msgstr ""
 
-#: includes/property-functions.php:273
+#: includes/property-functions.php:310
 msgid "Provide the address for the property"
 msgstr ""
 
-#: includes/property-functions.php:282 includes/property-functions.php:814
+#: includes/property-functions.php:319 includes/property-functions.php:851
 msgid "Price"
 msgstr ""
 
-#: includes/property-functions.php:283
+#: includes/property-functions.php:320
 msgid "Use only numbers. Do not include commas or dollar sign (ex.- 250000)"
 msgstr ""
 
-#: includes/property-functions.php:292
+#: includes/property-functions.php:329
 #: includes/property-submit-functions.php:332
 msgid "Price Postfix"
 msgstr ""
 
-#: includes/property-functions.php:293
+#: includes/property-functions.php:330
 msgid "Provide the text displayed after the price (ex.- Per Month)"
 msgstr ""
 
-#: includes/property-functions.php:303
+#: includes/property-functions.php:340
 msgid "Provide the number of bedrooms"
 msgstr ""
 
-#: includes/property-functions.php:313
+#: includes/property-functions.php:350
 msgid "Provide the number of bathrooms"
 msgstr ""
 
-#: includes/property-functions.php:322
+#: includes/property-functions.php:359
 #: includes/property-submit-functions.php:348
+#: includes/templates/loop_property_single.php:118
 msgid "Garages"
 msgstr ""
 
-#: includes/property-functions.php:323
+#: includes/property-functions.php:360
 msgid "Provide the number of garages"
 msgstr ""
 
-#: includes/property-functions.php:333
+#: includes/property-functions.php:370
 msgid "Provide the area. Use only numbers and decimals, do not include commas."
 msgstr ""
 
-#: includes/property-functions.php:342
+#: includes/property-functions.php:379
 #: includes/property-submit-functions.php:359
 msgid "Area Postfix"
 msgstr ""
 
-#: includes/property-functions.php:343
+#: includes/property-functions.php:380
 msgid "Provide the text to display directly after the area (ex. - Sq Ft)"
 msgstr ""
 
-#: includes/property-functions.php:350
+#: includes/property-functions.php:387
 msgid "Custom Fields"
 msgstr ""
 
-#: includes/property-functions.php:371
+#: includes/property-functions.php:408
 #: includes/property-submit-functions.php:538
 #: includes/property-submit-functions.php:658
+#: includes/templates/property-filter.php:241
+#: includes/templates/property-filter.php:409
 msgid "Select an option..."
 msgstr ""
 
-#: includes/property-functions.php:422
-#: includes/property-submit-functions.php:497 rype-real-estate.php:91
-#: rype-real-estate.php:141
-msgid "Title:"
-msgstr ""
-
-#: includes/property-functions.php:423
-#: includes/property-submit-functions.php:498 rype-real-estate.php:92
-#: rype-real-estate.php:142
+#: includes/property-functions.php:460
+#: includes/property-submit-functions.php:498 ns-real-estate.php:96
+#: ns-real-estate.php:150
 msgid "Size:"
 msgstr ""
 
-#: includes/property-functions.php:424
+#: includes/property-functions.php:461
 #: includes/property-submit-functions.php:499
 msgid "Rooms:"
 msgstr ""
 
-#: includes/property-functions.php:425
-#: includes/property-submit-functions.php:500 rype-real-estate.php:94
-#: rype-real-estate.php:144
+#: includes/property-functions.php:462
+#: includes/property-submit-functions.php:500 ns-real-estate.php:98
+#: ns-real-estate.php:152
 msgid "Bathrooms:"
 msgstr ""
 
-#: includes/property-functions.php:428
-#: includes/property-submit-functions.php:503 rype-real-estate.php:96
-#: rype-real-estate.php:146
+#: includes/property-functions.php:465
+#: includes/property-submit-functions.php:503 ns-real-estate.php:100
+#: ns-real-estate.php:154
 msgid "Description:"
 msgstr ""
 
-#: includes/property-functions.php:431 rype-real-estate.php:95
-#: rype-real-estate.php:145
+#: includes/property-functions.php:468 ns-real-estate.php:99
+#: ns-real-estate.php:153
 msgid "Image:"
 msgstr ""
 
-#: includes/property-functions.php:433 includes/property-functions.php:492
-#: includes/property-functions.php:954 rype-real-estate.php:90
-msgid "Upload Image"
-msgstr ""
-
-#: includes/property-functions.php:443
+#: includes/property-functions.php:480
 msgid "No floor plans were found."
 msgstr ""
 
-#: includes/property-functions.php:444
+#: includes/property-functions.php:481
 #: includes/property-submit-functions.php:518
 msgid "Create New Floor Plan"
 msgstr ""
 
-#: includes/property-functions.php:458
+#: includes/property-functions.php:495
 #: includes/property-submit-functions.php:623
 msgid "Latitude"
 msgstr ""
 
-#: includes/property-functions.php:465
+#: includes/property-functions.php:502
 #: includes/property-submit-functions.php:627
 msgid "Longitude"
 msgstr ""
 
-#: includes/property-functions.php:482
+#: includes/property-functions.php:519
 #: includes/property-submit-functions.php:365
 msgid "Video URL"
 msgstr ""
 
-#: includes/property-functions.php:489
+#: includes/property-functions.php:526
 #: includes/property-submit-functions.php:370
 msgid "Video Cover Image"
 msgstr ""
 
-#: includes/property-functions.php:507
+#: includes/property-functions.php:544
 msgid "What to display for owner information?"
 msgstr ""
 
-#: includes/property-functions.php:509
+#: includes/property-functions.php:546
 #: includes/property-submit-functions.php:642
 msgid "None"
 msgstr ""
 
-#: includes/property-functions.php:510
+#: includes/property-functions.php:547
 msgid "Author Info"
 msgstr ""
 
-#: includes/property-functions.php:511
+#: includes/property-functions.php:548
 msgid "Agent Info (select agent below)"
 msgstr ""
 
-#: includes/property-functions.php:512
+#: includes/property-functions.php:549
 msgid "Custom Info (fill out details below)"
 msgstr ""
 
-#: includes/property-functions.php:526
+#: includes/property-functions.php:563
 #: includes/property-submit-functions.php:655
 msgid "Select Agent"
 msgstr ""
 
-#: includes/property-functions.php:545
+#: includes/property-functions.php:582
 #: includes/property-submit-functions.php:673
 msgid "Custom Owner/Agent Details"
 msgstr ""
 
-#: includes/property-functions.php:547
+#: includes/property-functions.php:584
 msgid "Name:"
 msgstr ""
 
-#: includes/property-functions.php:548
+#: includes/property-functions.php:585
 msgid "Email:"
 msgstr ""
 
-#: includes/property-functions.php:549
+#: includes/property-functions.php:586
 msgid "Phone:"
 msgstr ""
 
-#: includes/property-functions.php:550
+#: includes/property-functions.php:587
 msgid "Website:"
 msgstr ""
 
-#: includes/property-functions.php:681
+#: includes/property-functions.php:718
 msgid "Search Property Types"
 msgstr ""
 
-#: includes/property-functions.php:682
+#: includes/property-functions.php:719
 msgid "Popular Property Types"
 msgstr ""
 
-#: includes/property-functions.php:683
+#: includes/property-functions.php:720
 msgid "All Property Types"
 msgstr ""
 
-#: includes/property-functions.php:684
+#: includes/property-functions.php:721
 msgid "Parent Property Type"
 msgstr ""
 
-#: includes/property-functions.php:685
+#: includes/property-functions.php:722
 msgid "Edit Property Type"
 msgstr ""
 
-#: includes/property-functions.php:686
+#: includes/property-functions.php:723
 msgid "Update Property Type"
 msgstr ""
 
-#: includes/property-functions.php:687
+#: includes/property-functions.php:724
 msgid "Add New Property Type"
 msgstr ""
 
-#: includes/property-functions.php:688
+#: includes/property-functions.php:725
 msgid "New Property Type"
 msgstr ""
 
-#: includes/property-functions.php:689
+#: includes/property-functions.php:726
 msgid "Separate property types with commas"
 msgstr ""
 
-#: includes/property-functions.php:690
+#: includes/property-functions.php:727
 msgid "Add or remove property types"
 msgstr ""
 
-#: includes/property-functions.php:691
+#: includes/property-functions.php:728
 msgid "Choose from most used property types"
 msgstr ""
 
-#: includes/property-functions.php:698
+#: includes/property-functions.php:735
 msgid "Property Types"
 msgstr ""
 
-#: includes/property-functions.php:712
+#: includes/property-functions.php:749
 msgid "Search Property Statuses"
 msgstr ""
 
-#: includes/property-functions.php:713
+#: includes/property-functions.php:750
 msgid "Popular Property Statuses"
 msgstr ""
 
-#: includes/property-functions.php:714
+#: includes/property-functions.php:751
 msgid "All Property Statuses"
 msgstr ""
 
-#: includes/property-functions.php:715
+#: includes/property-functions.php:752
 msgid "Parent Property Status"
 msgstr ""
 
-#: includes/property-functions.php:716
+#: includes/property-functions.php:753
 msgid "Edit Property Status"
 msgstr ""
 
-#: includes/property-functions.php:717
+#: includes/property-functions.php:754
 msgid "Update Property Status"
 msgstr ""
 
-#: includes/property-functions.php:718
+#: includes/property-functions.php:755
 msgid "Add New Property Status"
 msgstr ""
 
-#: includes/property-functions.php:719
+#: includes/property-functions.php:756
 msgid "New Property Status"
 msgstr ""
 
-#: includes/property-functions.php:720
+#: includes/property-functions.php:757
 msgid "Separate property statuses with commas"
 msgstr ""
 
-#: includes/property-functions.php:721
+#: includes/property-functions.php:758
 msgid "Add or remove property statuses"
 msgstr ""
 
-#: includes/property-functions.php:722
+#: includes/property-functions.php:759
 msgid "Choose from most used property statuses"
 msgstr ""
 
-#: includes/property-functions.php:743
+#: includes/property-functions.php:780
 msgid "Search Property Locations"
 msgstr ""
 
-#: includes/property-functions.php:744
+#: includes/property-functions.php:781
 msgid "Popular Property Locations"
 msgstr ""
 
-#: includes/property-functions.php:745
+#: includes/property-functions.php:782
 msgid "All Property Locations"
 msgstr ""
 
-#: includes/property-functions.php:746
+#: includes/property-functions.php:783
 msgid "Parent Property Location"
 msgstr ""
 
-#: includes/property-functions.php:747
+#: includes/property-functions.php:784
 msgid "Edit Property Location"
 msgstr ""
 
-#: includes/property-functions.php:748
+#: includes/property-functions.php:785
 msgid "Update Property Location"
 msgstr ""
 
-#: includes/property-functions.php:749
+#: includes/property-functions.php:786
 msgid "Add New Property Location"
 msgstr ""
 
-#: includes/property-functions.php:750
+#: includes/property-functions.php:787
 msgid "New Property Location"
 msgstr ""
 
-#: includes/property-functions.php:751
+#: includes/property-functions.php:788
 msgid "Separate property locations with commas"
 msgstr ""
 
-#: includes/property-functions.php:752
+#: includes/property-functions.php:789
 msgid "Add or remove property locations"
 msgstr ""
 
-#: includes/property-functions.php:753
+#: includes/property-functions.php:790
 msgid "Choose from most used property locations"
 msgstr ""
 
-#: includes/property-functions.php:773
+#: includes/property-functions.php:810
 msgid "Amenity"
 msgstr ""
 
-#: includes/property-functions.php:774
+#: includes/property-functions.php:811
 msgid "Search Amenities"
 msgstr ""
 
-#: includes/property-functions.php:775
+#: includes/property-functions.php:812
 msgid "Popular Amenities"
 msgstr ""
 
-#: includes/property-functions.php:776
+#: includes/property-functions.php:813
 msgid "All Amenities"
 msgstr ""
 
-#: includes/property-functions.php:777
+#: includes/property-functions.php:814
 msgid "Parent Amenity"
 msgstr ""
 
-#: includes/property-functions.php:778
+#: includes/property-functions.php:815
 msgid "Edit Amenity"
 msgstr ""
 
-#: includes/property-functions.php:779
+#: includes/property-functions.php:816
 msgid "Update Amenity"
 msgstr ""
 
-#: includes/property-functions.php:780
+#: includes/property-functions.php:817
 msgid "Add New Amenity"
 msgstr ""
 
-#: includes/property-functions.php:781
+#: includes/property-functions.php:818
 msgid "New Amenity"
 msgstr ""
 
-#: includes/property-functions.php:782
+#: includes/property-functions.php:819
 msgid "Separate amenities with commas"
 msgstr ""
 
-#: includes/property-functions.php:783
+#: includes/property-functions.php:820
 msgid "Add or remove amenities"
 msgstr ""
 
-#: includes/property-functions.php:784
+#: includes/property-functions.php:821
 msgid "Choose from most used amenities"
 msgstr ""
 
-#: includes/property-functions.php:810
+#: includes/property-functions.php:847
 #: includes/property-submit-functions.php:506
+#: includes/templates/my_properties.php:15
 msgid "Image"
 msgstr ""
 
-#: includes/property-functions.php:815
+#: includes/property-functions.php:852
 msgid "Author"
 msgstr ""
 
-#: includes/property-functions.php:950
+#: includes/property-functions.php:975
 msgid "Category Image Url"
 msgstr ""
 
-#: includes/property-functions.php:956
+#: includes/property-functions.php:981
 msgid "Image for Term, use full url"
 msgstr ""
 
-#: includes/property-functions.php:969
+#: includes/property-functions.php:994
 msgid "Price Range Settings"
 msgstr ""
 
-#: includes/property-functions.php:970
+#: includes/property-functions.php:995
 msgid ""
 "Settings here will override the defaults set in the theme options for this "
 "term only."
 msgstr ""
 
-#: includes/property-functions.php:974
+#: includes/property-functions.php:999
 msgid "Minimum"
 msgstr ""
 
-#: includes/property-functions.php:978
+#: includes/property-functions.php:1003
 msgid "Maximum"
 msgstr ""
 
-#: includes/property-functions.php:982
+#: includes/property-functions.php:1007
 msgid "Minimum Start"
 msgstr ""
 
-#: includes/property-functions.php:986
+#: includes/property-functions.php:1011
 msgid "Maximum Start"
 msgstr ""
 
-#: includes/property-functions.php:1033
+#: includes/property-functions.php:1068
 msgid "Total Properties"
 msgstr ""
 
-#: includes/property-functions.php:1038
+#: includes/property-functions.php:1073
 msgid "Pending Properties"
 msgstr ""
 
-#: includes/property-functions.php:1043
+#: includes/property-functions.php:1083
 msgid "Recent Properties"
 msgstr ""
 
-#: includes/property-functions.php:1051
+#: includes/property-functions.php:1098
 msgid "Sorry, no recent properties were found."
 msgstr ""
 
-#: includes/property-functions.php:1070
+#: includes/property-functions.php:1120
 msgid "Properties Sidebar"
 msgstr ""
 
-#: includes/property-submit-functions.php:9
+#: includes/property-submit-functions.php:9 includes/shortcodes.php:16
+#: includes/shortcodes.php:137
 msgid "My Properties"
 msgstr ""
 
@@ -1909,17 +2241,17 @@ msgstr ""
 
 #: includes/property-submit-functions.php:494
 #: includes/property-submit-functions.php:592
-#: includes/property-submit-functions.php:607 rype-real-estate.php:87
-#: rype-real-estate.php:129
+#: includes/property-submit-functions.php:607 ns-real-estate.php:91
+#: ns-real-estate.php:137
 msgid "Delete"
 msgstr ""
 
-#: includes/property-submit-functions.php:497 rype-real-estate.php:97
-#: rype-real-estate.php:147
+#: includes/property-submit-functions.php:497 ns-real-estate.php:101
+#: ns-real-estate.php:155
 msgid "New Floor Plan"
 msgstr ""
 
-#: includes/property-submit-functions.php:508 rype-real-estate.php:148
+#: includes/property-submit-functions.php:508 ns-real-estate.php:156
 msgid "Provide the absolute url to a hosted image."
 msgstr ""
 
@@ -1956,6 +2288,7 @@ msgid "Custom"
 msgstr ""
 
 #: includes/property-submit-functions.php:666
+#: includes/templates/loop_property_single.php:481
 msgid "Sorry, no agents have been posted yet."
 msgstr ""
 
@@ -1992,159 +2325,266 @@ msgstr ""
 msgid "Choose a shortcode to insert from the list below:"
 msgstr ""
 
-#: includes/shortcodes.php:13 includes/shortcodes.php:21
+#: includes/shortcodes.php:13 includes/shortcodes.php:24
 msgid "List Properties"
 msgstr ""
 
-#: includes/shortcodes.php:14 includes/shortcodes.php:82
+#: includes/shortcodes.php:14 includes/shortcodes.php:85
 msgid "List Property Taxonomy"
 msgstr ""
 
-#: includes/shortcodes.php:15 includes/shortcodes.php:129
+#: includes/shortcodes.php:15 includes/shortcodes.php:132
+msgid "Submit Property Form"
+msgstr ""
+
+#: includes/shortcodes.php:18 includes/shortcodes.php:161
 msgid "List Agents"
 msgstr ""
 
-#: includes/shortcodes.php:18
+#: includes/shortcodes.php:21
 msgid "Go Back"
 msgstr ""
 
-#: includes/shortcodes.php:23 includes/shortcodes.php:92
-#: includes/shortcodes.php:131
+#: includes/shortcodes.php:26 includes/shortcodes.php:95
+#: includes/shortcodes.php:163
 msgid "Show Posts"
 msgstr ""
 
-#: includes/shortcodes.php:28
+#: includes/shortcodes.php:31
 msgid "Show Header"
 msgstr ""
 
-#: includes/shortcodes.php:32 includes/shortcodes.php:136
+#: includes/shortcodes.php:35 includes/shortcodes.php:168
 msgid "Show Pagination"
 msgstr ""
 
-#: includes/shortcodes.php:35 includes/shortcodes.php:96
+#: includes/shortcodes.php:38 includes/shortcodes.php:99
 msgid "Layout"
 msgstr ""
 
-#: includes/shortcodes.php:76
-msgid "Featured"
-msgstr ""
-
-#: includes/shortcodes.php:78 includes/shortcodes.php:125
-#: includes/shortcodes.php:138
+#: includes/shortcodes.php:81 includes/shortcodes.php:128
+#: includes/shortcodes.php:133 includes/shortcodes.php:138
+#: includes/shortcodes.php:157 includes/shortcodes.php:170
 msgid "Insert"
 msgstr ""
 
-#: includes/shortcodes.php:84
+#: includes/shortcodes.php:87
 msgid "Taxonomy"
 msgstr ""
 
-#: includes/shortcodes.php:99
+#: includes/shortcodes.php:102
 msgid "Carousel"
 msgstr ""
 
-#: includes/shortcodes.php:103
+#: includes/shortcodes.php:106
 msgid "Order By"
 msgstr ""
 
-#: includes/shortcodes.php:105
-msgid "Count"
-msgstr ""
-
-#: includes/shortcodes.php:108
+#: includes/shortcodes.php:111
 msgid "Random"
 msgstr ""
 
-#: includes/shortcodes.php:112
+#: includes/shortcodes.php:115
 msgid "Order Direction"
 msgstr ""
 
-#: includes/shortcodes.php:114
-msgid "Descending"
-msgstr ""
-
-#: includes/shortcodes.php:115
-msgid "Ascending"
-msgstr ""
-
-#: includes/shortcodes.php:119
+#: includes/shortcodes.php:122
 msgid "Hide Empty"
 msgstr ""
 
-#: includes/shortcodes.php:121
+#: includes/shortcodes.php:124
 msgid "True"
 msgstr ""
 
-#: includes/shortcodes.php:122
+#: includes/shortcodes.php:125
 msgid "False"
 msgstr ""
 
-#: includes/shortcodes.php:315
-msgid "Sorry, no agents were found."
+#: includes/shortcodes.php:144
+msgid "Select Filter"
 msgstr ""
 
-#: rype-real-estate.php:58
+#: includes/templates/loop_agent_single.php:65
+msgid "Assigned Property"
+msgstr ""
+
+#: includes/templates/loop_agent_single.php:65
+msgid "Assigned Properties"
+msgstr ""
+
+#: includes/templates/loop_agent_single.php:79
+msgid "Mobile"
+msgstr ""
+
+#: includes/templates/loop_agent_single.php:80
+msgid "Office"
+msgstr ""
+
+#: includes/templates/loop_agent_single.php:83
+msgid "Message Agent"
+msgstr ""
+
+#: includes/templates/loop_agent_single.php:138
+#: includes/templates/loop_property_single.php:471
+msgid "Please install required plugins to display the contact form."
+msgstr ""
+
+#: includes/templates/loop_agents.php:65
+#: includes/templates/loop_properties.php:251
+#: includes/templates/my_properties.php:76
+msgid "&raquo; Previous"
+msgstr ""
+
+#: includes/templates/loop_agents.php:66
+#: includes/templates/loop_properties.php:252
+#: includes/templates/my_properties.php:77
+msgid "Next &raquo;"
+msgstr ""
+
+#: includes/templates/loop_agents.php:88
 #, php-format
-msgid "Rype Real Estate requires the following plugin: %1$s."
+msgid ""
+"<em><b><a href=\"%s\" target=\"_blank\"> Click here</a> to add a new agent.</"
+"b></em>"
 msgstr ""
 
-#: rype-real-estate.php:93 rype-real-estate.php:143
+#: includes/templates/loop_properties.php:283
+#, php-format
+msgid ""
+"<em><b><a href=\"%s\" target=\"_blank\"> Click here</a> to add a new "
+"property.</b></em>"
+msgstr ""
+
+#: includes/templates/loop_property_grid.php:60
+msgid " ago"
+msgstr ""
+
+#: includes/templates/loop_property_grid.php:82
+#: includes/templates/loop_property_single.php:115
+msgid "Beds"
+msgstr ""
+
+#: includes/templates/loop_property_grid.php:83
+#: includes/templates/loop_property_single.php:116
+msgid "Baths"
+msgstr ""
+
+#: includes/templates/loop_property_single.php:230
+msgid "Size"
+msgstr ""
+
+#: includes/templates/loop_property_single.php:231
+msgid "Rooms"
+msgstr ""
+
+#: includes/templates/loop_property_single.php:326
+msgid "View More Details"
+msgstr ""
+
+#: includes/templates/loop_property_single.php:536
+msgid "Sorry, no related properties were found."
+msgstr ""
+
+#: includes/templates/my_properties.php:19
+msgid "Date Created"
+msgstr ""
+
+#: includes/templates/my_properties.php:20
+msgid "Actions"
+msgstr ""
+
+#: includes/templates/my_properties.php:52
+msgid "EDIT"
+msgstr ""
+
+#: includes/templates/my_properties.php:56
+msgid "REMOVE"
+msgstr ""
+
+#: includes/templates/my_properties.php:59
+msgid "VIEW"
+msgstr ""
+
+#: includes/templates/my_properties.php:88
+msgid "You have not posted any properties."
+msgstr ""
+
+#: includes/templates/property-filter-minimal.php:109
+#: includes/templates/property-filter-minimal.php:266
+msgid "Advanced"
+msgstr ""
+
+#: includes/templates/property-listing-header.php:20
+msgid "properties found"
+msgstr ""
+
+#: includes/templates/property-listing-header.php:21
+msgid "Clear Filters"
+msgstr ""
+
+#: ns-real-estate.php:59
+#, php-format
+msgid "NightShift Real Estate requires the following plugin: %1$s."
+msgstr ""
+
+#: ns-real-estate.php:97 ns-real-estate.php:151
 msgid "Bedrooms:"
 msgstr ""
 
-#: rype-real-estate.php:99
+#: ns-real-estate.php:103
 msgid "Option name"
 msgstr ""
 
-#: rype-real-estate.php:100
+#: ns-real-estate.php:104
 msgid "A custom field with the same name is already in use!"
 msgstr ""
 
-#: rype-real-estate.php:107
+#: ns-real-estate.php:111
 msgid ""
 "Removing this field will remove it from all properties. Are you sure you "
 "want to proceed?"
 msgstr ""
 
-#: rype-real-estate.php:130
+#: ns-real-estate.php:138
 msgid "Purchase Price"
 msgstr ""
 
-#: rype-real-estate.php:131
+#: ns-real-estate.php:139
 msgid "Down Payment"
 msgstr ""
 
-#: rype-real-estate.php:132
+#: ns-real-estate.php:140
 msgid "Percent"
 msgstr ""
 
-#: rype-real-estate.php:133
+#: ns-real-estate.php:141
 msgid "Fixed"
 msgstr ""
 
-#: rype-real-estate.php:134
+#: ns-real-estate.php:142
 msgid "Rate"
 msgstr ""
 
-#: rype-real-estate.php:135
+#: ns-real-estate.php:143
 msgid "Term"
 msgstr ""
 
-#: rype-real-estate.php:136
+#: ns-real-estate.php:144
 msgid "Years"
 msgstr ""
 
-#: rype-real-estate.php:137
+#: ns-real-estate.php:145
 msgid "Months"
 msgstr ""
 
-#: rype-real-estate.php:138
+#: ns-real-estate.php:146
 msgid "Calculate"
 msgstr ""
 
-#: rype-real-estate.php:139
+#: ns-real-estate.php:147
 msgid "Your monthly payment:"
 msgstr ""
 
-#: rype-real-estate.php:140
+#: ns-real-estate.php:148
 msgid "This field is required"
 msgstr ""

@@ -66,8 +66,8 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
                         endif; 
 
                         if($filter == 'num_properties') {
-                            function rype_real_estate_sortByCount($a, $b) { return $b['count'] - $a['count']; }
-                            usort($agent_counts, 'rype_real_estate_sortByCount');
+                            function ns_real_estate_sortByCount($a, $b) { return $b['count'] - $a['count']; }
+                            usort($agent_counts, 'ns_real_estate_sortByCount');
                         } 
 
                         $count = 1;
