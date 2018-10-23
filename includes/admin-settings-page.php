@@ -734,7 +734,7 @@ function ns_real_estate_settings_page_content() {
 
                     <ul class="sortable-list agent-detail-items-list">
                         <?php
-                        $agent_detail_items_default = rype_real_estate_load_default_agent_detail_items();
+                        $agent_detail_items_default = ns_real_estate_load_default_agent_detail_items();
                         $agent_detail_items = get_option('ns_agent_detail_items', $agent_detail_items_default);
                         $count = 0;
 
@@ -956,7 +956,7 @@ function ns_real_estate_settings_page_content() {
         </table>
 
         <!-- Hook in for Add-Ons -->
-        <?php do_action( 'rype_real_estate_after_member_settings'); ?>
+        <?php do_action( 'ns_real_estate_after_member_settings'); ?>
     </div><!-- end member options -->
 
     <div id="currency" class="tab-content">
@@ -1121,7 +1121,7 @@ function ns_real_estate_load_default_property_detail_items() {
 /*-----------------------------------------------------------------------------------*/
 /*  Load default Agent Detail Items
 /*-----------------------------------------------------------------------------------*/
-function rype_real_estate_load_default_agent_detail_items() {
+function ns_real_estate_load_default_agent_detail_items() {
     $agent_detail_items_default = array(
         0 => array(
             'name' => esc_html__('Overview', 'ns-real-estate'),
@@ -1159,7 +1159,7 @@ function rype_real_estate_load_default_agent_detail_items() {
 /*-----------------------------------------------------------------------------------*/
 /*  Add Real Estate Invidiual Page Options
 /*-----------------------------------------------------------------------------------*/
-function rype_real_estate_map_options($values) { 
+function ns_real_estate_map_options($values) { 
     $banner_source = isset( $values['ns_basics_banner_source'] ) ? esc_attr( $values['ns_basics_banner_source'][0] ) : 'image_banner';
     ?> 
     <label class="selectable-item <?php if($banner_source == 'properties_map') { echo 'active'; } ?>" for="banner_source_properties_map">
@@ -1167,9 +1167,9 @@ function rype_real_estate_map_options($values) {
         <input type="radio" id="banner_source_properties_map" name="ns_basics_banner_source" value="properties_map" <?php checked('properties_map', $banner_source, true) ?> /> <?php esc_html_e('Properties Map', 'ns-real-estate'); ?><br/>
     </label>
 <?php }
-add_action( 'ns_basics_before_page_banner_options', 'rype_real_estate_map_options' );
+add_action( 'ns_basics_before_page_banner_options', 'ns_real_estate_map_options' );
 
-function rype_real_estate_page_banner_filter_options($values) { ?>
+function ns_real_estate_page_banner_filter_options($values) { ?>
     <?php 
     $banner_property_filter_override = isset( $values['ns_banner_property_filter_override'] ) ? esc_attr( $values['ns_banner_property_filter_override'][0] ) : 'true'; 
     $banner_property_filter_display = isset( $values['ns_banner_property_filter_display'] ) ? esc_attr( $values['ns_banner_property_filter_display'][0] ) : 'true';
@@ -1222,9 +1222,9 @@ function rype_real_estate_page_banner_filter_options($values) { ?>
 
     </div>
 <?php }
-add_action( 'ns_basics_banner_options_end', 'rype_real_estate_page_banner_filter_options' );
+add_action( 'ns_basics_banner_options_end', 'ns_real_estate_page_banner_filter_options' );
 
-function rype_real_estate_save_page_banner_options($post_id) {
+function ns_real_estate_save_page_banner_options($post_id) {
     $allowed = array();
 
     if( isset( $_POST['ns_banner_property_filter_override'] ) ) {
@@ -1243,7 +1243,7 @@ function rype_real_estate_save_page_banner_options($post_id) {
         update_post_meta( $post_id, 'ns_banner_property_filter_id', wp_kses( $_POST['ns_banner_property_filter_id'], $allowed ) );
             
 }
-add_action( 'ns_basics_after_page_settings_save', 'rype_real_estate_save_page_banner_options' );
+add_action( 'ns_basics_after_page_settings_save', 'ns_real_estate_save_page_banner_options' );
 
 
 /*-----------------------------------------------------------------------------------*/

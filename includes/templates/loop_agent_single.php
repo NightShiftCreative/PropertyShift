@@ -2,7 +2,7 @@
     //Global settings
     $num_properties_per_page = esc_attr(get_option('ns_num_properties_per_page', 12));
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
-    $agent_detail_items_default = rype_real_estate_load_default_agent_detail_items();
+    $agent_detail_items_default = ns_real_estate_load_default_agent_detail_items();
     $agent_detail_items = get_option('ns_agent_detail_items', $agent_detail_items_default);
 
     //Get template location
