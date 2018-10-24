@@ -116,10 +116,10 @@ function ns_real_estate_settings_page() {
     $content_class = null;
     $content_nav = array(
         array('name' => 'Properties', 'link' => '#properties', 'icon' => 'fa-home'),
-        array('name' => 'Agents', 'link' => '#agents', 'icon' => 'fa-group'),
+        array('name' => 'Agents', 'link' => '#agents', 'icon' => 'fa-users'),
         array('name' => 'Maps', 'link' => '#maps', 'icon' => 'fa-map'),
         array('name' => 'Members', 'link' => '#members', 'icon' => 'fa-key'),
-        array('name' => 'Currency & Numbers', 'link' => '#currency', 'icon' => 'fa-money'),
+        array('name' => 'Currency & Numbers', 'link' => '#currency', 'icon' => 'fa-money-bill-alt'),
     );
     
     //add alerts
