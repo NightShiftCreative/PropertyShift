@@ -1,6 +1,7 @@
 <?php 
 add_action( 'media_buttons', function($editor_id) { ?>
     
+    <?php if($editor_id == 'content') { ?>
     <a href="#" data-featherlight="#shortcode-selector-real-estate" data-featherlight-persist="true" class="button add-shortcode" title="<?php esc_html_e('Add Real Estate Shortcode', 'ns-real-estate'); ?>">
         <span class="wp-media-buttons-icon add-shortcode-icon"></span><?php esc_html_e('Real Estate Shortcodes', 'ns-real-estate'); ?>
     </a>
@@ -173,6 +174,7 @@ add_action( 'media_buttons', function($editor_id) { ?>
             </div>
         </div>
     </div>
+    <?php } ?>
 <?php } ); 
 
 
