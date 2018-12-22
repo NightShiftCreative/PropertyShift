@@ -142,7 +142,10 @@ function ns_real_estate_settings_page() {
         $alerts[] = $properties_page_alert; 
     }
 
-    echo ns_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class, $content_nav, $alerts);
+    $ajax = true;
+    $icon = plugins_url('/ns-real-estate/images/icon-real-estate.svg');
+
+    echo ns_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class, $content_nav, $alerts, $ajax, $icon);
 } 
 
 function ns_real_estate_settings_page_content() {

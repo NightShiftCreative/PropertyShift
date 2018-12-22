@@ -9,7 +9,12 @@ function ns_real_estate_help_page() {
     $pages = ns_real_estate_get_admin_pages();
     $display_actions = 'false';
     $content = ns_real_estate_help_page_content();
-    echo ns_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content);
+    $content_class = 'ns-modules';
+    $content_nav = null;
+    $alerts = null;
+    $ajax = true;
+    $icon = plugins_url('/ns-real-estate/images/icon-real-estate.svg');
+    echo ns_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_class, $content_nav, $alerts, $ajax, $icon);
 }
 
 function ns_real_estate_help_page_content() {
