@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 add_action('admin_menu', 'ns_real_estate_plugin_menu');
 function ns_real_estate_plugin_menu() {
-    add_menu_page('NS Real Estate', 'NS Real Estate', 'administrator', 'ns-real-estate-settings', 'ns_real_estate_settings_page', 'dashicons-admin-home');
+    add_menu_page('NS Real Estate', 'NS Real Estate', 'administrator', 'ns-real-estate-settings', 'ns_real_estate_settings_page', plugins_url('../images/icon.png', __FILE__));
     add_submenu_page('ns-real-estate-settings', 'Settings', 'Settings', 'administrator', 'ns-real-estate-settings');
     add_submenu_page('ns-real-estate-settings', 'Add-Ons', 'Add-Ons', 'administrator', 'ns-real-estate-add-ons', 'ns_real_estate_add_ons_page');
     add_submenu_page('ns-real-estate-settings', 'License Keys', 'License Keys', 'administrator', 'ns-real-estate-license-keys', 'ns_real_estate_license_keys_page');
