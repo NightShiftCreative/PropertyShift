@@ -369,7 +369,7 @@
                                         if(!empty($avatar_id)) {
                                             echo wp_get_attachment_image($avatar_id, array('96', '96'));
                                         } else {
-                                            echo '<img src="'. esc_url( get_template_directory_uri() ) .'/images/avatar-default.png" alt="avatar" />';
+                                            echo '<img src="'.plugins_url( '/ns-real-estate/images/agent-img-default.gif' ).'" alt="Agent Image" />';
                                         }
                                     ?>
                                     <p><?php echo ns_core_get_icon($icon_set, 'user'); ?> <?php the_author_meta('display_name'); ?></p>
@@ -437,7 +437,7 @@
                                         </a>
 
                                         <div class="agent-content">
-                                            <a href="<?php the_permalink(); ?>" class="button button-icon right"><i class="fa fa-angle-right"></i><?php esc_html_e('Contact Agent', 'ns-real-estate'); ?></a>
+                                            <a href="<?php the_permalink(); ?>" class="button button-icon right"><i class="fa fa-angle-right icon"></i><?php esc_html_e('Contact Agent', 'ns-real-estate'); ?></a>
                                             <div class="agent-details">
                                                 <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                                                 <?php if(!empty($agent_title)) { ?><p><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php echo esc_attr($agent_title); ?></p><?php } ?>
@@ -447,12 +447,12 @@
                                             </div>
                                             <?php if(!empty($agent_fb) || !empty($agent_twitter) || !empty($agent_google) || !empty($agent_linkedin) || !empty($agent_youtube) || !empty($agent_instagram)) { ?>
                                                 <ul class="social-icons circle clean-list">
-                                                    <?php if(!empty($agent_fb)) { ?><li><a href="<?php echo esc_url($agent_fb); ?>" target="_blank"><i class="fa fa-facebook"></i></a></li><?php } ?>
-                                                    <?php if(!empty($agent_twitter)) { ?><li><a href="<?php echo esc_url($agent_twitter); ?>" target="_blank"><i class="fa fa-twitter"></i></a></li><?php } ?>
-                                                    <?php if(!empty($agent_google)) { ?><li><a href="<?php echo esc_url($agent_google); ?>" target="_blank"><i class="fa fa-google-plus"></i></a></li><?php } ?>
-                                                    <?php if(!empty($agent_linkedin)) { ?><li><a href="<?php echo esc_url($agent_linkedin); ?>" target="_blank"><i class="fa fa-linkedin"></i></a></li><?php } ?>
-                                                    <?php if(!empty($agent_youtube)) { ?><li><a href="<?php echo esc_url($agent_youtube); ?>" target="_blank"><i class="fa fa-youtube"></i></a></li><?php } ?>
-                                                    <?php if(!empty($agent_instagram)) { ?><li><a href="<?php echo esc_url($agent_instagram); ?>" target="_blank"><i class="fa fa-instagram"></i></a></li><?php } ?>
+                                                    <?php if(!empty($agent_fb)) { ?><li><a href="<?php echo esc_url($agent_fb); ?>" target="_blank"><i class="fab fa-facebook"></i></a></li><?php } ?>
+                                                    <?php if(!empty($agent_twitter)) { ?><li><a href="<?php echo esc_url($agent_twitter); ?>" target="_blank"><i class="fab fa-twitter"></i></a></li><?php } ?>
+                                                    <?php if(!empty($agent_google)) { ?><li><a href="<?php echo esc_url($agent_google); ?>" target="_blank"><i class="fab fa-google-plus"></i></a></li><?php } ?>
+                                                    <?php if(!empty($agent_linkedin)) { ?><li><a href="<?php echo esc_url($agent_linkedin); ?>" target="_blank"><i class="fab fa-linkedin"></i></a></li><?php } ?>
+                                                    <?php if(!empty($agent_youtube)) { ?><li><a href="<?php echo esc_url($agent_youtube); ?>" target="_blank"><i class="fab fa-youtube"></i></a></li><?php } ?>
+                                                    <?php if(!empty($agent_instagram)) { ?><li><a href="<?php echo esc_url($agent_instagram); ?>" target="_blank"><i class="fab fa-instagram"></i></a></li><?php } ?>
                                                 </ul>
                                             <?php } ?>
                                         </div>
