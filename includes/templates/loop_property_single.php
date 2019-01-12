@@ -83,7 +83,7 @@
                         <!--******************************************************-->
                         <!-- PROPERTY OVERVIEW -->
                         <!--******************************************************-->
-                        <div class="property-single-item gallery property-<?php echo esc_attr($slug); ?>">
+                        <div class="property-single-item property-<?php echo esc_attr($slug); ?>">
                             
                             <div class="property-title">
                                 <h4><?php the_title(); ?></h4>
@@ -127,7 +127,7 @@
                     <!--******************************************************-->
                     <!-- PROPERTY GALLERY -->
                     <!--******************************************************-->
-						<div class="property-single-item gallery widget property-<?php echo esc_attr($slug); ?>">
+						<div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
                             <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>

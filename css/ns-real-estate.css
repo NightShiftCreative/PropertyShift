@@ -226,16 +226,15 @@
 	padding:3px 8px;
 	font-size:12px;
 	z-index:10;
-	border:1px solid rgba(0, 0, 0, 0.1);
+    background:#db7e40;
+    color:white; 
 }
 .ns-property .property-tag a { color:white; text-decoration:none; }
 .ns-property .property-tag.status { float:right; }
 .ns-property .property-tag.featured { 
 	position:absolute; 
-	color:white; 
 	right:10px; 
 	margin-top:10px; 
-	background:#db7e40; 
 }
 
 .ns-property .property-actions {
