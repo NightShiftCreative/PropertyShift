@@ -1107,10 +1107,7 @@ add_filter( 'ns_basics_after_dashboard', 'ns_real_estate_dashboard_widgets');
 /*-----------------------------------------------------------------------------------*/
 /*  Add Property Image Size
 /*-----------------------------------------------------------------------------------*/
-function ns_real_estate_add_real_estate_image_size() {
-    add_image_size( 'property-thumbnail', 800, 600, array( 'center', 'center' ) );
-}
-add_action( 'ns_basics_theme_support', 'ns_real_estate_add_real_estate_image_size' );
+add_image_size( 'property-thumbnail', 800, 600, array( 'center', 'center' ) );
 
 /*-----------------------------------------------------------------------------------*/
 /*  Register Properties Sidebar
