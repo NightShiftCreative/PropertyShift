@@ -344,7 +344,7 @@
 								<?php if(!empty($video_img)) { ?>
 									<img src="<?php echo esc_url($video_img); ?>" alt="" />
 								<?php } else { ?>
-									<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/property-img-default.gif" alt="" />
+                                    <img src="<?php echo plugins_url( '/ns-real-estate/images/property-img-default.gif' ); ?>" alt="" />
 								<?php } ?>
 							</a>
 						</div>

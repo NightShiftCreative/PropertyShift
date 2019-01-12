@@ -121,6 +121,7 @@
 .video-cover:hover .icon { border-color:#db7e40; background:#db7e40; }
 .video-cover-content {
     position:absolute;
+    z-index:1;
     padding:0px 20px;
     text-align:center;
     left:0;
