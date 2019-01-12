@@ -438,14 +438,14 @@
 
                                         <div class="agent-content">
                                             <a href="<?php the_permalink(); ?>" class="button button-icon right"><i class="fa fa-angle-right icon"></i><?php esc_html_e('Contact Agent', 'ns-real-estate'); ?></a>
-                                            <div class="agent-details">
+                                            <div class="agent-details left">
                                                 <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                                                 <?php if(!empty($agent_title)) { ?><p><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php echo esc_attr($agent_title); ?></p><?php } ?>
                                                 <?php if(!empty($agent_email)) { ?><p><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php echo esc_attr($agent_email); ?></p><?php } ?>
                                                 <?php if(!empty($agent_mobile_phone)) { ?><p><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php echo esc_attr($agent_mobile_phone); ?></p><?php } ?>
                                                 <?php if(!empty($agent_office_phone)) { ?><p><?php echo ns_core_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php echo esc_attr($agent_office_phone); ?></p><?php } ?>
-                                            </div>
-                                            <?php if(!empty($agent_fb) || !empty($agent_twitter) || !empty($agent_google) || !empty($agent_linkedin) || !empty($agent_youtube) || !empty($agent_instagram)) { ?>
+                                                
+                                                <?php if(!empty($agent_fb) || !empty($agent_twitter) || !empty($agent_google) || !empty($agent_linkedin) || !empty($agent_youtube) || !empty($agent_instagram)) { ?>
                                                 <ul class="social-icons circle clean-list">
                                                     <?php if(!empty($agent_fb)) { ?><li><a href="<?php echo esc_url($agent_fb); ?>" target="_blank"><i class="fab fa-facebook"></i></a></li><?php } ?>
                                                     <?php if(!empty($agent_twitter)) { ?><li><a href="<?php echo esc_url($agent_twitter); ?>" target="_blank"><i class="fab fa-twitter"></i></a></li><?php } ?>
@@ -454,7 +454,8 @@
                                                     <?php if(!empty($agent_youtube)) { ?><li><a href="<?php echo esc_url($agent_youtube); ?>" target="_blank"><i class="fab fa-youtube"></i></a></li><?php } ?>
                                                     <?php if(!empty($agent_instagram)) { ?><li><a href="<?php echo esc_url($agent_instagram); ?>" target="_blank"><i class="fab fa-instagram"></i></a></li><?php } ?>
                                                 </ul>
-                                            <?php } ?>
+                                                <?php } ?>
+                                            </div>
                                         </div>
                                         <div class="clear"></div>
                                         <?php

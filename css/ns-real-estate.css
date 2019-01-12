@@ -16,6 +16,7 @@
 
 .ns-real-estate .button { color:white; }
 
+.clean-list { padding:0; }
 .clean-list, .clean-list li { margin-left:0 !important; list-style-type:none !important; }
 .clean-list li:before { content:''; display:none !important; }
 
