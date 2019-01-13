@@ -1,6 +1,7 @@
 <?php
 
 	//Get global settings
+    global $post;
     $postID = get_the_id();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     $properties_page = esc_attr(get_option('ns_properties_page'));
@@ -34,6 +35,7 @@
     $bedrooms = isset( $values['ns_property_bedrooms'] ) ? esc_attr( $values['ns_property_bedrooms'][0] ) : '';
     $bathrooms = isset( $values['ns_property_bathrooms'] ) ? esc_attr( $values['ns_property_bathrooms'][0] ) : '';
     $garages = isset( $values['ns_property_garages'] ) ? esc_attr( $values['ns_property_garages'][0] ) : '';
+    $description = isset( $values['ns_property_description'] ) ? $values['ns_property_description'][0] : '';
     $floor_plans = isset($values['ns_property_floor_plans']) ? $values['ns_property_floor_plans'] : '';
 	$latitude = isset( $values['ns_property_latitude'] ) ? esc_attr( $values['ns_property_latitude'][0] ) : '';
 	$longitude = isset( $values['ns_property_longitude'] ) ? esc_attr( $values['ns_property_longitude'][0] ) : '';
@@ -86,8 +88,6 @@
                         <div class="property-single-item property-<?php echo esc_attr($slug); ?>">
                             
                             <div class="property-title">
-                                <h4><?php the_title(); ?></h4>
-                                            
                                 <?php if(!empty($price)) { ?>
                                     <div class="property-price-single right">
                                         <?php echo ns_real_estate_format_price($price); ?>
@@ -156,7 +156,7 @@
 						</div>
                 	<?php } ?>
 
-                	<?php if($slug == 'description' && (!empty($post->post_content) || $custom_fields_count > 0) ) { ?>
+                	<?php if($slug == 'description' && (!empty($description) || $custom_fields_count > 0) ) { ?>
                     <!--******************************************************-->
                     <!-- DESCRIPTION -->
                     <!--******************************************************-->
@@ -167,7 +167,7 @@
                                     <div class="widget-divider"><div class="bar"></div></div>
                                 </div>
                             <?php } ?>
-							<?php //the_content(); ?>
+							<?php echo $description; ?>
 
                             <?php 
                                 $custom_fields = get_option('ns_property_custom_fields');

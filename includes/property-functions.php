@@ -255,6 +255,7 @@ function ns_real_estate_property_details($post) {
     $area = isset( $values['ns_property_area'] ) ? esc_attr( $values['ns_property_area'][0] ) : '';
     $area_postfix_default = esc_attr(get_option('ns_property_default_area_postfix', 'Sq Ft'));
     $area_postfix = isset( $values['ns_property_area_postfix'] ) ? esc_attr( $values['ns_property_area_postfix'][0] ) : $area_postfix_default;
+    $description = isset( $values['ns_property_description'] ) ? $values['ns_property_description'][0] : '';
     $additional_images = isset($values['ns_additional_img']) ? $values['ns_additional_img'] : '';
     $floor_plans = isset($values['ns_property_floor_plans']) ? $values['ns_property_floor_plans'] : '';
     $latitude = isset( $values['ns_property_latitude'] ) ? esc_attr( $values['ns_property_latitude'][0] ) : '';
@@ -273,6 +274,7 @@ function ns_real_estate_property_details($post) {
     <div id="tabs" class="meta-box-form meta-box-form-property-details ui-tabs">
         <ul class="ui-tabs-nav">
             <li><a href="#general" title="<?php esc_html_e('General Info', 'ns-real-estate'); ?>"><i class="fa fa-home"></i> <span class="tab-text"><?php echo esc_html_e('General Info', 'ns-real-estate'); ?></span></a></li>
+            <li><a href="#description" title="<?php esc_html_e('Description', 'ns-real-estate'); ?>"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php echo esc_html_e('Description', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#gallery" title="<?php esc_html_e('Gallery', 'ns-real-estate'); ?>"><i class="fa fa-image"></i> <span class="tab-text"><?php echo esc_html_e('Gallery', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#floor-plans" title="<?php esc_html_e('Floor Plans', 'ns-real-estate'); ?>"><i class="fa fa-th-large"></i> <span class="tab-text"><?php echo esc_html_e('Floor Plans', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#map" title="<?php esc_html_e('Map', 'ns-real-estate'); ?>" onclick="refreshMap()"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Map', 'ns-real-estate'); ?></span></a></li>
@@ -431,6 +433,18 @@ function ns_real_estate_property_details($post) {
                 <span class="admin-module-note"><a href="<?php echo admin_url('themes.php?page=theme_options#custom-property-fields'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage custom fields', 'ns-real-estate'); ?></a></span>
             </div>
 
+        </div>
+
+        <!--*************************************************-->
+        <!-- DESCRIPTION -->
+        <!--*************************************************-->
+        <div id="description" class="tab-content">
+            <h3><?php echo esc_html_e('Description', 'ns-real-estate'); ?></h3>
+            <?php 
+            $editor_id = 'propertydescription';
+            $settings = array('textarea_name' => 'ns_property_description', 'editor_height' => 180);
+            wp_editor( $description, $editor_id, $settings);
+            ?>
         </div>
 
         <!--*************************************************-->
@@ -658,6 +672,9 @@ function ns_real_estate_save_meta_box( $post_id ) {
             update_post_meta( $post_id, $custom_field['key'], $custom_field['value'] );
         }
     }
+
+    if( isset( $_POST['ns_property_description'] ) )
+        update_post_meta( $post_id, 'ns_property_description', wp_kses_post($_POST['ns_property_description']) );
 
     if (isset( $_POST['ns_additional_img'] )) {
         $strAdditionalImgs = implode(",", $_POST['ns_additional_img']);
