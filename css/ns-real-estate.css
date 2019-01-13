@@ -14,6 +14,8 @@
 
 .icon { margin-right:6px; }
 
+.widget-divider td { border:none; }
+
 .ns-real-estate .button { color:white; }
 
 .clean-list { padding:0; }
@@ -243,6 +245,8 @@
 	margin-bottom:10px; 
 }
 .ns-property .property-actions .ns-tooltip { margin-right:10px; }
+.ns-property .property-actions .ns-tooltip-toggle { color:#90939c; }
+.ns-property .property-actions .ns-tooltip-toggle:hover { color:#404146; }
 
 .ns-property .property-price , .ns-property .property-price-single {
 	color:#db7e40;
