@@ -62,6 +62,7 @@ function ns_real_estate_agent_details($post) {
     $agent_email = isset( $agent_details_values['ns_agent_email'] ) ? esc_attr( $agent_details_values['ns_agent_email'][0] ) : '';
     $agent_mobile_phone = isset( $agent_details_values['ns_agent_mobile_phone'] ) ? esc_attr( $agent_details_values['ns_agent_mobile_phone'][0] ) : '';
     $agent_office_phone = isset( $agent_details_values['ns_agent_office_phone'] ) ? esc_attr( $agent_details_values['ns_agent_office_phone'][0] ) : '';
+    $agent_description = isset( $agent_details_values['ns_agent_description'] ) ? $agent_details_values['ns_agent_description'][0] : '';
     $agent_fb = isset( $agent_details_values['ns_agent_fb'] ) ? esc_attr( $agent_details_values['ns_agent_fb'][0] ) : '';
     $agent_twitter = isset( $agent_details_values['ns_agent_twitter'] ) ? esc_attr( $agent_details_values['ns_agent_twitter'][0] ) : '';
     $agent_google = isset( $agent_details_values['ns_agent_google'] ) ? esc_attr( $agent_details_values['ns_agent_google'][0] ) : '';
@@ -77,6 +78,7 @@ function ns_real_estate_agent_details($post) {
 
         <ul class="ui-tabs-nav">
             <li><a href="#general"><i class="fa fa-user"></i> <span class="tab-text"><?php esc_html_e('General Info', 'ns-real-estate'); ?></span></a></li>
+            <li><a href="#description"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php esc_html_e('Description', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#social"><i class="fa fa-share-alt"></i> <span class="tab-text"><?php esc_html_e('Social', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#contact"><i class="fa fa-envelope"></i> <span class="tab-text"><?php esc_html_e('Contact Form', 'ns-real-estate'); ?></span></a></li>
         </ul>
@@ -137,6 +139,18 @@ function ns_real_estate_agent_details($post) {
                 </tr>
             </table>
 
+        </div>
+
+        <!--*************************************************-->
+        <!-- DESCRIPTION -->
+        <!--*************************************************-->
+        <div id="description" class="tab-content">
+            <h3><?php echo esc_html_e('Description', 'ns-real-estate'); ?></h3>
+            <?php 
+            $editor_id = 'agentdescription';
+            $settings = array('textarea_name' => 'ns_agent_description', 'editor_height' => 180);
+            wp_editor( $agent_description, $editor_id, $settings);
+            ?>
         </div>
 
         <!--*************************************************-->
@@ -291,6 +305,9 @@ function ns_real_estate_save_agent_details_meta_box( $post_id )
 
     if( isset( $_POST['ns_agent_office_phone'] ) )
         update_post_meta( $post_id, 'ns_agent_office_phone', wp_kses( $_POST['ns_agent_office_phone'], $allowed ) );
+
+    if( isset( $_POST['ns_agent_description'] ) )
+        update_post_meta( $post_id, 'ns_agent_description', wp_kses_post($_POST['ns_agent_description']) );
 
     if( isset( $_POST['ns_agent_fb'] ) )
         update_post_meta( $post_id, 'ns_agent_fb', wp_kses( $_POST['ns_agent_fb'], $allowed ) );

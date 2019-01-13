@@ -19,7 +19,8 @@
 	$agent_email = isset( $agent_details_values['ns_agent_email'] ) ? esc_attr( $agent_details_values['ns_agent_email'][0] ) : '';
 	$agent_mobile_phone = isset( $agent_details_values['ns_agent_mobile_phone'] ) ? esc_attr( $agent_details_values['ns_agent_mobile_phone'][0] ) : '';
 	$agent_office_phone = isset( $agent_details_values['ns_agent_office_phone'] ) ? esc_attr( $agent_details_values['ns_agent_office_phone'][0] ) : '';
-	$agent_fb = isset( $agent_details_values['ns_agent_fb'] ) ? esc_attr( $agent_details_values['ns_agent_fb'][0] ) : '';
+	$agent_description = isset( $agent_details_values['ns_agent_description'] ) ? $agent_details_values['ns_agent_description'][0] : '';
+    $agent_fb = isset( $agent_details_values['ns_agent_fb'] ) ? esc_attr( $agent_details_values['ns_agent_fb'][0] ) : '';
 	$agent_twitter = isset( $agent_details_values['ns_agent_twitter'] ) ? esc_attr( $agent_details_values['ns_agent_twitter'][0] ) : '';
 	$agent_google = isset( $agent_details_values['ns_agent_google'] ) ? esc_attr( $agent_details_values['ns_agent_google'][0] ) : '';
 	$agent_linkedin = isset( $agent_details_values['ns_agent_linkedin'] ) ? esc_attr( $agent_details_values['ns_agent_linkedin'][0] ) : '';
@@ -100,7 +101,7 @@
 	                </div>
                 	<?php } ?>
 
-                	<?php if($slug == 'description' && !empty($post->post_content)) { ?>
+                	<?php if($slug == 'description' && !empty($agent_description)) { ?>
                     <!--******************************************************-->
                     <!-- DESCRIPTION -->
                     <!--******************************************************-->
@@ -111,7 +112,7 @@
                                     <div class="widget-divider"><div class="bar"></div></div>
                                 </div>
                             <?php } ?>
-                			<?php //the_content(); ?>
+                			<?php echo $agent_description; ?>
                 		</div>
                 	<?php } ?>
 
