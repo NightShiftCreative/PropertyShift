@@ -436,54 +436,57 @@ function ns_real_estate_page_banner_property_filter_global() {
         $property_filter_id = isset( $values['ns_banner_property_filter_id'] ) ? esc_attr( $values['ns_banner_property_filter_id'][0] ) : '';
     }
 
-    //Get filter details
-    $values = get_post_custom( $property_filter_id );
-    $property_filter_position = isset( $values['ns_property_filter_position'] ) ? esc_attr( $values['ns_property_filter_position'][0] ) : 'middle';
+    if(!empty($property_filter_id)) {
 
-    //If filter position above, change to classic header
-    if($property_filter_position == 'above') {
-        function ns_real_estate_properties_filter_custom_header_var($header_vars) { 
-            if($header_vars['header_style'] == 'transparent') { $header_vars['header_style'] = ''; }
-            return $header_vars;
-        }
-        add_filter( 'ns_basics_custom_header_vars', 'ns_real_estate_properties_filter_custom_header_var');
-    }
+        //Get filter details
+        $values = get_post_custom( $property_filter_id );
+        $property_filter_position = isset( $values['ns_property_filter_position'] ) ? esc_attr( $values['ns_property_filter_position'][0] ) : 'middle';
 
-    //generate filter position hook name
-    if($property_filter_position == 'above') { 
-        $property_filter_position = 'ns_basics_before_page_banner'; 
-    } else if($property_filter_position == 'middle') {
-        $property_filter_position = 'ns_basics_after_subheader_title'; 
-    } else { 
-        $property_filter_position = 'ns_basics_after_page_banner'; 
-    }
-
-    //output filter template
-    if($property_filter_display == 'true') {
-        function ns_real_estate_page_banner_property_filter($values) {
-            $banner_property_filter_override = isset( $values['ns_banner_property_filter_override'] ) ? esc_attr( $values['ns_banner_property_filter_override'][0] ) : 'true'; 
-            if($banner_property_filter_override != 'true') {
-                $property_filter_id = isset( $values['ns_banner_property_filter_id'] ) ? esc_attr( $values['ns_banner_property_filter_id'][0] ) : '';
-            } else {
-                $property_filter_id = esc_attr(get_option('ns_property_filter_id'));
+        //If filter position above, change to classic header
+        if($property_filter_position == 'above') {
+            function ns_real_estate_properties_filter_custom_header_var($header_vars) { 
+                if($header_vars['header_style'] == 'transparent') { $header_vars['header_style'] = ''; }
+                return $header_vars;
             }
-            
-            //Get filter details
-            $values = get_post_custom( $property_filter_id );
-            $property_filter_layout = isset( $values['ns_property_filter_layout'] ) ? esc_attr( $values['ns_property_filter_layout'][0] ) : 'middle';
-            
-            //Set Template Args
-            $template_args = array();
-            $template_args['id'] = $property_filter_id;
-
-            if($property_filter_layout == 'minimal') {
-                ns_real_estate_template_loader('property-filter-minimal.php', $template_args);
-            } else {
-                ns_real_estate_template_loader('property-filter.php', $template_args);
-            }
-            
+            add_filter( 'ns_basics_custom_header_vars', 'ns_real_estate_properties_filter_custom_header_var');
         }
-        add_filter( $property_filter_position, 'ns_real_estate_page_banner_property_filter');
+
+        //generate filter position hook name
+        if($property_filter_position == 'above') { 
+            $property_filter_position = 'ns_basics_before_page_banner'; 
+        } else if($property_filter_position == 'middle') {
+            $property_filter_position = 'ns_basics_after_subheader_title'; 
+        } else { 
+            $property_filter_position = 'ns_basics_after_page_banner'; 
+        }
+
+        //output filter template
+        if($property_filter_display == 'true') {
+            function ns_real_estate_page_banner_property_filter($values) {
+                $banner_property_filter_override = isset( $values['ns_banner_property_filter_override'] ) ? esc_attr( $values['ns_banner_property_filter_override'][0] ) : 'true'; 
+                if($banner_property_filter_override != 'true') {
+                    $property_filter_id = isset( $values['ns_banner_property_filter_id'] ) ? esc_attr( $values['ns_banner_property_filter_id'][0] ) : '';
+                } else {
+                    $property_filter_id = esc_attr(get_option('ns_property_filter_id'));
+                }
+                
+                //Get filter details
+                $values = get_post_custom( $property_filter_id );
+                $property_filter_layout = isset( $values['ns_property_filter_layout'] ) ? esc_attr( $values['ns_property_filter_layout'][0] ) : 'middle';
+                
+                //Set Template Args
+                $template_args = array();
+                $template_args['id'] = $property_filter_id;
+
+                if($property_filter_layout == 'minimal') {
+                    ns_real_estate_template_loader('property-filter-minimal.php', $template_args);
+                } else {
+                    ns_real_estate_template_loader('property-filter.php', $template_args);
+                }
+                
+            }
+            add_filter( $property_filter_position, 'ns_real_estate_page_banner_property_filter');
+        }
     }
 }
 add_action('template_redirect', 'ns_real_estate_page_banner_property_filter_global');
