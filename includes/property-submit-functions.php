@@ -296,20 +296,12 @@ function ns_real_estate_property_submit_form() {
 	        <div class="alert-box success"><h4><?php echo wp_kses_post($success); ?></h4><?php if (!empty($members_my_properties_page)) { echo '<a href="'.esc_url($members_my_properties_page).'">'. esc_html__('View your properties.', 'ns-real-estate').'</a>'; } ?></div>
 	    <?php } ?>
 
-	    <form class="multi-page-form" method="post" action="<?php echo get_the_permalink().$form_action; ?>" enctype="multipart/form-data">
-	    	
-	    	<div class="multi-page-form-progress">
-				<a href="#general-info" class="multi-page-form-progress-item active"><span class="progress-item-num">1</span> <span class="progress-item-text"><?php esc_html_e('General Info', 'ns-real-estate'); ?></span></a>
-				<a href="#property-images" class="multi-page-form-progress-item"><span class="progress-item-num">2</span> <span class="progress-item-text"><?php esc_html_e('Property Images', 'ns-real-estate'); ?></span></a>
-	            <a href="#map" onclick="refreshMap()" class="multi-page-form-progress-item"><span class="progress-item-num">4</span> <span class="progress-item-text"><?php esc_html_e('Map', 'ns-real-estate'); ?></span></a>
-				<a href="#owner-info" class="multi-page-form-progress-item"><span class="progress-item-num">5</span> <span class="progress-item-text"><?php esc_html_e('Owner Info', 'ns-real-estate'); ?></span></a>
-			</div>
+	    <form method="post" action="<?php echo get_the_permalink().$form_action; ?>" enctype="multipart/form-data">
 
-			<div class="multi-page-form-content active" id="general-info">
+			<div class="submit-property-section" id="general-info">
 		    	<h3><?php esc_html_e('General Info', 'ns-real-estate'); ?></h3>
 		    	
 		    	<div class="row">
-
 				<div class="col-lg-6 col-md-6">
 			    	<div class="form-block form-block-property-title">
 		                <label><?php esc_html_e('Title*', 'ns-real-estate'); ?></label>
@@ -563,7 +555,7 @@ function ns_real_estate_property_submit_form() {
 
 			</div><!-- end general info -->
 
-			<div class="multi-page-form-content" id="property-images">
+			<div class="submit-property-section" id="property-images">
 				<h3><?php esc_html_e('Property Images', 'ns-real-estate'); ?></h3>
 
 				<div class="form-block featured-img">
@@ -615,7 +607,7 @@ function ns_real_estate_property_submit_form() {
 	            </div>
 			</div><!-- end property images -->
 
-			<div class="multi-page-form-content" id="map">
+			<div class="submit-property-section" id="map">
             	<h3><?php esc_html_e('Map', 'ns-real-estate'); ?></h3>
             	<div class="left">
                     <div class="row">
@@ -631,7 +623,7 @@ function ns_real_estate_property_submit_form() {
             	<?php include(get_parent_theme_file_path('/admin/admin_map.php')); ?>
             </div>
 
-            <div class="multi-page-form-content" id="owner-info">
+            <div class="submit-property-section" id="owner-info">
 	            <h3><?php esc_html_e('Owner Info', 'ns-real-estate'); ?></h3>
 
 	            <div class="form-block form-block-property-agent-display">
@@ -678,14 +670,7 @@ function ns_real_estate_property_submit_form() {
 	            </div>
 	        </div><!-- end owner info -->
 
-			<div class="multi-page-form-nav">
-				<div class="multi-page-form-nav-item form-prev button show-none" onclick="refreshMap()"><?php esc_html_e('Previous', 'ns-real-estate'); ?></div>
-				<div class="multi-page-form-nav-item button disabled" onclick="refreshMap()"><?php esc_html_e('Previous', 'ns-real-estate'); ?></div>
-				<div class="multi-page-form-nav-item form-next button right" onclick="refreshMap()"><?php esc_html_e('Next', 'ns-real-estate'); ?></div>
-				<input type="submit" class="button alt right" value="<?php echo $form_submit_text; ?>" />
-				<div class="clear"></div> 
-			</div>
-
+	        <input type="submit" class="button alt right" value="<?php echo $form_submit_text; ?>" />
 	    </form>
 
 	</div><!-- end form container -->
