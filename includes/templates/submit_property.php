@@ -356,7 +356,7 @@
 	                <input id="featured_img" name="featured_img" type="file">
 	            </div>
 
-	            <div class="form-block gallery">
+	            <div class="form-block">
 	            	<label><?php esc_html_e('Gallery Images', 'ns-real-estate'); ?></label>
 	            	
 	            	<div class="additional-img-container">
@@ -412,7 +412,7 @@
                         </div>
                     </div>
             	</div>
-            	<?php include(get_parent_theme_file_path('/admin/admin_map.php')); ?>
+            	<?php include(plugin_dir_path( __DIR__ ) . 'admin_map.php'); ?>
             </div>
 
             <div class="submit-property-section" id="owner-info">
