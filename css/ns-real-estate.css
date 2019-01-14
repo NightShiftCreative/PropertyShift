@@ -16,7 +16,11 @@
 
 .widget-divider td { border:none; }
 
-.ns-real-estate .button { color:white; }
+.ns-real-estate .button { 
+    color:white; 
+    text-align:center; 
+    display:inline-block;
+}
 
 .clean-list { padding:0; }
 .clean-list, .clean-list li { margin-left:0 !important; list-style-type:none !important; }
@@ -152,6 +156,11 @@
 /** TABS **/
 .tabs .ui-tabs-nav li { opacity:0.8; }
 .tabs .ui-tabs-nav li.ui-state-active { font-weight:700; opacity:1.0; }
+
+/** ACCORDIONS **/
+.accordion .ui-accordion-header { background:rgba(0, 0, 0, 0.1); padding:20px; }
+.accordion .ui-accordion-header-active { margin-bottom:0; }
+.accordion .ui-accordion-content { border:1px solid rgba(0, 0, 0, 0.1); padding:20px; margin-bottom:20px; }
 
 /* SOCIAL ICONS */
 .social-icons { margin-bottom:0; }
@@ -298,6 +307,8 @@
 #pac-input { width:65%; top:10px !important; font-size:14px; }
 
 .additional-img-container .additional_img { width:80%; }
+
+.submit-property-section { margin-bottom:40px; }
 
 /*********************************************/
 /** AGENTS **/

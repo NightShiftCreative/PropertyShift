@@ -360,7 +360,7 @@ jQuery(document).ready(function($) {
         var count = $('.property-floor-plans .accordion .floor-plan-item').length;
 
         var floorPlanItem = '\
-            <h3 class="accordion-tab"><span class="floor-plan-title-mirror">'+ ns_real_estate_local_script.new_floor_plan +'</span> <span class="delete-floor-plan right"><i class="fa fa-trash"></i> '+ ns_real_estate_local_script.delete_text +'</span></h3> \
+            <h4 class="accordion-tab"><span class="floor-plan-title-mirror">'+ ns_real_estate_local_script.new_floor_plan +'</span> <span class="delete-floor-plan right"><i class="fa fa-trash"></i> '+ ns_real_estate_local_script.delete_text +'</span></h4> \
             <div class="floor-plan-item"> \
                 <div class="floor-plan-left"> \
                     <label>'+ ns_real_estate_local_script.floor_plan_title +' </label> <input class="floor-plan-title border" type="text" name="ns_property_floor_plans['+count+'][title]" placeholder="'+ ns_real_estate_local_script.new_floor_plan +'" /><br/> \
