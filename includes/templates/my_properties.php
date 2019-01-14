@@ -49,7 +49,7 @@
                     <td class="my-property-status"><?php echo get_post_status(); ?></td>
                     <td class="my-property-date"><?php the_time('F jS, Y') ?></td>
                     <td class="user-dashboard-table-actions my-property-actions">
-                        <span><a href="<?php echo esc_url($members_submit_property_page); ?>?edit_property=<?php echo get_the_ID(); ?>"><?php echo ns_core_get_icon($icon_set, 'pencil'); ?> <?php esc_html_e('EDIT', 'ns-real-estate'); ?></a></span>
+                        <span><a href="<?php echo esc_url($members_submit_property_page); ?>?edit_property=<?php echo get_the_ID(); ?>"><?php echo ns_core_get_icon($icon_set, 'pencil-alt'); ?> <?php esc_html_e('EDIT', 'ns-real-estate'); ?></a></span>
                         <span>
                             <?php 
                                 if ($post->post_author == $current_user->ID) { ?>

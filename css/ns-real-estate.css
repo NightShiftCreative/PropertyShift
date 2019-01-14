@@ -290,6 +290,11 @@
 .ns-property .property-single-item .walk-score h2 { margin:0; }
 
 /*********************************************/
+/** MEMBER PAGES **/
+/*********************************************/
+.user-dashboard-table-img { width:20%; }
+
+/*********************************************/
 /** AGENTS **/
 /*********************************************/
 .ns-agent-listing .ns-agent, .ns-agent-listing .hentry.ns-agent {
