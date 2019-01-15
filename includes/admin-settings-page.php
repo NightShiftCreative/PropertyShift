@@ -1246,7 +1246,7 @@ function ns_real_estate_save_page_banner_options($post_id) {
         update_post_meta( $post_id, 'ns_banner_property_filter_id', wp_kses( $_POST['ns_banner_property_filter_id'], $allowed ) );
             
 }
-add_action( 'ns_basics_after_page_settings_save', 'ns_real_estate_save_page_banner_options' );
+add_action( 'ns_basics_save_page_settings', 'ns_real_estate_save_page_banner_options' );
 
 
 /*-----------------------------------------------------------------------------------*/
