@@ -683,6 +683,9 @@ function ns_real_estate_settings_page_content() {
             </div>
         </div><!-- end property custom fields -->
 
+        <!-- Hook in for Add-Ons -->
+        <?php do_action( 'ns_real_estate_after_property_settings'); ?>
+
     </div><!-- end propery settings -->
 
     <div id="agents" class="tab-content">
@@ -809,6 +812,9 @@ function ns_real_estate_settings_page_content() {
             </div>
         </div><!-- end agent detail options -->
 
+        <!-- Hook in for Add-Ons -->
+        <?php do_action( 'ns_real_estate_after_agent_settings'); ?>
+
     </div><!-- end agent options -->
 
     <div id="maps" class="tab-content">
@@ -873,6 +879,10 @@ function ns_real_estate_settings_page_content() {
                 </td>
             </tr>
         </table>
+
+        <!-- Hook in for Add-Ons -->
+        <?php do_action( 'ns_real_estate_after_map_settings'); ?>
+
     </div><!-- end maps -->
 
     <div id="members" class="tab-content">
@@ -1034,6 +1044,9 @@ function ns_real_estate_settings_page_content() {
                 <td class="admin-module-field"><input type="number" min="0" max="5" id="num_decimal_area" name="ns_real_estate_num_decimal_area" value="<?php echo $currency_options['decimal_num_area']; ?>" /></td>
             </tr>
         </table>
+
+        <!-- Hook in for Add-Ons -->
+        <?php do_action( 'ns_real_estate_after_currency_settings'); ?>
 
     </div>
 
