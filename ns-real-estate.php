@@ -205,5 +205,10 @@ if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
 	/*  Includes Templates
 	/*-----------------------------------------------------------------------------------*/
 	include( plugin_dir_path( __FILE__ ) . '/includes/templates/templates.php');
+
+	/*-----------------------------------------------------------------------------------*/
+	/*  Includes WPBakery
+	/*-----------------------------------------------------------------------------------*/
+	include( plugin_dir_path( __FILE__ ) . '/includes/wp-bakery/wp-bakery.php');
 }
 ?>
