@@ -33,6 +33,8 @@
 
 <div <?php post_class(); ?>>
 
+	<?php do_action('ns_real_estate_before_property_card', $values); ?>
+
 	<div class="property-img">
 
 		<?php if($featured == 'true') { ?><a href="<?php if(!empty($properties_page)) { echo esc_url($properties_page).'/?featured=true'; } ?>" class="property-tag button alt featured"><?php esc_html_e('Featured', 'ns-real-estate'); ?></a><?php } ?>
@@ -85,5 +87,7 @@
             </tr>
         </table>
 	</div>
+
+	<?php do_action('ns_real_estate_after_property_card', $values); ?>
 
 </div>

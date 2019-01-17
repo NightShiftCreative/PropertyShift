@@ -140,6 +140,8 @@ function ns_real_estate_agent_details($post) {
                 </tr>
             </table>
 
+            <?php do_action('ns_real_estate_after_agent_details_general', $values); ?>
+
         </div>
 
         <!--*************************************************-->

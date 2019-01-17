@@ -67,6 +67,8 @@
 ?>	
 
 	<div class="property-single">
+
+        <?php do_action('ns_real_estate_before_property_detail', $values); ?>
 	
 		<?php if(!empty($property_detail_items)) {
             foreach($property_detail_items as $value) { ?>
@@ -553,5 +555,6 @@
             <?php } //end foreach ?>
         <?php } //end if ?>
 
+        <?php do_action('ns_real_estate_after_property_detail', $values); ?>
 
 	</div><!-- end property single -->
