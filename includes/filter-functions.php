@@ -329,6 +329,8 @@ function ns_real_estate_property_filter_details($post) {
         </tr>
     </table>
 
+    <?php do_action('ns_real_estate_after_property_filter_settings', $values); ?>
+
 <?php }
 
 /* Save property filter details form */
@@ -383,6 +385,8 @@ function ns_real_estate_save_property_filter_meta_box( $post_id ) {
 
     if( isset( $_POST['ns_property_filter_submit_text'] ) )
         update_post_meta( $post_id, 'ns_property_filter_submit_text', wp_kses( $_POST['ns_property_filter_submit_text'], $allowed ) );
+
+    do_action('ns_real_estate_save_property_filter', $post_id);
 }
 
 /*-----------------------------------------------------------------------------------*/

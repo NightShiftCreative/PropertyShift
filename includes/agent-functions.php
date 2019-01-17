@@ -81,6 +81,7 @@ function ns_real_estate_agent_details($post) {
             <li><a href="#description"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php esc_html_e('Description', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#social"><i class="fa fa-share-alt"></i> <span class="tab-text"><?php esc_html_e('Social', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#contact"><i class="fa fa-envelope"></i> <span class="tab-text"><?php esc_html_e('Contact Form', 'ns-real-estate'); ?></span></a></li>
+            <?php do_action('ns_real_estate_after_agent_detail_tabs'); ?>
         </ul>
 
         <div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e('Loading...', 'ns-real-estate'); ?></div>
@@ -267,6 +268,11 @@ function ns_real_estate_agent_details($post) {
             </table>
         </div><!-- end agent contact -->
 
+        <!--*************************************************-->
+        <!-- ADD-ONS -->
+        <!--*************************************************-->
+        <?php do_action('ns_real_estate_after_agent_details_tab_content', $values); ?>
+
         <div class="clear"></div>
     </div>
 
@@ -332,6 +338,8 @@ function ns_real_estate_save_agent_details_meta_box( $post_id )
 
     if( isset( $_POST['ns_agent_form_id'] ) )
         update_post_meta( $post_id, 'ns_agent_form_id', wp_kses( $_POST['ns_agent_form_id'], $allowed ) );
+
+    do_action('ns_real_estate_save_agent_details', $post_id);
 
 }
 
