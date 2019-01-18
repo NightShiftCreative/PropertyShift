@@ -54,13 +54,6 @@ function ns_real_estate_register_required_plugins() {
         'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
         'is_automatic' => true,                   // Automatically activate plugins after installation or not.
         'message'      => '',                      // Message to output right before the plugins table.
-        'strings'      => array(
-			'notice_can_install_required'     => _n_noop(
-				'NightShift Real Estate requires the following plugin: %1$s.',
-				'NightShift Real Estate requires the following plugins: %1$s.',
-				'ns-real-estate'
-			),
-		),
     );
 
     tgmpa( $plugins, $config );
