@@ -190,6 +190,7 @@
 .filter-minimal .hide-advanced .advanced-options-toggle { display:none; }
 .filter-minimal .hide-advanced button[type="submit"] { width:100%; float:none; }
 
+.ns-real-estate .button.filter-minimal-mobile-toggle,
 .filter-minimal-mobile-toggle { display:none; }
 
 /*********************************************/
