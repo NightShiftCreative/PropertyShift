@@ -11,6 +11,7 @@ if(ns_real_estate_is_plugin_active('js_composer/js_composer.php')) {
 
 		/** GET GLOBAL SETTINGS **/
 		$num_properties_per_page = esc_attr(get_option('ns_num_properties_per_page', 12));
+		$num_agents_per_page = esc_attr(get_option('ns_num_agents_per_page', 12));
 
 		/** LIST PROPERTIES **/
 		vc_map(array(
@@ -180,6 +181,31 @@ if(ns_real_estate_is_plugin_active('js_composer/js_composer.php')) {
 					'heading' => esc_html__( 'Filter ID', 'ns-real-estate' ),
 					'param_name' => 'id',
 					'description' => __( 'Filters can be created and edited <a href="/wp-admin/edit.php?post_type=ns-property-filter" target="_blank">here.</a>', 'ns-real-estate' ),
+				),
+			),
+		));
+
+		/** LIST AGENTS **/
+		vc_map(array(
+			'name' => esc_html__( 'List Agents', 'ns-real-estate' ),
+			'base' => 'ns_list_agents',
+			'description' => esc_html__( 'Display a list of agents', 'ns-real-estate' ),
+			'icon' => plugins_url('/ns-real-estate/images/icon-real-estate.svg'),
+			'class' => '',
+			'category' => 'NS Real Estate',
+			'params' => array(
+				array(
+					'type' => 'textfield',
+					'heading' => esc_html__( 'Number of Agents', 'ns-real-estate' ),
+					'param_name' => 'show_posts',
+					'value' => $num_agents_per_page,
+				),
+				array(
+					'type' => 'dropdown',
+					'heading' => esc_html__( 'Show Pagination', 'ns-real-estate' ),
+					'param_name' => 'show_pagination',
+					'value' => array('Yes' => 'true', 'No' => 'false'),
+					'std' => 'false',
 				),
 			),
 		));
