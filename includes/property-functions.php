@@ -460,7 +460,7 @@ function ns_real_estate_property_details($post) {
         <!--*************************************************-->
         <div id="floor-plans" class="tab-content">
             <h3><?php echo esc_html_e('Floor Plans', 'ns-real-estate'); ?></h3>
-            <div class="admin-module admin-module-floor-plans admin-module-repeater no-border">  
+            <div class="admin-module admin-module-floor-plans admin-module-repeater no-padding no-border">  
                 <div class="accordion ns-accordion">  
                     <?php 
                     if(!empty($floor_plans) && !empty($floor_plans[0])) {  
