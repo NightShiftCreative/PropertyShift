@@ -1064,7 +1064,7 @@ if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page
 function ns_real_estate_properties_map_banner($banner_source) { 
     if($banner_source == 'properties_map') { ns_core_get_template_part('template_parts/real_estate/properties_map'); }
 }
-add_filter( 'ns_basics_custom_banner_source', 'ns_real_estate_properties_map_banner');
+add_filter( 'ns_core_custom_banner_source', 'ns_real_estate_properties_map_banner');
 
 function ns_real_estate_properties_map_custom_header_var($header_vars) { 
     $page_id = ns_core_get_page_id();
