@@ -351,7 +351,7 @@ function ns_real_estate_save_agent_details_meta_box( $post_id )
 function ns_real_estate_add_agent_image_size() {
     add_image_size( 'agent-thumbnail', 800, 600, array( 'center', 'center' ) );
 }
-add_action( 'ns_basics_theme_support', 'ns_real_estate_add_agent_image_size' );
+add_action( 'ns_core_theme_support', 'ns_real_estate_add_agent_image_size' );
 
 /*-----------------------------------------------------------------------------------*/
 /*  Add Page Settings Metabox to Edit Agent Page
