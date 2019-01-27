@@ -17,6 +17,8 @@
 .widget-divider td { border:none; }
 
 .ns-real-estate .button { 
+    background:#db7e40;
+    padding:8px 15px;
     color:white; 
     text-align:center; 
     display:inline-block;
@@ -316,6 +318,7 @@
 /** MEMBER PAGES **/
 /*********************************************/
 .user-dashboard-table-img { width:20%; }
+.user-dashboard-table-actions a { display:block; }
 
 #map-canvas-one-pin { height:250px; width:100%; }
 #pac-input { width:65%; top:10px !important; font-size:14px; }
