@@ -77,7 +77,6 @@ function ns_real_estate_insert_property_post($edit_property_id = null) {
 			$post_information = array(
 	            'ID'           => $edit_property_id,
 	            'post_title' => wp_strip_all_tags( $title ),
-	            'post_content' => $_POST['description'],
 	            'post_type' => 'ns-property'
 	        );
 	        wp_update_post( $post_information );
@@ -85,7 +84,6 @@ function ns_real_estate_insert_property_post($edit_property_id = null) {
 		} else {
 			$post_information = array(
 		        'post_title' => wp_strip_all_tags( $title ),
-		        'post_content' => $_POST['description'],
 		        'post_type' => 'ns-property',
 		        'post_status' => $members_submit_property_approval
 		    );
@@ -161,6 +159,9 @@ function ns_real_estate_insert_property_post($edit_property_id = null) {
 	            update_post_meta( $post_ID, $custom_field['key'], $custom_field['value'] );
 	        }
 	    }
+
+	    if( isset( $_POST['description'] ) )
+        	update_post_meta( $post_ID, 'ns_property_description', wp_kses_post($_POST['description']) );
 
 	    if (!empty( $additional_img_urls )) { 
 	        $strAdditionalImgs = implode(",", $additional_img_urls);

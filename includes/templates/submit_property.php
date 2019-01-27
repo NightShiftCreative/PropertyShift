@@ -9,6 +9,7 @@
 	$members_my_properties_page = get_option('ns_members_my_properties_page');
 	$members_add_locations = esc_attr(get_option('ns_members_add_locations', 'true'));
 	$members_add_amenities = esc_attr(get_option('ns_members_add_amenities', 'true'));
+    $area_postfix_default = esc_attr(get_option('ns_property_default_area_postfix', 'Sq Ft'));
 
 	//intialize variables
 	$errors = '';
@@ -27,10 +28,10 @@
     	$edit_bathrooms = isset( $values['ns_property_bathrooms'] ) ? esc_attr( $values['ns_property_bathrooms'][0] ) : '';
     	$edit_garages = isset( $values['ns_property_garages'] ) ? esc_attr( $values['ns_property_garages'][0] ) : '';
     	$edit_area = isset( $values['ns_property_area'] ) ? esc_attr( $values['ns_property_area'][0] ) : '';
-    	$area_postfix_default = esc_attr(get_option('ns_property_default_area_postfix', 'Sq Ft'));
     	$edit_area_postfix = isset( $values['ns_property_area_postfix'] ) ? esc_attr( $values['ns_property_area_postfix'][0] ) : $area_postfix_default;
-    	$edit_floor_plans = isset($values['ns_property_floor_plans']) ? $values['ns_property_floor_plans'] : '';
-    	$edit_additional_images = isset($values['ns_additional_img']) ? $values['ns_additional_img'] : '';
+    	$edit_description = isset( $values['ns_property_description'] ) ? $values['ns_property_description'][0] : '';
+        $edit_floor_plans = isset($values['ns_property_floor_plans']) ? $values['ns_property_floor_plans'] : '';
+        $edit_additional_images = isset($values['ns_additional_img']) ? $values['ns_additional_img'] : '';
     	$edit_video_url = isset( $values['ns_property_video_url'] ) ? esc_attr( $values['ns_property_video_url'][0] ) : '';
     	$edit_video_img = isset( $values['ns_property_video_img'] ) ? esc_attr( $values['ns_property_video_img'][0] ) : '';
     	$latitude = isset( $values['ns_property_latitude'] ) ? esc_attr( $values['ns_property_latitude'][0] ) : '';
@@ -45,9 +46,6 @@
     	$edit_property_amenities = ns_real_estate_get_property_amenities($edit_property_id , true, 'true');
     	$edit_property_status = ns_real_estate_get_property_status($edit_property_id, 'true');
     	$edit_property_type = ns_real_estate_get_property_type($edit_property_id, 'true');
-    	$edit_content_post = get_post($edit_property_id);
-    	$edit_content = $edit_content_post->post_content;
-    	$edit_content = str_replace(']]>', ']]&gt;', $edit_content);
 
     	//delete additional image
 		if (!empty($_GET['additional_img_attachment_id'])) {
@@ -93,16 +91,25 @@
 			<div class="submit-property-section" id="general-info">
 		    	<h3><?php esc_html_e('General Info', 'ns-real-estate'); ?></h3>
 		    	
+                <div class="form-block form-block-property-title">
+                    <?php if(isset($errors['title'])) { ?>
+                        <div class="alert-box error"><h4><?php echo esc_attr($errors['title']); ?></h4></div>
+                    <?php } ?>
+                    <label><?php esc_html_e('Title*', 'ns-real-estate'); ?></label>
+                    <input class="required border" type="text" name="title" value="<?php if(!empty($edit_property_id)) { echo get_the_title( $edit_property_id ); } else { echo esc_attr($_POST['title']); } ?>" />
+                </div>
+
+                <div class="form-block form-block-property-description">
+                    <label><?php esc_html_e('Description', 'ns-real-estate'); ?></label>
+                    <?php 
+                    $editor_id = 'propertydescription';
+                    $settings = array('textarea_name' => 'description', 'editor_height' => 180, 'quicktags' => array('buttons' => ','));
+                    wp_editor( $edit_description, $editor_id, $settings);
+                    ?>
+                </div>
+
 		    	<div class="row">
 				<div class="col-lg-6 col-md-6">
-			    	<div class="form-block form-block-property-title">
-		                <label><?php esc_html_e('Title*', 'ns-real-estate'); ?></label>
-						<?php if(isset($errors['title'])) { ?>
-							<div class="alert-box error"><h4><?php echo esc_attr($errors['title']); ?></h4></div>
-						<?php } ?>
-						<input class="required border" type="text" name="title" value="<?php if(!empty($edit_property_id)) { echo get_the_title( $edit_property_id ); } else { echo esc_attr($_POST['title']); } ?>" />
-					</div>
-
 					<div class="row form-block-property-price">
 						<?php if(isset($errors['price'])) { ?>
 						       <div class="col-lg-12"><div class="alert-box error"><h4><?php echo esc_attr($errors['price']); ?></h4></div></div>
@@ -141,7 +148,7 @@
 
 						<div class="col-lg-6 col-md-6 form-block">
                             <label><?php esc_html_e('Area Postfix', 'ns-real-estate'); ?></label>
-							<input type="text" class="border" name="area_post" value="<?php if(isset($edit_area_postfix)) { echo $edit_area_postfix; } else { echo esc_attr($_POST['area_post']); } ?>" />
+							<input type="text" class="border" name="area_post" value="<?php if(isset($edit_area_postfix)) { echo $edit_area_postfix; } else if($_POST['area_post']) { echo esc_attr($_POST['area_post']); } else { echo $area_postfix_default; } ?>" />
 						</div>
 					</div>
 
@@ -158,10 +165,10 @@
 
 				<div class="col-lg-6 col-md-6">
 					<div class="form-block form-block-property-address">
-                        <label><?php esc_html_e('Street Address*', 'ns-real-estate'); ?></label>
                         <?php if(isset($errors['address'])) { ?>
                             <div class="alert-box error"><h4><?php echo esc_attr($errors['address']); ?></h4></div>
                         <?php } ?>
+                        <label><?php esc_html_e('Street Address*', 'ns-real-estate'); ?></label>
                         <input class="required border" type="text" name="street_address" value="<?php if(isset($edit_address)) { echo $edit_address; } else { echo esc_attr($_POST['street_address']); } ?>" />
                     </div>
 
@@ -189,8 +196,8 @@
                         </select>
 
                         <?php if($members_add_locations == 'true') { ?>
-                        <div class="property-location-new">
-                            <span class="property-location-new-toggle"><?php esc_html_e("Don't see your location?", 'ns-real-estate'); ?> <a href="#"><?php esc_html_e('Add a new one.', 'ns-real-estate'); ?></a></span>
+                        <div class="property-add-tax-form property-location-new">
+                            <span class="property-location-new-toggle note"><?php esc_html_e("Don't see your location?", 'ns-real-estate'); ?> <a href="#"><?php esc_html_e('Add a new one.', 'ns-real-estate'); ?></a></span>
                             <div class="property-location-new-content show-none">
                                 <input class="border" type="text" placeholder="Location name" />
                                 <a href="#" class="button"><?php echo ns_core_get_icon($icon_set, 'plus', 'plus'); ?> <?php esc_html_e('Add', 'ns-real-estate'); ?></a>
@@ -224,8 +231,8 @@
                         </select>
 
                         <?php if($members_add_amenities == 'true') { ?>
-                        <div class="property-location-new">
-                            <span class="property-location-new-toggle"><?php esc_html_e("Don't see your amenity?", 'ns-real-estate'); ?> <a href="#"><?php esc_html_e('Add a new one.', 'ns-real-estate'); ?></a></span>
+                        <div class="property-add-tax-form property-location-new">
+                            <span class="property-location-new-toggle note"><?php esc_html_e("Don't see your amenity?", 'ns-real-estate'); ?> <a href="#"><?php esc_html_e('Add a new one.', 'ns-real-estate'); ?></a></span>
                             <div class="property-location-new-content show-none">
                                 <input class="border" type="text" placeholder="Location name" />
                                 <a href="#" class="button"><?php echo ns_core_get_icon($icon_set, 'plus', 'plus'); ?> <?php esc_html_e('Add', 'ns-real-estate'); ?></a>
@@ -258,11 +265,6 @@
 		                    <?php } ?>
 		                </select>
 		            </div>
-
-		            <div class="form-block form-block-property-description">
-                        <label><?php esc_html_e('Description', 'ns-real-estate'); ?></label>
-						<textarea class="border" name="description"><?php if(isset($edit_content)) { echo $edit_content; } else { echo $_POST['description']; } ?></textarea>
-					</div>
 				</div><!-- end col -->
 				</div><!-- end row -->
 
@@ -270,45 +272,6 @@
                 <?php do_action('ns_real_estate_after_property_submit_general', $edit_property_id); ?>
 
 			</div><!-- end general info -->
-
-            <div class="submit-property-section" id="property-floor-plans">
-                <div class="module-border form-block-property-floor-plans">
-                    <h3><?php esc_html_e('Floor Plans', 'ns-real-estate'); ?></h3>
-                    <div class="form-block property-floor-plans">
-                        <div class="accordion">
-                            <?php
-                            $edit_floor_plans = unserialize($edit_floor_plans[0]); 
-                            if(!empty($edit_floor_plans)) { 
-                                $count = 0;                      
-                                foreach ($edit_floor_plans as $floor_plan) { ?>
-                                    <h4 class="accordion-tab"><span class="floor-plan-title-mirror"><?php echo $floor_plan['title']; ?></span> <span class="delete-floor-plan right"><i class="fa fa-trash"></i> <?php esc_html_e('Delete', 'ns-real-estate'); ?></span></h4>
-                                    <div class="floor-plan-item"> 
-                                        <div class="floor-plan-left"> 
-                                            <label><?php esc_html_e('Title:', 'ns-real-estate'); ?> </label> <input class="border floor-plan-title" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][title]" placeholder="<?php esc_html_e('New Floor Plan', 'ns-real-estate'); ?>" value="<?php echo $floor_plan['title']; ?>" /><br/>
-                                            <label><?php esc_html_e('Size:', 'ns-real-estate'); ?> </label> <input class="border" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][size]" value="<?php echo $floor_plan['size']; ?>" /><br/>
-                                            <label><?php esc_html_e('Rooms:', 'ns-real-estate'); ?> </label> <input class="border" type="number" name="ns_property_floor_plans[<?php echo $count; ?>][rooms]" value="<?php echo $floor_plan['rooms']; ?>" /><br/>
-                                            <label><?php esc_html_e('Bathrooms:', 'ns-real-estate'); ?> </label> <input class="border" type="number" name="ns_property_floor_plans[<?php echo $count; ?>][baths]" value="<?php echo $floor_plan['baths']; ?>" /><br/>
-                                        </div>
-                                        <div class="floor-plan-right">
-                                            <label><?php esc_html_e('Description:', 'ns-real-estate'); ?></label>
-                                            <textarea class="border" name="ns_property_floor_plans[<?php echo $count; ?>][description]"><?php echo $floor_plan['description']; ?></textarea>
-                                            <div>
-                                                <label><?php esc_html_e('Image', 'ns-real-estate'); ?></label>
-                                                <input class="border" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][img]" value="<?php echo $floor_plan['img']; ?>" />
-                                                <span><em><?php esc_html_e('Provide the absolute url to a hosted image.', 'ns-real-estate'); ?></em></span>
-                                            </div>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div> 
-                                    <?php $count++; ?>
-                                <?php }
-                            }
-                            ?>
-                        </div>
-                        <div class="button light small add-floor-plan"><i class="fa fa-plus"></i> <?php esc_html_e('Create New Floor Plan', 'ns-real-estate'); ?></div>
-                    </div>
-                </div>
-            </div><!-- end floor plans -->
 
             <div class="submit-property-section" id="property-custom-fields">
                 <?php 
@@ -350,6 +313,45 @@
                     echo '</div>';
                 } ?>
             </div><!-- end property custom fields -->
+
+            <div class="submit-property-section" id="property-floor-plans">
+                <div class="module-border form-block-property-floor-plans">
+                    <h3><?php esc_html_e('Floor Plans', 'ns-real-estate'); ?></h3>
+                    <div class="form-block property-floor-plans">
+                        <div class="accordion">
+                            <?php
+                            $edit_floor_plans = unserialize($edit_floor_plans[0]); 
+                            if(!empty($edit_floor_plans)) { 
+                                $count = 0;                      
+                                foreach ($edit_floor_plans as $floor_plan) { ?>
+                                    <h4 class="accordion-tab"><span class="floor-plan-title-mirror"><?php echo $floor_plan['title']; ?></span> <span class="delete-floor-plan right"><i class="fa fa-trash"></i> <?php esc_html_e('Delete', 'ns-real-estate'); ?></span></h4>
+                                    <div class="floor-plan-item"> 
+                                        <div class="floor-plan-left"> 
+                                            <label><?php esc_html_e('Title:', 'ns-real-estate'); ?> </label> <input class="border floor-plan-title" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][title]" placeholder="<?php esc_html_e('New Floor Plan', 'ns-real-estate'); ?>" value="<?php echo $floor_plan['title']; ?>" /><br/>
+                                            <label><?php esc_html_e('Size:', 'ns-real-estate'); ?> </label> <input class="border" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][size]" value="<?php echo $floor_plan['size']; ?>" /><br/>
+                                            <label><?php esc_html_e('Rooms:', 'ns-real-estate'); ?> </label> <input class="border" type="number" name="ns_property_floor_plans[<?php echo $count; ?>][rooms]" value="<?php echo $floor_plan['rooms']; ?>" /><br/>
+                                            <label><?php esc_html_e('Bathrooms:', 'ns-real-estate'); ?> </label> <input class="border" type="number" name="ns_property_floor_plans[<?php echo $count; ?>][baths]" value="<?php echo $floor_plan['baths']; ?>" /><br/>
+                                        </div>
+                                        <div class="floor-plan-right">
+                                            <label><?php esc_html_e('Description:', 'ns-real-estate'); ?></label>
+                                            <textarea class="border" name="ns_property_floor_plans[<?php echo $count; ?>][description]"><?php echo $floor_plan['description']; ?></textarea>
+                                            <div>
+                                                <label><?php esc_html_e('Image', 'ns-real-estate'); ?></label>
+                                                <input class="border" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][img]" value="<?php echo $floor_plan['img']; ?>" />
+                                                <span><em><?php esc_html_e('Provide the absolute url to a hosted image.', 'ns-real-estate'); ?></em></span>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div> 
+                                    <?php $count++; ?>
+                                <?php }
+                            }
+                            ?>
+                        </div>
+                        <div class="button light small add-floor-plan"><i class="fa fa-plus"></i> <?php esc_html_e('Create New Floor Plan', 'ns-real-estate'); ?></div>
+                    </div>
+                </div>
+            </div><!-- end floor plans -->
 
 			<div class="submit-property-section" id="property-images">
 				<h3><?php esc_html_e('Property Images', 'ns-real-estate'); ?></h3>
