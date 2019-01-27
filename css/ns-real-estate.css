@@ -14,7 +14,7 @@
 
 .icon { margin-right:6px; }
 
-.widget-divider td { border:none; }
+.widget-divider, .widget-divider td { border:none; }
 
 .ns-real-estate .button { 
     background:#db7e40;
@@ -305,14 +305,15 @@
 /** PROPERTY TAXONOMY LISTING **/
 /*********************************************/
 .property-cat { 
+    background-color:rgba(0, 0, 0, 0.2);
     display:block; 
     color:white;
     border:none;
     padding:30px;
-    margin-bottom:4px;
+    margin-bottom:20px;
 }
 .property-cat:hover { color:white; }
-.property-cat h3 { margin:0; }
+.property-cat h3 { color:white; margin:0; }
 
 /*********************************************/
 /** MEMBER PAGES **/
