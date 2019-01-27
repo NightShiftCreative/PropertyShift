@@ -1,4 +1,5 @@
 <?php
+    global $post;
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     $current_user = wp_get_current_user();
@@ -50,12 +51,11 @@
                     <td class="my-property-date"><?php the_time('F jS, Y') ?></td>
                     <td class="user-dashboard-table-actions my-property-actions">
                         <span><a href="<?php echo esc_url($members_submit_property_page); ?>?edit_property=<?php echo get_the_ID(); ?>"><?php echo ns_core_get_icon($icon_set, 'pencil-alt', 'pencil', 'pencil'); ?> <?php esc_html_e('EDIT', 'ns-real-estate'); ?></a></span>
-                        <span>
-                            <?php 
-                                if ($post->post_author == $current_user->ID) { ?>
-                                    <a onclick="return confirm('Are you sure you want to delete this property?')" href="<?php echo get_delete_post_link( $post->ID ) ?>"><?php echo ns_core_get_icon($icon_set, 'trash'); ?> <?php esc_html_e('REMOVE', 'ns-real-estate'); ?></a>
-                            <?php } ?>
-                        </span>
+                        <?php if($post->post_author == $current_user->ID) { ?>
+                            <span>
+                                <a onclick="return confirm('Are you sure you want to delete this property?')" href="<?php echo get_delete_post_link( $post->ID ) ?>"><?php echo ns_core_get_icon($icon_set, 'trash'); ?> <?php esc_html_e('REMOVE', 'ns-real-estate'); ?></a>
+                            </span>
+                        <?php } ?>
                         <span><a href="<?php the_permalink(); ?>" target="_blank"><?php echo ns_core_get_icon($icon_set, 'eye', 'eye', 'preview'); ?> <?php esc_html_e('VIEW', 'ns-real-estate'); ?></a></span>
                     </td>
                 </tr>
