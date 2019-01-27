@@ -300,6 +300,19 @@
 .ns-property .property-single-item .walk-score h2 { margin:0; }
 
 /*********************************************/
+/** PROPERTY TAXONOMY LISTING **/
+/*********************************************/
+.property-cat { 
+    display:block; 
+    color:white;
+    border:none;
+    padding:30px;
+    margin-bottom:4px;
+}
+.property-cat:hover { color:white; }
+.property-cat h3 { margin:0; }
+
+/*********************************************/
 /** MEMBER PAGES **/
 /*********************************************/
 .user-dashboard-table-img { width:20%; }
