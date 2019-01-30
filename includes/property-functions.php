@@ -271,8 +271,8 @@ function ns_real_estate_property_details($post) {
     wp_nonce_field( 'ns_property_details_meta_box_nonce', 'ns_property_details_meta_box_nonce' );
     ?>
 
-    <div id="tabs" class="meta-box-form meta-box-form-property-details ui-tabs">
-        <ul class="ui-tabs-nav">
+    <div class="ns-tabs meta-box-form meta-box-form-property-details">
+        <ul class="ns-tabs-nav">
             <li><a href="#general" title="<?php esc_html_e('General Info', 'ns-real-estate'); ?>"><i class="fa fa-home"></i> <span class="tab-text"><?php echo esc_html_e('General Info', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#description" title="<?php esc_html_e('Description', 'ns-real-estate'); ?>"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php echo esc_html_e('Description', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#gallery" title="<?php esc_html_e('Gallery', 'ns-real-estate'); ?>"><i class="fa fa-image"></i> <span class="tab-text"><?php echo esc_html_e('Gallery', 'ns-real-estate'); ?></span></a></li>
@@ -283,6 +283,7 @@ function ns_real_estate_property_details($post) {
             <?php do_action('ns_real_estate_after_property_tabs'); ?>
         </ul>
 
+        <div class="ns-tabs-content">
         <div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php echo esc_html_e('Loading...', 'ns-real-estate'); ?></div>
 
         <!--*************************************************-->
@@ -610,6 +611,7 @@ function ns_real_estate_property_details($post) {
         <!--*************************************************-->
         <?php do_action('ns_real_estate_after_property_tab_content', $values); ?>
 
+        </div><!-- end tab content -->
         <div class="clear"></div>
     </div>
 
