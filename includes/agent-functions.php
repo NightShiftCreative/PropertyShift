@@ -74,9 +74,9 @@ function ns_real_estate_agent_details($post) {
     wp_nonce_field( 'ns_agent_details_meta_box_nonce', 'ns_agent_details_meta_box_nonce' );
     ?>
 
-    <div id="tabs" class="meta-box-form meta-box-form-agent ui-tabs">
+    <div class="ns-tabs meta-box-form meta-box-form-agent">
 
-        <ul class="ui-tabs-nav">
+        <ul class="ns-tabs-nav">
             <li><a href="#general"><i class="fa fa-user"></i> <span class="tab-text"><?php esc_html_e('General Info', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#description"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php esc_html_e('Description', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#social"><i class="fa fa-share-alt"></i> <span class="tab-text"><?php esc_html_e('Social', 'ns-real-estate'); ?></span></a></li>
@@ -84,6 +84,7 @@ function ns_real_estate_agent_details($post) {
             <?php do_action('ns_real_estate_after_agent_detail_tabs'); ?>
         </ul>
 
+        <div class="ns-tabs-content">
         <div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e('Loading...', 'ns-real-estate'); ?></div>
 
         <!--*************************************************-->
@@ -275,6 +276,7 @@ function ns_real_estate_agent_details($post) {
         <!--*************************************************-->
         <?php do_action('ns_real_estate_after_agent_details_tab_content', $values); ?>
 
+        </div><!-- end tabs content -->
         <div class="clear"></div>
     </div>
 
