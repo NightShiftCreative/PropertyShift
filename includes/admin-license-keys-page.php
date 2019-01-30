@@ -17,11 +17,16 @@ function ns_real_estate_license_keys_page() {
 } 
 
 function ns_real_estate_license_keys_page_content() {
-    ob_start();
+    ob_start(); ?>
 
-    do_action( 'ns_real_estate_register_license_keys');
+    <div class="admin-module-note">
+        <?php esc_html_e('All premium add-ons require a valid license key. You can manage your license keys here.', 'ns-real-estate'); ?>
+        <a href="#" target="_blank">Lost your key?</a>
+    </div>
+    
+    <?php do_action( 'ns_real_estate_register_license_keys'); ?>
 
-    $output = ob_get_clean();
+    <?php $output = ob_get_clean();
     return $output;
 }
 
