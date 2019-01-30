@@ -71,37 +71,37 @@ jQuery(document).ready(function($) {
 	/********************************************/
 	/* REPEATERS (FLOOR PLANS, OPEN HOUSES, ETC.) */
 	/********************************************/
-	$('.admin-module-floor-plans').on('click', '.add-floor-plan', function() {
+	$('.admin-module-repeater').on('click', '.add-repeater', function() {
 	
-        var count = $('.admin-module-floor-plans .accordion .floor-plan-item').length;
+        var count = $('.admin-module-repeater .repeater-container > .ns-accordion').length;
 
-		var floorPlanItem = '\
-            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <span class="repeater-title-mirror floor-plan-title-mirror">'+ ns_real_estate_local_script.new_floor_plan +'</span> <span class="delete delete-floor-plan right"><i class="fa fa-trash"></i> '+ ns_real_estate_local_script.delete_text +'</span></h3> \
-			<div class="floor-plan-item"> \
-				<div class="floor-plan-left"> \
-					<label>'+ ns_real_estate_local_script.floor_plan_title +' </label> <input class="repeater-title floor-plan-title" type="text" name="ns_property_floor_plans['+count+'][title]" placeholder="'+ ns_real_estate_local_script.new_floor_plan +'" /><br/> \
-					<label>'+ ns_real_estate_local_script.floor_plan_size +' </label> <input type="text" name="ns_property_floor_plans['+count+'][size]" /><br/> \
-					<label>'+ ns_real_estate_local_script.floor_plan_rooms +' </label> <input type="number" name="ns_property_floor_plans['+count+'][rooms]" /><br/> \
-					<label>'+ ns_real_estate_local_script.floor_plan_bathrooms +' </label> <input type="number" name="ns_property_floor_plans['+count+'][baths]" /><br/> \
-				</div> \
-                <div class="floor-plan-right"> \
-                    <label>'+ ns_real_estate_local_script.floor_plan_description +' </label> \
-				    <textarea name="ns_property_floor_plans['+count+'][description]"></textarea> \
-				    <div class="floor-plan-img"> \
-                        <label>'+ ns_real_estate_local_script.floor_plan_img +' </label> \
-                        <input type="text" name="ns_property_floor_plans['+count+'][img]" /> \
-                        <input id="_btn" class="ns_upload_image_button" type="button" value="'+ ns_real_estate_local_script.upload_img +'" /> \
-                        <span class="button-secondary remove">'+ ns_real_estate_local_script.remove_text +'</span> \
+		var repeaterItem = '\
+            <div class="ns-accordion"> \
+                <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <span class="repeater-title-mirror floor-plan-title-mirror">'+ ns_real_estate_local_script.new_floor_plan +'</span> <span class="action delete delete-floor-plan"><i class="fa fa-trash"></i> '+ ns_real_estate_local_script.delete_text +'</span></div> \
+    			<div class="ns-accordion-content floor-plan-item"> \
+    				<div class="floor-plan-left"> \
+    					<label>'+ ns_real_estate_local_script.floor_plan_title +' </label> <input class="repeater-title floor-plan-title" type="text" name="ns_property_floor_plans['+count+'][title]" placeholder="'+ ns_real_estate_local_script.new_floor_plan +'" /><br/> \
+    					<label>'+ ns_real_estate_local_script.floor_plan_size +' </label> <input type="text" name="ns_property_floor_plans['+count+'][size]" /><br/> \
+    					<label>'+ ns_real_estate_local_script.floor_plan_rooms +' </label> <input type="number" name="ns_property_floor_plans['+count+'][rooms]" /><br/> \
+    					<label>'+ ns_real_estate_local_script.floor_plan_bathrooms +' </label> <input type="number" name="ns_property_floor_plans['+count+'][baths]" /><br/> \
+    				</div> \
+                    <div class="floor-plan-right"> \
+                        <label>'+ ns_real_estate_local_script.floor_plan_description +' </label> \
+    				    <textarea name="ns_property_floor_plans['+count+'][description]"></textarea> \
+    				    <div class="floor-plan-img"> \
+                            <label>'+ ns_real_estate_local_script.floor_plan_img +' </label> \
+                            <input type="text" name="ns_property_floor_plans['+count+'][img]" /> \
+                            <input id="_btn" class="ns_upload_image_button" type="button" value="'+ ns_real_estate_local_script.upload_img +'" /> \
+                            <span class="button-secondary remove">'+ ns_real_estate_local_script.remove_text +'</span> \
+                        </div> \
                     </div> \
-                </div> \
-                <div class="clear"></div> \
-			</div> \
+                    <div class="clear"></div> \
+    			</div> \
+            </div> \
 		';
 	
-        $(this).parent().find('.accordion').append(floorPlanItem);
-		$( ".accordion" ).accordion( "refresh" );
-
-        $(this).closest('.admin-module-floor-plans').find('.no-floor-plan').hide();
+        $(this).parent().find('.repeater-container').append(repeaterItem);
+        $(this).closest('.admin-module-repeater').find('.no-floor-plan').hide();
     });
 	
 	$('.admin-module-repeater').on('keypress keyup blur', '.repeater-title', function() {

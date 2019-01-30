@@ -462,14 +462,16 @@ function ns_real_estate_property_details($post) {
         <div id="floor-plans" class="tab-content">
             <h3><?php echo esc_html_e('Floor Plans', 'ns-real-estate'); ?></h3>
             <div class="admin-module admin-module-floor-plans admin-module-repeater no-padding no-border">  
-                <div class="accordion ns-accordion">  
-                    <?php 
-                    if(!empty($floor_plans) && !empty($floor_plans[0])) {  
-                        $floor_plans = unserialize($floor_plans[0]); 
-                        $count = 0;                     
-                        foreach ($floor_plans as $floor_plan) { ?>
-                            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <span class="repeater-title-mirror floor-plan-title-mirror"><?php echo $floor_plan['title']; ?></span> <span class="delete delete-floor-plan right"><i class="fa fa-trash"></i> Delete</span></h3>
-                            <div class="floor-plan-item"> 
+                
+                <div class="repeater-container">
+                <?php 
+                if(!empty($floor_plans) && !empty($floor_plans[0])) {  
+                    $floor_plans = unserialize($floor_plans[0]); 
+                    $count = 0;                     
+                    foreach ($floor_plans as $floor_plan) { ?>
+                        <div class="ns-accordion">
+                            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <span class="repeater-title-mirror floor-plan-title-mirror"><?php echo $floor_plan['title']; ?></span> <span class="action delete delete-floor-plan"><i class="fa fa-trash"></i> Delete</span></div>
+                            <div class="ns-accordion-content floor-plan-item"> 
                                 <div class="floor-plan-left"> 
                                     <label><?php esc_html_e('Title:', 'ns-real-estate'); ?> </label> <input class="repeater-title floor-plan-title" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][title]" placeholder="New Floor Plan" value="<?php echo $floor_plan['title']; ?>" /><br/>
                                     <label><?php esc_html_e('Size:', 'ns-real-estate'); ?> </label> <input type="text" name="ns_property_floor_plans[<?php echo $count; ?>][size]" value="<?php echo $floor_plan['size']; ?>" /><br/>
@@ -487,13 +489,15 @@ function ns_real_estate_property_details($post) {
                                     </div>
                                 </div>
                                 <div class="clear"></div>
-                            </div> 
-                            <?php $count++; ?>
-                        <?php }
-                    } ?>
+                            </div>
+                        </div> 
+                        <?php $count++; ?>
+                    <?php }
+                } ?>
                 </div>
+                
                 <?php if(empty($floor_plans) && empty($floor_plans[0])) { echo '<p class="admin-module-note no-floor-plan">'.esc_html__('No floor plans were found.', 'ns-real-estate').'</p>'; } ?>
-                <span class="admin-button add-floor-plan"><i class="fa fa-plus"></i> <?php esc_html_e('Create New Floor Plan', 'ns-real-estate'); ?></span>
+                <span class="admin-button add-repeater"><i class="fa fa-plus"></i> <?php esc_html_e('Create New Floor Plan', 'ns-real-estate'); ?></span>
             </div>
         </div>
 
