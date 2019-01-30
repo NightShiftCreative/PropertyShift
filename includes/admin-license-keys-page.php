@@ -31,14 +31,14 @@ function ns_real_estate_license_keys_page_content() {
         $open_houses_license = get_option('ns_real_estate_open_houses_license', $open_houses_license_default);
     ?>
 
-    <div class="accordion ns-accordion">
+    <div class="ns-accordion">
 
-        <h3 class="accordion-tab ns-license-tab">
-            <i class="fa fa-chevron-right icon"></i> 
+        <h3 class="ns-accordion-header ns-license-tab">
+            <i class="fa fa-chevron-right"></i> 
             <?php esc_html_e('Open Houses License Key', 'ns-real-estate'); ?>
             <?php echo ns_basics_get_license_status($open_houses_license, '#', null, 'true'); ?>
         </h3>
-        <div>
+        <div class="ns-accordion-content">
             <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">

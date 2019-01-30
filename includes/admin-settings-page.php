@@ -154,9 +154,9 @@ function ns_real_estate_settings_page_content() {
     <div id="properties" class="tab-content">
         <h2><?php echo esc_html_e('Properties Settings', 'ns-real-estate'); ?></h2>
 
-        <div class="accordion ns-accordion">
-            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property URL Options', 'ns-real-estate'); ?></h3>
-            <div>
+        <div class="ns-accordion">
+            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Property URL Options', 'ns-real-estate'); ?></div>
+            <div class="ns-accordion-content">
                 <p class="admin-module-note"><?php esc_html_e('After changing slugs, make sure you re-save your permalinks in Settings > Permalinks.', 'ns-real-estate'); ?></p>
                 <br/>
 
@@ -222,9 +222,9 @@ function ns_real_estate_settings_page_content() {
             </div>
         </div><!-- end property url options -->
 
-        <div class="accordion ns-accordion">
-            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property Filter Options', 'ns-real-estate'); ?></h3>
-            <div>
+        <div class="ns-accordion">
+            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Property Filter Options', 'ns-real-estate'); ?></div>
+            <div class="ns-accordion-content">
 
                 <table class="admin-module">
                     <tr>
@@ -271,9 +271,9 @@ function ns_real_estate_settings_page_content() {
             </div>
         </div><!-- end property filter options -->
 
-        <div class="accordion ns-accordion">
-            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property Listing Options', 'ns-real-estate'); ?></h3>
-            <div>
+        <div class="ns-accordion">
+            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Property Listing Options', 'ns-real-estate'); ?></div>
+            <div class="ns-accordion-content">
 
                 <table class="admin-module">
                     <tr>
@@ -397,9 +397,9 @@ function ns_real_estate_settings_page_content() {
             </div>
         </div><!-- end property listing options -->
 
-        <div class="accordion ns-accordion">
-            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property Detail Options', 'ns-real-estate'); ?></h3>
-            <div>
+        <div class="ns-accordion">
+            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Property Detail Options', 'ns-real-estate'); ?></div>
+            <div class="ns-accordion-content">
 
                 <table class="admin-module">
                     <tr>
@@ -592,9 +592,9 @@ function ns_real_estate_settings_page_content() {
             </div>
         </div><!-- end property detail options -->
 
-        <div class="accordion ns-accordion" id="accordion-custom-fields">
-            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Property Custom Fields', 'ns-real-estate'); ?></h3>
-            <div>
+        <div class="ns-accordion" id="accordion-custom-fields">
+            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Property Custom Fields', 'ns-real-estate'); ?></div>
+            <div class="ns-accordion-content">
                 <div class="admin-module admin-module-custom-fields admin-module-custom-fields-theme-options no-border">
                     <div class="sortable-list custom-fields-container">
                         <?php 
@@ -691,9 +691,9 @@ function ns_real_estate_settings_page_content() {
     <div id="agents" class="tab-content">
         <h2><?php echo esc_html_e('Agent Settings', 'ns-real-estate'); ?></h2>
 
-        <div class="accordion ns-accordion">
-            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Agent Listing Options', 'ns-real-estate'); ?></h3>
-            <div>
+        <div class="ns-accordion">
+            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Agent Listing Options', 'ns-real-estate'); ?></div>
+            <div class="ns-accordion-content">
 
                 <table class="admin-module">
                     <tr>
@@ -731,9 +731,9 @@ function ns_real_estate_settings_page_content() {
             </div>
         </div><!-- end agent listing options -->
 
-        <div class="accordion ns-accordion">
-            <h3 class="accordion-tab"><i class="fa fa-chevron-right icon"></i> <?php echo esc_html_e('Agent Detail Options', 'ns-real-estate'); ?></h3>
-            <div>
+        <div class="ns-accordion">
+            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Agent Detail Options', 'ns-real-estate'); ?></div>
+            <div class="ns-accordion-content">
 
                 <div class="admin-module no-border">
                     <div class="admin-module-label"><label><?php echo esc_html_e('Agent Detail Sections', 'ns-real-estate'); ?> <span class="admin-module-note"><?php echo esc_html_e('(Drag & drop to rearrange order)', 'ns-real-estate'); ?></span></label></div>
