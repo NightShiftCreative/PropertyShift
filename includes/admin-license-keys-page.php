@@ -24,48 +24,11 @@ function ns_real_estate_license_keys_page() {
 } 
 
 function ns_real_estate_license_keys_page_content() {
-    ob_start(); ?>
+    ob_start();
 
-    <?php
-        $open_houses_license_default = array('slug' => 'ns-open-houses', 'key' => null, 'email' => null, 'registered' => false, 'error' => null);
-        $open_houses_license = get_option('ns_real_estate_open_houses_license', $open_houses_license_default);
-    ?>
+    do_action( 'ns_real_estate_register_license_keys');
 
-    <div class="ns-accordion">
-
-        <h3 class="ns-accordion-header ns-license-tab">
-            <i class="fa fa-chevron-right"></i> 
-            <?php esc_html_e('Open Houses License Key', 'ns-real-estate'); ?>
-            <?php echo ns_basics_get_license_status($open_houses_license, '#', null, 'true'); ?>
-        </h3>
-        <div class="ns-accordion-content">
-            <table class="admin-module">
-                <tr>
-                    <td class="admin-module-label">
-                        <label><?php esc_html_e('License Key', 'ns-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide your license key. You can find your key in your account.', 'ns-real-estate'); ?></span>
-                    </td>
-                    <td class="admin-module-field">
-                        <input type="text" name="ns_real_estate_open_houses_license[key]" value="<?php echo $open_houses_license['key']; ?>" />
-                        <input type="hidden" name="ns_real_estate_open_houses_license[slug]" value="<?php echo $open_houses_license['slug']; ?>" />
-                        <input type="hidden" name="ns_real_estate_open_houses_license[registered]" value="<?php echo $open_houses_license['registered']; ?>" />
-                    </td>
-                </tr>
-            </table>
-            <table class="admin-module no-border">
-                <tr>
-                    <td class="admin-module-label">
-                        <label><?php esc_html_e('Email', 'ns-real-estate'); ?></label>
-                        <span class="admin-module-note"><?php esc_html_e('Provide the email you used when purchasing this license key.', 'ns-real-estate'); ?></span>
-                    </td>
-                    <td class="admin-module-field"><input type="email" name="ns_real_estate_open_houses_license[email]" value="<?php echo $open_houses_license['email']; ?>" /></td>
-                </tr>
-            </table>
-        </div>
-
-    </div>
-
-    <?php $output = ob_get_clean();
+    $output = ob_get_clean();
     return $output;
 }
 
