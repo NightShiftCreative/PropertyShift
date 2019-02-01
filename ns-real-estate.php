@@ -20,6 +20,7 @@ load_plugin_textdomain( 'ns-real-estate', false, dirname( plugin_basename( __FIL
 /*-----------------------------------------------------------------------------------*/
 define('NS_SITE_URL', 'http://nightshiftcreative.co/');
 define('NS_SHOP_URL', 'http://products.nightshiftcreative.co/');
+define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/1.0.0.zip');
 define('NS_REAL_ESTATE_GITHUB', '/NightShiftCreative/NS-Real-Estate/');
 
 /*-----------------------------------------------------------------------------------*/
@@ -27,7 +28,7 @@ define('NS_REAL_ESTATE_GITHUB', '/NightShiftCreative/NS-Real-Estate/');
 /*-----------------------------------------------------------------------------------*/
 require 'includes/plugins/plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-    'https://github.com/NightShiftCreative/NS-Real-Estate/',
+    'https://github.com'.constant('NS_REAL_ESTATE_GITHUB'),
     __FILE__,
     'ns-real-estate'
 );
@@ -43,12 +44,12 @@ function ns_real_estate_register_required_plugins() {
         array(
 			'name'         => 'NightShift Basics', // The plugin name.
 			'slug'         => 'ns-basics', // The plugin slug (typically the folder name).
-			'source'       => 'https://github.com/NightShiftCreative/NS-Basics/archive/1.0.0.zip', // The plugin source.
+			'source'       => 'https://github.com'.constant('NS_BASICS_GITHUB'), // The plugin source.
 			'required'     => true, // If false, the plugin is only 'recommended' instead of required.
 			'version'	   => '1.0.0',
 			'force_activation'   => false,
 			'force_deactivation' => false,
-			'external_url' => 'http://nightshiftcreative.co/',
+			'external_url' => constant('NS_SITE_URL'),
 		),
     );
 
