@@ -1,6 +1,6 @@
 <?php
 /*-----------------------------------------------------------------------------------*/
-/*  OUTPUT LICENSE KEYS PAGE
+/*  GENERATE LICENSE KEYS PAGE
 /*-----------------------------------------------------------------------------------*/
 function ns_real_estate_license_keys_page() {
     $page_name = 'NightShift Real Estate';
@@ -16,6 +16,16 @@ function ns_real_estate_license_keys_page() {
     echo ns_basics_admin_page($page_name, $settings_group, $pages, $display_actions, $content, $content_classl, $content_nav, $alerts, $ajax, $icon);
 } 
 
+/*-----------------------------------------------------------------------------------*/
+/*  UPDATE LICENSE KEY STATUS
+/*  - fires only when settings are saved
+/*  - processed in NS Basics plugin (ns-basics/includes/license-keys.php)
+/*-----------------------------------------------------------------------------------*/
+add_action( 'update_option_ns_real_estate_open_houses_license', 'ns_basics_activate_license_key', 10, 3 );
+
+/*-----------------------------------------------------------------------------------*/
+/*  OUTPUT PAGE CONTENT
+/*-----------------------------------------------------------------------------------*/
 function ns_real_estate_license_keys_page_content() {
     ob_start(); ?>
 
