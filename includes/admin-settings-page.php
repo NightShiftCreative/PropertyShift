@@ -83,9 +83,6 @@ function ns_real_estate_register_options() {
     register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_decimal_separator_area' );
     register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_num_decimal_area' );
 
-    //LICENSE KEY SETTINGS
-    register_setting( 'ns-real-estate-license-keys-group', 'ns_real_estate_open_houses_license');
-
     //ADD-ON SETTINGS
     do_action( 'ns_real_estate_register_settings');
 }

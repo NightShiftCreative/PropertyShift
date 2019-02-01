@@ -81,6 +81,7 @@ function ns_real_estate_agent_details($post) {
             <li><a href="#description"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php esc_html_e('Description', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#social"><i class="fa fa-share-alt"></i> <span class="tab-text"><?php esc_html_e('Social', 'ns-real-estate'); ?></span></a></li>
             <li><a href="#contact"><i class="fa fa-envelope"></i> <span class="tab-text"><?php esc_html_e('Contact Form', 'ns-real-estate'); ?></span></a></li>
+            <li><a href="#properties"><i class="fa fa-home"></i> <span class="tab-text"><?php esc_html_e('Properties', 'ns-real-estate'); ?></span></a></li>
             <?php do_action('ns_real_estate_after_agent_detail_tabs'); ?>
         </ul>
 
@@ -270,6 +271,13 @@ function ns_real_estate_agent_details($post) {
                 </tr>
             </table>
         </div><!-- end agent contact -->
+
+        <!--*************************************************-->
+        <!-- AGENT PROPERTIES -->
+        <!--*************************************************-->
+        <div id="properties" class="tab-content">
+            <h3><?php esc_html_e('Agent Properties', 'ns-real-estate'); ?></h3>
+        </div>
 
         <!--*************************************************-->
         <!-- ADD-ONS -->
