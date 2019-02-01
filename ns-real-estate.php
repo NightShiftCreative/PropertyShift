@@ -16,6 +16,13 @@
 load_plugin_textdomain( 'ns-real-estate', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
 /*-----------------------------------------------------------------------------------*/
+/*  Define Global Variables
+/*-----------------------------------------------------------------------------------*/
+define('NS_SITE_URL', 'http://nightshiftcreative.co/');
+define('NS_SHOP_URL', 'http://products.nightshiftcreative.co/');
+define('NS_REAL_ESTATE_GITHUB', '/NightShiftCreative/NS-Real-Estate/');
+
+/*-----------------------------------------------------------------------------------*/
 /*  Automatic Update Checker (checks for new releases on github)
 /*-----------------------------------------------------------------------------------*/
 require 'includes/plugins/plugin-update-checker/plugin-update-checker.php';

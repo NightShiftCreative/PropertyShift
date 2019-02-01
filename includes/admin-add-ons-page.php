@@ -45,6 +45,8 @@ function ns_real_estate_add_ons_page_content() {
         <div class="clear"></div>
     </div>
 
+    <?php echo constant('NS_SHOP_URL'); ?>
+
     <?php $output = ob_get_clean();
     return $output;
 }
