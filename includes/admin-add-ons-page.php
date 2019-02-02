@@ -45,7 +45,46 @@ function ns_real_estate_add_ons_page_content() {
         <div class="clear"></div>
     </div>
 
-    <?php echo constant('NS_SHOP_URL'); ?>
+    <?php 
+    $raw_addons = wp_remote_get(
+        constant('NS_SHOP_URL').'/plugins/add-ons/',
+        array(
+            'timeout'     => 10,
+            'redirection' => 5,
+            'sslverify'   => false
+        )
+    );
+
+    if(!is_wp_error($raw_addons)) {
+        $raw_addons = wp_remote_retrieve_body($raw_addons);
+        $dom = new DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHTML( $raw_addons );
+
+        $links = [];
+        $arr = $dom->getElementsByTagName("a");
+        foreach($arr as $item) {
+            $href =  $item->getAttribute("href");
+            $text = trim(preg_replace("/[\r\n]+/", " ", $item->nodeValue));
+            $links[] = [
+              'href' => $href,
+              'text' => $text
+            ];
+        }
+
+        print_r($links);
+
+        /*$xpath = new DOMXPath( $dom );
+        $tags = $xpath->query('//*[@class="products"]');
+                
+        foreach ( $tags as $tag ) {                 
+            $addons = $tag->ownerDocument->saveXML( $tag );
+            break;
+        }
+        $addons = wp_kses_post( $addons );
+        echo $addons;*/
+    }
+    ?>
 
     <?php $output = ob_get_clean();
     return $output;
