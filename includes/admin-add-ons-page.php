@@ -40,14 +40,12 @@ function ns_real_estate_add_ons_page_content() {
             </div>
         </div>
 
-        <div class="admin-module coming-soon"><div class="ns-module-content"><i class="fa fa-plus"></i> <span>More Coming Soon...</span></div></div>
-    
         <div class="clear"></div>
     </div>
 
     <?php 
     $raw_addons = wp_remote_get(
-        constant('NS_SHOP_URL').'/plugins/add-ons/',
+        constant('NS_SHOP_URL').'/plugins/ns-real-estate/add-ons/',
         array(
             'timeout'     => 10,
             'redirection' => 5,
@@ -56,33 +54,29 @@ function ns_real_estate_add_ons_page_content() {
     );
 
     if(!is_wp_error($raw_addons)) {
+        echo '<div class="ns-module-group">';
         $raw_addons = wp_remote_retrieve_body($raw_addons);
         $dom = new DOMDocument();
         libxml_use_internal_errors(true);
         $dom->loadHTML( $raw_addons );
 
-        $links = [];
-        $arr = $dom->getElementsByTagName("a");
-        foreach($arr as $item) {
-            $href =  $item->getAttribute("href");
-            $text = trim(preg_replace("/[\r\n]+/", " ", $item->nodeValue));
-            $links[] = [
-              'href' => $href,
-              'text' => $text
-            ];
-        }
+        $finder = new DomXPath($dom);
+        $classname = "ns-product-grid";
+        $nodes = $finder->query("//*[contains(@class, '$classname')]");
+ 
+        function DOMinnerHTML(DOMNode $element) { 
+            $innerHTML = ""; 
+            $children  = $element->childNodes;
+            foreach ($children as $child) { 
+                $innerHTML .= $element->ownerDocument->saveHTML($child);
+            }
+            return $innerHTML; 
+        } 
 
-        print_r($links);
-
-        /*$xpath = new DOMXPath( $dom );
-        $tags = $xpath->query('//*[@class="products"]');
-                
-        foreach ( $tags as $tag ) {                 
-            $addons = $tag->ownerDocument->saveXML( $tag );
-            break;
+        foreach($nodes as $node) {
+            echo '<div class="admin-module add-on">'.DOMinnerHTML($node).'</div>'; 
         }
-        $addons = wp_kses_post( $addons );
-        echo $addons;*/
+        echo '</div>';
     }
     ?>
 
