@@ -99,7 +99,7 @@ function ns_real_estate_get_admin_pages() {
     $pages = array();
     $pages[] = array('slug' => 'ns-real-estate-settings', 'name' => esc_html__('Settings', 'ns-real-estate'));
     $pages[] = array('slug' => 'ns-real-estate-add-ons', 'name' => esc_html__('Add-Ons', 'ns-real-estate'));
-    $pages[] = array('slug' => 'ns-real-estate-license-keys', 'name' => esc_html__('License', 'ns-real-estate'));
+    $pages[] = array('slug' => 'ns-real-estate-license-keys', 'name' => esc_html__('License Keys', 'ns-real-estate'));
     $pages[] = array('slug' => 'ns-real-estate-help', 'name' => esc_html__('Help', 'ns-real-estate'));
     return $pages;
 }
