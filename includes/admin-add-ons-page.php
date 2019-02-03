@@ -45,9 +45,9 @@ function ns_real_estate_add_ons_page_content() {
         function DOMinnerHTML(DOMNode $element) { 
             $innerHTML = ""; 
             $children  = $element->childNodes;
-            foreach ($children as $child) { 
-                $innerHTML .= $element->ownerDocument->saveHTML($child);
-            }
+            $anchors = $element->getElementsByTagName('a');
+            foreach($anchors as $anchor) { $anchor->setAttribute('target','_blank'); }
+            foreach ($children as $child) { $innerHTML .= $element->ownerDocument->saveHTML($child); }
             return $innerHTML; 
         } 
 
