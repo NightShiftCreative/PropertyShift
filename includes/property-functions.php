@@ -228,6 +228,7 @@ function ns_real_estate_create_properties_post_type() {
             ),
         'public' => true,
         'show_in_menu' => true,
+        'menu_icon' => 'dashicons-admin-home',
         'has_archive' => false,
         'supports' => array('title', 'author', 'editor', 'revisions', 'thumbnail', 'page_attributes'),
         'rewrite' => array('slug' => $properties_slug),

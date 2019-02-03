@@ -84,6 +84,7 @@ function ns_real_estate_create_property_filter_post_type() {
 		'publicly_queryable' => true,
 		'show_ui' => true,
         'show_in_nav_menus' => false,
+        'menu_icon' => 'dashicons-filter',
         'has_archive' => false,
         'supports' => array('title', 'revisions', 'page_attributes'),
         )
