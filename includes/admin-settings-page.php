@@ -570,7 +570,7 @@ function ns_real_estate_settings_page_content() {
                                             <tr>
                                                 <td class="admin-module-label">
                                                     <label><?php echo esc_html_e('Display agent contact form underneath agent information?', 'ns-real-estate'); ?></label>
-                                                    <span class="admin-module-note"><?php esc_html_e('Configure the agent contact form options in Theme Options > Agents > Agent Detail Options.', 'ns-real-estate'); ?></span>
+                                                    <span class="admin-module-note"><?php esc_html_e('Configure the agent contact form options in the Agent Settings tab.', 'ns-real-estate'); ?></span>
                                                 </td>
                                                 <td class="admin-module-field">
                                                     <input type="checkbox" id="property_detail_agent_contact_form" name="ns_property_detail_agent_contact_form" value="true" <?php checked('true', get_option('ns_property_detail_agent_contact_form'), true) ?> />

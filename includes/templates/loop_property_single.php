@@ -439,7 +439,7 @@
                                         </a>
 
                                         <div class="agent-content">
-                                            <a href="<?php the_permalink(); ?>" class="button button-icon right"><i class="fa fa-angle-right icon"></i><?php esc_html_e('Contact Agent', 'ns-real-estate'); ?></a>
+                                            <a href="<?php the_permalink(); ?>" class="button button-icon right"><i class="fa fa-angle-right icon"></i><?php esc_html_e('View Agent Profile', 'ns-real-estate'); ?></a>
                                             <div class="agent-details left">
                                                 <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                                                 <?php if(!empty($agent_title)) { ?><p><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php echo esc_attr($agent_title); ?></p><?php } ?>
