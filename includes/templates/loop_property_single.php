@@ -133,6 +133,8 @@
                                 <?php if(!empty($bathrooms)) { ?><div class="property-detail-item"><?php esc_html_e('Baths', 'ns-real-estate'); ?>:<span><?php echo esc_attr($bathrooms); ?></span></div><?php } ?>
                                 <?php if(!empty($area)) { ?><div class="property-detail-item"><?php esc_html_e('Area', 'ns-real-estate'); ?>:<span><?php echo esc_attr($area); ?> <?php echo esc_attr($area_postfix); ?></span></div><?php } ?>
                                 <?php if(!empty($garages)) { ?><div class="property-detail-item"><?php esc_html_e('Garages', 'ns-real-estate'); ?>:<span><?php echo esc_attr($garages); ?></span></div><?php } ?>
+                                <?php if(!empty($property_status)) { ?><div class="property-detail-item"><?php esc_html_e('Status', 'ns-real-estate'); ?>:<span><?php echo wp_kses_post($property_status); ?></span></div><?php } ?>
+                                <?php if(!empty($property_type)) { ?><div class="property-detail-item"><?php esc_html_e('Type', 'ns-real-estate'); ?>:<span><?php echo wp_kses_post($property_type); ?></span></div><?php } ?>
                                 <?php 
                                 if(!empty($custom_fields)) {                 
                                     foreach ($custom_fields as $custom_field) { 

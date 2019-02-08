@@ -102,7 +102,7 @@ function ns_real_estate_get_property_status($post_id, $array = null) {
             if($array == 'true') {
                 $property_status_links[] = $property_status_term->slug;
             } else {
-                $property_status_links[] = '<a href="'. esc_attr(get_term_link($property_status_term ->slug, 'property_status')) .'"><span>'.$property_status_term ->name.'</span></a>' ;
+                $property_status_links[] = '<a href="'. esc_attr(get_term_link($property_status_term ->slug, 'property_status')) .'">'.$property_status_term ->name.'</a>' ;
             }
         }                   
         if($array == 'true') { $property_status = $property_status_links; } else { $property_status = join( "<span>, </span>", $property_status_links ); }
