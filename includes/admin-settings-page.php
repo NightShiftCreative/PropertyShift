@@ -1061,48 +1061,55 @@ function ns_real_estate_load_default_property_detail_items() {
             'sidebar' => 'false',
         ),
         3 => array(
+            'name' => esc_html__('Property Details', 'ns-real-estate'),
+            'label' => esc_html__('Property Details', 'ns-real-estate'),
+            'slug' => 'property_details',
+            'active' => 'true',
+            'sidebar' => 'false',
+        ),
+        4 => array(
             'name' => esc_html__('Video', 'ns-real-estate'),
             'label' => esc_html__('Video', 'ns-real-estate'),
             'slug' => 'video',
             'active' => 'true',
             'sidebar' => 'false',
         ),
-        4 => array(
+        5 => array(
             'name' => esc_html__('Amenities', 'ns-real-estate'),
             'label' => esc_html__('Amenities', 'ns-real-estate'),
             'slug' => 'amenities',
             'active' => 'true',
             'sidebar' => 'false',
         ),
-        5 => array(
+        6 => array(
             'name' => esc_html__('Floor Plans', 'ns-real-estate'),
             'label' => esc_html__('Floor Plans', 'ns-real-estate'),
             'slug' => 'floor_plans',
             'active' => 'true',
             'sidebar' => 'false',
         ),
-        6 => array(
+        7 => array(
             'name' => esc_html__('Location', 'ns-real-estate'),
             'label' => esc_html__('Location', 'ns-real-estate'),
             'slug' => 'location',
             'active' => 'true',
             'sidebar' => 'false',
         ),
-        7 => array(
+        8 => array(
             'name' => esc_html__('Walk Score', 'ns-real-estate'),
             'label' => esc_html__('Walk Score', 'ns-real-estate'),
             'slug' => 'walk_score',
             'active' => 'true',
             'sidebar' => 'false',
         ),
-        8 => array(
+        9 => array(
             'name' => esc_html__('Agent Info', 'ns-real-estate'),
             'label' => 'Agent Information',
             'slug' => 'agent_info',
             'active' => 'true',
             'sidebar' => 'false',
         ),
-        9 => array(
+        10 => array(
             'name' => esc_html__('Related Properties', 'ns-real-estate'),
             'label' => 'Related Properties',
             'slug' => 'related',

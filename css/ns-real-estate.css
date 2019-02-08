@@ -295,6 +295,21 @@
 	margin-bottom:30px;
 }
 
+.ns-property .property-details-full { font-size:12px; }
+.ns-property .property-details-full .property-detail-item {
+    width:48%;
+    float:left;
+    border-bottom:1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom:8px;
+    margin-bottom:8px;
+}
+.ns-property .property-details-full .property-detail-item:nth-child(odd) { margin-right:4%; }
+.ns-property .property-details-full span {
+    display:block;
+    color:black;
+    font-size:15px;
+}
+
 .ns-property .property-single .gallery-images > a {
 	width:24%;
 	display:block;
