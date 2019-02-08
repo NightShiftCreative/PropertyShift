@@ -37,8 +37,6 @@ function ns_real_estate_register_options() {
     register_setting( 'ns-real-estate-settings-group', 'ns_property_listing_display_favorite' );
     register_setting( 'ns-real-estate-settings-group', 'ns_property_listing_display_share' );
 
-    register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_template' );
-    register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_display_gallery_agent' );
     register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_default_layout' );
     register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_id' );
     register_setting( 'ns-real-estate-settings-group', 'ns_property_detail_items' );
@@ -397,21 +395,6 @@ function ns_real_estate_settings_page_content() {
         <div class="ns-accordion">
             <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Property Detail Options', 'ns-real-estate'); ?></div>
             <div class="ns-accordion-content">
-
-                <table class="admin-module">
-                    <tr>
-                        <td class="admin-module-label"><label><?php echo esc_html_e('Property Detail Template', 'ns-real-estate'); ?></label></td>
-                        <td class="admin-module-field">
-                            <p><input type="radio" id="property_detail_template_classic" name="ns_property_detail_template" value="classic" <?php if(esc_attr( get_option('ns_property_detail_template', 'classic')) == 'classic') { echo 'checked'; } ?> /><?php echo esc_html_e('Classic', 'ns-real-estate'); ?></p>
-                            <p><input type="radio" id="property_detail_template_full" name="ns_property_detail_template" value="full" <?php if(esc_attr( get_option('ns_property_detail_template', 'classic')) == 'full') { echo 'checked'; } ?> /><?php echo esc_html_e('Full Width Gallery', 'ns-real-estate'); ?></p>
-                            <p><input type="radio" id="property_detail_template_agent_contact" name="ns_property_detail_template" value="agent_contact" <?php if(esc_attr( get_option('ns_property_detail_template', 'classic')) == 'agent_contact') { echo 'checked'; } ?> /><?php echo esc_html_e('Boxed Gallery', 'ns-real-estate'); ?></p>
-                            <p class="admin-module-property-detail-display-gallery-agent <?php if(get_option('ns_property_detail_template', 'classic') != 'agent_contact') { echo 'hide-soft'; } ?>">
-                                <input type="checkbox" id="property_detail_display_gallery_agent" name="ns_property_detail_display_gallery_agent" value="true" <?php checked('true', get_option('ns_property_detail_display_gallery_agent', 'true'), true) ?> />
-                                <label for="property_detail_display_gallery_agent"><?php echo esc_html_e('Display agent contact information in gallery?', 'ns-real-estate'); ?></label>
-                            </p>
-                        </td>
-                    </tr>
-                </table>
 
                 <table class="admin-module">
                     <tr>

@@ -5,7 +5,6 @@
     $postID = get_the_id();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     $properties_page = esc_attr(get_option('ns_properties_page'));
-    $property_detail_template = esc_attr(get_option('ns_property_detail_template', 'classic'));
     $google_maps_pin = esc_attr(get_option('ns_real_estate_google_maps_pin'));
     if(empty($google_maps_pin)) { $google_maps_pin = plugins_url( '/ns-real-estate/images/pin.png'); }
     $property_detail_amenities_hide_empty = esc_attr(get_option('ns_property_detail_amenities_hide_empty', 'false'));
