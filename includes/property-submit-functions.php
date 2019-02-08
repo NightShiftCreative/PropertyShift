@@ -16,6 +16,7 @@ add_filter( 'ns_core_after_top_bar_member_menu', 'ns_real_estate_add_member_top_
 /*-----------------------------------------------------------------------------------*/
 function ns_real_estate_default_property_submit_fields() {
 	$submit_property_fields_default = array(
+		'Price Postfix',
 		'Description',
 		'Beds',
 		'Baths',

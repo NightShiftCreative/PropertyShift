@@ -963,6 +963,7 @@ function ns_real_estate_settings_page_content() {
                         ?>
                         <li><input type="checkbox" disabled checked /><?php echo esc_html_e('Property Title (required)', 'ns-real-estate'); ?></li>
                         <li><input type="checkbox" disabled checked /><?php echo esc_html_e('Price (required)', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Price Postfix" <?php if(in_array('Price Postfix', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Price Postfix', 'ns-real-estate'); ?></li>
                         <li><input type="checkbox" disabled checked /><?php echo esc_html_e('Street Address (required)', 'ns-real-estate'); ?></li>
                         <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Description" <?php if(in_array('Description', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Description', 'ns-real-estate'); ?></li>
                         <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Beds" <?php if(in_array('Beds', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Beds', 'ns-real-estate'); ?></li>
@@ -980,6 +981,7 @@ function ns_real_estate_settings_page_content() {
                         <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Gallery Images" <?php if(in_array('Gallery Images', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Gallery Images', 'ns-real-estate'); ?></li>
                         <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Map" <?php if(in_array('Map', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Map', 'ns-real-estate'); ?></li>
                         <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Owner Info" <?php if(in_array('Owner Info', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Owner Info', 'ns-real-estate'); ?></li>
+                        <?php do_action('ns_real_estate_submit_property_fields'); ?>
                     </ul>
                 </td>
             </tr>

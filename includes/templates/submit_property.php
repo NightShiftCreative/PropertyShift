@@ -6,6 +6,9 @@
 
 	//global settings
 	$icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
+    $members_submit_property_fields_default = ns_real_estate_default_property_submit_fields();
+    $members_submit_property_fields = get_option('ns_members_submit_property_fields', $members_submit_property_fields_default); 
+    if(empty($members_submit_property_fields)) { $members_submit_property_fields = array(); }
 	$members_my_properties_page = get_option('ns_members_my_properties_page');
 	$members_add_locations = esc_attr(get_option('ns_members_add_locations', 'true'));
 	$members_add_amenities = esc_attr(get_option('ns_members_add_amenities', 'true'));
@@ -99,6 +102,7 @@
                     <input class="required border" type="text" name="title" value="<?php if(!empty($edit_property_id)) { echo get_the_title( $edit_property_id ); } else { echo esc_attr($_POST['title']); } ?>" />
                 </div>
 
+                <?php if(in_array('Description', $members_submit_property_fields)) { ?>
                 <div class="form-block form-block-property-description">
                     <label><?php esc_html_e('Description', 'ns-real-estate'); ?></label>
                     <?php 
@@ -107,9 +111,11 @@
                     wp_editor( $edit_description, $editor_id, $settings);
                     ?>
                 </div>
+                <?php } ?>
 
 		    	<div class="row">
 				<div class="col-lg-6 col-md-6">
+
 					<div class="row form-block-property-price">
 						<?php if(isset($errors['price'])) { ?>
 						       <div class="col-lg-12"><div class="alert-box error"><h4><?php echo esc_attr($errors['price']); ?></h4></div></div>
@@ -119,39 +125,52 @@
 							<input class="required border" type="number" name="price" value="<?php if(isset($edit_price)) { echo $edit_price; } else { echo esc_attr($_POST['price']); } ?>" />
 						</div>
 
+                        <?php if(in_array('Price Postfix', $members_submit_property_fields )) { ?>
 						<div class="col-lg-6 col-md-6 form-block">
 	                           <label><?php esc_html_e('Price Postfix', 'ns-real-estate'); ?></label>
 							<input type="text" class="border" name="price_post" value="<?php if(isset($edit_price_postfix)) { echo $edit_price_postfix; } else { echo esc_attr($_POST['price_post']); } ?>" />
 						</div>
+                        <?php } ?>
 					</div>
 
+                    <?php if(in_array('Beds', $members_submit_property_fields )) { ?>
 					<div class="form-block form-block-property-beds">
 	                    <label><?php esc_html_e('Bedrooms', 'ns-real-estate'); ?></label>
 						<input type="number" class="border" name="beds" value="<?php if(isset($edit_bedrooms)) { echo $edit_bedrooms; } else { echo esc_attr($_POST['beds']); } ?>" />
 					</div>
+                    <?php } ?>
 
+                    <?php if(in_array('Baths', $members_submit_property_fields )) { ?>
 					<div class="form-block form-block-property-baths">
 	                    <label><?php esc_html_e('Bathrooms', 'ns-real-estate'); ?></label>
 						<input type="number" class="border" name="baths" value="<?php if(isset($edit_bathrooms)) { echo $edit_bathrooms; } else { echo esc_attr($_POST['baths']); } ?>" />
 					</div>
+                    <?php } ?>
 
+                    <?php if(in_array('Garages', $members_submit_property_fields )) { ?>
 					<div class="form-block form-block-property-garages">
 	                    <label><?php esc_html_e('Garages', 'ns-real-estate'); ?></label>
 						<input type="number" class="border" name="garages" value="<?php if(isset($edit_garages)) { echo $edit_garages; } else { echo esc_attr($_POST['garages']); } ?>" />
 					</div>
+                    <?php } ?>
 
 					<div class="row form-block-property-area">
+                        <?php if(in_array('Area', $members_submit_property_fields )) { ?>
 						<div class="col-lg-6 col-md-6 form-block">
                             <label><?php esc_html_e('Area', 'ns-real-estate'); ?></label>
 							<input type="number" class="border" name="area" value="<?php if(isset($edit_area)) { echo $edit_area; } else { echo esc_attr($_POST['area']); } ?>" />
 						</div>
+                        <?php } ?>
 
+                        <?php if(in_array('Area Postfix', $members_submit_property_fields )) { ?>
 						<div class="col-lg-6 col-md-6 form-block">
                             <label><?php esc_html_e('Area Postfix', 'ns-real-estate'); ?></label>
 							<input type="text" class="border" name="area_post" value="<?php if(isset($edit_area_postfix)) { echo $edit_area_postfix; } else if($_POST['area_post']) { echo esc_attr($_POST['area_post']); } else { echo $area_postfix_default; } ?>" />
 						</div>
+                        <?php } ?>
 					</div>
 
+                    <?php if(in_array('Video', $members_submit_property_fields )) { ?>
 					<div class="form-block form-block-property-video-url">
                         <label><?php esc_html_e('Video URL', 'ns-real-estate'); ?></label>
 						<input type="text" class="border" name="video_url" value="<?php if(isset($edit_video_url)) { echo $edit_video_url; } else { echo esc_url($_POST['video_url']); } ?>" />
@@ -161,6 +180,8 @@
                         <label><?php esc_html_e('Video Cover Image', 'ns-real-estate'); ?></label>
 						<input type="text" class="border" name="video_img" value="<?php if(isset($edit_video_img)) { echo $edit_video_img; } else { echo esc_url($_POST['video_img']); } ?>" />
 					</div>
+                    <?php }  ?>
+
 				</div><!-- end col -->
 
 				<div class="col-lg-6 col-md-6">
@@ -172,6 +193,7 @@
                         <input class="required border" type="text" name="street_address" value="<?php if(isset($edit_address)) { echo $edit_address; } else { echo esc_attr($_POST['street_address']); } ?>" />
                     </div>
 
+                    <?php if(in_array('Property Location', $members_submit_property_fields )) { ?>
                     <div class="form-block form-block-property-location border">
                         <label for="property-location"><?php esc_html_e('Property Location', 'ns-real-estate'); ?></label>
                         <select data-placeholder="<?php esc_html_e('Select a location...', 'ns-real-estate'); ?>" name="property_location[]" id="property-location" multiple>
@@ -206,7 +228,9 @@
                         </div>
                         <?php } ?>
 		            </div>
+                    <?php } ?>
 
+                    <?php if(in_array('Amenities', $members_submit_property_fields )) { ?>
 		            <div class="form-block form-block-property-amenities border">
                         <label for="property-amenities"><?php esc_html_e('Amenities', 'ns-real-estate'); ?></label>
                         <select data-placeholder="<?php esc_html_e('Select an amenity...', 'ns-real-estate'); ?>" name="property_amenities[]" id="property-amenities" multiple>
@@ -241,7 +265,9 @@
                         </div>
                         <?php } ?>
 		            </div>
+                    <?php } ?>
 
+                    <?php if(in_array('Property Type', $members_submit_property_fields )) { ?>
 		            <div class="form-block form-block-property-type border">
                         <label for="property-type"><?php esc_html_e('Property Type', 'ns-real-estate'); ?></label>
 		                <select name="property_type" id="property-type">
@@ -253,7 +279,9 @@
 		                    <?php } ?>
 		                </select>
 		            </div>
+                    <?php } ?>
 
+                    <?php if(in_array('Property Status', $members_submit_property_fields )) { ?>
 					<div class="form-block form-block-property-status border">
                         <label for="contract-type"><?php esc_html_e('Contract Type', 'ns-real-estate'); ?></label>
 		                <select name="contract_type" id="contract-type">
@@ -265,6 +293,8 @@
 		                    <?php } ?>
 		                </select>
 		            </div>
+                    <?php } ?>
+
 				</div><!-- end col -->
 				</div><!-- end row -->
 
@@ -314,6 +344,7 @@
                 } ?>
             </div><!-- end property custom fields -->
 
+            <?php if(in_array('Floor Plans', $members_submit_property_fields )) { ?>
             <div class="submit-property-section" id="property-floor-plans">
                 <div class="module-border form-block-property-floor-plans">
                     <h3><?php esc_html_e('Floor Plans', 'ns-real-estate'); ?></h3>
@@ -352,16 +383,21 @@
                     </div>
                 </div>
             </div><!-- end floor plans -->
+            <?php } ?>
 
+            <?php if(in_array('Featured Image', $members_submit_property_fields) || in_array('Gallery Images', $members_submit_property_fields)) { ?>
 			<div class="submit-property-section" id="property-images">
 				<h3><?php esc_html_e('Property Images', 'ns-real-estate'); ?></h3>
 
+                <?php if(in_array('Featured Image', $members_submit_property_fields )) { ?>
 				<div class="form-block featured-img">
 					<?php if(isset($edit_property_id) && !empty($edit_property_id)) { echo get_the_post_thumbnail( $edit_property_id, 'thumbnail', array( 'class' => 'featured-img' ) ); } ?>
 	                <label for="featured_img"><?php esc_html_e('Featured Image', 'ns-real-estate'); ?></label><br/>
 	                <input id="featured_img" name="featured_img" type="file">
 	            </div>
+                <?php } ?>
 
+                <?php if(in_array('Gallery Images', $members_submit_property_fields )) { ?>
 	            <div class="form-block">
 	            	<label><?php esc_html_e('Gallery Images', 'ns-real-estate'); ?></label>
 	            	
@@ -401,10 +437,13 @@
 	                    </table>
 	                </div>
 	                <span class="button light small add-additional-img"><i class="fa fa-plus"></i>  <?php esc_html_e('Add Image', 'ns-real-estate'); ?></span>
-
 	            </div>
-			</div><!-- end property images -->
+                <?php } ?>
 
+			</div><!-- end property images -->
+            <?php } ?>
+
+            <?php if(in_array('Map', $members_submit_property_fields )) { ?>
 			<div class="submit-property-section" id="map">
             	<h3><?php esc_html_e('Map', 'ns-real-estate'); ?></h3>
             	<div class="left">
@@ -420,7 +459,9 @@
             	</div>
             	<?php include(plugin_dir_path( __DIR__ ) . 'admin_map.php'); ?>
             </div>
+            <?php } ?>
 
+            <?php if(in_array('Owner Info', $members_submit_property_fields )) { ?>
             <div class="submit-property-section" id="owner-info">
 	            <h3><?php esc_html_e('Owner Info', 'ns-real-estate'); ?></h3>
 
@@ -467,6 +508,7 @@
 	                <input type="text" class="border" name="agent_custom_url" placeholder="<?php esc_html_e('Website', 'ns-real-estate'); ?>" value="<?php if(isset($edit_agent_custom_url)) { echo esc_url($edit_agent_custom_url); } else { echo esc_url($_POST['agent_custom_url']); } ?>" />
 	            </div>
 	        </div><!-- end owner info -->
+            <?php } ?>
 
 	        <input type="submit" class="button alt right" value="<?php echo $form_submit_text; ?>" />
 	    </form>
