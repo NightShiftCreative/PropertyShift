@@ -432,7 +432,7 @@ function ns_real_estate_property_details($post) {
                         <span class="admin-module-note"><?php esc_html_e('No custom fields have been created.', 'ns-real-estate'); ?></span>
                     <?php }
                 ?>
-                <span class="admin-module-note"><a href="<?php echo admin_url('admin.php?page=ns-real-estate-settings#custom-property-fields'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage custom fields', 'ns-real-estate'); ?></a></span>
+                <span class="admin-module-note"><a href="<?php echo admin_url('admin.php?page=ns-real-estate-settings#properties&custom-fields'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage custom fields', 'ns-real-estate'); ?></a></span>
             </div>
 
         </div>

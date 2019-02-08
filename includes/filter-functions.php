@@ -292,7 +292,7 @@ function ns_real_estate_property_filter_details($post) {
             <tr>
                 <td class="admin-module-label">
                     <label><?php esc_html_e('Add Custom Field to Filter', 'ns-real-estate'); ?></label>
-                    <span class="admin-module-note"><a href="<?php echo admin_url('admin.php?page=ns-real-estate-settings#custom-property-fields'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage custom fields', 'ns-real-estate'); ?></a></span>
+                    <span class="admin-module-note"><a href="<?php echo admin_url('admin.php?page=ns-real-estate-settings#properties&custom-fields'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage custom fields', 'ns-real-estate'); ?></a></span>
                 </td>
                 <td class="admin-module-field">
                     <?php 
