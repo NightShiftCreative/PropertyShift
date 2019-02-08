@@ -129,17 +129,6 @@ jQuery(document).ready(function($) {
 	   $('.admin-module-agent-form-id').slideUp('fast');
 	});
 
-	/************************************************/
-    /* PROPERTY DETAIL BOXED GALLERY OPTIONS TOGGLE */
-    /************************************************/
-    var propertyDetailTemplate = $('#property_detail_template_agent_contact');
-    propertyDetailTemplate.on('click', function() {
-       $('.admin-module-property-detail-display-gallery-agent').slideDown('fast');
-    });
-    $('#property_detail_template_full, #property_detail_template_classic').on('click', function() {
-       $('.admin-module-property-detail-display-gallery-agent').hide();
-    });
-
     /********************************************/
     /* PROPERTY CUSTOM FIELDS */
     /********************************************/
