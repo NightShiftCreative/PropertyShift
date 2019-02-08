@@ -105,7 +105,7 @@ function ns_real_estate_get_property_status($post_id, $array = null) {
                 $property_status_links[] = '<a href="'. esc_attr(get_term_link($property_status_term ->slug, 'property_status')) .'">'.$property_status_term ->name.'</a>' ;
             }
         }                   
-        if($array == 'true') { $property_status = $property_status_links; } else { $property_status = join( "<span>, </span>", $property_status_links ); }
+        if($array == 'true') { $property_status = $property_status_links; } else { $property_status = join( ", ", $property_status_links ); }
     endif;
     return $property_status;
 }
