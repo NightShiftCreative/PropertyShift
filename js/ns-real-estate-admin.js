@@ -283,16 +283,6 @@ jQuery(document).ready(function($) {
         }
     });
 
-    //check for hashtag in url and display tab
-    $(function () {
-        var hash = $.trim( window.location.hash );
-        if(hash == '#custom-property-fields') {
-            $('#properties-tab').trigger('click');
-            //$("#accordion-custom-fields").accordion("option", "active", 0);
-        }
-        if (hash) $(hash).trigger('click');
-    });
-
     /********************************************/
     /* FILTER CUSTOM FIELDS */
     /********************************************/
