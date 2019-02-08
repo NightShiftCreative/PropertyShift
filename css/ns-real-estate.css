@@ -281,8 +281,8 @@
 
 .ns-property .property-single .property-address { margin-bottom:15px; }
 
-.ns-property .property-single-tags { margin-bottom:30px; font-size:14px; }
-.ns-property .property-single-tags .property-tag { 
+.ns-property .property-title-below { margin-bottom:30px; font-size:14px; }
+.ns-property .property-title-below .property-tag { 
 	float:none; 
 	position:relative;
 	right:0;

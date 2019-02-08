@@ -5,6 +5,8 @@
     $postID = get_the_id();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     $properties_page = esc_attr(get_option('ns_properties_page'));
+    $property_listing_display_favorite = esc_attr(get_option('ns_property_listing_display_favorite', 'true'));
+    $property_listing_display_share = esc_attr(get_option('ns_property_listing_display_share', 'true'));
     $google_maps_pin = esc_attr(get_option('ns_real_estate_google_maps_pin'));
     if(empty($google_maps_pin)) { $google_maps_pin = plugins_url( '/ns-real-estate/images/pin.png'); }
     $property_detail_amenities_hide_empty = esc_attr(get_option('ns_property_detail_amenities_hide_empty', 'false'));
@@ -92,13 +94,20 @@
                                 <div class="clear"></div>
                             </div>
 
-                            <div class="property-single-tags">
-                                <?php if($featured == 'true') { ?><a href="<?php if(!empty($properties_page)) { echo esc_url($properties_page).'/?featured=true'; } ?>" class="property-tag button alt featured"><?php esc_html_e('Featured', 'ns-real-estate'); ?></a><?php } ?>
-                                <?php if(!empty($property_status)) { ?>
-                                    <div class="property-tag button status"><?php echo wp_kses_post($property_status); ?></div>
-                                <?php } ?>
-                                <?php if($property_detail_id == 'true') { ?><div class="property-id"><?php esc_html_e('Property ID', 'ns-real-estate'); ?>: <?php echo get_the_id(); ?></div><?php } ?>
-                                <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'ns-real-estate'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
+                            <div class="property-title-below">
+                                <div class="left">
+                                    <?php if($featured == 'true') { ?><a href="<?php if(!empty($properties_page)) { echo esc_url($properties_page).'/?featured=true'; } ?>" class="property-tag button alt featured"><?php esc_html_e('Featured', 'ns-real-estate'); ?></a><?php } ?>
+                                    <?php if(!empty($property_status)) { ?>
+                                        <div class="property-tag button status"><?php echo wp_kses_post($property_status); ?></div>
+                                    <?php } ?>
+                                    <?php if($property_detail_id == 'true') { ?><div class="property-id"><?php esc_html_e('Property ID', 'ns-real-estate'); ?>: <?php echo get_the_id(); ?></div><?php } ?>
+                                    <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'ns-real-estate'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
+                                </div>
+                                <div class="right">
+                                    <?php if($property_listing_display_favorite == 'true' && function_exists('ns_basics_get_post_likes_button')) { echo ns_basics_get_post_likes_button(get_the_ID()); } ?>
+                                    <?php if($property_listing_display_share == 'true' && function_exists('ns_basics_get_social_share')) { echo ns_basics_get_social_share(); } ?>
+                                </div>
+                                <div class="clear"></div>
                             </div>
                             <div class="clear"></div>
 
