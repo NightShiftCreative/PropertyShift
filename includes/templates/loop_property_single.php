@@ -115,41 +115,20 @@
                         </div>
                     <?php } ?>
 
-                    <?php if($slug == 'property_details') { ?>
-                        <!--******************************************************-->
-                        <!-- PROPERTY DETAILS -->
-                        <!--******************************************************-->
-                        <div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
+                    <?php if($slug == 'description' && (!empty($description)) ) { ?>
+                    <!--******************************************************-->
+                    <!-- DESCRIPTION -->
+                    <!--******************************************************-->
+                        <div class="property-single-item content widget property-<?php echo esc_attr($slug); ?>">
                             <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
                                     <div class="widget-divider"><div class="bar"></div></div>
                                 </div>
                             <?php } ?>
-
-                            <div class="property-details-full">
-                                <?php if($property_detail_id == 'true') { ?><div class="property-detail-item"><?php esc_html_e('Property ID', 'ns-real-estate'); ?>:<span><?php echo get_the_id(); ?></span></div><?php } ?>
-                                <?php if(!empty($bedrooms)) { ?><div class="property-detail-item"><?php esc_html_e('Beds', 'ns-real-estate'); ?>:<span><?php echo esc_attr($bedrooms); ?></span></div><?php } ?>
-                                <?php if(!empty($bathrooms)) { ?><div class="property-detail-item"><?php esc_html_e('Baths', 'ns-real-estate'); ?>:<span><?php echo esc_attr($bathrooms); ?></span></div><?php } ?>
-                                <?php if(!empty($area)) { ?><div class="property-detail-item"><?php esc_html_e('Area', 'ns-real-estate'); ?>:<span><?php echo esc_attr($area); ?> <?php echo esc_attr($area_postfix); ?></span></div><?php } ?>
-                                <?php if(!empty($garages)) { ?><div class="property-detail-item"><?php esc_html_e('Garages', 'ns-real-estate'); ?>:<span><?php echo esc_attr($garages); ?></span></div><?php } ?>
-                                <?php if(!empty($property_status)) { ?><div class="property-detail-item"><?php esc_html_e('Status', 'ns-real-estate'); ?>:<span><?php echo wp_kses_post($property_status); ?></span></div><?php } ?>
-                                <?php if(!empty($property_type)) { ?><div class="property-detail-item"><?php esc_html_e('Type', 'ns-real-estate'); ?>:<span><?php echo wp_kses_post($property_type); ?></span></div><?php } ?>
-                                <?php 
-                                if(!empty($custom_fields)) {                 
-                                    foreach ($custom_fields as $custom_field) { 
-                                        $fieldValue = get_post_meta($postID, 'ns_property_custom_field_'.$custom_field['id'], true);  
-                                        if(!empty($fieldValue)) { ?>
-                                            <div class="property-detail-item"><?php echo $custom_field['name']; ?>: <span><?php echo $fieldValue; ?></span></div>
-                                        <?php }
-                                    }
-                                } ?>
-                                <div class="clear"></div>
-                            </div>
-
+                            <?php echo $description; ?>
                         </div>
                     <?php } ?>
-
 
                 	<?php if($slug == 'gallery') { ?>
                     <!--******************************************************-->
@@ -184,20 +163,40 @@
 						</div>
                 	<?php } ?>
 
-                	<?php if($slug == 'description' && (!empty($description)) ) { ?>
-                    <!--******************************************************-->
-                    <!-- DESCRIPTION -->
-                    <!--******************************************************-->
-						<div class="property-single-item content widget property-<?php echo esc_attr($slug); ?>">
-							<?php if(!empty($label)) { ?>
+                    <?php if($slug == 'property_details') { ?>
+                        <!--******************************************************-->
+                        <!-- PROPERTY DETAILS -->
+                        <!--******************************************************-->
+                        <div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
+                            <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
                                     <div class="widget-divider"><div class="bar"></div></div>
                                 </div>
                             <?php } ?>
-							<?php echo $description; ?>
-						</div>
-                	<?php } ?>
+
+                            <div class="property-details-full">
+                                <?php if($property_detail_id == 'true') { ?><div class="property-detail-item"><?php esc_html_e('Property ID', 'ns-real-estate'); ?>:<span><?php echo get_the_id(); ?></span></div><?php } ?>
+                                <?php if(!empty($bedrooms)) { ?><div class="property-detail-item"><?php esc_html_e('Beds', 'ns-real-estate'); ?>:<span><?php echo esc_attr($bedrooms); ?></span></div><?php } ?>
+                                <?php if(!empty($bathrooms)) { ?><div class="property-detail-item"><?php esc_html_e('Baths', 'ns-real-estate'); ?>:<span><?php echo esc_attr($bathrooms); ?></span></div><?php } ?>
+                                <?php if(!empty($area)) { ?><div class="property-detail-item"><?php esc_html_e('Area', 'ns-real-estate'); ?>:<span><?php echo esc_attr($area); ?> <?php echo esc_attr($area_postfix); ?></span></div><?php } ?>
+                                <?php if(!empty($garages)) { ?><div class="property-detail-item"><?php esc_html_e('Garages', 'ns-real-estate'); ?>:<span><?php echo esc_attr($garages); ?></span></div><?php } ?>
+                                <?php if(!empty($property_status)) { ?><div class="property-detail-item"><?php esc_html_e('Status', 'ns-real-estate'); ?>:<span><?php echo wp_kses_post($property_status); ?></span></div><?php } ?>
+                                <?php if(!empty($property_type)) { ?><div class="property-detail-item"><?php esc_html_e('Type', 'ns-real-estate'); ?>:<span><?php echo wp_kses_post($property_type); ?></span></div><?php } ?>
+                                <?php 
+                                if(!empty($custom_fields)) {                 
+                                    foreach ($custom_fields as $custom_field) { 
+                                        $fieldValue = get_post_meta($postID, 'ns_property_custom_field_'.$custom_field['id'], true);  
+                                        if(!empty($fieldValue)) { ?>
+                                            <div class="property-detail-item"><?php echo $custom_field['name']; ?>: <span><?php echo $fieldValue; ?></span></div>
+                                        <?php }
+                                    }
+                                } ?>
+                                <div class="clear"></div>
+                            </div>
+
+                        </div>
+                    <?php } ?>
 
                 	<?php if($slug == 'amenities' && !empty($property_amenities)) { ?>
                     <!--******************************************************-->
@@ -446,9 +445,9 @@
                                         </a>
 
                                         <div class="agent-content">
-                                            <a href="<?php the_permalink(); ?>" class="button button-icon right"><i class="fa fa-angle-right icon"></i><?php esc_html_e('View Agent Profile', 'ns-real-estate'); ?></a>
-                                            <div class="agent-details left">
+                                            <div class="agent-details">
                                                 <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                                                <p><a href="<?php the_permalink(); ?>" class="button button-icon"><i class="fa fa-angle-right icon"></i><?php esc_html_e('View Agent Profile', 'ns-real-estate'); ?></a></p>
                                                 <?php if(!empty($agent_title)) { ?><p><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php echo esc_attr($agent_title); ?></p><?php } ?>
                                                 <?php if(!empty($agent_email)) { ?><p><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php echo esc_attr($agent_email); ?></p><?php } ?>
                                                 <?php if(!empty($agent_mobile_phone)) { ?><p><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php echo esc_attr($agent_mobile_phone); ?></p><?php } ?>
