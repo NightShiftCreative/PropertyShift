@@ -69,6 +69,7 @@ function ns_real_estate_register_options() {
     register_setting( 'ns-real-estate-settings-group', 'ns_members_submit_property_approval' );
     register_setting( 'ns-real-estate-settings-group', 'ns_members_add_locations' );
     register_setting( 'ns-real-estate-settings-group', 'ns_members_add_amenities' );
+    register_setting( 'ns-real-estate-settings-group', 'ns_members_submit_property_fields' );
 
     //CURRENCY SETTINGS
     register_setting( 'ns-real-estate-settings-group', 'ns_real_estate_currency_symbol' );
@@ -944,6 +945,42 @@ function ns_real_estate_settings_page_content() {
                         <input type="checkbox" name="ns_members_add_amenities" value="true" class="toggle-switch-checkbox" id="members_add_amenities" <?php checked('true', get_option('ns_members_add_amenities', 'true'), true) ?>>
                         <label class="toggle-switch-label" for="members_add_amenities"><?php if(get_option('ns_members_add_amenities', 'true') == 'true') { echo '<span class="on">'.esc_html__('On', 'ns-real-estate').'</span>'; } else { echo '<span>'.esc_html__('Off', 'ns-real-estate').'</span>'; } ?></label>
                     </div>
+                </td>
+            </tr>
+        </table>
+
+        <table class="admin-module">
+            <tr>
+                <td class="admin-module-label">
+                    <label><?php echo esc_html_e('Property Submit Form Fields', 'ns-real-estate'); ?></label>
+                    <span class="admin-module-note"><?php echo esc_html_e('Choose which fields display on the front-end property submit form.', 'ns-real-estate'); ?></span>
+                </td>
+                <td class="admin-module-field">
+                    <ul class="three-col-list">
+                        <?php 
+                        $members_submit_property_fields_default = ns_real_estate_default_property_submit_fields();
+                        $members_submit_property_fields = get_option('ns_members_submit_property_fields', $members_submit_property_fields_default); 
+                        ?>
+                        <li><input type="checkbox" disabled checked /><?php echo esc_html_e('Property Title (required)', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" disabled checked /><?php echo esc_html_e('Price (required)', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" disabled checked /><?php echo esc_html_e('Street Address (required)', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Description" <?php if(in_array('Description', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Description', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Beds" <?php if(in_array('Beds', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Beds', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Baths" <?php if(in_array('Baths', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Baths', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Garages" <?php if(in_array('Garages', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Garages', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Area" <?php if(in_array('Area', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Area', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Area Postfix" <?php if(in_array('Area Postfix', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Area Postfix', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Video" <?php if(in_array('Video', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Video', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Property Location" <?php if(in_array('Property Location', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Property Location', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Property Type" <?php if(in_array('Property Type', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Property Type', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Property Status" <?php if(in_array('Property Status', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Property Status', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Amenities" <?php if(in_array('Amenities', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Amenities', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Floor Plans" <?php if(in_array('Floor Plans', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Floor Plans', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Featured Image" <?php if(in_array('Featured Image', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Featured Image', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Gallery Images" <?php if(in_array('Gallery Images', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Gallery Images', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Map" <?php if(in_array('Map', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Map', 'ns-real-estate'); ?></li>
+                        <li><input type="checkbox" name="ns_members_submit_property_fields[]" value="Owner Info" <?php if(in_array('Owner Info', $members_submit_property_fields)) { echo 'checked'; } ?> /><?php echo esc_html_e('Owner Info', 'ns-real-estate'); ?></li>
+                    </ul>
                 </td>
             </tr>
         </table>

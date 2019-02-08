@@ -12,6 +12,31 @@ function ns_real_estate_add_member_top_bar_links() {
 add_filter( 'ns_core_after_top_bar_member_menu', 'ns_real_estate_add_member_top_bar_links');
 
 /*-----------------------------------------------------------------------------------*/
+/* Load default property submit fields */
+/*-----------------------------------------------------------------------------------*/
+function ns_real_estate_default_property_submit_fields() {
+	$submit_property_fields_default = array(
+		'Description',
+		'Beds',
+		'Baths',
+		'Garages',
+		'Area',
+		'Area Postfix',
+		'Video',
+		'Property Location',
+		'Property Type',
+		'Property Status',
+		'Amenities',
+		'Floor Plans',
+		'Featured Image',
+		'Gallery Images',
+		'Map',
+		'Owner Info'
+    );
+    return $submit_property_fields_default;
+}
+
+/*-----------------------------------------------------------------------------------*/
 /* Get attachment id by url */
 /*-----------------------------------------------------------------------------------*/
 function ns_real_estate_get_attachment_id_by_url( $url ) {
