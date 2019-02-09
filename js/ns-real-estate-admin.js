@@ -190,12 +190,6 @@ jQuery(document).ready(function($) {
                                     </td> \
                                     </tr> \
                                 </table> \
-                                <table class="admin-module no-border"> \
-                                    <tr> \
-                                    <td class="admin-module-label"><label>'+ns_real_estate_local_script.front_end_text+'</label></td> \
-                                    <td class="admin-module-field"><input type="checkbox" name="ns_property_custom_fields['+count+'][front_end]" checked /></td> \
-                                    </tr> \
-                                </table> \
                             </div> \
                         </td> \
                         <td class="custom-field-action edit-custom-field"><div class="sortable-item-action"><i class="fa fa-cog"></i> '+ns_real_estate_local_script.edit_text+'</div></td> \

@@ -400,7 +400,6 @@ function ns_real_estate_property_details($post) {
                                     'id' => strtolower(str_replace(' ', '_', $custom_field)),
                                     'name' => $custom_field, 
                                     'type' => 'text',
-                                    'front_end' => 'true',
                                 ); 
                             } ?>
                             <table class="custom-field-item">

@@ -589,7 +589,6 @@ function ns_real_estate_settings_page_content() {
                                             'id' => strtolower(str_replace(' ', '_', $custom_field)),
                                             'name' => $custom_field, 
                                             'type' => 'text',
-                                            'front_end' => 'true',
                                         ); 
                                     } ?>
                                     <table class="custom-field-item sortable-item"> 
@@ -628,15 +627,6 @@ function ns_real_estate_settings_page_content() {
                                                                      </div>
                                                                     <div class="button add-custom-field-select"><?php esc_html_e('Add Select Option', 'ns-real-estate'); ?></div>
                                                                 </div>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-
-                                                    <table class="admin-module no-border">
-                                                        <tr>
-                                                            <td class="admin-module-label"><label><?php esc_html_e('Display in Front-end Property Submit Form', 'ns-real-estate'); ?></label></td>
-                                                            <td class="admin-module-field">
-                                                                <input type="checkbox" value="true" name="ns_property_custom_fields[<?php echo $count; ?>][front_end]" <?php if(isset($custom_field['front_end'])) { echo 'checked'; } ?> />
                                                             </td>
                                                         </tr>
                                                     </table>

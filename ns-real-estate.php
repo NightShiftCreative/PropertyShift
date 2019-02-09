@@ -110,7 +110,6 @@ if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
 	            'select_options_text' => __( 'Select Options:', 'ns-real-estate' ),
 	            'select_options_add' => __( 'Add Select Option', 'ns-real-estate' ),
 	            'delete_custom_field_confirm' =>  __( 'Removing this field will remove it from all properties. Are you sure you want to proceed?', 'ns-real-estate' ),
-	            'front_end_text' => __( 'Display in Front-end Property Submit Form', 'ns-real-estate' ),
 	        );
 	        wp_localize_script( 'ns-real-estate-admin-js', 'ns_real_estate_local_script', $translation_array );
 		}

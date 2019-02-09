@@ -305,7 +305,6 @@ function ns_real_estate_property_filter_details($post) {
                                     'id' => strtolower(str_replace(' ', '_', $custom_field)),
                                     'name' => $custom_field, 
                                     'type' => 'text',
-                                    'front_end' => 'true',
                                 ); 
                             }
                             echo '<option value="'.$custom_field['id'].'">'.$custom_field['name'].'</option>';
