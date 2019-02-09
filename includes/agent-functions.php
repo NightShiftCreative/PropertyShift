@@ -331,7 +331,7 @@ function ns_real_estate_agent_details($post) {
                     $paged = isset($_GET['paged']) ? $_GET['paged'] : 1;
                     $pagination_args = array(
                         //'base'         => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-                        'base'         => '%_%',
+                        'base'         => '%_%#properties',
                         'format'       => '?paged=%#%',
                         'total'        => $agent_properties_query->max_num_pages,
                         'current'      => max( 1, $paged ),
