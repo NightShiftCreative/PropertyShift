@@ -426,24 +426,16 @@
                                         $agent_form_source = isset( $agent_details_values['ns_agent_form_source'] ) ? esc_attr( $agent_details_values['ns_agent_form_source'][0] ) : 'default';
                                         $agent_form_id = isset( $agent_details_values['ns_agent_form_id'] ) ? esc_attr( $agent_details_values['ns_agent_form_id'][0] ) : '';
 
-                                        //property post count
-                                        $args = array(
-                                            'post_type' => 'ns-property',
-                                            'showposts' => -1,
-                                            'meta_key' => 'ns_agent_select',
-                                            'meta_value' => get_the_ID()
-                                        );
-
-                                        $meta_posts = get_posts( $args );
-                                        $meta_post_count = count( $meta_posts );
-                                        unset( $meta_posts);
+                                        //Get agent property count
+                                        $agent_properties = ns_real_estate_get_agent_properties(get_the_id());
+                                        $agent_properties_count = $agent_properties['count'];
                                     ?>
 
                                     <div class="agent property-agent">
                                         
                                         <a href="<?php the_permalink(); ?>" class="agent-img">
-                                            <?php if(isset($meta_post_count) && $meta_post_count > 0) { ?>
-                                                <div class="button alt agent-tag"><?php echo esc_attr($meta_post_count); ?> <?php if($meta_post_count <= 1) { esc_html_e('Property', 'ns-real-estate'); } else { esc_html_e('Properties', 'ns-real-estate'); } ?></div>
+                                            <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
+                                                <div class="button alt agent-tag"><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Property', 'ns-real-estate'); } else { esc_html_e('Properties', 'ns-real-estate'); } ?></div>
                                             <?php } ?>
                                             <?php if ( has_post_thumbnail() ) {  ?>
                                                 <div class="img-fade"></div>

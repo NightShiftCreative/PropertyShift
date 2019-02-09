@@ -16,17 +16,9 @@
 	$agent_youtube = isset( $agent_details_values['ns_agent_youtube'] ) ? esc_attr( $agent_details_values['ns_agent_youtube'][0] ) : '';
 	$agent_instagram = isset( $agent_details_values['ns_agent_instagram'] ) ? esc_attr( $agent_details_values['ns_agent_instagram'][0] ) : '';
 
-    //property post count
-    $args = array(
-        'post_type' => 'ns-property',
-        'showposts' => -1,
-        'meta_key' => 'ns_agent_select',
-        'meta_value' => get_the_ID()
-    );
-
-    $meta_posts = get_posts( $args );
-    $meta_post_count = count( $meta_posts );
-    unset( $meta_posts);
+    //Get agent property count
+    $agent_properties = ns_real_estate_get_agent_properties(get_the_id());
+    $agent_properties_count = $agent_properties['count'];
 ?>
 
 <div <?php post_class(); ?>>
@@ -46,8 +38,8 @@
 		  
         <div class="agent-details">
 
-            <?php if(isset($meta_post_count) && $meta_post_count > 0) { ?>
-                <a href="<?php the_permalink(); ?>" class="right"><?php echo esc_attr($meta_post_count); ?> <?php if($meta_post_count <= 1) { esc_html_e('Property', 'ns-real-estate'); } else { esc_html_e('Properties', 'ns-real-estate'); } ?></a>
+            <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
+                <a href="<?php the_permalink(); ?>" class="right"><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Property', 'ns-real-estate'); } else { esc_html_e('Properties', 'ns-real-estate'); } ?></a>
             <?php } ?>
 
             <div class="agent-title left">

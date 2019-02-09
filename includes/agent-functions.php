@@ -25,6 +25,23 @@ add_action( 'template_redirect', function() {
     }
 }, 0 );
 
+//returns agent properties
+function ns_real_estate_get_agent_properties($agent_id) {
+    $agent_properties = array();
+    $args = array(
+        'post_type' => 'ns-property',
+        'meta_query' => array(
+            'relation' => 'AND',
+            array('key' => 'ns_agent_display', 'value' => 'agent'),
+            array('key' => 'ns_agent_select', 'value' => $agent_id),
+        ),
+    );
+    $agent_properties['args'] = $args;
+    $agent_properties['properties'] = get_posts($args);
+    $agent_properties['count'] = count($agent_properties['properties']);
+    return $agent_properties;
+}
+
 
 /*-----------------------------------------------------------------------------------*/
 /*  Agents Custom Post Type
@@ -278,6 +295,31 @@ function ns_real_estate_agent_details($post) {
         <!--*************************************************-->
         <div id="properties" class="tab-content">
             <h3><?php esc_html_e('Agent Properties', 'ns-real-estate'); ?></h3>
+            <?php
+            $agent_properties = ns_real_estate_get_agent_properties(get_the_id());
+            $agent_properties = $agent_properties['properties'];
+            if(!empty($agent_properties)) {
+                echo '<table>';
+                echo '<tr>';
+                echo '<th>Property ID</th>';
+                echo '<th>Title</th>';
+                echo '<th>Status</th>';
+                echo '<th>Date Published</th>';
+                echo '<th>Actions</th>';
+                echo '</tr>';
+                foreach($agent_properties as $property) {
+                    echo '<tr>';
+                    echo '<td>'.$property->ID.'</td>';
+                    echo '<td>'.get_the_title($property->ID).'</td>';
+                    echo '<td>'.$property->post_status.'</td>';
+                    echo '<td>'.$property->post_date.'</td>';
+                    echo '<td><a href="'.get_the_permalink($property->ID).'" target="_blank">View</a> | <a href="'.admin_url().'post.php?post='.$property->ID.'&action=edit">Edit</a></td>';
+                    echo '</tr>';
+                }
+                echo '</table>';
+            } else {
+                esc_html_e('This agent has no assigned properties.', 'ns-real-estate');
+            } ?>
         </div>
 
         <!--*************************************************-->
