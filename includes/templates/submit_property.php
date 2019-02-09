@@ -295,6 +295,44 @@
 		            </div>
                     <?php } ?>
 
+                    <?php 
+                    $custom_fields = get_option('ns_property_custom_fields');
+                    if(!empty($custom_fields)) { ?>
+                        <div class="module-border form-block-property-custom-fields">
+                        <?php $count = 0;
+                        echo '<div class="row">';                    
+                        foreach ($custom_fields as $custom_field) { 
+                            if(in_array($custom_field['id'], $members_submit_property_fields)) {
+                                $custom_field_key = strtolower(str_replace(' ', '_', $custom_field['name'])); 
+                                if(isset($edit_property_id) && !empty($edit_property_id)) { $fieldValue = get_post_meta($edit_property_id, 'ns_property_custom_field_'.$custom_field['id'], true); }  ?>
+                                <div class="col-lg-4 col-md-4 custom-field-item custom-field-<?php echo $custom_field_key; ?>">
+                                    <div class="form-block border">
+                                        <label title="<?php echo $custom_field['name']; ?>"><?php echo $custom_field['name']; ?>:</label> 
+                                        <?php if(isset($custom_field['type']) && $custom_field['type'] == 'select') { ?>
+                                            <select name="ns_property_custom_fields[<?php echo $count; ?>][value]">
+                                                <option value=""><?php esc_html_e('Select an option...', 'ns-real-estate'); ?></option>
+                                                <?php 
+                                                    if(isset($custom_field['select_options'])) { $selectOptions = $custom_field['select_options']; } else { $selectOptions =  ''; }
+                                                    if(!empty($selectOptions)) {
+                                                        foreach($selectOptions as $option) { ?>
+                                                            <option value="<?php echo $option; ?>" <?php if(isset($fieldValue) && $fieldValue == $option) { echo 'selected'; } else { if($_POST['ns_property_custom_fields'][$count]['value'] == $option) { echo 'selected'; } } ?>><?php echo $option; ?></option>
+                                                        <?php }
+                                                    }
+                                                ?>
+                                            </select>
+                                        <?php } else { ?>
+                                            <input type="<?php if(isset($custom_field['type']) && $custom_field['type'] == 'num') { echo 'number'; } else { echo 'text'; } ?>" class="border" name="ns_property_custom_fields[<?php echo $count; ?>][value]" value="<?php if(isset($fieldValue)) { echo $fieldValue; } else { echo esc_attr($_POST['ns_property_custom_fields'][$count]['value']); } ?>" />
+                                        <?php } ?>
+                                        <input type="hidden" name="ns_property_custom_fields[<?php echo $count; ?>][key]" value="ns_property_custom_field_<?php echo $custom_field['id']; ?>" />
+                                    </div>
+                                </div>
+                                <?php $count++; ?>
+                            <?php } ?>
+                        <?php }
+                        echo '</div>';
+                        echo '</div>';
+                    } ?>
+
 				</div><!-- end col -->
 				</div><!-- end row -->
 
@@ -302,47 +340,6 @@
                 <?php do_action('ns_real_estate_after_property_submit_general', $edit_property_id); ?>
 
 			</div><!-- end general info -->
-
-            <div class="submit-property-section" id="property-custom-fields">
-                <?php 
-                $custom_fields = get_option('ns_property_custom_fields');
-                if(!empty($custom_fields)) { ?>
-                    <div class="module-border form-block-property-custom-fields">
-                    <h3><?php esc_html_e('Additional Details', 'ns-real-estate'); ?></h3>
-                    <?php $count = 0;
-                    echo '<div class="row">';                    
-                    foreach ($custom_fields as $custom_field) { 
-                        if(isset($custom_field['front_end'])) {
-                            $custom_field_key = strtolower(str_replace(' ', '_', $custom_field['name'])); 
-                            if(isset($edit_property_id) && !empty($edit_property_id)) { $fieldValue = get_post_meta($edit_property_id, 'ns_property_custom_field_'.$custom_field['id'], true); }  ?>
-                            <div class="col-lg-4 col-md-4 custom-field-item custom-field-<?php echo $custom_field_key; ?>">
-                                <div class="form-block border">
-                                    <label title="<?php echo $custom_field['name']; ?>"><?php echo $custom_field['name']; ?>:</label> 
-                                    <?php if(isset($custom_field['type']) && $custom_field['type'] == 'select') { ?>
-                                        <select name="ns_property_custom_fields[<?php echo $count; ?>][value]">
-                                            <option value=""><?php esc_html_e('Select an option...', 'ns-real-estate'); ?></option>
-                                            <?php 
-                                                if(isset($custom_field['select_options'])) { $selectOptions = $custom_field['select_options']; } else { $selectOptions =  ''; }
-                                                if(!empty($selectOptions)) {
-                                                    foreach($selectOptions as $option) { ?>
-                                                        <option value="<?php echo $option; ?>" <?php if(isset($fieldValue) && $fieldValue == $option) { echo 'selected'; } else { if($_POST['ns_property_custom_fields'][$count]['value'] == $option) { echo 'selected'; } } ?>><?php echo $option; ?></option>
-                                                    <?php }
-                                                }
-                                            ?>
-                                        </select>
-                                    <?php } else { ?>
-                                        <input type="<?php if(isset($custom_field['type']) && $custom_field['type'] == 'num') { echo 'number'; } else { echo 'text'; } ?>" class="border" name="ns_property_custom_fields[<?php echo $count; ?>][value]" value="<?php if(isset($fieldValue)) { echo $fieldValue; } else { echo esc_attr($_POST['ns_property_custom_fields'][$count]['value']); } ?>" />
-                                    <?php } ?>
-                                    <input type="hidden" name="ns_property_custom_fields[<?php echo $count; ?>][key]" value="ns_property_custom_field_<?php echo $custom_field['id']; ?>" />
-                                </div>
-                            </div>
-                            <?php $count++; ?>
-                        <?php } ?>
-                    <?php }
-                    echo '</div>';
-                    echo '</div>';
-                } ?>
-            </div><!-- end property custom fields -->
 
             <?php if(in_array('Floor Plans', $members_submit_property_fields )) { ?>
             <div class="submit-property-section" id="property-floor-plans">
