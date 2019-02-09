@@ -303,7 +303,7 @@ function ns_real_estate_agent_details($post) {
             <h3><?php esc_html_e('Agent Properties', 'ns-real-estate'); ?></h3>
 
             <?php
-            $agent_properties = ns_real_estate_get_agent_properties(get_the_id(), 2, true);
+            $agent_properties = ns_real_estate_get_agent_properties(get_the_id(), 20, true);
             $agent_properties_query = $agent_properties['properties'];
             ?>
 
@@ -327,10 +327,8 @@ function ns_real_estate_agent_details($post) {
                     echo '</tr>';
                 endwhile;
                     wp_reset_postdata();
-                    $big = 999999999; // need an unlikely integer
                     $paged = isset($_GET['paged']) ? $_GET['paged'] : 1;
                     $pagination_args = array(
-                        //'base'         => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
                         'base'         => '%_%#properties',
                         'format'       => '?paged=%#%',
                         'total'        => $agent_properties_query->max_num_pages,
