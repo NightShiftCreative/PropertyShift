@@ -26,8 +26,8 @@ add_action( 'template_redirect', function() {
 }, 0 );
 
 //returns agent properties
-function ns_real_estate_get_agent_properties($agent_id) {
-    $agent_properties = array();
+function ns_real_estate_get_agent_properties($agent_id, $posts_per_page = null, $pagination = false) {
+    $agent_properties = array(); 
     $args = array(
         'post_type' => 'ns-property',
         'meta_query' => array(
@@ -36,9 +36,15 @@ function ns_real_estate_get_agent_properties($agent_id) {
             array('key' => 'ns_agent_select', 'value' => $agent_id),
         ),
     );
+    if(!empty($posts_per_page)) { $args['posts_per_page'] = $posts_per_page; }
+    if($pagination == true) { 
+        $paged = isset($_GET['paged']) ? $_GET['paged'] : 1;
+        $args['paged'] = $paged; 
+    }
+
     $agent_properties['args'] = $args;
-    $agent_properties['properties'] = get_posts($args);
-    $agent_properties['count'] = count($agent_properties['properties']);
+    $agent_properties['properties'] = new WP_Query($args);
+    $agent_properties['count'] =  $agent_properties['properties']->found_posts;
     return $agent_properties;
 }
 
@@ -295,31 +301,50 @@ function ns_real_estate_agent_details($post) {
         <!--*************************************************-->
         <div id="properties" class="tab-content">
             <h3><?php esc_html_e('Agent Properties', 'ns-real-estate'); ?></h3>
+
             <?php
-            $agent_properties = ns_real_estate_get_agent_properties(get_the_id());
-            $agent_properties = $agent_properties['properties'];
-            if(!empty($agent_properties)) {
-                echo '<table class="admin-table">';
-                echo '<tr>';
-                echo '<th>Property ID</th>';
-                echo '<th>Title</th>';
-                echo '<th>Status</th>';
-                echo '<th>Date Published</th>';
-                echo '<th>Actions</th>';
-                echo '</tr>';
-                foreach($agent_properties as $property) {
+            $agent_properties = ns_real_estate_get_agent_properties(get_the_id(), 2, true);
+            $agent_properties_query = $agent_properties['properties'];
+            ?>
+
+            <p><?php echo $agent_properties['count']; ?> <?php esc_html_e('total properties found', 'ns-real-estate'); ?></p>
+
+            <table class="admin-table">
+                <tr>
+                    <th><?php esc_html_e('Property ID', 'ns-real-estate'); ?></th>
+                    <th><?php esc_html_e('Title', 'ns-real-estate'); ?></th>
+                    <th><?php esc_html_e('Status', 'ns-real-estate'); ?></th>
+                    <th><?php esc_html_e('Date Published', 'ns-real-estate'); ?></th>
+                    <th><?php esc_html_e('Actions', 'ns-real-estate'); ?></th>
+                </tr>
+                <?php if ($agent_properties_query->have_posts() ) : while ($agent_properties_query->have_posts() ) : $agent_properties_query->the_post();
                     echo '<tr>';
-                    echo '<td>'.$property->ID.'</td>';
-                    echo '<td>'.get_the_title($property->ID).'</td>';
-                    echo '<td>'.$property->post_status.'</td>';
-                    echo '<td>'.$property->post_date.'</td>';
-                    echo '<td><a href="'.get_the_permalink($property->ID).'" target="_blank">View</a> | <a href="'.admin_url().'post.php?post='.$property->ID.'&action=edit">Edit</a></td>';
+                    echo '<td>'.get_the_id().'</td>';
+                    echo '<td>'.get_the_title().'</td>';
+                    echo '<td>'.get_post_status().'</td>';
+                    echo '<td>'.get_the_date().'</td>';
+                    echo '<td><a href="'.get_the_permalink().'" target="_blank">View</a> | <a href="'.admin_url().'post.php?post='.get_the_id().'&action=edit">Edit</a></td>';
                     echo '</tr>';
-                }
-                echo '</table>';
-            } else {
-                esc_html_e('This agent has no assigned properties.', 'ns-real-estate');
-            } ?>
+                endwhile;
+                    wp_reset_postdata();
+                    $big = 999999999; // need an unlikely integer
+                    $paged = isset($_GET['paged']) ? $_GET['paged'] : 1;
+                    $pagination_args = array(
+                        //'base'         => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+                        'base'         => '%_%',
+                        'format'       => '?paged=%#%',
+                        'total'        => $agent_properties_query->max_num_pages,
+                        'current'      => max( 1, $paged ),
+                        'show_all'     => true,
+                        'prev_next'    => True,
+                        'prev_text'    => esc_html__('&raquo; Previous', 'ns-real-estate'),
+                        'next_text'    => esc_html__('Next &raquo;', 'ns-real-estate'),
+                    ); 
+                    echo '<tr><td colspan="5">'.paginate_links($pagination_args).'</td></tr>';
+                else:
+                    echo '<tr><td colspan="5">'.esc_html__('This agent has no assigned properties.', 'ns-real-estate').'</td></tr>';
+                endif; ?>
+            </table>
         </div>
 
         <!--*************************************************-->

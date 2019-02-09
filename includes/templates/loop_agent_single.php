@@ -30,7 +30,7 @@
     $agent_form_id = isset( $agent_details_values['ns_agent_form_id'] ) ? esc_attr( $agent_details_values['ns_agent_form_id'][0] ) : '';
 
     //Get agent property count
-    $agent_properties = ns_real_estate_get_agent_properties(get_the_id());
+    $agent_properties = ns_real_estate_get_agent_properties(get_the_id(), $num_properties_per_page);
     $agent_properties_count = $agent_properties['count'];
 ?>	
 
