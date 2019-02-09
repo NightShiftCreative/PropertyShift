@@ -299,7 +299,7 @@ function ns_real_estate_agent_details($post) {
             $agent_properties = ns_real_estate_get_agent_properties(get_the_id());
             $agent_properties = $agent_properties['properties'];
             if(!empty($agent_properties)) {
-                echo '<table>';
+                echo '<table class="admin-table">';
                 echo '<tr>';
                 echo '<th>Property ID</th>';
                 echo '<th>Title</th>';
