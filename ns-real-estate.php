@@ -18,8 +18,8 @@ load_plugin_textdomain( 'ns-real-estate', false, dirname( plugin_basename( __FIL
 /*-----------------------------------------------------------------------------------*/
 /*  Define Global Variables
 /*-----------------------------------------------------------------------------------*/
-define('NS_SITE_URL', 'http://nightshiftcreative.co/');
-define('NS_SHOP_URL', 'http://products.nightshiftcreative.co/');
+define('NS_SITE_URL', 'https://nightshiftcreative.co/');
+define('NS_SHOP_URL', 'https://studio.nightshiftcreative.co/');
 define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/1.0.0.zip');
 define('NS_REAL_ESTATE_GITHUB', '/NightShiftCreative/NS-Real-Estate/');
 
