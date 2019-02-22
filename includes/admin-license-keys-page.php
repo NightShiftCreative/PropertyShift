@@ -23,9 +23,9 @@ function ns_real_estate_license_keys_page_content() {
     ob_start(); ?>
 
     <div class="admin-module-note">
-        <?php esc_html_e('All premium add-ons require a valid license key. You can manage your license keys here.', 'ns-real-estate'); ?>
-        <a href="#" target="_blank">Lost your key?</a>
-    </div>
+        <?php esc_html_e('All premium add-ons require a valid license key for updates and support.', 'ns-real-estate'); ?><br/>
+        <?php esc_html_e('Your licenses keys can be found in your account on the Nightshift Studio website.', 'ns-real-estate'); ?>
+    </div><br/>
     
     <?php do_action( 'ns_real_estate_register_license_keys'); ?>
 
