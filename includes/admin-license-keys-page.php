@@ -151,10 +151,11 @@ function edd_sample_deactivate_license() {
             exit();
         }
 
-        $license_data = json_decode( wp_remote_retrieve_body( $response ) );
+        /*$license_data = json_decode( wp_remote_retrieve_body( $response ) );
         if( $license_data->license == 'deactivated' ) {
             delete_option( 'edd_sample_license_status' );
-        }
+        } */
+        delete_option( 'edd_sample_license_status' );
 
         wp_redirect( admin_url( 'admin.php?page=' . EDD_SAMPLE_PLUGIN_LICENSE_PAGE ) );
         exit();
