@@ -35,6 +35,7 @@ function ns_real_estate_license_keys_page_content() {
 
 /*-----------------------------------------------------------------------------------*/
 /*  ACTIVATE LICENSE
+/*  Parameters sent from add-on plugin file
 /*-----------------------------------------------------------------------------------*/
 define('NS_LICENSE_PAGE', 'ns-real-estate-license-keys' );
 
@@ -105,6 +106,7 @@ function ns_real_estate_activate_license($license, $status_name, $item_id) {
 
 /*-----------------------------------------------------------------------------------*/
 /*  DEACTIVATE LICENSE
+/*  Parameters sent from add-on plugin file
 /*-----------------------------------------------------------------------------------*/
 function ns_real_estate_deactivate_license($license, $status_name, $item_id) {
     $api_params = array(
