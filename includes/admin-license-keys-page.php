@@ -37,8 +37,6 @@ function ns_real_estate_license_keys_page_content() {
 /*  ACTIVATE LICENSE
 /*  Parameters sent from add-on plugin file
 /*-----------------------------------------------------------------------------------*/
-define('NS_LICENSE_PAGE', 'ns-real-estate-license-keys' );
-
 function ns_real_estate_activate_license($license, $status_name, $item_id) {
 
     $api_params = array(
@@ -93,14 +91,14 @@ function ns_real_estate_activate_license($license, $status_name, $item_id) {
     }
 
     if(!empty($message)) {
-        $base_url = admin_url( 'admin.php?page=' . NS_LICENSE_PAGE );
+        $base_url = admin_url( 'admin.php?page=' . NS_REAL_ESTATE_LICENSE_PAGE );
         $redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $base_url );
         wp_redirect( $redirect );
         exit();
     }
 
     update_option($status_name, $license_data->license);
-    wp_redirect( admin_url( 'admin.php?page=' . NS_LICENSE_PAGE ) );
+    wp_redirect( admin_url( 'admin.php?page=' . NS_REAL_ESTATE_LICENSE_PAGE ) );
     exit();
 }
 
@@ -126,14 +124,14 @@ function ns_real_estate_deactivate_license($license, $status_name, $item_id) {
             $message = __( 'An error occurred, please try again.' );
         }
 
-        $base_url = admin_url( 'admin.php?page=' . NS_LICENSE_PAGE );
+        $base_url = admin_url( 'admin.php?page=' . NS_REAL_ESTATE_LICENSE_PAGE );
         $redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $base_url );
         wp_redirect( $redirect );
         exit();
     }
 
     delete_option($status_name);
-    wp_redirect( admin_url( 'admin.php?page=' . NS_LICENSE_PAGE ) );
+    wp_redirect( admin_url( 'admin.php?page=' . NS_REAL_ESTATE_LICENSE_PAGE ) );
     exit();
 }
 
