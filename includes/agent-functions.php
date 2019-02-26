@@ -154,7 +154,7 @@ function ns_real_estate_agent_details($post) {
                 </tr>
             </table>
 
-            <table class="admin-module no-border">
+            <table class="admin-module">
                 <tr>
                     <td class="admin-module-label">
                         <label><?php esc_html_e('Office Phone', 'ns-real-estate'); ?></label>
