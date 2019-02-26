@@ -338,7 +338,7 @@ function ns_real_estate_agent_details($post) {
                         'prev_text'    => esc_html__('&raquo; Previous', 'ns-real-estate'),
                         'next_text'    => esc_html__('Next &raquo;', 'ns-real-estate'),
                     ); 
-                    echo '<tr><td colspan="5">'.paginate_links($pagination_args).'</td></tr>';
+                    echo '<tr class="admin-table-pagination"><td colspan="5">'.paginate_links($pagination_args).'</td></tr>';
                 else:
                     echo '<tr><td colspan="5">'.esc_html__('This agent has no assigned properties.', 'ns-real-estate').'</td></tr>';
                 endif; ?>
