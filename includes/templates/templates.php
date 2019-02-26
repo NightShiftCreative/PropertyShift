@@ -2,12 +2,13 @@
 /*-----------------------------------------------------------------------------------*/
 /*  Global Template Loader
 /*-----------------------------------------------------------------------------------*/
-function ns_real_estate_template_loader($template, $template_args = array(), $wrapper = true) {
+function ns_real_estate_template_loader($template, $template_args = array(), $wrapper = true, $plugin_path = null) {
 	$theme_file = locate_template(array( 'ns-real-estate/' . $template));
 
 	if($wrapper == true) { echo '<div class="ns-real-estate">'; }
 	if(empty($theme_file)) {
-		include( plugin_dir_path( __FILE__ ) . $template);
+		if(empty($plugin_path)) { $plugin_path = plugin_dir_path( __FILE__ ); }
+		include( $plugin_path . $template);
 	} else {
 		include(get_parent_theme_file_path('/ns-real-estate/'.$template));
 	}
