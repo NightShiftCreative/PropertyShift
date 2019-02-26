@@ -166,7 +166,7 @@ function ns_real_estate_agent_details($post) {
                 </tr>
             </table>
 
-            <?php do_action('ns_real_estate_after_agent_details_general', $values); ?>
+            <?php do_action('ns_real_estate_after_agent_details_general', $agent_details_values); ?>
 
         </div>
 
@@ -348,7 +348,7 @@ function ns_real_estate_agent_details($post) {
         <!--*************************************************-->
         <!-- ADD-ONS -->
         <!--*************************************************-->
-        <?php do_action('ns_real_estate_after_agent_details_tab_content', $values); ?>
+        <?php do_action('ns_real_estate_after_agent_details_tab_content', $agent_details_values); ?>
 
         </div><!-- end tabs content -->
         <div class="clear"></div>
