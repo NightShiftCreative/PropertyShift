@@ -436,7 +436,7 @@ if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page
     function ns_real_estate_agents_add_page_settings_metabox() {
         add_meta_box( 'page-layout-meta-box', 'Page Settings', 'ns_basics_page_layout_meta_box', array('ns-agent'), 'normal', 'low' );
     }
-    add_action('init', 'ns_real_estate_agents_add_page_settings_metabox');
+    add_action('add_meta_boxes', 'ns_real_estate_agents_add_page_settings_metabox');
 }
 
 /*-----------------------------------------------------------------------------------*/
