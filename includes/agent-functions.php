@@ -66,7 +66,7 @@ function ns_real_estate_create_agents_post_type() {
             ),
         'public' => true,
         'show_in_menu' => true,
-        'menu_icon' => 'dashicons-groups',
+        'menu_icon' => 'dashicons-businessman',
         'has_archive' => false,
         'supports' => array('title', 'editor', 'thumbnail', 'page_attributes'),
         'rewrite' => array('slug' => $agents_slug),
