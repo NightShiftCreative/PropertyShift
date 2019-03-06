@@ -112,7 +112,7 @@ function ns_real_estate_activate_license() {
             exit();
         }
 
-        update_option('ns_'.$item_id.'_license_status', $license_data->license);
+        update_option($license['status_name'], $license_data->license);
         wp_redirect( admin_url( 'admin.php?page=' . NS_REAL_ESTATE_LICENSE_PAGE ) );
         exit();
     }
@@ -209,6 +209,7 @@ function ns_real_estate_output_license_key_form($item_name, $item_id) {
                             <input class="license-key-input" name="<?php echo $license['key_name'] ?>" type="text" value="<?php esc_attr_e( $license_key ); ?>" />
                         <?php } else { ?>
                             <input value="<?php esc_attr_e( $license_key ); ?>" disabled />
+                            <input type="hidden" name="<?php echo $license['key_name'] ?>" value="<?php esc_attr_e( $license_key ); ?>" /> 
                             <span class="admin-module-note"><?php echo esc_html_e('Deactivate to modify license key', 'ns-real-estate'); ?></span>
                         <?php } ?>
                     </td>
