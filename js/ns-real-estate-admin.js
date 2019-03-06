@@ -1,5 +1,18 @@
 jQuery(document).ready(function($) {
 
+    /********************************************/
+    /* LICENSE INPUT CHANGE */
+    /********************************************/
+    $(".license-key-input").on("change paste keyup", function() {
+        var parent = $(this).closest('.ns-license-key');
+        var activateButton = parent.find('.activate-license-button');
+        activateButton.addClass('disabled');
+        activateButton.attr("disabled", true);
+        if(parent.find('.license-disabled-message').length == 0) {
+            activateButton.closest('.admin-module-field').append('<div class="admin-module-note license-disabled-message">Save changes to activate license key.</div>');
+        }
+    });
+
 	/********************************************/
 	/* REAL ESTATE SHORTCODE SELECTOR */
 	/********************************************/
