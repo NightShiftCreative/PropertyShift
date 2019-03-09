@@ -112,13 +112,14 @@ function ns_real_estate_settings_page() {
     $content_class = null;
     
     $content_nav = array(
-        array('name' => 'Properties', 'link' => '#properties', 'icon' => 'fa-home', 'order' => 1),
-        array('name' => 'Agents', 'link' => '#agents', 'icon' => 'fa-user', 'order' => 2),
-        array('name' => 'Maps', 'link' => '#maps', 'icon' => 'fa-map', 'order' => 3),
-        array('name' => 'Members', 'link' => '#members', 'icon' => 'fa-key', 'order' => 4),
-        array('name' => 'Currency & Numbers', 'link' => '#currency', 'icon' => 'fa-money-bill-alt', 'order' => 5),
+        array('name' => esc_html__('Properties', 'ns-real-estate'), 'link' => '#properties', 'icon' => 'fa-home', 'order' => 1),
+        array('name' => esc_html__('Agents', 'ns-real-estate'), 'link' => '#agents', 'icon' => 'fa-user-tie', 'order' => 2),
+        array('name' => esc_html__('Maps', 'ns-real-estate'), 'link' => '#maps', 'icon' => 'fa-map', 'order' => 3),
+        array('name' => esc_html__('Members', 'ns-real-estate'), 'link' => '#members', 'icon' => 'fa-key', 'order' => 4),
+        array('name' => esc_html__('Currency & Numbers', 'ns-real-estate'), 'link' => '#currency', 'icon' => 'fa-money-bill-alt', 'order' => 5),
     );
     $content_nav = apply_filters( 'ns_real_estate_setting_tabs_filter', $content_nav);
+    usort($content_nav, function ($a, $b) {return ($a["order"]-$b["order"]); });
     
     //add alerts
     $alerts = array();
@@ -345,7 +346,14 @@ function ns_real_estate_settings_page_content() {
                     <tr>
                         <td class="admin-module-label">
                             <label><?php echo esc_html_e('Hard crop property listing featured images?', 'ns-real-estate'); ?></label>
-                            <span class="admin-module-note"><?php esc_html_e('If active, property listing thumbnails will be cropped to 800 x 600 pixels.', 'ns-real-estate'); ?></span>
+                            <?php
+                            $property_img_size = ns_real_estate_get_image_size('property-thumbnail');
+                            if(!empty($property_img_size)) { ?>
+                            <span class="admin-module-note">
+                                <?php esc_html_e('If active, property listing thumbnails will be cropped to: ', 'ns-real-estate'); ?>
+                                <?php echo $property_img_size['width'].' x '.$property_img_size['height'].' pixels'; ?>     
+                            </span>
+                            <?php } ?>
                         </td>
                         <td class="admin-module-field">
                             <div class="toggle-switch" title="<?php if(get_option('ns_property_listing_crop', 'true') == 'true') { esc_html_e('Active', 'ns-real-estate'); } else { esc_html_e('Disabled', 'ns-real-estate'); } ?>">
