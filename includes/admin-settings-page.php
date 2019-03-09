@@ -110,13 +110,15 @@ function ns_real_estate_settings_page() {
     $display_actions = 'true';
     $content = ns_real_estate_settings_page_content();
     $content_class = null;
+    
     $content_nav = array(
-        array('name' => 'Properties', 'link' => '#properties', 'icon' => 'fa-home'),
-        array('name' => 'Agents', 'link' => '#agents', 'icon' => 'fa-users'),
-        array('name' => 'Maps', 'link' => '#maps', 'icon' => 'fa-map'),
-        array('name' => 'Members', 'link' => '#members', 'icon' => 'fa-key'),
-        array('name' => 'Currency & Numbers', 'link' => '#currency', 'icon' => 'fa-money-bill-alt'),
+        array('name' => 'Properties', 'link' => '#properties', 'icon' => 'fa-home', 'order' => 1),
+        array('name' => 'Agents', 'link' => '#agents', 'icon' => 'fa-user', 'order' => 2),
+        array('name' => 'Maps', 'link' => '#maps', 'icon' => 'fa-map', 'order' => 3),
+        array('name' => 'Members', 'link' => '#members', 'icon' => 'fa-key', 'order' => 4),
+        array('name' => 'Currency & Numbers', 'link' => '#currency', 'icon' => 'fa-money-bill-alt', 'order' => 5),
     );
+    $content_nav = apply_filters( 'ns_real_estate_setting_tabs_filter', $content_nav);
     
     //add alerts
     $alerts = array();
@@ -1067,6 +1069,8 @@ function ns_real_estate_settings_page_content() {
         <?php do_action( 'ns_real_estate_after_currency_settings'); ?>
 
     </div>
+
+    <?php do_action( 'ns_real_estate_after_settings'); ?>
 
     <?php $output = ob_get_clean();
     return $output;
