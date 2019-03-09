@@ -180,6 +180,13 @@
 }
 .social-icons .icon { margin:0; }
 
+/** TRUNCATE **/
+.truncate {
+    white-space:nowrap; 
+    text-overflow:ellipsis;
+    overflow:hidden; 
+}
+
 /*********************************************/
 /** PROPERTY FILTERS **/
 /*********************************************/
