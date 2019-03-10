@@ -28,14 +28,21 @@ add_action( 'template_redirect', function() {
 //returns agent properties
 function ns_real_estate_get_agent_properties($agent_id, $posts_per_page = null, $pagination = false) {
     $agent_properties = array(); 
+
+    $meta_query = array();
+    $meta_query['relation'] = 'AND';
+    $meta_query[] = array('key' => 'ns_agent_display', 'value' => 'agent');
+    if(is_array($agent_id)) {
+        $meta_query[] = array('key' => 'ns_agent_select', 'value' => $agent_id, 'compare' => 'IN');
+    } else {
+        $meta_query[] = array('key' => 'ns_agent_select', 'value' => $agent_id);
+    }
+    
     $args = array(
         'post_type' => 'ns-property',
-        'meta_query' => array(
-            'relation' => 'AND',
-            array('key' => 'ns_agent_display', 'value' => 'agent'),
-            array('key' => 'ns_agent_select', 'value' => $agent_id),
-        ),
+        'meta_query' => $meta_query,
     );
+
     if(!empty($posts_per_page)) { $args['posts_per_page'] = $posts_per_page; }
     if($pagination == true) { 
         $paged = isset($_GET['paged']) ? $_GET['paged'] : 1;
