@@ -192,6 +192,7 @@
                                 <?php if(!empty($garages)) { ?><div class="property-detail-item"><?php esc_html_e('Garages', 'ns-real-estate'); ?>:<span><?php echo esc_attr($garages); ?></span></div><?php } ?>
                                 <?php if(!empty($property_status)) { ?><div class="property-detail-item"><?php esc_html_e('Status', 'ns-real-estate'); ?>:<span><?php echo wp_kses_post($property_status); ?></span></div><?php } ?>
                                 <?php if(!empty($property_type)) { ?><div class="property-detail-item"><?php esc_html_e('Type', 'ns-real-estate'); ?>:<span><?php echo wp_kses_post($property_type); ?></span></div><?php } ?>
+                                <div class="property-detail-item publish-date"><?php esc_html_e('Posted On', 'ns-real-estate'); ?>:<span><?php echo get_the_date(); ?></span></div>
                                 <?php 
                                 if(!empty($custom_fields)) {                 
                                     foreach ($custom_fields as $custom_field) { 

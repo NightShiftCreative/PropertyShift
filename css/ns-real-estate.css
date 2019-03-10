@@ -289,6 +289,8 @@
 .ns-property .property-single .property-address { margin-bottom:15px; }
 
 .ns-property .property-title-below { margin-bottom:30px; font-size:14px; }
+.ns-property .property-title-below > .left { width:50%; }
+
 .ns-property .property-title-below .property-tag { 
 	float:none; 
 	position:relative;
@@ -298,8 +300,10 @@
 }
 
 .ns-property .property-single-item.widget { 
-	padding:0; 
-	margin-bottom:30px;
+	padding:25px; 
+	margin-bottom:25px;
+    background:rgba(0, 0, 0, 0.02);
+    border:1px solid rgba(0, 0, 0, 0.05);
 }
 
 .ns-property .property-details-full { font-size:12px; }
