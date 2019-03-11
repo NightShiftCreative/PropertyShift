@@ -386,8 +386,7 @@ function ns_list_agents($atts, $content = null) {
         'show_pagination' => false,
     ), $atts);
 
-    $args = array(
-        'post_type' => 'ns-agent',
+    $custom_args = array(
         'showposts' => $atts['show_posts'],
     );
 
@@ -396,9 +395,8 @@ function ns_list_agents($atts, $content = null) {
         
         //Set template args
         $template_args = array();
-        $template_args['custom_args'] = $args;
+        $template_args['custom_args'] = $custom_args;
         $template_args['custom_pagination'] = $atts['show_pagination'];
-        $template_args['no_post_message'] = esc_html__( 'Sorry, no agents were found.', 'ns-real-estate' );
         
         //Load template
         ns_real_estate_template_loader('loop_agents.php', $template_args);

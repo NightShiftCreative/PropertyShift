@@ -1,36 +1,45 @@
 <?php
-    //Get global settings
+    //GET GLOBAL SETTINGS
 	global $post;
-    $values = get_post_custom( $post->ID );
-    $page_layout = isset( $values['ns_basics_page_layout'] ) ? esc_attr( $values['ns_basics_page_layout'][0] ) : 'full';
     $num_agents_per_page = esc_attr(get_option('ns_num_agents_per_page', 12));
-	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-    //Get template args
+    //GET CUSTOM ARGS
     if(isset($template_args)) {
         $custom_args = $template_args['custom_args'];
         $custom_pagination = $template_args['custom_pagination'];
         $no_post_message = $template_args['no_post_message'];
     }
 
-    //Set pagination
-    if(isset($custom_pagination)) { 
-        if ($custom_pagination === false || $custom_pagination === 'false') { $custom_pagination = false; } else { $custom_pagination = true; }
-        $show_pagination = $custom_pagination; 
-    } else { 
-        $show_pagination = true; 
+    /***************************************************************************/
+    /** SET QUERY ARGS **/
+    /***************************************************************************/
+
+    //SET PAGED VARIABLE
+    if(is_front_page()) {  
+        $paged = (get_query_var('page')) ? get_query_var('page') : 1;
+    } else {  
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     }
 
-    //Set the query
+    //SET ARGS
+    $agent_listing_args = array(
+        'post_type' => 'ns-agent',
+        'posts_per_page' => $num_agents_per_page,
+        'paged' => $paged
+    );
+
+    //OVERWRITE QUERY WITH CUSTOM ARGS
     if(isset($custom_args)) {
-        if($show_pagination === true) { $custom_args['paged'] = $paged; }
-        $agent_listing_args = $custom_args;
-    } else {
-        $agent_listing_args = array(
-            'post_type' => 'ns-agent',
-            'posts_per_page' => $num_agents_per_page,
-            'paged' => $paged
-        );
+        foreach($agent_listing_args as $key=>$value) {
+            if(array_key_exists($key, $custom_args)) { 
+                if(!empty($custom_args[$key])) { $agent_listing_args[$key] = $custom_args[$key]; }
+            } 
+        }
+        foreach($custom_args as $key=>$value) {
+            if(!array_key_exists($key, $agent_listing_args)) { 
+                if(!empty($custom_args[$key])) { $agent_listing_args[$key] = $custom_args[$key]; }
+            } 
+        }
     }
 
 	$agent_listing_query = new WP_Query( $agent_listing_args );
@@ -39,11 +48,7 @@
 <div class="row ns-agent-listing">
 <?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
 
-    <?php if($page_layout != 'full') { ?>
-        <div class="col-lg-4 col-md-4 col-sm-6 ns-listing-col"><?php ns_real_estate_template_loader('loop_agent.php', null, false); ?></div>
-    <?php } else {  ?>
-	   <div class="col-lg-3 col-md-3 col-sm-6 ns-listing-col"><?php ns_real_estate_template_loader('loop_agent.php', null, false); ?></div>
-    <?php } ?>
+    <div class="col-lg-4 col-md-4 col-sm-6 ns-listing-col"><?php ns_real_estate_template_loader('loop_agent.php', null, false); ?></div>
 
 <?php endwhile; ?>
     <div class="clear"></div>
@@ -72,6 +77,14 @@
     ); ?>
 
     <?php 
+    //DETERMINE IF PAGINATION IS NEEDED
+    if(isset($custom_pagination)) { 
+        if ($custom_pagination === false || $custom_pagination === 'false') { $custom_pagination = false; } else { $custom_pagination = true; }
+        $show_pagination = $custom_pagination; 
+    } else { 
+        $show_pagination = true; 
+    }
+
     if($show_pagination === true) {  ?>
     <div class="page-list">
         <?php echo paginate_links( $args ); ?> 
