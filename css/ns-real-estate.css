@@ -299,7 +299,7 @@
     margin-bottom:10px;
 }
 
-.ns-property .property-single-item.widget { 
+.ns-single-item.widget { 
 	padding:25px; 
 	margin-bottom:25px;
     background:rgba(0, 0, 0, 0.02);
@@ -377,11 +377,6 @@
 /*********************************************/
 /** AGENTS SINGLE **/
 /*********************************************/
-.ns-agent .agent-single-item.widget { 
-    padding:0; 
-    margin-bottom:30px;
-}
-
 .ns-agent .agent-single-item .agent-content { padding:0; padding-top:30px; }
 .ns-agent .agent-single-item .agent-details p {
     border-bottom:1px solid rgba(0, 0, 0, 0.1);

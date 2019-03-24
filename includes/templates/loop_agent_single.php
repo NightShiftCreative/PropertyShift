@@ -51,7 +51,7 @@
                     <!--******************************************************-->
                     <!-- OVERVIEW -->
                     <!--******************************************************-->
-                	<div class="agent-single-item property-single-item widget agent-<?php echo esc_attr($slug); ?>">
+                	<div class="agent-single-item ns-single-item widget agent-<?php echo esc_attr($slug); ?>">
 
                         <a href="<?php the_permalink(); ?>" class="agent-img">
                             <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
@@ -71,6 +71,7 @@
         	                	<?php if(!empty($agent_email)) { ?><p><span><?php echo esc_attr($agent_email); ?></span><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php esc_html_e('Email', 'ns-real-estate'); ?>:</p><?php } ?>
         	                	<?php if(!empty($agent_mobile_phone)) { ?><p><span><?php echo esc_attr($agent_mobile_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php esc_html_e('Mobile', 'ns-real-estate'); ?>:</p><?php } ?>
         	                	<?php if(!empty($agent_office_phone)) { ?><p><span><?php echo esc_attr($agent_office_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php esc_html_e('Office', 'ns-real-estate'); ?>:</p><?php } ?>
+                                <?php do_action('ns_real_estate_after_agent_details', $post->ID); ?>
                             </div>
                             <?php if(in_array('agent_detail_item_contact', $agent_detail_items)) { ?> 
                                 <div class="button button-icon agent-message right"><?php echo ns_core_get_icon($icon_set, 'envelope'); ?><?php esc_html_e('Message Agent', 'ns-real-estate'); ?></div>
@@ -97,7 +98,7 @@
                     <!--******************************************************-->
                     <!-- DESCRIPTION -->
                     <!--******************************************************-->
-                		<div class="agent-single-item property-single-item content widget agent-<?php echo esc_attr($slug); ?>">
+                		<div class="agent-single-item ns-single-item content widget agent-<?php echo esc_attr($slug); ?>">
                 			<?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
@@ -113,7 +114,7 @@
                     <!-- CONTACT -->
                     <!--******************************************************-->
                         <a class="anchor" name="anchor-agent-contact"></a>
-                		<div class="agent-single-item property-single-item widget agent-<?php echo esc_attr($slug); ?>">
+                		<div class="agent-single-item ns-single-item widget agent-<?php echo esc_attr($slug); ?>">
                 			<?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
@@ -140,7 +141,7 @@
                     <!-- AGENT PROPERTIES -->
                     <!--******************************************************-->
                         <a class="anchor" name="anchor-agent-properties"></a>
-                		<div class="agent-single-item property-single-item widget agent-<?php echo esc_attr($slug); ?>">
+                		<div class="agent-single-item ns-single-item widget agent-<?php echo esc_attr($slug); ?>">
                 		    <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>

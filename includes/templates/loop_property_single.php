@@ -80,7 +80,7 @@
                         <!--******************************************************-->
                         <!-- PROPERTY OVERVIEW -->
                         <!--******************************************************-->
-                        <div class="property-single-item property-<?php echo esc_attr($slug); ?>">
+                        <div class="property-single-item ns-single-item property-<?php echo esc_attr($slug); ?>">
                             
                             <div class="property-title">
                                 <?php if(!empty($price)) { ?>
@@ -128,7 +128,7 @@
                     <!--******************************************************-->
                     <!-- DESCRIPTION -->
                     <!--******************************************************-->
-                        <div class="property-single-item content widget property-<?php echo esc_attr($slug); ?>">
+                        <div class="property-single-item ns-single-item content widget property-<?php echo esc_attr($slug); ?>">
                             <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
@@ -143,7 +143,7 @@
                     <!--******************************************************-->
                     <!-- PROPERTY GALLERY -->
                     <!--******************************************************-->
-						<div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
+						<div class="property-single-item ns-single-item widget property-<?php echo esc_attr($slug); ?>">
                             <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
@@ -176,7 +176,7 @@
                         <!--******************************************************-->
                         <!-- PROPERTY DETAILS -->
                         <!--******************************************************-->
-                        <div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
+                        <div class="property-single-item ns-single-item widget property-<?php echo esc_attr($slug); ?>">
                             <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
@@ -212,7 +212,7 @@
                     <!--******************************************************-->
                     <!-- AMENITIES -->
                     <!--******************************************************-->
-						<div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
+						<div class="property-single-item ns-single-item widget property-<?php echo esc_attr($slug); ?>">
 					        <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
@@ -227,7 +227,7 @@
                     <!--******************************************************-->
                     <!-- FLOOR PLANS -->
                     <!--******************************************************-->
-                        <div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
+                        <div class="property-single-item ns-single-item widget property-<?php echo esc_attr($slug); ?>">
                             <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
@@ -270,7 +270,7 @@
                     <!--******************************************************-->
                     <!-- LOCATION -->
                     <!--******************************************************-->
-						<div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
+						<div class="property-single-item ns-single-item widget property-<?php echo esc_attr($slug); ?>">
 							<?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
@@ -318,7 +318,7 @@
                     <!--******************************************************-->
                     <!-- WALK SCORE -->
                     <!--******************************************************-->
-						<div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
+						<div class="property-single-item ns-single-item widget property-<?php echo esc_attr($slug); ?>">
 						
 							<?php 
 							$json = getWalkScore($latitude,$longitude,$address);
@@ -350,7 +350,7 @@
                     <!--******************************************************-->
                     <!-- VIDEO -->
                     <!--******************************************************-->
-						<div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
+						<div class="property-single-item ns-single-item widget property-<?php echo esc_attr($slug); ?>">
 					        <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
@@ -372,7 +372,7 @@
                     <!--******************************************************-->
                     <!-- OWNER INFO -->
                     <!--******************************************************-->
-						<div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
+						<div class="property-single-item ns-single-item widget property-<?php echo esc_attr($slug); ?>">
                             <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
@@ -505,7 +505,7 @@
                     <!--******************************************************-->
                     <!-- RELATED PROPERTIES -->
                     <!--******************************************************-->
-						<div class="property-single-item widget property-<?php echo esc_attr($slug); ?>">
+						<div class="property-single-item ns-single-item widget property-<?php echo esc_attr($slug); ?>">
                             <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
