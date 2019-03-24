@@ -432,7 +432,7 @@
                                         $agent_properties_count = $agent_properties['count'];
                                     ?>
 
-                                    <div class="agent property-agent">
+                                    <div class="ns-agent property-agent">
                                         
                                         <a href="<?php the_permalink(); ?>" class="agent-img">
                                             <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
@@ -450,10 +450,11 @@
                                             <div class="agent-details">
                                                 <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                                                 <p><a href="<?php the_permalink(); ?>" class="button button-icon"><i class="fa fa-angle-right icon"></i><?php esc_html_e('View Agent Profile', 'ns-real-estate'); ?></a></p>
-                                                <?php if(!empty($agent_title)) { ?><p><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php echo esc_attr($agent_title); ?></p><?php } ?>
-                                                <?php if(!empty($agent_email)) { ?><p><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php echo esc_attr($agent_email); ?></p><?php } ?>
-                                                <?php if(!empty($agent_mobile_phone)) { ?><p><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php echo esc_attr($agent_mobile_phone); ?></p><?php } ?>
-                                                <?php if(!empty($agent_office_phone)) { ?><p><?php echo ns_core_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php echo esc_attr($agent_office_phone); ?></p><?php } ?>
+                                                
+                                                <?php if(!empty($agent_title)) { ?><p><span><?php echo esc_attr($agent_title); ?></span><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php esc_html_e('Title', 'ns-real-estate'); ?>:</p><?php } ?>
+                                                <?php if(!empty($agent_email)) { ?><p><span><?php echo esc_attr($agent_email); ?></span><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php esc_html_e('Email', 'ns-real-estate'); ?>:</p><?php } ?>
+                                                <?php if(!empty($agent_mobile_phone)) { ?><p><span><?php echo esc_attr($agent_mobile_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php esc_html_e('Mobile', 'ns-real-estate'); ?>:</p><?php } ?>
+                                                <?php if(!empty($agent_office_phone)) { ?><p><span><?php echo esc_attr($agent_office_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php esc_html_e('Office', 'ns-real-estate'); ?>:</p><?php } ?>
                                                 <?php do_action('ns_real_estate_after_agent_details', $post->ID); ?>
 
                                                 <?php if(!empty($agent_fb) || !empty($agent_twitter) || !empty($agent_google) || !empty($agent_linkedin) || !empty($agent_youtube) || !empty($agent_instagram)) { ?>
