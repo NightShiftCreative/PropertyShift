@@ -404,7 +404,7 @@
                                         'post_type' => 'ns-agent',
                                         'posts_per_page' => 1,
                                         'p' => $agent_select
-                                        );
+                                    );
 
                                     $agent_listing_query = new WP_Query( $agent_listing_args );
                                 ?>
@@ -454,7 +454,8 @@
                                                 <?php if(!empty($agent_email)) { ?><p><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php echo esc_attr($agent_email); ?></p><?php } ?>
                                                 <?php if(!empty($agent_mobile_phone)) { ?><p><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php echo esc_attr($agent_mobile_phone); ?></p><?php } ?>
                                                 <?php if(!empty($agent_office_phone)) { ?><p><?php echo ns_core_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php echo esc_attr($agent_office_phone); ?></p><?php } ?>
-                                                
+                                                <?php do_action('ns_real_estate_after_agent_details', $post->ID); ?>
+
                                                 <?php if(!empty($agent_fb) || !empty($agent_twitter) || !empty($agent_google) || !empty($agent_linkedin) || !empty($agent_youtube) || !empty($agent_instagram)) { ?>
                                                 <ul class="social-icons circle clean-list">
                                                     <?php if(!empty($agent_fb)) { ?><li><a href="<?php echo esc_url($agent_fb); ?>" target="_blank"><i class="fab fa-facebook"></i></a></li><?php } ?>
