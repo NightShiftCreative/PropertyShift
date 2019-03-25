@@ -378,9 +378,10 @@
 /** AGENTS SINGLE **/
 /*********************************************/
 .ns-agent .agent-content { padding:0; padding-top:30px; }
-.ns-single-item .agent-details p {
+.ns-agent .agent-details p {
     border-bottom:1px solid rgba(0, 0, 0, 0.1);
     padding-top:4px;
     padding-bottom:4px;
+    margin:0;
 }
-.ns-single-item .agent-details p span { float:right; font-weight:600; }
+.ns-agent .agent-details p span { float:right; font-weight:600; }
