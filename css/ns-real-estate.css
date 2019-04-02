@@ -344,7 +344,8 @@
     margin-bottom:20px;
 }
 .property-cat:hover { color:white; }
-.property-cat h3 { color:white; margin:0; }
+.property-cat h3 { position:relative; color:white; margin:0; }
+.property-cat .button { position:relative; }
 
 /*********************************************/
 /** MEMBER PAGES **/
