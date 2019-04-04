@@ -2,6 +2,7 @@
     //Get global settings
     $properties_page = esc_attr(get_option('ns_properties_page'));
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
+    if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 
     //Get template args
     $property_filter_id = $template_args['id'];

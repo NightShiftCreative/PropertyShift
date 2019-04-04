@@ -4,6 +4,7 @@
     global $post;
     $postID = get_the_id();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
+    if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
     $properties_page = esc_attr(get_option('ns_properties_page'));
     $property_listing_display_favorite = esc_attr(get_option('ns_property_listing_display_favorite', 'true'));
     $property_listing_display_share = esc_attr(get_option('ns_property_listing_display_share', 'true'));

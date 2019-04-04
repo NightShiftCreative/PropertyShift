@@ -2,6 +2,7 @@
     //Global settings
     $num_properties_per_page = esc_attr(get_option('ns_num_properties_per_page', 12));
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
+    if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
     $agent_detail_items_default = ns_real_estate_load_default_agent_detail_items();
     $agent_detail_items = get_option('ns_agent_detail_items', $agent_detail_items_default);
 

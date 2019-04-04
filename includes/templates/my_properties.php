@@ -1,6 +1,7 @@
 <?php
     global $post;
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
+    if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     $current_user = wp_get_current_user();
     $author = $current_user->user_login;
