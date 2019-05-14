@@ -1064,6 +1064,17 @@ if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page
     add_action('add_meta_boxes', 'ns_real_estate_properties_add_page_settings_metabox');
 }
 
+//set property default layout
+function example_callback($page_layout_default) {
+    if($_GET['post_type'] == 'ns-property') {
+        $property_detail_default_layout = esc_attr(get_option('ns_property_detail_default_layout', 'right sidebar'));
+        $page_layout_default = $property_detail_default_layout; 
+    }
+    return $page_layout_default;
+}
+add_filter( 'ns_basics_page_layout_filter', 'example_callback');
+
+
 /*-----------------------------------------------------------------------------------*/
 /*  Output Properties Map Banner
 /*-----------------------------------------------------------------------------------*/
