@@ -387,3 +387,8 @@
     margin:0;
 }
 .ns-agent .agent-details p span { float:right; font-weight:600; }
+
+/*********************************************/
+/** WIDGETS **/
+/*********************************************/
+.mortgage-calculator-container .label-radio { margin-right:10px; }
