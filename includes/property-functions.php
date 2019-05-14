@@ -157,6 +157,7 @@ function ns_real_estate_get_property_location($post_id, $output = null, $array =
 /* get property full address */
 function ns_real_estate_get_property_address($post_id) {
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
+    if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
     $values = get_post_custom($post_id);
     $street_address = isset( $values['ns_property_address'] ) ? esc_attr( $values['ns_property_address'][0] ) : '';
     $property_address = '';
