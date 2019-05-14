@@ -81,7 +81,7 @@
                         <!--******************************************************-->
                         <!-- PROPERTY OVERVIEW -->
                         <!--******************************************************-->
-                        <div class="property-single-item ns-single-item property-<?php echo esc_attr($slug); ?>">
+                        <div class="property-single-item ns-single-item widget property-<?php echo esc_attr($slug); ?>">
                             
                             <div class="property-title">
                                 <?php if(!empty($price)) { ?>
