@@ -140,7 +140,7 @@
                         </div>
                     <?php } ?>
 
-                	<?php if($slug == 'gallery') { ?>
+                	<?php if($slug == 'gallery' && !empty($additional_images[0])) { ?>
                     <!--******************************************************-->
                     <!-- PROPERTY GALLERY -->
                     <!--******************************************************-->
@@ -152,24 +152,17 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if ( has_post_thumbnail() ) { 
-                                the_post_thumbnail('full'); 
-                            } else { 
-                                echo '<img src="'.plugins_url( '/ns-real-estate/images/property-img-default.gif' ).'" alt="" />'; 
-                            } ?>
+						    <div class="gallery-images">
+                                <?php 
+                                    $additional_images = explode(",", $additional_images[0]);
+                                    foreach ($additional_images as $additional_image) {
+                                        if(!empty($additional_image)) {
+                                            echo '<a href="'.$additional_image.'" target="_blank"><img src="'. $additional_image .'" alt="" /></a>';
+                                        }
+                                    } ?>
+                                <div class="clear"></div>
+                            </div>
 
-							<?php if(!empty($additional_images[0])) { ?>
-						        <div class="gallery-images">
-                                    <?php 
-                                        $additional_images = explode(",", $additional_images[0]);
-                                        foreach ($additional_images as $additional_image) {
-                                            if(!empty($additional_image)) {
-                                                echo '<a href="'.$additional_image.'" target="_blank"><img src="'. $additional_image .'" alt="" /></a>';
-                                            }
-                                        } ?>
-                                    <div class="clear"></div>
-                                </div>
-						    <?php } ?>
 						</div>
                 	<?php } ?>
 
