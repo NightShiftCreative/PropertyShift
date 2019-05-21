@@ -1087,7 +1087,9 @@ add_filter( 'ns_basics_page_layout_widget_area', 'ns_real_estate_set_default_pro
 /*  Output Properties Map Banner
 /*-----------------------------------------------------------------------------------*/
 function ns_real_estate_properties_map_banner($banner_source) { 
-    if($banner_source == 'properties_map') { ns_core_get_template_part('template_parts/real_estate/properties_map'); }
+    if($banner_source == 'properties_map') { 
+        ns_real_estate_template_loader('properties_map.php');
+    }
 }
 add_filter( 'ns_core_custom_banner_source', 'ns_real_estate_properties_map_banner');
 
