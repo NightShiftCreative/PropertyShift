@@ -243,6 +243,12 @@ function ns_list_properties($atts, $content = null) {
     return $output;
 }
 
+/** PROPERTIES MAP **/
+add_shortcode('ns_properties_map', 'ns_properties_map');
+function ns_properties_map($atts, $content = null) {
+    ns_real_estate_template_loader('properties_map.php');
+}
+
 /** LIST PROPERTY TAXONOMY **/
 add_shortcode('ns_list_property_tax', 'ns_list_property_tax');
 function ns_list_property_tax($atts, $content = null) {
