@@ -202,6 +202,7 @@ function ns_list_properties($atts, $content = null) {
             'show_header' => false,
             'show_pagination' => false,
             'layout' => 'grid',
+            'cols' => null,
             'property_status' => '',
             'property_location' => '',
             'property_type' => '',
@@ -233,6 +234,7 @@ function ns_list_properties($atts, $content = null) {
         $template_args['custom_show_filter'] = $atts['show_header'];
         $template_args['custom_layout'] = $atts['layout'];
         $template_args['custom_pagination'] = $atts['show_pagination'];
+        $template_args['custom_cols'] = $atts['cols'];
         $template_args['no_post_message'] = esc_html__( 'Sorry, no properties were found.', 'ns-real-estate' );
 
         //Load template
