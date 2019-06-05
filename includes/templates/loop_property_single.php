@@ -104,7 +104,7 @@
                                     <?php if($property_detail_id == 'true') { ?><div class="property-id"><?php esc_html_e('Property ID', 'ns-real-estate'); ?>: <?php echo get_the_id(); ?></div><?php } ?>
                                     <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'ns-real-estate'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
                                 </div>
-                                <div class="right">
+                                <div class="right property-actions">
                                     <?php if($property_listing_display_favorite == 'true' && function_exists('ns_basics_get_post_likes_button')) { echo ns_basics_get_post_likes_button(get_the_ID()); } ?>
                                     <?php if($property_listing_display_share == 'true' && function_exists('ns_basics_get_social_share')) { echo ns_basics_get_social_share(); } ?>
                                 </div>
