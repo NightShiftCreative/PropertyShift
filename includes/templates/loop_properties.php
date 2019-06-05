@@ -31,10 +31,24 @@
     }
 	
 	//GENERATE COLUMN LAYOUT
-	if($page_layout == 'full') { 
+	$property_col_class = 'col-lg-6 col-md-6 col-sm-6 ns-listing-col'; 
+    if(isset($custom_cols)) {
+        switch($custom_cols) {
+            case 1:
+                $property_col_class = 'col-lg-12 ns-listing-col';
+                break;
+            case 2:
+                $property_col_class = 'col-lg-6 ns-listing-col'; 
+                break;
+            case 3:
+                $property_col_class = 'col-lg-4 ns-listing-col'; 
+                break;
+            case 4:
+                $property_col_class = 'col-lg-3 ns-listing-col'; 
+                break;
+        }
+    } else if($page_layout == 'full') { 
         $property_col_class = 'col-lg-4 col-md-4 col-sm-4 ns-listing-col'; 
-    } else { 
-        $property_col_class = 'col-lg-6 col-md-6 col-sm-6 ns-listing-col'; 
     }
 
     //GET PROPERTY LAYOUT
