@@ -13,6 +13,7 @@
         $custom_show_filter = $template_args['custom_show_filter'];
         $custom_layout = $template_args['custom_layout'];
         $custom_pagination = $template_args['custom_pagination'];
+        $custom_cols = $template_args['custom_cols'];
         $no_post_message = $template_args['no_post_message'];
     }
 	
