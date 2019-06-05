@@ -26,7 +26,6 @@
 
 	<div class="agent-img">
 		<?php if ( has_post_thumbnail() ) {  ?>
-            <div class="img-fade"></div>
 			<a href="<?php the_permalink(); ?>" class="agent-img-link">
                 <?php if($agent_listing_crop == 'true') { the_post_thumbnail('agent-thumbnail'); } else { the_post_thumbnail('full'); } ?>  
             </a>
