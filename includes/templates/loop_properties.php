@@ -30,12 +30,10 @@
         $page_layout = isset( $values['ns_basics_page_layout'] ) ? esc_attr( $values['ns_basics_page_layout'][0] ) : 'full';
     }
 	
-	//GENERATE PROPERTY CLASS BASED ON PAGE LAYOUT
+	//GENERATE COLUMN LAYOUT
 	if($page_layout == 'full') { 
-        $columns_num = 3;
         $property_col_class = 'col-lg-4 col-md-4 col-sm-4 ns-listing-col'; 
     } else { 
-        $columns_num = 2;
         $property_col_class = 'col-lg-6 col-md-6 col-sm-6 ns-listing-col'; 
     }
 
