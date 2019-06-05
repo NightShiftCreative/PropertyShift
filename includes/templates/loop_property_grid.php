@@ -41,8 +41,8 @@
 		<?php if($featured == 'true') { ?><a href="<?php if(!empty($properties_page)) { echo esc_url($properties_page).'/?featured=true'; } ?>" class="property-tag button alt featured"><?php esc_html_e('Featured', 'ns-real-estate'); ?></a><?php } ?>
 
 		<?php if ( has_post_thumbnail() ) {  ?>
-            <div class="img-fade"></div>
 			<a href="<?php the_permalink(); ?>" class="property-img-link">
+				<div class="img-fade"></div>
                 <?php if($property_listing_crop == 'true') { the_post_thumbnail('property-thumbnail'); } else { the_post_thumbnail('full'); } ?>
             </a>
 		<?php } else { ?>
