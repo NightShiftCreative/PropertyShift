@@ -156,8 +156,12 @@
                                 <?php 
                                     $additional_images = explode(",", $additional_images[0]);
                                     foreach ($additional_images as $additional_image) {
-                                        if(!empty($additional_image)) {
-                                            echo '<a href="'.$additional_image.'" target="_blank"><img src="'. $additional_image .'" alt="" /></a>';
+                                        $image_id = ns_basics_get_image_id($additional_image);
+                                        $image_thumb = wp_get_attachment_image_src($image_id, 'property-thumbnail');
+                                        if(!empty($image_thumb) && !empty($image_thumb[0])) {
+                                            echo '<a href="'.$additional_image.'" target="_blank"><img src="'.$image_thumb[0].'" alt="" /></a>';
+                                        } else {
+                                            echo '<a href="'.$additional_image.'" target="_blank"><img src="'.$additional_image.'" alt="" /></a>';
                                         }
                                     } ?>
                                 <div class="clear"></div>

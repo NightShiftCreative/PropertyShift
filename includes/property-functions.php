@@ -1149,7 +1149,7 @@ function ns_real_estate_dashboard_widgets($banner_source) {
 add_filter( 'ns_basics_after_dashboard', 'ns_real_estate_dashboard_widgets');
 
 /*-----------------------------------------------------------------------------------*/
-/*  Add Property Image Size
+/*  Add Property Image Sizes
 /*-----------------------------------------------------------------------------------*/
 add_image_size( 'property-thumbnail', 800, 600, array( 'center', 'center' ) );
 
