@@ -185,7 +185,7 @@ function ns_real_estate_get_property_amenities($post_id, $hide_empty = true, $ar
             if($array == 'true') {
                 $property_amenities_links[] = $property_amenity_term->slug;
             } else {
-                if($property_amenity_term->count > 0) { $icon = '<i class="fa fa-check icon"></i>'; } else { $icon = '<i class="fa fa-close icon"></i>'; }
+                if(has_term($property_amenity_term->slug, 'property_amenities', $post_id)) { $icon = '<i class="fa fa-check icon"></i>'; } else { $icon = '<i class="fa fa-times icon"></i>'; }
                 $property_amenities_links[] = '<li><a href="'. esc_attr(get_term_link($property_amenity_term->slug, 'property_amenities')) .'">'.$icon.'<span>'.$property_amenity_term->name.'</span></a></li>' ;
             }
         } 
