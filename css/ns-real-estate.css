@@ -16,14 +16,6 @@
 
 .widget-divider, .widget-divider td { border:none; }
 
-.ns-real-estate .button { 
-    background:#db7e40;
-    padding:8px 15px;
-    color:white; 
-    text-align:center; 
-    display:inline-block;
-}
-
 .clean-list { padding:0; }
 .clean-list, .clean-list li { margin-left:0 !important; list-style-type:none !important; }
 .clean-list li:before { content:''; display:none !important; }
