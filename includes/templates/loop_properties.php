@@ -59,8 +59,6 @@
         $property_col_num = 3;
     }
 
-    echo $property_col_num;
-
     //GET PROPERTY LAYOUT
     if(isset($custom_layout)) {
         if(isset($_GET['custom_layout'])) {
