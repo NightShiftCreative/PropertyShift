@@ -33,24 +33,33 @@
 	
 	//GENERATE COLUMN LAYOUT
 	$property_col_class = 'col-lg-6 col-md-6 col-sm-6 ns-listing-col'; 
+    $property_col_num = 2;
+
     if(isset($custom_cols)) {
         switch($custom_cols) {
             case 1:
                 $property_col_class = 'col-lg-12 ns-listing-col';
+                $property_col_num = 1;
                 break;
             case 2:
                 $property_col_class = 'col-lg-6 ns-listing-col'; 
+                $property_col_num = 2;
                 break;
             case 3:
                 $property_col_class = 'col-lg-4 ns-listing-col'; 
+                $property_col_num = 3;
                 break;
             case 4:
-                $property_col_class = 'col-lg-3 ns-listing-col'; 
+                $property_col_class = 'col-lg-3 ns-listing-col';
+                $property_col_num = 4; 
                 break;
         }
     } else if($page_layout == 'full') { 
         $property_col_class = 'col-lg-4 col-md-4 col-sm-4 ns-listing-col'; 
+        $property_col_num = 3;
     }
+
+    echo $property_col_num;
 
     //GET PROPERTY LAYOUT
     if(isset($custom_layout)) {
@@ -226,8 +235,8 @@ if($property_listing_header_display == 'true') {
 ?>
 
 <div class="row ns-property-listing">
-<?php 
-$i = 0;
+<?php
+$counter = 1;
 
 if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->have_posts() ) : $property_listing_query->the_post(); ?>
 
@@ -242,6 +251,11 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
     <?php } else if($property_layout == 'tile') {
         ns_real_estate_template_loader('loop_property_grid.php', null, false);
     } ?>
+
+    <?php 
+    if($counter % $property_col_num == 0) { echo '<div class="clear"></div>'; } 
+    $counter++; 
+    ?>
 
 <?php endwhile; ?>
     <div class="clear"></div>
