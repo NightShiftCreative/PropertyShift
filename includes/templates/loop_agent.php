@@ -37,7 +37,7 @@
 	<div class="agent-content">
 		  
         <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
-            <a href="<?php the_permalink(); ?>" class="right"><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Property', 'ns-real-estate'); } else { esc_html_e('Properties', 'ns-real-estate'); } ?></a>
+            <a href="<?php the_permalink(); ?>" class="agent-property-count right"><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Property', 'ns-real-estate'); } else { esc_html_e('Properties', 'ns-real-estate'); } ?></a>
         <?php } ?>
 
         <div class="agent-title left">
