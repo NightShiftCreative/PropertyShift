@@ -392,6 +392,7 @@ function ns_list_agents($atts, $content = null) {
     array (
         'show_posts' => $num_agents_per_page,
         'show_pagination' => false,
+        'cols' => null,
     ), $atts);
 
     $custom_args = array(
@@ -405,6 +406,7 @@ function ns_list_agents($atts, $content = null) {
         $template_args = array();
         $template_args['custom_args'] = $custom_args;
         $template_args['custom_pagination'] = $atts['show_pagination'];
+        $template_args['custom_cols'] = $atts['cols'];
         
         //Load template
         ns_real_estate_template_loader('loop_agents.php', $template_args);

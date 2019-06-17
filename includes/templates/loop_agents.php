@@ -7,7 +7,33 @@
     if(isset($template_args)) {
         $custom_args = $template_args['custom_args'];
         $custom_pagination = $template_args['custom_pagination'];
+        $custom_cols = $template_args['custom_cols'];
         $no_post_message = $template_args['no_post_message'];
+    }
+
+    //GENERATE COLUMN LAYOUT
+    $agent_col_class = 'col-lg-4 col-md-4 col-sm-6 ns-listing-col'; 
+    $agent_col_num = 3;
+
+    if(isset($custom_cols)) {
+        switch($custom_cols) {
+            case 1:
+                $agent_col_class = 'col-lg-12 ns-listing-col';
+                $$agent_col_num = 1;
+                break;
+            case 2:
+                $agent_col_class = 'col-lg-6 ns-listing-col'; 
+                $agent_col_num = 2;
+                break;
+            case 3:
+                $agent_col_class = 'col-lg-4 ns-listing-col'; 
+                $agent_col_num = 3;
+                break;
+            case 4:
+                $agent_col_class = 'col-lg-3 ns-listing-col';
+                $agent_col_num = 4; 
+                break;
+        }
     }
 
     /***************************************************************************/
@@ -48,7 +74,7 @@
 <div class="row ns-agent-listing">
 <?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
 
-    <div class="col-lg-4 col-md-4 col-sm-6 ns-listing-col"><?php ns_real_estate_template_loader('loop_agent.php', null, false); ?></div>
+    <div class="<?php echo esc_attr($agent_col_class); ?>"><?php ns_real_estate_template_loader('loop_agent.php', null, false); ?></div>
 
 <?php endwhile; ?>
     <div class="clear"></div>
