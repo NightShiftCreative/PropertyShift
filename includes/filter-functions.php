@@ -150,6 +150,7 @@ function ns_real_estate_property_filter_details($post) {
                     <option value="full" <?php if($filter_layout == 'full') { echo 'selected'; } ?>><?php esc_html_e('Full Width', 'ns-real-estate'); ?></option>
                     <option value="minimal" <?php if($filter_layout == 'minimal') { echo 'selected'; } ?>><?php esc_html_e('Minimal', 'ns-real-estate'); ?></option>
                     <option value="boxed" <?php if($filter_layout == 'boxed') { echo 'selected'; } ?>><?php esc_html_e('Boxed', 'ns-real-estate'); ?></option>
+                    <option value="vertical" <?php if($filter_layout == 'vertical') { echo 'selected'; } ?>><?php esc_html_e('Vertical', 'ns-real-estate'); ?></option>
                     <?php do_action('ns_real_estate_property_filter_layouts', $filter_layout); ?>
                 </select>
             </td>
