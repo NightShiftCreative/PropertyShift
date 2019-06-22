@@ -7,7 +7,7 @@
 ?>
 
 <div class="module no-padding ns-properties-map">
-	<div id="map-canvas"></div>
+    <div id="map-canvas"></div>
 	<script>
         "use strict";
 
