@@ -1,13 +1,21 @@
 <?php
+    //Global settings
 	$home_default_map_zoom = esc_attr(get_option('ns_real_estate_default_map_zoom', 10));
 	$home_default_map_latitude = esc_attr(get_option('ns_real_estate_default_map_latitude', 39.2904));
 	$home_default_map_longitude = esc_attr(get_option('ns_real_estate_default_map_longitude', -76.5000));
     $google_maps_pin = esc_attr(get_option('ns_real_estate_google_maps_pin'));
     if(empty($google_maps_pin)) { $google_maps_pin = plugins_url( '/ns-real-estate/images/pin.png'); }
+
+    //Individual page banner settings
+    $page_id = ns_core_get_page_id();
+    $values = get_post_custom( $page_id );
 ?>
 
 <div class="module no-padding ns-properties-map">
+    
     <div id="map-canvas"></div>
+    <?php do_action('ns_real_estate_after_properties_map', $values); ?>
+
 	<script>
         "use strict";
 
