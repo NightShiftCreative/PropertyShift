@@ -221,6 +221,9 @@ function ns_real_estate_insert_property_post($edit_property_id = null) {
 	    if( isset( $_POST['agent_custom_url'] ) )
 	        update_post_meta( $post_ID, 'ns_agent_custom_url', wp_kses( $_POST['agent_custom_url'], $allowed ) );
 
+	    //hook in for other add-ons
+    	do_action('ns_real_estate_save_property_submit', $post_ID);
+
 		if($members_submit_property_approval == 'true') {
 	        $output['success'] = esc_html__('Your property,', 'ns-real-estate') .' <b>'. $title .',</b> '. esc_html__('was submitted for review!', 'ns-real-estate');
 	    } else {
