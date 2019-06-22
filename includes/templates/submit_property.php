@@ -343,7 +343,7 @@
 
             <?php if(in_array('Floor Plans', $members_submit_property_fields )) { ?>
             <div class="submit-property-section" id="property-floor-plans">
-                <div class="module-border form-block-property-floor-plans">
+                <div class="form-block-property-floor-plans">
                     <h3><?php esc_html_e('Floor Plans', 'ns-real-estate'); ?></h3>
                     <div class="form-block property-floor-plans">
                         <div class="accordion">
