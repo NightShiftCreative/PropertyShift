@@ -45,7 +45,7 @@ foreach($filter_fields as $field) { if($field['active'] == 'true') { $filter_num
 
 $filter_module_class = 'filter-'.$property_filter_id.' filter-count-'.$filter_num.' ';
 if($filter_layout == 'boxed') { $filter_module_class .= 'filter-boxed ';  }
-if($filter_layout == 'vertical') { $filter_module_class .= 'filter-vertical ';  }
+if($filter_layout == 'vertical') { $filter_module_class .= 'filter-boxed filter-vertical ';  }
 if($filter_position == 'above') { 
 	$filter_module_class .= 'filter-above-banner '; 
 } else if($filter_position == 'middle') { 
