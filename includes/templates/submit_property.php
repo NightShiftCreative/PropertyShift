@@ -335,11 +335,10 @@
 
 				</div><!-- end col -->
 				</div><!-- end row -->
-
-                <!-- hook in for add-ons -->
-                <?php do_action('ns_real_estate_after_property_submit_general', $edit_property_id); ?>
-
 			</div><!-- end general info -->
+
+            <!-- hook in for add-ons -->
+            <?php do_action('ns_real_estate_after_property_submit_general', $edit_property_id); ?>
 
             <?php if(in_array('Floor Plans', $members_submit_property_fields )) { ?>
             <div class="submit-property-section" id="property-floor-plans">
