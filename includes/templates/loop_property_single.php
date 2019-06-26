@@ -388,9 +388,9 @@
                                             echo '<img src="'.plugins_url( '/ns-real-estate/images/agent-img-default.gif' ).'" alt="Agent Image" />';
                                         }
                                     ?>
-                                    <p><?php echo ns_core_get_icon($icon_set, 'user'); ?> <?php the_author_meta('display_name'); ?></p>
-                                    <p><?php echo ns_core_get_icon($icon_set, 'envelope'); ?> <?php the_author_meta('user_email'); ?></p>
-                                    <?php if (get_the_author_meta('user_url')  != '') { ?><a href="<?php the_author_meta('user_url'); ?>" target="_blank"><?php echo ns_core_get_icon($icon_set, 'globe', 'link'); ?> <?php the_author_meta('user_url'); ?> </a><?php } ?>
+                                    <p class="author-display-name"><?php echo ns_core_get_icon($icon_set, 'user'); ?> <?php the_author_meta('display_name'); ?></p>
+                                    <p class="author-email"><?php echo ns_core_get_icon($icon_set, 'envelope'); ?> <?php the_author_meta('user_email'); ?></p>
+                                    <?php if (get_the_author_meta('user_url')  != '') { ?><a class="author-url" href="<?php the_author_meta('user_url'); ?>" target="_blank"><?php echo ns_core_get_icon($icon_set, 'globe', 'link'); ?> <?php the_author_meta('user_url'); ?> </a><?php } ?>
 									<div class="clear"></div>
 								</div>
 
