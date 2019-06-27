@@ -186,12 +186,14 @@ if (!empty($filter_fields)) { ?>
 		                                    $price_range_max_start = $currentFilterPriceMax;
 		                                }
 		                            ?>
-		                            <div class="price-slider" data-count="1" data-min="<?php echo $price_range_min; ?>" data-max="<?php echo $price_range_max; ?>" data-min-start="<?php echo $price_range_min_start; ?>" data-max-start="<?php echo $price_range_max_start; ?>" ></div>
-		                            <span class="price-slider-label price-min-label left"></span>
-		                            <span class="price-slider-label price-max-label right"></span>
-		                            <div class="clear"></div>
-		                            <input name="priceMin" type="hidden" class="price-min-input" />
-		                            <input name="priceMax" type="hidden" class="price-max-input" />
+		                            <div class="price-slider-container">
+			                            <div class="price-slider" data-count="1" data-min="<?php echo $price_range_min; ?>" data-max="<?php echo $price_range_max; ?>" data-min-start="<?php echo $price_range_min_start; ?>" data-max-start="<?php echo $price_range_max_start; ?>" ></div>
+			                            <span class="price-slider-label price-min-label left"></span>
+			                            <span class="price-slider-label price-max-label right"></span>
+			                            <div class="clear"></div>
+			                            <input name="priceMin" type="hidden" class="price-min-input" />
+			                            <input name="priceMax" type="hidden" class="price-max-input" />
+			                        </div>
 		                        <?php } ?>
 
 		                        <?php if($slug == 'beds') { ?>
@@ -351,16 +353,18 @@ if (!empty($filter_fields)) { ?>
 	                                    if (isset($term_data['price_range_min_start'])) { $term_price_range_min_start = $term_data['price_range_min_start']; } else { $term_price_range_min_start = ''; }
 	                                    if (isset($term_data['price_range_max_start'])) { $term_price_range_max_start = $term_data['price_range_max_start']; } else { $term_price_range_max_start = ''; }
 	                                ?>
-	                                <div class="price-slider" data-count="<?php echo esc_attr($filterCount) + 1; ?>" data-min="<?php echo $price_range_min; ?>" data-max="<?php echo $price_range_max; ?>" data-min-start="<?php echo $price_range_min_start; ?>" data-max-start="<?php echo $price_range_max_start; ?>" ></div>
-	                                <span class="price-slider-label price-min-label  left"></span>
-	                                <span class="price-slider-label price-max-label right"></span>
-	                                <div class="clear"></div>
-	                                <input name="priceMin" type="hidden" class="price-min-input" />
-	                                <input name="priceMax" type="hidden" class="price-max-input" />
-	                                <input name="termPriceMin" type="hidden" value="<?php echo $term_price_range_min; ?>" class="term-price-min" />
-                                	<input name="termPriceMax" type="hidden" value="<?php echo $term_price_range_max; ?>" class="term-price-max" />
-                                	<input name="termPriceMinStart" type="hidden" value="<?php echo $term_price_range_min_start; ?>" class="term-price-min-start" />
-                                	<input name="termPriceMaxStart" type="hidden" value="<?php echo $term_price_range_max_start; ?>" class="term-price-max-start" />
+	                                <div class="price-slider-container">
+		                                <div class="price-slider" data-count="<?php echo esc_attr($filterCount) + 1; ?>" data-min="<?php echo $price_range_min; ?>" data-max="<?php echo $price_range_max; ?>" data-min-start="<?php echo $price_range_min_start; ?>" data-max-start="<?php echo $price_range_max_start; ?>" ></div>
+		                                <span class="price-slider-label price-min-label  left"></span>
+		                                <span class="price-slider-label price-max-label right"></span>
+		                                <div class="clear"></div>
+		                                <input name="priceMin" type="hidden" class="price-min-input" />
+		                                <input name="priceMax" type="hidden" class="price-max-input" />
+		                                <input name="termPriceMin" type="hidden" value="<?php echo $term_price_range_min; ?>" class="term-price-min" />
+	                                	<input name="termPriceMax" type="hidden" value="<?php echo $term_price_range_max; ?>" class="term-price-max" />
+	                                	<input name="termPriceMinStart" type="hidden" value="<?php echo $term_price_range_min_start; ?>" class="term-price-min-start" />
+	                                	<input name="termPriceMaxStart" type="hidden" value="<?php echo $term_price_range_max_start; ?>" class="term-price-max-start" />
+		                           	</div>
 	                            <?php } ?>
 
 	                            <?php if($slug == 'beds') { ?>
