@@ -210,5 +210,13 @@ if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
 	/*  Includes WPBakery
 	/*-----------------------------------------------------------------------------------*/
 	include( plugin_dir_path( __FILE__ ) . '/includes/wp-bakery/wp-bakery.php');
+
+	/*-----------------------------------------------------------------------------------*/
+	/*  Includes Default Content (on plugin activation)
+	/*-----------------------------------------------------------------------------------*/
+	function ns_real_estate_default_content() {
+		include( plugin_dir_path( __FILE__ ) . '/includes/default-content.php');
+	}
+	register_activation_hook( __FILE__ , 'ns_real_estate_default_content' );
 }
 ?>
