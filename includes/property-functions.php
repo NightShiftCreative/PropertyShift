@@ -1058,12 +1058,11 @@ function ns_real_estate_properties_save_extra_taxonomy_fields( $term_id ) {
 /*-----------------------------------------------------------------------------------*/
 /*  Add Page Settings Metabox to Edit Property Page
 /*-----------------------------------------------------------------------------------*/
-if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page_settings')) {
-    function ns_real_estate_properties_add_page_settings_metabox() {
-        add_meta_box( 'page-layout-meta-box', 'Page Settings', 'ns_basics_page_layout_meta_box', array('ns-property'), 'normal', 'low' );
-    }
-    add_action('add_meta_boxes', 'ns_real_estate_properties_add_page_settings_metabox');
+function ns_real_estate_add_page_settings_metabox($post_types) {
+    $post_types[] = 'ns-property';
+    return $post_types;
 }
+add_filter( 'ns_basics_page_settings_post_types', 'ns_real_estate_add_page_settings_metabox', 10, 3 );
 
 //set property default page layout
 function ns_real_estate_set_default_property_layout($page_layout_default) {
