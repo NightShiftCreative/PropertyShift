@@ -439,12 +439,11 @@ add_action( 'ns_core_theme_support', 'ns_real_estate_add_agent_image_size' );
 /*-----------------------------------------------------------------------------------*/
 /*  Add Page Settings Metabox to Edit Agent Page
 /*-----------------------------------------------------------------------------------*/
-if(function_exists('ns_basics_is_active') && ns_basics_is_active('ns_basics_page_settings')) {
-    function ns_real_estate_agents_add_page_settings_metabox() {
-        add_meta_box( 'page-layout-meta-box', 'Page Settings', 'ns_basics_page_layout_meta_box', array('ns-agent'), 'normal', 'low' );
-    }
-    add_action('add_meta_boxes', 'ns_real_estate_agents_add_page_settings_metabox');
+function ns_real_estate_add_page_settings_metabox_agents($post_types) {
+    $post_types[] = 'ns-agent';
+    return $post_types;
 }
+add_filter( 'ns_basics_page_settings_post_types', 'ns_real_estate_add_page_settings_metabox_agents', 10, 3 );
 
 /*-----------------------------------------------------------------------------------*/
 /*  Agent Contact Form
