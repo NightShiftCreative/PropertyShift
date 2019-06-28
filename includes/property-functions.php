@@ -1092,15 +1092,6 @@ function ns_real_estate_properties_map_banner($banner_source) {
 }
 add_filter( 'ns_core_custom_banner_source', 'ns_real_estate_properties_map_banner');
 
-function ns_real_estate_properties_map_custom_header_var($header_vars) { 
-    $page_id = ns_core_get_page_id();
-    $values = get_post_custom( $page_id);
-    $banner_source = isset( $values['ns_basics_banner_source'] ) ? esc_attr( $values['ns_basics_banner_source'][0] ) : 'image_banner';
-    if($banner_source == 'properties_map' && $header_vars['header_style'] == 'transparent') { $header_vars['header_style'] = ''; }
-    return $header_vars;
-}
-add_filter( 'ns_basics_custom_header_vars', 'ns_real_estate_properties_map_custom_header_var');
-
 /*-----------------------------------------------------------------------------------*/
 /*  Output Property Dashboard Widgets
 /*-----------------------------------------------------------------------------------*/
