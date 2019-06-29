@@ -451,10 +451,17 @@ function ns_real_estate_page_banner_property_filter_global() {
         //If filter position above, change to classic header
         if($property_filter_position == 'above') {
             function ns_real_estate_property_filter_change_header($theme_options_init) {
-                if($theme_options_init['ns_core_header_style'] == 'transparent') { $theme_options_init['ns_core_header_style'] = ''; }
+                if($theme_options_init['ns_core_header_style'] == 'transparent') { $theme_options_init['ns_core_header_style'] = 'classic'; }
                 return $theme_options_init;
             }
             add_filter( 'ns_core_theme_options_filter', 'ns_real_estate_property_filter_change_header' );
+            add_filter( 'ns_core_theme_options_saved_filter', 'ns_real_estate_property_filter_change_header' );
+            
+            function ns_real_estate_property_filter_change_header_single($single_option_value, $single_option) {
+                if($single_option == 'ns_core_header_style' && $single_option_value == 'transparent') { $single_option_value = 'classic'; }
+                return $single_option_value;
+            }
+            add_filter( 'ns_core_theme_options_single_filter', 'ns_real_estate_property_filter_change_header_single', 10, 2);
         }
 
         //generate filter position hook name
