@@ -470,7 +470,7 @@ function ns_real_estate_settings_page_content() {
                                 
                                 //If item is an add-on, check if it is active
                                 if(isset($value['add_on'])) { 
-                                    if(ns_basics_is_paid_plugin_active($value['add_on'])) { $add_on = 'true'; } else { $add_on = 'false'; }
+                                    if(ns_real_estate_is_paid_plugin_active($value['add_on'])) { $add_on = 'true'; } else { $add_on = 'false'; }
                                 } else {
                                     $add_on = 'true'; 
                                 }
@@ -1312,5 +1312,17 @@ function ns_real_estate_google_maps_api_notice() {
     }
 }
 add_action( 'admin_notices', 'ns_real_estate_google_maps_api_notice' );
+
+/*-----------------------------------------------------------------------------------*/
+/* CHECK IF PAID ADD-ON PLUGIN IS ACTIVE
+/*-----------------------------------------------------------------------------------*/
+function ns_real_estate_is_paid_plugin_active($add_on_slug) {
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    if(is_plugin_active($add_on_slug.'/'.$add_on_slug.'.php')) { 
+        return true; 
+    } else { 
+        return false;
+    }
+}
 
 ?>
