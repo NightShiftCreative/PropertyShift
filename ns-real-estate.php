@@ -10,74 +10,104 @@
 * Text Domain: ns-real-estate
 **/
 
-/*-----------------------------------------------------------------------------------*/
-/*  Load Text Domain
-/*-----------------------------------------------------------------------------------*/
-load_plugin_textdomain( 'ns-real-estate', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+// Exit if accessed directly
+if (!defined( 'ABSPATH')) { exit; }
 
-/*-----------------------------------------------------------------------------------*/
-/*  Define Global Variables
-/*-----------------------------------------------------------------------------------*/
-define('NS_SHOP_URL', 'https://studio.nightshiftcreative.co/');
-define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/1.0.0.zip');
-define('NS_REAL_ESTATE_GITHUB', '/NightShiftCreative/NS-Real-Estate/');
-define('NS_REAL_ESTATE_LICENSE_PAGE', 'ns-real-estate-license-keys' );
+class NS_Real_Estate {
 
-/*-----------------------------------------------------------------------------------*/
-/*  Automatic Update Checker (checks for new releases on github)
-/*-----------------------------------------------------------------------------------*/
-require 'includes/plugins/plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-    'https://github.com'.constant('NS_REAL_ESTATE_GITHUB'),
-    __FILE__,
-    'ns-real-estate'
-);
+	/**
+	 * Constructor - intialize the plugin
+	 */
+	public function __construct() {
+		
+		//Add actions & filters
+		require_once( plugin_dir_path( __FILE__ ) . '/includes/plugins/class-tgm-plugin-activation.php');
+		add_action( 'tgmpa_register', array( $this, 'require_plugins' ) );
+		if($this->is_plugin_active('ns-basics/ns-basics.php')) {
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts' ) );
+		}
 
-/*-----------------------------------------------------------------------------------*/
-/*  Require NS Basics
-/*-----------------------------------------------------------------------------------*/
-require_once( plugin_dir_path( __FILE__ ) . '/includes/plugins/class-tgm-plugin-activation.php');
-add_action( 'tgmpa_register', 'ns_real_estate_register_required_plugins' );
-function ns_real_estate_register_required_plugins() {
+		//Functions
+		$this->load_plugin_textdomain();
+		$this->define_constants();
+		$this->update_checker();
+		if($this->is_plugin_active('ns-basics/ns-basics.php')) { $this->includes(); }
+	}
 
-    $plugins = array(
-        array(
-			'name'         => 'NightShift Basics', // The plugin name.
-			'slug'         => 'ns-basics', // The plugin slug (typically the folder name).
-			'source'       => 'https://github.com'.constant('NS_BASICS_GITHUB'), // The plugin source.
-			'required'     => true, // If false, the plugin is only 'recommended' instead of required.
-			'version'	   => '1.0.0',
-			'force_activation'   => false,
-			'force_deactivation' => false,
-			'external_url' => constant('NS_SHOP_URL'),
-		),
-    );
+	/**
+	 * Load the textdomain for translation
+	 */
+	public function load_plugin_textdomain() {
+		load_plugin_textdomain( 'ns-real-estate', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
 
-    $config = array(
-        'id'           => 'ns-real-estate',       // Unique ID for hashing notices for multiple instances of TGMPA.
-        'default_path' => '',                      // Default absolute path to bundled plugins.
-        'menu'         => 'tgmpa-install-plugins', // Menu slug.
-        'has_notices'  => true,                    // Show admin notices or not.
-        'dismissable'  => false,                    // If false, a user cannot dismiss the nag message.
-        'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
-        'is_automatic' => true,                   // Automatically activate plugins after installation or not.
-        'message'      => '',                      // Message to output right before the plugins table.
-    );
+	/**
+	 * Define constants
+	 */
+	public function define_constants() {
+		define('NS_SHOP_URL', 'https://studio.nightshiftcreative.co/');
+		define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/1.0.0.zip');
+		define('NS_REAL_ESTATE_GITHUB', '/NightShiftCreative/NS-Real-Estate/');
+		define('NS_REAL_ESTATE_LICENSE_PAGE', 'ns-real-estate-license-keys' );
+	}
 
-    tgmpa( $plugins, $config );
-}
+	/**
+	 * Update Checker
+	 */
+	public function update_checker() {
+		require 'includes/plugins/plugin-update-checker/plugin-update-checker.php';
+		$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+		    'https://github.com'.constant('NS_REAL_ESTATE_GITHUB'),
+		    __FILE__,
+		    'ns-real-estate'
+		);
+	}
 
-/** Check if plugin is activated **/
-function ns_real_estate_is_plugin_active( $plugin ) {
-    return in_array( $plugin, (array) get_option( 'active_plugins', array() ) );
-}
+	/**
+	 * Require Plugins
+	 */
+	public function require_plugins() {
+		$plugins = array(
+	        array(
+				'name'         => 'Nightshift Basics', // The plugin name.
+				'slug'         => 'ns-basics', // The plugin slug (typically the folder name).
+				'source'       => 'https://github.com'.constant('NS_BASICS_GITHUB'), // The plugin source.
+				'required'     => true, // If false, the plugin is only 'recommended' instead of required.
+				'version'	   => '1.0.0',
+				'force_activation'   => false,
+				'force_deactivation' => false,
+				'external_url' => constant('NS_SHOP_URL'),
+			),
+	    );
 
-if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
+	    $config = array(
+	        'id'           => 'ns-real-estate',       // Unique ID for hashing notices for multiple instances of TGMPA.
+	        'default_path' => '',                      // Default absolute path to bundled plugins.
+	        'menu'         => 'tgmpa-install-plugins', // Menu slug.
+	        'has_notices'  => true,                    // Show admin notices or not.
+	        'dismissable'  => false,                    // If false, a user cannot dismiss the nag message.
+	        'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+	        'is_automatic' => true,                   // Automatically activate plugins after installation or not.
+	        'message'      => '',                      // Message to output right before the plugins table.
+	    );
 
-	/*-----------------------------------------------------------------------------------*/
-	/*	Include Admin Plugin Scripts and Stylesheets
-	/*-----------------------------------------------------------------------------------*/
-	function ns_real_estate_admin_scripts() {
+	    tgmpa( $plugins, $config );
+	}
+
+	/**
+	 * Check if plugin is activated
+	 *
+	 * @param string $plugin
+	 */
+	public function is_plugin_active($plugin) {
+		return in_array( $plugin, (array) get_option( 'active_plugins', array() ) );
+	}
+
+	/**
+	 * Load admin scripts and styles
+	 */
+	public function admin_scripts() {
 		if (is_admin()) {
 
 			$google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
@@ -114,15 +144,14 @@ if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
 	        wp_localize_script( 'ns-real-estate-admin-js', 'ns_real_estate_local_script', $translation_array );
 		}
 	}
-	add_action('admin_enqueue_scripts', 'ns_real_estate_admin_scripts');
 
-	/*-----------------------------------------------------------------------------------*/
-	/*  Include Front-End Scripts and Styles
-	/*-----------------------------------------------------------------------------------*/
-	function ns_real_estate_front_end_scripts() {
-	    if (!is_admin()) {
-
-	    	$google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
+	/**
+	 * Load front end scripts and styles
+	 */
+	public function frontend_scripts() {
+		if (!is_admin()) {
+	        
+	        $google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
 	    	
 	    	wp_enqueue_script('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.js', __FILE__), array('jquery'), '', true);
 	        wp_enqueue_style('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.css',  __FILE__), array(), '1.0', 'all');
@@ -165,58 +194,28 @@ if(ns_real_estate_is_plugin_active('ns-basics/ns-basics.php')) {
         	include( plugin_dir_path( __FILE__ ) . '/css/dynamic_styles.php');
 	    }
 	}
-	add_action('wp_enqueue_scripts', 'ns_real_estate_front_end_scripts');
 
-	/*-----------------------------------------------------------------------------------*/
-	/*  ADD ADMIN PAGES AND SETTINGS
-	/*-----------------------------------------------------------------------------------*/
-	include( plugin_dir_path( __FILE__ ) . 'includes/admin-settings-page.php');
-	include( plugin_dir_path( __FILE__ ) . 'includes/admin-add-ons-page.php');
-	include( plugin_dir_path( __FILE__ ) . 'includes/admin-license-keys-page.php');
-	include( plugin_dir_path( __FILE__ ) . 'includes/admin-help-page.php');
+	/**
+	 * Load Includes
+	 */
+	public function includes() {
 
-	/*-----------------------------------------------------------------------------------*/
-	/*  Includes Property Related Functions
-	/*-----------------------------------------------------------------------------------*/
-	include( plugin_dir_path( __FILE__ ) . '/includes/property-functions.php');
-	include( plugin_dir_path( __FILE__ ) . '/includes/property-submit-functions.php');
-	include( plugin_dir_path( __FILE__ ) . '/includes/filter-functions.php');
+		// Include classes
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-admin.php');
+		if(is_admin()) { $this->admin = new NS_Real_Estate_Admin(); }
 
-	/*-----------------------------------------------------------------------------------*/
-	/*  Includes Agent Related Functions
-	/*-----------------------------------------------------------------------------------*/
-	include( plugin_dir_path( __FILE__ ) . '/includes/agent-functions.php');
-
-	/*-----------------------------------------------------------------------------------*/
-	/*  Includes Shortcodes
-	/*-----------------------------------------------------------------------------------*/
-	include( plugin_dir_path( __FILE__ ) . '/includes/shortcodes.php');
-
-	/*-----------------------------------------------------------------------------------*/
-	/*  Includes Widgets
-	/*-----------------------------------------------------------------------------------*/
-	include( plugin_dir_path( __FILE__ ) . '/includes/custom_widgets/list_properties_widget.php');
-	include( plugin_dir_path( __FILE__ ) . '/includes/custom_widgets/list_agents_widget.php');
-	include( plugin_dir_path( __FILE__ ) . '/includes/custom_widgets/list_property_categories_widget.php');
-	include( plugin_dir_path( __FILE__ ) . '/includes/custom_widgets/mortgage_widget.php');
-	include( plugin_dir_path( __FILE__ ) . '/includes/custom_widgets/property_filter_widget.php');
-
-	/*-----------------------------------------------------------------------------------*/
-	/*  Includes Templates
-	/*-----------------------------------------------------------------------------------*/
-	include( plugin_dir_path( __FILE__ ) . '/includes/templates/templates.php');
-
-	/*-----------------------------------------------------------------------------------*/
-	/*  Includes WPBakery
-	/*-----------------------------------------------------------------------------------*/
-	include( plugin_dir_path( __FILE__ ) . '/includes/wp-bakery/wp-bakery.php');
-
-	/*-----------------------------------------------------------------------------------*/
-	/*  Includes Default Content (on plugin activation)
-	/*-----------------------------------------------------------------------------------*/
-	function ns_real_estate_default_content() {
-		include( plugin_dir_path( __FILE__ ) . '/includes/default-content.php');
 	}
-	register_activation_hook( __FILE__ , 'ns_real_estate_default_content' );
+
 }
+
+
+/**
+ *  Load the main class
+ */
+function ns_real_estate() {
+	global $ns_real_estate;
+	if(!isset($ns_real_estate)) { $ns_real_estate = new NS_Real_Estate(); }
+	return $ns_real_estate;
+}
+ns_real_estate();
 ?>
