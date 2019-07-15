@@ -7,7 +7,7 @@ if (!defined( 'ABSPATH')) { exit; }
  *
  *  Outputs admin pages and provides the core methods for building admin interfaces.
  */
-class NS_Real_Estate_Admin {
+class NS_Real_Estate_Admin extends NS_Basics_Admin {
 
 	/**
 	 *	Constructor
@@ -40,8 +40,6 @@ class NS_Real_Estate_Admin {
 	 *	Settings page
 	 */
 	public function settings_page() {
-
-		$admin_obj = new NS_Basics_Admin();
 	    
 	    $content_nav = array(
 	        array('name' => esc_html__('Properties', 'ns-real-estate'), 'link' => '#properties', 'icon' => 'fa-home', 'order' => 1),
@@ -57,19 +55,19 @@ class NS_Real_Estate_Admin {
 	    $alerts = array();
 	    if(!current_theme_supports('ns-real-estate')) {
 	        $current_theme = wp_get_theme();
-	        $incompatible_theme_alert = $admin_obj->admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not declare support for NS Real Estate.', 'ns-real-estate'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'ns-real-estate'), true); 
+	        $incompatible_theme_alert = $this->admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not declare support for NS Real Estate.', 'ns-real-estate'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'ns-real-estate'), true); 
 	        $alerts[] = $incompatible_theme_alert; 
 	    }
 
 	    $google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
 	    if(empty($google_maps_api)) {
-	        $google_api_key_alert = $admin_obj->admin_alert('warning', esc_html__('Please provide a Google Maps API Key within the Maps tab.', 'ns-real-estate'), $action = null, $action_text = null, true);
+	        $google_api_key_alert = $this->admin_alert('warning', esc_html__('Please provide a Google Maps API Key within the Maps tab.', 'ns-real-estate'), $action = null, $action_text = null, true);
 	        $alerts[] = $google_api_key_alert; 
 	    }
 
 	    $properties_page = esc_attr(get_option('ns_properties_page'));
 	    if(empty($properties_page)) {
-	        $properties_page_alert = $admin_obj->admin_alert('warning', esc_html__('You have not set your properties listing page. Go to Properties > Property Listing Options, to set this field.', 'ns-real-estate'), $action = null, $action_text = null, true);
+	        $properties_page_alert = $this->admin_alert('warning', esc_html__('You have not set your properties listing page. Go to Properties > Property Listing Options, to set this field.', 'ns-real-estate'), $action = null, $action_text = null, true);
 	        $alerts[] = $properties_page_alert; 
 	    }
 
@@ -85,7 +83,7 @@ class NS_Real_Estate_Admin {
 			'ajax' => true,
 			'icon' => plugins_url('/ns-real-estate/images/icon-real-estate.svg'),
 		);
-	    echo $admin_obj->build_admin_page($args);
+	    echo $this->build_admin_page($args);
 	}
 
 	/**
