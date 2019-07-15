@@ -30,6 +30,74 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	}
 
 	/**
+	 * Load settings
+	 *
+	 * @param boolean $return_defaults
+	 */
+	public function load_settings($return_defaults = false) {
+
+		$settings_init = array(
+			'ns_property_detail_slug' => 'properties',
+			'ns_property_type_tax_slug' => 'property-type',
+			'ns_property_status_tax_slug' => 'property-status',
+			'ns_property_location_tax_slug' => 'property-location',
+			'ns_property_amenities_tax_slug' => 'property-amenity',
+			'ns_property_filter_display' => 'true',
+			'ns_property_filter_id' => '',
+			'ns_properties_page' => '',
+			'ns_num_properties_per_page' => 12,
+			'ns_properties_default_layout' => 'grid',
+			'ns_property_listing_header_display' => 'true',
+			'ns_property_listing_default_sortby' => 'date_desc',
+			'ns_property_listing_crop' => 'true',
+			'ns_property_listing_display_time' => 'true',
+			'ns_property_listing_display_favorite' => 'true',
+			'ns_property_listing_display_share' => 'true',
+			'ns_property_detail_default_layout' => 'right sidebar',
+			'ns_property_detail_id' => 'false',
+			'ns_property_detail_items' => array(),
+			'ns_property_custom_fields' => array(),
+			'ns_agent_detail_slug' => 'agents',
+			'ns_num_agents_per_page' => 12,
+			'ns_agent_listing_crop' => 'true',
+			'ns_agent_detail_items' => array(),
+			'ns_real_estate_google_maps_api' => '',
+			'ns_real_estate_default_map_zoom' => 10,
+			'ns_real_estate_default_map_latitude' => 39.2904,
+			'ns_real_estate_default_map_longitude' => -76.5000,
+			'ns_real_estate_google_maps_pin' => '',
+			'ns_members_my_properties_page' => '',
+			'ns_members_submit_property_page' => '',
+			'ns_members_submit_property_approval' => 'true',
+			'ns_members_add_locations' => 'true',
+			'ns_members_add_amenities' => 'true',
+			'ns_members_submit_property_fields' => array(),
+			'ns_real_estate_currency_symbol' => '$',
+			'ns_real_estate_currency_symbol_position' => 'before',
+			'ns_real_estate_thousand_separator' => ',',
+			'ns_real_estate_decimal_separator' => '.',
+			'ns_real_estate_default_area_postfix' => 'Sq Ft',
+			'ns_real_estate_thousand_separator_area' => ',',
+			'ns_real_estate_decimal_separator_area' => '.',
+			'ns_real_estate_num_decimal_area' => 0,
+		);
+		$settings_init = apply_filters( 'ns_real_estate_settings_init_filter', $settings_init);
+
+		// Return default page settings
+		if($return_defaults == true) {
+
+			return $settings_init;
+
+		// Return saved page settings
+		} else {
+			$settings = array();
+			foreach($settings_init as $key=>$value) { $settings[$key] = esc_attr(get_option($key, $value)); }
+			$settings = apply_filters( 'ns_real_estate_settings_filter', $settings);
+			return $settings;
+		}
+	}
+
+	/**
 	 *	Register Settings
 	 */
 	public function register_settings() {
