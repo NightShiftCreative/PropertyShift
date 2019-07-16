@@ -50,6 +50,7 @@ class NS_Real_Estate {
 		define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/1.0.0.zip');
 		define('NS_REAL_ESTATE_GITHUB', '/NightShiftCreative/NS-Real-Estate/');
 		define('NS_REAL_ESTATE_LICENSE_PAGE', 'ns-real-estate-license-keys' );
+		define('NS_REAL_ESTATE_DIR', plugins_url('', __FILE__));
 	}
 
 	/**
@@ -200,9 +201,15 @@ class NS_Real_Estate {
 	 */
 	public function includes() {
 
+		// Include functions
+		include( plugin_dir_path( __FILE__ ) . 'includes/global-functions.php');
+
 		// Include classes
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-admin.php');
 		if(is_admin()) { $this->admin = new NS_Real_Estate_Admin(); }
+
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-properties.php');
+		$this->properties = new NS_Real_Estate_Properties();
 
 	}
 

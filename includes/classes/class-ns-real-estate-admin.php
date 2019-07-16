@@ -22,7 +22,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	 *	Add admin menu
 	 */
 	public function admin_menu() {
-		add_menu_page('NS Real Estate', 'NS Real Estate', 'administrator', 'ns-real-estate-settings', array( $this, 'settings_page' ), plugins_url('../images/icon.png', __FILE__));
+		add_menu_page('NS Real Estate', 'NS Real Estate', 'administrator', 'ns-real-estate-settings', array( $this, 'settings_page' ), NS_REAL_ESTATE_DIR.'/images/icon.png');
 	    add_submenu_page('ns-real-estate-settings', 'Settings', 'Settings', 'administrator', 'ns-real-estate-settings');
 	    add_submenu_page('ns-real-estate-settings', 'Add-Ons', 'Add-Ons', 'administrator', 'ns-real-estate-add-ons', array( $this, 'add_ons_page' ));
 	    add_submenu_page('ns-real-estate-settings', 'License Keys', 'License Keys', 'administrator', 'ns-real-estate-license-keys', array( $this, 'license_keys_page' ));
@@ -309,10 +309,13 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
                 	);
                 	$this->build_admin_field($default_sort_by_field);
 
+                	$property_img_size = ns_real_estate_get_image_size('property-thumbnail');
+                	$property_listing_crop_description = '';
+					if(!empty($property_img_size)) { $property_listing_crop_description = esc_html__('If active, property listing thumbnails will be cropped to: ', 'ns-real-estate').$property_img_size['width'].' x '.$property_img_size['height'].' pixels'; }
                 	$property_listing_crop_field = array(
                 		'title' => esc_html__('Hard crop property listing featured images?', 'ns-real-estate'),
                 		'name' => 'ns_property_listing_crop',
-                		'description' => esc_html__('If active, property listing thumbnails will be cropped to: ', 'ns-real-estate'),
+                		'description' => $property_listing_crop_description,
                 		'value' => $settings['ns_property_listing_crop'],
                 		'type' => 'switch',
                 	);
