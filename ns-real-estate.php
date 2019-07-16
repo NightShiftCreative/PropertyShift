@@ -201,13 +201,23 @@ class NS_Real_Estate {
 	 */
 	public function includes() {
 
+		/************************************************************************/
 		// Include functions
+		/************************************************************************/
 		include( plugin_dir_path( __FILE__ ) . 'includes/global-functions.php');
 
+		/************************************************************************/
 		// Include classes
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-admin.php');
-		if(is_admin()) { $this->admin = new NS_Real_Estate_Admin(); }
+		/************************************************************************/
 
+		// Setup the admin
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-admin.php');
+		if(is_admin()) { 
+			$this->admin = new NS_Real_Estate_Admin(); 
+			$this->admin->init();
+		}
+
+		// Load properties class
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-properties.php');
 		$this->properties = new NS_Real_Estate_Properties();
 

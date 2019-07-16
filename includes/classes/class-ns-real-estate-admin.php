@@ -10,10 +10,11 @@ if (!defined( 'ABSPATH')) { exit; }
 class NS_Real_Estate_Admin extends NS_Basics_Admin {
 
 	/**
-	 *	Constructor
+	 *	Initial the admin (adds admin menu, register settings, etc)
+	 *
+	 *  Called in main class: NS_Basics
 	 */
-	public function __construct() {
-		//Add actions & filters
+	public function init() {
 		add_action('admin_menu', array( $this, 'admin_menu' ));
 		add_action('admin_init', array( $this, 'register_settings' ));
 	}
