@@ -248,6 +248,80 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	            </div>
 	        </div>
 
+	        <div class="ns-accordion" data-name="property-listing">
+	            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Property Listing Options', 'ns-real-estate'); ?></div>
+	            <div class="ns-accordion-content">
+
+	            	<?php
+	            	$page_options = array('Select a page' => '');
+	            	$pages = get_pages();
+	            	foreach ( $pages as $page ) { $page_options[esc_attr($page->post_title)] = get_page_link( $page->ID ); }
+	            	$property_listing_page_field = array(
+                		'title' => esc_html__('Select Your Property Listings Page', 'ns-real-estate'),
+                		'name' => 'ns_properties_page',
+                		'value' => $settings['ns_properties_page'],
+                		'type' => 'select',
+                		'options' => $page_options,
+                	);
+                	$this->build_admin_field($property_listing_page_field);
+
+                	$num_properties_per_page_field = array(
+                		'title' => esc_html__('Number of Properties Per Page', 'ns-real-estate'),
+                		'name' => 'ns_num_properties_per_page',
+                		'value' => $settings['ns_num_properties_per_page'],
+                		'type' => 'number',
+                	);
+                	$this->build_admin_field($num_properties_per_page_field);
+
+                	$properties_tax_layout_field = array(
+                		'title' => esc_html__('Properties Taxonomy Layout', 'ns-real-estate'),
+                		'name' => 'ns_properties_default_layout',
+                		'value' => $settings['ns_properties_default_layout'],
+                		'type' => 'radio_image',
+                		'options' => array(
+                			esc_html__('Grid', 'ns-basics') => array('value' => 'grid'), 
+							esc_html__('Row', 'ns-basics') => array('value' => 'row'),
+                		),
+                	);
+                	$this->build_admin_field($properties_tax_layout_field);
+
+                	$display_listing_header_field = array(
+                		'title' => esc_html__('Display Listing Header?', 'ns-real-estate'),
+                		'name' => 'ns_property_listing_header_display',
+                		'description' => esc_html__('Toggle on/off the filter options that display directly above property listings.', 'ns-real-estate'),
+                		'value' => $settings['ns_property_listing_header_display'],
+                		'type' => 'switch',
+                	);
+                	$this->build_admin_field($display_listing_header_field);
+
+                	$default_sort_by_field = array(
+                		'title' => esc_html__('Default Sort By', 'ns-real-estate'),
+                		'name' => 'ns_property_listing_default_sortby',
+                		'description' => esc_html__('Choose the default sorting for property listings.', 'ns-real-estate'),
+                		'value' => $settings['ns_property_listing_default_sortby'],
+                		'type' => 'select',
+                		'options' => array(
+                			esc_html__('New to Old', 'ns-real-estate') => 'date_desc',
+                			esc_html__('Old to New', 'ns-real-estate') => 'date_asc',
+                			esc_html__('Price (High to Low)', 'ns-real-estate') => 'price_desc',
+                			esc_html__('Price (Low to High)', 'ns-real-estate') => 'price_asc',
+                		),
+                	);
+                	$this->build_admin_field($default_sort_by_field);
+
+                	$property_listing_crop_field = array(
+                		'title' => esc_html__('Hard crop property listing featured images?', 'ns-real-estate'),
+                		'name' => 'ns_property_listing_crop',
+                		'description' => esc_html__('If active, property listing thumbnails will be cropped to: ', 'ns-real-estate'),
+                		'value' => $settings['ns_property_listing_crop'],
+                		'type' => 'switch',
+                	);
+                	$this->build_admin_field($property_listing_crop_field);
+                	?>
+
+	            </div>
+	        </div>
+
 	    </div><!-- end property settings -->
 
 		<?php $output = ob_get_clean();
