@@ -31,59 +31,72 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	}
 
 	/**
+	 *	Register Settings
+	 */
+	public function register_settings() {
+		$settings = $this->load_settings(true);
+	    foreach($settings as $key=>$field) { 
+	    	if(!empty($field['args'])) { $args = $field['args']; } else { $args = null; }
+	    	register_setting( 'ns-real-estate-settings-group', $key, $args); 
+	    } 
+	    do_action( 'ns_real_estate_register_settings');
+	}
+
+	/**
 	 * Load settings
 	 *
 	 * @param boolean $return_defaults
+	 *
 	 */
 	public function load_settings($return_defaults = false) {
 
 		$settings_init = array(
-			'ns_property_detail_slug' => 'properties',
-			'ns_property_type_tax_slug' => 'property-type',
-			'ns_property_status_tax_slug' => 'property-status',
-			'ns_property_location_tax_slug' => 'property-location',
-			'ns_property_amenities_tax_slug' => 'property-amenity',
-			'ns_property_filter_display' => 'true',
-			'ns_property_filter_id' => '',
-			'ns_properties_page' => '',
-			'ns_num_properties_per_page' => 12,
-			'ns_properties_default_layout' => 'grid',
-			'ns_property_listing_header_display' => 'true',
-			'ns_property_listing_default_sortby' => 'date_desc',
-			'ns_property_listing_crop' => 'true',
-			'ns_property_listing_display_time' => 'true',
-			'ns_property_listing_display_favorite' => 'true',
-			'ns_property_listing_display_share' => 'true',
-			'ns_property_detail_default_layout' => 'right sidebar',
-			'ns_property_detail_id' => 'false',
-			'ns_property_detail_items' => array(),
-			'ns_property_custom_fields' => array(),
-			'ns_agent_detail_slug' => 'agents',
-			'ns_num_agents_per_page' => 12,
-			'ns_agent_listing_crop' => 'true',
-			'ns_agent_detail_items' => array(),
-			'ns_real_estate_google_maps_api' => '',
-			'ns_real_estate_default_map_zoom' => 10,
-			'ns_real_estate_default_map_latitude' => 39.2904,
-			'ns_real_estate_default_map_longitude' => -76.5000,
-			'ns_real_estate_google_maps_pin' => '',
-			'ns_members_my_properties_page' => '',
-			'ns_members_submit_property_page' => '',
-			'ns_members_submit_property_approval' => 'true',
-			'ns_members_add_locations' => 'true',
-			'ns_members_add_amenities' => 'true',
-			'ns_members_submit_property_fields' => array(),
-			'ns_real_estate_currency_symbol' => '$',
-			'ns_real_estate_currency_symbol_position' => 'before',
-			'ns_real_estate_thousand_separator' => ',',
-			'ns_real_estate_decimal_separator' => '.',
-			'ns_real_estate_default_area_postfix' => 'Sq Ft',
-			'ns_real_estate_thousand_separator_area' => ',',
-			'ns_real_estate_decimal_separator_area' => '.',
-			'ns_real_estate_num_decimal_area' => 0,
+			'ns_property_detail_slug' => array('value' => 'properties', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
+			'ns_property_type_tax_slug' => array('value' => 'property-type', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
+			'ns_property_status_tax_slug' => array('value' => 'property-status', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
+			'ns_property_location_tax_slug' => array('value' => 'property-location', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
+			'ns_property_amenities_tax_slug' => array('value' => 'property-amenity', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
+			'ns_property_filter_display' => array('value' => 'true'),
+			'ns_property_filter_id' => array('value' => ''),
+			'ns_properties_page' => array('value' => ''),
+			'ns_num_properties_per_page' => array('value' => 12),
+			'ns_properties_default_layout' => array('value' => 'grid'),
+			'ns_property_listing_header_display' => array('value' => 'true'),
+			'ns_property_listing_default_sortby' => array('value' => 'date_desc'),
+			'ns_property_listing_crop' => array('value' => 'true'),
+			'ns_property_listing_display_time' => array('value' => 'true'),
+			'ns_property_listing_display_favorite' => array('value' => 'true'),
+			'ns_property_listing_display_share' => array('value' => 'true'),
+			'ns_property_detail_default_layout' => array('value' => 'right sidebar'),
+			'ns_property_detail_id' => array('value' => 'false'),
+			'ns_property_detail_items' => array('value' => NS_Real_Estate_Properties::load_property_detail_items(), 'esc' => false),
+			'ns_property_custom_fields' => array('value' => array()),
+			'ns_agent_detail_slug' => array('value' => 'agents'),
+			'ns_num_agents_per_page' => array('value' => 12),
+			'ns_agent_listing_crop' => array('value' => 'true'),
+			'ns_agent_detail_items' => array('value' => array()),
+			'ns_real_estate_google_maps_api' => array('value' => ''),
+			'ns_real_estate_default_map_zoom' => array('value' => 10),
+			'ns_real_estate_default_map_latitude' => array('value' => 39.2904),
+			'ns_real_estate_default_map_longitude' => array('value' => -76.5000),
+			'ns_real_estate_google_maps_pin' => array('value' => ''),
+			'ns_members_my_properties_page' => array('value' => ''),
+			'ns_members_submit_property_page' => array('value' => ''),
+			'ns_members_submit_property_approval' => array('value' => 'true'),
+			'ns_members_add_locations' => array('value' => 'true'),
+			'ns_members_add_amenities' => array('value' => 'true'),
+			'ns_members_submit_property_fields' => array('value' => array()),
+			'ns_real_estate_currency_symbol' => array('value' => '$'),
+			'ns_real_estate_currency_symbol_position' => array('value' => 'before'),
+			'ns_real_estate_thousand_separator' => array('value' => ','),
+			'ns_real_estate_decimal_separator' => array('value' => '.'),
+			'ns_real_estate_default_area_postfix' => array('value' => 'Sq Ft'),
+			'ns_real_estate_thousand_separator_area' => array('value' => ','),
+			'ns_real_estate_decimal_separator_area' => array('value' => '.'),
+			'ns_real_estate_num_decimal_area' => array('value' => 0),
 		);
 		$settings_init = apply_filters( 'ns_real_estate_settings_init_filter', $settings_init);
-
+		
 		// Return default page settings
 		if($return_defaults == true) {
 
@@ -92,19 +105,16 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 		// Return saved page settings
 		} else {
 			$settings = array();
-			foreach($settings_init as $key=>$value) { $settings[$key] = esc_attr(get_option($key, $value)); }
+			foreach($settings_init as $key=>$field) { 
+				if(isset($field['esc']) && $field['esc'] == false) {
+					$settings[$key] = get_option($key, $field['value']); 
+				} else {
+					$settings[$key] = esc_attr(get_option($key, $field['value'])); 
+				}
+			}
 			$settings = apply_filters( 'ns_real_estate_settings_filter', $settings);
 			return $settings;
 		}
-	}
-
-	/**
-	 *	Register Settings
-	 */
-	public function register_settings() {
-		$settings = $this->load_settings(true);
-	    foreach($settings as $key => $value) { register_setting( 'ns-real-estate-settings-group', $key); } 
-	    do_action( 'ns_real_estate_register_settings');
 	}
 
 	/**
@@ -321,10 +331,73 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
                 		'type' => 'switch',
                 	);
                 	$this->build_admin_field($property_listing_crop_field);
+
+                	$time_stamp_field = array(
+                		'title' => esc_html__('Display Time Stamp?', 'ns-real-estate'),
+                		'name' => 'ns_property_listing_display_time',
+                		'value' => $settings['ns_property_listing_display_time'],
+                		'type' => 'switch',
+                	);
+                	$this->build_admin_field($time_stamp_field);
+
+                	$listing_display_favorite_field = array(
+                		'title' => esc_html__('Allow users to favorite properties?', 'ns-real-estate'),
+                		'name' => 'ns_property_listing_display_favorite',
+                		'value' => $settings['ns_property_listing_display_favorite'],
+                		'type' => 'switch',
+                	);
+                	$this->build_admin_field($listing_display_favorite_field);
+
+                	$listing_display_share_field = array(
+                		'title' => esc_html__('Allow users to share properties?', 'ns-real-estate'),
+                		'name' => 'ns_property_listing_display_share',
+                		'value' => $settings['ns_property_listing_display_share'],
+                		'type' => 'switch',
+                	);
+                	$this->build_admin_field($listing_display_share_field);
                 	?>
+	            </div>
+	        </div>
+
+	        <div class="ns-accordion" data-name="property-detail">
+	            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Property Detail Options', 'ns-real-estate'); ?></div>
+	            <div class="ns-accordion-content">
+
+	            	<?php
+	            	$property_detail_default_layout_field = array(
+                		'title' => esc_html__('Select the default page layout for property detail pages', 'ns-real-estate'),
+                		'name' => 'ns_property_detail_default_layout',
+                		'value' => $settings['ns_property_detail_default_layout'],
+                		'type' => 'radio_image',
+                		'options' => array(
+                			esc_html__('Full Width', 'ns-basics') => array('value' => 'full', 'icon' => NS_BASICS_PLUGIN_DIR.'/images/full-width-icon.png'), 
+							esc_html__('Right Sidebar', 'ns-basics') => array('value' => 'right sidebar', 'icon' => NS_BASICS_PLUGIN_DIR.'/images/right-sidebar-icon.png'),
+							esc_html__('Left Sidebar', 'ns-basics') => array('value' => 'left sidebar', 'icon' => NS_BASICS_PLUGIN_DIR.'/images/left-sidebar-icon.png'),
+                		),
+                	);
+                	$this->build_admin_field($property_detail_default_layout_field);
+                	
+                	$property_detail_id_field = array(
+                		'title' => esc_html__('Show Property ID on Front-End', 'ns-real-estate'),
+                		'name' => 'ns_property_detail_id',
+                		'value' => $settings['ns_property_detail_id'],
+                		'type' => 'switch',
+                	);
+                	$this->build_admin_field($property_detail_id_field);
+
+                	$property_detail_items_field = array(
+                		'title' => esc_html__('Property Detail Sections', 'ns-real-estate'),
+                		'name' => 'ns_property_detail_items',
+                		'description' => esc_html__('Drag & drop the sections to rearrange their order', 'ns-real-estate'),
+                		'value' => $settings['ns_property_detail_items'],
+                		'type' => 'sortable',
+                	);
+                	$this->build_admin_field($property_detail_items_field);
+	            	?>
 
 	            </div>
 	        </div>
+
 
 	    </div><!-- end property settings -->
 
