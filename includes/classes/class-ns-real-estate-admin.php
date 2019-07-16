@@ -101,7 +101,9 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	 *	Register Settings
 	 */
 	public function register_settings() {
-	
+		$settings = $this->load_settings(true);
+	    foreach($settings as $key => $value) { register_setting( 'ns-real-estate-settings-group', $key); } 
+	    do_action( 'ns_real_estate_register_settings');
 	}
 
 	/**
@@ -158,25 +160,116 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	 *	Settings page content
 	 */
 	public function settings_page_content() {
-		
+		ob_start(); 
+
+		$settings = $this->load_settings(); ?>
+
+		<div id="properties" class="tab-content">
+	        <h2><?php echo esc_html_e('Properties Settings', 'ns-real-estate'); ?></h2>
+
+	        <div class="ns-accordion" data-name="property-url">
+	            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Property URL Options', 'ns-real-estate'); ?></div>
+	            <div class="ns-accordion-content">
+
+	            	<p class="admin-module-note"><?php esc_html_e('After changing slugs, make sure you re-save your permalinks in Settings > Permalinks.', 'ns-real-estate'); ?></p>
+                	<br/>
+
+                	<?php
+                	$property_slug_field = array(
+                		'title' => esc_html__('Properties Slug', 'ns-real-estate'),
+                		'name' => 'ns_property_detail_slug',
+                		'description' => esc_html__('Default: properties', 'ns-real-estate'),
+                		'value' => $settings['ns_property_detail_slug'],
+                		'type' => 'text',
+                	);
+                	$this->build_admin_field($property_slug_field);
+
+                	$property_type_tax_slug_field = array(
+                		'title' => esc_html__('Property Type Taxonomy Slug', 'ns-real-estate'),
+                		'name' => 'ns_property_type_tax_slug',
+                		'description' => esc_html__('Default: property-type', 'ns-real-estate'),
+                		'value' => $settings['ns_property_type_tax_slug'],
+                		'type' => 'text',
+                	);
+                	$this->build_admin_field($property_type_tax_slug_field);
+
+                	$property_status_tax_slug_field = array(
+                		'title' => esc_html__('Property Status Taxonomy Slug', 'ns-real-estate'),
+                		'name' => 'ns_property_status_tax_slug',
+                		'description' => esc_html__('Default: property-status', 'ns-real-estate'),
+                		'value' => $settings['ns_property_status_tax_slug'],
+                		'type' => 'text',
+                	);
+                	$this->build_admin_field($property_status_tax_slug_field);
+
+                	$property_location_tax_slug_field = array(
+                		'title' => esc_html__('Property Location Taxonomy Slug', 'ns-real-estate'),
+                		'name' => 'ns_property_location_tax_slug',
+                		'description' => esc_html__('Default: property-location', 'ns-real-estate'),
+                		'value' => $settings['ns_property_location_tax_slug'],
+                		'type' => 'text',
+                	);
+                	$this->build_admin_field($property_location_tax_slug_field);
+
+                	$property_amenities_tax_slug_field = array(
+                		'title' => esc_html__('Property Amenities Taxonomy Slug', 'ns-real-estate'),
+                		'name' => 'ns_property_amenities_tax_slug',
+                		'description' => esc_html__('Default: property-amenity', 'ns-real-estate'),
+                		'value' => $settings['ns_property_amenities_tax_slug'],
+                		'type' => 'text',
+                	);
+                	$this->build_admin_field($property_amenities_tax_slug_field);
+                	?>
+	            </div>
+	        </div>
+
+	        <div class="ns-accordion" data-name="property-filter">
+	            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Property Filter Options', 'ns-real-estate'); ?></div>
+	            <div class="ns-accordion-content">
+	            	<?php
+                	$display_property_filter_field = array(
+                		'title' => esc_html__('Display Property Filter in Page Banners', 'ns-real-estate'),
+                		'name' => 'ns_property_filter_display',
+                		'value' => $settings['ns_property_filter_display'],
+                		'type' => 'switch',
+                	);
+                	$this->build_admin_field($display_property_filter_field);
+
+                	$default_property_filter_field = array(
+                		'title' => esc_html__('Default Banner Filter', 'ns-real-estate'),
+                		'name' => 'ns_property_filter_id',
+                		'description' => esc_html__('This can be overriden on individual pages from the page settings meta box.', 'ns-real-estate'),
+                		'value' => $settings['ns_property_filter_id'],
+                		'type' => 'select',
+                		'options' => array(),
+                	);
+                	$this->build_admin_field($default_property_filter_field);
+                	?>
+	            </div>
+	        </div>
+
+	    </div><!-- end property settings -->
+
+		<?php $output = ob_get_clean();
+    	return $output;
 	}
 
 	/**
 	 *	Add-Ons page
 	 */
-	public function add_ons_page() {
+	private function add_ons_page() {
 	}
 
 	/**
 	 *	License Keys page
 	 */
-	public function license_keys_page() {
+	private function license_keys_page() {
 	}
 
 	/**
 	 *	Help page
 	 */
-	public function help_page() {
+	private function help_page() {
 	}
 
 	/**
