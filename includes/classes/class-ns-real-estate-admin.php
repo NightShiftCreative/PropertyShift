@@ -9,10 +9,12 @@ if (!defined( 'ABSPATH')) { exit; }
  */
 class NS_Real_Estate_Admin extends NS_Basics_Admin {
 
+	/************************************************************************/
+	// Initialize
+	/************************************************************************/
+
 	/**
-	 *	Initial the admin (adds admin menu, register settings, etc)
-	 *
-	 *  Called in main class: NS_Basics
+	 *	Init
 	 */
 	public function init() {
 		add_action('admin_menu', array( $this, 'admin_menu' ));
@@ -104,14 +106,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 
 		// Return saved page settings
 		} else {
-			$settings = array();
-			foreach($settings_init as $key=>$field) { 
-				if(isset($field['esc']) && $field['esc'] == false) {
-					$settings[$key] = get_option($key, $field['value']); 
-				} else {
-					$settings[$key] = esc_attr(get_option($key, $field['value'])); 
-				}
-			}
+			$settings = $this->get_settings($settings_init);
 			$settings = apply_filters( 'ns_real_estate_settings_filter', $settings);
 			return $settings;
 		}
