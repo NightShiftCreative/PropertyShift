@@ -73,6 +73,10 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 			'ns_property_detail_default_layout' => array('value' => 'right sidebar'),
 			'ns_property_detail_id' => array('value' => 'false'),
 			'ns_property_detail_items' => array('value' => NS_Real_Estate_Properties::load_property_detail_items(), 'esc' => false),
+			'ns_property_detail_amenities_hide_empty' => array('value' => 'false'),
+			'ns_property_detail_map_zoom' => array('value' => 13),
+			'ns_property_detail_map_height' => array('value' => 250),
+			'ns_property_detail_agent_contact_form' => array('value' => 'false'),
 			'ns_property_custom_fields' => array('value' => array()),
 			'ns_agent_detail_slug' => array('value' => 'agents'),
 			'ns_num_agents_per_page' => array('value' => 12),
@@ -381,6 +385,38 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
                 		'description' => esc_html__('Drag & drop the sections to rearrange their order', 'ns-real-estate'),
                 		'value' => $settings['ns_property_detail_items'],
                 		'type' => 'sortable',
+                		'children' => array(
+                			'hide_empty_amenities' => array(
+                				'title' => esc_html__('Hide empty amenities?', 'ns-real-estate'),
+	                			'name' => 'ns_property_detail_amenities_hide_empty',
+	                			'value' => $settings['ns_property_detail_amenities_hide_empty'],
+	                			'type' => 'checkbox',
+	                			'parent_val' => 'amenities',
+                			),
+                			'map_zoom' => array(
+                				'title' => esc_html__('Map Zoom', 'ns-real-estate'),
+	                			'name' => 'ns_property_detail_map_zoom',
+	                			'value' => $settings['ns_property_detail_map_zoom'],
+	                			'type' => 'select',
+	                			'options' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15'),
+	                			'parent_val' => 'location',
+                			),
+                			'map_height' => array(
+                				'title' => esc_html__('Map Height', 'ns-real-estate'),
+	                			'name' => 'ns_property_detail_map_height',
+	                			'value' => $settings['ns_property_detail_map_height'],
+	                			'type' => 'number',
+	                			'parent_val' => 'location',
+                			),
+                			'agent_contact_form' => array(
+                				'title' => esc_html__('Display agent contact form underneath agent information?', 'ns-real-estate'),
+	                			'name' => 'ns_property_detail_agent_contact_form',
+	                			'description' => esc_html__('Configure the agent contact form options in the Agent Settings tab.', 'ns-real-estate'),
+	                			'value' => $settings['ns_property_detail_agent_contact_form'],
+	                			'type' => 'checkbox',
+	                			'parent_val' => 'agent_info',
+                			),
+                		),
                 	);
                 	$this->build_admin_field($property_detail_items_field);
 	            	?>
