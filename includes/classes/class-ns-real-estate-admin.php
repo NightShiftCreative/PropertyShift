@@ -420,12 +420,75 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
                 	);
                 	$this->build_admin_field($property_detail_items_field);
 	            	?>
+	            </div>
+	        </div>
+
+	        <div class="ns-accordion" id="accordion-custom-fields" data-name="custom-fields">
+	            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Property Custom Fields', 'ns-real-estate'); ?></div>
+	            <div class="ns-accordion-content">
+
+	            	<?php
+	            	$property_custom_fields = array(
+                		'title' => esc_html__('Property Custom Fields', 'ns-real-estate'),
+                		'name' => 'ns_property_custom_fields',
+                		'value' => $settings['ns_property_custom_fields'],
+                		'type' => 'custom_fields',
+                	);
+                	$this->build_admin_field($property_custom_fields);
+	            	?>
 
 	            </div>
 	        </div>
 
+	        <!-- Hook in for Add-Ons -->
+        	<?php do_action( 'ns_real_estate_after_property_settings'); ?>
 
 	    </div><!-- end property settings -->
+
+	    <div id="agents" class="tab-content">
+	        <h2><?php echo esc_html_e('Agent Settings', 'ns-real-estate'); ?></h2>
+
+	        <div class="ns-accordion" data-name="agent-listing">
+	            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Agent Listing Options', 'ns-real-estate'); ?></div>
+	            <div class="ns-accordion-content">
+
+	            	<?php
+	            	$agent_detail_slug_field = array(
+                		'title' => esc_html__('Agents Slug', 'ns-real-estate'),
+                		'name' => 'ns_agent_detail_slug',
+                		'description' => esc_html__('After changing the slug, make sure you re-save your permalinks in Settings > Permalinks. The default slug is agents.', 'ns-real-estate'),
+                		'value' => $settings['ns_agent_detail_slug'],
+                		'type' => 'text',
+                	);
+                	$this->build_admin_field($agent_detail_slug_field);
+
+                	$agents_num_field = array(
+                		'title' => esc_html__('Number of Agents Per Page', 'ns-real-estate'),
+                		'name' => 'ns_num_agents_per_page',
+                		'value' => $settings['ns_num_agents_per_page'],
+                		'type' => 'number',
+                	);
+                	$this->build_admin_field($agents_num_field);
+
+                	$agent_listing_crop_field = array(
+                		'title' => esc_html__('Hard crop agent listing featured images?', 'ns-real-estate'),
+                		'name' => 'ns_agent_listing_crop',
+                		'description' => esc_html__('If active, agent listing thumbnails will be cropped to 800 x 600 pixels.', 'ns-real-estate'),
+                		'value' => $settings['ns_agent_listing_crop'],
+                		'type' => 'switch',
+                	);
+                	$this->build_admin_field($agent_listing_crop_field);
+	            	?>
+	            </div>
+	        </div>
+
+	        <div class="ns-accordion" data-name="agent-detail">
+	            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Agent Detail Options', 'ns-real-estate'); ?></div>
+	            <div class="ns-accordion-content">
+	            </div>
+	        </div>
+
+	    </div><!-- end agent settings -->
 
 		<?php $output = ob_get_clean();
     	return $output;
