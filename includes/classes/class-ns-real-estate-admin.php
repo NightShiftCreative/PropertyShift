@@ -36,7 +36,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	 *	Register Settings
 	 */
 	public function register_settings() {
-		$settings = $this->load_settings(true);
+		$settings = $this->load_settings();
 	    foreach($settings as $key=>$field) { 
 	    	if(!empty($field['args'])) { $args = $field['args']; } else { $args = null; }
 	    	register_setting( 'ns-real-estate-settings-group', $key, $args); 
@@ -51,7 +51,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	 * @param boolean $return_defaults
 	 *
 	 */
-	public function load_settings($return_defaults = false) {
+	public function load_settings() {
 
 		$settings_init = array(
 			'ns_property_detail_slug' => array('value' => 'properties', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
