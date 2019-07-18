@@ -81,7 +81,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 			'ns_agent_detail_slug' => array('value' => 'agents'),
 			'ns_num_agents_per_page' => array('value' => 12),
 			'ns_agent_listing_crop' => array('value' => 'true'),
-			'ns_agent_detail_items' => array('value' => array()),
+			'ns_agent_detail_items' => array('value' => NS_Real_Estate_Agents::load_agent_detail_items(), 'esc' => false),
 			'ns_real_estate_google_maps_api' => array('value' => ''),
 			'ns_real_estate_default_map_zoom' => array('value' => 10),
 			'ns_real_estate_default_map_latitude' => array('value' => 39.2904),
@@ -485,8 +485,32 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	        <div class="ns-accordion" data-name="agent-detail">
 	            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Agent Detail Options', 'ns-real-estate'); ?></div>
 	            <div class="ns-accordion-content">
+
+	            	<?php
+	            	$agent_detail_items_field = array(
+                		'title' => esc_html__('Agent Detail Sections', 'ns-real-estate'),
+                		'name' => 'ns_agent_detail_items',
+                		'description' => esc_html__('Drag & drop the sections to rearrange their order', 'ns-real-estate'),
+                		'value' => $settings['ns_agent_detail_items'],
+                		'type' => 'sortable',
+                		'children' => array(
+                			/*'hide_empty_amenities' => array(
+                				'title' => esc_html__('Hide empty amenities?', 'ns-real-estate'),
+	                			'name' => 'ns_property_detail_amenities_hide_empty',
+	                			'value' => $settings['ns_property_detail_amenities_hide_empty'],
+	                			'type' => 'checkbox',
+	                			'parent_val' => 'amenities',
+                			),*/
+                		),
+                	);
+                	$this->build_admin_field($agent_detail_items_field);
+                	?>
+
 	            </div>
 	        </div>
+
+	        <!-- Hook in for Add-Ons -->
+        	<?php do_action( 'ns_real_estate_after_agent_settings'); ?>
 
 	    </div><!-- end agent settings -->
 
