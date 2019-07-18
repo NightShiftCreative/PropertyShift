@@ -110,5 +110,32 @@ class NS_Real_Estate_Properties {
 	    return $property_detail_items_init;
 	}
 
+	/**
+	 *	Load front-end property submit fields
+	 */
+	public static function load_property_submit_fields() {
+		$property_submit_fields_init = array(
+			'Price Postfix',
+			'Description',
+			'Beds',
+			'Baths',
+			'Garages',
+			'Area',
+			'Area Postfix',
+			'Video',
+			'Property Location',
+			'Property Type',
+			'Property Status',
+			'Amenities',
+			'Floor Plans',
+			'Featured Image',
+			'Gallery Images',
+			'Map',
+			'Owner Info'
+	    );
+	    $property_submit_fields_init = apply_filters( 'ns_real_estate_property_submit_fields_init_filter', $property_submit_fields_init);
+	    return $property_submit_fields_init;
+	}
+
 }
 ?>

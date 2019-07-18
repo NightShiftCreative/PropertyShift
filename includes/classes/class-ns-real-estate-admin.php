@@ -82,6 +82,9 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 			'ns_num_agents_per_page' => array('value' => 12),
 			'ns_agent_listing_crop' => array('value' => 'true'),
 			'ns_agent_detail_items' => array('value' => NS_Real_Estate_Agents::load_agent_detail_items(), 'esc' => false),
+			'ns_agent_form_message_placeholder' => array('value' => esc_html__('I am interested in this property and would like to know more.', 'ns-real-estate')),
+			'ns_agent_form_success' => array('value' => esc_html__('Thanks! Your email has been delivered!', 'ns-real-estate')),
+			'ns_agent_form_submit_text' => array('value' => esc_html__('Contact Agent', 'ns-real-estate')),
 			'ns_real_estate_google_maps_api' => array('value' => ''),
 			'ns_real_estate_default_map_zoom' => array('value' => 10),
 			'ns_real_estate_default_map_latitude' => array('value' => 39.2904),
@@ -92,7 +95,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 			'ns_members_submit_property_approval' => array('value' => 'true'),
 			'ns_members_add_locations' => array('value' => 'true'),
 			'ns_members_add_amenities' => array('value' => 'true'),
-			'ns_members_submit_property_fields' => array('value' => array()),
+			'ns_members_submit_property_fields' => array('value' => NS_Real_Estate_Properties::load_property_submit_fields(), 'esc' => false),
 			'ns_real_estate_currency_symbol' => array('value' => '$'),
 			'ns_real_estate_currency_symbol_position' => array('value' => 'before'),
 			'ns_real_estate_thousand_separator' => array('value' => ','),
@@ -494,13 +497,27 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
                 		'value' => $settings['ns_agent_detail_items'],
                 		'type' => 'sortable',
                 		'children' => array(
-                			/*'hide_empty_amenities' => array(
-                				'title' => esc_html__('Hide empty amenities?', 'ns-real-estate'),
-	                			'name' => 'ns_property_detail_amenities_hide_empty',
-	                			'value' => $settings['ns_property_detail_amenities_hide_empty'],
-	                			'type' => 'checkbox',
-	                			'parent_val' => 'amenities',
-                			),*/
+                			'form_message_placeholder' => array(
+                				'title' => esc_html__('Message Placeholder on Property Pages', 'ns-real-estate'),
+	                			'name' => 'ns_agent_form_message_placeholder',
+	                			'value' => $settings['ns_agent_form_message_placeholder'],
+	                			'type' => 'text',
+	                			'parent_val' => 'contact',
+                			),
+                			'form_success' => array(
+                				'title' => esc_html__('Success Message', 'ns-real-estate'),
+	                			'name' => 'ns_agent_form_success',
+	                			'value' => $settings['ns_agent_form_success'],
+	                			'type' => 'text',
+	                			'parent_val' => 'contact',
+                			),
+                			'form_submit_text' => array(
+                				'title' => esc_html__('Submit Button Text', 'ns-real-estate'),
+	                			'name' => 'ns_agent_form_submit_text',
+	                			'value' => $settings['ns_agent_form_submit_text'],
+	                			'type' => 'text',
+	                			'parent_val' => 'contact',
+                			),
                 		),
                 	);
                 	$this->build_admin_field($agent_detail_items_field);
@@ -509,10 +526,149 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	            </div>
 	        </div>
 
-	        <!-- Hook in for Add-Ons -->
         	<?php do_action( 'ns_real_estate_after_agent_settings'); ?>
 
 	    </div><!-- end agent settings -->
+
+	    <div id="maps" class="tab-content">
+	        <h2><?php echo esc_html_e('Map Settings', 'ns-real-estate'); ?></h2>
+
+	        <?php
+	        $google_maps_api_field = array(
+                'title' => esc_html__('Google Maps API Key', 'ns-real-estate'),
+                'name' => 'ns_real_estate_google_maps_api',
+                'description' => wp_kses_post(__('Provide your unique Google maps API key. <a target="_blank" href="https://developers.google.com/maps/documentation/javascript/get-api-key">Click here</a> to get a key.', 'ns-real-estate')),
+                'value' => $settings['ns_real_estate_google_maps_api'],
+                'type' => 'text',
+            );
+            $this->build_admin_field($google_maps_api_field);
+
+            $map_zoom_field = array(
+                'title' => esc_html__('Default Map Zoom', 'ns-real-estate'),
+                'name' => 'ns_real_estate_default_map_zoom',
+                'description' => esc_html__('The map zoom ranges from 1 - 19. Zoom level 1 being the most zoomed out.', 'ns-real-estate'),
+                'value' => $settings['ns_real_estate_default_map_zoom'],
+                'type' => 'number',
+                'min' => 1,
+                'max' => 19,
+            );
+            $this->build_admin_field($map_zoom_field);
+
+            $map_lat_field = array(
+                'title' => esc_html__('Default Map Latitude', 'ns-real-estate'),
+                'name' => 'ns_real_estate_default_map_latitude',
+                'value' => $settings['ns_real_estate_default_map_latitude'],
+                'type' => 'text',
+            );
+            $this->build_admin_field($map_lat_field);
+
+            $map_long_field = array(
+                'title' => esc_html__('Default Map Longitude', 'ns-real-estate'),
+                'name' => 'ns_real_estate_default_map_longitude',
+                'value' => $settings['ns_real_estate_default_map_longitude'],
+                'type' => 'text',
+            );
+            $this->build_admin_field($map_long_field);
+
+            $map_custom_pin_field = array(
+                'title' => esc_html__('Custom Pin Image', 'ns-real-estate'),
+                'name' => 'ns_real_estate_google_maps_pin',
+                'value' => $settings['ns_real_estate_google_maps_pin'],
+                'type' => 'image_upload',
+            );
+            $this->build_admin_field($map_custom_pin_field);
+	        ?>
+
+	        <?php do_action( 'ns_real_estate_after_map_settings'); ?>
+
+	    </div><!-- end map settings -->
+
+	    <div id="members" class="tab-content">
+	        <h2><?php echo esc_html_e('Member Settings', 'ns-real-estate'); ?></h2>
+
+	        <?php
+	        $page_options = array('Select a page' => '');
+	        $pages = get_pages();
+	        foreach ( $pages as $page ) { $page_options[esc_attr($page->post_title)] = get_page_link( $page->ID ); }
+	        $my_properties_page_field = array(
+                'title' => esc_html__('Select My Properties Page', 'ns-real-estate'),
+                'name' => 'ns_members_my_properties_page',
+                'description' => esc_html__('Create a page and assign it the My Properties template.', 'ns-real-estate'),
+                'value' => $settings['ns_members_my_properties_page'],
+                'type' => 'select',
+                'options' => $page_options,
+            );
+            $this->build_admin_field($my_properties_page_field);
+
+            $submit_property_page_field = array(
+                'title' => esc_html__('Select Submit Property Page', 'ns-real-estate'),
+                'name' => 'ns_members_submit_property_page',
+                'description' => esc_html__('Create a page and assign it the Submit Property template.', 'ns-real-estate'),
+                'value' => $settings['ns_members_submit_property_page'],
+                'type' => 'select',
+                'options' => $page_options,
+            );
+            $this->build_admin_field($submit_property_page_field);
+
+            $submit_property_approval = array(
+                'title' => esc_html__('Front-end property submissions must be approved before being published', 'ns-real-estate'),
+                'name' => 'ns_members_submit_property_approval',
+                'value' => $settings['ns_members_submit_property_approval'],
+                'type' => 'switch',
+            );
+            $this->build_admin_field($submit_property_approval);
+
+            $submit_add_locations = array(
+                'title' => esc_html__('Allow members to add new property locations from the front-end', 'ns-real-estate'),
+                'name' => 'ns_members_add_locations',
+                'value' => $settings['ns_members_add_locations'],
+                'type' => 'switch',
+            );
+            $this->build_admin_field($submit_add_locations);
+
+            $submit_add_amenities = array(
+                'title' => esc_html__('Allow members to add new property amenities from the front-end', 'ns-real-estate'),
+                'name' => 'ns_members_add_amenities',
+                'value' => $settings['ns_members_add_amenities'],
+                'type' => 'switch',
+            );
+            $this->build_admin_field($submit_add_amenities);
+
+            $submit_form_fields = array(
+                'title' => esc_html__('Property Submit Form Fields', 'ns-real-estate'),
+                'name' => 'ns_members_submit_property_fields',
+                'description' => esc_html__('Choose which fields display on the front-end property submit form.', 'ns-real-estate'),
+                'value' => $settings['ns_members_submit_property_fields'],
+                'type' => 'checkbox_group',
+                'options' => array(
+                	esc_html__('Property Title (required)', 'ns-real-estate') => array('value' => '', 'attributes' => array('disabled', 'checked')), 
+                	esc_html__('Price (required)', 'ns-real-estate') => array('value' => '', 'attributes' => array('disabled', 'checked')), 
+                	esc_html__('Price Postfix', 'ns-real-estate') => array('value' => 'Price Postfix'),
+                	esc_html__('Street Address (required)', 'ns-real-estate') => array('value' => '', 'attributes' => array('disabled', 'checked')),
+                	esc_html__('Description', 'ns-real-estate') => array('value' => 'Description'),
+                	esc_html__('Beds', 'ns-real-estate') => array('value' => 'Beds'), 
+                	esc_html__('Baths', 'ns-real-estate') => array('value' => 'Baths'),
+                	esc_html__('Garages', 'ns-real-estate') => array('value' => 'Garages'),
+                	esc_html__('Area', 'ns-real-estate') => array('value' => 'Area'),
+                	esc_html__('Area Postfix', 'ns-real-estate') => array('value' => 'Area Postfix'),
+                	esc_html__('Video', 'ns-real-estate') => array('value' => 'Video'),
+                	esc_html__('Property Location', 'ns-real-estate') => array('value' => 'Property Location'),
+                	esc_html__('Property Type', 'ns-real-estate') => array('value' => 'Property Type'),
+                	esc_html__('Property Status', 'ns-real-estate') => array('value' => 'Property Status'),
+                	esc_html__('Amenities', 'ns-real-estate') => array('value' => 'Amenities'),
+                	esc_html__('Floor Plans', 'ns-real-estate') => array('value' => 'Floor Plans'),
+                	esc_html__('Featured Image', 'ns-real-estate') => array('value' => 'Featured Image'),
+                	esc_html__('Gallery Images', 'ns-real-estate') => array('value' => 'Gallery Images'),
+                	esc_html__('Map', 'ns-real-estate') => array('value' => 'Map'),
+                	esc_html__('Owner Info', 'ns-real-estate') => array('value' => 'Owner Info'),
+                ),
+            );
+            $this->build_admin_field($submit_form_fields);
+	        ?>
+
+	        <?php do_action( 'ns_real_estate_after_member_settings'); ?>
+
+	    </div><!-- end members settings -->
 
 		<?php $output = ob_get_clean();
     	return $output;
