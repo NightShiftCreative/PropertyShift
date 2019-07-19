@@ -649,6 +649,94 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 
 	    </div><!-- end members settings -->
 
+	    <div id="currency" class="tab-content">
+	        <h2><?php echo esc_html_e('Currency & Numbers', 'ns-real-estate'); ?></h2>
+
+	        <?php
+	        $currency_symbol_field = array(
+                'title' => esc_html__('Currency Symbol', 'ns-real-estate'),
+                'name' => 'ns_real_estate_currency_symbol',
+                'value' => $settings['ns_real_estate_currency_symbol'],
+                'type' => 'text',
+            );
+            $this->build_admin_field($currency_symbol_field);
+
+            $currency_symbol_position_field = array(
+                'title' => esc_html__('Currency Symbol Position', 'ns-real-estate'),
+                'name' => 'ns_real_estate_currency_symbol_position',
+                'value' => $settings['ns_real_estate_currency_symbol_position'],
+                'type' => 'radio_image',
+                'options' => array(esc_html__('Display before price', 'ns-real-estate') => array('value' => 'before'), esc_html__('Display after price', 'ns-real-estate') => array('value' => 'after')),
+            );
+            $this->build_admin_field($currency_symbol_position_field);
+
+            $currency_thousand_field = array(
+                'title' => esc_html__('Thousand Separator', 'ns-real-estate'),
+                'name' => 'ns_real_estate_thousand_separator',
+                'value' => $settings['ns_real_estate_thousand_separator'],
+                'type' => 'text',
+            );
+            $this->build_admin_field($currency_thousand_field);
+
+            $currency_decimal_field = array(
+                'title' => esc_html__('Decimal Separator', 'ns-real-estate'),
+                'name' => 'ns_real_estate_decimal_separator',
+                'value' => $settings['ns_real_estate_decimal_separator'],
+                'type' => 'text',
+            );
+            $this->build_admin_field($currency_decimal_field);
+
+            $currency_decimal_num_field = array(
+                'title' => esc_html__('Number of Decimals', 'ns-real-estate'),
+                'name' => 'ns_real_estate_num_decimal',
+                'value' => $settings['ns_real_estate_num_decimal'],
+                'type' => 'number',
+                'min' => 0,
+                'max' => 5,
+            );
+            $this->build_admin_field($currency_decimal_num_field);
+
+            echo '<br/><br/><h2>'.esc_html__('Area Formatting', 'ns-real-estate').'</h2>';
+            $area_postfix_field = array(
+                'title' => esc_html__('Deafult Area Postfix', 'ns-real-estate'),
+                'name' => 'ns_real_estate_default_area_postfix',
+                'value' => $settings['ns_real_estate_default_area_postfix'],
+                'type' => 'text',
+            );
+            $this->build_admin_field($area_postfix_field);
+
+            $area_thousand_field = array(
+                'title' => esc_html__('Area Thousand Separator', 'ns-real-estate'),
+                'name' => 'ns_real_estate_thousand_separator_area',
+                'value' => $settings['ns_real_estate_thousand_separator_area'],
+                'type' => 'text',
+            );
+            $this->build_admin_field($area_thousand_field);
+
+            $area_decimal_field = array(
+                'title' => esc_html__('Area Decimal Separator', 'ns-real-estate'),
+                'name' => 'ns_real_estate_decimal_separator_area',
+                'value' => $settings['ns_real_estate_decimal_separator_area'],
+                'type' => 'text',
+            );
+            $this->build_admin_field($area_decimal_field);
+
+            $area_decimal_num_field = array(
+                'title' => esc_html__('Area Number of Decimals', 'ns-real-estate'),
+                'name' => 'ns_real_estate_num_decimal_area',
+                'value' => $settings['ns_real_estate_num_decimal_area'],
+                'type' => 'number',
+                'min' => 0,
+                'max' => 5,
+            );
+            $this->build_admin_field($area_decimal_num_field);
+
+	        do_action( 'ns_real_estate_after_currency_settings'); ?>
+
+	    </div><!-- end currency settings -->
+
+	    <?php do_action( 'ns_real_estate_after_settings'); ?>
+
 		<?php $output = ob_get_clean();
     	return $output;
 	}
