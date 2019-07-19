@@ -19,6 +19,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 		add_filter('ns_basics_admin_field_types', array( $this, 'add_custom_fields_type' ));
 		add_filter('ns_real_estate_settings_init_filter', array( $this, 'add_settings' ));
 		add_action('ns_real_estate_after_property_settings', array( $this, 'output_field_builder'));
+		add_filter('ns_real_estate_property_submit_fields_init_filter', array( $this, 'add_propery_submit_fields' ));
 	}
 
 	/************************************************************************/
@@ -145,6 +146,20 @@ class NS_Real_Estate_Property_Custom_Fields {
 	    </div>
 
 	<?php }
+
+
+	/**
+	 *	Add Custom Fields to property submit
+	 *
+	 * @param array $settings_init
+	 */
+	public function add_propery_submit_fields($property_submit_fields_init) {
+		$custom_fields = get_option('ns_property_custom_fields');
+		foreach($custom_fields as $custom_field) {
+			$property_submit_fields_init[$custom_field['id']] = array('value' => $custom_field['name']);
+		}
+		return $property_submit_fields_init;
+	}
 
 }
 
