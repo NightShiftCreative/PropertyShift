@@ -16,8 +16,9 @@ class NS_Real_Estate_Properties {
 	 *	Init
 	 */
 	public function init() {
-		$this->add_image_sizes();
+		add_action('init', array( $this, 'rewrite_rules' ));
 		add_action( 'ns_basics_page_settings_init_filter', array( $this, 'add_page_settings' ));
+		$this->add_image_sizes();
 	}
 
 	/**
@@ -26,6 +27,60 @@ class NS_Real_Estate_Properties {
 	public function add_image_sizes() {
 		add_image_size( 'property-thumbnail', 800, 600, array( 'center', 'center' ) );
 	}
+
+	/**
+	 *	Rewrite Rules
+	 */
+	public function rewrite_rules() {
+		add_rewrite_rule('^properties/page/([0-9]+)','index.php?pagename=properties&paged=$matches[1]', 'top');
+	}
+
+	/************************************************************************/
+	// Retrieving Property Information
+	/************************************************************************/
+
+	/**
+	 *	Count properties
+	 *
+	 * @param string $type
+	 * @param int $user_id 
+	 */
+	public function count_properties($type, $user_id = null) {
+		$args_total_properties = array(
+            'post_type' => 'ns-property',
+            'showposts' => -1,
+            'author_name' => $user_id,
+            'post_status' => $type 
+        );
+
+        $meta_posts = get_posts( $args_total_properties );
+        $meta_post_count = count( $meta_posts );
+        unset( $meta_posts);
+        return $meta_post_count;
+	}
+
+	/**
+	 *	Get formatted price
+	 *
+	 * @param string $price
+	 */
+	public function get_formatted_price($price) {
+
+	    $admin_obj = new NS_Real_Estate_Admin();
+	    $settings_init = $admin_obj->load_settings();
+
+	    $currency_symbol = $admin_obj->get_settings($settings_init, 'ns_real_estate_currency_symbol');
+	    $currency_symbol_position = $admin_obj->get_settings($settings_init, 'ns_real_estate_currency_symbol_position');
+	    $currency_thousand = $admin_obj->get_settings($settings_init, 'ns_real_estate_thousand_separator');
+	    $currency_decimal = $admin_obj->get_settings($settings_init, 'ns_real_estate_decimal_separator');
+	    $currency_decimal_num = $admin_obj->get_settings($settings_init, 'ns_real_estate_num_decimal');
+
+	    if(!empty($price)) { $price = number_format($price, $currency_decimal_num, $currency_decimal, $currency_thousand); }
+	    if($currency_symbol_position == 'before') { $price = $currency_symbol.$price; } else { $price = $price.$currency_symbol; }
+
+	    return $price;
+	}
+
 
 	/************************************************************************/
 	// Page Settings Methods
