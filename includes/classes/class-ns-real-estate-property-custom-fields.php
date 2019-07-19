@@ -16,10 +16,18 @@ class NS_Real_Estate_Property_Custom_Fields {
 	 *	Constructor
 	 */
 	public function __construct() {
+
+		// Actions and filters
 		add_filter('ns_basics_admin_field_types', array( $this, 'add_custom_fields_type' ));
 		add_filter('ns_real_estate_settings_init_filter', array( $this, 'add_settings' ));
 		add_action('ns_real_estate_after_property_settings', array( $this, 'output_field_builder'));
 		add_filter('ns_real_estate_property_submit_fields_init_filter', array( $this, 'add_propery_submit_fields' ));
+		add_action('wp_ajax_ns_real_estate_delete_custom_field', array( $this, 'delete_custom_field' ));
+
+		// Get global settings
+		$admin_obj = new NS_Real_Estate_Admin();
+        $settings_init = $admin_obj->load_settings();
+        $this->global_settings = $admin_obj->get_settings($settings_init);
 	}
 
 	/************************************************************************/
@@ -129,13 +137,11 @@ class NS_Real_Estate_Property_Custom_Fields {
 
 	        	<?php
 	        	$admin_obj = new NS_Real_Estate_Admin();
-	        	$settings_init = $admin_obj->load_settings();
-				$settings = $admin_obj->get_settings($settings_init);
 
 	            $property_custom_fields = array(
                 	'title' => esc_html__('Property Custom Fields', 'ns-real-estate'),
                 	'name' => 'ns_property_custom_fields',
-                	'value' => $settings['ns_property_custom_fields'],
+                	'value' => $this->global_settings['ns_property_custom_fields'],
                 	'type' => 'custom_fields',
                 	'class' => 'admin-module-custom-fields',
                 );
@@ -159,6 +165,15 @@ class NS_Real_Estate_Property_Custom_Fields {
 			$property_submit_fields_init[$custom_field['id']] = array('value' => $custom_field['name']);
 		}
 		return $property_submit_fields_init;
+	}
+
+	/**
+	 *	Delete custom field
+	 */
+	public function delete_custom_field() {
+		$key = isset($_POST['key']) ? $_POST['key'] : '';
+    	delete_post_meta_by_key('ns_property_custom_field_'.$key);
+    	die();
 	}
 
 }

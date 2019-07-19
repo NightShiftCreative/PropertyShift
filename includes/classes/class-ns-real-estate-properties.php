@@ -12,6 +12,14 @@ class NS_Real_Estate_Properties {
 	// Initialize
 	/************************************************************************/
 
+	public function __construct() {
+
+		// Get global settings
+		$admin_obj = new NS_Real_Estate_Admin();
+        $settings_init = $admin_obj->load_settings();
+        $this->global_settings = $admin_obj->get_settings($settings_init);
+	}
+
 	/**
 	 *	Init
 	 */
@@ -19,6 +27,7 @@ class NS_Real_Estate_Properties {
 		add_action('init', array( $this, 'rewrite_rules' ));
 		add_action( 'ns_basics_page_settings_init_filter', array( $this, 'add_page_settings' ));
 		$this->add_image_sizes();
+		add_action( 'init', array( $this, 'add_custom_post_type' ));
 	}
 
 	/**
@@ -34,6 +43,35 @@ class NS_Real_Estate_Properties {
 	public function rewrite_rules() {
 		add_rewrite_rule('^properties/page/([0-9]+)','index.php?pagename=properties&paged=$matches[1]', 'top');
 	}
+
+	/************************************************************************/
+	// Properties Custom Post Type
+	/************************************************************************/
+
+	/**
+	 *	Add custom post type
+	 */
+	public function add_custom_post_type() {
+		$properties_slug = get_option('ns_property_detail_slug', 'properties');
+	    register_post_type( 'ns-property',
+	        array(
+	            'labels' => array(
+	                'name' => __( 'Properties', 'ns-real-estate' ),
+	                'singular_name' => __( 'Property', 'ns-real-estate' ),
+	                'add_new_item' => __( 'Add New Property', 'ns-real-estate' ),
+	                'search_items' => __( 'Search Properties', 'ns-real-estate' ),
+	                'edit_item' => __( 'Edit Property', 'ns-real-estate' ),
+	            ),
+	        'public' => true,
+	        'show_in_menu' => true,
+	        'menu_icon' => 'dashicons-admin-home',
+	        'has_archive' => false,
+	        'supports' => array('title', 'author', 'editor', 'revisions', 'thumbnail', 'page_attributes'),
+	        'rewrite' => array('slug' => $properties_slug),
+	        )
+	    );
+	}
+
 
 	/************************************************************************/
 	// Retrieving Property Information
@@ -66,19 +104,31 @@ class NS_Real_Estate_Properties {
 	 */
 	public function get_formatted_price($price) {
 
-	    $admin_obj = new NS_Real_Estate_Admin();
-	    $settings_init = $admin_obj->load_settings();
-
-	    $currency_symbol = $admin_obj->get_settings($settings_init, 'ns_real_estate_currency_symbol');
-	    $currency_symbol_position = $admin_obj->get_settings($settings_init, 'ns_real_estate_currency_symbol_position');
-	    $currency_thousand = $admin_obj->get_settings($settings_init, 'ns_real_estate_thousand_separator');
-	    $currency_decimal = $admin_obj->get_settings($settings_init, 'ns_real_estate_decimal_separator');
-	    $currency_decimal_num = $admin_obj->get_settings($settings_init, 'ns_real_estate_num_decimal');
+	    $currency_symbol = $this->global_settings['ns_real_estate_currency_symbol'];
+	    $currency_symbol_position = $this->global_settings['ns_real_estate_currency_symbol_position'];
+	    $currency_thousand = $this->global_settings['ns_real_estate_thousand_separator'];
+	    $currency_decimal = $this->global_settings['ns_real_estate_decimal_separator'];
+	    $currency_decimal_num =  $this->global_settings['ns_real_estate_num_decimal'];
 
 	    if(!empty($price)) { $price = number_format($price, $currency_decimal_num, $currency_decimal, $currency_thousand); }
 	    if($currency_symbol_position == 'before') { $price = $currency_symbol.$price; } else { $price = $price.$currency_symbol; }
 
 	    return $price;
+	}
+
+	/**
+	 *	Get formatted area
+	 *
+	 * @param string $area
+	 */
+	public function get_formatted_area($area) {
+		
+	    $decimal_num_area =  $this->global_settings['ns_real_estate_num_decimal_area'];
+	    $decimal_area = $this->global_settings['ns_real_estate_decimal_separator_area'];
+	    $thousand_area =  $this->global_settings['ns_real_estate_thousand_separator_area'];
+
+    	if(!empty($area)) { $area = number_format($area, $decimal_num_area, $decimal_area, $thousand_area); }
+    	return $area;
 	}
 
 

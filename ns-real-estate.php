@@ -210,28 +210,29 @@ class NS_Real_Estate {
 		// Include classes
 		/************************************************************************/
 
-		// Setup the admin
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-admin.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-properties.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-property-custom-fields.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-agents.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-license-keys.php');
+
+		// Setup the admin
 		if(is_admin()) { 
 			$this->admin = new NS_Real_Estate_Admin(); 
 			$this->admin->init();
 		}
 
 		// Load properties class
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-properties.php');
 		$this->properties = new NS_Real_Estate_Properties();
 		$this->properties->init();
 
 		// Load property custom fields class
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-property-custom-fields.php');
 		$this->property_custom_fields = new NS_Real_Estate_Property_Custom_Fields();
 
 		// Load agents class
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-agents.php');
 		$this->agents = new NS_Real_Estate_Agents();
 
 		// Load license keys class
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-license-keys.php');
 		$this->license_keys = new NS_Real_Estate_License_Keys();
 
 	}
