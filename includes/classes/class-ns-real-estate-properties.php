@@ -115,23 +115,26 @@ class NS_Real_Estate_Properties {
 	 */
 	public static function load_property_submit_fields() {
 		$property_submit_fields_init = array(
-			'Price Postfix',
-			'Description',
-			'Beds',
-			'Baths',
-			'Garages',
-			'Area',
-			'Area Postfix',
-			'Video',
-			'Property Location',
-			'Property Type',
-			'Property Status',
-			'Amenities',
-			'Floor Plans',
-			'Featured Image',
-			'Gallery Images',
-			'Map',
-			'Owner Info'
+			'property_title' => array('value' => esc_html__('Property Title (required)', 'ns-real-estate'), 'attributes' => array('disabled', 'checked')),
+            'price' => array('value' => esc_html__('Price (required)', 'ns-real-estate'), 'attributes' => array('disabled', 'checked')),
+            'price_postfix' => array('value' => esc_html__('Price Postfix', 'ns-real-estate')),
+            'street_address' => array('value' => esc_html__('Street Address (required)', 'ns-real-estate'), 'attributes' => array('disabled', 'checked')),
+            'description' => array('value' => esc_html__('Description', 'ns-real-estate')),
+            'beds' => array('value' => esc_html__('Beds', 'ns-real-estate')),
+            'baths' => array('value' => esc_html__('Baths', 'ns-real-estate')),
+            'garages' => array('value' => esc_html__('Garages', 'ns-real-estate')),
+            'area' => array('value' => esc_html__('Area', 'ns-real-estate')),
+            'area_postfix' => array('value' => esc_html__('Area Postfix', 'ns-real-estate')),
+            'video' => array('value' => esc_html__('Video', 'ns-real-estate')),
+            'property_location' => array('value' => esc_html__('Property Location', 'ns-real-estate')),
+            'property_type' => array('value' => esc_html__('Property Type', 'ns-real-estate')),
+            'property_status' => array('value' => esc_html__('Property Status', 'ns-real-estate')),
+            'amenities' => array('value' => esc_html__('Amenities', 'ns-real-estate')),
+            'floor_plans' => array('value' => esc_html__('Floor Plans', 'ns-real-estate')),
+            'featured_image' => array('value' => esc_html__('Featured Image', 'ns-real-estate')),
+            'gallery_images' => array('value' => esc_html__('Gallery Images', 'ns-real-estate')),
+            'map' => array('value' => esc_html__('Map', 'ns-real-estate')),
+            'owner_info' => array('value' => esc_html__('Owner Info', 'ns-real-estate')),
 	    );
 	    $property_submit_fields_init = apply_filters( 'ns_real_estate_property_submit_fields_init_filter', $property_submit_fields_init);
 	    return $property_submit_fields_init;
