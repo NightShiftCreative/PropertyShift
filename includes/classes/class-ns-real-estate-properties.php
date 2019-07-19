@@ -8,6 +8,10 @@ if (!defined( 'ABSPATH')) { exit; }
  */
 class NS_Real_Estate_Properties {
 
+	/************************************************************************/
+	// Initialize
+	/************************************************************************/
+
 	/**
 	 *	Constructor
 	 */
@@ -21,6 +25,11 @@ class NS_Real_Estate_Properties {
 	public function add_image_sizes() {
 		add_image_size( 'property-thumbnail', 800, 600, array( 'center', 'center' ) );
 	}
+
+
+	/************************************************************************/
+	// Property Detail Methods
+	/************************************************************************/
 
 	/**
 	 *	Load property detail items
@@ -109,6 +118,10 @@ class NS_Real_Estate_Properties {
 		$property_detail_items_init = apply_filters( 'ns_real_estate_property_detail_items_init_filter', $property_detail_items_init);
 	    return $property_detail_items_init;
 	}
+
+	/************************************************************************/
+	// Property Submit Methods
+	/************************************************************************/
 
 	/**
 	 *	Load front-end property submit fields
