@@ -220,6 +220,7 @@ class NS_Real_Estate {
 		// Load properties class
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-properties.php');
 		$this->properties = new NS_Real_Estate_Properties();
+		$this->properties->init();
 
 		// Load property custom fields class
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-property-custom-fields.php');
@@ -228,6 +229,10 @@ class NS_Real_Estate {
 		// Load agents class
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-agents.php');
 		$this->agents = new NS_Real_Estate_Agents();
+
+		// Load license keys class
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-license-keys.php');
+		$this->license_keys = new NS_Real_Estate_License_Keys();
 
 	}
 

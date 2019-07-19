@@ -726,19 +726,102 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	/**
 	 *	Add-Ons page
 	 */
-	private function add_ons_page() {
+	public function add_ons_page() {
+		$args = array(
+			'page_name' => 'Nightshift Real Estate',
+			'pages' => $this->get_admin_pages(),
+			'content' => $this->add_ons_page_content(),
+			'content_class' => 'ns-modules',
+			'icon' => plugins_url('/ns-real-estate/images/icon-real-estate.svg'),
+		);
+	    echo $this->build_admin_page($args);
+	}
+
+	public function add_ons_page_content() {
+		ob_start();
+
+		$raw_addons = wp_remote_get(
+	        constant('NS_SHOP_URL').'/plugins/ns-real-estate/add-ons/',
+	        array('timeout'     => 10, 'redirection' => 5, 'sslverify'   => false)
+	    );
+
+	    if(!is_wp_error($raw_addons)) {
+	        echo '<div class="ns-module-group">';
+	        $raw_addons = wp_remote_retrieve_body($raw_addons);
+	        $dom = new DOMDocument();
+	        libxml_use_internal_errors(true);
+	        $dom->loadHTML( $raw_addons );
+
+	        $finder = new DomXPath($dom);
+	        $classname = "ns-product-grid";
+	        $nodes = $finder->query("//*[contains(@class, '$classname')]");
+	 
+	        function DOMinnerHTML(DOMNode $element) { 
+	            $innerHTML = ""; 
+	            $children  = $element->childNodes;
+	            $anchors = $element->getElementsByTagName('a');
+	            foreach($anchors as $anchor) { $anchor->setAttribute('target','_blank'); }
+	            foreach ($children as $child) { $innerHTML .= $element->ownerDocument->saveHTML($child); }
+	            return $innerHTML; 
+	        } 
+
+	        foreach($nodes as $node) { echo '<div class="admin-module add-on">'.DOMinnerHTML($node).'</div>'; }
+	        echo '</div>';
+	    }
+
+		$output = ob_get_clean();
+    	return $output;
 	}
 
 	/**
 	 *	License Keys page
 	 */
-	private function license_keys_page() {
+	public function license_keys_page() {
+		$args = array(
+			'page_name' => 'Nightshift Real Estate',
+			'settings_group' => 'ns-real-estate-license-keys-group',
+			'pages' => $this->get_admin_pages(),
+			'content' => $this->license_keys_page_content(),
+			'display_actions' => 'true',
+			'ajax' => false,
+			'icon' => plugins_url('/ns-real-estate/images/icon-real-estate.svg'),
+		);
+	    echo $this->build_admin_page($args);
+	}
+
+	public function license_keys_page_content() {
+		ob_start(); ?>
+
+	    <div class="admin-module-note">
+	        <?php esc_html_e('All premium add-ons require a valid license key for updates and support.', 'ns-real-estate'); ?><br/>
+	        <?php esc_html_e('Your licenses keys can be found in your account on the Nightshift Studio website.', 'ns-real-estate'); ?>
+	    </div><br/>
+	    
+	    <?php do_action( 'ns_real_estate_register_license_keys'); ?>
+
+	    <?php $output = ob_get_clean();
+	    return $output;
 	}
 
 	/**
 	 *	Help page
 	 */
-	private function help_page() {
+	public function help_page() {
+		$args = array(
+			'page_name' => 'Nightshift Real Estate',
+			'pages' => $this->get_admin_pages(),
+			'content' => $this->help_page_content(),
+			'display_actions' => 'false',
+			'icon' => plugins_url('/ns-real-estate/images/icon-real-estate.svg'),
+		);
+	    echo $this->build_admin_page($args);
+	}
+
+	public function help_page_content() {
+		ob_start(); 
+	    //content goes here
+	    $output = ob_get_clean();
+	    return $output;
 	}
 
 	/**

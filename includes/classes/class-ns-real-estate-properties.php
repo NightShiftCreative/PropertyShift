@@ -13,10 +13,11 @@ class NS_Real_Estate_Properties {
 	/************************************************************************/
 
 	/**
-	 *	Constructor
+	 *	Init
 	 */
-	public function __construct() {
+	public function init() {
 		$this->add_image_sizes();
+		add_action( 'ns_basics_page_settings_init_filter', array( $this, 'add_page_settings' ));
 	}
 
 	/**
@@ -26,6 +27,49 @@ class NS_Real_Estate_Properties {
 		add_image_size( 'property-thumbnail', 800, 600, array( 'center', 'center' ) );
 	}
 
+	/************************************************************************/
+	// Page Settings Methods
+	/************************************************************************/
+	
+	/**
+	 *	Add page settings
+	 *
+	 * @param array $page_settings_init
+	 */
+	public function add_page_settings($page_settings_init) {
+		
+		// Add map banner options
+		$page_settings_init['banner_source']['options'][esc_html__('Map Banner', 'ns-real-estate')] = array(
+			'value' => 'properties_map', 
+			'icon' => NS_BASICS_PLUGIN_DIR.'/images/google-maps-icon.png', 
+		);
+
+		// Add filter banner options
+		$page_settings_init['property_filter_override'] = array(
+			'group' => 'banner',
+			'title' => esc_html__('Use Custom Property Filter Settings', 'ns-real-estate'),
+			'name' => 'ns_banner_property_filter_override',
+			'description' => esc_html__('The global property filter settings can be configured in NS Real Estate > Settings', 'ns-real-estate'),
+			'value' => 'false',
+			'type' => 'switch',
+			'children' => array(
+				'property_filter_display' => array(
+					'title' => esc_html__('Display Property Filter', 'ns-real-estate'),
+					'name' => 'ns_banner_property_filter_display',
+					'type' => 'checkbox',
+					'value' => 'true',
+				),
+				'property_filter_id' => array(
+					'title' => esc_html__('Select a Filter', 'ns-real-estate'),
+					'name' => 'ns_banner_property_filter_id',
+					'type' => 'select',
+					'options' => array(),
+				),
+			),
+		);
+
+		return $page_settings_init;
+	}
 
 	/************************************************************************/
 	// Property Detail Methods
