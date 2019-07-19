@@ -1,13 +1,14 @@
 <?php 
 
+    $admin_obj = new NS_Real_Estate_Admin();
+    $settings_init = $admin_obj->load_settings();
+    $settings = $admin_obj->get_settings($settings_init);
+
     /************************************************************************/
     /* MISC STYLES */
     /************************************************************************/
-    $property_detail_map_height = esc_attr(get_option('ns_property_detail_map_height', 250));
     $misc_css = "";
-
-    //PROPERTIES
-    $misc_css .= ".property-single-item #map-canvas-one-pin { height:{$property_detail_map_height}px; }";
+    $misc_css .= ".property-single-item #map-canvas-one-pin { height:{$settings['ns_property_detail_map_height']}px; }";
 
     wp_add_inline_style( 'ns-real-estate-dynamic-styles', $misc_css );
 

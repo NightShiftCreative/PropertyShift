@@ -99,6 +99,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 			'ns_real_estate_currency_symbol_position' => array('value' => 'before'),
 			'ns_real_estate_thousand_separator' => array('value' => ','),
 			'ns_real_estate_decimal_separator' => array('value' => '.'),
+			'ns_real_estate_num_decimal' => array('value' => 0),
 			'ns_real_estate_default_area_postfix' => array('value' => 'Sq Ft'),
 			'ns_real_estate_thousand_separator_area' => array('value' => ','),
 			'ns_real_estate_decimal_separator_area' => array('value' => '.'),
