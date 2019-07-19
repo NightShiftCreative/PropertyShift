@@ -69,13 +69,33 @@ class NS_Real_Estate_Property_Custom_Fields {
 									$admin_obj = new NS_Real_Estate_Admin();
 									$custom_field_type_field = array(
 										'title' => esc_html__('Field Type', 'ns-real-estate'),
-										'name' => 'ns_property_custom_fields['.$count.'][type]',
+										'name' => $field['name'].'['.$count.'][type]',
 										'type' => 'select',
+										'class' => 'custom-field-type-select',
 										'value' => $custom_field['type'],
 										'options' => array(esc_html__('Text Input', 'ns-real-estate') => 'text', esc_html__('Number Input', 'ns-real-estate') => 'num', esc_html__('Select Dropdown', 'ns-real-estate') => 'select'),
 									);
 									$admin_obj->build_admin_field($custom_field_type_field);
 									?>
+
+									<table class="admin-module admin-module-select-options <?php if($custom_field['type'] != 'select') { echo 'hide-soft'; } ?>">
+                                        <tr>
+                                            <td class="admin-module-label"><label><?php esc_html_e('Select Options:', 'ns-real-estate'); ?></label></td>
+                                            <td class="admin-module-field">
+                                                <div class="custom-field-select-options-container">
+                                                    <?php 
+                                                    if(isset($custom_field['select_options'])) { $selectOptions = $custom_field['select_options']; } else { $selectOptions =  ''; }
+                                                    if(!empty($selectOptions)) {
+                                                        foreach($selectOptions as $option) {
+                                                            echo '<p><input type="text" name="'.$field['name'].'['.$count.'][select_options][]" value="'.$option.'" /><span class="delete-custom-field-select"><i class="fa fa-times"></i></span></p>';
+                                                        }
+                                                    } ?>
+                                                    <div class="button add-custom-field-select"><?php esc_html_e('Add Select Option', 'ns-real-estate'); ?></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
 								</div>
 							</td>
 							<td class="custom-field-action edit-custom-field"><div class="sortable-item-action"><i class="fa fa-cog"></i> <?php echo esc_html_e('Edit', 'ns-real-estate'); ?></div></td>

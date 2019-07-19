@@ -182,11 +182,11 @@ jQuery(document).ready(function($) {
                             <input type="text" class="custom-field-name-input" name="ns_property_custom_fields['+count+'][name]" value="'+fieldValue+'" /> \
                             <input type="hidden" class="custom-field-id" name="ns_property_custom_fields['+count+'][id]" value="'+fieldID+'" readonly /> \
                             <div class="edit-custom-field-form hide-soft"> \
-                                <table class="admin-module"> \
+                                <table class="admin-module custom-field-type-select"> \
                                     <tr> \
                                     <td class="admin-module-label"><label>'+ns_real_estate_local_script.field_type_text+'</label></td> \
                                     <td class="admin-module-field"> \
-                                        <select class="custom-field-type-select" name="ns_property_custom_fields['+count+'][type]"> \
+                                        <select name="ns_property_custom_fields['+count+'][type]"> \
                                             <option value="text">'+ns_real_estate_local_script.text_input_text+'</option> \
                                             <option value="num">'+ns_real_estate_local_script.num_input_text+'</option> \
                                             <option value="select">'+ns_real_estate_local_script.select_text+'</option> \
@@ -198,8 +198,9 @@ jQuery(document).ready(function($) {
                                     <tr> \
                                     <td class="admin-module-label"><label>'+ns_real_estate_local_script.select_options_text+'</label></td> \
                                     <td class="admin-module-field"> \
-                                        <div class="custom-field-select-options-container"></div> \
+                                        <div class="custom-field-select-options-container"> \
                                         <div class="button add-custom-field-select">'+ns_real_estate_local_script.select_options_add+'</div> \
+                                        </div> \
                                     </td> \
                                     </tr> \
                                 </table> \
@@ -275,14 +276,14 @@ jQuery(document).ready(function($) {
     $('.admin-module-custom-fields').on("click", ".add-custom-field-select", function() {
         var count = $(this).closest('.custom-field-item').index('.custom-field-item');
         var selectOption = '<p><input type="text" name="ns_property_custom_fields['+count+'][select_options][]" placeholder="'+ns_real_estate_local_script.option_name_text+'" /><span class="delete-custom-field-select"><i class="fa fa-times"></i></span></p>';
-        $(this).parent().find('.custom-field-select-options-container').append(selectOption);
+        $(this).closest('.custom-field-select-options-container').append(selectOption);
     });
 
     $('.admin-module-custom-fields').on("click", ".delete-custom-field-select", function() {
         $(this).parent().remove();
     });
 
-    $('.admin-module-custom-fields').on('change', '.custom-field-type-select', function() {
+    $('.admin-module-custom-fields').on('change', '.custom-field-type-select select', function() {
         if ($(this).val() === 'select') {
             $(this).closest('.edit-custom-field-form').find('.admin-module-select-options').removeClass('hide-soft');
         } else {
