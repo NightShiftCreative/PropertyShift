@@ -29,6 +29,7 @@ class NS_Real_Estate_Properties {
 		$this->add_image_sizes();
 		add_action( 'init', array( $this, 'add_custom_post_type' ));
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_box'));
+		add_action( 'save_post', array( $this, 'save_meta_box'));
 	}
 
 	/**
@@ -85,7 +86,7 @@ class NS_Real_Estate_Properties {
 	 *
 	 * @param int $post_id
 	 */
-	public function load_property_settings($post_id) {
+	public function load_property_settings($post_id, $return_defaults = false) {
 		$property_settings_init = array(
 			'featured' => array(
 				'title' => esc_html__('Featured Property', 'ns-basics'),
@@ -98,11 +99,21 @@ class NS_Real_Estate_Properties {
 				'name' => 'ns_property_address',
 				'description' => esc_html__('Provide the address for the property', 'ns-real-estate'),
 				'type' => 'text',
-				'value' => '',
 			),
 		);
 		$property_settings_init = apply_filters( 'ns_real_estate_property_settings_init_filter', $property_settings_init);
-		return $property_settings_init;
+		
+		// Return default settings
+		if($return_defaults == true) {
+			
+			return $property_settings_init;
+		
+		// Return saved settings
+		} else {
+			$property_settings = $this->admin_obj->get_meta_box_values($post_id, $property_settings_init);
+			$property_settings = apply_filters( 'ns_real_estate_property_settings_filter', $property_settings);
+			return $property_settings;
+		}
 	}
 
 	/**
@@ -110,7 +121,8 @@ class NS_Real_Estate_Properties {
 	 */
 	public function output_meta_box($post) { 
 
-		$property_settings = $this->load_property_settings($post->ID); ?>
+		$property_settings = $this->load_property_settings($post->ID); 
+		wp_nonce_field( 'ns_property_details_meta_box_nonce', 'ns_property_details_meta_box_nonce' );?>
 		
 		<div class="ns-tabs meta-box-form meta-box-form-property-details">
 			<ul class="ns-tabs-nav">
@@ -144,6 +156,27 @@ class NS_Real_Estate_Properties {
 		</div><!-- end ns-tabs -->
 
 	<?php }
+
+	/**
+	 * Save Meta Box
+	 */
+	public function save_meta_box($post_id) {
+		// Bail if we're doing an auto save
+        if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+
+        // if our nonce isn't there, or we can't verify it, bail
+        if( !isset( $_POST['ns_property_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['ns_property_details_meta_box_nonce'], 'ns_property_details_meta_box_nonce' ) ) return;
+
+        // if our current user can't edit this post, bail
+        if( !current_user_can( 'edit_post', $post_id ) ) return;
+
+        // allow certain attributes
+        $allowed = array('a' => array('href' => array()));
+
+        // Load property settings and save
+        $property_settings = $this->load_property_settings($post_id);
+        $this->admin_obj->save_meta_box($post_id, $property_settings, $allowed);
+	}
 
 
 	/************************************************************************/
