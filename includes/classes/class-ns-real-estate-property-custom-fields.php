@@ -25,9 +25,9 @@ class NS_Real_Estate_Property_Custom_Fields {
 		add_action('wp_ajax_ns_real_estate_delete_custom_field', array( $this, 'delete_custom_field' ));
 
 		// Get global settings
-		$admin_obj = new NS_Real_Estate_Admin();
-        $settings_init = $admin_obj->load_settings();
-        $this->global_settings = $admin_obj->get_settings($settings_init);
+		$this->admin_obj = new NS_Real_Estate_Admin();
+        $settings_init = $this->admin_obj->load_settings();
+        $this->global_settings = $this->admin_obj->get_settings($settings_init);
 	}
 
 	/************************************************************************/
@@ -75,7 +75,6 @@ class NS_Real_Estate_Property_Custom_Fields {
                                 <input type="hidden" class="custom-field-id" name="<?php echo $field['name']; ?>[<?php echo $count; ?>][id]" value="<?php echo $custom_field['id']; ?>" readonly />
 								<div class="edit-custom-field-form hide-soft">
 									<?php
-									$admin_obj = new NS_Real_Estate_Admin();
 									$custom_field_type_field = array(
 										'title' => esc_html__('Field Type', 'ns-real-estate'),
 										'name' => $field['name'].'['.$count.'][type]',
@@ -84,7 +83,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 										'value' => $custom_field['type'],
 										'options' => array(esc_html__('Text Input', 'ns-real-estate') => 'text', esc_html__('Number Input', 'ns-real-estate') => 'num', esc_html__('Select Dropdown', 'ns-real-estate') => 'select'),
 									);
-									$admin_obj->build_admin_field($custom_field_type_field);
+									$this->admin_obj->build_admin_field($custom_field_type_field);
 									?>
 
 									<table class="admin-module admin-module-select-options <?php if($custom_field['type'] != 'select') { echo 'hide-soft'; } ?>">
@@ -136,8 +135,6 @@ class NS_Real_Estate_Property_Custom_Fields {
 	        <div class="ns-accordion-content">
 
 	        	<?php
-	        	$admin_obj = new NS_Real_Estate_Admin();
-
 	            $property_custom_fields = array(
                 	'title' => esc_html__('Property Custom Fields', 'ns-real-estate'),
                 	'name' => 'ns_property_custom_fields',
@@ -145,7 +142,7 @@ class NS_Real_Estate_Property_Custom_Fields {
                 	'type' => 'custom_fields',
                 	'class' => 'admin-module-custom-fields',
                 );
-                $admin_obj->build_admin_field($property_custom_fields);
+                $this->admin_obj->build_admin_field($property_custom_fields);
 	            ?>
 
 	        </div>
