@@ -15,9 +15,9 @@ class NS_Real_Estate_Properties {
 	public function __construct() {
 
 		// Get global settings
-		$admin_obj = new NS_Real_Estate_Admin();
-        $settings_init = $admin_obj->load_settings();
-        $this->global_settings = $admin_obj->get_settings($settings_init);
+		$this->admin_obj = new NS_Real_Estate_Admin();
+        $settings_init = $this->admin_obj->load_settings();
+        $this->global_settings = $this->admin_obj->get_settings($settings_init);
 	}
 
 	/**
@@ -52,7 +52,7 @@ class NS_Real_Estate_Properties {
 	 *	Add custom post type
 	 */
 	public function add_custom_post_type() {
-		$properties_slug = get_option('ns_property_detail_slug', 'properties');
+		$properties_slug = $this->global_settings['ns_property_detail_slug'];
 	    register_post_type( 'ns-property',
 	        array(
 	            'labels' => array(
@@ -123,7 +123,7 @@ class NS_Real_Estate_Properties {
 	 */
 	public function get_formatted_area($area) {
 		
-	    $decimal_num_area =  $this->global_settings['ns_real_estate_num_decimal_area'];
+	    $decimal_num_area = $this->global_settings['ns_real_estate_num_decimal_area'];
 	    $decimal_area = $this->global_settings['ns_real_estate_decimal_separator_area'];
 	    $thousand_area =  $this->global_settings['ns_real_estate_thousand_separator_area'];
 
