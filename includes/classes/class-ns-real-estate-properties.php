@@ -28,6 +28,7 @@ class NS_Real_Estate_Properties {
 		add_action( 'ns_basics_page_settings_init_filter', array( $this, 'add_page_settings' ));
 		$this->add_image_sizes();
 		add_action( 'init', array( $this, 'add_custom_post_type' ));
+		add_action( 'add_meta_boxes', array( $this, 'register_meta_box'));
 	}
 
 	/**
@@ -72,9 +73,81 @@ class NS_Real_Estate_Properties {
 	    );
 	}
 
+	/**
+	 *	Register meta box
+	 */
+	public function register_meta_box() {
+		add_meta_box( 'property-details-meta-box', 'Property Details', array($this, 'output_meta_box'), 'ns-property', 'normal', 'high' );
+	}
+
+	/**
+	 *	Load property settings
+	 *
+	 * @param int $post_id
+	 */
+	public function load_property_settings($post_id) {
+		$property_settings_init = array(
+			'featured' => array(
+				'title' => esc_html__('Featured Property', 'ns-basics'),
+				'name' => 'ns_property_featured',
+				'type' => 'checkbox',
+				'value' => 'false',
+			),
+			'street_address' => array(
+				'title' => esc_html__('Street Address', 'ns-basics'),
+				'name' => 'ns_property_address',
+				'description' => esc_html__('Provide the address for the property', 'ns-real-estate'),
+				'type' => 'text',
+				'value' => '',
+			),
+		);
+		$property_settings_init = apply_filters( 'ns_real_estate_property_settings_init_filter', $property_settings_init);
+		return $property_settings_init;
+	}
+
+	/**
+	 *	Output meta box interface
+	 */
+	public function output_meta_box($post) { 
+
+		$property_settings = $this->load_property_settings($post->ID); ?>
+		
+		<div class="ns-tabs meta-box-form meta-box-form-property-details">
+			<ul class="ns-tabs-nav">
+	            <li><a href="#general" title="<?php esc_html_e('General Info', 'ns-real-estate'); ?>"><i class="fa fa-home"></i> <span class="tab-text"><?php echo esc_html_e('General Info', 'ns-real-estate'); ?></span></a></li>
+	            <li><a href="#description" title="<?php esc_html_e('Description', 'ns-real-estate'); ?>"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php echo esc_html_e('Description', 'ns-real-estate'); ?></span></a></li>
+	            <li><a href="#gallery" title="<?php esc_html_e('Gallery', 'ns-real-estate'); ?>"><i class="fa fa-image"></i> <span class="tab-text"><?php echo esc_html_e('Gallery', 'ns-real-estate'); ?></span></a></li>
+	            <li><a href="#floor-plans" title="<?php esc_html_e('Floor Plans', 'ns-real-estate'); ?>"><i class="fa fa-th-large"></i> <span class="tab-text"><?php echo esc_html_e('Floor Plans', 'ns-real-estate'); ?></span></a></li>
+	            <li><a href="#map" title="<?php esc_html_e('Map', 'ns-real-estate'); ?>" onclick="refreshMap()"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Map', 'ns-real-estate'); ?></span></a></li>
+	            <li><a href="#video" title="<?php esc_html_e('Video', 'ns-real-estate'); ?>"><i class="fa fa-video"></i> <span class="tab-text"><?php echo esc_html_e('Video', 'ns-real-estate'); ?></span></a></li>
+	            <li><a href="#agent" title="<?php esc_html_e('Owner Info', 'ns-real-estate'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Owner Info', 'ns-real-estate'); ?></span></a></li>
+	            <?php do_action('ns_real_estate_after_property_tabs'); ?>
+	        </ul>
+
+	        <div class="ns-tabs-content">
+        	<div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php echo esc_html_e('Loading...', 'ns-real-estate'); ?></div>
+        	
+        	<!--*************************************************-->
+	        <!-- GENERAL INFO -->
+	        <!--*************************************************-->
+	        <div id="general" class="tab-content">
+	            <h3><?php echo esc_html_e('General Info', 'ns-real-estate'); ?></h3>
+	            <?php
+	            $this->admin_obj->build_admin_field($property_settings['featured']);
+	            $this->admin_obj->build_admin_field($property_settings['street_address']);
+	            ?>
+	        </div>
+
+        	</div><!-- end ns-tabs-content -->
+        	<div class="clear"></div>
+
+		</div><!-- end ns-tabs -->
+
+	<?php }
+
 
 	/************************************************************************/
-	// Retrieving Property Information
+	// Property Utilities
 	/************************************************************************/
 
 	/**
@@ -133,7 +206,7 @@ class NS_Real_Estate_Properties {
 
 
 	/************************************************************************/
-	// Page Settings Methods
+	// Property Page Settings Methods
 	/************************************************************************/
 	
 	/**
