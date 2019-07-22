@@ -84,9 +84,9 @@ jQuery(document).ready(function($) {
 	/********************************************/
 	/* REPEATERS (FLOOR PLANS, OPEN HOUSES, ETC.) */
 	/********************************************/
-	$('.admin-module-repeater').on('click', '.add-repeater', function() {
+	$('.repeater-container').on('click', '.add-repeater', function() {
 	
-        var count = $('.admin-module-repeater .repeater-container > .ns-accordion').length;
+        var count = $(this).closest('.repeater-container').find('.repeater-items > .ns-accordion').length;
 
 		var repeaterItem = '\
             <div class="ns-accordion"> \
@@ -113,11 +113,11 @@ jQuery(document).ready(function($) {
             </div> \
 		';
 	
-        $(this).parent().find('.repeater-container').append(repeaterItem);
-        $(this).closest('.admin-module-repeater').find('.no-floor-plan').hide();
+        $(this).closest('.repeater-container').find('.repeater-items').append(repeaterItem);
+        $(this).closest('.repeater-container').find('.no-floor-plan').hide();
     });
 	
-	$('.admin-module-repeater').on('keypress keyup blur', '.repeater-title', function() {
+	$('.repeater-container').on('keypress keyup blur', '.repeater-title', function() {
 		var mirrorTitle = $(this).parent().parent().prev().find('.repeater-title-mirror');
 		if(mirrorTitle.html() == '') {
 			mirrorTitle.html('Untitled');
@@ -126,7 +126,7 @@ jQuery(document).ready(function($) {
 		}
 	});
 	
-	$('.admin-module-repeater').on("click", ".delete", function() {
+	$('.repeater-container').on("click", ".delete", function() {
         $(this).parent().next().remove();
 		$(this).parent().remove();
     });
@@ -332,17 +332,6 @@ jQuery(document).ready(function($) {
     //remove custom field from filter
     $('.admin-module-filter-fields').on("click", ".sortable-item-action.remove ", function() {
         $(this).parent().remove();
-    });
-
-    /********************************************/
-    /* PAGE BANNER PROPERTY FILTER OPTIONS */
-    /********************************************/
-    $('#banner_property_filter_override').change(function(){
-        if($(this).prop("checked")) {
-            $('.admin-module-page-banner-property-filter-options').slideUp('fast');
-        } else {
-            $('.admin-module-page-banner-property-filter-options').slideDown('fast');
-        }
     });
 
 });

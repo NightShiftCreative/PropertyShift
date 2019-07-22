@@ -178,7 +178,16 @@ class NS_Real_Estate_Properties {
 				'group' => 'gallery',
 				'name' => 'ns_additional_img',
 				'type' => 'gallery',
+				'serialized' => true,
 				'order' => 11,
+				'class' => 'full-width no-padding',
+			),
+			'floor_plans' => array(
+				'group' => 'floor_plans',
+				'name' => 'ns_property_floor_plans',
+				'type' => 'floor_plans',
+				'serialized' => true,
+				'order' => 12,
 				'class' => 'full-width no-padding',
 			),
 		);
@@ -255,6 +264,19 @@ class NS_Real_Estate_Properties {
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'gallery') {
+            			$this->admin_obj->build_admin_field($setting);
+            		}
+	            } ?>
+	        </div>
+
+	        <!--*************************************************-->
+	        <!-- FLOOR PLANS -->
+	        <!--*************************************************-->
+	        <div id="floor-plans" class="tab-content">
+	            <h3><?php echo esc_html_e('Floor Plans', 'ns-real-estate'); ?></h3>
+	            <?php
+	            foreach($property_settings as $setting) {
+	            	if($setting['group'] == 'floor_plans') {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } ?>
@@ -373,6 +395,7 @@ class NS_Real_Estate_Properties {
 			'description' => esc_html__('The global property filter settings can be configured in NS Real Estate > Settings', 'ns-real-estate'),
 			'value' => 'false',
 			'type' => 'switch',
+			'order' => 14,
 			'children' => array(
 				'property_filter_display' => array(
 					'title' => esc_html__('Display Property Filter', 'ns-real-estate'),

@@ -19,6 +19,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	public function init() {
 		add_action('admin_menu', array( $this, 'admin_menu' ));
 		add_action('admin_init', array( $this, 'register_settings' ));
+		add_filter('ns_basics_admin_field_types', array( $this, 'add_field_types' ));
 	}
 
 	/**
@@ -837,7 +838,64 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	    return $pages;
 	}
 
+	/************************************************************************/
+	// Add Field Types
+	/************************************************************************/
 	
+	/**
+	 *	Add field types
+	 */
+	public function add_field_types($field_types) {
+		$field_types['floor_plans'] = array($this, 'build_admin_field_floor_plans');
+		return $field_types;
+	}
+
+	/**
+	 *	Build floor plans admin field
+	 */
+	public function build_admin_field_floor_plans($field) { ?>
+
+		<div class="repeater-container floor-plans">
+			<div class="repeater-items">
+				<?php 
+				$floor_plans = $field['value']; 
+				if(!empty($floor_plans) && !empty($floor_plans[0])) { 
+					$floor_plans = unserialize($floor_plans[0]); 
+	                $count = 0;                     
+	                foreach ($floor_plans as $floor_plan) { ?>
+	                	<div class="ns-accordion">
+                            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <span class="repeater-title-mirror floor-plan-title-mirror"><?php echo $floor_plan['title']; ?></span> <span class="action delete delete-floor-plan"><i class="fa fa-trash"></i> Delete</span></div>
+                            <div class="ns-accordion-content floor-plan-item"> 
+                                <div class="floor-plan-left"> 
+                                    <label><?php esc_html_e('Title:', 'ns-real-estate'); ?> </label> <input class="repeater-title floor-plan-title" type="text" name="<?php echo $field['name']; ?>[<?php echo $count; ?>][title]" placeholder="New Floor Plan" value="<?php echo $floor_plan['title']; ?>" /><br/>
+                                    <label><?php esc_html_e('Size:', 'ns-real-estate'); ?> </label> <input type="text" name="<?php echo $field['name']; ?>[<?php echo $count; ?>][size]" value="<?php echo $floor_plan['size']; ?>" /><br/>
+                                    <label><?php esc_html_e('Rooms:', 'ns-real-estate'); ?> </label> <input type="number" name="<?php echo $field['name']; ?>[<?php echo $count; ?>][rooms]" value="<?php echo $floor_plan['rooms']; ?>" /><br/>
+                                    <label><?php esc_html_e('Bathrooms:', 'ns-real-estate'); ?> </label> <input type="number" name="<?php echo $field['name']; ?>[<?php echo $count; ?>][baths]" value="<?php echo $floor_plan['baths']; ?>" /><br/>
+                                </div>
+                                <div class="floor-plan-right">
+                                    <label><?php esc_html_e('Description:', 'ns-real-estate'); ?></label>
+                                    <textarea name="<?php echo $field['name']; ?>[<?php echo $count; ?>][description]"><?php echo $floor_plan['description']; ?></textarea>
+                                    <div class="floor-plan-img">
+                                        <label><?php esc_html_e('Image:', 'ns-real-estate'); ?> </label> 
+                                        <input type="text" name="<?php echo $field['name']; ?>[<?php echo $count; ?>][img]" value="<?php echo $floor_plan['img']; ?>" />
+                                        <input id="_btn" class="ns_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'ns-real-estate'); ?>" />
+                                        <span class="button-secondary remove"><?php esc_html_e('Remove', 'ns-real-estate'); ?></span>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div> 
+	                	<?php $count++; 
+	                }
+				} ?>
+			</div>
+
+			<?php if(empty($floor_plans) && empty($floor_plans[0])) { echo '<p class="admin-module-note no-floor-plan">'.esc_html__('No floor plans were found.', 'ns-real-estate').'</p>'; } ?>
+	        <span class="admin-button add-repeater"><i class="fa fa-plus"></i> <?php esc_html_e('Create New Floor Plan', 'ns-real-estate'); ?></span>
+	    </div>
+	<?php }
+
+
 }
 
 ?>
