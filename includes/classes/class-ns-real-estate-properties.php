@@ -190,6 +190,20 @@ class NS_Real_Estate_Properties {
 				'order' => 12,
 				'class' => 'full-width no-padding',
 			),
+			'latitude' => array(
+				'group' => 'map',
+				'title' => esc_html__('Latitude', 'ns-real-estate'),
+				'name' => 'ns_property_latitude',
+				'type' => 'text',
+				'order' => 13,
+			),
+			'longitude' => array(
+				'group' => 'map',
+				'title' => esc_html__('Longitude', 'ns-real-estate'),
+				'name' => 'ns_property_longitude',
+				'type' => 'text',
+				'order' => 14,
+			),
 		);
 		$property_settings_init = apply_filters( 'ns_real_estate_property_settings_init_filter', $property_settings_init);
 		uasort($property_settings_init, 'ns_basics_sort_by_order');
@@ -277,6 +291,19 @@ class NS_Real_Estate_Properties {
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'floor_plans') {
+            			$this->admin_obj->build_admin_field($setting);
+            		}
+	            } ?>
+	        </div>
+
+	        <!--*************************************************-->
+	        <!-- MAP -->
+	        <!--*************************************************-->
+	        <div id="map" class="tab-content">
+	            <h3><?php echo esc_html_e('Map', 'ns-real-estate'); ?></h3>
+	            <?php
+	            foreach($property_settings as $setting) {
+	            	if($setting['group'] == 'map') {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } ?>
