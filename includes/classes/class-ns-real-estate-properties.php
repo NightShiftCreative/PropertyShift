@@ -113,6 +113,42 @@ class NS_Real_Estate_Properties {
 				'description' => esc_html__('Provide the text displayed after the price (ex.- Per Month)', 'ns-real-estate'),
 				'type' => 'text',
 			),
+			'beds' => array(
+				'title' => esc_html__('Bedrooms', 'ns-real-estate'),
+				'name' => 'ns_property_bedrooms',
+				'description' => esc_html__('Provide the number of bedrooms', 'ns-real-estate'),
+				'type' => 'number',
+				'min' => 0,
+			),
+			'baths' => array(
+				'title' => esc_html__('Bathrooms', 'ns-real-estate'),
+				'name' => 'ns_property_bathrooms',
+				'description' => esc_html__('Provide the number of bathrooms', 'ns-real-estate'),
+				'type' => 'number',
+				'min' => 0,
+				'step' => 0.5,
+			),
+			'garages' => array(
+				'title' => esc_html__('Garages', 'ns-real-estate'),
+				'name' => 'ns_property_garages',
+				'description' => esc_html__('Provide the number of garages', 'ns-real-estate'),
+				'type' => 'number',
+				'min' => 0,
+			),
+			'area' => array(
+				'title' => esc_html__('Area', 'ns-real-estate'),
+				'name' => 'ns_property_area',
+				'description' => esc_html__('Provide the area. Use only numbers and decimals, do not include commas.', 'ns-real-estate'),
+				'type' => 'number',
+				'min' => 0,
+				'step' => 0.01,
+			),
+			'area_postfix' => array(
+				'title' => esc_html__('Area Postfix', 'ns-real-estate'),
+				'name' => 'ns_property_area_postfix',
+				'description' => esc_html__('Provide the text to display directly after the area (ex. - Sq Ft)', 'ns-real-estate'),
+				'type' => 'text',
+			),
 		);
 		$property_settings_init = apply_filters( 'ns_real_estate_property_settings_init_filter', $property_settings_init);
 		
@@ -162,6 +198,11 @@ class NS_Real_Estate_Properties {
 	            $this->admin_obj->build_admin_field($property_settings['street_address']);
 	            $this->admin_obj->build_admin_field($property_settings['price']);
 	            $this->admin_obj->build_admin_field($property_settings['price_postfix']);
+	            $this->admin_obj->build_admin_field($property_settings['beds']);
+	            $this->admin_obj->build_admin_field($property_settings['baths']);
+	            $this->admin_obj->build_admin_field($property_settings['garages']);
+	            $this->admin_obj->build_admin_field($property_settings['area']);
+	            $this->admin_obj->build_admin_field($property_settings['area_postfix']);
 	            ?>
 	        </div>
 
