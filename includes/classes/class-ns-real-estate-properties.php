@@ -93,12 +93,14 @@ class NS_Real_Estate_Properties {
 				'name' => 'ns_property_featured',
 				'type' => 'checkbox',
 				'value' => 'false',
+				'order' => 1,
 			),
 			'street_address' => array(
 				'title' => esc_html__('Street Address', 'ns-real-estate'),
 				'name' => 'ns_property_address',
 				'description' => esc_html__('Provide the address for the property', 'ns-real-estate'),
 				'type' => 'text',
+				'order' => 2,
 			),
 			'price' => array(
 				'title' => esc_html__('Price', 'ns-real-estate'),
@@ -106,12 +108,14 @@ class NS_Real_Estate_Properties {
 				'description' => esc_html__('Use only numbers. Do not include commas or dollar sign (ex.- 250000)', 'ns-real-estate'),
 				'type' => 'number',
 				'min' => 0,
+				'order' => 3,
 			),
 			'price_postfix' => array(
 				'title' => esc_html__('Price Postfix', 'ns-real-estate'),
 				'name' => 'ns_property_price_postfix',
 				'description' => esc_html__('Provide the text displayed after the price (ex.- Per Month)', 'ns-real-estate'),
 				'type' => 'text',
+				'order' => 4,
 			),
 			'beds' => array(
 				'title' => esc_html__('Bedrooms', 'ns-real-estate'),
@@ -119,6 +123,7 @@ class NS_Real_Estate_Properties {
 				'description' => esc_html__('Provide the number of bedrooms', 'ns-real-estate'),
 				'type' => 'number',
 				'min' => 0,
+				'order' => 5,
 			),
 			'baths' => array(
 				'title' => esc_html__('Bathrooms', 'ns-real-estate'),
@@ -127,6 +132,7 @@ class NS_Real_Estate_Properties {
 				'type' => 'number',
 				'min' => 0,
 				'step' => 0.5,
+				'order' => 6,
 			),
 			'garages' => array(
 				'title' => esc_html__('Garages', 'ns-real-estate'),
@@ -134,6 +140,7 @@ class NS_Real_Estate_Properties {
 				'description' => esc_html__('Provide the number of garages', 'ns-real-estate'),
 				'type' => 'number',
 				'min' => 0,
+				'order' => 7,
 			),
 			'area' => array(
 				'title' => esc_html__('Area', 'ns-real-estate'),
@@ -142,16 +149,19 @@ class NS_Real_Estate_Properties {
 				'type' => 'number',
 				'min' => 0,
 				'step' => 0.01,
+				'order' => 8,
 			),
 			'area_postfix' => array(
 				'title' => esc_html__('Area Postfix', 'ns-real-estate'),
 				'name' => 'ns_property_area_postfix',
 				'description' => esc_html__('Provide the text to display directly after the area (ex. - Sq Ft)', 'ns-real-estate'),
 				'type' => 'text',
+				'order' => 9,
 			),
 		);
 		$property_settings_init = apply_filters( 'ns_real_estate_property_settings_init_filter', $property_settings_init);
-		
+		uasort($property_settings_init, 'ns_basics_sort_by_order');
+
 		// Return default settings
 		if($return_defaults == true) {
 			
