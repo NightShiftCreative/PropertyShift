@@ -169,17 +169,17 @@ class NS_Real_Estate_Properties {
 			),
 			'description' => array(
 				'group' => 'description',
-				'title' => esc_html__('Property Description', 'ns-real-estate'),
 				'name' => 'ns_property_description',
 				'type' => 'editor',
 				'order' => 10,
+				'class' => 'full-width no-padding',
 			),
 			'gallery' => array(
 				'group' => 'gallery',
-				'title' => esc_html__('Gallery', 'ns-real-estate'),
 				'name' => 'ns_additional_img',
 				'type' => 'gallery',
 				'order' => 11,
+				'class' => 'full-width no-padding',
 			),
 		);
 		$property_settings_init = apply_filters( 'ns_real_estate_property_settings_init_filter', $property_settings_init);
