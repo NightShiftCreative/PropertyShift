@@ -89,6 +89,7 @@ class NS_Real_Estate_Properties {
 	public function load_property_settings($post_id, $return_defaults = false) {
 		$property_settings_init = array(
 			'featured' => array(
+				'group' => 'general',
 				'title' => esc_html__('Featured Property', 'ns-real-estate'),
 				'name' => 'ns_property_featured',
 				'type' => 'checkbox',
@@ -96,6 +97,7 @@ class NS_Real_Estate_Properties {
 				'order' => 1,
 			),
 			'street_address' => array(
+				'group' => 'general',
 				'title' => esc_html__('Street Address', 'ns-real-estate'),
 				'name' => 'ns_property_address',
 				'description' => esc_html__('Provide the address for the property', 'ns-real-estate'),
@@ -103,6 +105,7 @@ class NS_Real_Estate_Properties {
 				'order' => 2,
 			),
 			'price' => array(
+				'group' => 'general',
 				'title' => esc_html__('Price', 'ns-real-estate'),
 				'name' => 'ns_property_price',
 				'description' => esc_html__('Use only numbers. Do not include commas or dollar sign (ex.- 250000)', 'ns-real-estate'),
@@ -111,6 +114,7 @@ class NS_Real_Estate_Properties {
 				'order' => 3,
 			),
 			'price_postfix' => array(
+				'group' => 'general',
 				'title' => esc_html__('Price Postfix', 'ns-real-estate'),
 				'name' => 'ns_property_price_postfix',
 				'description' => esc_html__('Provide the text displayed after the price (ex.- Per Month)', 'ns-real-estate'),
@@ -118,6 +122,7 @@ class NS_Real_Estate_Properties {
 				'order' => 4,
 			),
 			'beds' => array(
+				'group' => 'general',
 				'title' => esc_html__('Bedrooms', 'ns-real-estate'),
 				'name' => 'ns_property_bedrooms',
 				'description' => esc_html__('Provide the number of bedrooms', 'ns-real-estate'),
@@ -126,6 +131,7 @@ class NS_Real_Estate_Properties {
 				'order' => 5,
 			),
 			'baths' => array(
+				'group' => 'general',
 				'title' => esc_html__('Bathrooms', 'ns-real-estate'),
 				'name' => 'ns_property_bathrooms',
 				'description' => esc_html__('Provide the number of bathrooms', 'ns-real-estate'),
@@ -135,6 +141,7 @@ class NS_Real_Estate_Properties {
 				'order' => 6,
 			),
 			'garages' => array(
+				'group' => 'general',
 				'title' => esc_html__('Garages', 'ns-real-estate'),
 				'name' => 'ns_property_garages',
 				'description' => esc_html__('Provide the number of garages', 'ns-real-estate'),
@@ -143,6 +150,7 @@ class NS_Real_Estate_Properties {
 				'order' => 7,
 			),
 			'area' => array(
+				'group' => 'general',
 				'title' => esc_html__('Area', 'ns-real-estate'),
 				'name' => 'ns_property_area',
 				'description' => esc_html__('Provide the area. Use only numbers and decimals, do not include commas.', 'ns-real-estate'),
@@ -152,11 +160,26 @@ class NS_Real_Estate_Properties {
 				'order' => 8,
 			),
 			'area_postfix' => array(
+				'group' => 'general',
 				'title' => esc_html__('Area Postfix', 'ns-real-estate'),
 				'name' => 'ns_property_area_postfix',
 				'description' => esc_html__('Provide the text to display directly after the area (ex. - Sq Ft)', 'ns-real-estate'),
 				'type' => 'text',
 				'order' => 9,
+			),
+			'description' => array(
+				'group' => 'description',
+				'title' => esc_html__('Property Description', 'ns-real-estate'),
+				'name' => 'ns_property_description',
+				'type' => 'editor',
+				'order' => 10,
+			),
+			'gallery' => array(
+				'group' => 'gallery',
+				'title' => esc_html__('Gallery', 'ns-real-estate'),
+				'name' => 'ns_additional_img',
+				'type' => 'gallery',
+				'order' => 11,
 			),
 		);
 		$property_settings_init = apply_filters( 'ns_real_estate_property_settings_init_filter', $property_settings_init);
@@ -204,16 +227,37 @@ class NS_Real_Estate_Properties {
 	        <div id="general" class="tab-content">
 	            <h3><?php echo esc_html_e('General Info', 'ns-real-estate'); ?></h3>
 	            <?php
-	            $this->admin_obj->build_admin_field($property_settings['featured']);
-	            $this->admin_obj->build_admin_field($property_settings['street_address']);
-	            $this->admin_obj->build_admin_field($property_settings['price']);
-	            $this->admin_obj->build_admin_field($property_settings['price_postfix']);
-	            $this->admin_obj->build_admin_field($property_settings['beds']);
-	            $this->admin_obj->build_admin_field($property_settings['baths']);
-	            $this->admin_obj->build_admin_field($property_settings['garages']);
-	            $this->admin_obj->build_admin_field($property_settings['area']);
-	            $this->admin_obj->build_admin_field($property_settings['area_postfix']);
-	            ?>
+	            foreach($property_settings as $setting) {
+	            	if($setting['group'] == 'general') {
+            			$this->admin_obj->build_admin_field($setting);
+            		}
+	            } ?>
+	        </div>
+
+	        <!--*************************************************-->
+	        <!-- DESCRIPTION -->
+	        <!--*************************************************-->
+	        <div id="description" class="tab-content">
+	            <h3><?php echo esc_html_e('Description', 'ns-real-estate'); ?></h3>
+	            <?php
+	            foreach($property_settings as $setting) {
+	            	if($setting['group'] == 'description') {
+            			$this->admin_obj->build_admin_field($setting);
+            		}
+	            } ?>
+	        </div>
+
+	        <!--*************************************************-->
+	        <!-- GALLERY -->
+	        <!--*************************************************-->
+	        <div id="gallery" class="tab-content">
+	            <h3><?php echo esc_html_e('Gallery', 'ns-real-estate'); ?></h3>
+	            <?php
+	            foreach($property_settings as $setting) {
+	            	if($setting['group'] == 'gallery') {
+            			$this->admin_obj->build_admin_field($setting);
+            		}
+	            } ?>
 	        </div>
 
         	</div><!-- end ns-tabs-content -->
