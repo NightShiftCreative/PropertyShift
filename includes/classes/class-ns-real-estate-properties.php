@@ -89,15 +89,28 @@ class NS_Real_Estate_Properties {
 	public function load_property_settings($post_id, $return_defaults = false) {
 		$property_settings_init = array(
 			'featured' => array(
-				'title' => esc_html__('Featured Property', 'ns-basics'),
+				'title' => esc_html__('Featured Property', 'ns-real-estate'),
 				'name' => 'ns_property_featured',
 				'type' => 'checkbox',
 				'value' => 'false',
 			),
 			'street_address' => array(
-				'title' => esc_html__('Street Address', 'ns-basics'),
+				'title' => esc_html__('Street Address', 'ns-real-estate'),
 				'name' => 'ns_property_address',
 				'description' => esc_html__('Provide the address for the property', 'ns-real-estate'),
+				'type' => 'text',
+			),
+			'price' => array(
+				'title' => esc_html__('Price', 'ns-real-estate'),
+				'name' => 'ns_property_price',
+				'description' => esc_html__('Use only numbers. Do not include commas or dollar sign (ex.- 250000)', 'ns-real-estate'),
+				'type' => 'number',
+				'min' => 0,
+			),
+			'price_postfix' => array(
+				'title' => esc_html__('Price Postfix', 'ns-real-estate'),
+				'name' => 'ns_property_price_postfix',
+				'description' => esc_html__('Provide the text displayed after the price (ex.- Per Month)', 'ns-real-estate'),
 				'type' => 'text',
 			),
 		);
@@ -147,6 +160,8 @@ class NS_Real_Estate_Properties {
 	            <?php
 	            $this->admin_obj->build_admin_field($property_settings['featured']);
 	            $this->admin_obj->build_admin_field($property_settings['street_address']);
+	            $this->admin_obj->build_admin_field($property_settings['price']);
+	            $this->admin_obj->build_admin_field($property_settings['price_postfix']);
 	            ?>
 	        </div>
 
