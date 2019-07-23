@@ -89,7 +89,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 			'ns_real_estate_default_map_zoom' => array('value' => 10),
 			'ns_real_estate_default_map_latitude' => array('value' => 39.2904),
 			'ns_real_estate_default_map_longitude' => array('value' => -76.5000),
-			'ns_real_estate_google_maps_pin' => array('value' => ''),
+			'ns_real_estate_google_maps_pin' => array('value' => NS_REAL_ESTATE_DIR.'/images/pin.png'),
 			'ns_members_my_properties_page' => array('value' => ''),
 			'ns_members_submit_property_page' => array('value' => ''),
 			'ns_members_submit_property_approval' => array('value' => 'true'),

@@ -18,6 +18,9 @@ class NS_Real_Estate_Properties {
 		$this->admin_obj = new NS_Real_Estate_Admin();
         $settings_init = $this->admin_obj->load_settings();
         $this->global_settings = $this->admin_obj->get_settings($settings_init);
+
+        // Load maps object
+        $this->maps = new NS_Real_Estate_Maps();
 	}
 
 	/**
@@ -368,7 +371,10 @@ class NS_Real_Estate_Properties {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } 
-	            include(plugin_dir_path( __FILE__ ) . 'admin_map.php'); ?>
+	            //include(plugin_dir_path( __FILE__ ) . 'admin_map.php'); 
+
+	            $this->maps->admin_map();
+	            ?>
 	        </div>
 
 	        <!--*************************************************-->

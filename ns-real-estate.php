@@ -214,6 +214,7 @@ class NS_Real_Estate {
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-properties.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-property-custom-fields.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-agents.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-maps.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-license-keys.php');
 
 		// Setup the admin
@@ -231,6 +232,9 @@ class NS_Real_Estate {
 
 		// Load agents class
 		$this->agents = new NS_Real_Estate_Agents();
+
+		// Load maps class
+		$this->maps = new NS_Real_Estate_Maps();
 
 		// Load license keys class
 		$this->license_keys = new NS_Real_Estate_License_Keys();
