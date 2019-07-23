@@ -204,6 +204,67 @@ class NS_Real_Estate_Properties {
 				'type' => 'text',
 				'order' => 14,
 			),
+			'video_url' => array(
+				'group' => 'video',
+				'title' => esc_html__('Video URL', 'ns-real-estate'),
+				'name' => 'ns_property_video_url',
+				'type' => 'text',
+				'order' => 15,
+			),
+			'video_cover' => array(
+				'group' => 'video',
+				'title' => esc_html__('Video Cover Image', 'ns-real-estate'),
+				'name' => 'ns_property_video_img',
+				'type' => 'image_upload',
+				'order' => 16,
+			),
+			'owner_display' => array(
+				'group' => 'owner_info',
+				'title' => esc_html__('What to display for owner information?', 'ns-real-estate'),
+				'name' => 'ns_agent_display',
+				'type' => 'radio_image',
+				'class' => 'full-width',
+				'order' => 17,
+				'value' => 'none',
+				'options' => array(
+					esc_html__('None', 'ns-real-estate') => array('value' => 'none'),
+					esc_html__('Author Info', 'ns-real-estate') => array('value' => 'author'),
+					esc_html__('Agent Info', 'ns-real-estate') => array('value' => 'agent'),
+					esc_html__('Custom Info', 'ns-real-estate') => array('value' => 'custom'),
+				),
+				'children' => array(
+					'agent' => array(
+						'title' => esc_html__('Select Agent', 'ns-real-estate'),
+						'name' => 'ns_agent_select',
+						'type' => 'select',
+						'parent_val' => 'agent',
+					),
+					'owner_custom_name' => array(
+						'title' => esc_html__('Custom Name', 'ns-real-estate'),
+						'name' => 'ns_agent_custom_name',
+						'type' => 'text',
+						'parent_val' => 'custom',
+					),
+					'owner_custom_email' => array(
+						'title' => esc_html__('Custom Email', 'ns-real-estate'),
+						'name' => 'ns_agent_custom_email',
+						'type' => 'text',
+						'parent_val' => 'custom',
+					),
+					'owner_custom_phone' => array(
+						'title' => esc_html__('Custom Phone', 'ns-real-estate'),
+						'name' => 'ns_agent_custom_phone',
+						'type' => 'text',
+						'parent_val' => 'custom',
+					),
+					'owner_custom_url' => array(
+						'title' => esc_html__('Custom Website', 'ns-real-estate'),
+						'name' => 'ns_agent_custom_url',
+						'type' => 'text',
+						'parent_val' => 'custom',
+					),
+				),
+			),
 		);
 		$property_settings_init = apply_filters( 'ns_real_estate_property_settings_init_filter', $property_settings_init);
 		uasort($property_settings_init, 'ns_basics_sort_by_order');
@@ -304,6 +365,33 @@ class NS_Real_Estate_Properties {
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'map') {
+            			$this->admin_obj->build_admin_field($setting);
+            		}
+	            } 
+	            include(plugin_dir_path( __FILE__ ) . 'admin_map.php'); ?>
+	        </div>
+
+	        <!--*************************************************-->
+	        <!-- VIDEO -->
+	        <!--*************************************************-->
+	        <div id="video" class="tab-content">
+	            <h3><?php echo esc_html_e('Video', 'ns-real-estate'); ?></h3>
+	            <?php
+	            foreach($property_settings as $setting) {
+	            	if($setting['group'] == 'video') {
+            			$this->admin_obj->build_admin_field($setting);
+            		}
+	            } ?>
+	        </div>
+
+	        <!--*************************************************-->
+	        <!-- OWNER INFO -->
+	        <!--*************************************************-->
+	        <div id="agent" class="tab-content">
+	            <h3><?php echo esc_html_e('Owner Info', 'ns-real-estate'); ?></h3>
+	            <?php
+	            foreach($property_settings as $setting) {
+	            	if($setting['group'] == 'owner_info') {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } ?>
