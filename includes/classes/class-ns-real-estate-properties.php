@@ -36,6 +36,8 @@ class NS_Real_Estate_Properties {
 		add_action( 'manage_ns-property_posts_custom_column', array( $this, 'manage_properties_columns' ), 10, 2 );
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_box'));
 		add_action( 'save_post', array( $this, 'save_meta_box'));
+		add_filter( 'ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
+		add_action( 'widgets_init', array( $this, 'properties_sidebar_init'));
 	}
 
 	/**
@@ -739,6 +741,16 @@ class NS_Real_Estate_Properties {
 	/************************************************************************/
 	
 	/**
+	 *	Add page settings meta box
+	 *
+	 * @param array $post_types
+	 */
+	public function add_page_settings_meta_box($post_types) {
+		$post_types[] = 'ns-property';
+    	return $post_types;
+	}
+
+	/**
 	 *	Add page settings
 	 *
 	 * @param array $page_settings_init
@@ -775,6 +787,12 @@ class NS_Real_Estate_Properties {
 				),
 			),
 		);
+
+		// Set default page layout
+		if($_GET['post_type'] == 'ns-property') { $page_settings_init['page_layout']['value'] = 'right sidebar'; }
+			
+		// Set default page sidebar
+		if($_GET['post_type'] == 'ns-property') { $page_settings_init['page_layout_widget_area']['value'] = 'properties_sidebar'; }
 
 		return $page_settings_init;
 	}
@@ -903,6 +921,24 @@ class NS_Real_Estate_Properties {
 	    );
 	    $property_submit_fields_init = apply_filters( 'ns_real_estate_property_submit_fields_init_filter', $property_submit_fields_init);
 	    return $property_submit_fields_init;
+	}
+
+	/************************************************************************/
+	// Register Widget Areas
+	/************************************************************************/
+
+	/**
+	 *	Register properties sidebar
+	 */
+	public static function properties_sidebar_init() {
+		register_sidebar( array(
+	        'name' => esc_html__( 'Properties Sidebar', 'ns-real-estate' ),
+	        'id' => 'properties_sidebar',
+	        'before_widget' => '<div class="widget widget-sidebar widget-sidebar-properties %2$s">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h4>',
+	        'after_title' => '</h4>',
+	    ));
 	}
 
 }
