@@ -17,7 +17,6 @@
 /* CUSTOM FIELDS */
 .custom-fields-container .custom-field-item { width:100%; transition:all 0.4s; border-collapse: separate; }
 .custom-fields-container .custom-field-item.sortable-item { padding:10px 12px; margin-bottom:15px; }
-.admin-module-custom-fields > label { font-size:16px; margin-bottom:10px; }
 .custom-fields-container .custom-field-item label { cursor:move; }
 .custom-fields-container .custom-field-item input[type="text"] { margin:0; }
 .custom-fields-container .custom-field-item .edit-custom-field-form { margin-top:15px; }
@@ -32,13 +31,6 @@
 .custom-fields-container .custom-field-item .delete-custom-field-select { margin-left:5px; cursor:pointer; }
 .custom-fields-container .custom-field-item .admin-module-select-options > label { margin-bottom:0; }
 .custom-fields-container .custom-field-item .admin-module-select-options p { margin:5px 0px; }
-
-.admin-module-custom-fields-property .custom-fields-container { margin-top:13px; }
-.admin-module-custom-fields-property .custom-field-item { margin-bottom:4px; }
-.admin-module-custom-fields-property .custom-field-item label { cursor:auto; width:20%; display:inline-block; }
-.admin-module-custom-fields-property .custom-fields-container .custom-field-item input,
-.admin-module-custom-fields-property .custom-fields-container .custom-field-item select,
-.admin-module-custom-fields-property .custom-fields-container .custom-field-item .chosen-container { width:80% !important; float:right; margin:0; }
 
 .select-filter-custom-field { width:300px; }
 

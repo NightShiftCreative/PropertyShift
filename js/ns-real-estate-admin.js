@@ -147,7 +147,7 @@ jQuery(document).ready(function($) {
     /********************************************/
     function customFieldExists(fieldValue) {
         var existingFields = [];
-        $('.admin-module-custom-fields-theme-options .custom-fields-container .custom-field-item').each(function(index) {
+        $('.admin-module-custom-fields .custom-fields-container .custom-field-item').each(function(index) {
             var existingFieldValue = $(this).find('.custom-field-name-input').val();
             existingFields.push(existingFieldValue);
         });
@@ -188,7 +188,7 @@ jQuery(document).ready(function($) {
                                     <td class="admin-module-field"> \
                                         <select name="ns_property_custom_fields['+count+'][type]"> \
                                             <option value="text">'+ns_real_estate_local_script.text_input_text+'</option> \
-                                            <option value="num">'+ns_real_estate_local_script.num_input_text+'</option> \
+                                            <option value="number">'+ns_real_estate_local_script.num_input_text+'</option> \
                                             <option value="select">'+ns_real_estate_local_script.select_text+'</option> \
                                         </select> \
                                     </td> \

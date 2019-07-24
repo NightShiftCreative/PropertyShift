@@ -266,7 +266,7 @@ class NS_Real_Estate_Properties {
 				),
 			),
 		);
-		$property_settings_init = apply_filters( 'ns_real_estate_property_settings_init_filter', $property_settings_init);
+		$property_settings_init = apply_filters( 'ns_real_estate_property_settings_init_filter', $property_settings_init, $post_id);
 		uasort($property_settings_init, 'ns_basics_sort_by_order');
 
 		// Return default settings
@@ -285,7 +285,7 @@ class NS_Real_Estate_Properties {
 	/**
 	 *	Output meta box interface
 	 */
-	public function output_meta_box($post) { 
+	public function output_meta_box($post) {
 
 		$property_settings = $this->load_property_settings($post->ID); 
 		wp_nonce_field( 'ns_property_details_meta_box_nonce', 'ns_property_details_meta_box_nonce' );?>

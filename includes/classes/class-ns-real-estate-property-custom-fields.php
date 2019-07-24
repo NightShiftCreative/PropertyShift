@@ -21,8 +21,10 @@ class NS_Real_Estate_Property_Custom_Fields {
 		add_filter('ns_basics_admin_field_types', array( $this, 'add_custom_fields_type' ));
 		add_filter('ns_real_estate_settings_init_filter', array( $this, 'add_settings' ));
 		add_action('ns_real_estate_after_property_settings', array( $this, 'output_field_builder'));
-		add_filter('ns_real_estate_property_submit_fields_init_filter', array( $this, 'add_property_submit_fields' ));
 		add_action('wp_ajax_ns_real_estate_delete_custom_field', array( $this, 'delete_custom_field' ));
+		add_filter('ns_real_estate_property_submit_fields_init_filter', array( $this, 'add_property_submit_fields' ));
+		add_filter('ns_real_estate_property_settings_init_filter', array( $this, 'add_property_settings_fields'), 10, 2);		
+		add_action('ns_basics_save_meta_box_ns-property', array( $this, 'save_property_settings_fields' ));
 
 		// Get global settings
 		$this->admin_obj = new NS_Real_Estate_Admin();
@@ -31,7 +33,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 	}
 
 	/************************************************************************/
-	// Admin
+	// Global Settings
 	/************************************************************************/
 
 	/**
@@ -81,7 +83,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 										'type' => 'select',
 										'class' => 'custom-field-type-select',
 										'value' => $custom_field['type'],
-										'options' => array(esc_html__('Text Input', 'ns-real-estate') => 'text', esc_html__('Number Input', 'ns-real-estate') => 'num', esc_html__('Select Dropdown', 'ns-real-estate') => 'select'),
+										'options' => array(esc_html__('Text Input', 'ns-real-estate') => 'text', esc_html__('Number Input', 'ns-real-estate') => 'number', esc_html__('Select Dropdown', 'ns-real-estate') => 'select'),
 									);
 									$this->admin_obj->build_admin_field($custom_field_type_field);
 									?>
@@ -159,6 +161,11 @@ class NS_Real_Estate_Property_Custom_Fields {
     	die();
 	}
 
+
+	/************************************************************************/
+	// Property Submit Custom Fields
+	/************************************************************************/
+
 	/**
 	 *	Add Custom Fields to property submit
 	 *
@@ -172,13 +179,49 @@ class NS_Real_Estate_Property_Custom_Fields {
 		return $property_submit_fields_init;
 	}
 
+
+	/************************************************************************/
+	// Property Settings Custom Fields
+	/************************************************************************/
+
 	/**
-	 *	Add Custom Fields to property edit
+	 *	Add Custom Fields to property settings
 	 *
-	 * @param array $settings_init
+	 * @param array $property_settings_init
 	 */
-	public function add_property_edit_fields() {
+	public function add_property_settings_fields($property_settings_init, $post_id) {
+		$custom_fields = get_option('ns_property_custom_fields');
+		if(!empty($custom_fields)) { 
+			$count = 0;
+			foreach($custom_fields as $custom_field) {
+				$property_settings_init[$custom_field['id']] = array(
+					'group' => 'general',
+					'title' => $custom_field['name'],
+					'name' => 'ns_property_custom_fields['.$count.'][value]',
+					'type' => $custom_field['type'],
+					'value' => get_post_meta($post_id, 'ns_property_custom_field_'.$custom_field['id'], true),
+					'postfix' => '<input type="hidden" name="ns_property_custom_fields['.$count.'][key]" value="ns_property_custom_field_'.$custom_field['id'].'" />',
+					'order' => 15,
+				);
+				$count++; ?>
+			<?php }
+		}
+		return $property_settings_init;
 	}
+
+	/**
+	 *	Save property settings custom fields
+	 *
+	 * @param int $post_id
+	 */
+	public function save_property_settings_fields($post_id) {
+		if (isset( $_POST['ns_property_custom_fields'] )) {
+	        $property_custom_fields = $_POST['ns_property_custom_fields'];
+	        foreach($property_custom_fields as $custom_field) {
+	            update_post_meta( $post_id, $custom_field['key'], $custom_field['value'] );
+	        }
+	    }
+	}	
 
 }
 
