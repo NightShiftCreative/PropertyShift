@@ -628,58 +628,24 @@ class NS_Real_Estate_Properties {
 	        case 'location' :
 
 	            //Get property location
-	            $property_location_terms = get_the_terms( $post_id, 'property_location' );
-	            if ( $property_location_terms && ! is_wp_error( $property_location_terms) ) : 
-	                $property_location_links = array();
-	                foreach ( $property_location_terms as $property_location_term ) {
-	                    $property_location_links[] = $property_location_term ->name;
-	                }                   
-	                $property_location = join( ", ", $property_location_links );
-	            endif;
-
-	            if ( empty( $property_location ) )
-	                echo '--';
-	            else
-	                echo $property_location;
+	          	$property_location = $this->get_tax($post_id, 'property_location');
+	            if(empty($property_location)) { echo '--'; } else { echo $property_location; }
 	            break;
 
 	        case 'type' :
 
 	            //Get property type
-	               $property_type_terms = get_the_terms( $post_id, 'property_type' );
-	               if ( $property_type_terms && ! is_wp_error( $property_type_terms) ) : 
-	                   $property_type_links = array();
-	                   foreach ( $property_type_terms as $property_type_term ) {
-	                       $property_type_links[] = $property_type_term ->name;
-	                   }                   
-	                   $property_type = join( ", ", $property_type_links );
-	               endif;
-
-	               if ( empty( $property_type ) )
-	                    echo '--';
-	                else
-	                    echo $property_type;
-	                break;
+	        	$property_type = $this->get_tax($post_id, 'property_type');
+	            if(empty( $property_type)) { echo '--'; } else { echo $property_type; }
+	            break;
 
 	        case 'status' :
 
-	                //Get property status
-	                $property_status_terms = get_the_terms( $post_id, 'property_status' );
-	                if ( $property_status_terms && ! is_wp_error( $property_status_terms) ) : 
-	                    $property_status_links = array();
-	                    foreach ( $property_status_terms as $property_status_term ) {
-	                        $property_status_links[] = $property_status_term ->name;
-	                    }                   
-	                    $property_status = join( ", ", $property_status_links );
-	                endif;
+	            //Get property status
+	        	$property_status = $this->get_tax($post_id, 'property_status');
+	            if(empty($property_status)) { echo '--'; } else { echo $property_status; }
+	            break;
 
-	                if ( empty( $property_status ) )
-	                    echo '--';
-	                else
-	                    echo $property_status;
-	                break;
-
-	        /* Just break out of the switch statement for everything else. */
 	        default :
 	            break;
 	    }
@@ -741,6 +707,30 @@ class NS_Real_Estate_Properties {
 
     	if(!empty($area)) { $area = number_format($area, $decimal_num_area, $decimal_area, $thousand_area); }
     	return $area;
+	}
+
+	/**
+	 *	Get property taxonomy
+	 *
+	 * @param int $post_id
+	 * @param string $tax
+	 * @param string $array
+	 */
+	public function get_tax($post_id, $tax, $array = null) {
+		$output = '';
+	    $tax_terms = get_the_terms($post_id, $tax);
+	    if($tax_terms && ! is_wp_error($tax_terms)) : 
+	        $term_links = array();
+	        foreach ($tax_terms as $term) {
+	            if($array == 'true') {
+	                $term_links[] = $term->slug;
+	            } else {
+	                $term_links[] = '<a href="'. esc_attr(get_term_link($term->slug, $tax)) .'">'.$term->name.'</a>' ;
+	            }
+	        }                   
+	        if($array == 'true') { $output = $term_links;  } else { $output = join( ", ", $term_links); }
+	    endif;
+	    return $output;
 	}
 
 
