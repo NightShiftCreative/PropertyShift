@@ -28,6 +28,10 @@ class NS_Real_Estate_Properties {
 		add_action( 'ns_basics_page_settings_init_filter', array( $this, 'add_page_settings' ));
 		$this->add_image_sizes();
 		add_action( 'init', array( $this, 'add_custom_post_type' ));
+		add_action( 'init', array( $this, 'property_type_init' ));
+		add_action( 'init', array( $this, 'property_status_init' ));
+		add_action( 'init', array( $this, 'property_location_init' ));
+		add_action( 'init', array( $this, 'property_amenities_init' ));
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_box'));
 		add_action( 'save_post', array( $this, 'save_meta_box'));
 	}
@@ -225,6 +229,7 @@ class NS_Real_Estate_Properties {
 				'title' => esc_html__('Video Cover Image', 'ns-real-estate'),
 				'name' => 'ns_property_video_img',
 				'type' => 'image_upload',
+				'display_img' => true,
 				'order' => 16,
 			),
 			'owner_display' => array(
@@ -436,6 +441,142 @@ class NS_Real_Estate_Properties {
         // Load property settings and save
         $property_settings = $this->load_property_settings($post_id);
         $this->admin_obj->save_meta_box($post_id, $property_settings, $allowed);
+	}
+
+	/************************************************************************/
+	// Property Taxonomies
+	/************************************************************************/
+
+	/**
+	 *	Register property type taxonomy
+	 */
+	public function property_type_init() {
+		$property_type_tax_slug = $this->global_settings['ns_property_type_tax_slug'];
+	    $labels = array(
+	    'name'                          => __( 'Property Type', 'ns-real-estate' ),
+	    'singular_name'                 => __( 'Property Type', 'ns-real-estate' ),
+	    'search_items'                  => __( 'Search Property Types', 'ns-real-estate' ),
+	    'popular_items'                 => __( 'Popular Property Types', 'ns-real-estate' ),
+	    'all_items'                     => __( 'All Property Types', 'ns-real-estate' ),
+	    'parent_item'                   => __( 'Parent Property Type', 'ns-real-estate' ),
+	    'edit_item'                     => __( 'Edit Property Type', 'ns-real-estate' ),
+	    'update_item'                   => __( 'Update Property Type', 'ns-real-estate' ),
+	    'add_new_item'                  => __( 'Add New Property Type', 'ns-real-estate' ),
+	    'new_item_name'                 => __( 'New Property Type', 'ns-real-estate' ),
+	    'separate_items_with_commas'    => __( 'Separate property types with commas', 'ns-real-estate' ),
+	    'add_or_remove_items'           => __( 'Add or remove property types', 'ns-real-estate' ),
+	    'choose_from_most_used'         => __( 'Choose from most used property types', 'ns-real-estate' )
+	    );
+	    
+	    register_taxonomy(
+	        'property_type',
+	        'ns-property',
+	        array(
+	            'label'         => __( 'Property Types', 'ns-real-estate' ),
+	            'labels'        => $labels,
+	            'hierarchical'  => true,
+	            'rewrite' => array( 'slug' => $property_type_tax_slug )
+	        )
+	    );
+	}
+
+	/**
+	 *	Register property status taxonomy
+	 */
+	public function property_status_init() {
+		$property_status_tax_slug = $this->global_settings['ns_property_status_tax_slug'];
+	    $labels = array(
+	    'name'                          => __( 'Property Status', 'ns-real-estate' ),
+	    'singular_name'                 => __( 'Property Status', 'ns-real-estate' ),
+	    'search_items'                  => __( 'Search Property Statuses', 'ns-real-estate' ),
+	    'popular_items'                 => __( 'Popular Property Statuses', 'ns-real-estate' ),
+	    'all_items'                     => __( 'All Property Statuses', 'ns-real-estate' ),
+	    'parent_item'                   => __( 'Parent Property Status', 'ns-real-estate' ),
+	    'edit_item'                     => __( 'Edit Property Status', 'ns-real-estate' ),
+	    'update_item'                   => __( 'Update Property Status', 'ns-real-estate' ),
+	    'add_new_item'                  => __( 'Add New Property Status', 'ns-real-estate' ),
+	    'new_item_name'                 => __( 'New Property Status', 'ns-real-estate' ),
+	    'separate_items_with_commas'    => __( 'Separate property statuses with commas', 'ns-real-estate' ),
+	    'add_or_remove_items'           => __( 'Add or remove property statuses', 'ns-real-estate' ),
+	    'choose_from_most_used'         => __( 'Choose from most used property statuses', 'ns-real-estate' )
+	    );
+	    
+	    register_taxonomy(
+	        'property_status',
+	        'ns-property',
+	        array(
+	            'label'         => __( 'Property Status', 'ns-real-estate' ),
+	            'labels'        => $labels,
+	            'hierarchical'  => true,
+	            'rewrite' => array( 'slug' => $property_status_tax_slug )
+	        )
+	    );
+	}
+
+	/**
+	 *	Register property location taxonomy
+	 */
+	public function property_location_init() {
+		$property_location_tax_slug = $this->global_settings['ns_property_location_tax_slug'];
+	    $labels = array(
+	    'name'                          => __( 'Property Location', 'ns-real-estate' ),
+	    'singular_name'                 => __( 'Property Location', 'ns-real-estate' ),
+	    'search_items'                  => __( 'Search Property Locations', 'ns-real-estate' ),
+	    'popular_items'                 => __( 'Popular Property Locations', 'ns-real-estate' ),
+	    'all_items'                     => __( 'All Property Locations', 'ns-real-estate' ),
+	    'parent_item'                   => __( 'Parent Property Location', 'ns-real-estate' ),
+	    'edit_item'                     => __( 'Edit Property Location', 'ns-real-estate' ),
+	    'update_item'                   => __( 'Update Property Location', 'ns-real-estate' ),
+	    'add_new_item'                  => __( 'Add New Property Location', 'ns-real-estate' ),
+	    'new_item_name'                 => __( 'New Property Location', 'ns-real-estate' ),
+	    'separate_items_with_commas'    => __( 'Separate property locations with commas', 'ns-real-estate' ),
+	    'add_or_remove_items'           => __( 'Add or remove property locations', 'ns-real-estate' ),
+	    'choose_from_most_used'         => __( 'Choose from most used property locations', 'ns-real-estate' )
+	    );
+	    
+	    register_taxonomy(
+	        'property_location',
+	        'ns-property',
+	        array(
+	            'label'         => __( 'Property Location', 'ns-real-estate' ),
+	            'labels'        => $labels,
+	            'hierarchical'  => true,
+	            'rewrite' => array( 'slug' => $property_location_tax_slug )
+	        )
+	    );
+	}
+
+	/**
+	 *	Register property amenities taxonomy
+	 */
+	public function property_amenities_init() {
+		$property_amenities_tax_slug = $this->global_settings['ns_property_amenities_tax_slug'];
+	    $labels = array(
+	    'name'                          => __( 'Amenities', 'ns-real-estate' ),
+	    'singular_name'                 => __( 'Amenity', 'ns-real-estate' ),
+	    'search_items'                  => __( 'Search Amenities', 'ns-real-estate' ),
+	    'popular_items'                 => __( 'Popular Amenities', 'ns-real-estate' ),
+	    'all_items'                     => __( 'All Amenities', 'ns-real-estate' ),
+	    'parent_item'                   => __( 'Parent Amenity', 'ns-real-estate' ),
+	    'edit_item'                     => __( 'Edit Amenity', 'ns-real-estate' ),
+	    'update_item'                   => __( 'Update Amenity', 'ns-real-estate' ),
+	    'add_new_item'                  => __( 'Add New Amenity', 'ns-real-estate' ),
+	    'new_item_name'                 => __( 'New Amenity', 'ns-real-estate' ),
+	    'separate_items_with_commas'    => __( 'Separate amenities with commas', 'ns-real-estate' ),
+	    'add_or_remove_items'           => __( 'Add or remove amenities', 'ns-real-estate' ),
+	    'choose_from_most_used'         => __( 'Choose from most used amenities', 'ns-real-estate' )
+	    );
+	    
+	    register_taxonomy(
+	        'property_amenities',
+	        'ns-property',
+	        array(
+	            'label'         => __( 'Amenities', 'ns-real-estate' ),
+	            'labels'        => $labels,
+	            'hierarchical'  => true,
+	            'rewrite' => array( 'slug' => $property_amenities_tax_slug )
+	        )
+	    );
 	}
 
 
