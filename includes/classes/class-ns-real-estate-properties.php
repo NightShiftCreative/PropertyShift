@@ -32,6 +32,8 @@ class NS_Real_Estate_Properties {
 		add_action( 'init', array( $this, 'property_status_init' ));
 		add_action( 'init', array( $this, 'property_location_init' ));
 		add_action( 'init', array( $this, 'property_amenities_init' ));
+		add_filter( 'manage_edit-ns-property_columns', array( $this, 'add_properties_columns' ));
+		add_action( 'manage_ns-property_posts_custom_column', array( $this, 'manage_properties_columns' ), 10, 2 );
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_box'));
 		add_action( 'save_post', array( $this, 'save_meta_box'));
 	}
@@ -579,6 +581,110 @@ class NS_Real_Estate_Properties {
 	    );
 	}
 
+	/************************************************************************/
+	// Add Columns to Properties Post Type
+	/************************************************************************/
+
+	/**
+	 *	Add properties columns
+	 *
+	 * @param array $columns
+	 *
+	 */
+	public function add_properties_columns($columns) {
+		$columns = array(
+	        'cb' => '<input type="checkbox" />',
+	        'title' => __( 'Property', 'ns-real-estate' ),
+	        'thumbnail' => __('Image', 'ns-real-estate'),
+	        'location' => __( 'Location', 'ns-real-estate' ),
+	        'type' => __( 'Type', 'ns-real-estate' ),
+	        'status' => __( 'Status', 'ns-real-estate' ),
+	        'price'  => __( 'Price','ns-real-estate' ),
+	        'author' => __('Author', 'ns-real-estate'),
+	        'date' => __( 'Date', 'ns-real-estate' )
+	    );
+	    return $columns;
+	}
+
+	/**
+	 *	Manage properties columns
+	 *
+	 * @param string $column
+	 * @param int $post_id 
+	 */
+	public function manage_properties_columns($column, $post_id) {
+		global $post;
+		$property_settings = $this->load_property_settings($post_id); 
+
+	    switch( $column ) {
+
+	        case 'thumbnail' :
+	            if(has_post_thumbnail()) { echo the_post_thumbnail('thumbnail'); } else { echo '--'; }
+	            break;
+	        case 'price' :
+	            $price = $property_settings['price']['value'];
+	            if(!empty($price)) { $price = $this->get_formatted_price($price); }
+	            if(empty($price)) { echo '--'; } else { echo $price; }
+	            break;
+	        case 'location' :
+
+	            //Get property location
+	            $property_location_terms = get_the_terms( $post_id, 'property_location' );
+	            if ( $property_location_terms && ! is_wp_error( $property_location_terms) ) : 
+	                $property_location_links = array();
+	                foreach ( $property_location_terms as $property_location_term ) {
+	                    $property_location_links[] = $property_location_term ->name;
+	                }                   
+	                $property_location = join( ", ", $property_location_links );
+	            endif;
+
+	            if ( empty( $property_location ) )
+	                echo '--';
+	            else
+	                echo $property_location;
+	            break;
+
+	        case 'type' :
+
+	            //Get property type
+	               $property_type_terms = get_the_terms( $post_id, 'property_type' );
+	               if ( $property_type_terms && ! is_wp_error( $property_type_terms) ) : 
+	                   $property_type_links = array();
+	                   foreach ( $property_type_terms as $property_type_term ) {
+	                       $property_type_links[] = $property_type_term ->name;
+	                   }                   
+	                   $property_type = join( ", ", $property_type_links );
+	               endif;
+
+	               if ( empty( $property_type ) )
+	                    echo '--';
+	                else
+	                    echo $property_type;
+	                break;
+
+	        case 'status' :
+
+	                //Get property status
+	                $property_status_terms = get_the_terms( $post_id, 'property_status' );
+	                if ( $property_status_terms && ! is_wp_error( $property_status_terms) ) : 
+	                    $property_status_links = array();
+	                    foreach ( $property_status_terms as $property_status_term ) {
+	                        $property_status_links[] = $property_status_term ->name;
+	                    }                   
+	                    $property_status = join( ", ", $property_status_links );
+	                endif;
+
+	                if ( empty( $property_status ) )
+	                    echo '--';
+	                else
+	                    echo $property_status;
+	                break;
+
+	        /* Just break out of the switch statement for everything else. */
+	        default :
+	            break;
+	    }
+	}
 
 	/************************************************************************/
 	// Property Utilities
