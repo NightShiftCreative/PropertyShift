@@ -21,7 +21,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 		add_filter('ns_basics_admin_field_types', array( $this, 'add_custom_fields_type' ));
 		add_filter('ns_real_estate_settings_init_filter', array( $this, 'add_settings' ));
 		add_action('ns_real_estate_after_property_settings', array( $this, 'output_field_builder'));
-		add_filter('ns_real_estate_property_submit_fields_init_filter', array( $this, 'add_propery_submit_fields' ));
+		add_filter('ns_real_estate_property_submit_fields_init_filter', array( $this, 'add_property_submit_fields' ));
 		add_action('wp_ajax_ns_real_estate_delete_custom_field', array( $this, 'delete_custom_field' ));
 
 		// Get global settings
@@ -150,13 +150,21 @@ class NS_Real_Estate_Property_Custom_Fields {
 
 	<?php }
 
+	/**
+	 *	Delete custom field
+	 */
+	public function delete_custom_field() {
+		$key = isset($_POST['key']) ? $_POST['key'] : '';
+    	delete_post_meta_by_key('ns_property_custom_field_'.$key);
+    	die();
+	}
 
 	/**
 	 *	Add Custom Fields to property submit
 	 *
-	 * @param array $settings_init
+	 * @param array $property_submit_fields_init
 	 */
-	public function add_propery_submit_fields($property_submit_fields_init) {
+	public function add_property_submit_fields($property_submit_fields_init) {
 		$custom_fields = get_option('ns_property_custom_fields');
 		foreach($custom_fields as $custom_field) {
 			$property_submit_fields_init[$custom_field['id']] = array('value' => $custom_field['name']);
@@ -165,12 +173,11 @@ class NS_Real_Estate_Property_Custom_Fields {
 	}
 
 	/**
-	 *	Delete custom field
+	 *	Add Custom Fields to property edit
+	 *
+	 * @param array $settings_init
 	 */
-	public function delete_custom_field() {
-		$key = isset($_POST['key']) ? $_POST['key'] : '';
-    	delete_post_meta_by_key('ns_property_custom_field_'.$key);
-    	die();
+	public function add_property_edit_fields() {
 	}
 
 }

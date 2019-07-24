@@ -399,6 +399,8 @@ class NS_Real_Estate_Properties {
 	            } ?>
 	        </div>
 
+	        <?php do_action('ns_real_estate_after_property_tab_content', $property_settings); ?>
+
         	</div><!-- end ns-tabs-content -->
         	<div class="clear"></div>
 
