@@ -293,7 +293,6 @@ class NS_Real_Estate_Properties {
 		// Return saved settings
 		} else {
 			$property_settings = $this->admin_obj->get_meta_box_values($post_id, $property_settings_init);
-			$property_settings = apply_filters( 'ns_real_estate_property_settings_filter', $property_settings);
 			return $property_settings;
 		}
 	}
