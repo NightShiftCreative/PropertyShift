@@ -88,6 +88,15 @@ class NS_Real_Estate_Properties {
 	 */
 	public function load_property_settings($post_id, $return_defaults = false) {
 		$property_settings_init = array(
+			'id' => array(
+				'group' => 'general',
+				'title' => esc_html__('Property Code', 'ns-real-estate'),
+				'description' => esc_html__('An optional string to used to identify properties', 'ns-real-estate'),
+				'name' => 'ns_property_code',
+				'type' => 'text',
+				'value' => $post_id,
+				'order' => 0,
+			),
 			'featured' => array(
 				'group' => 'general',
 				'title' => esc_html__('Featured Property', 'ns-real-estate'),

@@ -194,6 +194,16 @@ class NS_Real_Estate_Property_Custom_Fields {
 		if(!empty($custom_fields)) { 
 			$count = 0;
 			foreach($custom_fields as $custom_field) {
+
+				$select_options = null;
+				if($custom_field['type'] == 'select') {
+					$select_options = array();
+					$select_options[esc_html__('Select an option...', 'ns-real-estate')] = '';
+					foreach($custom_field['select_options'] as $option) {
+						$select_options[$option] = $option;
+					}
+				}
+
 				$property_settings_init[$custom_field['id']] = array(
 					'group' => 'general',
 					'title' => $custom_field['name'],
@@ -202,6 +212,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 					'value' => get_post_meta($post_id, 'ns_property_custom_field_'.$custom_field['id'], true),
 					'postfix' => '<input type="hidden" name="ns_property_custom_fields['.$count.'][key]" value="ns_property_custom_field_'.$custom_field['id'].'" />',
 					'order' => 15,
+					'options' => $select_options,
 				);
 				$count++; ?>
 			<?php }
