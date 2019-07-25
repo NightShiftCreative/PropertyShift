@@ -350,6 +350,8 @@ class NS_Real_Estate_Agents {
 	            </table>
 	        </div>
 
+	        <?php do_action('ns_real_estate_after_agent_details_tab_content', $agent_settings); ?>
+
         	</div><!-- end ns-tabs-content -->
         	<div class="clear"></div>
 	    </div><!-- end ns-tabs -->
