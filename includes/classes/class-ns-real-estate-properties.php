@@ -115,6 +115,19 @@ class NS_Real_Estate_Properties {
 	 * @param int $post_id
 	 */
 	public function load_property_settings($post_id, $return_defaults = false) {
+		
+		//get all agents
+		$agents_array = array('' => '');
+		$agent_listing_args = array('post_type' => 'ns-agent', 'posts_per_page' => -1);
+        $agent_listing_query = new WP_Query( $agent_listing_args );
+        if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post();
+        	$agents_array[get_the_title()] = get_the_ID();
+            wp_reset_postdata(); 
+        endwhile;
+    	else:
+        endif;
+
+        // settings
 		$property_settings_init = array(
 			'id' => array(
 				'group' => 'general',
@@ -275,6 +288,7 @@ class NS_Real_Estate_Properties {
 						'title' => esc_html__('Select Agent', 'ns-real-estate'),
 						'name' => 'ns_agent_select',
 						'type' => 'select',
+						'options' => $agents_array,
 						'parent_val' => 'agent',
 					),
 					'owner_custom_name' => array(
