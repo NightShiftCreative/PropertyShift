@@ -37,6 +37,7 @@ class NS_Real_Estate_Properties {
 		add_action( 'save_post', array( $this, 'save_meta_box'));
 		add_filter( 'ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
 		add_action( 'widgets_init', array( $this, 'properties_sidebar_init'));
+		add_filter( 'ns_core_after_top_bar_member_menu', array( $this, 'add_topbar_links'));
 
 		//add property type tax fields
 		add_action('property_type_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
@@ -117,15 +118,10 @@ class NS_Real_Estate_Properties {
 	public function load_property_settings($post_id, $return_defaults = false) {
 		
 		//get all agents
-		$agents_array = array('' => '');
-		$agent_listing_args = array('post_type' => 'ns-agent', 'posts_per_page' => -1);
-        $agent_listing_query = new WP_Query( $agent_listing_args );
-        if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post();
-        	$agents_array[get_the_title()] = get_the_ID();
-            wp_reset_postdata(); 
-        endwhile;
-    	else:
-        endif;
+		$agents_array = array();
+        $agents_array[esc_html__('Select an agent...', 'ns-real-estate')] = '';
+        $agent_listing_query = get_posts(array('post_type' => 'ns-agent', 'posts_per_page' => -1));
+        foreach($agent_listing_query as $agent) { $agents_array[$agent->post_title] = $agent->ID; }
 
         // settings
 		$property_settings_init = array(
@@ -1003,6 +999,19 @@ class NS_Real_Estate_Properties {
 		$property_detail_items_init = apply_filters( 'ns_real_estate_property_detail_items_init_filter', $property_detail_items_init);
 	    return $property_detail_items_init;
 	}
+
+	/**
+	 *	Add topbar links
+	 */
+	public function add_topbar_links() {
+		$icon_set = 'fa';
+		if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
+		$members_my_properties_page = $this->global_settings['ns_members_my_properties_page'];
+		$members_submit_property_page = $this->global_settings['ns_members_submit_property_page']; ?>
+		<?php if(!empty($members_my_properties_page)) { ?><li><a href="<?php echo $members_my_properties_page; ?>"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php esc_html_e( 'My Properties', 'ns-real-estate' ); ?></a></li><?php } ?>
+		<?php if(!empty($members_submit_property_page)) { ?><li><a href="<?php echo $members_submit_property_page; ?>"><?php echo ns_core_get_icon($icon_set, 'plus'); ?><?php esc_html_e( 'Submit Property', 'ns-real-estate' ); ?></a></li><?php } ?>
+	<?php }
+	
 
 	/************************************************************************/
 	// Property Submit Methods

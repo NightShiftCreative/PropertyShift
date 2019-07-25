@@ -216,6 +216,11 @@ class NS_Real_Estate {
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-agents.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-maps.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-license-keys.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/widgets/list_agents_widget.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/widgets/list_properties_widget.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/widgets/list_property_categories_widget.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/widgets/mortgage_widget.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/widgets/property_filter_widget.php');
 
 		// Setup the admin
 		if(is_admin()) { 
