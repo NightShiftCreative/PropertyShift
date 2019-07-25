@@ -206,6 +206,9 @@ class NS_Real_Estate {
 		/************************************************************************/
 		include( plugin_dir_path( __FILE__ ) . 'includes/global-functions.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/templates/templates.php');
+		if($this->is_plugin_active('js_composer/js_composer.php')) { 
+			include( plugin_dir_path( __FILE__ ) . 'includes/wp-bakery/wp-bakery.php');
+		}
 
 		/************************************************************************/
 		// Include classes
