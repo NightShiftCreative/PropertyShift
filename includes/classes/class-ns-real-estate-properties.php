@@ -13,7 +13,6 @@ class NS_Real_Estate_Properties {
 	/************************************************************************/
 
 	public function __construct() {
-
 		// Load admin object & settings
 		$this->admin_obj = new NS_Real_Estate_Admin();
         $settings_init = $this->admin_obj->load_settings();
@@ -326,7 +325,7 @@ class NS_Real_Estate_Properties {
 	public function output_meta_box($post) {
 
 		$property_settings = $this->load_property_settings($post->ID); 
-		wp_nonce_field( 'ns_property_details_meta_box_nonce', 'ns_property_details_meta_box_nonce' );?>
+		wp_nonce_field( 'ns_property_details_meta_box_nonce', 'ns_property_details_meta_box_nonce' ); ?>
 		
 		<div class="ns-tabs meta-box-form meta-box-form-property-details">
 			<ul class="ns-tabs-nav">

@@ -232,6 +232,7 @@ class NS_Real_Estate {
 
 		// Load agents class
 		$this->agents = new NS_Real_Estate_Agents();
+		$this->agents->init();
 
 		// Load maps class
 		$this->maps = new NS_Real_Estate_Maps();
