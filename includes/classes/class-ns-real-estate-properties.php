@@ -38,6 +38,27 @@ class NS_Real_Estate_Properties {
 		add_action( 'save_post', array( $this, 'save_meta_box'));
 		add_filter( 'ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
 		add_action( 'widgets_init', array( $this, 'properties_sidebar_init'));
+
+		//add property type tax fields
+		add_action('property_type_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
+		add_action('edited_property_type', array( $this, 'save_tax_fields'), 10, 2);
+		add_action('property_type_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
+		add_action('created_property_type', array( $this, 'save_tax_fields'), 10, 2);
+
+		//add property status tax fields
+		add_action('property_status_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
+		add_action('edited_property_status', array( $this, 'save_tax_fields'), 10, 2);
+		add_action('property_status_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
+		add_action('created_property_status', array( $this, 'save_tax_fields'), 10, 2);
+
+		add_action( 'property_status_edit_form_fields', array( $this, 'add_tax_price_range_field'), 10, 2);
+		add_action('property_status_add_form_fields', array( $this, 'add_tax_price_range_field'), 10, 2 );
+
+		//add property location tax fields
+		add_action('property_location_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
+		add_action('edited_property_location', array( $this, 'save_tax_fields'), 10, 2);
+		add_action('property_location_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
+		add_action('created_property_location', array( $this, 'save_tax_fields'), 10, 2);
 	}
 
 	/**
@@ -650,6 +671,87 @@ class NS_Real_Estate_Properties {
 
 	        default :
 	            break;
+	    }
+	}
+
+	/************************************************************************/
+	// Customize Property Taxonomies Admin Page
+	/************************************************************************/
+
+	/**
+	 *	Add taxonomy fields
+	 *
+	 * @param string $tag
+	 */
+	public function add_tax_fields($tag) {
+		if(is_object($tag)) { $t_id = $tag->term_id; } else { $t_id = ''; }
+	    $term_meta = get_option( "taxonomy_$t_id");
+	    ?>
+	    <tr class="form-field">
+	        <th scope="row" valign="top"><label for="cat_Image_url"><?php esc_html_e('Category Image Url', 'ns-real-estate'); ?></label></th>
+	        <td>
+	            <div class="admin-module admin-module-tax-field admin-module-tax-img no-border">
+	                <input type="text" class="property-tax-img" name="term_meta[img]" id="term_meta[img]" size="3" style="width:60%;" value="<?php echo $term_meta['img'] ? $term_meta['img'] : ''; ?>">
+	                <input class="button admin-button ns_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'ns-real-estate'); ?>" />
+	                <span class="button button-secondary remove"><?php esc_html_e('Remove', 'ns-real-estate'); ?></span><br/>
+	                <p class="description"><?php esc_html_e('Image for Term, use full url', 'ns-real-estate'); ?></p>
+	            </div>
+	        </td>
+	    </tr>
+	<?php }
+
+	/**
+	 *	Add taxonomy price range field
+	 *
+	 * @param string $tag
+	 */
+	public function add_tax_price_range_field($tag) {
+		if(is_object($tag)) { $t_id = $tag->term_id; } else { $t_id = ''; }
+	    $term_meta = get_option( "taxonomy_$t_id");
+	    ?>
+	    <tr class="form-field">
+	        <th scope="row" valign="top">
+	            <strong><?php esc_html_e('Price Range Settings', 'ns-real-estate'); ?></strong>
+	            <p class="admin-module-note"><?php esc_html_e('Settings here will override the defaults configured in the plugin settings.', 'ns-real-estate'); ?></p>
+	        </th>
+	        <td>
+	            <div class="admin-module admin-module-tax-field tax-price-range-field no-border">
+	                <label for="price_range_min"><?php esc_html_e('Minimum', 'ns-real-estate'); ?></label>
+	                <input type="number" class="property-tax-price-range-min" name="term_meta[price_range_min]" id="term_meta[price_range_min]" size="3" value="<?php echo $term_meta['price_range_min'] ? $term_meta['price_range_min'] : ''; ?>">
+	            </div>
+	            <div class="admin-module admin-module-tax-field tax-price-range-field no-border">
+	                <label for="price_range_max"><?php esc_html_e('Maximum', 'ns-real-estate'); ?></label>
+	                <input type="number" class="property-tax-price-range-max" name="term_meta[price_range_max]" id="term_meta[price_range_max]" size="3" value="<?php echo $term_meta['price_range_max'] ? $term_meta['price_range_max'] : ''; ?>">
+	            </div>
+	            <div class="admin-module admin-module-tax-field tax-price-range-field no-border">
+	                <label for="price_range_min_start"><?php esc_html_e('Minimum Start', 'ns-real-estate'); ?></label>
+	                <input type="number" class="property-tax-price-range-min-start" name="term_meta[price_range_min_start]" id="term_meta[price_range_min_start]" size="3" value="<?php echo $term_meta['price_range_min_start'] ? $term_meta['price_range_min_start'] : ''; ?>">
+	            </div>
+	            <div class="admin-module admin-module-tax-field tax-price-range-field no-border">
+	                <label for="price_range_max_start"><?php esc_html_e('Maximum Start', 'ns-real-estate'); ?></label>
+	                <input type="number" class="property-tax-price-range-max-start" name="term_meta[price_range_max_start]" id="term_meta[price_range_max_start]" size="3" value="<?php echo $term_meta['price_range_max_start'] ? $term_meta['price_range_max_start'] : ''; ?>">
+	            </div>
+	        </td>
+	    </tr>
+	<?php }
+
+	/**
+	 *	Save taxonomy fields
+	 *
+	 * @param int $term_id
+	 */
+	public function save_tax_fields($term_id) {
+		if ( isset( $_POST['term_meta'] ) ) {
+	        $t_id = $term_id;
+	        $term_meta = get_option( "taxonomy_$t_id");
+	        $cat_keys = array_keys($_POST['term_meta']);
+	            foreach ($cat_keys as $key){
+	            if (isset($_POST['term_meta'][$key])){
+	                $term_meta[$key] = $_POST['term_meta'][$key];
+	            }
+	        }
+	        //save the option array
+	        update_option( "taxonomy_$t_id", $term_meta );
 	    }
 	}
 
