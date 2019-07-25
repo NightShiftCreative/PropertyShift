@@ -205,6 +205,7 @@ class NS_Real_Estate {
 		// Include functions
 		/************************************************************************/
 		include( plugin_dir_path( __FILE__ ) . 'includes/global-functions.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/templates/templates.php');
 
 		/************************************************************************/
 		// Include classes
