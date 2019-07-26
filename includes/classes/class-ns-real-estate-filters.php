@@ -25,6 +25,8 @@ class NS_Real_Estate_Filters {
 		add_action( 'init', array($this, 'add_custom_post_type'));
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_box'));
 		add_action( 'save_post', array( $this, 'save_meta_box'));
+		add_filter( 'manage_edit-ns-property-filter_columns', array($this, 'edit_property_filter_columns'));
+		add_action( 'manage_ns-property-filter_posts_custom_column',  array($this, 'manage_property_filter_columns'), 10, 2 );
 	}
 
 	/************************************************************************/
@@ -110,6 +112,12 @@ class NS_Real_Estate_Filters {
 				'order' => 5,
 				'serialized' => true,
 			),
+			'submit_button_text' => array(
+				'title' => esc_html__('Submit Button Text', 'ns-real-estate'),
+				'name' => 'ns_property_filter_submit_text',
+				'type' => 'text',
+				'order' => 6,
+			),
 		);
 		$filter_settings_init = apply_filters( 'ns_real_estate_filter_settings_init_filter', $filter_settings_init, $post_id);
 		uasort($filter_settings_init, 'ns_basics_sort_by_order');
@@ -177,23 +185,97 @@ class NS_Real_Estate_Filters {
 	public static function load_filter_fields() {
 		$filter_fields_init = array(
 	        0 => array(
-	            'name' => esc_html__('Overview', 'ns-real-estate'),
-	            'label' => esc_html__('Overview', 'ns-real-estate'),
-	            'slug' => 'overview',
+	            'name' => esc_html__('Property Type', 'ns-real-estate'),
+	            'label' => esc_html__('Property Type', 'ns-real-estate'),
+	            'placeholder' => esc_html__('Any', 'ns-real-estate'),
+	            'slug' => 'property_type',
 	            'active' => 'true',
-	            'sidebar' => 'false',
+	            'custom' => 'false',
 	        ),
 	        1 => array(
-	            'name' => esc_html__('Description', 'ns-real-estate'),
-	            'label' => esc_html__('Description', 'ns-real-estate'),
-	            'slug' => 'description',
+	            'name' => esc_html__('Property Status', 'ns-real-estate'),
+	            'label' => esc_html__('Property Status', 'ns-real-estate'),
+	            'placeholder' => esc_html__('Any', 'ns-real-estate'),
+	            'slug' => 'property_status',
 	            'active' => 'true',
-	            'sidebar' => 'false',
+	            'custom' => 'false',
+	        ),
+	        2 => array(
+	            'name' => esc_html__('Property Location', 'ns-real-estate'),
+	            'label' => esc_html__('Property Location', 'ns-real-estate'),
+	            'placeholder' => esc_html__('Any', 'ns-real-estate'),
+	            'slug' => 'property_location',
+	            'active' => 'true',
+	            'custom' => 'false',
+	        ),
+	        3 => array(
+	            'name' => esc_html__('Price Range', 'ns-real-estate'),
+	            'label' => esc_html__('Price Range', 'ns-real-estate'),
+	            'slug' => 'price',
+	            'active' => 'true',
+	            'custom' => 'false',
+	        ),
+	        4 => array(
+	            'name' => esc_html__('Bedrooms', 'ns-real-estate'),
+	            'label' => esc_html__('Bedrooms', 'ns-real-estate'),
+	            'placeholder' => esc_html__('Any', 'ns-real-estate'),
+	            'slug' => 'beds',
+	            'active' => 'true',
+	            'custom' => 'false',
+	        ),
+	        5 => array(
+	            'name' => esc_html__('Bathrooms', 'ns-real-estate'),
+	            'label' => esc_html__('Bathrooms', 'ns-real-estate'),
+	            'placeholder' => esc_html__('Any', 'ns-real-estate'),
+	            'slug' => 'baths',
+	            'active' => 'true',
+	            'custom' => 'false',
+	        ),
+	        6 => array(
+	            'name' => esc_html__('Area', 'ns-real-estate'),
+	            'label' => esc_html__('Area', 'ns-real-estate'),
+	            'placeholder' => esc_html__('Min', 'ns-real-estate'),
+	            'placeholder_second' => esc_html__('Max', 'ns-real-estate'),
+	            'slug' => 'area',
+	            'active' => 'true',
+	            'custom' => 'false',
 	        ),
 	    );
 
 		$filter_fields_init = apply_filters( 'ns_real_estate_filter_fields_init_filter', $filter_fields_init);
 	    return $filter_fields_init;
+	}
+
+	/************************************************************************/
+	// Add Columns
+	/************************************************************************/
+
+	/**
+	 *	Edit Columns
+	 */
+	public function edit_property_filter_columns($columns) {
+		$columns = array(
+	        'cb' => '<input type="checkbox" />',
+	        'title' => __( 'Property', 'ns-real-estate' ),
+	        'shortcode' => __( 'Shortcode', 'ns-real-estate' ),
+	        'date' => __( 'Date', 'ns-real-estate' )
+	    );
+	    return $columns;
+	}
+
+	/**
+	 *	Manage Columns
+	 */
+	public function manage_property_filter_columns($column, $post_id) {
+		global $post;
+
+	    switch( $column ) {
+	        case 'shortcode' :
+	            echo '<pre>[ns_property_filter id="'.$post_id.'"]</pre>';
+	            break;
+	        default :
+	            break;
+	    }
 	}
 
 } ?>
