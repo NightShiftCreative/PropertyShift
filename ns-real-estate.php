@@ -218,6 +218,7 @@ class NS_Real_Estate {
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-properties.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-property-custom-fields.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-agents.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-filters.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-maps.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-license-keys.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/widgets/list_agents_widget.php');
@@ -242,6 +243,10 @@ class NS_Real_Estate {
 		// Load agents class
 		$this->agents = new NS_Real_Estate_Agents();
 		$this->agents->init();
+
+		// Load filters class
+		$this->filters = new NS_Real_Estate_Filters();
+		$this->filters->init();
 
 		// Load maps class
 		$this->maps = new NS_Real_Estate_Maps();
