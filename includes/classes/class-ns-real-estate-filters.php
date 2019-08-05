@@ -111,6 +111,36 @@ class NS_Real_Estate_Filters {
 				'value' => $this->load_filter_fields(),
 				'order' => 5,
 				'serialized' => true,
+				'children' => array(
+                	'price_min' => array(
+                		'title' => esc_html__('Price Range Minimum', 'ns-real-estate'),
+	                	'name' => 'ns_property_filter_price_min',
+	                	'value' => 0,
+	                	'type' => 'number',
+	                	'parent_val' => 'price',
+                	),
+                	'price_max' => array(
+                		'title' => esc_html__('Price Range Maximum', 'ns-real-estate'),
+	                	'name' => 'ns_property_filter_price_max',
+	                	'value' => 1000000,
+	                	'type' => 'number',
+	                	'parent_val' => 'price',
+                	),
+                	'price_min_start' => array(
+                		'title' => esc_html__('Price Range Minimum Start', 'ns-real-estate'),
+	                	'name' => 'ns_property_filter_price_min_start',
+	                	'value' => 200000,
+	                	'type' => 'number',
+	                	'parent_val' => 'price',
+                	),
+                	'price_max_start' => array(
+                		'title' => esc_html__('Price Range Maximum Start', 'ns-real-estate'),
+	                	'name' => 'ns_property_filter_price_max_start',
+	                	'value' => 600000,
+	                	'type' => 'number',
+	                	'parent_val' => 'price',
+                	),
+                ),
 			),
 			'submit_button_text' => array(
 				'title' => esc_html__('Submit Button Text', 'ns-real-estate'),
