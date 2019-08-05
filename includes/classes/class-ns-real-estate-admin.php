@@ -796,7 +796,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 
 	    <div class="admin-module-note">
 	        <?php esc_html_e('All premium add-ons require a valid license key for updates and support.', 'ns-real-estate'); ?><br/>
-	        <?php esc_html_e('Your licenses keys can be found in your account on the Nightshift Studio website.', 'ns-real-estate'); ?>
+	        <?php esc_html_e('Your licenses keys can be found in your account on the Nightshift Products website.', 'ns-real-estate'); ?>
 	    </div><br/>
 	    
 	    <?php do_action( 'ns_real_estate_register_license_keys'); ?>

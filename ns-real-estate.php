@@ -46,7 +46,7 @@ class NS_Real_Estate {
 	 * Define constants
 	 */
 	public function define_constants() {
-		define('NS_SHOP_URL', 'https://studio.nightshiftcreative.co/');
+		define('NS_SHOP_URL', 'https://products.nightshiftcreative.co/');
 		define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/1.0.0.zip');
 		define('NS_REAL_ESTATE_GITHUB', '/NightShiftCreative/NS-Real-Estate/');
 		define('NS_REAL_ESTATE_LICENSE_PAGE', 'ns-real-estate-license-keys' );
