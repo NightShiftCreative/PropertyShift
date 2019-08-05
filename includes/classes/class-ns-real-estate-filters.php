@@ -108,7 +108,6 @@ class NS_Real_Estate_Filters {
 				'name' => 'ns_property_filter_items',
 				'description' => esc_html__('Drag and drop to rearrange order.', 'ns-real-estate'),
 				'type' => 'sortable',
-				'custom_fields' => $custom_fields = get_option('ns_property_custom_fields'),
 				'value' => $this->load_filter_fields(),
 				'order' => 5,
 				'serialized' => true,

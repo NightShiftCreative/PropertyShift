@@ -25,6 +25,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 		add_filter('ns_real_estate_property_submit_fields_init_filter', array( $this, 'add_property_submit_fields' ));
 		add_filter('ns_real_estate_property_settings_init_filter', array( $this, 'add_property_settings_fields'), 10, 2);		
 		add_action('ns_basics_save_meta_box_ns-property', array( $this, 'save_property_settings_fields' ));
+		add_filter('ns_real_estate_filter_settings_init_filter', array($this, 'filter_custom_fields_init'));
 		add_action('ns_real_estate_after_sortable_fields_ns_property_filter_items', array($this, 'add_filter_custom_fields'));
 
 		// Get global settings
@@ -239,6 +240,22 @@ class NS_Real_Estate_Property_Custom_Fields {
 	/************************************************************************/
 	// Property Filter Custom Fields
 	/************************************************************************/
+	
+	/**
+	 *	Initialize filter custom fields
+	 *
+	 * @param array $field
+	 */
+	public function filter_custom_fields_init($filter_settings_init) {
+		$filter_settings_init['fields']['custom_fields'] = get_option('ns_property_custom_fields');
+		return $filter_settings_init;
+	}
+
+	/**
+	 *	Add custom field to filter items
+	 *
+	 * @param array $field
+	 */
 	public function add_filter_custom_fields($field) {
 		$custom_fields = get_option('ns_property_custom_fields'); ?>
 	
