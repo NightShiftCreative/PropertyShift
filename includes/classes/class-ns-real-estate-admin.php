@@ -389,6 +389,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
                 		'description' => esc_html__('Drag & drop the sections to rearrange their order', 'ns-real-estate'),
                 		'value' => $settings['ns_property_detail_items'],
                 		'type' => 'sortable',
+                		'display_sidebar' => true,
                 		'children' => array(
                 			'hide_empty_amenities' => array(
                 				'title' => esc_html__('Hide empty amenities?', 'ns-real-estate'),
@@ -480,6 +481,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
                 		'description' => esc_html__('Drag & drop the sections to rearrange their order', 'ns-real-estate'),
                 		'value' => $settings['ns_agent_detail_items'],
                 		'type' => 'sortable',
+                		'sidebar_display' => true, 
                 		'children' => array(
                 			'form_message_placeholder' => array(
                 				'title' => esc_html__('Message Placeholder on Property Pages', 'ns-real-estate'),
