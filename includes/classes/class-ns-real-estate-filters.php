@@ -70,6 +70,7 @@ class NS_Real_Estate_Filters {
 				'type' => 'text',
 				'value' => '[ns_property_filter id="'.$post_id.'"]',
 				'order' => 1,
+				'disabled' => true,
 			),
 			'position' => array(
 				'title' => esc_html__('Page Banner Position', 'ns-real-estate'),
