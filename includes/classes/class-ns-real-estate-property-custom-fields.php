@@ -25,6 +25,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 		add_filter('ns_real_estate_property_submit_fields_init_filter', array( $this, 'add_property_submit_fields' ));
 		add_filter('ns_real_estate_property_settings_init_filter', array( $this, 'add_property_settings_fields'), 10, 2);		
 		add_action('ns_basics_save_meta_box_ns-property', array( $this, 'save_property_settings_fields' ));
+		add_action('ns_real_estate_after_sortable_fields_ns_property_filter_items', array($this, 'add_filter_custom_fields'));
 
 		// Get global settings
 		$this->admin_obj = new NS_Real_Estate_Admin();
@@ -233,6 +234,46 @@ class NS_Real_Estate_Property_Custom_Fields {
 	        }
 	    }
 	}	
+
+
+	/************************************************************************/
+	// Property Filter Custom Fields
+	/************************************************************************/
+	public function add_filter_custom_fields($field) {
+		$custom_fields = get_option('ns_property_custom_fields'); ?>
+	
+		<table class="admin-module no-border no-padding-bottom">
+            <tr>
+                <td class="admin-module-label">
+                    <label><?php esc_html_e('Add Custom Field to Filter', 'ns-real-estate'); ?></label>
+                    <span class="admin-module-note"><a href="<?php echo admin_url('admin.php?page=ns-real-estate-settings#properties&custom-fields'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage custom fields', 'ns-real-estate'); ?></a></span>
+                </td>
+                <td class="admin-module-field">
+                    <?php 
+                    if(!empty($custom_fields)) { 
+                        echo '<select class="select-filter-custom-field">';
+                        echo '<option value="">Select a field...</option>';
+                        foreach($custom_fields as $key=>$custom_field) {
+                            if(!is_array($custom_field)) { 
+                                $custom_field = array( 
+                                    'id' => strtolower(str_replace(' ', '_', $custom_field)),
+                                    'name' => $custom_field, 
+                                    'type' => 'text',
+                                ); 
+                            }
+                            echo '<option value="'.$custom_field['id'].'">'.$custom_field['name'].'</option>';
+                        }
+                        echo '</select>'; ?>
+                        <div class="add-filter-custom-field button button-secondary"><?php esc_html_e('Insert Field', 'ns-real-estate'); ?></div>
+                    <?php } else { ?> 
+                        <span class="admin-module-note"><?php esc_html_e('No custom fields have been created.', 'ns-real-estate'); ?></span>
+                    <?php } ?>
+                </td>
+            </tr>
+        </table>
+
+	<?php }
+	
 
 }
 

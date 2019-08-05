@@ -295,12 +295,12 @@ jQuery(document).ready(function($) {
     /* FILTER CUSTOM FIELDS */
     /********************************************/
     //insert custom field to filter
-    $('.admin-module-filter-fields').on("click", ".add-filter-custom-field", function() {
+    $('.admin-module').on("click", ".add-filter-custom-field", function() {
         var customFilterFieldID = $(this).parent().find('.select-filter-custom-field').val();
         var customFilterFieldName = $(this).parent().find('.select-filter-custom-field option:selected').text();
-        var count = $('.admin-module-filter-fields').find('.filter-fields-list li').length;
+        var count = $('.admin-module-ns_property_filter_items').find('.sortable-list li').length;
         var existingFilterFields = [];
-        $('.admin-module-filter-fields .filter-fields-list .custom-filter-field').each(function(index) {
+        $('.admin-module-ns_property_filter_items .sortable-list .custom-filter-field').each(function(index) {
             var existingFilterFieldValue = $(this).find('.custom-filter-field-name').val();
             existingFilterFields.push(existingFilterFieldValue);
         });
@@ -324,13 +324,13 @@ jQuery(document).ready(function($) {
                 </li> \
             ';
             if(customFilterFieldName != '' && customFilterFieldID != '') { 
-                $(this).closest('.admin-module-filter-fields').find('.filter-fields-list').append(customFilterField);
+                $(this).closest('.admin-module-ns_property_filter_items').find('.sortable-list').append(customFilterField);
             }
         }
     });
 
     //remove custom field from filter
-    $('.admin-module-filter-fields').on("click", ".sortable-item-action.remove ", function() {
+    $('.admin-module-ns_property_filter_items').on("click", ".sortable-item-action.remove ", function() {
         $(this).parent().remove();
     });
 
