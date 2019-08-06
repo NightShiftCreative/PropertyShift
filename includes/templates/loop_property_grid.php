@@ -1,44 +1,39 @@
 <?php
-    global $post; 
+	//global settings
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 	$properties_page = esc_attr(get_option('ns_properties_page'));
     $property_listing_display_time = esc_attr(get_option('ns_property_listing_display_time', 'true'));
     $property_listing_display_favorite = esc_attr(get_option('ns_property_listing_display_favorite', 'true'));
     $property_listing_display_share = esc_attr(get_option('ns_property_listing_display_share', 'true'));
-    $property_listing_crop = esc_attr(get_option('ns_property_listing_crop', 'true'));
-	
-	//Get property details
-    $values = get_post_custom( $post->ID );
-    $featured = isset( $values['ns_property_featured'] ) ? esc_attr( $values['ns_property_featured'][0] ) : 'false';
-	if(function_exists('ns_real_estate_get_property_address')) { $address = ns_real_estate_get_property_address($post->ID); } else { $address = ''; } 
-    $price = isset( $values['ns_property_price'] ) ? esc_attr( $values['ns_property_price'][0] ) : '';
-	$price_postfix = isset( $values['ns_property_price_postfix'] ) ? esc_attr( $values['ns_property_price_postfix'][0] ) : '';
-	$area = isset( $values['ns_property_area'] ) ? esc_attr( $values['ns_property_area'][0] ) : '';
-    if(!empty($area) && function_exists('ns_real_estate_format_area')) { $area = ns_real_estate_format_area($area); }
-    $area_postfix = isset( $values['ns_property_area_postfix'] ) ? esc_attr( $values['ns_property_area_postfix'][0] ) : '';
-    $bedrooms = isset( $values['ns_property_bedrooms'] ) ? esc_attr( $values['ns_property_bedrooms'][0] ) : '';
-    $bathrooms = isset( $values['ns_property_bathrooms'] ) ? esc_attr( $values['ns_property_bathrooms'][0] ) : '';
-	$garages = isset( $values['ns_property_garages'] ) ? esc_attr( $values['ns_property_garages'][0] ) : '';
-	
-	//Get property taxonomies
-	if(function_exists('ns_real_estate_get_property_status')) { $property_status = ns_real_estate_get_property_status($post->ID); } else { $property_status = ''; }
-    if(function_exists('ns_real_estate_get_property_location')) { 
-    	$property_location = ns_real_estate_get_property_location($post->ID, 'parent');
-    	$property_location_children = ns_real_estate_get_property_location($post->ID, 'children');
-    } else {
-    	$property_location = '';
-    	$property_location_children = '';
-    }	
+    $property_listing_crop = esc_attr(get_option('ns_property_listing_crop', 'true'));	
+
+    //property settings
+    $property_obj = new NS_Real_Estate_Properties();
+	$property_settings = $property_obj->load_property_settings($post->ID);
+	$featured = $property_settings['featured']['value'];
+	$address = $property_settings['street_address']['value'];
+	$price = $property_settings['price']['value'];
+	$price_postfix = $property_settings['price_postfix']['value'];
+	$area = $property_settings['area']['value'];
+	$area = $property_obj->get_formatted_area($area);
+	$area_postfix = $property_settings['area_postfix']['value'];
+	$bedrooms = $property_settings['beds']['value'];
+	$bathrooms = $property_settings['baths']['value'];
+	$property_status = $property_obj->get_tax($post->ID, 'property_status');
 ?>
 
 <div <?php post_class(); ?>>
 
-	<?php do_action('ns_real_estate_before_property_card', $values); ?>
+	<?php do_action('ns_real_estate_before_property_card', $property_settings); ?>
 
 	<div class="property-img">
 
-		<?php if($featured == 'true') { ?><a href="<?php if(!empty($properties_page)) { echo esc_url($properties_page).'/?featured=true'; } ?>" class="property-tag button alt featured"><?php esc_html_e('Featured', 'ns-real-estate'); ?></a><?php } ?>
+		<?php if($featured == 'true') { ?>
+			<a href="<?php if(!empty($properties_page)) { echo esc_url($properties_page).'/?featured=true'; } ?>" class="property-tag button alt featured">
+				<?php esc_html_e('Featured', 'ns-real-estate'); ?>	
+			</a>
+		<?php } ?>
 
 		<?php if ( has_post_thumbnail() ) {  ?>
 			<a href="<?php the_permalink(); ?>" class="property-img-link">
@@ -70,7 +65,7 @@
 
 		<?php if(!empty($price)) { ?>
 			<div class="property-price">
-				<?php echo ns_real_estate_format_price($price); ?>
+				<?php echo $property_obj->get_formatted_price($price); ?>
 				<?php if(!empty($price_postfix)) { ?><span class="price-postfix"><?php echo esc_attr($price_postfix); ?></span><?php } ?>
 			</div>
 		<?php } ?>
@@ -89,6 +84,6 @@
         </table>
 	</div>
 
-	<?php do_action('ns_real_estate_after_property_card', $values); ?>
+	<?php do_action('ns_real_estate_after_property_card', $property_settings); ?>
 
 </div>
