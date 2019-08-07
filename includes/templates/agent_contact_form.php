@@ -1,0 +1,105 @@
+<?php
+global $post;
+$agent_obj = new NS_Real_Estate_Agents();
+$agent_settings = $agent_obj->load_agent_settings($post->ID);
+$agent_email = $agent_settings['email']['value'];
+
+$site_title = get_bloginfo('name');
+$agent_form_submit_text = esc_attr(get_option('ns_agent_form_submit_text', esc_html__('Contact Agent', 'ns-real-estate')) );
+$agent_form_success = esc_attr(get_option('ns_agent_form_success', esc_html__('Thanks! Your email has been delivered!', 'ns-real-estate')));
+    
+if(is_singular('ns-property')) {
+    $agent_form_message_placeholder = esc_attr(get_option('ns_agent_form_message_placeholder', esc_html__('I am interested in this property and would like to know more.', 'ns-real-estate')) );
+} else {
+    $agent_form_message_placeholder =  esc_html__( 'Message', 'ns-real-estate' );
+}
+    
+$nameError = '';
+$emailError = '';
+$commentError = '';
+
+//If the form is submitted
+if(isset($_POST['submitted'])) {
+      
+    // require a name from user
+    if(trim($_POST['agent-contact-name']) === '') {
+        $nameError =  esc_html__('Forgot your name!', 'ns-real-estate'); 
+        $hasError = true;
+    } else {
+        $agent_contact_name = trim($_POST['agent-contact-name']);
+    }
+      
+    // need valid email
+    if(trim($_POST['agent-contact-email']) === '')  {
+        $emailError = esc_html__('Forgot to enter in your e-mail address.', 'ns-real-estate');
+        $hasError = true;
+    } else if (!preg_match("/^[[:alnum:]][a-z0-9_.-]*@[a-z0-9.-]+\.[a-z]{2,4}$/i", trim($_POST['agent-contact-email']))) {
+        $emailError = 'You entered an invalid email address.';
+        $hasError = true;
+    } else {
+        $agent_contact_email = trim($_POST['agent-contact-email']);
+    }
+        
+    // we need at least some content
+    if(trim($_POST['agent-contact-message']) === '') {
+        $commentError = esc_html__('You forgot to enter a message!', 'ns-real-estate');
+        $hasError = true;
+    } else {
+        if(function_exists('stripslashes')) {
+          $agent_contact_message = stripslashes(trim($_POST['agent-contact-message']));
+        } else {
+          $agent_contact_message = trim($_POST['agent-contact-message']);
+        }
+    }
+        
+    // upon no failure errors let's email now!
+    if(!isset($hasError)) {
+
+        /*---------------------------------------------------------*/
+        /* SET EMAIL YOUR EMAIL ADDRESS HERE                       */
+        /*---------------------------------------------------------*/
+        $emailTo = $agent_email;
+        $subject = 'Submitted message from '.$agent_contact_name;
+        $sendCopy = trim($_POST['sendCopy']);
+        $formUrl = $_POST['current_url'];
+        $body = "This message was sent from a contact from on: $formUrl \n\n Name: $agent_contact_name \n\nEmail: $agent_contact_email \n\nMessage: $agent_contact_message";
+        $headers = 'From: ' .$site_title.' <'.$emailTo.'>' . "\r\n" . 'Reply-To: ' . $agent_contact_email;
+
+        mail($emailTo, $subject, $body, $headers);
+            
+        // set our boolean completion value to TRUE
+        $emailSent = true;
+    }
+}
+
+?>
+
+<form id="agent-contact-form" class="contact-form agent-contact-form" method="post">
+
+    <div class="alert-box success <?php if($emailSent) { echo 'show'; } else { echo 'hide'; } ?>"><?php echo $agent_form_success; ?></div>
+
+    <div class="contact-form-fields">
+        <div>
+            <?php if($nameError != '') { ?><div class="alert-box error"><?php echo $nameError;?></div> <?php } ?>
+            <input type="text" name="agent-contact-name" placeholder="<?php esc_html_e( 'Name', 'ns-real-estate' ); ?>*" value="<?php if(isset($agent_contact_name)){ echo $agent_contact_name; } ?>" class="border requiredField" />
+        </div>
+
+        <div>
+            <?php if($emailError != '') { ?><div class="alert-box error"><?php echo $emailError;?></div> <?php } ?>
+            <input type="email" name="agent-contact-email" placeholder="<?php esc_html_e( 'Email', 'ns-real-estate' ); ?>*" value="<?php if(isset($agent_contact_email)) { echo $agent_contact_email; } ?>" class="border requiredField email" />
+        </div>
+
+        <div>
+            <?php if($commentError != '') { ?><div class="alert-box error"><?php echo $commentError;?></div> <?php } ?>
+            <textarea name="agent-contact-message" class="border"><?php if(isset($agent_contact_message)) { echo $agent_contact_message; } else { echo $agent_form_message_placeholder; } ?></textarea>
+        </div>
+
+        <div>
+            <?php $current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
+            <input type="hidden" name="current_url" value="<?php echo $current_url; ?>" />
+            <input type="hidden" name="submitted" id="submitted" value="true" />
+            <input type="submit" name="submit" value="<?php echo $agent_form_submit_text; ?>" />
+            <div class="form-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e( 'Loading...', 'ns-real-estate' ); ?></div>
+        </div>
+    </div>
+</form>

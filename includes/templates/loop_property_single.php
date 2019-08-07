@@ -467,14 +467,8 @@
                                             if($agent_form_source == 'contact-form-7') {
                                                 $agent_form_title = get_the_title( $agent_form_id );
                                                 echo do_shortcode('[contact-form-7 id="<?php echo esc_attr($agent_form_id); ?>" title="'.$agent_form_title.'"]');
-                                            } else { 
-                                                if(function_exists('ns_real_estate_agent_contact_form')) {
-                                                    if(!empty($agent_email)) { 
-                                                        ns_real_estate_agent_contact_form($agent_email); 
-                                                    }
-                                                } else {
-                                                    esc_html_e('Please install required plugins to display the contact form.', 'ns-real-estate');
-                                                }
+                                            } else {
+                                                ns_real_estate_template_loader('agent_contact_form.php');
                                             } 
                                         }
                                         ?>
