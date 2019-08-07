@@ -57,9 +57,7 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
                                 <?php
                                 // Load admin object & settings
                                 $this->admin_obj = new NS_Real_Estate_Admin();
-                                $settings_init = $this->admin_obj->load_settings();
-                                $this->global_settings = $this->admin_obj->get_settings($settings_init);
-                                $property_listing_crop = $this->global_settings['ns_property_listing_crop'];
+                                $property_listing_crop = $this->admin_obj->load_settings(false, 'ns_property_listing_crop');
 
                                 // Load property settings
                                 $properties_obj = new NS_Real_Estate_Properties();

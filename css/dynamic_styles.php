@@ -1,8 +1,7 @@
 <?php 
 
     $admin_obj = new NS_Real_Estate_Admin();
-    $settings_init = $admin_obj->load_settings();
-    $settings = $admin_obj->get_settings($settings_init);
+    $settings = $admin_obj->load_settings();
 
     /************************************************************************/
     /* MISC STYLES */

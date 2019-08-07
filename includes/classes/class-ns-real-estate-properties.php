@@ -15,8 +15,7 @@ class NS_Real_Estate_Properties {
 	public function __construct() {
 		// Load admin object & settings
 		$this->admin_obj = new NS_Real_Estate_Admin();
-        $settings_init = $this->admin_obj->load_settings();
-        $this->global_settings = $this->admin_obj->get_settings($settings_init);
+        $this->global_settings = $this->admin_obj->load_settings();;
 	}
 
 	/**
@@ -215,6 +214,7 @@ class NS_Real_Estate_Properties {
 				'name' => 'ns_property_area_postfix',
 				'description' => esc_html__('Provide the text to display directly after the area (ex. - Sq Ft)', 'ns-real-estate'),
 				'type' => 'text',
+				'value' => 'Sq Ft',
 				'order' => 9,
 			),
 			'description' => array(

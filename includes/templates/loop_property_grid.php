@@ -4,10 +4,9 @@
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 	
     $admin_obj = new NS_Real_Estate_Admin();
-    $settings_init = $admin_obj->load_settings();
-    $properties_page = $admin_obj->get_settings($settings_init, 'ns_properties_page');
-    $property_listing_display_time = $admin_obj->get_settings($settings_init, 'ns_property_listing_display_time');
-    $property_listing_crop = $admin_obj->get_settings($settings_init, 'ns_property_listing_crop');	
+    $properties_page = $admin_obj->load_settings(false, 'ns_properties_page');
+    $property_listing_display_time = $admin_obj->load_settings(false, 'ns_property_listing_display_time');
+    $property_listing_crop = $admin_obj->load_settings(false, 'ns_property_listing_crop');	
 
     //property settings
     $property_obj = new NS_Real_Estate_Properties();

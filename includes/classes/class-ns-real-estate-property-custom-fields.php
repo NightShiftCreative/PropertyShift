@@ -30,8 +30,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 
 		// Get global settings
 		$this->admin_obj = new NS_Real_Estate_Admin();
-        $settings_init = $this->admin_obj->load_settings();
-        $this->global_settings = $this->admin_obj->get_settings($settings_init);
+        $this->global_settings = $this->admin_obj->load_settings();
 	}
 
 	/************************************************************************/
@@ -175,8 +174,10 @@ class NS_Real_Estate_Property_Custom_Fields {
 	 */
 	public function add_property_submit_fields($property_submit_fields_init) {
 		$custom_fields = get_option('ns_property_custom_fields');
-		foreach($custom_fields as $custom_field) {
-			$property_submit_fields_init[$custom_field['id']] = array('value' => $custom_field['name']);
+		if(!empty($custom_fields)) {
+			foreach($custom_fields as $custom_field) {
+				$property_submit_fields_init[$custom_field['id']] = array('value' => $custom_field['name']);
+			}
 		}
 		return $property_submit_fields_init;
 	}

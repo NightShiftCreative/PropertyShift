@@ -37,7 +37,8 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	 *	Register Settings
 	 */
 	public function register_settings() {
-		$settings = $this->load_settings();
+		$return_defaults = true;
+		$settings = $this->load_settings($return_defaults);
 	    foreach($settings as $key=>$field) { 
 	    	if(!empty($field['args'])) { $args = $field['args']; } else { $args = null; }
 	    	register_setting( 'ns-real-estate-settings-group', $key, $args); 
@@ -52,7 +53,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	 * @param boolean $return_defaults
 	 *
 	 */
-	public function load_settings() {
+	public function load_settings($return_defaults = false, $single_setting = null, $single_esc = true) {
 
 		$settings_init = array(
 			'ns_property_detail_slug' => array('value' => 'properties', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
@@ -107,7 +108,9 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 			'ns_real_estate_num_decimal_area' => array('value' => 0),
 		);
 		$settings_init = apply_filters( 'ns_real_estate_settings_init_filter', $settings_init);
-		return $settings_init;
+		$settings = $this->get_settings($settings_init, $return_defaults, $single_setting, $single_esc);
+		return $settings;
+		
 	}
 
 	/************************************************************************/
@@ -170,8 +173,8 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	public function settings_page_content() {
 		ob_start(); 
 
-		$settings_init = $this->load_settings();
-		$settings = $this->get_settings($settings_init); ?>
+		$settings = $this->load_settings();
+		?>
 
 		<div id="properties" class="tab-content">
 	        <h2><?php echo esc_html_e('Properties Settings', 'ns-real-estate'); ?></h2>

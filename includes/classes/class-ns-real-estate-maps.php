@@ -19,8 +19,7 @@ class NS_Real_Estate_Maps {
 
 		// Load admin object & settings
 		$this->admin_obj = new NS_Real_Estate_Admin();
-        $this->settings_init = $this->admin_obj->load_settings();
-        $this->global_settings = $this->admin_obj->get_settings($this->settings_init);
+        $this->global_settings = $this->admin_obj->load_settings();
 	}
 
 	/************************************************************************/
