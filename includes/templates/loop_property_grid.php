@@ -2,9 +2,12 @@
 	//global settings
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
-	$properties_page = esc_attr(get_option('ns_properties_page'));
-    $property_listing_display_time = esc_attr(get_option('ns_property_listing_display_time', 'true'));
-    $property_listing_crop = esc_attr(get_option('ns_property_listing_crop', 'true'));	
+	
+    $admin_obj = new NS_Real_Estate_Admin();
+    $settings_init = $admin_obj->load_settings();
+    $properties_page = $admin_obj->get_settings($settings_init, 'ns_properties_page');
+    $property_listing_display_time = $admin_obj->get_settings($settings_init, 'ns_property_listing_display_time');
+    $property_listing_crop = $admin_obj->get_settings($settings_init, 'ns_property_listing_crop');	
 
     //property settings
     $property_obj = new NS_Real_Estate_Properties();
@@ -49,16 +52,14 @@
 			<div class="property-tag button status"><?php echo wp_kses_post($property_status); ?></div>
 		<?php } ?>
 
-		<?php if($property_listing_display_time == 'true' || $property_listing_display_favorite == 'true') { ?>
-			<div class="property-actions">
-				<?php if($property_listing_display_time == 'true') {
-					$toggle = ns_core_get_icon($icon_set, 'clock', 'clock3', 'clock');
-					$content = human_time_diff( get_the_time('U'), current_time('timestamp') ) . esc_html__(' ago', 'ns-real-estate'); 
-					echo ns_basics_tooltip($toggle, $content); 
-				}
-				do_action('ns_real_estate_property_actions'); ?>
-			</div>
-		<?php } ?>
+		<div class="property-actions">
+			<?php if($property_listing_display_time == 'true') {
+				$toggle = ns_core_get_icon($icon_set, 'clock', 'clock3', 'clock');
+				$content = human_time_diff( get_the_time('U'), current_time('timestamp') ) . esc_html__(' ago', 'ns-real-estate'); 
+				echo ns_basics_tooltip($toggle, $content); 
+			}
+			do_action('ns_real_estate_property_actions'); ?>
+		</div>
 
 		<?php if(!empty($price)) { ?>
 			<div class="property-price">
