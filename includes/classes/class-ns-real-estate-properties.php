@@ -59,6 +59,10 @@ class NS_Real_Estate_Properties {
 		add_action('edited_property_location', array( $this, 'save_tax_fields'), 10, 2);
 		add_action('property_location_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
 		add_action('created_property_location', array( $this, 'save_tax_fields'), 10, 2);
+
+		//front-end template hooks
+		add_action('ns_real_estate_property_actions', array($this, 'add_property_share'));
+		add_action('ns_real_estate_property_actions', array($this, 'add_property_favoriting'));
 	}
 
 	/**
@@ -999,18 +1003,6 @@ class NS_Real_Estate_Properties {
 		$property_detail_items_init = apply_filters( 'ns_real_estate_property_detail_items_init_filter', $property_detail_items_init);
 	    return $property_detail_items_init;
 	}
-
-	/**
-	 *	Add topbar links
-	 */
-	public function add_topbar_links() {
-		$icon_set = 'fa';
-		if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
-		$members_my_properties_page = $this->global_settings['ns_members_my_properties_page'];
-		$members_submit_property_page = $this->global_settings['ns_members_submit_property_page']; ?>
-		<?php if(!empty($members_my_properties_page)) { ?><li><a href="<?php echo $members_my_properties_page; ?>"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php esc_html_e( 'My Properties', 'ns-real-estate' ); ?></a></li><?php } ?>
-		<?php if(!empty($members_submit_property_page)) { ?><li><a href="<?php echo $members_submit_property_page; ?>"><?php echo ns_core_get_icon($icon_set, 'plus'); ?><?php esc_html_e( 'Submit Property', 'ns-real-estate' ); ?></a></li><?php } ?>
-	<?php }
 	
 
 	/************************************************************************/
@@ -1046,6 +1038,46 @@ class NS_Real_Estate_Properties {
 	    $property_submit_fields_init = apply_filters( 'ns_real_estate_property_submit_fields_init_filter', $property_submit_fields_init);
 	    return $property_submit_fields_init;
 	}
+
+	/************************************************************************/
+	// Front-end Template Hooks
+	/************************************************************************/
+
+	/**
+	 *	Add topbar links
+	 */
+	public function add_topbar_links() {
+		$icon_set = 'fa';
+		if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
+		$members_my_properties_page = $this->global_settings['ns_members_my_properties_page'];
+		$members_submit_property_page = $this->global_settings['ns_members_submit_property_page']; ?>
+		<?php if(!empty($members_my_properties_page)) { ?><li><a href="<?php echo $members_my_properties_page; ?>"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php esc_html_e( 'My Properties', 'ns-real-estate' ); ?></a></li><?php } ?>
+		<?php if(!empty($members_submit_property_page)) { ?><li><a href="<?php echo $members_submit_property_page; ?>"><?php echo ns_core_get_icon($icon_set, 'plus'); ?><?php esc_html_e( 'Submit Property', 'ns-real-estate' ); ?></a></li><?php } ?>
+	<?php }
+
+	/**
+	 *	Add property sharing
+	 */
+	public function add_property_share() {
+		$property_listing_display_share = esc_attr(get_option('ns_property_listing_display_share', 'true'));
+		if(class_exists('NS_Basics_Post_Sharing') && $property_listing_display_share == 'true') {
+			$post_share_obj = new NS_Basics_Post_Sharing();
+			echo $post_share_obj->build_post_sharing_links();
+		}
+	}
+
+	/**
+	 *	Add property favoriting
+	 */
+	public function add_property_favoriting() {
+		$property_listing_display_favorite = esc_attr(get_option('ns_property_listing_display_favorite', 'true'));
+		if(class_exists('NS_Basics_Post_Likes') && $property_listing_display_favorite == 'true') {
+			$post_likes_obj = new NS_Basics_Post_Likes();
+			global $post;
+			echo $post_likes_obj->get_post_likes_button($post->ID);
+		}
+	}
+
 
 	/************************************************************************/
 	// Register Widget Areas

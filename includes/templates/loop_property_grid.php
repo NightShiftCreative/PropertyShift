@@ -4,8 +4,6 @@
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 	$properties_page = esc_attr(get_option('ns_properties_page'));
     $property_listing_display_time = esc_attr(get_option('ns_property_listing_display_time', 'true'));
-    $property_listing_display_favorite = esc_attr(get_option('ns_property_listing_display_favorite', 'true'));
-    $property_listing_display_share = esc_attr(get_option('ns_property_listing_display_share', 'true'));
     $property_listing_crop = esc_attr(get_option('ns_property_listing_crop', 'true'));	
 
     //property settings
@@ -51,15 +49,14 @@
 			<div class="property-tag button status"><?php echo wp_kses_post($property_status); ?></div>
 		<?php } ?>
 
-		<?php if($property_listing_display_time == 'true' || $property_listing_display_favorite == 'true' || $property_listing_display_share == 'true') { ?>
+		<?php if($property_listing_display_time == 'true' || $property_listing_display_favorite == 'true') { ?>
 			<div class="property-actions">
 				<?php if($property_listing_display_time == 'true') {
 					$toggle = ns_core_get_icon($icon_set, 'clock', 'clock3', 'clock');
 					$content = human_time_diff( get_the_time('U'), current_time('timestamp') ) . esc_html__(' ago', 'ns-real-estate'); 
 					echo ns_basics_tooltip($toggle, $content); 
-				} ?>
-		        <?php if($property_listing_display_favorite == 'true' && function_exists('ns_basics_get_post_likes_button')) { echo ns_basics_get_post_likes_button(get_the_ID()); } ?>
-		        <?php if($property_listing_display_share == 'true' && function_exists('ns_basics_get_social_share')) { echo ns_basics_get_social_share(); } ?>
+				}
+				do_action('ns_real_estate_property_actions'); ?>
 			</div>
 		<?php } ?>
 
