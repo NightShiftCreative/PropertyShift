@@ -664,7 +664,7 @@ class NS_Real_Estate_Properties {
 	        case 'location' :
 
 	            //Get property location
-	          	$property_location = $this->get_tax($post_id, 'property_location');
+	          	$property_location = $this->get_tax_location($post_id);
 	            if(empty($property_location)) { echo '--'; } else { echo $property_location; }
 	            break;
 
@@ -833,10 +833,18 @@ class NS_Real_Estate_Properties {
 	 * @param string $tax
 	 * @param string $array
 	 */
-	public function get_tax($post_id, $tax, $array = null) {
+	public function get_tax($post_id, $tax, $array = null, $hide_empty = true) {
 		$output = '';
-	    $tax_terms = get_the_terms($post_id, $tax);
+
+	    if($hide_empty == false) {
+	        $tax_terms =  get_terms(['taxonomy' => $tax, 'hide_empty' => false,]);
+	    } else {
+	        $tax_terms = get_the_terms( $post_id, $tax);
+	    }
+
 	    if($tax_terms && ! is_wp_error($tax_terms)) : 
+	        
+	        //populate term links
 	        $term_links = array();
 	        foreach ($tax_terms as $term) {
 	            if($array == 'true') {
@@ -844,10 +852,116 @@ class NS_Real_Estate_Properties {
 	            } else {
 	                $term_links[] = '<a href="'. esc_attr(get_term_link($term->slug, $tax)) .'">'.$term->name.'</a>' ;
 	            }
-	        }                   
+	        }
+
+	        //determine output
 	        if($array == 'true') { $output = $term_links;  } else { $output = join( ", ", $term_links); }
+	    
 	    endif;
 	    return $output;
+	}
+
+	/**
+	 *	Get property location
+	 *
+	 * @param int $post_id
+	 */
+	public function get_tax_location($post_id, $output = null, $array = null) {
+		$property_location = '';
+	    $property_location_output = '';
+	    $property_location_terms = get_the_terms( $post_id, 'property_location');
+	    if ( $property_location_terms && ! is_wp_error( $property_location_terms) ) : 
+	        $property_location_links = array();
+	        $property_location_child_links = array();
+	        foreach ( $property_location_terms as $property_location_term ) {
+	            if($property_location_term->parent != 0) {
+	                if($array == 'true') {
+	                    $property_location_child_links[] = $property_location_term->slug;
+	                } else {
+	                    $property_location_child_links[] = '<a href="'. esc_attr(get_term_link($property_location_term ->slug, 'property_location')) .'">'.$property_location_term ->name.'</a>' ;
+	                }
+	            } else {
+	                if($array == 'true') {
+	                    $property_location_links[] = $property_location_term->slug;
+	                } else {
+	                    $property_location_links[] = '<a href="'. esc_attr(get_term_link($property_location_term ->slug, 'property_location')) .'">'.$property_location_term ->name.'</a>' ;
+	                }
+	            }
+	        }                   
+	        $property_location = join( "<span>, </span>", $property_location_links );
+	        $property_location_children = join( "<span>, </span>", $property_location_child_links );
+	    endif;
+
+	    if($array == 'true') {
+	        if(!empty($property_location_links)) { $property_location_output = array_merge($property_location_links, $property_location_child_links); }
+	    } else {
+	        if($output == 'parent') {
+	            $property_location_output = $property_location;
+	        } else if($output == 'children') {
+	            $property_location_output = $property_location_children;
+	        } else {
+	            $property_location_output .= $property_location_children;
+	            if(!empty($property_location_children) && !empty($property_location)) { $property_location_output .= ', '; } 
+	            $property_location_output .= $property_location;
+	        }
+	    }
+	    
+	    return $property_location_output; 
+	}
+
+	/**
+	 *	Retrieves the full address, including location
+	 *
+	 * @param int $post_id
+	 *
+	 */
+	public function get_full_address($post_id) {
+	    $property_settings = $this->load_property_settings($post_id);
+	    $street_address = $property_settings['street_address']['value'];
+	    $property_address = '';
+	    $property_location = $this->get_tax_location($post_id);
+	    if(!empty($street_address)) { $property_address .= $street_address; }
+	    if(!empty($street_address) && !empty($property_location)) { $property_address .= ', '; }
+	    if(!empty($property_location)) { $property_address .= $property_location; }
+	    return $property_address;
+	}
+
+	/**
+	 *	Get property amenities
+	 *
+	 * @param int $post_id
+	 * @param boolean $hide_empty
+	 * @param boolean $array
+	 */
+	public function get_tax_amenities($post_id, $hide_empty = true, $array = null) {
+		$property_amenities = '';
+	    $property_amenities_links = array();
+
+	    if($hide_empty == false) {
+	        $property_amenities_terms =  get_terms(['taxonomy' => 'property_amenities', 'hide_empty' => false,]);
+	    } else {
+	        $property_amenities_terms = get_the_terms( $post_id, 'property_amenities' );
+	    }
+
+	    if ( $property_amenities_terms && ! is_wp_error( $property_amenities_terms) ) : 
+	        foreach ( $property_amenities_terms as $property_amenity_term ) {
+	            if($array == 'true') {
+	                $property_amenities_links[] = $property_amenity_term->slug;
+	            } else {
+	                if(has_term($property_amenity_term->slug, 'property_amenities', $post_id)) { $icon = '<i class="fa fa-check icon"></i>'; } else { $icon = '<i class="fa fa-times icon"></i>'; }
+	                $property_amenities_links[] = '<li><a href="'. esc_attr(get_term_link($property_amenity_term->slug, 'property_amenities')) .'">'.$icon.'<span>'.$property_amenity_term->name.'</span></a></li>' ;
+	            }
+	        } 
+	    endif;
+
+	    if($array == 'true') { 
+	        $property_amenities = $property_amenities_links;
+	    } else { 
+	        $property_amenities = join( '', $property_amenities_links ); 
+	        if(!empty($property_amenities)) { $property_amenities = '<ul class="amenities-list clean-list">'.$property_amenities.'</ul>'; }
+	    }
+
+	    return $property_amenities;
 	}
 
 
