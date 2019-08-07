@@ -102,8 +102,7 @@
                                     <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'ns-real-estate'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
                                 </div>
                                 <div class="right property-actions">
-                                    <?php if($property_listing_display_favorite == 'true' && function_exists('ns_basics_get_post_likes_button')) { echo ns_basics_get_post_likes_button(get_the_ID()); } ?>
-                                    <?php if($property_listing_display_share == 'true' && function_exists('ns_basics_get_social_share')) { echo ns_basics_get_social_share(); } ?>
+                                    <?php do_action('ns_real_estate_property_actions'); ?>
                                 </div>
                                 <div class="clear"></div>
                             </div>
@@ -405,25 +404,24 @@
                                 <?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
 
                                     <?php
-                                    //Get post meta data
-                                        $agent_details_values = get_post_custom( $post->ID );
-                                        $agent_title = isset( $agent_details_values['ns_agent_title'] ) ? esc_attr( $agent_details_values['ns_agent_title'][0] ) : '';
-                                        $agent_email = isset( $agent_details_values['ns_agent_email'] ) ? esc_attr( $agent_details_values['ns_agent_email'][0] ) : '';
-                                        $agent_mobile_phone = isset( $agent_details_values['ns_agent_mobile_phone'] ) ? esc_attr( $agent_details_values['ns_agent_mobile_phone'][0] ) : '';
-                                        $agent_office_phone = isset( $agent_details_values['ns_agent_office_phone'] ) ? esc_attr( $agent_details_values['ns_agent_office_phone'][0] ) : '';
-                                        $agent_fb = isset( $agent_details_values['ns_agent_fb'] ) ? esc_attr( $agent_details_values['ns_agent_fb'][0] ) : '';
-                                        $agent_twitter = isset( $agent_details_values['ns_agent_twitter'] ) ? esc_attr( $agent_details_values['ns_agent_twitter'][0] ) : '';
-                                        $agent_google = isset( $agent_details_values['ns_agent_google'] ) ? esc_attr( $agent_details_values['ns_agent_google'][0] ) : '';
-                                        $agent_linkedin = isset( $agent_details_values['ns_agent_linkedin'] ) ? esc_attr( $agent_details_values['ns_agent_linkedin'][0] ) : '';
-                                        $agent_youtube = isset( $agent_details_values['ns_agent_youtube'] ) ? esc_attr( $agent_details_values['ns_agent_youtube'][0] ) : '';
-                                        $agent_instagram = isset( $agent_details_values['ns_agent_instagram'] ) ? esc_attr( $agent_details_values['ns_agent_instagram'][0] ) : '';
-                                        $agent_form_source = isset( $agent_details_values['ns_agent_form_source'] ) ? esc_attr( $agent_details_values['ns_agent_form_source'][0] ) : 'default';
-                                        $agent_form_id = isset( $agent_details_values['ns_agent_form_id'] ) ? esc_attr( $agent_details_values['ns_agent_form_id'][0] ) : '';
+                                    $agent_obj = new NS_Real_Estate_Agents();
+                                    $agent_settings = $agent_obj->load_agent_settings($post->ID);
+                                    $agent_title = $agent_settings['job_title']['value'];
+                                    $agent_email = $agent_settings['email']['value'];
+                                    $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
+                                    $agent_office_phone = $agent_settings['office_phone']['value'];
+                                    $agent_fb = $agent_settings['facebook']['value'];
+                                    $agent_twitter = $agent_settings['twitter']['value'];
+                                    $agent_google = $agent_settings['google']['value'];
+                                    $agent_linkedin = $agent_settings['linkedin']['value'];
+                                    $agent_youtube = $agent_settings['youtube']['value'];
+                                    $agent_instagram = $agent_settings['instagram']['value'];
+                                    $agent_form_source = $agent_settings['contact_form_source']['value'];
+                                    $agent_form_id = $agent_settings['contact_form_source']['children']['contact_form_7_id']['value'];
 
-                                        //Get agent property count
-                                        $agent_obj = new NS_Real_Estate_Agents();
-                                        $agent_properties = $agent_obj->get_agent_properties(get_the_id());
-                                        $agent_properties_count = $agent_properties['count'];
+                                    //Get agent property count
+                                    $agent_properties = $agent_obj->get_agent_properties(get_the_id());
+                                    $agent_properties_count = $agent_properties['count'];
                                     ?>
 
                                     <div class="ns-agent property-agent">
