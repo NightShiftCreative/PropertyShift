@@ -148,8 +148,7 @@
                             <?php } ?>
 
 						    <div class="gallery-images">
-                                <?php 
-                                    $additional_images = explode(",", $additional_images[0]);
+                                <?php
                                     foreach ($additional_images as $additional_image) {
                                         $image_id = ns_basics_get_image_id($additional_image);
                                         $image_thumb = wp_get_attachment_image_src($image_id, 'property-thumbnail');
