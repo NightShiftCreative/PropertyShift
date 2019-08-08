@@ -259,40 +259,12 @@
                                     <div class="widget-divider"><div class="bar"></div></div>
                                 </div>
                             <?php } ?>
-							<div id="map-canvas-one-pin"></div>
+
+                            <?php
+                            $maps_obj = new NS_Real_Estate_Maps();
+                            $maps_obj->build_single_property_map($latitude, $longitude);
+                            ?>
 							
-							<script>
-								"use strict";
-
-                                //intialize the map
-                                function initialize() {
-									var propertyLatlng = new google.maps.LatLng(<?php echo esc_attr($latitude); ?>, <?php echo esc_attr($longitude); ?>);
-										var mapOptions = {
-										zoom: <?php echo esc_attr($property_detail_map_zoom); ?>,
-										center: propertyLatlng
-									};
-									
-									var map = new google.maps.Map(document.getElementById('map-canvas-one-pin'), mapOptions);
-
-									//add a marker1
-									var marker = new google.maps.Marker({
-										position: propertyLatlng,
-										map: map,
-										icon: '<?php echo $google_maps_pin; ?>'
-									});
-										
-									//show info box for marker1
-									var contentString = '<div class="info-box"><?php the_title(); ?></div>';
-
-									var infowindow = new google.maps.InfoWindow({ content: contentString });
-
-									google.maps.event.addListener(marker, 'click', function() {
-										infowindow.open(map,marker);
-									});
-								}
-									
-								google.maps.event.addDomListener(window, 'load', initialize);
-							</script>
 						</div>
 					<?php } ?>
 					

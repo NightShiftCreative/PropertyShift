@@ -36,11 +36,8 @@ class NS_Real_Estate_Maps {
  		// Get global settings
 		$home_default_map_zoom = $this->global_settings['ns_real_estate_default_map_zoom'];
 		$home_default_map_latitude = $this->global_settings['ns_real_estate_default_map_latitude'];
-		if(empty($home_default_map_latitude)) { $home_default_map_latitude = $this->settings_init['ns_real_estate_default_map_latitude']['value']; }
-		$home_default_map_longitude = $this->global_settings['ns_real_estate_default_map_longitude'];
-		if(empty($home_default_map_longitude)) { $home_default_map_longitude = $this->settings_init['ns_real_estate_default_map_longitude']['value']; }	 
+		$home_default_map_longitude = $this->global_settings['ns_real_estate_default_map_longitude'];	 
 		$google_maps_pin = $this->global_settings['ns_real_estate_google_maps_pin'];
-		if(empty($google_maps_pin)) { $google_maps_pin = $this->settings_init['ns_real_estate_google_maps_pin']['value']; } 
 
 		//Output the map ?>
 		<div class="admin-module-note admin-map-note left"><?php esc_html_e('Enter an address in the search field below to add a marker to the map', 'ns-real-estate'); ?></div>
