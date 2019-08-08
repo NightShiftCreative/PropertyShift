@@ -14,7 +14,6 @@
     $property_detail_items = $admin_obj->load_settings(false, 'ns_property_detail_items', false);
     $property_detail_id = $admin_obj->load_settings(false, 'ns_property_detail_id');
     $property_detail_agent_contact_form = $admin_obj->load_settings(false, 'ns_property_detail_agent_contact_form');
-    $custom_fields = get_option('ns_property_custom_fields');
 
     //Get template location
     if(isset($template_args)) { $template_location = $template_args['location']; } else { $template_location = ''; }
@@ -187,15 +186,7 @@
                                 <?php if(!empty($property_status)) { ?><div class="property-detail-item"><?php esc_html_e('Status', 'ns-real-estate'); ?>:<span><?php echo wp_kses_post($property_status); ?></span></div><?php } ?>
                                 <?php if(!empty($property_type)) { ?><div class="property-detail-item"><?php esc_html_e('Type', 'ns-real-estate'); ?>:<span><?php echo wp_kses_post($property_type); ?></span></div><?php } ?>
                                 <div class="property-detail-item publish-date"><?php esc_html_e('Posted On', 'ns-real-estate'); ?>:<span><?php echo get_the_date(); ?></span></div>
-                                <?php 
-                                if(!empty($custom_fields)) {                 
-                                    foreach ($custom_fields as $custom_field) { 
-                                        $fieldValue = get_post_meta($postID, 'ns_property_custom_field_'.$custom_field['id'], true);  
-                                        if(!empty($fieldValue)) { ?>
-                                            <div class="property-detail-item"><?php echo $custom_field['name']; ?>: <span><?php echo $fieldValue; ?></span></div>
-                                        <?php }
-                                    }
-                                } ?>
+                                <?php do_action('ns_real_estate_property_details_widget', $postID); ?>
                                 <div class="clear"></div>
                             </div>
 

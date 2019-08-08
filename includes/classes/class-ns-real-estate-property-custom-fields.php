@@ -27,6 +27,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 		add_action('ns_basics_save_meta_box_ns-property', array( $this, 'save_property_settings_fields' ));
 		add_filter('ns_real_estate_filter_settings_init_filter', array($this, 'filter_custom_fields_init'));
 		add_action('ns_real_estate_after_sortable_fields_ns_property_filter_items', array($this, 'add_filter_custom_fields'));
+		add_action('ns_real_estate_property_details_widget', array($this, 'add_property_detail_widget_custom_fields'));
 
 		// Get global settings
 		$this->admin_obj = new NS_Real_Estate_Admin();
@@ -293,6 +294,26 @@ class NS_Real_Estate_Property_Custom_Fields {
 	<?php }
 	
 
-}
+	/************************************************************************/
+	// Front-end Template Hooks
+	/************************************************************************/
 
+	/**
+	 *	Add custom field to filter items
+	 *
+	 * @param int $postID
+	 */
+	public function add_property_detail_widget_custom_fields($postID) {
+		$custom_fields = get_option('ns_property_custom_fields');
+		if(!empty($custom_fields)) {                 
+            foreach ($custom_fields as $custom_field) { 
+                $fieldValue = get_post_meta($postID, 'ns_property_custom_field_'.$custom_field['id'], true);  
+                if(!empty($fieldValue)) { ?>
+                    <div class="property-detail-item"><?php echo $custom_field['name']; ?>: <span><?php echo $fieldValue; ?></span></div>
+                <?php }
+            }
+        }
+	}
+
+}
 ?>
