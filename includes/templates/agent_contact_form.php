@@ -1,15 +1,18 @@
 <?php
+//Get agent settings
 global $post;
 $agent_obj = new NS_Real_Estate_Agents();
 $agent_settings = $agent_obj->load_agent_settings($post->ID);
 $agent_email = $agent_settings['email']['value'];
 
+//Get global settings
+$admin_obj = new NS_Real_Estate_Admin();
 $site_title = get_bloginfo('name');
-$agent_form_submit_text = esc_attr(get_option('ns_agent_form_submit_text', esc_html__('Contact Agent', 'ns-real-estate')) );
-$agent_form_success = esc_attr(get_option('ns_agent_form_success', esc_html__('Thanks! Your email has been delivered!', 'ns-real-estate')));
-    
+$agent_form_submit_text = $admin_obj->load_settings(false, 'ns_agent_form_submit_text');
+$agent_form_success = $admin_obj->load_settings(false, 'ns_agent_form_success');
+
 if(is_singular('ns-property')) {
-    $agent_form_message_placeholder = esc_attr(get_option('ns_agent_form_message_placeholder', esc_html__('I am interested in this property and would like to know more.', 'ns-real-estate')) );
+    $agent_form_message_placeholder = $admin_obj->load_settings(false, 'ns_agent_form_message_placeholder');
 } else {
     $agent_form_message_placeholder =  esc_html__( 'Message', 'ns-real-estate' );
 }
