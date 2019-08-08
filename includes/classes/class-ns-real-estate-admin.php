@@ -865,7 +865,6 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 				<?php 
 				$floor_plans = $field['value']; 
 				if(!empty($floor_plans) && !empty($floor_plans[0])) { 
-					$floor_plans = unserialize($floor_plans[0]); 
 	                $count = 0;                     
 	                foreach ($floor_plans as $floor_plan) { ?>
 	                	<div class="ns-accordion">
