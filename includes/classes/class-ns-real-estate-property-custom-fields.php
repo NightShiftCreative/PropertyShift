@@ -30,6 +30,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 		add_action('ns_real_estate_property_details_widget', array($this, 'add_property_detail_widget_custom_fields'));
 		add_action('ns_real_estate_after_property_submit_general', array($this, 'add_property_submit_form_custom_fields'));
 		add_action('ns_real_estate_save_property_submit', array($this, 'save_property_submit_form_custom_fields'));
+		add_action('ns_real_estate_after_filter_fields', array($this, 'add_filter_template_custom_fields'), 10, 2);
 
 		// Get global settings
 		$this->admin_obj = new NS_Real_Estate_Admin();
@@ -375,6 +376,39 @@ class NS_Real_Estate_Property_Custom_Fields {
 		    $property_custom_fields = $_POST['ns_property_custom_fields'];
 		    foreach($property_custom_fields as $custom_field) {
 		        update_post_meta( $postID, $custom_field['key'], $custom_field['value'] );
+		    }
+		}
+	}
+
+	/**
+	 *	Add custom fields to property filter template
+	 *
+	 * @param int $postID
+	 */
+	public function add_filter_template_custom_fields($value, $filter_settings) {
+		$custom_fields = get_option('ns_property_custom_fields');
+		if(isset($value['name'])) { $name = $value['name']; }
+		if(isset($value['slug'])) { $slug = $value['slug']; }
+		if(isset($value['custom']) && $value['custom'] == 'true') { $custom = 'true'; } else { $custom = 'false'; } 
+
+		if($custom == 'true' && !empty($custom_fields)) { 
+			echo '<label>'.esc_attr($name).'</label>';
+		    foreach($custom_fields as $field) {
+		        $custom_field_key = strtolower(str_replace(' ', '_', $field['name']));
+		        if($field['id'] == $slug) {
+		            if($field['type'] == 'select') {  ?>
+		                <select name="<?php echo $custom_field_key; ?>">
+		                    <option value=""><?php esc_html_e( 'Select an option...', 'ns-real-estate' ); ?></option>
+		                    <?php
+		                    $field_select_options = $field['select_options'];
+		                    foreach($field_select_options as $option) { ?>
+		                        <option value="<?php echo $option; ?>" <?php if($currentFilters[$custom_field_key] == $option) { echo 'selected'; } ?>><?php echo $option; ?></option>
+		                    <?php } ?>
+		                </select>
+		            <?php } else { ?>
+		                <input type="<?php if($field['type'] == 'num') { echo 'number'; } else { echo 'text'; } ?>" name="<?php echo $custom_field_key; ?>" value="<?php echo $currentFilters[$custom_field_key]; ?>" />
+		            <?php }
+		        }
 		    }
 		}
 	}

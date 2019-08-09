@@ -115,7 +115,7 @@ if (!empty($filter_fields)) { ?>
                         if($active == 'true') { ?>
                         	<div class="form-block filter-item <?php echo esc_attr($filter_class); ?>">
 
-                        		<?php if(!empty($label)) { echo '<label>'.esc_attr($label).'</label>'; } ?>
+                        		<?php if(!empty($label) && $custom != 'true') { echo '<label>'.esc_attr($label).'</label>'; } ?>
 
 		                        <?php if($slug == 'property_type') { ?>
 		                            <select name="propertyType" class="form-dropdown">
@@ -224,6 +224,9 @@ if (!empty($filter_fields)) { ?>
 		                            <input type="number" name="areaMax" class="area-filter area-filter-max" placeholder="<?php echo $placeholder_second; ?>" value="<?php echo $currentFilters['areaMax']; ?>" />
 		                            <div class="clear"></div>
 		                        <?php } ?>
+
+		                        <?php do_action('ns_real_estate_after_filter_fields', $value, $filter_settings); ?>
+
                         	</div>
                         <?php }
 					} ?>
@@ -256,7 +259,7 @@ if (!empty($filter_fields)) { ?>
 	                        if($active == 'true') { ?>
 	                        <div class="form-block filter-item <?php echo esc_attr($filter_class); ?>">
 	                            
-	                            <?php if(!empty($label)) { echo '<label>'.esc_attr($label).'</label>'; } ?>
+	                            <?php if(!empty($label) && $custom != 'true') { echo '<label>'.esc_attr($label).'</label>'; } ?>
 
 	                            <?php if($slug == 'property_type') { ?>
 	                                <select name="propertyType" class="form-dropdown">
@@ -366,6 +369,8 @@ if (!empty($filter_fields)) { ?>
 	                                <input type="number" name="areaMax" class="area-filter area-filter-max" placeholder="<?php echo $placeholder_second; ?>" />
 	                                <div class="clear"></div>
 	                            <?php } ?>
+
+	                            <?php do_action('ns_real_estate_after_filter_fields', $value, $filter_settings); ?>
 	                        </div>
 	                        <?php } ?>
 
