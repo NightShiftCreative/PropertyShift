@@ -261,7 +261,7 @@
                             <?php }
 
                             $maps_obj = new NS_Real_Estate_Maps();
-                            $maps_obj->build_single_property_map($latitude, $longitude);
+                            $maps_obj->build_single_property_map($latitude, $longitude, true);
                             ?>
 							
 						</div>

@@ -29,9 +29,11 @@ class NS_Real_Estate_Maps {
 	/**
 	 *	Single property map
 	 *
-	 * @param int $post_id
+	 * @param int $latitude
+	 * @param int $longitude
+	 * @param boolean $map_only
 	 */
-	public function build_single_property_map($latitude, $longitude) {
+	public function build_single_property_map($latitude, $longitude, $map_only = false) {
  
  		// Get global settings
 		$home_default_map_zoom = $this->global_settings['ns_real_estate_default_map_zoom'];
@@ -39,13 +41,15 @@ class NS_Real_Estate_Maps {
 		$home_default_map_longitude = $this->global_settings['ns_real_estate_default_map_longitude'];	 
 		$google_maps_pin = $this->global_settings['ns_real_estate_google_maps_pin'];
 
-		//Output the map ?>
-		<div class="admin-module-note admin-map-note left"><?php esc_html_e('Enter an address in the search field below to add a marker to the map', 'ns-real-estate'); ?></div>
-		<input type=button id="remove-pin" class="admin-button remove-pin right" value="<?php esc_html_e('Clear Location', 'ns-real-estate'); ?>">
-		<div class="clear"></div>
-		<input id="pac-input" class="controls" type="text" placeholder="Search" value="">
-		<div id="map-canvas-one-pin"></div>
+		//Output map
+		if($map_only == false) { ?>
+			<div class="admin-module-note admin-map-note left"><?php esc_html_e('Enter an address in the search field below to add a marker to the map', 'ns-real-estate'); ?></div>
+			<input type=button id="remove-pin" class="admin-button remove-pin right" value="<?php esc_html_e('Clear Location', 'ns-real-estate'); ?>">
+			<div class="clear"></div>
+			<input id="pac-input" class="controls" type="text" placeholder="Search" value="">
+		<?php } ?>
 
+		<div id="map-canvas-one-pin"></div>
 		<script>
 			var map;
 			var markers = [];
