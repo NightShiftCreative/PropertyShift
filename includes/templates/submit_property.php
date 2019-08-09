@@ -455,7 +455,10 @@
                         </div>
                     </div>
             	</div>
-            	<?php include(plugin_dir_path( __DIR__ ) . 'admin_map.php'); ?>
+            	<?php
+                $maps_obj = new NS_Real_Estate_Maps();
+                $maps_obj->build_single_property_map($latitude, $longitude);
+                ?>
             </div>
             <?php } ?>
 
