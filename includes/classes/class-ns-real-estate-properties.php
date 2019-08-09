@@ -1171,8 +1171,51 @@ class NS_Real_Estate_Properties {
 	/**
 	 *	Process front-end property submit
 	 */
-	public function insert_property_post() {
-		
+	public function insert_property_post($edit_property_id = null) {
+		$members_submit_property_approval = esc_attr(get_option('ns_members_submit_property_approval', 'true'));
+		if($members_submit_property_approval == 'true') {$members_submit_property_approval = 'pending';} else {$members_submit_property_approval = 'publish'; }
+
+		$output = array();
+		$errors = array();
+
+		// require a title
+		if(trim($_POST['title']) === '') {
+		    $errors['title'] =  esc_html__('Please enter a title!', 'ns-real-estate'); 
+		} else {
+		    $title = trim($_POST['title']);
+		}
+
+		// require an address
+		if(trim($_POST['street_address']) === '') {
+		    $errors['address'] =  esc_html__('Please enter an address!', 'ns-real-estate'); 
+		} else {
+		    $street_address = trim($_POST['street_address']);
+		}
+
+		// require a price
+		if(trim($_POST['price']) === '') {
+		    $errors['price'] =  esc_html__('Please enter a price!', 'ns-real-estate'); 
+		} else {
+		    $price = trim($_POST['price']);
+		}
+
+		// Get property taxonomies
+		if(isset($_POST['property_location'])) { $property_location = $_POST['property_location']; }
+		if(isset($_POST['property_type'])) { $property_type = $_POST['property_type']; }
+		if(isset($_POST['contract_type'])) { $property_status = $_POST['contract_type']; }
+		if(isset($_POST['property_amenities'])) { $property_amenities = $_POST['property_amenities']; }
+
+		// If there are no errors
+		if(empty($errors)) {
+
+			//insert post
+
+		} else {
+			$output['success'] = '';
+		}
+
+		$output['errors'] = $errors;
+		return $output;
 	}
 
 	/************************************************************************/

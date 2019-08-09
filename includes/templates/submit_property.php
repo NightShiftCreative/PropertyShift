@@ -16,6 +16,9 @@
     $members_add_amenities = $admin_obj->load_settings(false, 'ns_members_add_amenities');
     $area_postfix_default = $admin_obj->load_settings(false, 'ns_real_estate_default_area_postfix');
 
+    // Load properties object
+    $properties_obj = new NS_Real_Estate_Properties();
+
 	//intialize variables
 	$errors = '';
 	$success = '';
@@ -26,7 +29,6 @@
 	    $edit_property_id = $_GET['edit_property'];
 	    $form_action = '?edit_property='.esc_attr($edit_property_id);
 
-        $properties_obj = new NS_Real_Estate_Properties();
         $property_settings = $properties_obj->load_property_settings($edit_property_id);
 	    $edit_address = $property_settings['street_address']['value'];
         $edit_price = $property_settings['price']['value'];
@@ -78,9 +80,9 @@
 	if (!empty($_POST)) {
 
 		if(isset($_GET['edit_property']) && !empty($_GET['edit_property'])) {
-    		$inserted_post = ns_real_estate_insert_property_post($_GET['edit_property']);
+            $inserted_post = $properties_obj->insert_property_post($_GET['edit_property']);
     	} else {
-    		$inserted_post = ns_real_estate_insert_property_post();
+            $inserted_post = $properties_obj->insert_property_post();
     	}
 		$errors = $inserted_post['errors'];
 		$success = $inserted_post['success'];
