@@ -1291,18 +1291,10 @@ class NS_Real_Estate_Properties {
 		        update_post_meta( $post_ID, 'ns_property_floor_plans', $_POST['ns_property_floor_plans'] );
 		    }
 
-		    if (isset( $_POST['ns_property_custom_fields'] )) {
-		        $property_custom_fields = $_POST['ns_property_custom_fields'];
-		        foreach($property_custom_fields as $custom_field) {
-		            update_post_meta( $post_ID, $custom_field['key'], $custom_field['value'] );
-		        }
-		    }
-
 		    if( isset( $_POST['description'] ) )
 	        	update_post_meta( $post_ID, 'ns_property_description', wp_kses_post($_POST['description']) );
 
 		    if (!empty( $additional_img_urls )) { 
-		        //$strAdditionalImgs = implode(",", $additional_img_urls);
 		        update_post_meta( $post_ID, 'ns_additional_img', $additional_img_urls);
 		    } else {
 		        update_post_meta( $post_ID, 'ns_additional_img', '');
