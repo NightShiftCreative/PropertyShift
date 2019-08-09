@@ -16,6 +16,7 @@ class NS_Real_Estate_Shortcodes {
 		add_action( 'media_buttons', array( $this, 'add_shortcode_wizard'));
 		add_filter("the_content", array( $this, 'content_filter'));
 		add_shortcode('ns_list_properties', array( $this, 'add_shortcode_list_properties'));
+		add_shortcode('ns_properties_map', array( $this, 'add_shortcode_properties_map'));
 	}
 
 	/**
@@ -94,6 +95,17 @@ class NS_Real_Estate_Shortcodes {
 	    $output = ob_get_clean();
 
 	    return $output;
+	}
+
+	/**
+	 * Properties Map
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 */
+	public function add_shortcode_properties_map($atts, $content=null) {
+		$maps_obj = new NS_Real_Estate_Maps();
+		$maps_obj->build_properties_map();
 	}
 
 }
