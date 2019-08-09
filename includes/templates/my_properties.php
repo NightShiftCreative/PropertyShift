@@ -1,11 +1,12 @@
 <?php
     global $post;
+    $admin_obj = new NS_Real_Estate_Admin();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     $current_user = wp_get_current_user();
     $author = $current_user->user_login;
-    $members_submit_property_page = get_option('ns_members_submit_property_page');
+    $members_submit_property_page = $admin_obj->load_settings(false, 'ns_members_submit_property_page');
 ?>
 
 <!-- start user my properties -->
@@ -37,7 +38,8 @@
                 
                 <?php
                 //Get property type
-                if(function_exists('ns_real_estate_get_property_type')) { $property_type = ns_real_estate_get_property_type($post->ID); } else { $property_type = ''; }
+                $properties_obj = new NS_Real_Estate_Properties();
+                $property_type = $properties_obj->get_tax($post->ID, 'property_type');
                 ?>
 
                 <tr class="my-properties-entry">

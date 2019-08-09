@@ -314,8 +314,8 @@
                     <div class="form-block property-floor-plans">
                         <div class="accordion">
                             <?php 
-                            if(!empty($edit_floor_plans)) { 
-                                $count = 0;                      
+                            if(!empty($edit_floor_plans) && !empty($edit_floor_plans[0])) { 
+                                $count = 0;                     
                                 foreach ($edit_floor_plans as $floor_plan) { ?>
                                     <h4 class="accordion-tab"><span class="floor-plan-title-mirror"><?php echo $floor_plan['title']; ?></span> <span class="delete-floor-plan right"><i class="fa fa-trash"></i> <?php esc_html_e('Delete', 'ns-real-estate'); ?></span></h4>
                                     <div class="floor-plan-item"> 
