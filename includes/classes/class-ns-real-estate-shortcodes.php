@@ -18,6 +18,7 @@ class NS_Real_Estate_Shortcodes {
 		add_shortcode('ns_list_properties', array( $this, 'add_shortcode_list_properties'));
 		add_shortcode('ns_properties_map', array( $this, 'add_shortcode_properties_map'));
 		add_shortcode('ns_list_property_tax', array( $this, 'add_shortcode_list_property_tax'));
+		add_shortcode('ns_submit_property', array( $this, 'add_shortcode_submit_property'));
 	}
 
 	/**
@@ -180,6 +181,19 @@ class NS_Real_Estate_Shortcodes {
 	        }
 	    }
 
+	    return $output;
+	}
+
+	/**
+	 * Submit Property Form
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 */
+	public function add_shortcode_submit_property($atts, $content=null) {
+		ob_start();
+	    ns_real_estate_template_loader('submit_property.php');
+	    $output = ob_get_clean();
 	    return $output;
 	}
 

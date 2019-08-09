@@ -1168,6 +1168,13 @@ class NS_Real_Estate_Properties {
 	    return $property_submit_fields_init;
 	}
 
+	/**
+	 *	Process front-end property submit
+	 */
+	public function insert_property_post() {
+		
+	}
+
 	/************************************************************************/
 	// Front-end Template Hooks
 	/************************************************************************/

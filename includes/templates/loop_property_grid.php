@@ -2,7 +2,6 @@
 	//global settings
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
-	
     $admin_obj = new NS_Real_Estate_Admin();
     $properties_page = $admin_obj->load_settings(false, 'ns_properties_page');
     $property_listing_display_time = $admin_obj->load_settings(false, 'ns_property_listing_display_time');
