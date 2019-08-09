@@ -964,6 +964,21 @@ class NS_Real_Estate_Properties {
 	    return $property_amenities;
 	}
 
+	/**
+	 *	Get property walkscore
+	 *
+	 * @param int $post_id
+	 *
+	 */
+	public function get_walkscore($lat, $lon, $address) {
+		$address = urlencode($address);
+	    $url = "http://api.walkscore.com/score?format=json&address=$address";
+	    $url .= "&lat=$lat&lon=$lon&wsapikey=f6c3f50b09a7ce69d6d276015e57e996";
+	    $request = wp_remote_get($url);
+	    $str = wp_remote_retrieve_body($request);
+	    return $str;
+	}
+
 
 	/************************************************************************/
 	// Property Page Settings Methods

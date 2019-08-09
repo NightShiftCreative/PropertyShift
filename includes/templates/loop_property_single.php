@@ -258,9 +258,8 @@
                                     <h4><?php echo esc_attr($label); ?></h4>
                                     <div class="widget-divider"><div class="bar"></div></div>
                                 </div>
-                            <?php } ?>
+                            <?php }
 
-                            <?php
                             $maps_obj = new NS_Real_Estate_Maps();
                             $maps_obj->build_single_property_map($latitude, $longitude);
                             ?>
@@ -275,7 +274,7 @@
 						<div class="property-single-item ns-single-item widget property-<?php echo esc_attr($slug); ?>">
 						
 							<?php 
-							$json = getWalkScore($latitude,$longitude,$address);
+                            $json = $property_obj->get_walkscore($latitude,$longitude,$address);
 							$walkScoreData = json_decode($json, true);
 							?>
 
