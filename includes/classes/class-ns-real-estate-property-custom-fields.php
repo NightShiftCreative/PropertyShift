@@ -301,7 +301,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 	/************************************************************************/
 
 	/**
-	 *	Add custom field to filter items
+	 *	Add custom fields to property detail widget
 	 *
 	 * @param int $postID
 	 */
