@@ -20,6 +20,7 @@ class NS_Real_Estate_Shortcodes {
 		add_shortcode('ns_list_property_tax', array( $this, 'add_shortcode_list_property_tax'));
 		add_shortcode('ns_submit_property', array( $this, 'add_shortcode_submit_property'));
 		add_shortcode('ns_my_properties', array( $this, 'add_shortcode_my_properties'));
+		add_shortcode('ns_property_filter', array( $this, 'add_shortcode_property_filter'));
 	}
 
 	/**
@@ -219,8 +220,41 @@ class NS_Real_Estate_Shortcodes {
 	    ns_real_estate_template_loader('my_properties.php', $template_args);
 
 	    $output = ob_get_clean();
-
 	    return $output;
+	}
+
+	/**
+	 * Property Filter
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 */
+	public function add_shortcode_property_filter($atts, $content=null) {
+		$atts = shortcode_atts(array ('id' => '',), $atts);
+	    ob_start();
+
+	    $property_filter_id = $atts['id'];
+	    if(empty($property_filter_id)) {
+	    	return false;
+	    } else {
+		    $values = get_post_custom( $property_filter_id );
+		    $property_filter_layout = isset( $values['ns_property_filter_layout'] ) ? esc_attr( $values['ns_property_filter_layout'][0] ) : 'middle';
+
+		    //Set template args
+		    $template_args = array();
+		    $template_args['id'] = $property_filter_id;
+		    $template_args['shortcode_filter'] = 'true';
+
+		    //Load template
+		    if($property_filter_layout == 'minimal') {
+		        ns_real_estate_template_loader('property-filter-minimal.php', $template_args);
+		    } else {
+		        ns_real_estate_template_loader('property-filter.php', $template_args);
+		    }
+
+		    $output = ob_get_clean();
+		    return $output;
+		}
 	}
 
 }

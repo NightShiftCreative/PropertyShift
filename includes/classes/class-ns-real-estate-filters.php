@@ -146,6 +146,7 @@ class NS_Real_Estate_Filters {
 				'title' => esc_html__('Submit Button Text', 'ns-real-estate'),
 				'name' => 'ns_property_filter_submit_text',
 				'type' => 'text',
+				'value' => esc_html__('Find Properties', 'ns-real-estate'),
 				'order' => 6,
 			),
 		);
