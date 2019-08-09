@@ -17,6 +17,7 @@ class NS_Real_Estate_Shortcodes {
 		add_filter("the_content", array( $this, 'content_filter'));
 		add_shortcode('ns_list_properties', array( $this, 'add_shortcode_list_properties'));
 		add_shortcode('ns_properties_map', array( $this, 'add_shortcode_properties_map'));
+		add_shortcode('ns_list_property_tax', array( $this, 'add_shortcode_list_property_tax'));
 	}
 
 	/**
@@ -106,6 +107,80 @@ class NS_Real_Estate_Shortcodes {
 	public function add_shortcode_properties_map($atts, $content=null) {
 		$maps_obj = new NS_Real_Estate_Maps();
 		$maps_obj->build_properties_map();
+	}
+
+	/**
+	 * List property taxonomy
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 */
+	public function add_shortcode_list_property_tax($atts, $content=null) {
+		$atts = shortcode_atts(
+	    array (
+	        'tax' => 'property_type',
+	        'terms' => '',
+	        'layout' => 'grid',
+	        'show_posts' => 5,
+	        'orderby' => 'count',
+	        'order' => 'DESC',
+	        'hide_empty' => 'true',
+	    ), $atts);
+
+	    $count = 1;
+	    $output = '';
+
+	    $args = array('taxonomy' => $atts['tax'], 'orderby' => $atts['orderby'], 'order' => $atts['order']);
+	    if(!empty($atts['terms'])) { $term_slugs = explode(', ', $atts['terms']); $args['slug'] = $term_slugs; }
+	    if($atts['hide_empty'] == 'false') { $args['hide_empty'] = false; } else { $args['hide_empty'] = true; }
+
+	    $property_types = get_terms($args);
+
+	    if ( !empty( $property_types ) && !is_wp_error( $property_types ) ) { 
+
+	        if($atts['layout'] == 'carousel') {
+	            $output .= '<div class="slider-wrap slider-wrap-tax">';
+	            $output .= '<div class="slider-nav slider-nav-tax"><span class="slider-prev"><i class="fa fa-angle-left"></i></span><span class="slider-next"><i class="fa fa-angle-right"></i></span></div>';
+	            $output .= '<div class="slider slider-tax">';
+	            foreach ( $property_types as $property_type ) { 
+	                if($count <= $atts['show_posts']) {
+	                    $term_data = get_option('taxonomy_'.$property_type->term_id);
+	                    if (isset($term_data['img'])) { $term_img = $term_data['img']; } else { $term_img = ''; } 
+	                    $output .= '<div class="slide slide-tax">';
+	                    $output .= '<a href="'. esc_attr(get_term_link($property_type->slug, $atts['tax'])) .'">';
+	                    if(!empty($term_img)) { $output .= '<img src="'.$term_img.'" alt="" />'; }
+	                    $output .= '<h4>'.$property_type->name.'</h4>';
+	                    $output .= '<span>'.$property_type->count.' '.esc_html__( 'Properties', 'ns-real-estate' ).'</span>';
+	                    $output .= '</a>';
+	                    $output .= '</div>';
+	                    $count++;
+	                }
+	                else {
+	                    break;
+	                }
+	            }
+	            $output .= '</div>';
+	            $output .= '</div>';
+	        } else {
+	            $output .= '<div class="row row-property-tax">';
+	            foreach ( $property_types as $property_type ) { 
+	               if($count <= $atts['show_posts']) {
+	                    $term_data = get_option('taxonomy_'.$property_type->term_id);
+	                    if (isset($term_data['img'])) { $term_img = $term_data['img']; } else { $term_img = ''; } 
+
+	                    if($count == 1) { $output .= '<div class="col-lg-8 col-md-8 col-property-tax">'; } else { $output .= '<div class="col-lg-4 col-md-4 col-property-tax">'; }
+	                    $output .= '<a href="'. esc_attr(get_term_link($property_type->slug, $atts['tax'])) .'" style="background:url('. $term_img .') no-repeat center; background-size:cover;" class="property-cat"><div class="img-overlay black"></div><h3>'. $property_type->name .'</h3><span class="button outline small">'.$property_type->count.' '. esc_html__( 'Properties', 'ns-real-estate' ) .'</span></a>'; 
+	                    $output .= '</div>';
+	                    $count++;
+	                } else {
+	                    break;
+	                }
+	            } 
+	            $output .= '</div>';
+	        }
+	    }
+
+	    return $output;
 	}
 
 }
