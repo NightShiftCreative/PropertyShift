@@ -1027,7 +1027,7 @@ class NS_Real_Estate_Properties {
 					'title' => esc_html__('Select a Filter', 'ns-real-estate'),
 					'name' => 'ns_banner_property_filter_id',
 					'type' => 'select',
-					'options' => array(),
+					'options' => NS_Real_Estate_Filters::get_filter_ids(),
 				),
 			),
 		);
