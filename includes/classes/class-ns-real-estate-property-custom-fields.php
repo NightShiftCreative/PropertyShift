@@ -244,7 +244,7 @@ class NS_Real_Estate_Property_Custom_Fields {
 	/************************************************************************/
 	// Property Filter Custom Fields
 	/************************************************************************/
-	
+
 	/**
 	 *	Initialize filter custom fields
 	 *
