@@ -25,32 +25,34 @@
 	    $form_submit_text = esc_html__('Update Property', 'ns-real-estate');
 	    $edit_property_id = $_GET['edit_property'];
 	    $form_action = '?edit_property='.esc_attr($edit_property_id);
-	    $values = get_post_custom( $edit_property_id );
-	    $edit_address = isset( $values['ns_property_address'] ) ? esc_attr( $values['ns_property_address'][0] ) : '';
-    	$edit_price = isset( $values['ns_property_price'] ) ? esc_attr( $values['ns_property_price'][0] ) : '';
-    	$edit_price_postfix = isset( $values['ns_property_price_postfix'] ) ? esc_attr( $values['ns_property_price_postfix'][0] ) : '';
-    	$edit_bedrooms = isset( $values['ns_property_bedrooms'] ) ? esc_attr( $values['ns_property_bedrooms'][0] ) : '';
-    	$edit_bathrooms = isset( $values['ns_property_bathrooms'] ) ? esc_attr( $values['ns_property_bathrooms'][0] ) : '';
-    	$edit_garages = isset( $values['ns_property_garages'] ) ? esc_attr( $values['ns_property_garages'][0] ) : '';
-    	$edit_area = isset( $values['ns_property_area'] ) ? esc_attr( $values['ns_property_area'][0] ) : '';
-    	$edit_area_postfix = isset( $values['ns_property_area_postfix'] ) ? esc_attr( $values['ns_property_area_postfix'][0] ) : $area_postfix_default;
-    	$edit_description = isset( $values['ns_property_description'] ) ? $values['ns_property_description'][0] : '';
-        $edit_floor_plans = isset($values['ns_property_floor_plans']) ? $values['ns_property_floor_plans'] : '';
-        $edit_additional_images = isset($values['ns_additional_img']) ? $values['ns_additional_img'] : '';
-    	$edit_video_url = isset( $values['ns_property_video_url'] ) ? esc_attr( $values['ns_property_video_url'][0] ) : '';
-    	$edit_video_img = isset( $values['ns_property_video_img'] ) ? esc_attr( $values['ns_property_video_img'][0] ) : '';
-    	$latitude = isset( $values['ns_property_latitude'] ) ? esc_attr( $values['ns_property_latitude'][0] ) : '';
-    	$longitude = isset( $values['ns_property_longitude'] ) ? esc_attr( $values['ns_property_longitude'][0] ) : '';
-    	$edit_agent_display = isset( $values['ns_agent_display'] ) ? esc_attr( $values['ns_agent_display'][0] ) : 'none';
-    	$edit_agent_select = isset( $values['ns_agent_select'] ) ? esc_attr( $values['ns_agent_select'][0] ) : '';
-    	$edit_agent_custom_name = isset( $values['ns_agent_custom_name'] ) ? esc_attr( $values['ns_agent_custom_name'][0] ) : '';
-    	$edit_agent_custom_email = isset( $values['ns_agent_custom_email'] ) ? esc_attr( $values['ns_agent_custom_email'][0] ) : '';
-    	$edit_agent_custom_phone = isset( $values['ns_agent_custom_phone'] ) ? esc_attr( $values['ns_agent_custom_phone'][0] ) : '';
-    	$edit_agent_custom_url = isset( $values['ns_agent_custom_url'] ) ? esc_attr( $values['ns_agent_custom_url'][0] ) : '';
-    	$edit_property_location = ns_real_estate_get_property_location($edit_property_id , null, 'true');
-    	$edit_property_amenities = ns_real_estate_get_property_amenities($edit_property_id , true, 'true');
-    	$edit_property_status = ns_real_estate_get_property_status($edit_property_id, 'true');
-    	$edit_property_type = ns_real_estate_get_property_type($edit_property_id, 'true');
+
+        $properties_obj = new NS_Real_Estate_Properties();
+        $property_settings = $properties_obj->load_property_settings($edit_property_id);
+	    $edit_address = $property_settings['street_address']['value'];
+        $edit_price = $property_settings['price']['value'];
+        $edit_price_postfix = $property_settings['price_postfix']['value'];
+        $edit_bedrooms = $property_settings['beds']['value'];
+        $edit_bathrooms = $property_settings['baths']['value'];
+        $edit_garages = $property_settings['garages']['value'];
+        $edit_area = $property_settings['area']['value'];
+        $edit_area_postfix = $property_settings['area_postfix']['value'];
+        $edit_description = $property_settings['description']['value'];
+        $edit_floor_plans = $property_settings['floor_plans']['value'];
+        $edit_additional_images = $property_settings['gallery']['value'];
+        $edit_video_url = $property_settings['video_url']['value'];
+        $edit_video_img = $property_settings['video_cover']['value'];
+        $latitude = $property_settings['latitude']['value'];
+        $longitude = $property_settings['longitude']['value'];
+        $edit_agent_display = $property_settings['owner_display']['value'];
+        $edit_agent_select = $property_settings['owner_display']['children']['agent']['value'];
+        $edit_agent_custom_name = $property_settings['owner_display']['children']['owner_custom_name']['value'];
+        $edit_agent_custom_email = $property_settings['owner_display']['children']['owner_custom_email']['value'];
+        $edit_agent_custom_phone = $property_settings['owner_display']['children']['owner_custom_phone']['value'];
+        $edit_agent_custom_url = $property_settings['owner_display']['children']['owner_custom_url']['value'];
+        $edit_property_location = $properties_obj->get_tax($edit_property_id, 'property_location', true);
+        $edit_property_amenities = $properties_obj->get_tax($edit_property_id, 'property_amenities', true);
+        $edit_property_status = $properties_obj->get_tax($edit_property_id, 'property_status', true);
+        $edit_property_type = $properties_obj->get_tax($edit_property_id, 'property_type', true);
 
     	//delete additional image
 		if (!empty($_GET['additional_img_attachment_id'])) {
@@ -348,8 +350,7 @@
                     <h3><?php esc_html_e('Floor Plans', 'ns-real-estate'); ?></h3>
                     <div class="form-block property-floor-plans">
                         <div class="accordion">
-                            <?php
-                            $edit_floor_plans = unserialize($edit_floor_plans[0]); 
+                            <?php 
                             if(!empty($edit_floor_plans)) { 
                                 $count = 0;                      
                                 foreach ($edit_floor_plans as $floor_plan) { ?>
@@ -402,24 +403,21 @@
 	            	<div class="additional-img-container">
 
 	            		<?php 
-		            	if(isset($edit_additional_images)) {
-		            		$edit_additional_images = explode(",", $edit_additional_images[0]);
-		            		if(!empty($edit_additional_images)) {
-		            			foreach ($edit_additional_images as $edit_additional_image) {
-		            				if(!empty($edit_additional_image)) {
-			            				$additional_img_attachment_id = ns_real_estate_get_attachment_id_by_url($edit_additional_image); ?>
-			            				<table>
-			            					<tr>
-			            					<td>
-			            					<div class="media-uploader-additional-img">
-		                        			<img class="additional-img-preview" src="<?php echo $edit_additional_image; ?>" alt="" />
-		                        			<a href="<?php echo get_the_permalink().'?edit_property='.$edit_property_id.'&additional_img_attachment_id='.$additional_img_attachment_id; ?>" class="delete-additional-img right"><i class="fa fa-trash"></i> <?php esc_html_e('Delete', 'ns-real-estate'); ?></a>
-		                        			</div>
-			            					</td>
-			            					</tr>
-			            				</table>
-			            			<?php }
-		            			}
+		            	if(isset($edit_additional_images) && !empty($edit_additional_images)) {
+		            		foreach ($edit_additional_images as $edit_additional_image) {
+		            			if(!empty($edit_additional_image)) {
+			            			$additional_img_attachment_id = ns_real_estate_get_attachment_id_by_url($edit_additional_image); ?>
+			            			<table>
+			            				<tr>
+			            				<td>
+			            				<div class="media-uploader-additional-img">
+		                        		<img class="additional-img-preview" src="<?php echo $edit_additional_image; ?>" alt="" />
+		                        		<a href="<?php echo get_the_permalink().'?edit_property='.$edit_property_id.'&additional_img_attachment_id='.$additional_img_attachment_id; ?>" class="delete-additional-img right"><i class="fa fa-trash"></i> <?php esc_html_e('Delete', 'ns-real-estate'); ?></a>
+		                        		</div>
+			            				</td>
+			            				</tr>
+			            			</table>
+			            		<?php }
 		            		}
 		            	} ?>
 
