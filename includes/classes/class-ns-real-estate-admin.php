@@ -253,7 +253,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
                 		'description' => esc_html__('This can be overriden on individual pages from the page settings meta box.', 'ns-real-estate'),
                 		'value' => $settings['ns_property_filter_id'],
                 		'type' => 'select',
-                		'options' => array(),
+                		'options' => NS_Real_Estate_Filters::get_filter_ids(),
                 	);
                 	$this->build_admin_field($default_property_filter_field);
                 	?>

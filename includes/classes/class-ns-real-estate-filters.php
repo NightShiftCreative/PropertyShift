@@ -277,6 +277,19 @@ class NS_Real_Estate_Filters {
 	    return $filter_fields_init;
 	}
 
+	/**
+	 *	Get all filter ids
+	 */
+	public static function get_filter_ids() {
+		$filters = get_posts(array('post_type' => 'ns-property-filter', 'posts_per_page' => -1));
+		$filter_ids = array();
+		foreach($filters as $filter) {
+			$filter_ids[$filter->post_title] = $filter->ID;
+		}	
+		return $filter_ids;
+	}
+
+
 	/************************************************************************/
 	// Add Columns
 	/************************************************************************/
