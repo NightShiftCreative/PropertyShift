@@ -237,8 +237,9 @@ class NS_Real_Estate_Shortcodes {
 	    if(empty($property_filter_id)) {
 	    	return false;
 	    } else {
-		    $values = get_post_custom( $property_filter_id );
-		    $property_filter_layout = isset( $values['ns_property_filter_layout'] ) ? esc_attr( $values['ns_property_filter_layout'][0] ) : 'middle';
+	    	$filter_obj = new NS_Real_Estate_Filters();
+	    	$filter_settings = $filter_obj->load_filter_settings($property_filter_id);
+		    $property_filter_layout = $filter_settings['layout']['value'];
 
 		    //Set template args
 		    $template_args = array();

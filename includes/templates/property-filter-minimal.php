@@ -1,6 +1,7 @@
 <?php
     //Get global settings
-    $properties_page = esc_attr(get_option('ns_properties_page'));
+    $admin_obj = new NS_Real_Estate_Admin();
+    $properties_page = $admin_obj->load_settings(false, 'ns_properties_page');
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 
@@ -10,22 +11,17 @@
     $widget_filter = $template_args['widget_filter'];
 
     //Get filter details
-    $values = get_post_custom( $property_filter_id );
-    $filter_position = isset( $values['ns_property_filter_position'] ) ? esc_attr( $values['ns_property_filter_position'][0] ) : 'middle';
-    $filter_layout = isset( $values['ns_property_filter_layout'] ) ? esc_attr( $values['ns_property_filter_layout'][0] ) : 'minimal';
-    $display_filter_tabs = isset( $values['ns_property_filter_display_tabs'] ) ? esc_attr( $values['ns_property_filter_display_tabs'][0] ) : 'false';
-    if(isset($values['ns_property_filter_items'])) {
-        $filter_fields = $values['ns_property_filter_items'];
-        $filter_fields = unserialize($filter_fields[0]);
-    } else {
-        $filter_fields = ns_real_estate_load_default_property_filter_items();
-    }
-    $price_range_min = isset( $values['ns_property_filter_price_min'] ) ? esc_attr( $values['ns_property_filter_price_min'][0] ) : 0;
-    $price_range_max = isset( $values['ns_property_filter_price_max'] ) ? esc_attr( $values['ns_property_filter_price_max'][0] ) : 1000000;
-    $price_range_min_start = isset( $values['ns_property_filter_price_min_start'] ) ? esc_attr( $values['ns_property_filter_price_min_start'][0] ) : 200000;
-    $price_range_max_start = isset( $values['ns_property_filter_price_max_start'] ) ? esc_attr( $values['ns_property_filter_price_max_start'][0] ) : 600000;
-    $submit_text = isset( $values['ns_property_filter_submit_text'] ) ? esc_attr( $values['ns_property_filter_submit_text'][0] ) : esc_html__('Find Properties', 'ns-real-estate');
-    $custom_fields = get_option('ns_property_custom_fields');
+    $filter_obj = new NS_Real_Estate_Filters();
+    $filter_settings = $filter_obj->load_filter_settings($property_filter_id);
+    $filter_position = $filter_settings['position']['value'];
+    $filter_layout = $filter_settings['layout']['value'];
+    $display_filter_tabs = $filter_settings['display_tabs']['value'];
+    $filter_fields = $filter_settings['fields']['value'];
+    $price_range_min = $filter_settings['fields']['children']['price_min']['value'];
+    $price_range_max = $filter_settings['fields']['children']['price_max']['value'];
+    $price_range_min_start = $filter_settings['fields']['children']['price_min_start']['value'];
+    $price_range_max_start = $filter_settings['fields']['children']['price_max_start']['value'];
+    $submit_text = $filter_settings['submit_button_text']['value'];
 
     //Get all current filters from URL
     $currentFilters = array();
