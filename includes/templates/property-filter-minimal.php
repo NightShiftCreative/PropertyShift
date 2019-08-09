@@ -116,11 +116,9 @@
 
                     <div class="form-block filter-item <?php echo esc_attr($filter_class); ?>">
 
-                        <?php if(!empty($label)) {
+                        <?php if(!empty($label) && $custom != 'true') {
                             $label_count++;
-                            echo '<label>';
-                            if($custom == 'true') { echo esc_attr($name); } else { echo esc_attr($label); }
-                            echo '</label>';
+                            echo '<label>'.esc_attr($label).'</label>'; 
                         } ?>
 
                         <?php if($slug == 'property_type') { ?>
@@ -233,28 +231,7 @@
                             <div class="clear"></div>
                         <?php } ?>
 
-                        <?php if($custom == 'true') { ?>
-                            <?php 
-                            $custom_fields = get_option('ns_property_custom_fields');
-                            foreach($custom_fields as $field) {
-                                $custom_field_key = strtolower(str_replace(' ', '_', $field['name']));
-                                if($field['id'] == $slug) {
-                                    if($field['type'] == 'select') {  ?>
-                                        <select name="<?php echo $custom_field_key; ?>" class="filter-input">
-                                            <option value=""><?php echo $name; ?></option>
-                                            <?php
-                                                $field_select_options = $field['select_options'];
-                                                foreach($field_select_options as $option) { ?>
-                                                    <option value="<?php echo $option; ?>" <?php if($currentFilters[$custom_field_key] == $option) { echo 'selected'; } ?>><?php echo $option; ?></option>
-                                                <?php }
-                                            ?>
-                                        </select>
-                                    <?php } else { ?>
-                                        <input type="<?php if($field['type'] == 'num') { echo 'number'; } else { echo 'text'; } ?>" class="filter-input" name="<?php echo $custom_field_key; ?>" placeholder="<?php echo $name; ?>" value="<?php echo $currentFilters[$custom_field_key]; ?>" />
-                                    <?php }
-                                }
-                            } ?>
-                        <?php } ?>
+                        <?php do_action('ns_real_estate_after_filter_fields', $value, $filter_settings); ?>
 
                     </div>
                     <?php 
