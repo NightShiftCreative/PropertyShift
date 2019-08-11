@@ -1,24 +1,26 @@
 <?php
     //global settings
+    $admin_obj = new NS_Real_Estate_Admin();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
-    $agent_listing_crop = esc_attr(get_option('ns_agent_listing_crop', 'true'));
+    $agent_listing_crop = $admin_obj->load_settings(false, 'ns_agent_listing_crop');
 
 	//Get agent details
-	$agent_details_values = get_post_custom( $post->ID );
-    $agent_title = isset( $agent_details_values['ns_agent_title'] ) ? esc_attr( $agent_details_values['ns_agent_title'][0] ) : '';
-	$agent_email = isset( $agent_details_values['ns_agent_email'] ) ? esc_attr( $agent_details_values['ns_agent_email'][0] ) : '';
-	$agent_mobile_phone = isset( $agent_details_values['ns_agent_mobile_phone'] ) ? esc_attr( $agent_details_values['ns_agent_mobile_phone'][0] ) : '';
-	$agent_office_phone = isset( $agent_details_values['ns_agent_office_phone'] ) ? esc_attr( $agent_details_values['ns_agent_office_phone'][0] ) : '';
-	$agent_fb = isset( $agent_details_values['ns_agent_fb'] ) ? esc_attr( $agent_details_values['ns_agent_fb'][0] ) : '';
-	$agent_twitter = isset( $agent_details_values['ns_agent_twitter'] ) ? esc_attr( $agent_details_values['ns_agent_twitter'][0] ) : '';
-	$agent_google = isset( $agent_details_values['ns_agent_google'] ) ? esc_attr( $agent_details_values['ns_agent_google'][0] ) : '';
-	$agent_linkedin = isset( $agent_details_values['ns_agent_linkedin'] ) ? esc_attr( $agent_details_values['ns_agent_linkedin'][0] ) : '';
-	$agent_youtube = isset( $agent_details_values['ns_agent_youtube'] ) ? esc_attr( $agent_details_values['ns_agent_youtube'][0] ) : '';
-	$agent_instagram = isset( $agent_details_values['ns_agent_instagram'] ) ? esc_attr( $agent_details_values['ns_agent_instagram'][0] ) : '';
+    $agents_obj = new NS_Real_Estate_Agents();
+    $agent_settings = $agents_obj->load_agent_settings($post->ID);
+    $agent_title = $agent_settings['job_title']['value'];
+    $agent_email = $agent_settings['email']['value'];
+    $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
+    $agent_office_phone = $agent_settings['office_phone']['value'];
+    $agent_fb = $agent_settings['facebook']['value'];
+    $agent_twitter = $agent_settings['twitter']['value'];
+    $agent_google = $agent_settings['google']['value'];
+    $agent_linkedin = $agent_settings['linkedin']['value'];
+    $agent_youtube = $agent_settings['youtube']['value'];
+    $agent_instagram = $agent_settings['instagram']['value'];
 
     //Get agent property count
-    $agent_properties = ns_real_estate_get_agent_properties(get_the_id());
+    $agent_properties = $agents_obj->get_agent_properties(get_the_id());
     $agent_properties_count = $agent_properties['count'];
 ?>
 

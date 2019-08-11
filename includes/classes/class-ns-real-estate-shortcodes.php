@@ -21,6 +21,7 @@ class NS_Real_Estate_Shortcodes {
 		add_shortcode('ns_submit_property', array( $this, 'add_shortcode_submit_property'));
 		add_shortcode('ns_my_properties', array( $this, 'add_shortcode_my_properties'));
 		add_shortcode('ns_property_filter', array( $this, 'add_shortcode_property_filter'));
+		add_shortcode('ns_list_agents', array( $this, 'add_shortcode_list_agents'));
 	}
 
 	/**
@@ -256,6 +257,41 @@ class NS_Real_Estate_Shortcodes {
 		    $output = ob_get_clean();
 		    return $output;
 		}
+	}
+
+	/**
+	 * List Agents
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 */
+	public function add_shortcode_list_agents($atts, $content=null) {
+		$num_agents_per_page = esc_attr(get_option('ns_num_agents_per_page', 12));
+	    $atts = shortcode_atts(
+	    array (
+	        'show_posts' => $num_agents_per_page,
+	        'show_pagination' => false,
+	        'cols' => null,
+	    ), $atts);
+
+	    $custom_args = array(
+	        'showposts' => $atts['show_posts'],
+	    );
+
+	    ob_start();
+	    if(function_exists('ns_real_estate_template_loader')){ 
+	        
+	        //Set template args
+	        $template_args = array();
+	        $template_args['custom_args'] = $custom_args;
+	        $template_args['custom_pagination'] = $atts['show_pagination'];
+	        $template_args['custom_cols'] = $atts['cols'];
+	        
+	        //Load template
+	        ns_real_estate_template_loader('loop_agents.php', $template_args);
+	    }
+	    $output = ob_get_clean();
+	    return $output;
 	}
 
 }
