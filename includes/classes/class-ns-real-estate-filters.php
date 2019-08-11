@@ -26,6 +26,7 @@ class NS_Real_Estate_Filters {
 		add_action( 'save_post', array( $this, 'save_meta_box'));
 		add_filter( 'manage_edit-ns-property-filter_columns', array($this, 'edit_property_filter_columns'));
 		add_action( 'manage_ns-property-filter_posts_custom_column',  array($this, 'manage_property_filter_columns'), 10, 2 );
+		add_action( 'template_redirect', array( $this, 'page_filter_template_direct'));
 	}
 
 	/************************************************************************/
@@ -289,6 +290,20 @@ class NS_Real_Estate_Filters {
 		return $filter_ids;
 	}
 
+	/**
+	 *	Get filter position hook name
+	 */
+	public function get_filter_position_hook($position) {
+		if($position == 'above') { 
+            $hook = 'ns_core_before_page_banner'; 
+        } else if($position == 'middle') {
+            $hook = 'ns_core_after_subheader_title'; 
+        } else { 
+            $hook = 'ns_core_after_page_banner'; 
+        }
+        return $hook;
+	}
+
 
 	/************************************************************************/
 	// Add Columns
@@ -320,6 +335,62 @@ class NS_Real_Estate_Filters {
 	        default :
 	            break;
 	    }
+	}
+
+	/************************************************************************/
+	// Front-end template hooks
+	/************************************************************************/
+
+	/**
+	 *	Output page banner filter
+	 */
+	public function page_filter_template_direct() {
+
+		//Global settings
+    	$property_filter_display = esc_attr(get_option('ns_property_filter_display', 'true'));
+    	$property_filter_id = esc_attr(get_option('ns_property_filter_id'));
+
+		// Get page setings
+		$page_obj = new NS_Basics_Page_Settings();
+		global $post;
+    	if(function_exists('ns_core_get_page_id')) { $page_id = ns_core_get_page_id(); } else { $page_id = $post->ID; }
+		$page_settings = $page_obj->load_page_settings($page_id);
+		$banner_property_filter_override = $page_settings['property_filter_override']['value'];
+		if(isset($banner_property_filter_override) && !empty($banner_property_filter_override)) {
+	        $property_filter_display = $page_settings['property_filter_override']['children']['property_filter_display']['value'];
+	        $property_filter_id = $page_settings['property_filter_override']['children']['property_filter_id']['value'];
+	    }
+
+	    if(!empty($property_filter_id) && $property_filter_display == 'true') {
+
+	    	//Get filter settings
+	    	$filter_settings = $this->load_filter_settings($property_filter_id);
+	    	$property_filter_position = $filter_settings['position']['value'];
+			$property_filter_hook = $this->get_filter_position_hook($property_filter_position);
+			$property_filter_layout = $filter_settings['layout']['value'];
+
+			//If filter position above, change to classic header
+	        if($property_filter_position == 'above') {
+	        	function ns_real_estate_property_filter_change_header($theme_options_init) {
+	                if($theme_options_init['ns_core_header_style'] == 'transparent') { $theme_options_init['ns_core_header_style'] = 'classic'; }
+	                return $theme_options_init;
+	            }
+	            add_filter( 'ns_core_theme_options_filter', 'ns_real_estate_property_filter_change_header' );
+	            add_filter( 'ns_core_theme_options_saved_filter', 'ns_real_estate_property_filter_change_header' );
+	        }
+
+			//Output template based on the hook
+			add_action($property_filter_hook, function() use ($property_filter_id, $property_filter_layout) {
+				$template_args = array();
+	            $template_args['id'] = $property_filter_id;
+				if($property_filter_layout == 'minimal') {
+                	ns_real_estate_template_loader('property-filter-minimal.php', $template_args);
+	            } else {
+	                ns_real_estate_template_loader('property-filter.php', $template_args);
+	            }
+			});
+		}
+
 	}
 
 } ?>
