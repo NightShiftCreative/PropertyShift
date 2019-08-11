@@ -347,8 +347,8 @@ class NS_Real_Estate_Filters {
 	public function page_filter_template_direct() {
 
 		//Global settings
-    	$property_filter_display = esc_attr(get_option('ns_property_filter_display', 'true'));
-    	$property_filter_id = esc_attr(get_option('ns_property_filter_id'));
+		$property_filter_display = $this->global_settings['ns_property_filter_display'];
+		$property_filter_id = $this->global_settings['ns_property_filter_id'];
 
 		// Get page setings
 		$page_obj = new NS_Basics_Page_Settings();
