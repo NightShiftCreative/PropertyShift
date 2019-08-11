@@ -251,6 +251,7 @@ class NS_Real_Estate {
 
 		// Load maps class
 		$this->maps = new NS_Real_Estate_Maps();
+		$this->maps->init();
 
 		// Load license keys class
 		$this->license_keys = new NS_Real_Estate_License_Keys();

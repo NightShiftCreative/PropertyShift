@@ -16,10 +16,16 @@ class NS_Real_Estate_Maps {
 	 *	Constructor
 	 */
 	public function __construct() {
-
 		// Load admin object & settings
 		$this->admin_obj = new NS_Real_Estate_Admin();
         $this->global_settings = $this->admin_obj->load_settings();
+	}
+
+	/**
+	 *	Init
+	 */
+	public function init() {
+		add_action( 'ns_core_custom_banner_source', array( $this, 'output_map_page_banner'));
 	}
 
 	/************************************************************************/
@@ -295,5 +301,20 @@ class NS_Real_Estate_Maps {
 		    </script>
     	</div>
 	<?php }
+
+	/************************************************************************/
+	// Front-end Template Hooks
+	/************************************************************************/
+
+	/**
+	 *	Output map page banner
+	 *
+	 * @param string $banner_source
+	 */
+	public function output_map_page_banner($banner_source) {
+		if($banner_source == 'properties_map') { 
+	        $this->build_properties_map();
+	    }
+	}
 
 }
