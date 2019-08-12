@@ -114,6 +114,7 @@ class NS_Real_Estate {
 			$google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
 
 			wp_enqueue_script('ns-real-estate-admin-js', plugins_url('/js/ns-real-estate-admin.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'media-upload', 'thickbox'), '', true);
+			wp_enqueue_script('custom-fields-js', plugins_url('/js/custom-fields.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-tabs'), '', true);
 			wp_enqueue_style('ns-real-estate-admin-css', plugins_url('/css/ns-real-estate-admin.css',  __FILE__), array(), '1.0', 'all');
 			wp_enqueue_script( 'ns-real-estate-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
 
