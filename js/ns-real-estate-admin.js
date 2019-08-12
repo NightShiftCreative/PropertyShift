@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
         activateButton.addClass('disabled');
         activateButton.attr("disabled", true);
         if(parent.find('.license-disabled-message').length == 0) {
-            activateButton.closest('.admin-module-field').append('<div class="admin-module-note license-disabled-message">Save changes to activate license key.</div>');
+            activateButton.closest('.admin-module-field').append('<div class="admin-module-note license-disabled-message">Enter a value above and then click <strong>Save changes</strong> to activate license key.</div>');
         }
     });
 

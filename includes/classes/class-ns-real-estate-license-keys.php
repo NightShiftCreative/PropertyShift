@@ -13,7 +13,8 @@ class NS_Real_Estate_License_Keys {
 	 */
 	public function __construct() {
 		add_action('admin_init', array($this, 'activate_license'));
-		add_action( 'admin_notices', array($this, 'admin_notices'));
+		add_action('admin_init', array($this, 'deactivate_license'));
+		add_action('admin_notices', array($this, 'admin_notices'));
 	}
 
 	/**
@@ -97,6 +98,44 @@ class NS_Real_Estate_License_Keys {
 
 	        update_option($license['status_name'], $license_data->license);
 	        wp_redirect( admin_url( 'admin.php?page=' . NS_REAL_ESTATE_LICENSE_PAGE ) );
+	        exit();
+	    }
+	}
+
+	/**
+	 * Deactivate License Key
+	 */
+	public function deactivate_license() {
+		if(isset($_POST['ns_real_estate_deactivate_license']) && !empty($_POST['ns_real_estate_deactivate_license'])) {
+
+	        $item_id = $_POST['ns_real_estate_deactivate_license'];
+	        $license = $this->get_license($item_id);
+
+	        $api_params = array(
+	            'edd_action' => 'deactivate_license',
+	            'license'    => $license['key'],
+	            'item_id'  => $item_id, // the name of our product in EDD
+	            'url'      => home_url()
+	        );
+
+	        $response = wp_remote_post( NS_SHOP_URL, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+
+	        if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
+
+	            if ( is_wp_error( $response ) ) {
+	                $message = $response->get_error_message();
+	            } else {
+	                $message = __( 'An error occurred, please try again.' );
+	            }
+
+	            $base_url = admin_url( 'admin.php?page=' . NS_REAL_ESTATE_LICENSE_PAGE );
+	            $redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $base_url );
+	            wp_redirect( $redirect );
+	            exit();
+	        }
+
+	        delete_option($license['status_name']);
+	        wp_redirect( admin_url( 'admin.php?page=' . NS_REAL_ESTATE_LICENSE_PAGE) );
 	        exit();
 	    }
 	}
