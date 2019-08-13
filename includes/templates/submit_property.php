@@ -29,28 +29,28 @@
 	    $edit_property_id = $_GET['edit_property'];
 	    $form_action = '?edit_property='.esc_attr($edit_property_id);
 
-        $property_settings = $properties_obj->load_property_settings($edit_property_id);
-	    $edit_address = $property_settings['street_address']['value'];
-        $edit_price = $property_settings['price']['value'];
-        $edit_price_postfix = $property_settings['price_postfix']['value'];
-        $edit_bedrooms = $property_settings['beds']['value'];
-        $edit_bathrooms = $property_settings['baths']['value'];
-        $edit_garages = $property_settings['garages']['value'];
-        $edit_area = $property_settings['area']['value'];
-        $edit_area_postfix = $property_settings['area_postfix']['value'];
-        $edit_description = $property_settings['description']['value'];
-        $edit_floor_plans = $property_settings['floor_plans']['value'];
-        $edit_additional_images = $property_settings['gallery']['value'];
-        $edit_video_url = $property_settings['video_url']['value'];
-        $edit_video_img = $property_settings['video_cover']['value'];
-        $latitude = $property_settings['latitude']['value'];
-        $longitude = $property_settings['longitude']['value'];
-        $edit_agent_display = $property_settings['owner_display']['value'];
-        $edit_agent_select = $property_settings['owner_display']['children']['agent']['value'];
-        $edit_agent_custom_name = $property_settings['owner_display']['children']['owner_custom_name']['value'];
-        $edit_agent_custom_email = $property_settings['owner_display']['children']['owner_custom_email']['value'];
-        $edit_agent_custom_phone = $property_settings['owner_display']['children']['owner_custom_phone']['value'];
-        $edit_agent_custom_url = $property_settings['owner_display']['children']['owner_custom_url']['value'];
+        $edit_property_settings = $properties_obj->load_property_settings($edit_property_id);
+	    $edit_address = $edit_property_settings['street_address']['value'];
+        $edit_price = $edit_property_settings['price']['value'];
+        $edit_price_postfix = $edit_property_settings['price_postfix']['value'];
+        $edit_bedrooms = $edit_property_settings['beds']['value'];
+        $edit_bathrooms = $edit_property_settings['baths']['value'];
+        $edit_garages = $edit_property_settings['garages']['value'];
+        $edit_area = $edit_property_settings['area']['value'];
+        $edit_area_postfix = $edit_property_settings['area_postfix']['value'];
+        $edit_description = $edit_property_settings['description']['value'];
+        $edit_floor_plans = $edit_property_settings['floor_plans']['value'];
+        $edit_additional_images = $edit_property_settings['gallery']['value'];
+        $edit_video_url = $edit_property_settings['video_url']['value'];
+        $edit_video_img = $edit_property_settings['video_cover']['value'];
+        $latitude = $edit_property_settings['latitude']['value'];
+        $longitude = $edit_property_settings['longitude']['value'];
+        $edit_agent_display = $edit_property_settings['owner_display']['value'];
+        $edit_agent_select = $edit_property_settings['owner_display']['children']['agent']['value'];
+        $edit_agent_custom_name = $edit_property_settings['owner_display']['children']['owner_custom_name']['value'];
+        $edit_agent_custom_email = $edit_property_settings['owner_display']['children']['owner_custom_email']['value'];
+        $edit_agent_custom_phone = $edit_property_settings['owner_display']['children']['owner_custom_phone']['value'];
+        $edit_agent_custom_url = $edit_property_settings['owner_display']['children']['owner_custom_url']['value'];
         $edit_property_location = $properties_obj->get_tax($edit_property_id, 'property_location', true);
         $edit_property_amenities = $properties_obj->get_tax($edit_property_id, 'property_amenities', true);
         $edit_property_status = $properties_obj->get_tax($edit_property_id, 'property_status', true);
@@ -305,7 +305,7 @@
 				</div><!-- end row -->
 			</div><!-- end general info -->
 
-            <?php do_action('ns_real_estate_after_property_submit_general', $edit_property_id); ?>
+            <?php do_action('ns_real_estate_after_property_submit_general', $edit_property_settings); ?>
 
             <?php if(ns_basics_in_array_key('floor_plans', $members_submit_property_fields )) { ?>
             <div class="submit-property-section" id="property-floor-plans">
