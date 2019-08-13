@@ -58,7 +58,7 @@
 
 	<div class="property-single">
 
-        <?php do_action('ns_real_estate_before_property_detail', $values); ?>
+        <?php do_action('ns_real_estate_before_property_detail', $property_settings); ?>
 	
 		<?php if(!empty($property_detail_items)) {
             foreach($property_detail_items as $value) { ?>
@@ -506,13 +506,13 @@
                         <!--******************************************************-->
                         <!-- ADD-ONS -->
                         <!--******************************************************-->
-                        <?php do_action('ns_real_estate_property_detail_items', $values, $value); ?>
+                        <?php do_action('ns_real_estate_property_detail_items', $property_settings, $value); ?>
                     <?php } ?>
 
                 <?php } ?>
             <?php } //end foreach ?>
         <?php } //end if ?>
 
-        <?php do_action('ns_real_estate_after_property_detail', $values); ?>
+        <?php do_action('ns_real_estate_after_property_detail', $property_settings); ?>
 
 	</div><!-- end property single -->
