@@ -484,7 +484,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
                 		'description' => esc_html__('Drag & drop the sections to rearrange their order', 'ns-real-estate'),
                 		'value' => $settings['ns_agent_detail_items'],
                 		'type' => 'sortable',
-                		'sidebar_display' => true, 
+                		'display_sidebar' => true, 
                 		'children' => array(
                 			'form_message_placeholder' => array(
                 				'title' => esc_html__('Message Placeholder on Property Pages', 'ns-real-estate'),
