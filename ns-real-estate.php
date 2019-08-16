@@ -216,7 +216,6 @@ class NS_Real_Estate {
 
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-admin.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-properties.php');
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-property-custom-fields.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-agents.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-filters.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-maps.php');
@@ -237,9 +236,6 @@ class NS_Real_Estate {
 		// Load properties class
 		$this->properties = new NS_Real_Estate_Properties();
 		$this->properties->init();
-
-		// Load property custom fields class
-		$this->property_custom_fields = new NS_Real_Estate_Property_Custom_Fields();
 
 		// Load agents class
 		$this->agents = new NS_Real_Estate_Agents();
