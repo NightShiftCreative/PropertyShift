@@ -223,6 +223,7 @@ class NS_Real_Estate_Properties {
 				'type' => 'editor',
 				'order' => 10,
 				'class' => 'full-width no-padding',
+				'esc' => false,
 			),
 			'gallery' => array(
 				'group' => 'gallery',
