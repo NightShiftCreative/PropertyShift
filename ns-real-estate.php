@@ -255,6 +255,9 @@ class NS_Real_Estate {
 		// Load shortcodes class
 		$this->shortcodes = new NS_Real_Estate_Shortcodes();
 
+		//Action to let add-ons know that core classes are ready
+		do_action( 'ns_real_estate_loaded', plugin_dir_path( __FILE__ ) );
+
 	}
 
 }
