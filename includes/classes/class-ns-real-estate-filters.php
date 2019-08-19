@@ -162,6 +162,7 @@ class NS_Real_Estate_Filters {
 		// Return saved settings
 		} else {
 			$filter_settings = $this->admin_obj->get_meta_box_values($post_id, $filter_settings_init);
+			$filter_settings = apply_filters( 'ns_real_estate_filter_settings_saved_filter', $filter_settings, $post_id);
 			return $filter_settings;
 		}
 	}
@@ -222,7 +223,6 @@ class NS_Real_Estate_Filters {
 	            'placeholder' => esc_html__('Any', 'ns-real-estate'),
 	            'slug' => 'property_type',
 	            'active' => 'true',
-	            'custom' => 'false',
 	        ),
 	        1 => array(
 	            'name' => esc_html__('Property Status', 'ns-real-estate'),
@@ -230,7 +230,6 @@ class NS_Real_Estate_Filters {
 	            'placeholder' => esc_html__('Any', 'ns-real-estate'),
 	            'slug' => 'property_status',
 	            'active' => 'true',
-	            'custom' => 'false',
 	        ),
 	        2 => array(
 	            'name' => esc_html__('Property Location', 'ns-real-estate'),
@@ -238,14 +237,12 @@ class NS_Real_Estate_Filters {
 	            'placeholder' => esc_html__('Any', 'ns-real-estate'),
 	            'slug' => 'property_location',
 	            'active' => 'true',
-	            'custom' => 'false',
 	        ),
 	        3 => array(
 	            'name' => esc_html__('Price Range', 'ns-real-estate'),
 	            'label' => esc_html__('Price Range', 'ns-real-estate'),
 	            'slug' => 'price',
 	            'active' => 'true',
-	            'custom' => 'false',
 	        ),
 	        4 => array(
 	            'name' => esc_html__('Bedrooms', 'ns-real-estate'),
@@ -253,7 +250,6 @@ class NS_Real_Estate_Filters {
 	            'placeholder' => esc_html__('Any', 'ns-real-estate'),
 	            'slug' => 'beds',
 	            'active' => 'true',
-	            'custom' => 'false',
 	        ),
 	        5 => array(
 	            'name' => esc_html__('Bathrooms', 'ns-real-estate'),
@@ -261,7 +257,6 @@ class NS_Real_Estate_Filters {
 	            'placeholder' => esc_html__('Any', 'ns-real-estate'),
 	            'slug' => 'baths',
 	            'active' => 'true',
-	            'custom' => 'false',
 	        ),
 	        6 => array(
 	            'name' => esc_html__('Area', 'ns-real-estate'),
@@ -270,7 +265,6 @@ class NS_Real_Estate_Filters {
 	            'placeholder_second' => esc_html__('Max', 'ns-real-estate'),
 	            'slug' => 'area',
 	            'active' => 'true',
-	            'custom' => 'false',
 	        ),
 	    );
 
