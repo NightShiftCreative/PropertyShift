@@ -109,6 +109,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 		);
 		$settings_init = apply_filters( 'ns_real_estate_settings_init_filter', $settings_init);
 		$settings = $this->get_settings($settings_init, $return_defaults, $single_setting, $single_esc);
+		if($single_setting == null) { $settings = apply_filters( 'ns_real_estate_settings_saved_filter', $settings); }
 		return $settings;
 		
 	}
