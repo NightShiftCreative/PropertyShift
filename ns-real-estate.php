@@ -131,16 +131,6 @@ class NS_Real_Estate {
 	            'floor_plan_img' => __( 'Image:', 'ns-real-estate' ),
 	            'floor_plan_description' => __( 'Description:', 'ns-real-estate' ),
 	            'new_floor_plan' => __( 'New Floor Plan', 'ns-real-estate' ),
-	            'value_text' => __( 'Field Name:', 'ns-real-estate' ),
-	            'option_name_text' => __( 'Option name', 'ns-real-estate' ),
-	            'custom_field_dup_error' => __( 'A custom field with the same name is already in use!', 'ns-real-estate' ),
-	            'field_type_text' => __( 'Field Type', 'ns-real-estate' ),
-	            'text_input_text' => __( 'Text Input', 'ns-real-estate' ),
-	            'num_input_text' => __( 'Number Input', 'ns-real-estate' ),
-	            'select_text' => __( 'Select Dropdown', 'ns-real-estate' ),
-	            'select_options_text' => __( 'Select Options:', 'ns-real-estate' ),
-	            'select_options_add' => __( 'Add Select Option', 'ns-real-estate' ),
-	            'delete_custom_field_confirm' =>  __( 'Removing this field will remove it from all properties. Are you sure you want to proceed?', 'ns-real-estate' ),
 	        );
 	        wp_localize_script( 'ns-real-estate-admin-js', 'ns_real_estate_local_script', $translation_array );
 		}
