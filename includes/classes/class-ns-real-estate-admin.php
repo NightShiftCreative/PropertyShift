@@ -380,7 +380,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
                 	$this->build_admin_field($property_detail_default_layout_field);
                 	
                 	$property_detail_id_field = array(
-                		'title' => esc_html__('Show Property ID on Front-End', 'ns-real-estate'),
+                		'title' => esc_html__('Show Property Code on Front-End', 'ns-real-estate'),
                 		'name' => 'ns_property_detail_id',
                 		'value' => $settings['ns_property_detail_id'],
                 		'type' => 'switch',

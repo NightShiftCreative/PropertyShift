@@ -26,6 +26,7 @@
 	//Get property details
     $property_obj = new NS_Real_Estate_Properties();
     $property_settings = $property_obj->load_property_settings($post->ID);
+    $code = $property_settings['id']['value'];
     $featured = $property_settings['featured']['value'];
     $address = $property_obj->get_full_address($post->ID);
     $price = $property_settings['price']['value'];
@@ -97,7 +98,7 @@
                                     <?php if(!empty($property_status)) { ?>
                                         <div class="property-tag button status"><?php echo wp_kses_post($property_status); ?></div>
                                     <?php } ?>
-                                    <?php if($property_detail_id == 'true') { ?><div class="property-id"><?php esc_html_e('Property ID', 'ns-real-estate'); ?>: <?php echo get_the_id(); ?></div><?php } ?>
+                                    <?php if($property_detail_id == 'true' && !empty($code)) { ?><div class="property-id"><?php esc_html_e('Property Code', 'ns-real-estate'); ?>: <?php echo $code; ?></div><?php } ?>
                                     <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'ns-real-estate'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
                                 </div>
                                 <div class="right property-actions">
@@ -177,7 +178,7 @@
                             <?php } ?>
 
                             <div class="property-details-full">
-                                <?php if($property_detail_id == 'true') { ?><div class="property-detail-item"><?php esc_html_e('Property ID', 'ns-real-estate'); ?>:<span><?php echo get_the_id(); ?></span></div><?php } ?>
+                                <?php if($property_detail_id == 'true' && !empty($code)) { ?><div class="property-detail-item"><?php esc_html_e('Property Code', 'ns-real-estate'); ?>:<span><?php echo $code; ?></span></div><?php } ?>
                                 <?php if(!empty($bedrooms)) { ?><div class="property-detail-item"><?php esc_html_e('Beds', 'ns-real-estate'); ?>:<span><?php echo esc_attr($bedrooms); ?></span></div><?php } ?>
                                 <?php if(!empty($bathrooms)) { ?><div class="property-detail-item"><?php esc_html_e('Baths', 'ns-real-estate'); ?>:<span><?php echo esc_attr($bathrooms); ?></span></div><?php } ?>
                                 <?php if(!empty($area)) { ?><div class="property-detail-item"><?php esc_html_e('Area', 'ns-real-estate'); ?>:<span><?php echo esc_attr($area); ?> <?php echo esc_attr($area_postfix); ?></span></div><?php } ?>
