@@ -818,18 +818,11 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 		$args = array(
 			'page_name' => 'Nightshift Real Estate',
 			'pages' => $this->get_admin_pages(),
-			'content' => $this->help_page_content(),
+			'content' => $this->resources_page_content(),
 			'display_actions' => 'false',
 			'icon' => plugins_url('/ns-real-estate/images/icon-real-estate.svg'),
 		);
 	    echo $this->build_admin_page($args);
-	}
-
-	public function help_page_content() {
-		ob_start(); 
-	    //content goes here
-	    $output = ob_get_clean();
-	    return $output;
 	}
 
 	/**
