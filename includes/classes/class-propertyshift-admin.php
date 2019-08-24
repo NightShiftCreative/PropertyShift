@@ -26,11 +26,11 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	 *	Add admin menu
 	 */
 	public function admin_menu() {
-		add_menu_page('PropertyShift', 'PropertyShift', 'administrator', 'ns-real-estate-settings', array( $this, 'settings_page' ), PROPERTYSHIFT_DIR.'/images/icon.png', 25);
-	    add_submenu_page('ns-real-estate-settings', 'Settings', 'Settings', 'administrator', 'ns-real-estate-settings');
-	    add_submenu_page('ns-real-estate-settings', 'Add-Ons', 'Add-Ons', 'administrator', 'ns-real-estate-add-ons', array( $this, 'add_ons_page' ));
-	    add_submenu_page('ns-real-estate-settings', 'License Keys', 'License Keys', 'administrator', 'ns-real-estate-license-keys', array( $this, 'license_keys_page' ));
-	    add_submenu_page('ns-real-estate-settings', 'Help', 'Help', 'administrator', 'ns-real-estate-help', array( $this, 'help_page' ));
+		add_menu_page('PropertyShift', 'PropertyShift', 'administrator', 'propertyshift-settings', array( $this, 'settings_page' ), PROPERTYSHIFT_DIR.'/images/icon.png', 25);
+	    add_submenu_page('propertyshift-settings', 'Settings', 'Settings', 'administrator', 'propertyshift-settings');
+	    add_submenu_page('propertyshift-settings', 'Add-Ons', 'Add-Ons', 'administrator', 'ns-real-estate-add-ons', array( $this, 'add_ons_page' ));
+	    add_submenu_page('propertyshift-settings', 'License Keys', 'License Keys', 'administrator', 'ns-real-estate-license-keys', array( $this, 'license_keys_page' ));
+	    add_submenu_page('propertyshift-settings', 'Help', 'Help', 'administrator', 'ns-real-estate-help', array( $this, 'help_page' ));
 	}
 
 	/**
@@ -830,7 +830,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	 */
 	public function get_admin_pages() {
 		$pages = array();
-	    $pages[] = array('slug' => 'ns-real-estate-settings', 'name' => esc_html__('Settings', 'ns-real-estate'));
+	    $pages[] = array('slug' => 'propertyshift-settings', 'name' => esc_html__('Settings', 'ns-real-estate'));
 	    $pages[] = array('slug' => 'ns-real-estate-add-ons', 'name' => esc_html__('Add-Ons', 'ns-real-estate'));
 	    $pages[] = array('slug' => 'ns-real-estate-license-keys', 'name' => esc_html__('License Keys', 'ns-real-estate'));
 	    $pages[] = array('slug' => 'ns-real-estate-help', 'name' => esc_html__('Help', 'ns-real-estate'));
