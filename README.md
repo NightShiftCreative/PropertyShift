@@ -1,11 +1,11 @@
-# Welcome to NS Real Estate
+# Welcome to PropertyShift
 
-NS Real Estate is a real estate listing system for WordPress. The plugin provides an intuitive interface for managing
+PropertyShift is a real estate listing system for WordPress. The plugin provides an intuitive interface for managing
 property details, agents, property filters, and more. It is also easily extendable with add-ons. 
 
 ## Installation and Docs ##
 
-For detailed information on installing and using NS Real Estate, please see the [knowledge base](https://products.nightshiftcreative.co/docs/ns-real-estate/) 
+For detailed information on installing and using PropertyShift, please see the [knowledge base](https://products.nightshiftcreative.co/docs/ns-real-estate/) 
 
 ## Support ##
 
