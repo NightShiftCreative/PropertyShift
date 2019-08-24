@@ -50,7 +50,7 @@ class PropertyShift {
 		define('NS_SHOP_URL', 'https://products.nightshiftcreative.co/');
 		define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/1.0.0.zip');
 		define('PROPERTYSHIFT_GITHUB', '/NightShiftCreative/PropertyShift/');
-		define('PROPERTYSHIFT_LICENSE_PAGE', 'ns-real-estate-license-keys' );
+		define('PROPERTYSHIFT_LICENSE_PAGE', 'propertyshift-license-keys' );
 		define('PROPERTYSHIFT_DIR', plugins_url('', __FILE__));
 	}
 
