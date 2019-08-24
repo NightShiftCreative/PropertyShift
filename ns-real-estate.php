@@ -49,7 +49,7 @@ class PropertyShift {
 		define('NS_URL', 'https://nightshiftcreative.co/');
 		define('NS_SHOP_URL', 'https://products.nightshiftcreative.co/');
 		define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/1.0.0.zip');
-		define('PROPERTYSHIFT_GITHUB', '/NightShiftCreative/NS-Real-Estate/');
+		define('PROPERTYSHIFT_GITHUB', '/NightShiftCreative/PropertyShift/');
 		define('PROPERTYSHIFT_LICENSE_PAGE', 'ns-real-estate-license-keys' );
 		define('PROPERTYSHIFT_DIR', plugins_url('', __FILE__));
 	}
@@ -205,13 +205,13 @@ class PropertyShift {
 		// Include classes
 		/************************************************************************/
 
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-admin.php');
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-properties.php');
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-agents.php');
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-filters.php');
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-maps.php');
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-license-keys.php');
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-ns-real-estate-shortcodes.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-admin.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-properties.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-agents.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-filters.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-maps.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-license-keys.php');
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-shortcodes.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/widgets/list_agents_widget.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/widgets/list_properties_widget.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/widgets/list_property_categories_widget.php');
