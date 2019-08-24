@@ -3,10 +3,10 @@
 if (!defined( 'ABSPATH')) { exit; }
 
 /**
- *	NS_Real_Estate_Properties class
+ *	PropertyShift_Properties class
  *
  */
-class NS_Real_Estate_Properties {
+class PropertyShift_Properties {
 
 	/************************************************************************/
 	// Initialize
@@ -14,7 +14,7 @@ class NS_Real_Estate_Properties {
 
 	public function __construct() {
 		// Load admin object & settings
-		$this->admin_obj = new NS_Real_Estate_Admin();
+		$this->admin_obj = new PropertyShift_Admin();
         $this->global_settings = $this->admin_obj->load_settings();;
 	}
 
@@ -420,7 +420,7 @@ class NS_Real_Estate_Properties {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            }
-	            $maps_obj = new NS_Real_Estate_Maps();
+	            $maps_obj = new PropertyShift_Maps();
 	            $maps_obj->build_single_property_map($property_settings['latitude']['value'], $property_settings['longitude']['value']);
 	            ?>
 	        </div>
@@ -1028,7 +1028,7 @@ class NS_Real_Estate_Properties {
 					'title' => esc_html__('Select a Filter', 'ns-real-estate'),
 					'name' => 'ns_banner_property_filter_id',
 					'type' => 'select',
-					'options' => NS_Real_Estate_Filters::get_filter_ids(),
+					'options' => PropertyShift_Filters::get_filter_ids(),
 				),
 			),
 		);
@@ -1174,7 +1174,7 @@ class NS_Real_Estate_Properties {
 	 */
 	public function insert_property_post($edit_property_id = null) {
 		
-		$admin_obj = new NS_Real_Estate_Admin();
+		$admin_obj = new PropertyShift_Admin();
 		$members_submit_property_approval = $admin_obj->load_settings(false, 'ns_members_submit_property_approval');
 		if($members_submit_property_approval == 'true') {$members_submit_property_approval = 'pending';} else {$members_submit_property_approval = 'publish'; }
 

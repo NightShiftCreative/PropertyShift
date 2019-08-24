@@ -2,13 +2,13 @@
 	//global settings
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
-    $admin_obj = new NS_Real_Estate_Admin();
+    $admin_obj = new PropertyShift_Admin();
     $properties_page = $admin_obj->load_settings(false, 'ns_properties_page');
     $property_listing_display_time = $admin_obj->load_settings(false, 'ns_property_listing_display_time');
     $property_listing_crop = $admin_obj->load_settings(false, 'ns_property_listing_crop');	
 
     //property settings
-    $property_obj = new NS_Real_Estate_Properties();
+    $property_obj = new PropertyShift_Properties();
 	$property_settings = $property_obj->load_property_settings($post->ID);
 	$featured = $property_settings['featured']['value'];
 	$address = $property_settings['street_address']['value'];

@@ -1,7 +1,7 @@
 <?php
 
 //Get global settings
-$admin_obj = new NS_Real_Estate_Admin();
+$admin_obj = new PropertyShift_Admin();
 $properties_page = $admin_obj->load_settings(false, 'ns_properties_page');
 
 //Get template args
@@ -10,7 +10,7 @@ $shortcode_filter = $template_args['shortcode_filter'];
 $widget_filter = $template_args['widget_filter'];
 
 //Get filter details
-$filter_obj = new NS_Real_Estate_Filters();
+$filter_obj = new PropertyShift_Filters();
 $filter_settings = $filter_obj->load_filter_settings($property_filter_id);
 $filter_position = $filter_settings['position']['value'];
 $filter_layout = $filter_settings['layout']['value'];

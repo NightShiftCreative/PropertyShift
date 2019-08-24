@@ -3,10 +3,10 @@
 if (!defined( 'ABSPATH')) { exit; }
 
 /**
- *	NS_Real_Estate_Agents class
+ *	PropertyShift_Agents class
  *
  */
-class NS_Real_Estate_Agents {
+class PropertyShift_Agents {
 
 	/************************************************************************/
 	// Initialize
@@ -17,7 +17,7 @@ class NS_Real_Estate_Agents {
 	 */
 	public function __construct() {
 		// Load admin object & settings
-		$this->admin_obj = new NS_Real_Estate_Admin();
+		$this->admin_obj = new PropertyShift_Admin();
         $this->global_settings = $this->admin_obj->load_settings();
 	}
 

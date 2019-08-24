@@ -3,10 +3,10 @@
 if (!defined( 'ABSPATH')) { exit; }
 
 /**
- *	NS_Real_Estate_Maps class
+ *	PropertyShift_Maps class
  *
  */
-class NS_Real_Estate_Maps {
+class PropertyShift_Maps {
 
 	/************************************************************************/
 	// Initialize
@@ -17,7 +17,7 @@ class NS_Real_Estate_Maps {
 	 */
 	public function __construct() {
 		// Load admin object & settings
-		$this->admin_obj = new NS_Real_Estate_Admin();
+		$this->admin_obj = new PropertyShift_Admin();
         $this->global_settings = $this->admin_obj->load_settings();
 	}
 
@@ -221,7 +221,7 @@ class NS_Real_Estate_Maps {
 		$google_maps_pin = $this->global_settings['ns_real_estate_google_maps_pin'];
 
 		// Load properties object
-		$properties_obj = new NS_Real_Estate_Properties();
+		$properties_obj = new PropertyShift_Properties();
 
 		//Individual page banner settings
     	$page_id = ns_core_get_page_id();

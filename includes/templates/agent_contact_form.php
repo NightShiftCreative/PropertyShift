@@ -1,12 +1,12 @@
 <?php
 //Get agent settings
 global $post;
-$agent_obj = new NS_Real_Estate_Agents();
+$agent_obj = new PropertyShift_Agents();
 $agent_settings = $agent_obj->load_agent_settings($post->ID);
 $agent_email = $agent_settings['email']['value'];
 
 //Get global settings
-$admin_obj = new NS_Real_Estate_Admin();
+$admin_obj = new PropertyShift_Admin();
 $site_title = get_bloginfo('name');
 $agent_form_submit_text = $admin_obj->load_settings(false, 'ns_agent_form_submit_text');
 $agent_form_success = $admin_obj->load_settings(false, 'ns_agent_form_success');

@@ -3,11 +3,11 @@
 if (!defined( 'ABSPATH')) { exit; }
 
 /**
- *	NS_Real_Estate_Shortcodes class
+ *	PropertyShift_Shortcodes class
  *
  *  Registers and handles all shortcodes
  */
-class NS_Real_Estate_Shortcodes {
+class PropertyShift_Shortcodes {
 
 	/**
 	 *	Constructor
@@ -109,7 +109,7 @@ class NS_Real_Estate_Shortcodes {
 	 * @param string $content
 	 */
 	public function add_shortcode_properties_map($atts, $content=null) {
-		$maps_obj = new NS_Real_Estate_Maps();
+		$maps_obj = new PropertyShift_Maps();
 		$maps_obj->build_properties_map();
 	}
 
@@ -238,7 +238,7 @@ class NS_Real_Estate_Shortcodes {
 	    if(empty($property_filter_id)) {
 	    	return false;
 	    } else {
-	    	$filter_obj = new NS_Real_Estate_Filters();
+	    	$filter_obj = new PropertyShift_Filters();
 	    	$filter_settings = $filter_obj->load_filter_settings($property_filter_id);
 		    $property_filter_layout = $filter_settings['layout']['value'];
 

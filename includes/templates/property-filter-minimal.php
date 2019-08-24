@@ -1,6 +1,6 @@
 <?php
     //Get global settings
-    $admin_obj = new NS_Real_Estate_Admin();
+    $admin_obj = new PropertyShift_Admin();
     $properties_page = $admin_obj->load_settings(false, 'ns_properties_page');
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
@@ -11,7 +11,7 @@
     $widget_filter = $template_args['widget_filter'];
 
     //Get filter details
-    $filter_obj = new NS_Real_Estate_Filters();
+    $filter_obj = new PropertyShift_Filters();
     $filter_settings = $filter_obj->load_filter_settings($property_filter_id);
     $filter_position = $filter_settings['position']['value'];
     $filter_layout = $filter_settings['layout']['value'];

@@ -1,6 +1,6 @@
 <?php
     //Global settings
-    $admin_obj = new NS_Real_Estate_Admin();
+    $admin_obj = new PropertyShift_Admin();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
     $num_properties_per_page = $admin_obj->load_settings(false, 'ns_num_properties_per_page');
@@ -15,7 +15,7 @@
     }
 
 	//Get agent details
-    $agents_obj = new NS_Real_Estate_Agents();
+    $agents_obj = new PropertyShift_Agents();
     $agent_settings = $agents_obj->load_agent_settings($post->ID);
     $agent_title = $agent_settings['job_title']['value'];
     $agent_email = $agent_settings['email']['value'];

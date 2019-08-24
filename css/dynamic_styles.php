@@ -1,6 +1,6 @@
 <?php 
 
-    $admin_obj = new NS_Real_Estate_Admin();
+    $admin_obj = new PropertyShift_Admin();
     $settings = $admin_obj->load_settings();
 
     /************************************************************************/

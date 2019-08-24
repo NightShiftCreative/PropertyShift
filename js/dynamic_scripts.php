@@ -3,7 +3,7 @@
 if(isset($_GET['rtl'])) { $rtl = $_GET['rtl']; } else { $rtl = esc_attr(get_option('ns_core_rtl')); } 
 
 //Get currency options
-$admin_obj = new NS_Real_Estate_Admin();
+$admin_obj = new PropertyShift_Admin();
 $settings = $admin_obj->load_settings();
 
 $dynamic_script = '';

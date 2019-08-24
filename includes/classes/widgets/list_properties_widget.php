@@ -56,11 +56,11 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
 
                                 <?php
                                 // Load admin object & settings
-                                $this->admin_obj = new NS_Real_Estate_Admin();
+                                $this->admin_obj = new PropertyShift_Admin();
                                 $property_listing_crop = $this->admin_obj->load_settings(false, 'ns_property_listing_crop');
 
                                 // Load property settings
-                                $properties_obj = new NS_Real_Estate_Properties();
+                                $properties_obj = new PropertyShift_Properties();
                                 $property_settings = $properties_obj->load_property_settings(get_the_id());
                                 $price = $property_settings['price']['value'];
                                 $price_postfix = $property_settings['price_postfix']['value'];

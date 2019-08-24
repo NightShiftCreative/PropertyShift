@@ -1,6 +1,6 @@
 <?php
     global $post;
-    $admin_obj = new NS_Real_Estate_Admin();
+    $admin_obj = new PropertyShift_Admin();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -38,7 +38,7 @@
                 
                 <?php
                 //Get property type
-                $properties_obj = new NS_Real_Estate_Properties();
+                $properties_obj = new PropertyShift_Properties();
                 $property_type = $properties_obj->get_tax($post->ID, 'property_type');
                 ?>
 

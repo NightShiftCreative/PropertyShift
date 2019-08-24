@@ -3,11 +3,11 @@
 if (!defined( 'ABSPATH')) { exit; }
 
 /**
- *	NS_Real_Estate_Admin class
+ *	PropertyShift_Admin class
  *
  *  Outputs admin pages and provides the core methods for building admin interfaces.
  */
-class NS_Real_Estate_Admin extends NS_Basics_Admin {
+class PropertyShift_Admin extends NS_Basics_Admin {
 
 	/************************************************************************/
 	// Initialize
@@ -74,7 +74,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 			'ns_property_listing_display_share' => array('value' => 'true'),
 			'ns_property_detail_default_layout' => array('value' => 'right sidebar'),
 			'ns_property_detail_id' => array('value' => 'false'),
-			'ns_property_detail_items' => array('value' => NS_Real_Estate_Properties::load_property_detail_items(), 'esc' => false),
+			'ns_property_detail_items' => array('value' => PropertyShift_Properties::load_property_detail_items(), 'esc' => false),
 			'ns_property_detail_amenities_hide_empty' => array('value' => 'false'),
 			'ns_property_detail_map_zoom' => array('value' => 13),
 			'ns_property_detail_map_height' => array('value' => 250),
@@ -82,7 +82,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 			'ns_agent_detail_slug' => array('value' => 'agents'),
 			'ns_num_agents_per_page' => array('value' => 12),
 			'ns_agent_listing_crop' => array('value' => 'true'),
-			'ns_agent_detail_items' => array('value' => NS_Real_Estate_Agents::load_agent_detail_items(), 'esc' => false),
+			'ns_agent_detail_items' => array('value' => PropertyShift_Agents::load_agent_detail_items(), 'esc' => false),
 			'ns_agent_form_message_placeholder' => array('value' => esc_html__('I am interested in this property and would like to know more.', 'ns-real-estate')),
 			'ns_agent_form_success' => array('value' => esc_html__('Thanks! Your email has been delivered!', 'ns-real-estate')),
 			'ns_agent_form_submit_text' => array('value' => esc_html__('Contact Agent', 'ns-real-estate')),
@@ -96,7 +96,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 			'ns_members_submit_property_approval' => array('value' => 'true'),
 			'ns_members_add_locations' => array('value' => 'true'),
 			'ns_members_add_amenities' => array('value' => 'true'),
-			'ns_members_submit_property_fields' => array('value' => NS_Real_Estate_Properties::load_property_submit_fields(), 'esc' => false),
+			'ns_members_submit_property_fields' => array('value' => PropertyShift_Properties::load_property_submit_fields(), 'esc' => false),
 			'ns_real_estate_currency_symbol' => array('value' => '$'),
 			'ns_real_estate_currency_symbol_position' => array('value' => 'before'),
 			'ns_real_estate_thousand_separator' => array('value' => ','),
@@ -254,7 +254,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
                 		'description' => esc_html__('This can be overriden on individual pages from the page settings meta box.', 'ns-real-estate'),
                 		'value' => $settings['ns_property_filter_id'],
                 		'type' => 'select',
-                		'options' => NS_Real_Estate_Filters::get_filter_ids(),
+                		'options' => PropertyShift_Filters::get_filter_ids(),
                 	);
                 	$this->build_admin_field($default_property_filter_field);
                 	?>
@@ -629,7 +629,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
                 'name' => 'ns_members_submit_property_fields',
                 'description' => esc_html__('Choose which fields display on the front-end property submit form.', 'ns-real-estate'),
                 'value' => $settings['ns_members_submit_property_fields'],
-                'options' => NS_Real_Estate_Properties::load_property_submit_fields(),
+                'options' => PropertyShift_Properties::load_property_submit_fields(),
                 'type' => 'checkbox_group',
             );
             $this->build_admin_field($submit_form_fields);

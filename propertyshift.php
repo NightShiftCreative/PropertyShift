@@ -220,31 +220,31 @@ class PropertyShift {
 
 		// Setup the admin
 		if(is_admin()) { 
-			$this->admin = new NS_Real_Estate_Admin(); 
+			$this->admin = new PropertyShift_Admin(); 
 			$this->admin->init();
 		}
 
 		// Load properties class
-		$this->properties = new NS_Real_Estate_Properties();
+		$this->properties = new PropertyShift_Properties();
 		$this->properties->init();
 
 		// Load agents class
-		$this->agents = new NS_Real_Estate_Agents();
+		$this->agents = new PropertyShift_Agents();
 		$this->agents->init();
 
 		// Load filters class
-		$this->filters = new NS_Real_Estate_Filters();
+		$this->filters = new PropertyShift_Filters();
 		$this->filters->init();
 
 		// Load maps class
-		$this->maps = new NS_Real_Estate_Maps();
+		$this->maps = new PropertyShift_Maps();
 		$this->maps->init();
 
 		// Load license keys class
-		$this->license_keys = new NS_Real_Estate_License_Keys();
+		$this->license_keys = new PropertyShift_License_Keys();
 
 		// Load shortcodes class
-		$this->shortcodes = new NS_Real_Estate_Shortcodes();
+		$this->shortcodes = new PropertyShift_Shortcodes();
 
 		//Action to let add-ons know that core classes are ready
 		do_action( 'propertyshift_loaded', plugin_dir_path( __FILE__ ) );

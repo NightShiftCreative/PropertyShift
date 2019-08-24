@@ -6,7 +6,7 @@
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
     
-    $admin_obj = new NS_Real_Estate_Admin();
+    $admin_obj = new PropertyShift_Admin();
     $properties_page = $admin_obj->load_settings(false, 'ns_properties_page');
     $google_maps_pin = $admin_obj->load_settings(false, 'ns_real_estate_google_maps_pin');
     $property_detail_amenities_hide_empty = $admin_obj->load_settings(false, 'ns_property_detail_amenities_hide_empty');
@@ -24,7 +24,7 @@
     }
 
 	//Get property details
-    $property_obj = new NS_Real_Estate_Properties();
+    $property_obj = new PropertyShift_Properties();
     $property_settings = $property_obj->load_property_settings($post->ID);
     $code = $property_settings['id']['value'];
     $featured = $property_settings['featured']['value'];
@@ -261,7 +261,7 @@
                                 </div>
                             <?php }
 
-                            $maps_obj = new NS_Real_Estate_Maps();
+                            $maps_obj = new PropertyShift_Maps();
                             $maps_obj->build_single_property_map($latitude, $longitude, true);
                             ?>
 							
@@ -366,7 +366,7 @@
                                 <?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
 
                                     <?php
-                                    $agent_obj = new NS_Real_Estate_Agents();
+                                    $agent_obj = new PropertyShift_Agents();
                                     $agent_settings = $agent_obj->load_agent_settings($post->ID);
                                     $agent_title = $agent_settings['job_title']['value'];
                                     $agent_email = $agent_settings['email']['value'];

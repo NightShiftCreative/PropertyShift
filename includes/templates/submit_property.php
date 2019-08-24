@@ -8,7 +8,7 @@
 	$icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 
-    $admin_obj = new NS_Real_Estate_Admin();
+    $admin_obj = new PropertyShift_Admin();
     $members_submit_property_fields = $admin_obj->load_settings(false, 'ns_members_submit_property_fields', false);
     if(empty($members_submit_property_fields)) { $members_submit_property_fields = array(); }
     $members_my_properties_page = $admin_obj->load_settings(false, 'ns_members_my_properties_page');
@@ -17,7 +17,7 @@
     $area_postfix_default = $admin_obj->load_settings(false, 'ns_real_estate_default_area_postfix');
 
     // Load properties object
-    $properties_obj = new NS_Real_Estate_Properties();
+    $properties_obj = new PropertyShift_Properties();
 
 	//intialize variables
 	$errors = '';
@@ -417,7 +417,7 @@
                     </div>
             	</div>
             	<?php
-                $maps_obj = new NS_Real_Estate_Maps();
+                $maps_obj = new PropertyShift_Maps();
                 $maps_obj->build_single_property_map($latitude, $longitude);
                 ?>
             </div>

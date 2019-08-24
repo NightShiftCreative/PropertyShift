@@ -3,10 +3,10 @@
 if (!defined( 'ABSPATH')) { exit; }
 
 /**
- *	NS_Real_Estate_License_Keys class
+ *	PropertyShift_License_Keys class
  *
  */
-class NS_Real_Estate_License_Keys {
+class PropertyShift_License_Keys {
 
 	/**
 	 *	Constructor

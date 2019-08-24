@@ -3,17 +3,17 @@
 if (!defined( 'ABSPATH')) { exit; }
 
 /**
- *	NS_Real_Estate_Filters class
+ *	PropertyShift_Filters class
  *
  */
-class NS_Real_Estate_Filters {
+class PropertyShift_Filters {
 
 	/**
 	 *	Constructor
 	 */
 	public function __construct() {
 		// Load admin object & settings
-		$this->admin_obj = new NS_Real_Estate_Admin();
+		$this->admin_obj = new PropertyShift_Admin();
         $this->global_settings = $this->admin_obj->load_settings();
 	}
 
