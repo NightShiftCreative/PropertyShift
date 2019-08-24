@@ -90,22 +90,22 @@ jQuery(document).ready(function($) {
 
 		var repeaterItem = '\
             <div class="ns-accordion"> \
-                <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <span class="repeater-title-mirror floor-plan-title-mirror">'+ ns_real_estate_local_script.new_floor_plan +'</span> <span class="action delete delete-floor-plan"><i class="fa fa-trash"></i> '+ ns_real_estate_local_script.delete_text +'</span></div> \
+                <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <span class="repeater-title-mirror floor-plan-title-mirror">'+ propertyshift_local_script.new_floor_plan +'</span> <span class="action delete delete-floor-plan"><i class="fa fa-trash"></i> '+ propertyshift_local_script.delete_text +'</span></div> \
     			<div class="ns-accordion-content floor-plan-item"> \
     				<div class="floor-plan-left"> \
-    					<label>'+ ns_real_estate_local_script.floor_plan_title +' </label> <input class="repeater-title floor-plan-title" type="text" name="ns_property_floor_plans['+count+'][title]" placeholder="'+ ns_real_estate_local_script.new_floor_plan +'" /><br/> \
-    					<label>'+ ns_real_estate_local_script.floor_plan_size +' </label> <input type="text" name="ns_property_floor_plans['+count+'][size]" /><br/> \
-    					<label>'+ ns_real_estate_local_script.floor_plan_rooms +' </label> <input type="number" name="ns_property_floor_plans['+count+'][rooms]" /><br/> \
-    					<label>'+ ns_real_estate_local_script.floor_plan_bathrooms +' </label> <input type="number" name="ns_property_floor_plans['+count+'][baths]" /><br/> \
+    					<label>'+ propertyshift_local_script.floor_plan_title +' </label> <input class="repeater-title floor-plan-title" type="text" name="ns_property_floor_plans['+count+'][title]" placeholder="'+ propertyshift_local_script.new_floor_plan +'" /><br/> \
+    					<label>'+ propertyshift_local_script.floor_plan_size +' </label> <input type="text" name="ns_property_floor_plans['+count+'][size]" /><br/> \
+    					<label>'+ propertyshift_local_script.floor_plan_rooms +' </label> <input type="number" name="ns_property_floor_plans['+count+'][rooms]" /><br/> \
+    					<label>'+ propertyshift_local_script.floor_plan_bathrooms +' </label> <input type="number" name="ns_property_floor_plans['+count+'][baths]" /><br/> \
     				</div> \
                     <div class="floor-plan-right"> \
-                        <label>'+ ns_real_estate_local_script.floor_plan_description +' </label> \
+                        <label>'+ propertyshift_local_script.floor_plan_description +' </label> \
     				    <textarea name="ns_property_floor_plans['+count+'][description]"></textarea> \
     				    <div class="floor-plan-img"> \
-                            <label>'+ ns_real_estate_local_script.floor_plan_img +' </label> \
+                            <label>'+ propertyshift_local_script.floor_plan_img +' </label> \
                             <input type="text" name="ns_property_floor_plans['+count+'][img]" /> \
-                            <input id="_btn" class="ns_upload_image_button" type="button" value="'+ ns_real_estate_local_script.upload_img +'" /> \
-                            <span class="button-secondary remove">'+ ns_real_estate_local_script.remove_text +'</span> \
+                            <input id="_btn" class="ns_upload_image_button" type="button" value="'+ propertyshift_local_script.upload_img +'" /> \
+                            <span class="button-secondary remove">'+ propertyshift_local_script.remove_text +'</span> \
                         </div> \
                     </div> \
                     <div class="clear"></div> \

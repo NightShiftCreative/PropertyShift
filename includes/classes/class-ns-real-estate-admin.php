@@ -26,7 +26,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 	 *	Add admin menu
 	 */
 	public function admin_menu() {
-		add_menu_page('PropertyShift', 'PropertyShift', 'administrator', 'ns-real-estate-settings', array( $this, 'settings_page' ), NS_REAL_ESTATE_DIR.'/images/icon.png', 25);
+		add_menu_page('PropertyShift', 'PropertyShift', 'administrator', 'ns-real-estate-settings', array( $this, 'settings_page' ), PROPERTYSHIFT_DIR.'/images/icon.png', 25);
 	    add_submenu_page('ns-real-estate-settings', 'Settings', 'Settings', 'administrator', 'ns-real-estate-settings');
 	    add_submenu_page('ns-real-estate-settings', 'Add-Ons', 'Add-Ons', 'administrator', 'ns-real-estate-add-ons', array( $this, 'add_ons_page' ));
 	    add_submenu_page('ns-real-estate-settings', 'License Keys', 'License Keys', 'administrator', 'ns-real-estate-license-keys', array( $this, 'license_keys_page' ));
@@ -90,7 +90,7 @@ class NS_Real_Estate_Admin extends NS_Basics_Admin {
 			'ns_real_estate_default_map_zoom' => array('value' => 10),
 			'ns_real_estate_default_map_latitude' => array('value' => 39.2904),
 			'ns_real_estate_default_map_longitude' => array('value' => -76.5000),
-			'ns_real_estate_google_maps_pin' => array('value' => NS_REAL_ESTATE_DIR.'/images/pin.png'),
+			'ns_real_estate_google_maps_pin' => array('value' => PROPERTYSHIFT_DIR.'/images/pin.png'),
 			'ns_members_my_properties_page' => array('value' => ''),
 			'ns_members_submit_property_page' => array('value' => ''),
 			'ns_members_submit_property_approval' => array('value' => 'true'),

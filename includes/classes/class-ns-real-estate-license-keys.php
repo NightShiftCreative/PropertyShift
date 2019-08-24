@@ -90,14 +90,14 @@ class NS_Real_Estate_License_Keys {
 	        }
 
 	        if(!empty($message)) {
-	            $base_url = admin_url( 'admin.php?page=' . NS_REAL_ESTATE_LICENSE_PAGE );
+	            $base_url = admin_url( 'admin.php?page=' . PROPERTYSHIFT_LICENSE_PAGE );
 	            $redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $base_url );
 	            wp_redirect( $redirect );
 	            exit();
 	        }
 
 	        update_option($license['status_name'], $license_data->license);
-	        wp_redirect( admin_url( 'admin.php?page=' . NS_REAL_ESTATE_LICENSE_PAGE ) );
+	        wp_redirect( admin_url( 'admin.php?page=' . PROPERTYSHIFT_LICENSE_PAGE ) );
 	        exit();
 	    }
 	}
@@ -128,14 +128,14 @@ class NS_Real_Estate_License_Keys {
 	                $message = __( 'An error occurred, please try again.' );
 	            }
 
-	            $base_url = admin_url( 'admin.php?page=' . NS_REAL_ESTATE_LICENSE_PAGE );
+	            $base_url = admin_url( 'admin.php?page=' . PROPERTYSHIFT_LICENSE_PAGE );
 	            $redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $base_url );
 	            wp_redirect( $redirect );
 	            exit();
 	        }
 
 	        delete_option($license['status_name']);
-	        wp_redirect( admin_url( 'admin.php?page=' . NS_REAL_ESTATE_LICENSE_PAGE) );
+	        wp_redirect( admin_url( 'admin.php?page=' . PROPERTYSHIFT_LICENSE_PAGE) );
 	        exit();
 	    }
 	}

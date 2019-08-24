@@ -7,13 +7,13 @@
 * Version: 1.0.0
 * Author: Nightshift Creative
 * Author URI: http://nightshiftcreative.co/
-* Text Domain: ns-real-estate
+* Text Domain: propertyshift
 **/
 
 // Exit if accessed directly
 if (!defined( 'ABSPATH')) { exit; }
 
-class NS_Real_Estate {
+class PropertyShift {
 
 	/**
 	 * Constructor - intialize the plugin
@@ -39,7 +39,7 @@ class NS_Real_Estate {
 	 * Load the textdomain for translation
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'ns-real-estate', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'propertyshift', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
@@ -49,9 +49,9 @@ class NS_Real_Estate {
 		define('NS_URL', 'https://nightshiftcreative.co/');
 		define('NS_SHOP_URL', 'https://products.nightshiftcreative.co/');
 		define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/1.0.0.zip');
-		define('NS_REAL_ESTATE_GITHUB', '/NightShiftCreative/NS-Real-Estate/');
-		define('NS_REAL_ESTATE_LICENSE_PAGE', 'ns-real-estate-license-keys' );
-		define('NS_REAL_ESTATE_DIR', plugins_url('', __FILE__));
+		define('PROPERTYSHIFT_GITHUB', '/NightShiftCreative/NS-Real-Estate/');
+		define('PROPERTYSHIFT_LICENSE_PAGE', 'ns-real-estate-license-keys' );
+		define('PROPERTYSHIFT_DIR', plugins_url('', __FILE__));
 	}
 
 	/**
@@ -60,9 +60,9 @@ class NS_Real_Estate {
 	public function update_checker() {
 		require 'includes/plugins/plugin-update-checker/plugin-update-checker.php';
 		$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-		    'https://github.com'.constant('NS_REAL_ESTATE_GITHUB'),
+		    'https://github.com'.constant('PROPERTYSHIFT_GITHUB'),
 		    __FILE__,
-		    'ns-real-estate'
+		    'propertyshift'
 		);
 	}
 
@@ -84,7 +84,7 @@ class NS_Real_Estate {
 	    );
 
 	    $config = array(
-	        'id'           => 'ns-real-estate',       // Unique ID for hashing notices for multiple instances of TGMPA.
+	        'id'           => 'propertyshift',       // Unique ID for hashing notices for multiple instances of TGMPA.
 	        'default_path' => '',                      // Default absolute path to bundled plugins.
 	        'menu'         => 'tgmpa-install-plugins', // Menu slug.
 	        'has_notices'  => true,                    // Show admin notices or not.
@@ -114,26 +114,26 @@ class NS_Real_Estate {
 
 			$google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
 
-			wp_enqueue_script('ns-real-estate-admin-js', plugins_url('/js/ns-real-estate-admin.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'media-upload', 'thickbox'), '', true);
-			wp_enqueue_style('ns-real-estate-admin-css', plugins_url('/css/ns-real-estate-admin.css',  __FILE__), array(), '1.0', 'all');
-			wp_enqueue_script( 'ns-real-estate-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
+			wp_enqueue_script('propertyshift-admin-js', plugins_url('/js/propertyshift-admin.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'media-upload', 'thickbox'), '', true);
+			wp_enqueue_style('propertyshift-admin-css', plugins_url('/css/propertyshift-admin.css',  __FILE__), array(), '1.0', 'all');
+			wp_enqueue_script( 'propertyshift-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
 
 			/* localize scripts */
 	        $translation_array = array(
 	            'admin_url' => esc_url(get_admin_url()),
-	            'delete_text' => __( 'Delete', 'ns-real-estate' ),
-	            'remove_text' => __( 'Remove', 'ns-real-estate' ),
-	            'edit_text' => __( 'Edit', 'ns-real-estate' ),
-	            'upload_img' => __( 'Upload Image', 'ns-real-estate' ),
-	            'floor_plan_title' => __( 'Title:', 'ns-real-estate' ),
-	            'floor_plan_size' => __( 'Size:', 'ns-real-estate' ),
-	            'floor_plan_rooms' => __( 'Bedrooms:', 'ns-real-estate' ),
-	            'floor_plan_bathrooms' => __( 'Bathrooms:', 'ns-real-estate' ),
-	            'floor_plan_img' => __( 'Image:', 'ns-real-estate' ),
-	            'floor_plan_description' => __( 'Description:', 'ns-real-estate' ),
-	            'new_floor_plan' => __( 'New Floor Plan', 'ns-real-estate' ),
+	            'delete_text' => __( 'Delete', 'propertyshift' ),
+	            'remove_text' => __( 'Remove', 'propertyshift' ),
+	            'edit_text' => __( 'Edit', 'propertyshift' ),
+	            'upload_img' => __( 'Upload Image', 'propertyshift' ),
+	            'floor_plan_title' => __( 'Title:', 'propertyshift' ),
+	            'floor_plan_size' => __( 'Size:', 'propertyshift' ),
+	            'floor_plan_rooms' => __( 'Bedrooms:', 'propertyshift' ),
+	            'floor_plan_bathrooms' => __( 'Bathrooms:', 'propertyshift' ),
+	            'floor_plan_img' => __( 'Image:', 'propertyshift' ),
+	            'floor_plan_description' => __( 'Description:', 'propertyshift' ),
+	            'new_floor_plan' => __( 'New Floor Plan', 'propertyshift' ),
 	        );
-	        wp_localize_script( 'ns-real-estate-admin-js', 'ns_real_estate_local_script', $translation_array );
+	        wp_localize_script( 'propertyshift-admin-js', 'ns_real_estate_local_script', $translation_array );
 		}
 	}
 
@@ -155,26 +155,26 @@ class NS_Real_Estate {
 	    	/* localize scripts */
 	        $translation_array = array(
 	            'admin_url' => esc_url(get_admin_url()),
-	            'delete_text' => __( 'Delete', 'ns-real-estate' ),
-	            'purchase_price' => __( 'Purchase Price', 'ns-real-estate' ),
-	            'down_payment' => __( 'Down Payment', 'ns-real-estate' ),
-	            'percent' => __( 'Percent', 'ns-real-estate' ),
-	            'fixed' => __( 'Fixed', 'ns-real-estate' ),
-	            'rate' => __( 'Rate', 'ns-real-estate' ),
-	            'term' => __( 'Term', 'ns-real-estate' ),
-	            'years' => __( 'Years', 'ns-real-estate' ),
-	            'months' => __( 'Months', 'ns-real-estate' ),
-	            'calculate' => __( 'Calculate', 'ns-real-estate' ),
-	            'monthly_payment' => __( 'Your monthly payment:', 'ns-real-estate' ),
-	            'required_field' => __( 'This field is required', 'ns-real-estate' ),
-	            'floor_plan_title' => __( 'Title:', 'ns-real-estate' ),
-	            'floor_plan_size' => __( 'Size:', 'ns-real-estate' ),
-	            'floor_plan_rooms' => __( 'Bedrooms:', 'ns-real-estate' ),
-	            'floor_plan_bathrooms' => __( 'Bathrooms:', 'ns-real-estate' ),
-	            'floor_plan_img' => __( 'Image:', 'ns-real-estate' ),
-	            'floor_plan_description' => __( 'Description:', 'ns-real-estate' ),
-	            'new_floor_plan' => __( 'New Floor Plan', 'ns-real-estate' ),
-	            'floor_plan_note' => __( 'Provide the absolute url to a hosted image.', 'ns-real-estate' ),
+	            'delete_text' => __( 'Delete', 'propertyshift' ),
+	            'purchase_price' => __( 'Purchase Price', 'propertyshift' ),
+	            'down_payment' => __( 'Down Payment', 'propertyshift' ),
+	            'percent' => __( 'Percent', 'propertyshift' ),
+	            'fixed' => __( 'Fixed', 'propertyshift' ),
+	            'rate' => __( 'Rate', 'propertyshift' ),
+	            'term' => __( 'Term', 'propertyshift' ),
+	            'years' => __( 'Years', 'propertyshift' ),
+	            'months' => __( 'Months', 'propertyshift' ),
+	            'calculate' => __( 'Calculate', 'propertyshift' ),
+	            'monthly_payment' => __( 'Your monthly payment:', 'propertyshift' ),
+	            'required_field' => __( 'This field is required', 'propertyshift' ),
+	            'floor_plan_title' => __( 'Title:', 'propertyshift' ),
+	            'floor_plan_size' => __( 'Size:', 'propertyshift' ),
+	            'floor_plan_rooms' => __( 'Bedrooms:', 'propertyshift' ),
+	            'floor_plan_bathrooms' => __( 'Bathrooms:', 'propertyshift' ),
+	            'floor_plan_img' => __( 'Image:', 'propertyshift' ),
+	            'floor_plan_description' => __( 'Description:', 'propertyshift' ),
+	            'new_floor_plan' => __( 'New Floor Plan', 'propertyshift' ),
+	            'floor_plan_note' => __( 'Provide the absolute url to a hosted image.', 'propertyshift' ),
 	        );
 	        wp_localize_script( 'ns-real-estate', 'ns_real_estate_local_script', $translation_array );
 	    
@@ -257,10 +257,10 @@ class NS_Real_Estate {
 /**
  *  Load the main class
  */
-function ns_real_estate() {
-	global $ns_real_estate;
-	if(!isset($ns_real_estate)) { $ns_real_estate = new NS_Real_Estate(); }
-	return $ns_real_estate;
+function propertyshift() {
+	global $propertyshift;
+	if(!isset($propertyshift)) { $propertyshift = new PropertyShift(); }
+	return $propertyshift;
 }
-ns_real_estate();
+propertyshift();
 ?>
