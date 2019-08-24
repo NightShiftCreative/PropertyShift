@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Plugin Name: Nightshift Real Estate
+* Plugin Name: PropertyShift
 * Plugin URI: http://nightshiftcreative.co/
 * Description: Robust real estate listing system for agents and agencies of any size. 
 * Version: 1.0.0
