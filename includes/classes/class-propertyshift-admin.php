@@ -154,7 +154,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	    }
 
 	    $args = array(
-			'page_name' => 'Nightshift Real Estate',
+			'page_name' => 'PropertyShift',
 			'settings_group' => 'propertyshift-settings-group',
 			'pages' => $this->get_admin_pages(),
 			'display_actions' => 'true',
@@ -163,7 +163,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 			'content_nav'=> $content_nav,
 			'alerts' => $alerts,
 			'ajax' => true,
-			'icon' => plugins_url('/propertyshift/images/icon-real-estate.svg'),
+			'icon' => PROPERTYSHIFT_DIR.'/images/icon-real-estate.svg',
 		);
 	    echo $this->build_admin_page($args);
 	}
@@ -433,7 +433,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        </div>
 
 	        <!-- Hook in for Add-Ons -->
-        	<?php do_action( 'ns_real_estate_after_property_settings'); ?>
+        	<?php do_action( 'propertyshift_after_property_settings'); ?>
 
 	    </div><!-- end property settings -->
 
@@ -516,7 +516,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	            </div>
 	        </div>
 
-        	<?php do_action( 'ns_real_estate_after_agent_settings'); ?>
+        	<?php do_action( 'propertyshift_after_agent_settings'); ?>
 
 	    </div><!-- end agent settings -->
 
@@ -569,7 +569,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
             $this->build_admin_field($map_custom_pin_field);
 	        ?>
 
-	        <?php do_action( 'ns_real_estate_after_map_settings'); ?>
+	        <?php do_action( 'propertyshift_after_map_settings'); ?>
 
 	    </div><!-- end map settings -->
 
@@ -635,7 +635,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
             $this->build_admin_field($submit_form_fields);
 	        ?>
 
-	        <?php do_action( 'ns_real_estate_after_member_settings'); ?>
+	        <?php do_action( 'propertyshift_after_member_settings'); ?>
 
 	    </div><!-- end members settings -->
 
@@ -721,11 +721,11 @@ class PropertyShift_Admin extends NS_Basics_Admin {
             );
             $this->build_admin_field($area_decimal_num_field);
 
-	        do_action( 'ns_real_estate_after_currency_settings'); ?>
+	        do_action( 'propertyshift_after_currency_settings'); ?>
 
 	    </div><!-- end currency settings -->
 
-	    <?php do_action( 'ns_real_estate_after_settings'); ?>
+	    <?php do_action( 'propertyshift_after_settings'); ?>
 
 		<?php $output = ob_get_clean();
     	return $output;
@@ -736,11 +736,11 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	 */
 	public function add_ons_page() {
 		$args = array(
-			'page_name' => 'Nightshift Real Estate',
+			'page_name' => 'PropertyShift',
 			'pages' => $this->get_admin_pages(),
 			'content' => $this->add_ons_page_content(),
 			'content_class' => 'ns-modules',
-			'icon' => plugins_url('/propertyshift/images/icon-real-estate.svg'),
+			'icon' => PROPERTYSHIFT_DIR.'/images/icon-real-estate.svg',
 		);
 	    echo $this->build_admin_page($args);
 	}
@@ -786,13 +786,13 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	 */
 	public function license_keys_page() {
 		$args = array(
-			'page_name' => 'Nightshift Real Estate',
+			'page_name' => 'PropertyShift',
 			'settings_group' => 'propertyshift-license-keys-group',
 			'pages' => $this->get_admin_pages(),
 			'content' => $this->license_keys_page_content(),
 			'display_actions' => 'true',
 			'ajax' => false,
-			'icon' => plugins_url('/propertyshift/images/icon-real-estate.svg'),
+			'icon' => PROPERTYSHIFT_DIR.'/images/icon-real-estate.svg',
 		);
 	    echo $this->build_admin_page($args);
 	}
@@ -805,7 +805,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        <?php esc_html_e('Your licenses keys can be found in your account on the Nightshift Products website.', 'propertyshift'); ?>
 	    </div><br/>
 	    
-	    <?php do_action( 'ns_real_estate_register_license_keys'); ?>
+	    <?php do_action( 'propertyshift_register_license_keys'); ?>
 
 	    <?php $output = ob_get_clean();
 	    return $output;
@@ -816,11 +816,11 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	 */
 	public function help_page() {
 		$args = array(
-			'page_name' => 'Nightshift Real Estate',
+			'page_name' => 'PropertyShift',
 			'pages' => $this->get_admin_pages(),
 			'content' => $this->resources_page_content(),
 			'display_actions' => 'false',
-			'icon' => plugins_url('/propertyshift/images/icon-real-estate.svg'),
+			'icon' => PROPERTYSHIFT_DIR.'/images/icon-real-estate.svg',
 		);
 	    echo $this->build_admin_page($args);
 	}
