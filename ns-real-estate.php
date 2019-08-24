@@ -133,7 +133,7 @@ class PropertyShift {
 	            'floor_plan_description' => __( 'Description:', 'propertyshift' ),
 	            'new_floor_plan' => __( 'New Floor Plan', 'propertyshift' ),
 	        );
-	        wp_localize_script( 'propertyshift-admin-js', 'ns_real_estate_local_script', $translation_array );
+	        wp_localize_script( 'propertyshift-admin-js', 'propertyshift_local_script', $translation_array );
 		}
 	}
 
@@ -148,8 +148,8 @@ class PropertyShift {
 	    	wp_enqueue_script('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.js', __FILE__), array('jquery'), '', true);
 	        wp_enqueue_style('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.css',  __FILE__), array(), '1.0', 'all');
 	        wp_enqueue_script('wnumb', plugins_url('/assets/noUiSlider/wNumb.js', __FILE__), array('jquery'), '', true);
-	        wp_enqueue_style('ns-real-estate', plugins_url('/css/ns-real-estate.css',  __FILE__), array(), '1.0', 'all');
-	    	wp_enqueue_script('ns-real-estate', plugins_url('/js/ns-real-estate.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), '', true);
+	        wp_enqueue_style('propertyshift', plugins_url('/css/propertyshift.css',  __FILE__), array(), '1.0', 'all');
+	    	wp_enqueue_script('propertyshift', plugins_url('/js/propertyshift.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), '', true);
 	    	wp_enqueue_script( 'ns-real-estate-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
 
 	    	/* localize scripts */
@@ -176,7 +176,7 @@ class PropertyShift {
 	            'new_floor_plan' => __( 'New Floor Plan', 'propertyshift' ),
 	            'floor_plan_note' => __( 'Provide the absolute url to a hosted image.', 'propertyshift' ),
 	        );
-	        wp_localize_script( 'ns-real-estate', 'ns_real_estate_local_script', $translation_array );
+	        wp_localize_script( 'propertyshift', 'propertyshift_local_script', $translation_array );
 	    
 	        /* dynamic scripts */
         	include( plugin_dir_path( __FILE__ ) . '/js/dynamic_scripts.php');

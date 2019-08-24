@@ -16,6 +16,6 @@ $dynamic_script .= "var currency_thousand = '{$settings['ns_real_estate_thousand
 $dynamic_script .= "var currency_decimal = '{$settings['ns_real_estate_decimal_separator']}';";
 $dynamic_script .= "var currency_decimal_num = '{$settings['ns_real_estate_num_decimal']}';";
 
-wp_add_inline_script( 'ns-real-estate', $dynamic_script);
+wp_add_inline_script( 'propertyshift', $dynamic_script);
 
 ?>

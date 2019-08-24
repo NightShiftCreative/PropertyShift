@@ -155,18 +155,18 @@ jQuery(document).ready(function($) {
 
             function o() {
                 var e = "<form id='homenote' role='form'>";
-                return e += "<div class='form-group'><label for='purchasePrice'>"+ ns_real_estate_local_script.purchase_price +" (" + p.currencysym + ")</label>", e += "<input type='text' class='border' id='purchasePrice' value='" + p.principal + "'></div></hr>", e += "<div class='form-group'><label for='downPayment'>"+ns_real_estate_local_script.down_payment+"</label><input type='text' class='border' id='dpamount' value='" + p.dpamount + "'></div>", e += "<label class='label-radio'><input type='radio' name='dptype' id='downpercentage' value='percentage'", "percentage" === p.dptype && (e += " checked"), e += ">"+ns_real_estate_local_script.percent+" (%)</label>", e += "<label class='label-radio'><input type='radio' name='dptype' id='downlump' value='downlump'", "downlump" === p.dptype && (e += " checked"), e += ">" + p.currency + " (" + p.currencysym + ")</label><hr>", e += "<div class='form-group'><label for='rate'>"+ns_real_estate_local_script.rate+" (%)</label><input type='text' class='border' id='rate' value='" + p.rate + "'></div><hr>", e += "<div class='form-group'><label for='rate'>"+ns_real_estate_local_script.term+"</label><input type='text' class='border' id='term' value='" + p.term + "'></div>", e += "<label class='label-radio'><input type='radio' name='termtype' id='years' value='years' ", "years" === p.termtype && (e += "checked"), e += ">"+ns_real_estate_local_script.years+"</label>", e += "<label class='label-radio'><input type='radio' name='termtype' id='months' value='months'", "months" === p.termtype && (e += "checked"), e += ">"+ns_real_estate_local_script.months+"</label><hr>", e += "<div class='alert-box success' style='display:none;' id='results'></div>", e += "<button type='submit' class='button' id='calchomenote'>"+ns_real_estate_local_script.calculate+"</button></form>"
+                return e += "<div class='form-group'><label for='purchasePrice'>"+ propertyshift_local_script.purchase_price +" (" + p.currencysym + ")</label>", e += "<input type='text' class='border' id='purchasePrice' value='" + p.principal + "'></div></hr>", e += "<div class='form-group'><label for='downPayment'>"+propertyshift_local_script.down_payment+"</label><input type='text' class='border' id='dpamount' value='" + p.dpamount + "'></div>", e += "<label class='label-radio'><input type='radio' name='dptype' id='downpercentage' value='percentage'", "percentage" === p.dptype && (e += " checked"), e += ">"+propertyshift_local_script.percent+" (%)</label>", e += "<label class='label-radio'><input type='radio' name='dptype' id='downlump' value='downlump'", "downlump" === p.dptype && (e += " checked"), e += ">" + p.currency + " (" + p.currencysym + ")</label><hr>", e += "<div class='form-group'><label for='rate'>"+propertyshift_local_script.rate+" (%)</label><input type='text' class='border' id='rate' value='" + p.rate + "'></div><hr>", e += "<div class='form-group'><label for='rate'>"+propertyshift_local_script.term+"</label><input type='text' class='border' id='term' value='" + p.term + "'></div>", e += "<label class='label-radio'><input type='radio' name='termtype' id='years' value='years' ", "years" === p.termtype && (e += "checked"), e += ">"+propertyshift_local_script.years+"</label>", e += "<label class='label-radio'><input type='radio' name='termtype' id='months' value='months'", "months" === p.termtype && (e += "checked"), e += ">"+propertyshift_local_script.months+"</label><hr>", e += "<div class='alert-box success' style='display:none;' id='results'></div>", e += "<button type='submit' class='button' id='calchomenote'>"+propertyshift_local_script.calculate+"</button></form>"
             }
             var p = e.extend({
                 currencysym: currency_symbol,
-                currency: ns_real_estate_local_script.fixed,
+                currency: propertyshift_local_script.fixed,
                 termtype: "years",
                 term: "30",
                 principal: "250,000",
                 dptype: "percentage",
                 dpamount: "20%",
                 rate: "6.5",
-                resulttext: ns_real_estate_local_script.monthly_payment
+                resulttext: propertyshift_local_script.monthly_payment
             }, t);
             t = e.extend(p, t), e(document).on("change", 'input[name="termtype"]', function() {
                 p.termtype = e(this).val(), e("#term").val(a())
@@ -264,21 +264,21 @@ jQuery(document).ready(function($) {
         var count = $('.property-floor-plans .accordion .floor-plan-item').length;
 
         var floorPlanItem = '\
-            <h4 class="accordion-tab"><span class="floor-plan-title-mirror">'+ ns_real_estate_local_script.new_floor_plan +'</span> <span class="delete-floor-plan right"><i class="fa fa-trash"></i> '+ ns_real_estate_local_script.delete_text +'</span></h4> \
+            <h4 class="accordion-tab"><span class="floor-plan-title-mirror">'+ propertyshift_local_script.new_floor_plan +'</span> <span class="delete-floor-plan right"><i class="fa fa-trash"></i> '+ propertyshift_local_script.delete_text +'</span></h4> \
             <div class="floor-plan-item"> \
                 <div class="floor-plan-left"> \
-                    <label>'+ ns_real_estate_local_script.floor_plan_title +' </label> <input class="floor-plan-title border" type="text" name="ns_property_floor_plans['+count+'][title]" placeholder="'+ ns_real_estate_local_script.new_floor_plan +'" /><br/> \
-                    <label>'+ ns_real_estate_local_script.floor_plan_size +' </label> <input class="border" type="text" name="ns_property_floor_plans['+count+'][size]" /><br/> \
-                    <label>'+ ns_real_estate_local_script.floor_plan_rooms +' </label> <input class="border" type="number" name="ns_property_floor_plans['+count+'][rooms]" /><br/> \
-                    <label>'+ ns_real_estate_local_script.floor_plan_bathrooms +' </label> <input class="border" type="number" name="ns_property_floor_plans['+count+'][baths]" /><br/> \
+                    <label>'+ propertyshift_local_script.floor_plan_title +' </label> <input class="floor-plan-title border" type="text" name="ns_property_floor_plans['+count+'][title]" placeholder="'+ propertyshift_local_script.new_floor_plan +'" /><br/> \
+                    <label>'+ propertyshift_local_script.floor_plan_size +' </label> <input class="border" type="text" name="ns_property_floor_plans['+count+'][size]" /><br/> \
+                    <label>'+ propertyshift_local_script.floor_plan_rooms +' </label> <input class="border" type="number" name="ns_property_floor_plans['+count+'][rooms]" /><br/> \
+                    <label>'+ propertyshift_local_script.floor_plan_bathrooms +' </label> <input class="border" type="number" name="ns_property_floor_plans['+count+'][baths]" /><br/> \
                 </div> \
                 <div class="floor-plan-right"> \
-                    <label>'+ ns_real_estate_local_script.floor_plan_description +' </label> \
+                    <label>'+ propertyshift_local_script.floor_plan_description +' </label> \
                     <textarea class="border" name="ns_property_floor_plans['+count+'][description]"></textarea> \
                     <div> \
-                        <label>'+ ns_real_estate_local_script.floor_plan_img +' </label> \
+                        <label>'+ propertyshift_local_script.floor_plan_img +' </label> \
                         <input class="border" type="text" name="ns_property_floor_plans['+count+'][img]" /> \
-                        <span><em>'+ns_real_estate_local_script.floor_plan_note+'</em></span> \
+                        <span><em>'+propertyshift_local_script.floor_plan_note+'</em></span> \
                     </div> \
                 </div> \
                 <div class="clear"></div> \
@@ -309,7 +309,7 @@ jQuery(document).ready(function($) {
     var files_count = $('.additional-img-container .additional-image').length + 1;
     $('.add-additional-img').click(function() {
         files_count++;
-        $('.additional-img-container').append('<table><tr><td><div class="media-uploader-additional-img"><input type="file" class="additional_img" name="additional_img'+ files_count +'" value="" /><span class="delete-additional-img appended right"><i class="fa fa-trash"></i> '+ ns_real_estate_local_script.delete_text +'</span></div></td></tr></table>');
+        $('.additional-img-container').append('<table><tr><td><div class="media-uploader-additional-img"><input type="file" class="additional_img" name="additional_img'+ files_count +'" value="" /><span class="delete-additional-img appended right"><i class="fa fa-trash"></i> '+ propertyshift_local_script.delete_text +'</span></div></td></tr></table>');
     });
 
     $('.additional-img-container').on("click", ".delete-additional-img", function() {
