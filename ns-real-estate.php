@@ -150,7 +150,7 @@ class PropertyShift {
 	        wp_enqueue_script('wnumb', plugins_url('/assets/noUiSlider/wNumb.js', __FILE__), array('jquery'), '', true);
 	        wp_enqueue_style('propertyshift', plugins_url('/css/propertyshift.css',  __FILE__), array(), '1.0', 'all');
 	    	wp_enqueue_script('propertyshift', plugins_url('/js/propertyshift.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), '', true);
-	    	wp_enqueue_script( 'ns-real-estate-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
+	    	wp_enqueue_script( 'propertyshift-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
 
 	    	/* localize scripts */
 	        $translation_array = array(
@@ -182,7 +182,7 @@ class PropertyShift {
         	include( plugin_dir_path( __FILE__ ) . '/js/dynamic_scripts.php');
 
 	        //dynamic styles
-        	wp_enqueue_style('ns-real-estate-dynamic-styles', plugins_url('/css/dynamic-styles.css', __FILE__));
+        	wp_enqueue_style('propertyshift-dynamic-styles', plugins_url('/css/dynamic-styles.css', __FILE__));
         	include( plugin_dir_path( __FILE__ ) . '/css/dynamic_styles.php');
 	    }
 	}
@@ -247,7 +247,7 @@ class PropertyShift {
 		$this->shortcodes = new NS_Real_Estate_Shortcodes();
 
 		//Action to let add-ons know that core classes are ready
-		do_action( 'ns_real_estate_loaded', plugin_dir_path( __FILE__ ) );
+		do_action( 'propertyshift_loaded', plugin_dir_path( __FILE__ ) );
 
 	}
 
