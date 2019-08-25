@@ -8,13 +8,13 @@ add_action('vc_before_init', 'ns_real_estate_vc_map');
 function ns_real_estate_vc_map() {
 
 	/** GET GLOBAL SETTINGS **/
-	$num_properties_per_page = esc_attr(get_option('ns_num_properties_per_page', 12));
+	$num_properties_per_page = esc_attr(get_option('ps_num_properties_per_page', 12));
 	$num_agents_per_page = esc_attr(get_option('ns_num_agents_per_page', 12));
 
 	/** LIST PROPERTIES **/
 	vc_map(array(
 		'name' => esc_html__( 'List Properties', 'ns-real-estate' ),
-		'base' => 'ns_list_properties',
+		'base' => 'ps_list_properties',
 		'description' => esc_html__( 'Display your property listings', 'ns-real-estate' ),
 		'icon' => plugins_url('/ns-real-estate/images/icon-real-estate.svg'),
 		'class' => '',
@@ -78,7 +78,7 @@ function ns_real_estate_vc_map() {
 	/** LIST PROPERTY TAXONOMY **/
 	vc_map(array(
 			'name' => esc_html__( 'List Property Taxonomy', 'ns-real-estate' ),
-			'base' => 'ns_list_property_tax',
+			'base' => 'ps_list_property_tax',
 			'description' => esc_html__( 'Display property taxonomy terms', 'ns-real-estate' ),
 			'icon' => plugins_url('/ns-real-estate/images/icon-real-estate.svg'),
 			'class' => '',
@@ -148,7 +148,7 @@ function ns_real_estate_vc_map() {
 	/** SUBMIT PROPERTY FORM **/
 	vc_map(array(
 		'name' => esc_html__( 'Submit Property Form', 'ns-real-estate' ),
-		'base' => 'ns_submit_property',
+		'base' => 'ps_submit_property',
 		'description' => esc_html__( 'Allow users to submit a property', 'ns-real-estate' ),
 		'icon' => plugins_url('/ns-real-estate/images/icon-real-estate.svg'),
 		'class' => '',
@@ -158,7 +158,7 @@ function ns_real_estate_vc_map() {
 	/** MY PROPERTIES **/
 	vc_map(array(
 		'name' => esc_html__( 'My Properties', 'ns-real-estate' ),
-		'base' => 'ns_my_properties',
+		'base' => 'ps_my_properties',
 		'description' => esc_html__( 'Display the current users properties', 'ns-real-estate' ),
 		'icon' => plugins_url('/ns-real-estate/images/icon-real-estate.svg'),
 		'class' => '',
@@ -168,7 +168,7 @@ function ns_real_estate_vc_map() {
 	/** PROPERTY FILTER **/
 	vc_map(array(
 		'name' => esc_html__( 'Property Filter', 'ns-real-estate' ),
-		'base' => 'ns_property_filter',
+		'base' => 'ps_property_filter',
 		'description' => esc_html__( 'Display a property search filter', 'ns-real-estate' ),
 		'icon' => plugins_url('/ns-real-estate/images/icon-real-estate.svg'),
 		'class' => '',
@@ -178,7 +178,7 @@ function ns_real_estate_vc_map() {
 				'type' => 'textfield',
 				'heading' => esc_html__( 'Filter ID', 'ns-real-estate' ),
 				'param_name' => 'id',
-				'description' => __( 'Filters can be created and edited <a href="/wp-admin/edit.php?post_type=ns-property-filter" target="_blank">here.</a>', 'ns-real-estate' ),
+				'description' => __( 'Filters can be created and edited <a href="/wp-admin/edit.php?post_type=ps-property-filter" target="_blank">here.</a>', 'ns-real-estate' ),
 			),
 		),
 	));
@@ -186,7 +186,7 @@ function ns_real_estate_vc_map() {
 	/** LIST AGENTS **/
 	vc_map(array(
 		'name' => esc_html__( 'List Agents', 'ns-real-estate' ),
-		'base' => 'ns_list_agents',
+		'base' => 'ps_list_agents',
 		'description' => esc_html__( 'Display a list of agents', 'ns-real-estate' ),
 		'icon' => plugins_url('/ns-real-estate/images/icon-real-estate.svg'),
 		'class' => '',

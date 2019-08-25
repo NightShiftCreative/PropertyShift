@@ -3,7 +3,7 @@
     $admin_obj = new PropertyShift_Admin();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
-    $num_properties_per_page = $admin_obj->load_settings(false, 'ns_num_properties_per_page');
+    $num_properties_per_page = $admin_obj->load_settings(false, 'ps_num_properties_per_page');
     $agent_detail_items = $admin_obj->load_settings(false, 'ns_agent_detail_items', false);
 
     //Get template location
@@ -128,7 +128,7 @@
                                     $agent_form_title = get_the_title( $agent_form_id );
                                     echo do_shortcode('[contact-form-7 id="<?php echo esc_attr($agent_form_id); ?>" title="'.$agent_form_title.'"]');
                                 } else { 
-                                    ns_real_estate_template_loader('agent_contact_form.php');
+                                    propertyshift_template_loader('agent_contact_form.php');
                                 } 
                             ?>
                 		</div>
@@ -157,7 +157,7 @@
                                 $template_args_properties['no_post_message'] = esc_html__( 'Sorry, no properties were found.', 'ns-real-estate' );
                                 
                                 //Load template
-                                ns_real_estate_template_loader('loop_properties.php', $template_args_properties);
+                                propertyshift_template_loader('loop_properties.php', $template_args_properties);
                             ?>
                         </div>
                 	<?php } ?>

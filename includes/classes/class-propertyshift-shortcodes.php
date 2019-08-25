@@ -15,13 +15,13 @@ class PropertyShift_Shortcodes {
 	public function __construct() {
 		add_action( 'media_buttons', array( $this, 'add_shortcode_wizard'));
 		add_filter("the_content", array( $this, 'content_filter'));
-		add_shortcode('ns_list_properties', array( $this, 'add_shortcode_list_properties'));
-		add_shortcode('ns_properties_map', array( $this, 'add_shortcode_properties_map'));
-		add_shortcode('ns_list_property_tax', array( $this, 'add_shortcode_list_property_tax'));
-		add_shortcode('ns_submit_property', array( $this, 'add_shortcode_submit_property'));
-		add_shortcode('ns_my_properties', array( $this, 'add_shortcode_my_properties'));
-		add_shortcode('ns_property_filter', array( $this, 'add_shortcode_property_filter'));
-		add_shortcode('ns_list_agents', array( $this, 'add_shortcode_list_agents'));
+		add_shortcode('ps_list_properties', array( $this, 'add_shortcode_list_properties'));
+		add_shortcode('ps_properties_map', array( $this, 'add_shortcode_properties_map'));
+		add_shortcode('ps_list_property_tax', array( $this, 'add_shortcode_list_property_tax'));
+		add_shortcode('ps_submit_property', array( $this, 'add_shortcode_submit_property'));
+		add_shortcode('ps_my_properties', array( $this, 'add_shortcode_my_properties'));
+		add_shortcode('ps_property_filter', array( $this, 'add_shortcode_property_filter'));
+		add_shortcode('ps_list_agents', array( $this, 'add_shortcode_list_agents'));
 	}
 
 	/**
@@ -30,7 +30,7 @@ class PropertyShift_Shortcodes {
 	 * Remove <p> and <br/> tags from shortcode content
 	 */
 	public function content_filter($content) {
-		$block = join("|",array('ns_list_properties', 'ns_list_property_tax', 'ns_submit_property', 'ns_my_properties', 'ns_property_filter', 'ns_list_agents'));
+		$block = join("|",array('ps_list_properties', 'ps_list_property_tax', 'ps_submit_property', 'ps_my_properties', 'ps_property_filter', 'ps_list_agents'));
     	$rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
     	$rep = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
 		return $rep;
@@ -52,7 +52,7 @@ class PropertyShift_Shortcodes {
 	 * @param string $content
 	 */
 	public function add_shortcode_list_properties($atts, $content=null) {
-		$num_properties_per_page = esc_attr(get_option('ns_num_properties_per_page', 12));
+		$num_properties_per_page = esc_attr(get_option('ps_num_properties_per_page', 12));
 	    $atts = shortcode_atts(
 	        array (
 	            'show_posts' => $num_properties_per_page,
@@ -83,7 +83,7 @@ class PropertyShift_Shortcodes {
 	    );
 
 	    ob_start();
-	    if(function_exists('ns_real_estate_template_loader')) {
+	    if(function_exists('propertyshift_template_loader')) {
 
 	        //Set template args
 	        $template_args = array();
@@ -92,10 +92,10 @@ class PropertyShift_Shortcodes {
 	        $template_args['custom_layout'] = $atts['layout'];
 	        $template_args['custom_pagination'] = $atts['show_pagination'];
 	        $template_args['custom_cols'] = $atts['cols'];
-	        $template_args['no_post_message'] = esc_html__( 'Sorry, no properties were found.', 'ns-real-estate' );
+	        $template_args['no_post_message'] = esc_html__( 'Sorry, no properties were found.', 'propertyshift' );
 
 	        //Load template
-	        ns_real_estate_template_loader('loop_properties.php', $template_args);
+	        propertyshift_template_loader('loop_properties.php', $template_args);
 	    }
 	    $output = ob_get_clean();
 
@@ -154,7 +154,7 @@ class PropertyShift_Shortcodes {
 	                    $output .= '<a href="'. esc_attr(get_term_link($property_type->slug, $atts['tax'])) .'">';
 	                    if(!empty($term_img)) { $output .= '<img src="'.$term_img.'" alt="" />'; }
 	                    $output .= '<h4>'.$property_type->name.'</h4>';
-	                    $output .= '<span>'.$property_type->count.' '.esc_html__( 'Properties', 'ns-real-estate' ).'</span>';
+	                    $output .= '<span>'.$property_type->count.' '.esc_html__( 'Properties', 'propertyshift' ).'</span>';
 	                    $output .= '</a>';
 	                    $output .= '</div>';
 	                    $count++;
@@ -173,7 +173,7 @@ class PropertyShift_Shortcodes {
 	                    if (isset($term_data['img'])) { $term_img = $term_data['img']; } else { $term_img = ''; } 
 
 	                    if($count == 1) { $output .= '<div class="col-lg-8 col-md-8 col-property-tax">'; } else { $output .= '<div class="col-lg-4 col-md-4 col-property-tax">'; }
-	                    $output .= '<a href="'. esc_attr(get_term_link($property_type->slug, $atts['tax'])) .'" style="background:url('. $term_img .') no-repeat center; background-size:cover;" class="property-cat"><div class="img-overlay black"></div><h3>'. $property_type->name .'</h3><span class="button outline small">'.$property_type->count.' '. esc_html__( 'Properties', 'ns-real-estate' ) .'</span></a>'; 
+	                    $output .= '<a href="'. esc_attr(get_term_link($property_type->slug, $atts['tax'])) .'" style="background:url('. $term_img .') no-repeat center; background-size:cover;" class="property-cat"><div class="img-overlay black"></div><h3>'. $property_type->name .'</h3><span class="button outline small">'.$property_type->count.' '. esc_html__( 'Properties', 'propertyshift' ) .'</span></a>'; 
 	                    $output .= '</div>';
 	                    $count++;
 	                } else {
@@ -195,7 +195,7 @@ class PropertyShift_Shortcodes {
 	 */
 	public function add_shortcode_submit_property($atts, $content=null) {
 		ob_start();
-	    ns_real_estate_template_loader('submit_property.php');
+	    propertyshift_template_loader('submit_property.php');
 	    $output = ob_get_clean();
 	    return $output;
 	}
@@ -218,7 +218,7 @@ class PropertyShift_Shortcodes {
 	    $template_args = array();
 	        
 	    //Load template
-	    ns_real_estate_template_loader('my_properties.php', $template_args);
+	    propertyshift_template_loader('my_properties.php', $template_args);
 
 	    $output = ob_get_clean();
 	    return $output;
@@ -249,9 +249,9 @@ class PropertyShift_Shortcodes {
 
 		    //Load template
 		    if($property_filter_layout == 'minimal') {
-		        ns_real_estate_template_loader('property-filter-minimal.php', $template_args);
+		        propertyshift_template_loader('property-filter-minimal.php', $template_args);
 		    } else {
-		        ns_real_estate_template_loader('property-filter.php', $template_args);
+		        propertyshift_template_loader('property-filter.php', $template_args);
 		    }
 
 		    $output = ob_get_clean();
@@ -279,7 +279,7 @@ class PropertyShift_Shortcodes {
 	    );
 
 	    ob_start();
-	    if(function_exists('ns_real_estate_template_loader')){ 
+	    if(function_exists('propertyshift_template_loader')){ 
 	        
 	        //Set template args
 	        $template_args = array();
@@ -288,7 +288,7 @@ class PropertyShift_Shortcodes {
 	        $template_args['custom_cols'] = $atts['cols'];
 	        
 	        //Load template
-	        ns_real_estate_template_loader('loop_agents.php', $template_args);
+	        propertyshift_template_loader('loop_agents.php', $template_args);
 	    }
 	    $output = ob_get_clean();
 	    return $output;

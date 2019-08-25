@@ -430,7 +430,7 @@
                                                 $agent_form_title = get_the_title( $agent_form_id );
                                                 echo do_shortcode('[contact-form-7 id="<?php echo esc_attr($agent_form_id); ?>" title="'.$agent_form_title.'"]');
                                             } else {
-                                                ns_real_estate_template_loader('agent_contact_form.php');
+                                                propertyshift_template_loader('agent_contact_form.php');
                                             } 
                                         }
                                         ?>
@@ -498,7 +498,7 @@
                                 $template_args_related_properties['no_post_message'] = esc_html__( 'Sorry, no related properties were found.', 'ns-real-estate' );
                                 
                                 //Load template
-                                ns_real_estate_template_loader('loop_properties.php', $template_args_related_properties);
+                                propertyshift_template_loader('loop_properties.php', $template_args_related_properties);
                             ?>
 						</div>
 					<?php } ?>

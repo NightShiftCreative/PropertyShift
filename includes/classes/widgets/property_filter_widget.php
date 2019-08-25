@@ -25,7 +25,7 @@ class ns_real_estate_property_filter_widget extends WP_Widget {
         $title = apply_filters('widget_title', $instance['title']);
         $property_filter_id = isset( $instance['property_filter_id'] ) ? strip_tags($instance['property_filter_id']) : '';
         $values = get_post_custom( $property_filter_id );
-        $property_filter_layout = isset( $values['ns_property_filter_layout'] ) ? esc_attr( $values['ns_property_filter_layout'][0] ) : 'middle';      
+        $property_filter_layout = isset( $values['ps_property_filter_layout'] ) ? esc_attr( $values['ps_property_filter_layout'][0] ) : 'middle';      
         
         //Assign template args
         $template_args = array();
@@ -36,9 +36,9 @@ class ns_real_estate_property_filter_widget extends WP_Widget {
         if($title) { echo '<div class="filter-widget-title">'.$before_title . $title . $after_title.'</div>';  }   
 
         if($property_filter_layout == 'minimal') {
-            ns_real_estate_template_loader('property-filter-minimal.php', $template_args);
+            propertyshift_template_loader('property-filter-minimal.php', $template_args);
         } else {
-            ns_real_estate_template_loader('property-filter.php', $template_args);
+            propertyshift_template_loader('property-filter.php', $template_args);
         }
 
         echo wp_kses_post($after_widget);
@@ -70,7 +70,7 @@ class ns_real_estate_property_filter_widget extends WP_Widget {
             <select style="width:100%" name="<?php echo esc_attr($this->get_field_name('property_filter_id')); ?>">
                 <?php
                     $filter_listing_args = array(
-                        'post_type' => 'ns-property-filter',
+                        'post_type' => 'ps-property-filter',
                         'posts_per_page' => -1
                         );
                     $filter_listing_query = new WP_Query( $filter_listing_args );
@@ -82,7 +82,7 @@ class ns_real_estate_property_filter_widget extends WP_Widget {
                 <?php else: ?>
                 <?php endif; ?>
             </select>
-            <span class="admin-module-note"><a href="<?php echo admin_url('edit.php?post_type=ns-property-filter'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage property filters', 'ns-real-estate'); ?></a></span><br/>
+            <span class="admin-module-note"><a href="<?php echo admin_url('edit.php?post_type=ps-property-filter'); ?>" target="_blank"><i class="fa fa-cog"></i> <?php esc_html_e('Manage property filters', 'ns-real-estate'); ?></a></span><br/>
         </p>
 
     <?php }

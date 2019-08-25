@@ -49,8 +49,8 @@ class PropertyShift_Maps {
 
 		//Output map
 		if($map_only == false) { ?>
-			<div class="admin-module-note admin-map-note left"><?php esc_html_e('Enter an address in the search field below to add a marker to the map', 'ns-real-estate'); ?></div>
-			<input type=button id="remove-pin" class="admin-button remove-pin right" value="<?php esc_html_e('Clear Location', 'ns-real-estate'); ?>">
+			<div class="admin-module-note admin-map-note left"><?php esc_html_e('Enter an address in the search field below to add a marker to the map', 'propertyshift'); ?></div>
+			<input type=button id="remove-pin" class="admin-button remove-pin right" value="<?php esc_html_e('Clear Location', 'propertyshift'); ?>">
 			<div class="clear"></div>
 			<input id="pac-input" class="controls" type="text" placeholder="Search" value="">
 		<?php } ?>

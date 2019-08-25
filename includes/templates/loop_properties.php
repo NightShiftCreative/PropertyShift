@@ -3,7 +3,7 @@
     global $post;
     $properties_page = get_option('ns_properties_page');
     $properties_tax_layout = get_option('ns_properties_default_layout', 'grid');
-    $num_properties_per_page = esc_attr(get_option('ns_num_properties_per_page', 12));
+    $num_properties_per_page = esc_attr(get_option('ps_num_properties_per_page', 12));
     $page_template = get_post_meta($post->ID, '_wp_page_template', true);
     $property_listing_header_display = esc_attr(get_option('ns_property_listing_header_display', 'true'));
 
@@ -227,7 +227,7 @@ if($property_listing_header_display == 'true') {
     if(isset($custom_show_filter) && $custom_show_filter != 'true') {
 	   //do nothing
     } else {
-        ns_real_estate_template_loader('property-listing-header.php', ['query' => $property_listing_query], false); 
+        propertyshift_template_loader('property-listing-header.php', ['query' => $property_listing_query], false); 
     }
 }
 ?>
@@ -241,13 +241,13 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
     <?php if ($property_layout == 'row' || $property_layout == 'grid') { ?>
 
         <?php if ($property_layout == 'row') { ?>
-            <div class="col-lg-12"><?php ns_real_estate_template_loader('loop_property_grid.php', null, false); ?></div>
+            <div class="col-lg-12"><?php propertyshift_template_loader('loop_property_grid.php', null, false); ?></div>
         <?php } else { ?>
-            <div class="<?php echo esc_attr($property_col_class); ?>"><?php ns_real_estate_template_loader('loop_property_grid.php', null, false); ?></div>
+            <div class="<?php echo esc_attr($property_col_class); ?>"><?php propertyshift_template_loader('loop_property_grid.php', null, false); ?></div>
         <?php } ?>
 
     <?php } else if($property_layout == 'tile') {
-        ns_real_estate_template_loader('loop_property_grid.php', null, false);
+        propertyshift_template_loader('loop_property_grid.php', null, false);
     } ?>
 
     <?php 

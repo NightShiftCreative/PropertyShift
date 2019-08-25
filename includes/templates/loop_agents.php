@@ -75,7 +75,7 @@
 <?php $counter = 1; ?>
 <?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
 
-    <div class="<?php echo esc_attr($agent_col_class); ?>"><?php ns_real_estate_template_loader('loop_agent.php', null, false); ?></div>
+    <div class="<?php echo esc_attr($agent_col_class); ?>"><?php propertyshift_template_loader('loop_agent.php', null, false); ?></div>
 
     <?php 
     if($counter % $agent_col_num == 0) { echo '<div class="clear"></div>'; } 
