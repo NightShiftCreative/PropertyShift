@@ -56,7 +56,7 @@
 				$content = human_time_diff( get_the_time('U'), current_time('timestamp') ) . esc_html__(' ago', 'ns-real-estate'); 
 				echo ns_basics_tooltip($toggle, $content); 
 			}
-			do_action('ns_real_estate_property_actions'); ?>
+			do_action('propertyshift_property_actions'); ?>
 		</div>
 
 		<?php if(!empty($price)) { ?>

@@ -60,8 +60,8 @@ class PropertyShift_Properties {
 		add_action('created_property_location', array( $this, 'save_tax_fields'), 10, 2);
 
 		//front-end template hooks
-		add_action('ns_real_estate_property_actions', array($this, 'add_property_share'));
-		add_action('ns_real_estate_property_actions', array($this, 'add_property_favoriting'));
+		add_action('propertyshift_property_actions', array($this, 'add_property_share'));
+		add_action('propertyshift_property_actions', array($this, 'add_property_favoriting'));
 	}
 
 	/**
@@ -90,11 +90,11 @@ class PropertyShift_Properties {
 	    register_post_type( 'ns-property',
 	        array(
 	            'labels' => array(
-	                'name' => __( 'Properties', 'ns-real-estate' ),
-	                'singular_name' => __( 'Property', 'ns-real-estate' ),
-	                'add_new_item' => __( 'Add New Property', 'ns-real-estate' ),
-	                'search_items' => __( 'Search Properties', 'ns-real-estate' ),
-	                'edit_item' => __( 'Edit Property', 'ns-real-estate' ),
+	                'name' => __( 'Properties', 'propertyshift' ),
+	                'singular_name' => __( 'Property', 'propertyshift' ),
+	                'add_new_item' => __( 'Add New Property', 'propertyshift' ),
+	                'search_items' => __( 'Search Properties', 'propertyshift' ),
+	                'edit_item' => __( 'Edit Property', 'propertyshift' ),
 	            ),
 	        'public' => true,
 	        'show_in_menu' => true,
@@ -122,7 +122,7 @@ class PropertyShift_Properties {
 		
 		//get all agents
 		$agents_array = array();
-        $agents_array[esc_html__('Select an agent...', 'ns-real-estate')] = '';
+        $agents_array[esc_html__('Select an agent...', 'propertyshift')] = '';
         $agent_listing_query = get_posts(array('post_type' => 'ps-agent', 'posts_per_page' => -1));
         foreach($agent_listing_query as $agent) { $agents_array[$agent->post_title] = $agent->ID; }
 
@@ -130,8 +130,8 @@ class PropertyShift_Properties {
 		$property_settings_init = array(
 			'id' => array(
 				'group' => 'general',
-				'title' => esc_html__('Property Code', 'ns-real-estate'),
-				'description' => esc_html__('An optional string to used to identify properties', 'ns-real-estate'),
+				'title' => esc_html__('Property Code', 'propertyshift'),
+				'description' => esc_html__('An optional string to used to identify properties', 'propertyshift'),
 				'name' => 'ns_property_code',
 				'type' => 'text',
 				'value' => $post_id,
@@ -139,7 +139,7 @@ class PropertyShift_Properties {
 			),
 			'featured' => array(
 				'group' => 'general',
-				'title' => esc_html__('Featured Property', 'ns-real-estate'),
+				'title' => esc_html__('Featured Property', 'propertyshift'),
 				'name' => 'ns_property_featured',
 				'type' => 'checkbox',
 				'value' => 'false',
@@ -147,43 +147,43 @@ class PropertyShift_Properties {
 			),
 			'street_address' => array(
 				'group' => 'general',
-				'title' => esc_html__('Street Address', 'ns-real-estate'),
+				'title' => esc_html__('Street Address', 'propertyshift'),
 				'name' => 'ns_property_address',
-				'description' => esc_html__('Provide the address for the property', 'ns-real-estate'),
+				'description' => esc_html__('Provide the address for the property', 'propertyshift'),
 				'type' => 'text',
 				'order' => 2,
 			),
 			'price' => array(
 				'group' => 'general',
-				'title' => esc_html__('Price', 'ns-real-estate'),
+				'title' => esc_html__('Price', 'propertyshift'),
 				'name' => 'ns_property_price',
-				'description' => esc_html__('Use only numbers. Do not include commas or dollar sign (ex.- 250000)', 'ns-real-estate'),
+				'description' => esc_html__('Use only numbers. Do not include commas or dollar sign (ex.- 250000)', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
 				'order' => 3,
 			),
 			'price_postfix' => array(
 				'group' => 'general',
-				'title' => esc_html__('Price Postfix', 'ns-real-estate'),
+				'title' => esc_html__('Price Postfix', 'propertyshift'),
 				'name' => 'ns_property_price_postfix',
-				'description' => esc_html__('Provide the text displayed after the price (ex.- Per Month)', 'ns-real-estate'),
+				'description' => esc_html__('Provide the text displayed after the price (ex.- Per Month)', 'propertyshift'),
 				'type' => 'text',
 				'order' => 4,
 			),
 			'beds' => array(
 				'group' => 'general',
-				'title' => esc_html__('Bedrooms', 'ns-real-estate'),
+				'title' => esc_html__('Bedrooms', 'propertyshift'),
 				'name' => 'ns_property_bedrooms',
-				'description' => esc_html__('Provide the number of bedrooms', 'ns-real-estate'),
+				'description' => esc_html__('Provide the number of bedrooms', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
 				'order' => 5,
 			),
 			'baths' => array(
 				'group' => 'general',
-				'title' => esc_html__('Bathrooms', 'ns-real-estate'),
+				'title' => esc_html__('Bathrooms', 'propertyshift'),
 				'name' => 'ns_property_bathrooms',
-				'description' => esc_html__('Provide the number of bathrooms', 'ns-real-estate'),
+				'description' => esc_html__('Provide the number of bathrooms', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
 				'step' => 0.5,
@@ -191,18 +191,18 @@ class PropertyShift_Properties {
 			),
 			'garages' => array(
 				'group' => 'general',
-				'title' => esc_html__('Garages', 'ns-real-estate'),
+				'title' => esc_html__('Garages', 'propertyshift'),
 				'name' => 'ns_property_garages',
-				'description' => esc_html__('Provide the number of garages', 'ns-real-estate'),
+				'description' => esc_html__('Provide the number of garages', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
 				'order' => 7,
 			),
 			'area' => array(
 				'group' => 'general',
-				'title' => esc_html__('Area', 'ns-real-estate'),
+				'title' => esc_html__('Area', 'propertyshift'),
 				'name' => 'ns_property_area',
-				'description' => esc_html__('Provide the area. Use only numbers and decimals, do not include commas.', 'ns-real-estate'),
+				'description' => esc_html__('Provide the area. Use only numbers and decimals, do not include commas.', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
 				'step' => 0.01,
@@ -210,9 +210,9 @@ class PropertyShift_Properties {
 			),
 			'area_postfix' => array(
 				'group' => 'general',
-				'title' => esc_html__('Area Postfix', 'ns-real-estate'),
+				'title' => esc_html__('Area Postfix', 'propertyshift'),
 				'name' => 'ns_property_area_postfix',
-				'description' => esc_html__('Provide the text to display directly after the area (ex. - Sq Ft)', 'ns-real-estate'),
+				'description' => esc_html__('Provide the text to display directly after the area (ex. - Sq Ft)', 'propertyshift'),
 				'type' => 'text',
 				'value' => 'Sq Ft',
 				'order' => 9,
@@ -243,28 +243,28 @@ class PropertyShift_Properties {
 			),
 			'latitude' => array(
 				'group' => 'map',
-				'title' => esc_html__('Latitude', 'ns-real-estate'),
+				'title' => esc_html__('Latitude', 'propertyshift'),
 				'name' => 'ns_property_latitude',
 				'type' => 'text',
 				'order' => 13,
 			),
 			'longitude' => array(
 				'group' => 'map',
-				'title' => esc_html__('Longitude', 'ns-real-estate'),
+				'title' => esc_html__('Longitude', 'propertyshift'),
 				'name' => 'ns_property_longitude',
 				'type' => 'text',
 				'order' => 14,	
 			),
 			'video_url' => array(
 				'group' => 'video',
-				'title' => esc_html__('Video URL', 'ns-real-estate'),
+				'title' => esc_html__('Video URL', 'propertyshift'),
 				'name' => 'ns_property_video_url',
 				'type' => 'text',
 				'order' => 15,
 			),
 			'video_cover' => array(
 				'group' => 'video',
-				'title' => esc_html__('Video Cover Image', 'ns-real-estate'),
+				'title' => esc_html__('Video Cover Image', 'propertyshift'),
 				'name' => 'ns_property_video_img',
 				'type' => 'image_upload',
 				'display_img' => true,
@@ -272,46 +272,46 @@ class PropertyShift_Properties {
 			),
 			'owner_display' => array(
 				'group' => 'owner_info',
-				'title' => esc_html__('What to display for owner information?', 'ns-real-estate'),
+				'title' => esc_html__('What to display for owner information?', 'propertyshift'),
 				'name' => 'ns_agent_display',
 				'type' => 'radio_image',
 				'class' => 'full-width',
 				'order' => 17,
 				'value' => 'none',
 				'options' => array(
-					esc_html__('None', 'ns-real-estate') => array('value' => 'none'),
-					esc_html__('Author Info', 'ns-real-estate') => array('value' => 'author'),
-					esc_html__('Agent Info', 'ns-real-estate') => array('value' => 'agent'),
-					esc_html__('Custom Info', 'ns-real-estate') => array('value' => 'custom'),
+					esc_html__('None', 'propertyshift') => array('value' => 'none'),
+					esc_html__('Author Info', 'propertyshift') => array('value' => 'author'),
+					esc_html__('Agent Info', 'propertyshift') => array('value' => 'agent'),
+					esc_html__('Custom Info', 'propertyshift') => array('value' => 'custom'),
 				),
 				'children' => array(
 					'agent' => array(
-						'title' => esc_html__('Select Agent', 'ns-real-estate'),
+						'title' => esc_html__('Select Agent', 'propertyshift'),
 						'name' => 'ns_agent_select',
 						'type' => 'select',
 						'options' => $agents_array,
 						'parent_val' => 'agent',
 					),
 					'owner_custom_name' => array(
-						'title' => esc_html__('Custom Name', 'ns-real-estate'),
+						'title' => esc_html__('Custom Name', 'propertyshift'),
 						'name' => 'ns_agent_custom_name',
 						'type' => 'text',
 						'parent_val' => 'custom',
 					),
 					'owner_custom_email' => array(
-						'title' => esc_html__('Custom Email', 'ns-real-estate'),
+						'title' => esc_html__('Custom Email', 'propertyshift'),
 						'name' => 'ns_agent_custom_email',
 						'type' => 'text',
 						'parent_val' => 'custom',
 					),
 					'owner_custom_phone' => array(
-						'title' => esc_html__('Custom Phone', 'ns-real-estate'),
+						'title' => esc_html__('Custom Phone', 'propertyshift'),
 						'name' => 'ns_agent_custom_phone',
 						'type' => 'text',
 						'parent_val' => 'custom',
 					),
 					'owner_custom_url' => array(
-						'title' => esc_html__('Custom Website', 'ns-real-estate'),
+						'title' => esc_html__('Custom Website', 'propertyshift'),
 						'name' => 'ns_agent_custom_url',
 						'type' => 'text',
 						'parent_val' => 'custom',
@@ -344,24 +344,24 @@ class PropertyShift_Properties {
 		
 		<div class="ns-tabs meta-box-form meta-box-form-property-details">
 			<ul class="ns-tabs-nav">
-	            <li><a href="#general" title="<?php esc_html_e('General Info', 'ns-real-estate'); ?>"><i class="fa fa-home"></i> <span class="tab-text"><?php echo esc_html_e('General Info', 'ns-real-estate'); ?></span></a></li>
-	            <li><a href="#description" title="<?php esc_html_e('Description', 'ns-real-estate'); ?>"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php echo esc_html_e('Description', 'ns-real-estate'); ?></span></a></li>
-	            <li><a href="#gallery" title="<?php esc_html_e('Gallery', 'ns-real-estate'); ?>"><i class="fa fa-image"></i> <span class="tab-text"><?php echo esc_html_e('Gallery', 'ns-real-estate'); ?></span></a></li>
-	            <li><a href="#floor-plans" title="<?php esc_html_e('Floor Plans', 'ns-real-estate'); ?>"><i class="fa fa-th-large"></i> <span class="tab-text"><?php echo esc_html_e('Floor Plans', 'ns-real-estate'); ?></span></a></li>
-	            <li><a href="#map" title="<?php esc_html_e('Map', 'ns-real-estate'); ?>" onclick="refreshMap()"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Map', 'ns-real-estate'); ?></span></a></li>
-	            <li><a href="#video" title="<?php esc_html_e('Video', 'ns-real-estate'); ?>"><i class="fa fa-video"></i> <span class="tab-text"><?php echo esc_html_e('Video', 'ns-real-estate'); ?></span></a></li>
-	            <li><a href="#agent" title="<?php esc_html_e('Owner Info', 'ns-real-estate'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Owner Info', 'ns-real-estate'); ?></span></a></li>
+	            <li><a href="#general" title="<?php esc_html_e('General Info', 'propertyshift'); ?>"><i class="fa fa-home"></i> <span class="tab-text"><?php echo esc_html_e('General Info', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#description" title="<?php esc_html_e('Description', 'propertyshift'); ?>"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php echo esc_html_e('Description', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#gallery" title="<?php esc_html_e('Gallery', 'propertyshift'); ?>"><i class="fa fa-image"></i> <span class="tab-text"><?php echo esc_html_e('Gallery', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#floor-plans" title="<?php esc_html_e('Floor Plans', 'propertyshift'); ?>"><i class="fa fa-th-large"></i> <span class="tab-text"><?php echo esc_html_e('Floor Plans', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#map" title="<?php esc_html_e('Map', 'propertyshift'); ?>" onclick="refreshMap()"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Map', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#video" title="<?php esc_html_e('Video', 'propertyshift'); ?>"><i class="fa fa-video"></i> <span class="tab-text"><?php echo esc_html_e('Video', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#agent" title="<?php esc_html_e('Owner Info', 'propertyshift'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Owner Info', 'propertyshift'); ?></span></a></li>
 	            <?php do_action('ns_real_estate_after_property_tabs'); ?>
 	        </ul>
 
 	        <div class="ns-tabs-content">
-        	<div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php echo esc_html_e('Loading...', 'ns-real-estate'); ?></div>
+        	<div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php echo esc_html_e('Loading...', 'propertyshift'); ?></div>
         	
         	<!--*************************************************-->
 	        <!-- GENERAL INFO -->
 	        <!--*************************************************-->
 	        <div id="general" class="tab-content">
-	            <h3><?php echo esc_html_e('General Info', 'ns-real-estate'); ?></h3>
+	            <h3><?php echo esc_html_e('General Info', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'general') {
@@ -374,7 +374,7 @@ class PropertyShift_Properties {
 	        <!-- DESCRIPTION -->
 	        <!--*************************************************-->
 	        <div id="description" class="tab-content">
-	            <h3><?php echo esc_html_e('Description', 'ns-real-estate'); ?></h3>
+	            <h3><?php echo esc_html_e('Description', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'description') {
@@ -387,7 +387,7 @@ class PropertyShift_Properties {
 	        <!-- GALLERY -->
 	        <!--*************************************************-->
 	        <div id="gallery" class="tab-content">
-	            <h3><?php echo esc_html_e('Gallery', 'ns-real-estate'); ?></h3>
+	            <h3><?php echo esc_html_e('Gallery', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'gallery') {
@@ -400,7 +400,7 @@ class PropertyShift_Properties {
 	        <!-- FLOOR PLANS -->
 	        <!--*************************************************-->
 	        <div id="floor-plans" class="tab-content">
-	            <h3><?php echo esc_html_e('Floor Plans', 'ns-real-estate'); ?></h3>
+	            <h3><?php echo esc_html_e('Floor Plans', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'floor_plans') {
@@ -413,7 +413,7 @@ class PropertyShift_Properties {
 	        <!-- MAP -->
 	        <!--*************************************************-->
 	        <div id="map" class="tab-content">
-	            <h3><?php echo esc_html_e('Map', 'ns-real-estate'); ?></h3>
+	            <h3><?php echo esc_html_e('Map', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'map') {
@@ -429,7 +429,7 @@ class PropertyShift_Properties {
 	        <!-- VIDEO -->
 	        <!--*************************************************-->
 	        <div id="video" class="tab-content">
-	            <h3><?php echo esc_html_e('Video', 'ns-real-estate'); ?></h3>
+	            <h3><?php echo esc_html_e('Video', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'video') {
@@ -442,7 +442,7 @@ class PropertyShift_Properties {
 	        <!-- OWNER INFO -->
 	        <!--*************************************************-->
 	        <div id="agent" class="tab-content">
-	            <h3><?php echo esc_html_e('Owner Info', 'ns-real-estate'); ?></h3>
+	            <h3><?php echo esc_html_e('Owner Info', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'owner_info') {
@@ -491,26 +491,26 @@ class PropertyShift_Properties {
 	public function property_type_init() {
 		$property_type_tax_slug = $this->global_settings['ns_property_type_tax_slug'];
 	    $labels = array(
-	    'name'                          => __( 'Property Type', 'ns-real-estate' ),
-	    'singular_name'                 => __( 'Property Type', 'ns-real-estate' ),
-	    'search_items'                  => __( 'Search Property Types', 'ns-real-estate' ),
-	    'popular_items'                 => __( 'Popular Property Types', 'ns-real-estate' ),
-	    'all_items'                     => __( 'All Property Types', 'ns-real-estate' ),
-	    'parent_item'                   => __( 'Parent Property Type', 'ns-real-estate' ),
-	    'edit_item'                     => __( 'Edit Property Type', 'ns-real-estate' ),
-	    'update_item'                   => __( 'Update Property Type', 'ns-real-estate' ),
-	    'add_new_item'                  => __( 'Add New Property Type', 'ns-real-estate' ),
-	    'new_item_name'                 => __( 'New Property Type', 'ns-real-estate' ),
-	    'separate_items_with_commas'    => __( 'Separate property types with commas', 'ns-real-estate' ),
-	    'add_or_remove_items'           => __( 'Add or remove property types', 'ns-real-estate' ),
-	    'choose_from_most_used'         => __( 'Choose from most used property types', 'ns-real-estate' )
+	    'name'                          => __( 'Property Type', 'propertyshift' ),
+	    'singular_name'                 => __( 'Property Type', 'propertyshift' ),
+	    'search_items'                  => __( 'Search Property Types', 'propertyshift' ),
+	    'popular_items'                 => __( 'Popular Property Types', 'propertyshift' ),
+	    'all_items'                     => __( 'All Property Types', 'propertyshift' ),
+	    'parent_item'                   => __( 'Parent Property Type', 'propertyshift' ),
+	    'edit_item'                     => __( 'Edit Property Type', 'propertyshift' ),
+	    'update_item'                   => __( 'Update Property Type', 'propertyshift' ),
+	    'add_new_item'                  => __( 'Add New Property Type', 'propertyshift' ),
+	    'new_item_name'                 => __( 'New Property Type', 'propertyshift' ),
+	    'separate_items_with_commas'    => __( 'Separate property types with commas', 'propertyshift' ),
+	    'add_or_remove_items'           => __( 'Add or remove property types', 'propertyshift' ),
+	    'choose_from_most_used'         => __( 'Choose from most used property types', 'propertyshift' )
 	    );
 	    
 	    register_taxonomy(
 	        'property_type',
 	        'ns-property',
 	        array(
-	            'label'         => __( 'Property Types', 'ns-real-estate' ),
+	            'label'         => __( 'Property Types', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
 	            'rewrite' => array( 'slug' => $property_type_tax_slug )
@@ -524,26 +524,26 @@ class PropertyShift_Properties {
 	public function property_status_init() {
 		$property_status_tax_slug = $this->global_settings['ns_property_status_tax_slug'];
 	    $labels = array(
-	    'name'                          => __( 'Property Status', 'ns-real-estate' ),
-	    'singular_name'                 => __( 'Property Status', 'ns-real-estate' ),
-	    'search_items'                  => __( 'Search Property Statuses', 'ns-real-estate' ),
-	    'popular_items'                 => __( 'Popular Property Statuses', 'ns-real-estate' ),
-	    'all_items'                     => __( 'All Property Statuses', 'ns-real-estate' ),
-	    'parent_item'                   => __( 'Parent Property Status', 'ns-real-estate' ),
-	    'edit_item'                     => __( 'Edit Property Status', 'ns-real-estate' ),
-	    'update_item'                   => __( 'Update Property Status', 'ns-real-estate' ),
-	    'add_new_item'                  => __( 'Add New Property Status', 'ns-real-estate' ),
-	    'new_item_name'                 => __( 'New Property Status', 'ns-real-estate' ),
-	    'separate_items_with_commas'    => __( 'Separate property statuses with commas', 'ns-real-estate' ),
-	    'add_or_remove_items'           => __( 'Add or remove property statuses', 'ns-real-estate' ),
-	    'choose_from_most_used'         => __( 'Choose from most used property statuses', 'ns-real-estate' )
+	    'name'                          => __( 'Property Status', 'propertyshift' ),
+	    'singular_name'                 => __( 'Property Status', 'propertyshift' ),
+	    'search_items'                  => __( 'Search Property Statuses', 'propertyshift' ),
+	    'popular_items'                 => __( 'Popular Property Statuses', 'propertyshift' ),
+	    'all_items'                     => __( 'All Property Statuses', 'propertyshift' ),
+	    'parent_item'                   => __( 'Parent Property Status', 'propertyshift' ),
+	    'edit_item'                     => __( 'Edit Property Status', 'propertyshift' ),
+	    'update_item'                   => __( 'Update Property Status', 'propertyshift' ),
+	    'add_new_item'                  => __( 'Add New Property Status', 'propertyshift' ),
+	    'new_item_name'                 => __( 'New Property Status', 'propertyshift' ),
+	    'separate_items_with_commas'    => __( 'Separate property statuses with commas', 'propertyshift' ),
+	    'add_or_remove_items'           => __( 'Add or remove property statuses', 'propertyshift' ),
+	    'choose_from_most_used'         => __( 'Choose from most used property statuses', 'propertyshift' )
 	    );
 	    
 	    register_taxonomy(
 	        'property_status',
 	        'ns-property',
 	        array(
-	            'label'         => __( 'Property Status', 'ns-real-estate' ),
+	            'label'         => __( 'Property Status', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
 	            'rewrite' => array( 'slug' => $property_status_tax_slug )
@@ -557,26 +557,26 @@ class PropertyShift_Properties {
 	public function property_location_init() {
 		$property_location_tax_slug = $this->global_settings['ns_property_location_tax_slug'];
 	    $labels = array(
-	    'name'                          => __( 'Property Location', 'ns-real-estate' ),
-	    'singular_name'                 => __( 'Property Location', 'ns-real-estate' ),
-	    'search_items'                  => __( 'Search Property Locations', 'ns-real-estate' ),
-	    'popular_items'                 => __( 'Popular Property Locations', 'ns-real-estate' ),
-	    'all_items'                     => __( 'All Property Locations', 'ns-real-estate' ),
-	    'parent_item'                   => __( 'Parent Property Location', 'ns-real-estate' ),
-	    'edit_item'                     => __( 'Edit Property Location', 'ns-real-estate' ),
-	    'update_item'                   => __( 'Update Property Location', 'ns-real-estate' ),
-	    'add_new_item'                  => __( 'Add New Property Location', 'ns-real-estate' ),
-	    'new_item_name'                 => __( 'New Property Location', 'ns-real-estate' ),
-	    'separate_items_with_commas'    => __( 'Separate property locations with commas', 'ns-real-estate' ),
-	    'add_or_remove_items'           => __( 'Add or remove property locations', 'ns-real-estate' ),
-	    'choose_from_most_used'         => __( 'Choose from most used property locations', 'ns-real-estate' )
+	    'name'                          => __( 'Property Location', 'propertyshift' ),
+	    'singular_name'                 => __( 'Property Location', 'propertyshift' ),
+	    'search_items'                  => __( 'Search Property Locations', 'propertyshift' ),
+	    'popular_items'                 => __( 'Popular Property Locations', 'propertyshift' ),
+	    'all_items'                     => __( 'All Property Locations', 'propertyshift' ),
+	    'parent_item'                   => __( 'Parent Property Location', 'propertyshift' ),
+	    'edit_item'                     => __( 'Edit Property Location', 'propertyshift' ),
+	    'update_item'                   => __( 'Update Property Location', 'propertyshift' ),
+	    'add_new_item'                  => __( 'Add New Property Location', 'propertyshift' ),
+	    'new_item_name'                 => __( 'New Property Location', 'propertyshift' ),
+	    'separate_items_with_commas'    => __( 'Separate property locations with commas', 'propertyshift' ),
+	    'add_or_remove_items'           => __( 'Add or remove property locations', 'propertyshift' ),
+	    'choose_from_most_used'         => __( 'Choose from most used property locations', 'propertyshift' )
 	    );
 	    
 	    register_taxonomy(
 	        'property_location',
 	        'ns-property',
 	        array(
-	            'label'         => __( 'Property Location', 'ns-real-estate' ),
+	            'label'         => __( 'Property Location', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
 	            'rewrite' => array( 'slug' => $property_location_tax_slug )
@@ -590,26 +590,26 @@ class PropertyShift_Properties {
 	public function property_amenities_init() {
 		$property_amenities_tax_slug = $this->global_settings['ns_property_amenities_tax_slug'];
 	    $labels = array(
-	    'name'                          => __( 'Amenities', 'ns-real-estate' ),
-	    'singular_name'                 => __( 'Amenity', 'ns-real-estate' ),
-	    'search_items'                  => __( 'Search Amenities', 'ns-real-estate' ),
-	    'popular_items'                 => __( 'Popular Amenities', 'ns-real-estate' ),
-	    'all_items'                     => __( 'All Amenities', 'ns-real-estate' ),
-	    'parent_item'                   => __( 'Parent Amenity', 'ns-real-estate' ),
-	    'edit_item'                     => __( 'Edit Amenity', 'ns-real-estate' ),
-	    'update_item'                   => __( 'Update Amenity', 'ns-real-estate' ),
-	    'add_new_item'                  => __( 'Add New Amenity', 'ns-real-estate' ),
-	    'new_item_name'                 => __( 'New Amenity', 'ns-real-estate' ),
-	    'separate_items_with_commas'    => __( 'Separate amenities with commas', 'ns-real-estate' ),
-	    'add_or_remove_items'           => __( 'Add or remove amenities', 'ns-real-estate' ),
-	    'choose_from_most_used'         => __( 'Choose from most used amenities', 'ns-real-estate' )
+	    'name'                          => __( 'Amenities', 'propertyshift' ),
+	    'singular_name'                 => __( 'Amenity', 'propertyshift' ),
+	    'search_items'                  => __( 'Search Amenities', 'propertyshift' ),
+	    'popular_items'                 => __( 'Popular Amenities', 'propertyshift' ),
+	    'all_items'                     => __( 'All Amenities', 'propertyshift' ),
+	    'parent_item'                   => __( 'Parent Amenity', 'propertyshift' ),
+	    'edit_item'                     => __( 'Edit Amenity', 'propertyshift' ),
+	    'update_item'                   => __( 'Update Amenity', 'propertyshift' ),
+	    'add_new_item'                  => __( 'Add New Amenity', 'propertyshift' ),
+	    'new_item_name'                 => __( 'New Amenity', 'propertyshift' ),
+	    'separate_items_with_commas'    => __( 'Separate amenities with commas', 'propertyshift' ),
+	    'add_or_remove_items'           => __( 'Add or remove amenities', 'propertyshift' ),
+	    'choose_from_most_used'         => __( 'Choose from most used amenities', 'propertyshift' )
 	    );
 	    
 	    register_taxonomy(
 	        'property_amenities',
 	        'ns-property',
 	        array(
-	            'label'         => __( 'Amenities', 'ns-real-estate' ),
+	            'label'         => __( 'Amenities', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
 	            'rewrite' => array( 'slug' => $property_amenities_tax_slug )
@@ -630,14 +630,14 @@ class PropertyShift_Properties {
 	public function add_properties_columns($columns) {
 		$columns = array(
 	        'cb' => '<input type="checkbox" />',
-	        'title' => __( 'Property', 'ns-real-estate' ),
-	        'thumbnail' => __('Image', 'ns-real-estate'),
-	        'location' => __( 'Location', 'ns-real-estate' ),
-	        'type' => __( 'Type', 'ns-real-estate' ),
-	        'status' => __( 'Status', 'ns-real-estate' ),
-	        'price'  => __( 'Price','ns-real-estate' ),
-	        'author' => __('Author', 'ns-real-estate'),
-	        'date' => __( 'Date', 'ns-real-estate' )
+	        'title' => __( 'Property', 'propertyshift' ),
+	        'thumbnail' => __('Image', 'propertyshift'),
+	        'location' => __( 'Location', 'propertyshift' ),
+	        'type' => __( 'Type', 'propertyshift' ),
+	        'status' => __( 'Status', 'propertyshift' ),
+	        'price'  => __( 'Price','propertyshift' ),
+	        'author' => __('Author', 'propertyshift'),
+	        'date' => __( 'Date', 'propertyshift' )
 	    );
 	    return $columns;
 	}
@@ -702,13 +702,13 @@ class PropertyShift_Properties {
 	    $term_meta = get_option( "taxonomy_$t_id");
 	    ?>
 	    <tr class="form-field">
-	        <th scope="row" valign="top"><label for="cat_Image_url"><?php esc_html_e('Category Image Url', 'ns-real-estate'); ?></label></th>
+	        <th scope="row" valign="top"><label for="cat_Image_url"><?php esc_html_e('Category Image Url', 'propertyshift'); ?></label></th>
 	        <td>
 	            <div class="admin-module admin-module-tax-field admin-module-tax-img no-border">
 	                <input type="text" class="property-tax-img" name="term_meta[img]" id="term_meta[img]" size="3" style="width:60%;" value="<?php echo $term_meta['img'] ? $term_meta['img'] : ''; ?>">
-	                <input class="button admin-button ns_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'ns-real-estate'); ?>" />
-	                <span class="button button-secondary remove"><?php esc_html_e('Remove', 'ns-real-estate'); ?></span><br/>
-	                <p class="description"><?php esc_html_e('Image for Term, use full url', 'ns-real-estate'); ?></p>
+	                <input class="button admin-button ns_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'propertyshift'); ?>" />
+	                <span class="button button-secondary remove"><?php esc_html_e('Remove', 'propertyshift'); ?></span><br/>
+	                <p class="description"><?php esc_html_e('Image for Term, use full url', 'propertyshift'); ?></p>
 	            </div>
 	        </td>
 	    </tr>
@@ -725,24 +725,24 @@ class PropertyShift_Properties {
 	    ?>
 	    <tr class="form-field">
 	        <th scope="row" valign="top">
-	            <strong><?php esc_html_e('Price Range Settings', 'ns-real-estate'); ?></strong>
-	            <p class="admin-module-note"><?php esc_html_e('Settings here will override the defaults configured in the plugin settings.', 'ns-real-estate'); ?></p>
+	            <strong><?php esc_html_e('Price Range Settings', 'propertyshift'); ?></strong>
+	            <p class="admin-module-note"><?php esc_html_e('Settings here will override the defaults configured in the plugin settings.', 'propertyshift'); ?></p>
 	        </th>
 	        <td>
 	            <div class="admin-module admin-module-tax-field tax-price-range-field no-border">
-	                <label for="price_range_min"><?php esc_html_e('Minimum', 'ns-real-estate'); ?></label>
+	                <label for="price_range_min"><?php esc_html_e('Minimum', 'propertyshift'); ?></label>
 	                <input type="number" class="property-tax-price-range-min" name="term_meta[price_range_min]" id="term_meta[price_range_min]" size="3" value="<?php echo $term_meta['price_range_min'] ? $term_meta['price_range_min'] : ''; ?>">
 	            </div>
 	            <div class="admin-module admin-module-tax-field tax-price-range-field no-border">
-	                <label for="price_range_max"><?php esc_html_e('Maximum', 'ns-real-estate'); ?></label>
+	                <label for="price_range_max"><?php esc_html_e('Maximum', 'propertyshift'); ?></label>
 	                <input type="number" class="property-tax-price-range-max" name="term_meta[price_range_max]" id="term_meta[price_range_max]" size="3" value="<?php echo $term_meta['price_range_max'] ? $term_meta['price_range_max'] : ''; ?>">
 	            </div>
 	            <div class="admin-module admin-module-tax-field tax-price-range-field no-border">
-	                <label for="price_range_min_start"><?php esc_html_e('Minimum Start', 'ns-real-estate'); ?></label>
+	                <label for="price_range_min_start"><?php esc_html_e('Minimum Start', 'propertyshift'); ?></label>
 	                <input type="number" class="property-tax-price-range-min-start" name="term_meta[price_range_min_start]" id="term_meta[price_range_min_start]" size="3" value="<?php echo $term_meta['price_range_min_start'] ? $term_meta['price_range_min_start'] : ''; ?>">
 	            </div>
 	            <div class="admin-module admin-module-tax-field tax-price-range-field no-border">
-	                <label for="price_range_max_start"><?php esc_html_e('Maximum Start', 'ns-real-estate'); ?></label>
+	                <label for="price_range_max_start"><?php esc_html_e('Maximum Start', 'propertyshift'); ?></label>
 	                <input type="number" class="property-tax-price-range-max-start" name="term_meta[price_range_max_start]" id="term_meta[price_range_max_start]" size="3" value="<?php echo $term_meta['price_range_max_start'] ? $term_meta['price_range_max_start'] : ''; ?>">
 	            </div>
 	        </td>
@@ -1003,7 +1003,7 @@ class PropertyShift_Properties {
 	public function add_page_settings($page_settings_init) {
 		
 		// Add map banner options
-		$page_settings_init['banner_source']['options'][esc_html__('Map Banner', 'ns-real-estate')] = array(
+		$page_settings_init['banner_source']['options'][esc_html__('Map Banner', 'propertyshift')] = array(
 			'value' => 'properties_map', 
 			'icon' => NS_BASICS_PLUGIN_DIR.'/images/google-maps-icon.png', 
 		);
@@ -1011,21 +1011,21 @@ class PropertyShift_Properties {
 		// Add filter banner options
 		$page_settings_init['property_filter_override'] = array(
 			'group' => 'banner',
-			'title' => esc_html__('Use Custom Property Filter Settings', 'ns-real-estate'),
+			'title' => esc_html__('Use Custom Property Filter Settings', 'propertyshift'),
 			'name' => 'ns_banner_property_filter_override',
-			'description' => esc_html__('The global property filter settings can be configured in NS Real Estate > Settings', 'ns-real-estate'),
+			'description' => esc_html__('The global property filter settings can be configured in NS Real Estate > Settings', 'propertyshift'),
 			'value' => 'false',
 			'type' => 'switch',
 			'order' => 14,
 			'children' => array(
 				'property_filter_display' => array(
-					'title' => esc_html__('Display Property Filter', 'ns-real-estate'),
+					'title' => esc_html__('Display Property Filter', 'propertyshift'),
 					'name' => 'ns_banner_property_filter_display',
 					'type' => 'checkbox',
 					'value' => 'true',
 				),
 				'property_filter_id' => array(
-					'title' => esc_html__('Select a Filter', 'ns-real-estate'),
+					'title' => esc_html__('Select a Filter', 'propertyshift'),
 					'name' => 'ns_banner_property_filter_id',
 					'type' => 'select',
 					'options' => PropertyShift_Filters::get_filter_ids(),
@@ -1052,77 +1052,77 @@ class PropertyShift_Properties {
 	public static function load_property_detail_items() {
 		$property_detail_items_init = array(
 	        0 => array(
-	            'name' => esc_html__('Overview', 'ns-real-estate'),
-	            'label' => esc_html__('Overview', 'ns-real-estate'),
+	            'name' => esc_html__('Overview', 'propertyshift'),
+	            'label' => esc_html__('Overview', 'propertyshift'),
 	            'slug' => 'overview',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        1 => array(
-	            'name' => esc_html__('Description', 'ns-real-estate'),
-	            'label' => esc_html__('Description', 'ns-real-estate'),
+	            'name' => esc_html__('Description', 'propertyshift'),
+	            'label' => esc_html__('Description', 'propertyshift'),
 	            'slug' => 'description',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        2 => array(
-	            'name' => esc_html__('Gallery', 'ns-real-estate'),
-	            'label' => esc_html__('Gallery', 'ns-real-estate'),
+	            'name' => esc_html__('Gallery', 'propertyshift'),
+	            'label' => esc_html__('Gallery', 'propertyshift'),
 	            'slug' => 'gallery',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        3 => array(
-	            'name' => esc_html__('Property Details', 'ns-real-estate'),
-	            'label' => esc_html__('Property Details', 'ns-real-estate'),
+	            'name' => esc_html__('Property Details', 'propertyshift'),
+	            'label' => esc_html__('Property Details', 'propertyshift'),
 	            'slug' => 'property_details',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        4 => array(
-	            'name' => esc_html__('Video', 'ns-real-estate'),
-	            'label' => esc_html__('Video', 'ns-real-estate'),
+	            'name' => esc_html__('Video', 'propertyshift'),
+	            'label' => esc_html__('Video', 'propertyshift'),
 	            'slug' => 'video',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        5 => array(
-	            'name' => esc_html__('Amenities', 'ns-real-estate'),
-	            'label' => esc_html__('Amenities', 'ns-real-estate'),
+	            'name' => esc_html__('Amenities', 'propertyshift'),
+	            'label' => esc_html__('Amenities', 'propertyshift'),
 	            'slug' => 'amenities',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        6 => array(
-	            'name' => esc_html__('Floor Plans', 'ns-real-estate'),
-	            'label' => esc_html__('Floor Plans', 'ns-real-estate'),
+	            'name' => esc_html__('Floor Plans', 'propertyshift'),
+	            'label' => esc_html__('Floor Plans', 'propertyshift'),
 	            'slug' => 'floor_plans',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        7 => array(
-	            'name' => esc_html__('Location', 'ns-real-estate'),
-	            'label' => esc_html__('Location', 'ns-real-estate'),
+	            'name' => esc_html__('Location', 'propertyshift'),
+	            'label' => esc_html__('Location', 'propertyshift'),
 	            'slug' => 'location',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        8 => array(
-	            'name' => esc_html__('Walk Score', 'ns-real-estate'),
-	            'label' => esc_html__('Walk Score', 'ns-real-estate'),
+	            'name' => esc_html__('Walk Score', 'propertyshift'),
+	            'label' => esc_html__('Walk Score', 'propertyshift'),
 	            'slug' => 'walk_score',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        9 => array(
-	            'name' => esc_html__('Agent Info', 'ns-real-estate'),
+	            'name' => esc_html__('Agent Info', 'propertyshift'),
 	            'label' => 'Agent Information',
 	            'slug' => 'agent_info',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        10 => array(
-	            'name' => esc_html__('Related Properties', 'ns-real-estate'),
+	            'name' => esc_html__('Related Properties', 'propertyshift'),
 	            'label' => 'Related Properties',
 	            'slug' => 'related',
 	            'active' => 'true',
@@ -1144,26 +1144,26 @@ class PropertyShift_Properties {
 	 */
 	public static function load_property_submit_fields() {
 		$property_submit_fields_init = array(
-			'property_title' => array('value' => esc_html__('Property Title (required)', 'ns-real-estate'), 'attributes' => array('disabled', 'checked')),
-            'price' => array('value' => esc_html__('Price (required)', 'ns-real-estate'), 'attributes' => array('disabled', 'checked')),
-            'price_postfix' => array('value' => esc_html__('Price Postfix', 'ns-real-estate')),
-            'street_address' => array('value' => esc_html__('Street Address (required)', 'ns-real-estate'), 'attributes' => array('disabled', 'checked')),
-            'description' => array('value' => esc_html__('Description', 'ns-real-estate')),
-            'beds' => array('value' => esc_html__('Beds', 'ns-real-estate')),
-            'baths' => array('value' => esc_html__('Baths', 'ns-real-estate')),
-            'garages' => array('value' => esc_html__('Garages', 'ns-real-estate')),
-            'area' => array('value' => esc_html__('Area', 'ns-real-estate')),
-            'area_postfix' => array('value' => esc_html__('Area Postfix', 'ns-real-estate')),
-            'video' => array('value' => esc_html__('Video', 'ns-real-estate')),
-            'property_location' => array('value' => esc_html__('Property Location', 'ns-real-estate')),
-            'property_type' => array('value' => esc_html__('Property Type', 'ns-real-estate')),
-            'property_status' => array('value' => esc_html__('Property Status', 'ns-real-estate')),
-            'amenities' => array('value' => esc_html__('Amenities', 'ns-real-estate')),
-            'floor_plans' => array('value' => esc_html__('Floor Plans', 'ns-real-estate')),
-            'featured_image' => array('value' => esc_html__('Featured Image', 'ns-real-estate')),
-            'gallery_images' => array('value' => esc_html__('Gallery Images', 'ns-real-estate')),
-            'map' => array('value' => esc_html__('Map', 'ns-real-estate')),
-            'owner_info' => array('value' => esc_html__('Owner Info', 'ns-real-estate')),
+			'property_title' => array('value' => esc_html__('Property Title (required)', 'propertyshift'), 'attributes' => array('disabled', 'checked')),
+            'price' => array('value' => esc_html__('Price (required)', 'propertyshift'), 'attributes' => array('disabled', 'checked')),
+            'price_postfix' => array('value' => esc_html__('Price Postfix', 'propertyshift')),
+            'street_address' => array('value' => esc_html__('Street Address (required)', 'propertyshift'), 'attributes' => array('disabled', 'checked')),
+            'description' => array('value' => esc_html__('Description', 'propertyshift')),
+            'beds' => array('value' => esc_html__('Beds', 'propertyshift')),
+            'baths' => array('value' => esc_html__('Baths', 'propertyshift')),
+            'garages' => array('value' => esc_html__('Garages', 'propertyshift')),
+            'area' => array('value' => esc_html__('Area', 'propertyshift')),
+            'area_postfix' => array('value' => esc_html__('Area Postfix', 'propertyshift')),
+            'video' => array('value' => esc_html__('Video', 'propertyshift')),
+            'property_location' => array('value' => esc_html__('Property Location', 'propertyshift')),
+            'property_type' => array('value' => esc_html__('Property Type', 'propertyshift')),
+            'property_status' => array('value' => esc_html__('Property Status', 'propertyshift')),
+            'amenities' => array('value' => esc_html__('Amenities', 'propertyshift')),
+            'floor_plans' => array('value' => esc_html__('Floor Plans', 'propertyshift')),
+            'featured_image' => array('value' => esc_html__('Featured Image', 'propertyshift')),
+            'gallery_images' => array('value' => esc_html__('Gallery Images', 'propertyshift')),
+            'map' => array('value' => esc_html__('Map', 'propertyshift')),
+            'owner_info' => array('value' => esc_html__('Owner Info', 'propertyshift')),
 	    );
 	    $property_submit_fields_init = apply_filters( 'ns_real_estate_property_submit_fields_init_filter', $property_submit_fields_init);
 	    return $property_submit_fields_init;
@@ -1183,21 +1183,21 @@ class PropertyShift_Properties {
 
 		// require a title
 		if(trim($_POST['title']) === '') {
-		    $errors['title'] =  esc_html__('Please enter a title!', 'ns-real-estate'); 
+		    $errors['title'] =  esc_html__('Please enter a title!', 'propertyshift'); 
 		} else {
 		    $title = trim($_POST['title']);
 		}
 
 		// require an address
 		if(trim($_POST['street_address']) === '') {
-		    $errors['address'] =  esc_html__('Please enter an address!', 'ns-real-estate'); 
+		    $errors['address'] =  esc_html__('Please enter an address!', 'propertyshift'); 
 		} else {
 		    $street_address = trim($_POST['street_address']);
 		}
 
 		// require a price
 		if(trim($_POST['price']) === '') {
-		    $errors['price'] =  esc_html__('Please enter a price!', 'ns-real-estate'); 
+		    $errors['price'] =  esc_html__('Please enter a price!', 'propertyshift'); 
 		} else {
 		    $price = trim($_POST['price']);
 		}
@@ -1329,9 +1329,9 @@ class PropertyShift_Properties {
 	    	do_action('ns_real_estate_save_property_submit', $post_ID);
 
 			if($members_submit_property_approval == 'true') {
-		        $output['success'] = esc_html__('Your property,', 'ns-real-estate') .' <b>'. $title .',</b> '. esc_html__('was submitted for review!', 'ns-real-estate');
+		        $output['success'] = esc_html__('Your property,', 'propertyshift') .' <b>'. $title .',</b> '. esc_html__('was submitted for review!', 'propertyshift');
 		    } else {
-		        $output['success'] = esc_html__('Your property,', 'ns-real-estate') .' <b>'. $title .',</b> '. esc_html__('was published!', 'ns-real-estate');
+		        $output['success'] = esc_html__('Your property,', 'propertyshift') .' <b>'. $title .',</b> '. esc_html__('was published!', 'propertyshift');
 		    }
 
 		} else {
@@ -1354,8 +1354,8 @@ class PropertyShift_Properties {
 		if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 		$members_my_properties_page = $this->global_settings['ns_members_my_properties_page'];
 		$members_submit_property_page = $this->global_settings['ns_members_submit_property_page']; ?>
-		<?php if(!empty($members_my_properties_page)) { ?><li><a href="<?php echo $members_my_properties_page; ?>"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php esc_html_e( 'My Properties', 'ns-real-estate' ); ?></a></li><?php } ?>
-		<?php if(!empty($members_submit_property_page)) { ?><li><a href="<?php echo $members_submit_property_page; ?>"><?php echo ns_core_get_icon($icon_set, 'plus'); ?><?php esc_html_e( 'Submit Property', 'ns-real-estate' ); ?></a></li><?php } ?>
+		<?php if(!empty($members_my_properties_page)) { ?><li><a href="<?php echo $members_my_properties_page; ?>"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php esc_html_e( 'My Properties', 'propertyshift' ); ?></a></li><?php } ?>
+		<?php if(!empty($members_submit_property_page)) { ?><li><a href="<?php echo $members_submit_property_page; ?>"><?php echo ns_core_get_icon($icon_set, 'plus'); ?><?php esc_html_e( 'Submit Property', 'propertyshift' ); ?></a></li><?php } ?>
 	<?php }
 
 	/**
@@ -1391,7 +1391,7 @@ class PropertyShift_Properties {
 	 */
 	public static function properties_sidebar_init() {
 		register_sidebar( array(
-	        'name' => esc_html__( 'Properties Sidebar', 'ns-real-estate' ),
+	        'name' => esc_html__( 'Properties Sidebar', 'propertyshift' ),
 	        'id' => 'properties_sidebar',
 	        'before_widget' => '<div class="widget widget-sidebar widget-sidebar-properties %2$s">',
 	        'after_widget' => '</div>',

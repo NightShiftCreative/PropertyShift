@@ -102,7 +102,7 @@
                                     <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'ns-real-estate'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
                                 </div>
                                 <div class="right property-actions">
-                                    <?php do_action('ns_real_estate_property_actions'); ?>
+                                    <?php do_action('propertyshift_property_actions'); ?>
                                 </div>
                                 <div class="clear"></div>
                             </div>
