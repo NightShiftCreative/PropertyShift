@@ -20,7 +20,7 @@ function propertyshift_get_image_size($size_name) {
 /*-----------------------------------------------------------------------------------*/
 /* Get attachment id by url */
 /*-----------------------------------------------------------------------------------*/
-function ns_real_estate_get_attachment_id_by_url( $url ) {
+function propertyshift_get_attachment_id_by_url( $url ) {
     // Split the $url into two parts with the wp-content directory as the separator
     $parsed_url = explode( parse_url( WP_CONTENT_URL, PHP_URL_PATH ), $url );
     // Get the host of the current site and the host of the $url, ignoring www

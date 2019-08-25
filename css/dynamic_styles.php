@@ -7,7 +7,7 @@
     /* MISC STYLES */
     /************************************************************************/
     $misc_css = "";
-    $misc_css .= ".property-single-item #map-canvas-one-pin { height:{$settings['ns_property_detail_map_height']}px; }";
+    $misc_css .= ".property-single-item #map-canvas-one-pin { height:{$settings['ps_property_detail_map_height']}px; }";
 
     wp_add_inline_style( 'propertyshift-dynamic-styles', $misc_css );
 

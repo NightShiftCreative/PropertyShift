@@ -369,7 +369,7 @@
 		            	if(isset($edit_additional_images) && !empty($edit_additional_images)) {
 		            		foreach ($edit_additional_images as $edit_additional_image) {
 		            			if(!empty($edit_additional_image)) {
-			            			$additional_img_attachment_id = ns_real_estate_get_attachment_id_by_url($edit_additional_image); ?>
+			            			$additional_img_attachment_id = propertyshift_get_attachment_id_by_url($edit_additional_image); ?>
 			            			<table>
 			            				<tr>
 			            				<td>

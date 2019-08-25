@@ -8,13 +8,13 @@ $agent_email = $agent_settings['email']['value'];
 //Get global settings
 $admin_obj = new PropertyShift_Admin();
 $site_title = get_bloginfo('name');
-$agent_form_submit_text = $admin_obj->load_settings(false, 'ns_agent_form_submit_text');
-$agent_form_success = $admin_obj->load_settings(false, 'ns_agent_form_success');
+$agent_form_submit_text = $admin_obj->load_settings(false, 'ps_agent_form_submit_text');
+$agent_form_success = $admin_obj->load_settings(false, 'ps_agent_form_success');
 
 if(is_singular('ns-property')) {
-    $agent_form_message_placeholder = $admin_obj->load_settings(false, 'ns_agent_form_message_placeholder');
+    $agent_form_message_placeholder = $admin_obj->load_settings(false, 'ps_agent_form_message_placeholder');
 } else {
-    $agent_form_message_placeholder =  esc_html__( 'Message', 'ns-real-estate' );
+    $agent_form_message_placeholder =  esc_html__( 'Message', 'propertyshift' );
 }
     
 $nameError = '';
@@ -26,7 +26,7 @@ if(isset($_POST['submitted'])) {
       
     // require a name from user
     if(trim($_POST['agent-contact-name']) === '') {
-        $nameError =  esc_html__('Forgot your name!', 'ns-real-estate'); 
+        $nameError =  esc_html__('Forgot your name!', 'propertyshift'); 
         $hasError = true;
     } else {
         $agent_contact_name = trim($_POST['agent-contact-name']);
@@ -34,7 +34,7 @@ if(isset($_POST['submitted'])) {
       
     // need valid email
     if(trim($_POST['agent-contact-email']) === '')  {
-        $emailError = esc_html__('Forgot to enter in your e-mail address.', 'ns-real-estate');
+        $emailError = esc_html__('Forgot to enter in your e-mail address.', 'propertyshift');
         $hasError = true;
     } else if (!preg_match("/^[[:alnum:]][a-z0-9_.-]*@[a-z0-9.-]+\.[a-z]{2,4}$/i", trim($_POST['agent-contact-email']))) {
         $emailError = 'You entered an invalid email address.';
@@ -45,7 +45,7 @@ if(isset($_POST['submitted'])) {
         
     // we need at least some content
     if(trim($_POST['agent-contact-message']) === '') {
-        $commentError = esc_html__('You forgot to enter a message!', 'ns-real-estate');
+        $commentError = esc_html__('You forgot to enter a message!', 'propertyshift');
         $hasError = true;
     } else {
         if(function_exists('stripslashes')) {
@@ -84,12 +84,12 @@ if(isset($_POST['submitted'])) {
     <div class="contact-form-fields">
         <div>
             <?php if($nameError != '') { ?><div class="alert-box error"><?php echo $nameError;?></div> <?php } ?>
-            <input type="text" name="agent-contact-name" placeholder="<?php esc_html_e( 'Name', 'ns-real-estate' ); ?>*" value="<?php if(isset($agent_contact_name)){ echo $agent_contact_name; } ?>" class="border requiredField" />
+            <input type="text" name="agent-contact-name" placeholder="<?php esc_html_e( 'Name', 'propertyshift' ); ?>*" value="<?php if(isset($agent_contact_name)){ echo $agent_contact_name; } ?>" class="border requiredField" />
         </div>
 
         <div>
             <?php if($emailError != '') { ?><div class="alert-box error"><?php echo $emailError;?></div> <?php } ?>
-            <input type="email" name="agent-contact-email" placeholder="<?php esc_html_e( 'Email', 'ns-real-estate' ); ?>*" value="<?php if(isset($agent_contact_email)) { echo $agent_contact_email; } ?>" class="border requiredField email" />
+            <input type="email" name="agent-contact-email" placeholder="<?php esc_html_e( 'Email', 'propertyshift' ); ?>*" value="<?php if(isset($agent_contact_email)) { echo $agent_contact_email; } ?>" class="border requiredField email" />
         </div>
 
         <div>
@@ -102,7 +102,7 @@ if(isset($_POST['submitted'])) {
             <input type="hidden" name="current_url" value="<?php echo $current_url; ?>" />
             <input type="hidden" name="submitted" id="submitted" value="true" />
             <input type="submit" name="submit" value="<?php echo $agent_form_submit_text; ?>" />
-            <div class="form-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e( 'Loading...', 'ns-real-estate' ); ?></div>
+            <div class="form-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e( 'Loading...', 'propertyshift' ); ?></div>
         </div>
     </div>
 </form>
