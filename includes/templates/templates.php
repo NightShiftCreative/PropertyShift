@@ -54,7 +54,7 @@ add_filter( 'the_content', 'ns_real_estate_template_property_single', 20 );
 /*-----------------------------------------------------------------------------------*/
 function ns_real_estate_template_agent_single( $content ) {
 	ob_start();
-	ns_real_estate_template_loader_single('loop_agent_single.php', 'ns-agent');
+	ns_real_estate_template_loader_single('loop_agent_single.php', 'ps-agent');
     $content = $content.ob_get_clean();
     return $content;
 }

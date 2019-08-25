@@ -355,7 +355,7 @@
                                 <?php
 
                                     $agent_listing_args = array(
-                                        'post_type' => 'ns-agent',
+                                        'post_type' => 'ps-agent',
                                         'posts_per_page' => 1,
                                         'p' => $agent_select
                                     );
@@ -386,7 +386,7 @@
                                     $agent_properties_count = $agent_properties['count'];
                                     ?>
 
-                                    <div class="ns-agent property-agent">
+                                    <div class="ps-agent property-agent">
                                         
                                         <a href="<?php the_permalink(); ?>" class="agent-img">
                                             <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>

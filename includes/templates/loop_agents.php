@@ -49,7 +49,7 @@
 
     //SET ARGS
     $agent_listing_args = array(
-        'post_type' => 'ns-agent',
+        'post_type' => 'ps-agent',
         'posts_per_page' => $num_agents_per_page,
         'paged' => $paged
     );
@@ -71,7 +71,7 @@
 	$agent_listing_query = new WP_Query( $agent_listing_args );
 ?>
 
-<div class="row ns-agent-listing">
+<div class="row ps-agent-listing">
 <?php $counter = 1; ?>
 <?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
 
@@ -129,7 +129,7 @@
             <?php
             if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no agents were found.', 'ns-real-estate'); } 
             if(is_user_logged_in() && current_user_can('administrator')) { 
-                $new_agent_url = esc_url(home_url('/')).'wp-admin/post-new.php?post_type=ns-agent';
+                $new_agent_url = esc_url(home_url('/')).'wp-admin/post-new.php?post_type=ps-agent';
                 printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new agent.</b></em>', 'ns-real-estate'), $new_agent_url );  
             } ?>
         </p>

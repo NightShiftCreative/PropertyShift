@@ -28,10 +28,10 @@ class PropertyShift_Agents {
 		$this->add_image_sizes();
 		add_action('init', array( $this, 'rewrite_rules' ));
 		add_action('template_redirect', array($this, 'paginate_agent_single'), 0);
-		add_action( 'init', array( $this, 'add_custom_post_type' ));
-		add_action( 'add_meta_boxes', array( $this, 'register_meta_box'));
-		add_action( 'save_post', array( $this, 'save_meta_box'));
-		add_filter( 'ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
+		add_action('init', array( $this, 'add_custom_post_type' ));
+		add_action('add_meta_boxes', array( $this, 'register_meta_box'));
+		add_action('save_post', array( $this, 'save_meta_box'));
+		add_filter('ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
 	}
 
 	/**
@@ -52,7 +52,7 @@ class PropertyShift_Agents {
 	 *	Allow pagination on agent single page
 	 */
 	public function paginate_agent_single() {
-		if ( is_singular( 'ns-agent' ) ) {
+		if ( is_singular( 'ps-agent' ) ) {
 	        global $wp_query;
 	        $page = ( int ) $wp_query->get( 'page' );
 	        if ( $page > 1 ) {
@@ -73,7 +73,7 @@ class PropertyShift_Agents {
 	 */
 	public function add_custom_post_type() {
 		$agents_slug = $this->global_settings['ps_agent_detail_slug'];
-	    register_post_type( 'ns-agent',
+	    register_post_type( 'ps-agent',
 	        array(
 	            'labels' => array(
 	                'name' => __( 'Agents', 'propertyshift' ),
@@ -102,7 +102,7 @@ class PropertyShift_Agents {
 			'job_title' => array(
 				'group' => 'general',
 				'title' => esc_html__('Job Title', 'propertyshift'),
-				'name' => 'ns_agent_title',
+				'name' => 'ps_agent_title',
 				'description' => esc_html__('Provide the agents job title.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 1,
@@ -110,7 +110,7 @@ class PropertyShift_Agents {
 			'email' => array(
 				'group' => 'general',
 				'title' => esc_html__('Email', 'propertyshift'),
-				'name' => 'ns_agent_email',
+				'name' => 'ps_agent_email',
 				'description' => esc_html__('Provide the agents email address. This address will be used for the agent contact form.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 2,
@@ -118,7 +118,7 @@ class PropertyShift_Agents {
 			'mobile_phone' => array(
 				'group' => 'general',
 				'title' => esc_html__('Mobile Phone', 'propertyshift'),
-				'name' => 'ns_agent_mobile_phone',
+				'name' => 'ps_agent_mobile_phone',
 				'description' => esc_html__('Provide the agents mobile phone number.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 3,
@@ -126,14 +126,14 @@ class PropertyShift_Agents {
 			'office_phone' => array(
 				'group' => 'general',
 				'title' => esc_html__('Office Phone', 'propertyshift'),
-				'name' => 'ns_agent_office_phone',
+				'name' => 'ps_agent_office_phone',
 				'description' => esc_html__('Provide the agents office phone number.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 4,
 			),
 			'description' => array(
 				'group' => 'description',
-				'name' => 'ns_agent_description',
+				'name' => 'ps_agent_description',
 				'type' => 'editor',
 				'order' => 5,
 				'class' => 'full-width no-padding',
@@ -141,7 +141,7 @@ class PropertyShift_Agents {
 			'facebook' => array(
 				'group' => 'social',
 				'title' => esc_html__('Facebook', 'propertyshift'),
-				'name' => 'ns_agent_fb',
+				'name' => 'ps_agent_fb',
 				'description' => esc_html__('Provide a url for the agents Facebook profile.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 6,
@@ -149,7 +149,7 @@ class PropertyShift_Agents {
 			'twitter' => array(
 				'group' => 'social',
 				'title' => esc_html__('Twitter', 'propertyshift'),
-				'name' => 'ns_agent_twitter',
+				'name' => 'ps_agent_twitter',
 				'description' => esc_html__('Provide a url for the agents Twitter profile.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 7,
@@ -157,7 +157,7 @@ class PropertyShift_Agents {
 			'google' => array(
 				'group' => 'social',
 				'title' => esc_html__('Google Plus', 'propertyshift'),
-				'name' => 'ns_agent_google',
+				'name' => 'ps_agent_google',
 				'description' => esc_html__('Provide a url for the agents Google Plus profile.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 8,
@@ -165,7 +165,7 @@ class PropertyShift_Agents {
 			'linkedin' => array(
 				'group' => 'social',
 				'title' => esc_html__('Linkedin', 'propertyshift'),
-				'name' => 'ns_agent_linkedin',
+				'name' => 'ps_agent_linkedin',
 				'description' => esc_html__('Provide a url for the agents Linkedin profile.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 9,
@@ -173,7 +173,7 @@ class PropertyShift_Agents {
 			'youtube' => array(
 				'group' => 'social',
 				'title' => esc_html__('Youtube', 'propertyshift'),
-				'name' => 'ns_agent_youtube',
+				'name' => 'ps_agent_youtube',
 				'description' => esc_html__('Provide a url for the agents Youtube profile.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 10,
@@ -181,7 +181,7 @@ class PropertyShift_Agents {
 			'instagram' => array(
 				'group' => 'social',
 				'title' => esc_html__('Instagram', 'propertyshift'),
-				'name' => 'ns_agent_instagram',
+				'name' => 'ps_agent_instagram',
 				'description' => esc_html__('Provide a url for the agents Instagram profile.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 11,
@@ -189,7 +189,7 @@ class PropertyShift_Agents {
 			'contact_form_source' => array(
 				'group' => 'contact',
 				'title' => esc_html__('Agent Contact Form Source', 'propertyshift'),
-				'name' => 'ns_agent_form_source',
+				'name' => 'ps_agent_form_source',
 				'type' => 'radio_image',
 				'value' => 'default',
 				'options' => array(
@@ -202,7 +202,7 @@ class PropertyShift_Agents {
 					'contact_form_7_id' => array(
 						'title' => esc_html__('Contact From 7 ID', 'propertyshift'),
 						'description' => esc_html__('Provide the ID of the contact form you would like displayed', 'propertyshift'),
-						'name' => 'ns_agent_form_id',
+						'name' => 'ps_agent_form_id',
 						'type' => 'number',
 						'parent_val' => 'contact-form-7',
 					),
@@ -228,7 +228,7 @@ class PropertyShift_Agents {
 	 *	Register meta box
 	 */
 	public function register_meta_box() {
-		add_meta_box( 'agent-details-meta-box', 'Agent Details', array($this, 'output_meta_box'), 'ns-agent', 'normal', 'high' );
+		add_meta_box( 'agent-details-meta-box', 'Agent Details', array($this, 'output_meta_box'), 'ps-agent', 'normal', 'high' );
 	}
 
 	/**
@@ -471,7 +471,7 @@ class PropertyShift_Agents {
 	 * @param array $post_types
 	 */
 	public function add_page_settings_meta_box($post_types) {
-		$post_types[] = 'ns-agent';
+		$post_types[] = 'ps-agent';
     	return $post_types;
 	}
 

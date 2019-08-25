@@ -439,7 +439,7 @@
 	            <div class="form-block form-block-agent-options form-block-select-agent <?php if(isset($edit_agent_display) && $edit_agent_display == 'agent') { echo 'show'; } else { echo 'show-none'; } ?>">
 	                <?php
 	                    $agent_listing_args = array(
-	                        'post_type' => 'ns-agent',
+	                        'post_type' => 'ps-agent',
 	                        'posts_per_page' => -1
 	                    );
 

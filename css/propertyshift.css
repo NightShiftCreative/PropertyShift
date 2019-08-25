@@ -357,28 +357,28 @@
 /*********************************************/
 /** AGENTS **/
 /*********************************************/
-.ns-agent-listing .ns-agent, .ns-agent-listing .hentry.ns-agent {
+.ps-agent-listing .ps-agent, .ps-agent-listing .hentry.ps-agent {
     margin:0;
     margin-bottom:30px; 
     padding:0;
 }
 
-.ns-agent .agent-content { padding:5%; }
-.ns-agent .agent-title h4 { margin:15px 0px; }
-.ns-agent .agent-details p { margin-bottom:10px; }
-.ns-agent .social-icons { margin-bottom:0; }
+.ps-agent .agent-content { padding:5%; }
+.ps-agent .agent-title h4 { margin:15px 0px; }
+.ps-agent .agent-details p { margin-bottom:10px; }
+.ps-agent .social-icons { margin-bottom:0; }
 
 /*********************************************/
 /** AGENTS SINGLE **/
 /*********************************************/
-.ns-agent .agent-content { padding:0; padding-top:30px; }
-.ns-agent .agent-details p {
+.ps-agent .agent-content { padding:0; padding-top:30px; }
+.ps-agent .agent-details p {
     border-bottom:1px solid rgba(0, 0, 0, 0.1);
     padding-top:4px;
     padding-bottom:4px;
     margin:0;
 }
-.ns-agent .agent-details p span { float:right; font-weight:600; }
+.ps-agent .agent-details p span { float:right; font-weight:600; }
 
 /*********************************************/
 /** WIDGETS **/

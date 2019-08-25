@@ -22,6 +22,7 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
 		global $post;
 
         $icon_set = get_option('ns_core_icon_set', 'fa');
+        if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 
         $title = isset( $instance['title'] ) ? apply_filters( 'widget_title', $instance['title'] ) : '';
         $num = isset( $instance['num'] ) ? $instance['num'] : '';
@@ -37,7 +38,7 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
                         /*****************************************/
                         $agent_counts = array();
                         $agent_listing_args = array(
-                            'post_type' => 'ns-agent',
+                            'post_type' => 'ps-agent',
                             'showposts' => -1,
                         );
 
@@ -45,8 +46,8 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
                         if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post();
 
                             $values = get_post_custom( $post->ID );
-                            $agent_title = isset( $values['ns_agent_title'] ) ? esc_attr( $values['ns_agent_title'][0] ) : '';
-                            $agent_email = isset( $values['ns_agent_email'] ) ? esc_attr( $values['ns_agent_email'][0] ) : '';
+                            $agent_title = isset( $values['ps_agent_title'] ) ? esc_attr( $values['ps_agent_title'][0] ) : '';
+                            $agent_email = isset( $values['ps_agent_email'] ) ? esc_attr( $values['ps_agent_email'][0] ) : '';
 
                             //property post count
                             $args = array(

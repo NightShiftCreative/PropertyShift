@@ -123,7 +123,7 @@ class PropertyShift_Properties {
 		//get all agents
 		$agents_array = array();
         $agents_array[esc_html__('Select an agent...', 'ns-real-estate')] = '';
-        $agent_listing_query = get_posts(array('post_type' => 'ns-agent', 'posts_per_page' => -1));
+        $agent_listing_query = get_posts(array('post_type' => 'ps-agent', 'posts_per_page' => -1));
         foreach($agent_listing_query as $agent) { $agents_array[$agent->post_title] = $agent->ID; }
 
         // settings
