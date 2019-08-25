@@ -42,10 +42,10 @@ class PropertyShift_Maps {
 	public function build_single_property_map($latitude, $longitude, $map_only = false) {
  
  		// Get global settings
-		$home_default_map_zoom = $this->global_settings['ns_real_estate_default_map_zoom'];
-		$home_default_map_latitude = $this->global_settings['ns_real_estate_default_map_latitude'];
-		$home_default_map_longitude = $this->global_settings['ns_real_estate_default_map_longitude'];	 
-		$google_maps_pin = $this->global_settings['ns_real_estate_google_maps_pin'];
+		$home_default_map_zoom = $this->global_settings['ps_default_map_zoom'];
+		$home_default_map_latitude = $this->global_settings['ps_default_map_latitude'];
+		$home_default_map_longitude = $this->global_settings['ps_default_map_longitude'];	 
+		$google_maps_pin = $this->global_settings['ps_google_maps_pin'];
 
 		//Output map
 		if($map_only == false) { ?>
@@ -215,10 +215,10 @@ class PropertyShift_Maps {
 	public function build_properties_map() {
 
 		// Get global settings
-		$home_default_map_zoom = $this->global_settings['ns_real_estate_default_map_zoom'];
-		$home_default_map_latitude = $this->global_settings['ns_real_estate_default_map_latitude'];
-		$home_default_map_longitude = $this->global_settings['ns_real_estate_default_map_longitude'];	 
-		$google_maps_pin = $this->global_settings['ns_real_estate_google_maps_pin'];
+		$home_default_map_zoom = $this->global_settings['ps_default_map_zoom'];
+		$home_default_map_latitude = $this->global_settings['ps_default_map_latitude'];
+		$home_default_map_longitude = $this->global_settings['ps_default_map_longitude'];	 
+		$google_maps_pin = $this->global_settings['ps_google_maps_pin'];
 
 		// Load properties object
 		$properties_obj = new PropertyShift_Properties();

@@ -14,7 +14,7 @@
     $members_my_properties_page = $admin_obj->load_settings(false, 'ns_members_my_properties_page');
     $members_add_locations = $admin_obj->load_settings(false, 'ns_members_add_locations');
     $members_add_amenities = $admin_obj->load_settings(false, 'ns_members_add_amenities');
-    $area_postfix_default = $admin_obj->load_settings(false, 'ns_real_estate_default_area_postfix');
+    $area_postfix_default = $admin_obj->load_settings(false, 'ps_default_area_postfix');
 
     // Load properties object
     $properties_obj = new PropertyShift_Properties();

@@ -86,7 +86,7 @@ class PropertyShift_Properties {
 	 *	Add custom post type
 	 */
 	public function add_custom_post_type() {
-		$properties_slug = $this->global_settings['ns_property_detail_slug'];
+		$properties_slug = $this->global_settings['ps_property_detail_slug'];
 	    register_post_type( 'ns-property',
 	        array(
 	            'labels' => array(
@@ -800,11 +800,11 @@ class PropertyShift_Properties {
 	 */
 	public function get_formatted_price($price) {
 
-	    $currency_symbol = $this->global_settings['ns_real_estate_currency_symbol'];
-	    $currency_symbol_position = $this->global_settings['ns_real_estate_currency_symbol_position'];
-	    $currency_thousand = $this->global_settings['ns_real_estate_thousand_separator'];
-	    $currency_decimal = $this->global_settings['ns_real_estate_decimal_separator'];
-	    $currency_decimal_num =  $this->global_settings['ns_real_estate_num_decimal'];
+	    $currency_symbol = $this->global_settings['ps_currency_symbol'];
+	    $currency_symbol_position = $this->global_settings['ps_currency_symbol_position'];
+	    $currency_thousand = $this->global_settings['ps_thousand_separator'];
+	    $currency_decimal = $this->global_settings['ps_decimal_separator'];
+	    $currency_decimal_num =  $this->global_settings['ps_num_decimal'];
 
 	    if(!empty($price)) { $price = number_format($price, $currency_decimal_num, $currency_decimal, $currency_thousand); }
 	    if($currency_symbol_position == 'before') { $price = $currency_symbol.$price; } else { $price = $price.$currency_symbol; }
@@ -819,9 +819,9 @@ class PropertyShift_Properties {
 	 */
 	public function get_formatted_area($area) {
 		
-	    $decimal_num_area = $this->global_settings['ns_real_estate_num_decimal_area'];
-	    $decimal_area = $this->global_settings['ns_real_estate_decimal_separator_area'];
-	    $thousand_area =  $this->global_settings['ns_real_estate_thousand_separator_area'];
+	    $decimal_num_area = $this->global_settings['ps_num_decimal_area'];
+	    $decimal_area = $this->global_settings['ps_decimal_separator_area'];
+	    $thousand_area =  $this->global_settings['ps_thousand_separator_area'];
 
     	if(!empty($area)) { $area = number_format($area, $decimal_num_area, $decimal_area, $thousand_area); }
     	return $area;

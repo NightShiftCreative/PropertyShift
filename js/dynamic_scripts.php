@@ -10,11 +10,11 @@ $dynamic_script = '';
 
 //OUTPUT VARIABLES FOR USE IN ns-real-estate.js
 $dynamic_script .= "var rtl = '{$rtl}';";
-$dynamic_script .= "var currency_symbol = '{$settings['ns_real_estate_currency_symbol']}';";
-$dynamic_script .= "var currency_symbol_position = '{$settings['ns_real_estate_currency_symbol_position']}';";
-$dynamic_script .= "var currency_thousand = '{$settings['ns_real_estate_thousand_separator']}';";
-$dynamic_script .= "var currency_decimal = '{$settings['ns_real_estate_decimal_separator']}';";
-$dynamic_script .= "var currency_decimal_num = '{$settings['ns_real_estate_num_decimal']}';";
+$dynamic_script .= "var currency_symbol = '{$settings['ps_currency_symbol']}';";
+$dynamic_script .= "var currency_symbol_position = '{$settings['ps_currency_symbol_position']}';";
+$dynamic_script .= "var currency_thousand = '{$settings['ps_thousand_separator']}';";
+$dynamic_script .= "var currency_decimal = '{$settings['ps_decimal_separator']}';";
+$dynamic_script .= "var currency_decimal_num = '{$settings['ps_num_decimal']}';";
 
 wp_add_inline_script( 'propertyshift', $dynamic_script);
 

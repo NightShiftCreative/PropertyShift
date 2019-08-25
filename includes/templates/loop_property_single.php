@@ -8,7 +8,7 @@
     
     $admin_obj = new PropertyShift_Admin();
     $properties_page = $admin_obj->load_settings(false, 'ns_properties_page');
-    $google_maps_pin = $admin_obj->load_settings(false, 'ns_real_estate_google_maps_pin');
+    $google_maps_pin = $admin_obj->load_settings(false, 'ps_google_maps_pin');
     $property_detail_amenities_hide_empty = $admin_obj->load_settings(false, 'ns_property_detail_amenities_hide_empty');
     $property_detail_map_zoom = $admin_obj->load_settings(false, 'ns_property_detail_map_zoom');
     $property_detail_items = $admin_obj->load_settings(false, 'ns_property_detail_items', false);

@@ -72,15 +72,15 @@ class PropertyShift_Agents {
 	 *	Add custom post type
 	 */
 	public function add_custom_post_type() {
-		$agents_slug = $this->global_settings['ns_agent_detail_slug'];
+		$agents_slug = $this->global_settings['ps_agent_detail_slug'];
 	    register_post_type( 'ns-agent',
 	        array(
 	            'labels' => array(
-	                'name' => __( 'Agents', 'ns-real-estate' ),
-	                'singular_name' => __( 'Agent', 'ns-real-estate' ),
-	                'add_new_item' => __( 'Add New Agent', 'ns-real-estate' ),
-	                'search_items' => __( 'Search Agents', 'ns-real-estate' ),
-	                'edit_item' => __( 'Edit Agent', 'ns-real-estate' ),
+	                'name' => __( 'Agents', 'propertyshift' ),
+	                'singular_name' => __( 'Agent', 'propertyshift' ),
+	                'add_new_item' => __( 'Add New Agent', 'propertyshift' ),
+	                'search_items' => __( 'Search Agents', 'propertyshift' ),
+	                'edit_item' => __( 'Edit Agent', 'propertyshift' ),
 	            ),
 	        'public' => true,
 	        'show_in_menu' => true,
@@ -101,33 +101,33 @@ class PropertyShift_Agents {
 		$agent_settings_init = array(
 			'job_title' => array(
 				'group' => 'general',
-				'title' => esc_html__('Job Title', 'ns-real-estate'),
+				'title' => esc_html__('Job Title', 'propertyshift'),
 				'name' => 'ns_agent_title',
-				'description' => esc_html__('Provide the agents job title.', 'ns-real-estate'),
+				'description' => esc_html__('Provide the agents job title.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 1,
 			),
 			'email' => array(
 				'group' => 'general',
-				'title' => esc_html__('Email', 'ns-real-estate'),
+				'title' => esc_html__('Email', 'propertyshift'),
 				'name' => 'ns_agent_email',
-				'description' => esc_html__('Provide the agents email address. This address will be used for the agent contact form.', 'ns-real-estate'),
+				'description' => esc_html__('Provide the agents email address. This address will be used for the agent contact form.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 2,
 			),
 			'mobile_phone' => array(
 				'group' => 'general',
-				'title' => esc_html__('Mobile Phone', 'ns-real-estate'),
+				'title' => esc_html__('Mobile Phone', 'propertyshift'),
 				'name' => 'ns_agent_mobile_phone',
-				'description' => esc_html__('Provide the agents mobile phone number.', 'ns-real-estate'),
+				'description' => esc_html__('Provide the agents mobile phone number.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 3,
 			),
 			'office_phone' => array(
 				'group' => 'general',
-				'title' => esc_html__('Office Phone', 'ns-real-estate'),
+				'title' => esc_html__('Office Phone', 'propertyshift'),
 				'name' => 'ns_agent_office_phone',
-				'description' => esc_html__('Provide the agents office phone number.', 'ns-real-estate'),
+				'description' => esc_html__('Provide the agents office phone number.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 4,
 			),
@@ -140,68 +140,68 @@ class PropertyShift_Agents {
 			),
 			'facebook' => array(
 				'group' => 'social',
-				'title' => esc_html__('Facebook', 'ns-real-estate'),
+				'title' => esc_html__('Facebook', 'propertyshift'),
 				'name' => 'ns_agent_fb',
-				'description' => esc_html__('Provide a url for the agents Facebook profile.', 'ns-real-estate'),
+				'description' => esc_html__('Provide a url for the agents Facebook profile.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 6,
 			),
 			'twitter' => array(
 				'group' => 'social',
-				'title' => esc_html__('Twitter', 'ns-real-estate'),
+				'title' => esc_html__('Twitter', 'propertyshift'),
 				'name' => 'ns_agent_twitter',
-				'description' => esc_html__('Provide a url for the agents Twitter profile.', 'ns-real-estate'),
+				'description' => esc_html__('Provide a url for the agents Twitter profile.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 7,
 			),
 			'google' => array(
 				'group' => 'social',
-				'title' => esc_html__('Google Plus', 'ns-real-estate'),
+				'title' => esc_html__('Google Plus', 'propertyshift'),
 				'name' => 'ns_agent_google',
-				'description' => esc_html__('Provide a url for the agents Google Plus profile.', 'ns-real-estate'),
+				'description' => esc_html__('Provide a url for the agents Google Plus profile.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 8,
 			),
 			'linkedin' => array(
 				'group' => 'social',
-				'title' => esc_html__('Linkedin', 'ns-real-estate'),
+				'title' => esc_html__('Linkedin', 'propertyshift'),
 				'name' => 'ns_agent_linkedin',
-				'description' => esc_html__('Provide a url for the agents Linkedin profile.', 'ns-real-estate'),
+				'description' => esc_html__('Provide a url for the agents Linkedin profile.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 9,
 			),
 			'youtube' => array(
 				'group' => 'social',
-				'title' => esc_html__('Youtube', 'ns-real-estate'),
+				'title' => esc_html__('Youtube', 'propertyshift'),
 				'name' => 'ns_agent_youtube',
-				'description' => esc_html__('Provide a url for the agents Youtube profile.', 'ns-real-estate'),
+				'description' => esc_html__('Provide a url for the agents Youtube profile.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 10,
 			),
 			'instagram' => array(
 				'group' => 'social',
-				'title' => esc_html__('Instagram', 'ns-real-estate'),
+				'title' => esc_html__('Instagram', 'propertyshift'),
 				'name' => 'ns_agent_instagram',
-				'description' => esc_html__('Provide a url for the agents Instagram profile.', 'ns-real-estate'),
+				'description' => esc_html__('Provide a url for the agents Instagram profile.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 11,
 			),
 			'contact_form_source' => array(
 				'group' => 'contact',
-				'title' => esc_html__('Agent Contact Form Source', 'ns-real-estate'),
+				'title' => esc_html__('Agent Contact Form Source', 'propertyshift'),
 				'name' => 'ns_agent_form_source',
 				'type' => 'radio_image',
 				'value' => 'default',
 				'options' => array(
-					esc_html__('Default Theme Form', 'ns-real-estate') => array('value' => 'default'),
-					esc_html__('Contact Form 7', 'ns-real-estate') => array('value' => 'contact-form-7'),
+					esc_html__('Default Theme Form', 'propertyshift') => array('value' => 'default'),
+					esc_html__('Contact Form 7', 'propertyshift') => array('value' => 'contact-form-7'),
 				),
 				'order' => 12,
 				'class' => 'full-width',
 				'children' => array(
 					'contact_form_7_id' => array(
-						'title' => esc_html__('Contact From 7 ID', 'ns-real-estate'),
-						'description' => esc_html__('Provide the ID of the contact form you would like displayed', 'ns-real-estate'),
+						'title' => esc_html__('Contact From 7 ID', 'propertyshift'),
+						'description' => esc_html__('Provide the ID of the contact form you would like displayed', 'propertyshift'),
 						'name' => 'ns_agent_form_id',
 						'type' => 'number',
 						'parent_val' => 'contact-form-7',
@@ -209,7 +209,7 @@ class PropertyShift_Agents {
 				),
 			),
 		);
-		$agent_settings_init = apply_filters( 'ns_real_estate_agent_settings_init_filter', $agent_settings_init, $post_id);
+		$agent_settings_init = apply_filters( 'propertyshift_agent_settings_init_filter', $agent_settings_init, $post_id);
 		uasort($agent_settings_init, 'ns_basics_sort_by_order');
 
 		// Return default settings
@@ -237,26 +237,26 @@ class PropertyShift_Agents {
 	public function output_meta_box($post) {
 
 		$agent_settings = $this->load_agent_settings($post->ID); 
-		wp_nonce_field( 'ns_agent_details_meta_box_nonce', 'ns_agent_details_meta_box_nonce' ); ?>
+		wp_nonce_field( 'ps_agent_details_meta_box_nonce', 'ps_agent_details_meta_box_nonce' ); ?>
 
 		<div class="ns-tabs meta-box-form meta-box-form-agent">
 			<ul class="ns-tabs-nav">
-	            <li><a href="#general"><i class="fa fa-user"></i> <span class="tab-text"><?php esc_html_e('General Info', 'ns-real-estate'); ?></span></a></li>
-	            <li><a href="#description"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php esc_html_e('Description', 'ns-real-estate'); ?></span></a></li>
-	            <li><a href="#social"><i class="fa fa-share-alt"></i> <span class="tab-text"><?php esc_html_e('Social', 'ns-real-estate'); ?></span></a></li>
-	            <li><a href="#contact"><i class="fa fa-envelope"></i> <span class="tab-text"><?php esc_html_e('Contact Form', 'ns-real-estate'); ?></span></a></li>
-	            <li><a href="#properties"><i class="fa fa-home"></i> <span class="tab-text"><?php esc_html_e('Properties', 'ns-real-estate'); ?></span></a></li>
-	            <?php do_action('ns_real_estate_after_agent_detail_tabs'); ?>
+	            <li><a href="#general"><i class="fa fa-user"></i> <span class="tab-text"><?php esc_html_e('General Info', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#description"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php esc_html_e('Description', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#social"><i class="fa fa-share-alt"></i> <span class="tab-text"><?php esc_html_e('Social', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#contact"><i class="fa fa-envelope"></i> <span class="tab-text"><?php esc_html_e('Contact Form', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#properties"><i class="fa fa-home"></i> <span class="tab-text"><?php esc_html_e('Properties', 'propertyshift'); ?></span></a></li>
+	            <?php do_action('propertyshift_after_agent_detail_tabs'); ?>
 	        </ul>
 
 	        <div class="ns-tabs-content">
-        	<div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e('Loading...', 'ns-real-estate'); ?></div>
+        	<div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e('Loading...', 'propertyshift'); ?></div>
 
         	<!--*************************************************-->
 	        <!-- GENERAL INFO -->
 	        <!--*************************************************-->
 	        <div id="general" class="tab-content">
-	            <h3><?php esc_html_e('General Info', 'ns-real-estate'); ?></h3>
+	            <h3><?php esc_html_e('General Info', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($agent_settings as $setting) {
 	            	if($setting['group'] == 'general') {
@@ -269,7 +269,7 @@ class PropertyShift_Agents {
 	        <!-- DESCRIPTION -->
 	        <!--*************************************************-->
 	        <div id="description" class="tab-content">
-	            <h3><?php echo esc_html_e('Description', 'ns-real-estate'); ?></h3>
+	            <h3><?php echo esc_html_e('Description', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($agent_settings as $setting) {
 	            	if($setting['group'] == 'description') {
@@ -282,7 +282,7 @@ class PropertyShift_Agents {
 	        <!-- SOCIAL -->
 	        <!--*************************************************-->
 	        <div id="social" class="tab-content">
-	            <h3><?php esc_html_e('Social', 'ns-real-estate'); ?></h3>
+	            <h3><?php esc_html_e('Social', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($agent_settings as $setting) {
 	            	if($setting['group'] == 'social') {
@@ -295,7 +295,7 @@ class PropertyShift_Agents {
 	        <!-- CONTACT -->
 	        <!--*************************************************-->
 	        <div id="contact" class="tab-content">
-	            <h3><?php esc_html_e('Contact', 'ns-real-estate'); ?></h3>
+	            <h3><?php esc_html_e('Contact', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($agent_settings as $setting) {
 	            	if($setting['group'] == 'contact') {
@@ -308,18 +308,18 @@ class PropertyShift_Agents {
 	        <!-- AGENT PROPERTIES -->
 	        <!--*************************************************-->
 	        <div id="properties" class="tab-content">
-	            <h3><?php esc_html_e('Agent Properties', 'ns-real-estate'); ?></h3>
+	            <h3><?php esc_html_e('Agent Properties', 'propertyshift'); ?></h3>
 	            <?php
 	            $agent_properties = $this->get_agent_properties(get_the_id(), 20, true);
             	$agent_properties_query = $agent_properties['properties']; ?>
-            	<p><?php echo $agent_properties['count']; ?> <?php esc_html_e('total properties found', 'ns-real-estate'); ?></p>
+            	<p><?php echo $agent_properties['count']; ?> <?php esc_html_e('total properties found', 'propertyshift'); ?></p>
 	        	<table class="admin-table">
 	                <tr>
-	                    <th><?php esc_html_e('Property ID', 'ns-real-estate'); ?></th>
-	                    <th><?php esc_html_e('Title', 'ns-real-estate'); ?></th>
-	                    <th><?php esc_html_e('Status', 'ns-real-estate'); ?></th>
-	                    <th><?php esc_html_e('Date Published', 'ns-real-estate'); ?></th>
-	                    <th><?php esc_html_e('Actions', 'ns-real-estate'); ?></th>
+	                    <th><?php esc_html_e('Property ID', 'propertyshift'); ?></th>
+	                    <th><?php esc_html_e('Title', 'propertyshift'); ?></th>
+	                    <th><?php esc_html_e('Status', 'propertyshift'); ?></th>
+	                    <th><?php esc_html_e('Date Published', 'propertyshift'); ?></th>
+	                    <th><?php esc_html_e('Actions', 'propertyshift'); ?></th>
 	                </tr>
 	                <?php if ($agent_properties_query->have_posts() ) : while ($agent_properties_query->have_posts() ) : $agent_properties_query->the_post();
 	                    echo '<tr>';
@@ -339,17 +339,17 @@ class PropertyShift_Agents {
 	                        'current'      => max( 1, $paged ),
 	                        'show_all'     => true,
 	                        'prev_next'    => True,
-	                        'prev_text'    => esc_html__('&raquo; Previous', 'ns-real-estate'),
-	                        'next_text'    => esc_html__('Next &raquo;', 'ns-real-estate'),
+	                        'prev_text'    => esc_html__('&raquo; Previous', 'propertyshift'),
+	                        'next_text'    => esc_html__('Next &raquo;', 'propertyshift'),
 	                    ); 
 	                    echo '<tr class="admin-table-pagination"><td colspan="5">'.paginate_links($pagination_args).'</td></tr>';
 	                else:
-	                    echo '<tr><td colspan="5">'.esc_html__('This agent has no assigned properties.', 'ns-real-estate').'</td></tr>';
+	                    echo '<tr><td colspan="5">'.esc_html__('This agent has no assigned properties.', 'propertyshift').'</td></tr>';
 	                endif; ?>
 	            </table>
 	        </div>
 
-	        <?php do_action('ns_real_estate_after_agent_details_tab_content', $agent_settings); ?>
+	        <?php do_action('propertyshift_after_agent_details_tab_content', $agent_settings); ?>
 
         	</div><!-- end ns-tabs-content -->
         	<div class="clear"></div>
@@ -365,7 +365,7 @@ class PropertyShift_Agents {
         if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
 
         // if our nonce isn't there, or we can't verify it, bail
-        if( !isset( $_POST['ns_agent_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['ns_agent_details_meta_box_nonce'], 'ns_agent_details_meta_box_nonce' ) ) return;
+        if( !isset( $_POST['ps_agent_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['ps_agent_details_meta_box_nonce'], 'ps_agent_details_meta_box_nonce' ) ) return;
 
         // if our current user can't edit this post, bail
         if( !current_user_can( 'edit_post', $post_id ) ) return;
@@ -428,36 +428,36 @@ class PropertyShift_Agents {
 	public static function load_agent_detail_items() {
 		$agent_detail_items_init = array(
 	        0 => array(
-	            'name' => esc_html__('Overview', 'ns-real-estate'),
-	            'label' => esc_html__('Overview', 'ns-real-estate'),
+	            'name' => esc_html__('Overview', 'propertyshift'),
+	            'label' => esc_html__('Overview', 'propertyshift'),
 	            'slug' => 'overview',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        1 => array(
-	            'name' => esc_html__('Description', 'ns-real-estate'),
-	            'label' => esc_html__('Description', 'ns-real-estate'),
+	            'name' => esc_html__('Description', 'propertyshift'),
+	            'label' => esc_html__('Description', 'propertyshift'),
 	            'slug' => 'description',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        2 => array(
-	            'name' => esc_html__('Contact', 'ns-real-estate'),
-	            'label' => esc_html__('Contact', 'ns-real-estate'),
+	            'name' => esc_html__('Contact', 'propertyshift'),
+	            'label' => esc_html__('Contact', 'propertyshift'),
 	            'slug' => 'contact',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	        3 => array(
-	            'name' => esc_html__('Properties', 'ns-real-estate'),
-	            'label' => esc_html__('Properties', 'ns-real-estate'),
+	            'name' => esc_html__('Properties', 'propertyshift'),
+	            'label' => esc_html__('Properties', 'propertyshift'),
 	            'slug' => 'properties',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
 	    );
 
-		$agent_detail_items_init = apply_filters( 'ns_real_estate_agent_detail_items_init_filter', $agent_detail_items_init);
+		$agent_detail_items_init = apply_filters( 'propertyshift_agent_detail_items_init_filter', $agent_detail_items_init);
 	    return $agent_detail_items_init;
 	}
 

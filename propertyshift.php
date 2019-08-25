@@ -112,7 +112,7 @@ class PropertyShift {
 	public function admin_scripts() {
 		if (is_admin()) {
 
-			$google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
+			$google_maps_api = esc_attr(get_option('ps_google_maps_api'));
 
 			wp_enqueue_script('propertyshift-admin-js', plugins_url('/js/propertyshift-admin.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'media-upload', 'thickbox'), '', true);
 			wp_enqueue_style('propertyshift-admin-css', plugins_url('/css/propertyshift-admin.css',  __FILE__), array(), '1.0', 'all');
@@ -143,7 +143,7 @@ class PropertyShift {
 	public function frontend_scripts() {
 		if (!is_admin()) {
 	        
-	        $google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
+	        $google_maps_api = esc_attr(get_option('ps_google_maps_api'));
 	    	
 	    	wp_enqueue_script('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.js', __FILE__), array('jquery'), '', true);
 	        wp_enqueue_style('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.css',  __FILE__), array(), '1.0', 'all');

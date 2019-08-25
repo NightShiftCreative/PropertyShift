@@ -3,7 +3,7 @@
 /*-----------------------------------------------------------------------------------*/
 /*  Get image sizes
 /*-----------------------------------------------------------------------------------*/
-function ns_real_estate_get_image_size($size_name) {
+function propertyshift_get_image_size($size_name) {
     global $_wp_additional_image_sizes;
     $size_output = array();
     $wp_img_sizes = get_intermediate_image_sizes();

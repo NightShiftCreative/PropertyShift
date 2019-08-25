@@ -56,60 +56,60 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	public function load_settings($return_defaults = false, $single_setting = null, $single_esc = true) {
 
 		$settings_init = array(
-			'ns_property_detail_slug' => array('value' => 'properties', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
-			'ns_property_type_tax_slug' => array('value' => 'property-type', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
-			'ns_property_status_tax_slug' => array('value' => 'property-status', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
-			'ns_property_location_tax_slug' => array('value' => 'property-location', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
-			'ns_property_amenities_tax_slug' => array('value' => 'property-amenity', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
-			'ns_property_filter_display' => array('value' => 'true'),
-			'ns_property_filter_id' => array('value' => ''),
-			'ns_properties_page' => array('value' => ''),
-			'ns_num_properties_per_page' => array('value' => 12),
-			'ns_properties_default_layout' => array('value' => 'grid'),
-			'ns_property_listing_header_display' => array('value' => 'true'),
-			'ns_property_listing_default_sortby' => array('value' => 'date_desc'),
-			'ns_property_listing_crop' => array('value' => 'true'),
-			'ns_property_listing_display_time' => array('value' => 'true'),
-			'ns_property_listing_display_favorite' => array('value' => 'true'),
-			'ns_property_listing_display_share' => array('value' => 'true'),
-			'ns_property_detail_default_layout' => array('value' => 'right sidebar'),
-			'ns_property_detail_id' => array('value' => 'false'),
-			'ns_property_detail_items' => array('value' => PropertyShift_Properties::load_property_detail_items(), 'esc' => false),
-			'ns_property_detail_amenities_hide_empty' => array('value' => 'false'),
-			'ns_property_detail_map_zoom' => array('value' => 13),
-			'ns_property_detail_map_height' => array('value' => 250),
-			'ns_property_detail_agent_contact_form' => array('value' => 'false'),
-			'ns_agent_detail_slug' => array('value' => 'agents'),
-			'ns_num_agents_per_page' => array('value' => 12),
-			'ns_agent_listing_crop' => array('value' => 'true'),
-			'ns_agent_detail_items' => array('value' => PropertyShift_Agents::load_agent_detail_items(), 'esc' => false),
-			'ns_agent_form_message_placeholder' => array('value' => esc_html__('I am interested in this property and would like to know more.', 'propertyshift')),
-			'ns_agent_form_success' => array('value' => esc_html__('Thanks! Your email has been delivered!', 'propertyshift')),
-			'ns_agent_form_submit_text' => array('value' => esc_html__('Contact Agent', 'propertyshift')),
-			'ns_real_estate_google_maps_api' => array('value' => ''),
-			'ns_real_estate_default_map_zoom' => array('value' => 10),
-			'ns_real_estate_default_map_latitude' => array('value' => 39.2904),
-			'ns_real_estate_default_map_longitude' => array('value' => -76.5000),
-			'ns_real_estate_google_maps_pin' => array('value' => PROPERTYSHIFT_DIR.'/images/pin.png'),
-			'ns_members_my_properties_page' => array('value' => ''),
-			'ns_members_submit_property_page' => array('value' => ''),
-			'ns_members_submit_property_approval' => array('value' => 'true'),
-			'ns_members_add_locations' => array('value' => 'true'),
-			'ns_members_add_amenities' => array('value' => 'true'),
-			'ns_members_submit_property_fields' => array('value' => PropertyShift_Properties::load_property_submit_fields(), 'esc' => false),
-			'ns_real_estate_currency_symbol' => array('value' => '$'),
-			'ns_real_estate_currency_symbol_position' => array('value' => 'before'),
-			'ns_real_estate_thousand_separator' => array('value' => ','),
-			'ns_real_estate_decimal_separator' => array('value' => '.'),
-			'ns_real_estate_num_decimal' => array('value' => 0),
-			'ns_real_estate_default_area_postfix' => array('value' => 'Sq Ft'),
-			'ns_real_estate_thousand_separator_area' => array('value' => ','),
-			'ns_real_estate_decimal_separator_area' => array('value' => '.'),
-			'ns_real_estate_num_decimal_area' => array('value' => 0),
+			'ps_property_detail_slug' => array('value' => 'properties', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
+			'ps_property_type_tax_slug' => array('value' => 'property-type', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
+			'ps_property_status_tax_slug' => array('value' => 'property-status', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
+			'ps_property_location_tax_slug' => array('value' => 'property-location', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
+			'ps_property_amenities_tax_slug' => array('value' => 'property-amenity', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
+			'ps_property_filter_display' => array('value' => 'true'),
+			'ps_property_filter_id' => array('value' => ''),
+			'ps_properties_page' => array('value' => ''),
+			'ps_num_properties_per_page' => array('value' => 12),
+			'ps_properties_default_layout' => array('value' => 'grid'),
+			'ps_property_listing_header_display' => array('value' => 'true'),
+			'ps_property_listing_default_sortby' => array('value' => 'date_desc'),
+			'ps_property_listing_crop' => array('value' => 'true'),
+			'ps_property_listing_display_time' => array('value' => 'true'),
+			'ps_property_listing_display_favorite' => array('value' => 'true'),
+			'ps_property_listing_display_share' => array('value' => 'true'),
+			'ps_property_detail_default_layout' => array('value' => 'right sidebar'),
+			'ps_property_detail_id' => array('value' => 'false'),
+			'ps_property_detail_items' => array('value' => PropertyShift_Properties::load_property_detail_items(), 'esc' => false),
+			'ps_property_detail_amenities_hide_empty' => array('value' => 'false'),
+			'ps_property_detail_map_zoom' => array('value' => 13),
+			'ps_property_detail_map_height' => array('value' => 250),
+			'ps_property_detail_agent_contact_form' => array('value' => 'false'),
+			'ps_agent_detail_slug' => array('value' => 'agents'),
+			'ps_num_agents_per_page' => array('value' => 12),
+			'ps_agent_listing_crop' => array('value' => 'true'),
+			'ps_agent_detail_items' => array('value' => PropertyShift_Agents::load_agent_detail_items(), 'esc' => false),
+			'ps_agent_form_message_placeholder' => array('value' => esc_html__('I am interested in this property and would like to know more.', 'propertyshift')),
+			'ps_agent_form_success' => array('value' => esc_html__('Thanks! Your email has been delivered!', 'propertyshift')),
+			'ps_agent_form_submit_text' => array('value' => esc_html__('Contact Agent', 'propertyshift')),
+			'ps_google_maps_api' => array('value' => ''),
+			'ps_default_map_zoom' => array('value' => 10),
+			'ps_default_map_latitude' => array('value' => 39.2904),
+			'ps_default_map_longitude' => array('value' => -76.5000),
+			'ps_google_maps_pin' => array('value' => PROPERTYSHIFT_DIR.'/images/pin.png'),
+			'ps_members_my_properties_page' => array('value' => ''),
+			'ps_members_submit_property_page' => array('value' => ''),
+			'ps_members_submit_property_approval' => array('value' => 'true'),
+			'ps_members_add_locations' => array('value' => 'true'),
+			'ps_members_add_amenities' => array('value' => 'true'),
+			'ps_members_submit_property_fields' => array('value' => PropertyShift_Properties::load_property_submit_fields(), 'esc' => false),
+			'ps_currency_symbol' => array('value' => '$'),
+			'ps_currency_symbol_position' => array('value' => 'before'),
+			'ps_thousand_separator' => array('value' => ','),
+			'ps_decimal_separator' => array('value' => '.'),
+			'ps_num_decimal' => array('value' => 0),
+			'ps_default_area_postfix' => array('value' => 'Sq Ft'),
+			'ps_thousand_separator_area' => array('value' => ','),
+			'ps_decimal_separator_area' => array('value' => '.'),
+			'ps_num_decimal_area' => array('value' => 0),
 		);
-		$settings_init = apply_filters( 'ns_real_estate_settings_init_filter', $settings_init);
+		$settings_init = apply_filters('propertyshift_settings_init_filter', $settings_init);
 		$settings = $this->get_settings($settings_init, $return_defaults, $single_setting, $single_esc);
-		if($single_setting == null) { $settings = apply_filters( 'ns_real_estate_settings_saved_filter', $settings); }
+		if($single_setting == null) { $settings = apply_filters( 'propertyshift_settings_saved_filter', $settings); }
 		return $settings;
 		
 	}
@@ -130,24 +130,24 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        array('name' => esc_html__('Members', 'propertyshift'), 'link' => '#members', 'icon' => 'fa-key', 'order' => 4),
 	        array('name' => esc_html__('Currency & Numbers', 'propertyshift'), 'link' => '#currency', 'icon' => 'fa-money-bill-alt', 'order' => 5),
 	    );
-	    $content_nav = apply_filters( 'ns_real_estate_setting_tabs_filter', $content_nav);
+	    $content_nav = apply_filters( 'propertyshift_setting_tabs_filter', $content_nav);
 	    usort($content_nav, function ($a, $b) {return ($a["order"]-$b["order"]); });
 	    
 	    //add alerts
 	    $alerts = array();
 	    if(!current_theme_supports('propertyshift')) {
 	        $current_theme = wp_get_theme();
-	        $incompatible_theme_alert = $this->admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not declare support for NS Real Estate.', 'propertyshift'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'propertyshift'), true); 
+	        $incompatible_theme_alert = $this->admin_alert('info', esc_html__('The active theme ('.$current_theme->name.') does not declare support for PropertyShift.', 'propertyshift'), $action = '#', $action_text = esc_html__('Get a compatible theme', 'propertyshift'), true); 
 	        $alerts[] = $incompatible_theme_alert; 
 	    }
 
-	    $google_maps_api = esc_attr(get_option('ns_real_estate_google_maps_api'));
+	    $google_maps_api = esc_attr(get_option('ps_google_maps_api'));
 	    if(empty($google_maps_api)) {
 	        $google_api_key_alert = $this->admin_alert('warning', esc_html__('Please provide a Google Maps API Key within the Maps tab.', 'propertyshift'), $action = null, $action_text = null, true);
 	        $alerts[] = $google_api_key_alert; 
 	    }
 
-	    $properties_page = esc_attr(get_option('ns_properties_page'));
+	    $properties_page = esc_attr(get_option('ps_properties_page'));
 	    if(empty($properties_page)) {
 	        $properties_page_alert = $this->admin_alert('warning', esc_html__('You have not set your properties listing page. Go to Properties > Property Listing Options, to set this field.', 'propertyshift'), $action = null, $action_text = null, true);
 	        $alerts[] = $properties_page_alert; 
@@ -190,45 +190,45 @@ class PropertyShift_Admin extends NS_Basics_Admin {
                 	<?php
                 	$property_slug_field = array(
                 		'title' => esc_html__('Properties Slug', 'propertyshift'),
-                		'name' => 'ns_property_detail_slug',
+                		'name' => 'ps_property_detail_slug',
                 		'description' => esc_html__('Default: properties', 'propertyshift'),
-                		'value' => $settings['ns_property_detail_slug'],
+                		'value' => $settings['ps_property_detail_slug'],
                 		'type' => 'text',
                 	);
                 	$this->build_admin_field($property_slug_field);
 
                 	$property_type_tax_slug_field = array(
                 		'title' => esc_html__('Property Type Taxonomy Slug', 'propertyshift'),
-                		'name' => 'ns_property_type_tax_slug',
+                		'name' => 'ps_property_type_tax_slug',
                 		'description' => esc_html__('Default: property-type', 'propertyshift'),
-                		'value' => $settings['ns_property_type_tax_slug'],
+                		'value' => $settings['ps_property_type_tax_slug'],
                 		'type' => 'text',
                 	);
                 	$this->build_admin_field($property_type_tax_slug_field);
 
                 	$property_status_tax_slug_field = array(
                 		'title' => esc_html__('Property Status Taxonomy Slug', 'propertyshift'),
-                		'name' => 'ns_property_status_tax_slug',
+                		'name' => 'ps_property_status_tax_slug',
                 		'description' => esc_html__('Default: property-status', 'propertyshift'),
-                		'value' => $settings['ns_property_status_tax_slug'],
+                		'value' => $settings['ps_property_status_tax_slug'],
                 		'type' => 'text',
                 	);
                 	$this->build_admin_field($property_status_tax_slug_field);
 
                 	$property_location_tax_slug_field = array(
                 		'title' => esc_html__('Property Location Taxonomy Slug', 'propertyshift'),
-                		'name' => 'ns_property_location_tax_slug',
+                		'name' => 'ps_property_location_tax_slug',
                 		'description' => esc_html__('Default: property-location', 'propertyshift'),
-                		'value' => $settings['ns_property_location_tax_slug'],
+                		'value' => $settings['ps_property_location_tax_slug'],
                 		'type' => 'text',
                 	);
                 	$this->build_admin_field($property_location_tax_slug_field);
 
                 	$property_amenities_tax_slug_field = array(
                 		'title' => esc_html__('Property Amenities Taxonomy Slug', 'propertyshift'),
-                		'name' => 'ns_property_amenities_tax_slug',
+                		'name' => 'ps_property_amenities_tax_slug',
                 		'description' => esc_html__('Default: property-amenity', 'propertyshift'),
-                		'value' => $settings['ns_property_amenities_tax_slug'],
+                		'value' => $settings['ps_property_amenities_tax_slug'],
                 		'type' => 'text',
                 	);
                 	$this->build_admin_field($property_amenities_tax_slug_field);
@@ -242,17 +242,17 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	            	<?php
                 	$display_property_filter_field = array(
                 		'title' => esc_html__('Display Property Filter in Page Banners', 'propertyshift'),
-                		'name' => 'ns_property_filter_display',
-                		'value' => $settings['ns_property_filter_display'],
+                		'name' => 'ps_property_filter_display',
+                		'value' => $settings['ps_property_filter_display'],
                 		'type' => 'switch',
                 	);
                 	$this->build_admin_field($display_property_filter_field);
 
                 	$default_property_filter_field = array(
                 		'title' => esc_html__('Default Banner Filter', 'propertyshift'),
-                		'name' => 'ns_property_filter_id',
+                		'name' => 'ps_property_filter_id',
                 		'description' => esc_html__('This can be overriden on individual pages from the page settings meta box.', 'propertyshift'),
-                		'value' => $settings['ns_property_filter_id'],
+                		'value' => $settings['ps_property_filter_id'],
                 		'type' => 'select',
                 		'options' => PropertyShift_Filters::get_filter_ids(),
                 	);
@@ -271,8 +271,8 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	            	foreach ( $pages as $page ) { $page_options[esc_attr($page->post_title)] = get_page_link( $page->ID ); }
 	            	$property_listing_page_field = array(
                 		'title' => esc_html__('Select Your Property Listings Page', 'propertyshift'),
-                		'name' => 'ns_properties_page',
-                		'value' => $settings['ns_properties_page'],
+                		'name' => 'ps_properties_page',
+                		'value' => $settings['ps_properties_page'],
                 		'type' => 'select',
                 		'options' => $page_options,
                 	);
@@ -280,38 +280,38 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 
                 	$num_properties_per_page_field = array(
                 		'title' => esc_html__('Number of Properties Per Page', 'propertyshift'),
-                		'name' => 'ns_num_properties_per_page',
-                		'value' => $settings['ns_num_properties_per_page'],
+                		'name' => 'ps_num_properties_per_page',
+                		'value' => $settings['ps_num_properties_per_page'],
                 		'type' => 'number',
                 	);
                 	$this->build_admin_field($num_properties_per_page_field);
 
                 	$properties_tax_layout_field = array(
                 		'title' => esc_html__('Properties Taxonomy Layout', 'propertyshift'),
-                		'name' => 'ns_properties_default_layout',
-                		'value' => $settings['ns_properties_default_layout'],
+                		'name' => 'ps_properties_default_layout',
+                		'value' => $settings['ps_properties_default_layout'],
                 		'type' => 'radio_image',
                 		'options' => array(
-                			esc_html__('Grid', 'ns-basics') => array('value' => 'grid'), 
-							esc_html__('Row', 'ns-basics') => array('value' => 'row'),
+                			esc_html__('Grid', 'propertyshift') => array('value' => 'grid'), 
+							esc_html__('Row', 'propertyshift') => array('value' => 'row'),
                 		),
                 	);
                 	$this->build_admin_field($properties_tax_layout_field);
 
                 	$display_listing_header_field = array(
                 		'title' => esc_html__('Display Listing Header?', 'propertyshift'),
-                		'name' => 'ns_property_listing_header_display',
+                		'name' => 'ps_property_listing_header_display',
                 		'description' => esc_html__('Toggle on/off the filter options that display directly above property listings.', 'propertyshift'),
-                		'value' => $settings['ns_property_listing_header_display'],
+                		'value' => $settings['ps_property_listing_header_display'],
                 		'type' => 'switch',
                 	);
                 	$this->build_admin_field($display_listing_header_field);
 
                 	$default_sort_by_field = array(
                 		'title' => esc_html__('Default Sort By', 'propertyshift'),
-                		'name' => 'ns_property_listing_default_sortby',
+                		'name' => 'ps_property_listing_default_sortby',
                 		'description' => esc_html__('Choose the default sorting for property listings.', 'propertyshift'),
-                		'value' => $settings['ns_property_listing_default_sortby'],
+                		'value' => $settings['ps_property_listing_default_sortby'],
                 		'type' => 'select',
                 		'options' => array(
                 			esc_html__('New to Old', 'propertyshift') => 'date_desc',
@@ -322,38 +322,38 @@ class PropertyShift_Admin extends NS_Basics_Admin {
                 	);
                 	$this->build_admin_field($default_sort_by_field);
 
-                	$property_img_size = ns_real_estate_get_image_size('property-thumbnail');
+                	$property_img_size = propertyshift_get_image_size('property-thumbnail');
                 	$property_listing_crop_description = '';
 					if(!empty($property_img_size)) { $property_listing_crop_description = esc_html__('If active, property listing thumbnails will be cropped to: ', 'propertyshift').$property_img_size['width'].' x '.$property_img_size['height'].' pixels'; }
                 	$property_listing_crop_field = array(
                 		'title' => esc_html__('Hard crop property listing featured images?', 'propertyshift'),
-                		'name' => 'ns_property_listing_crop',
+                		'name' => 'ps_property_listing_crop',
                 		'description' => $property_listing_crop_description,
-                		'value' => $settings['ns_property_listing_crop'],
+                		'value' => $settings['ps_property_listing_crop'],
                 		'type' => 'switch',
                 	);
                 	$this->build_admin_field($property_listing_crop_field);
 
                 	$time_stamp_field = array(
                 		'title' => esc_html__('Display Time Stamp?', 'propertyshift'),
-                		'name' => 'ns_property_listing_display_time',
-                		'value' => $settings['ns_property_listing_display_time'],
+                		'name' => 'ps_property_listing_display_time',
+                		'value' => $settings['ps_property_listing_display_time'],
                 		'type' => 'switch',
                 	);
                 	$this->build_admin_field($time_stamp_field);
 
                 	$listing_display_favorite_field = array(
                 		'title' => esc_html__('Allow users to favorite properties?', 'propertyshift'),
-                		'name' => 'ns_property_listing_display_favorite',
-                		'value' => $settings['ns_property_listing_display_favorite'],
+                		'name' => 'ps_property_listing_display_favorite',
+                		'value' => $settings['ps_property_listing_display_favorite'],
                 		'type' => 'switch',
                 	);
                 	$this->build_admin_field($listing_display_favorite_field);
 
                 	$listing_display_share_field = array(
                 		'title' => esc_html__('Allow users to share properties?', 'propertyshift'),
-                		'name' => 'ns_property_listing_display_share',
-                		'value' => $settings['ns_property_listing_display_share'],
+                		'name' => 'ps_property_listing_display_share',
+                		'value' => $settings['ps_property_listing_display_share'],
                 		'type' => 'switch',
                 	);
                 	$this->build_admin_field($listing_display_share_field);
@@ -368,60 +368,60 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	            	<?php
 	            	$property_detail_default_layout_field = array(
                 		'title' => esc_html__('Select the default page layout for property detail pages', 'propertyshift'),
-                		'name' => 'ns_property_detail_default_layout',
-                		'value' => $settings['ns_property_detail_default_layout'],
+                		'name' => 'ps_property_detail_default_layout',
+                		'value' => $settings['ps_property_detail_default_layout'],
                 		'type' => 'radio_image',
                 		'options' => array(
-                			esc_html__('Full Width', 'ns-basics') => array('value' => 'full', 'icon' => NS_BASICS_PLUGIN_DIR.'/images/full-width-icon.png'), 
-							esc_html__('Right Sidebar', 'ns-basics') => array('value' => 'right sidebar', 'icon' => NS_BASICS_PLUGIN_DIR.'/images/right-sidebar-icon.png'),
-							esc_html__('Left Sidebar', 'ns-basics') => array('value' => 'left sidebar', 'icon' => NS_BASICS_PLUGIN_DIR.'/images/left-sidebar-icon.png'),
+                			esc_html__('Full Width', 'propertyshift') => array('value' => 'full', 'icon' => NS_BASICS_PLUGIN_DIR.'/images/full-width-icon.png'), 
+							esc_html__('Right Sidebar', 'propertyshift') => array('value' => 'right sidebar', 'icon' => NS_BASICS_PLUGIN_DIR.'/images/right-sidebar-icon.png'),
+							esc_html__('Left Sidebar', 'propertyshift') => array('value' => 'left sidebar', 'icon' => NS_BASICS_PLUGIN_DIR.'/images/left-sidebar-icon.png'),
                 		),
                 	);
                 	$this->build_admin_field($property_detail_default_layout_field);
                 	
                 	$property_detail_id_field = array(
                 		'title' => esc_html__('Show Property Code on Front-End', 'propertyshift'),
-                		'name' => 'ns_property_detail_id',
-                		'value' => $settings['ns_property_detail_id'],
+                		'name' => 'ps_property_detail_id',
+                		'value' => $settings['ps_property_detail_id'],
                 		'type' => 'switch',
                 	);
                 	$this->build_admin_field($property_detail_id_field);
 
                 	$property_detail_items_field = array(
                 		'title' => esc_html__('Property Detail Sections', 'propertyshift'),
-                		'name' => 'ns_property_detail_items',
+                		'name' => 'ps_property_detail_items',
                 		'description' => esc_html__('Drag & drop the sections to rearrange their order', 'propertyshift'),
-                		'value' => $settings['ns_property_detail_items'],
+                		'value' => $settings['ps_property_detail_items'],
                 		'type' => 'sortable',
                 		'display_sidebar' => true,
                 		'children' => array(
                 			'hide_empty_amenities' => array(
                 				'title' => esc_html__('Hide empty amenities?', 'propertyshift'),
-	                			'name' => 'ns_property_detail_amenities_hide_empty',
-	                			'value' => $settings['ns_property_detail_amenities_hide_empty'],
+	                			'name' => 'ps_property_detail_amenities_hide_empty',
+	                			'value' => $settings['ps_property_detail_amenities_hide_empty'],
 	                			'type' => 'checkbox',
 	                			'parent_val' => 'amenities',
                 			),
                 			'map_zoom' => array(
                 				'title' => esc_html__('Map Zoom', 'propertyshift'),
-	                			'name' => 'ns_property_detail_map_zoom',
-	                			'value' => $settings['ns_property_detail_map_zoom'],
+	                			'name' => 'ps_property_detail_map_zoom',
+	                			'value' => $settings['ps_property_detail_map_zoom'],
 	                			'type' => 'select',
 	                			'options' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15'),
 	                			'parent_val' => 'location',
                 			),
                 			'map_height' => array(
                 				'title' => esc_html__('Map Height', 'propertyshift'),
-	                			'name' => 'ns_property_detail_map_height',
-	                			'value' => $settings['ns_property_detail_map_height'],
+	                			'name' => 'ps_property_detail_map_height',
+	                			'value' => $settings['ps_property_detail_map_height'],
 	                			'type' => 'number',
 	                			'parent_val' => 'location',
                 			),
                 			'agent_contact_form' => array(
                 				'title' => esc_html__('Display agent contact form underneath agent information?', 'propertyshift'),
-	                			'name' => 'ns_property_detail_agent_contact_form',
+	                			'name' => 'ps_property_detail_agent_contact_form',
 	                			'description' => esc_html__('Configure the agent contact form options in the Agent Settings tab.', 'propertyshift'),
-	                			'value' => $settings['ns_property_detail_agent_contact_form'],
+	                			'value' => $settings['ps_property_detail_agent_contact_form'],
 	                			'type' => 'checkbox',
 	                			'parent_val' => 'agent_info',
                 			),
@@ -447,26 +447,26 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	            	<?php
 	            	$agent_detail_slug_field = array(
                 		'title' => esc_html__('Agents Slug', 'propertyshift'),
-                		'name' => 'ns_agent_detail_slug',
+                		'name' => 'ps_agent_detail_slug',
                 		'description' => esc_html__('After changing the slug, make sure you re-save your permalinks in Settings > Permalinks. The default slug is agents.', 'propertyshift'),
-                		'value' => $settings['ns_agent_detail_slug'],
+                		'value' => $settings['ps_agent_detail_slug'],
                 		'type' => 'text',
                 	);
                 	$this->build_admin_field($agent_detail_slug_field);
 
                 	$agents_num_field = array(
                 		'title' => esc_html__('Number of Agents Per Page', 'propertyshift'),
-                		'name' => 'ns_num_agents_per_page',
-                		'value' => $settings['ns_num_agents_per_page'],
+                		'name' => 'ps_num_agents_per_page',
+                		'value' => $settings['ps_num_agents_per_page'],
                 		'type' => 'number',
                 	);
                 	$this->build_admin_field($agents_num_field);
 
                 	$agent_listing_crop_field = array(
                 		'title' => esc_html__('Hard crop agent listing featured images?', 'propertyshift'),
-                		'name' => 'ns_agent_listing_crop',
+                		'name' => 'ps_agent_listing_crop',
                 		'description' => esc_html__('If active, agent listing thumbnails will be cropped to 800 x 600 pixels.', 'propertyshift'),
-                		'value' => $settings['ns_agent_listing_crop'],
+                		'value' => $settings['ps_agent_listing_crop'],
                 		'type' => 'switch',
                 	);
                 	$this->build_admin_field($agent_listing_crop_field);
@@ -481,30 +481,30 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	            	<?php
 	            	$agent_detail_items_field = array(
                 		'title' => esc_html__('Agent Detail Sections', 'propertyshift'),
-                		'name' => 'ns_agent_detail_items',
+                		'name' => 'ps_agent_detail_items',
                 		'description' => esc_html__('Drag & drop the sections to rearrange their order', 'propertyshift'),
-                		'value' => $settings['ns_agent_detail_items'],
+                		'value' => $settings['ps_agent_detail_items'],
                 		'type' => 'sortable',
                 		'display_sidebar' => true, 
                 		'children' => array(
                 			'form_message_placeholder' => array(
                 				'title' => esc_html__('Message Placeholder on Property Pages', 'propertyshift'),
-	                			'name' => 'ns_agent_form_message_placeholder',
-	                			'value' => $settings['ns_agent_form_message_placeholder'],
+	                			'name' => 'ps_agent_form_message_placeholder',
+	                			'value' => $settings['ps_agent_form_message_placeholder'],
 	                			'type' => 'text',
 	                			'parent_val' => 'contact',
                 			),
                 			'form_success' => array(
                 				'title' => esc_html__('Success Message', 'propertyshift'),
-	                			'name' => 'ns_agent_form_success',
-	                			'value' => $settings['ns_agent_form_success'],
+	                			'name' => 'ps_agent_form_success',
+	                			'value' => $settings['ps_agent_form_success'],
 	                			'type' => 'text',
 	                			'parent_val' => 'contact',
                 			),
                 			'form_submit_text' => array(
                 				'title' => esc_html__('Submit Button Text', 'propertyshift'),
-	                			'name' => 'ns_agent_form_submit_text',
-	                			'value' => $settings['ns_agent_form_submit_text'],
+	                			'name' => 'ps_agent_form_submit_text',
+	                			'value' => $settings['ps_agent_form_submit_text'],
 	                			'type' => 'text',
 	                			'parent_val' => 'contact',
                 			),
@@ -526,18 +526,18 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        <?php
 	        $google_maps_api_field = array(
                 'title' => esc_html__('Google Maps API Key', 'propertyshift'),
-                'name' => 'ns_real_estate_google_maps_api',
+                'name' => 'ps_google_maps_api',
                 'description' => wp_kses_post(__('Provide your unique Google maps API key. <a target="_blank" href="https://developers.google.com/maps/documentation/javascript/get-api-key">Click here</a> to get a key.', 'propertyshift')),
-                'value' => $settings['ns_real_estate_google_maps_api'],
+                'value' => $settings['ps_google_maps_api'],
                 'type' => 'text',
             );
             $this->build_admin_field($google_maps_api_field);
 
             $map_zoom_field = array(
                 'title' => esc_html__('Default Map Zoom', 'propertyshift'),
-                'name' => 'ns_real_estate_default_map_zoom',
+                'name' => 'ps_default_map_zoom',
                 'description' => esc_html__('The map zoom ranges from 1 - 19. Zoom level 1 being the most zoomed out.', 'propertyshift'),
-                'value' => $settings['ns_real_estate_default_map_zoom'],
+                'value' => $settings['ps_default_map_zoom'],
                 'type' => 'number',
                 'min' => 1,
                 'max' => 19,
@@ -546,24 +546,24 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 
             $map_lat_field = array(
                 'title' => esc_html__('Default Map Latitude', 'propertyshift'),
-                'name' => 'ns_real_estate_default_map_latitude',
-                'value' => $settings['ns_real_estate_default_map_latitude'],
+                'name' => 'ps_default_map_latitude',
+                'value' => $settings['ps_default_map_latitude'],
                 'type' => 'text',
             );
             $this->build_admin_field($map_lat_field);
 
             $map_long_field = array(
                 'title' => esc_html__('Default Map Longitude', 'propertyshift'),
-                'name' => 'ns_real_estate_default_map_longitude',
-                'value' => $settings['ns_real_estate_default_map_longitude'],
+                'name' => 'ps_default_map_longitude',
+                'value' => $settings['ps_default_map_longitude'],
                 'type' => 'text',
             );
             $this->build_admin_field($map_long_field);
 
             $map_custom_pin_field = array(
                 'title' => esc_html__('Custom Pin Image', 'propertyshift'),
-                'name' => 'ns_real_estate_google_maps_pin',
-                'value' => $settings['ns_real_estate_google_maps_pin'],
+                'name' => 'ps_google_maps_pin',
+                'value' => $settings['ps_google_maps_pin'],
                 'type' => 'image_upload',
             );
             $this->build_admin_field($map_custom_pin_field);
@@ -582,9 +582,9 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        foreach ( $pages as $page ) { $page_options[esc_attr($page->post_title)] = get_page_link( $page->ID ); }
 	        $my_properties_page_field = array(
                 'title' => esc_html__('Select My Properties Page', 'propertyshift'),
-                'name' => 'ns_members_my_properties_page',
+                'name' => 'ps_members_my_properties_page',
                 'description' => esc_html__('Create a page and assign it the My Properties template.', 'propertyshift'),
-                'value' => $settings['ns_members_my_properties_page'],
+                'value' => $settings['ps_members_my_properties_page'],
                 'type' => 'select',
                 'options' => $page_options,
             );
@@ -592,9 +592,9 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 
             $submit_property_page_field = array(
                 'title' => esc_html__('Select Submit Property Page', 'propertyshift'),
-                'name' => 'ns_members_submit_property_page',
+                'name' => 'ps_members_submit_property_page',
                 'description' => esc_html__('Create a page and assign it the Submit Property template.', 'propertyshift'),
-                'value' => $settings['ns_members_submit_property_page'],
+                'value' => $settings['ps_members_submit_property_page'],
                 'type' => 'select',
                 'options' => $page_options,
             );
@@ -602,33 +602,33 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 
             $submit_property_approval = array(
                 'title' => esc_html__('Front-end property submissions must be approved before being published', 'propertyshift'),
-                'name' => 'ns_members_submit_property_approval',
-                'value' => $settings['ns_members_submit_property_approval'],
+                'name' => 'ps_members_submit_property_approval',
+                'value' => $settings['ps_members_submit_property_approval'],
                 'type' => 'switch',
             );
             $this->build_admin_field($submit_property_approval);
 
             $submit_add_locations = array(
                 'title' => esc_html__('Allow members to add new property locations from the front-end', 'propertyshift'),
-                'name' => 'ns_members_add_locations',
-                'value' => $settings['ns_members_add_locations'],
+                'name' => 'ps_members_add_locations',
+                'value' => $settings['ps_members_add_locations'],
                 'type' => 'switch',
             );
             $this->build_admin_field($submit_add_locations);
 
             $submit_add_amenities = array(
                 'title' => esc_html__('Allow members to add new property amenities from the front-end', 'propertyshift'),
-                'name' => 'ns_members_add_amenities',
-                'value' => $settings['ns_members_add_amenities'],
+                'name' => 'ps_members_add_amenities',
+                'value' => $settings['ps_members_add_amenities'],
                 'type' => 'switch',
             );
             $this->build_admin_field($submit_add_amenities);
 
             $submit_form_fields = array(
                 'title' => esc_html__('Property Submit Form Fields', 'propertyshift'),
-                'name' => 'ns_members_submit_property_fields',
+                'name' => 'ps_members_submit_property_fields',
                 'description' => esc_html__('Choose which fields display on the front-end property submit form.', 'propertyshift'),
-                'value' => $settings['ns_members_submit_property_fields'],
+                'value' => $settings['ps_members_submit_property_fields'],
                 'options' => PropertyShift_Properties::load_property_submit_fields(),
                 'type' => 'checkbox_group',
             );
@@ -645,16 +645,16 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        <?php
 	        $currency_symbol_field = array(
                 'title' => esc_html__('Currency Symbol', 'propertyshift'),
-                'name' => 'ns_real_estate_currency_symbol',
-                'value' => $settings['ns_real_estate_currency_symbol'],
+                'name' => 'ps_currency_symbol',
+                'value' => $settings['ps_currency_symbol'],
                 'type' => 'text',
             );
             $this->build_admin_field($currency_symbol_field);
 
             $currency_symbol_position_field = array(
                 'title' => esc_html__('Currency Symbol Position', 'propertyshift'),
-                'name' => 'ns_real_estate_currency_symbol_position',
-                'value' => $settings['ns_real_estate_currency_symbol_position'],
+                'name' => 'ps_currency_symbol_position',
+                'value' => $settings['ps_currency_symbol_position'],
                 'type' => 'radio_image',
                 'options' => array(esc_html__('Display before price', 'propertyshift') => array('value' => 'before'), esc_html__('Display after price', 'propertyshift') => array('value' => 'after')),
             );
@@ -662,24 +662,24 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 
             $currency_thousand_field = array(
                 'title' => esc_html__('Thousand Separator', 'propertyshift'),
-                'name' => 'ns_real_estate_thousand_separator',
-                'value' => $settings['ns_real_estate_thousand_separator'],
+                'name' => 'ps_thousand_separator',
+                'value' => $settings['ps_thousand_separator'],
                 'type' => 'text',
             );
             $this->build_admin_field($currency_thousand_field);
 
             $currency_decimal_field = array(
                 'title' => esc_html__('Decimal Separator', 'propertyshift'),
-                'name' => 'ns_real_estate_decimal_separator',
-                'value' => $settings['ns_real_estate_decimal_separator'],
+                'name' => 'ps_decimal_separator',
+                'value' => $settings['ps_decimal_separator'],
                 'type' => 'text',
             );
             $this->build_admin_field($currency_decimal_field);
 
             $currency_decimal_num_field = array(
                 'title' => esc_html__('Number of Decimals', 'propertyshift'),
-                'name' => 'ns_real_estate_num_decimal',
-                'value' => $settings['ns_real_estate_num_decimal'],
+                'name' => 'ps_num_decimal',
+                'value' => $settings['ps_num_decimal'],
                 'type' => 'number',
                 'min' => 0,
                 'max' => 5,
@@ -689,32 +689,32 @@ class PropertyShift_Admin extends NS_Basics_Admin {
             echo '<br/><br/><h2>'.esc_html__('Area Formatting', 'propertyshift').'</h2>';
             $area_postfix_field = array(
                 'title' => esc_html__('Deafult Area Postfix', 'propertyshift'),
-                'name' => 'ns_real_estate_default_area_postfix',
-                'value' => $settings['ns_real_estate_default_area_postfix'],
+                'name' => 'ps_default_area_postfix',
+                'value' => $settings['ps_default_area_postfix'],
                 'type' => 'text',
             );
             $this->build_admin_field($area_postfix_field);
 
             $area_thousand_field = array(
                 'title' => esc_html__('Area Thousand Separator', 'propertyshift'),
-                'name' => 'ns_real_estate_thousand_separator_area',
-                'value' => $settings['ns_real_estate_thousand_separator_area'],
+                'name' => 'ps_thousand_separator_area',
+                'value' => $settings['ps_thousand_separator_area'],
                 'type' => 'text',
             );
             $this->build_admin_field($area_thousand_field);
 
             $area_decimal_field = array(
                 'title' => esc_html__('Area Decimal Separator', 'propertyshift'),
-                'name' => 'ns_real_estate_decimal_separator_area',
-                'value' => $settings['ns_real_estate_decimal_separator_area'],
+                'name' => 'ps_decimal_separator_area',
+                'value' => $settings['ps_decimal_separator_area'],
                 'type' => 'text',
             );
             $this->build_admin_field($area_decimal_field);
 
             $area_decimal_num_field = array(
                 'title' => esc_html__('Area Number of Decimals', 'propertyshift'),
-                'name' => 'ns_real_estate_num_decimal_area',
-                'value' => $settings['ns_real_estate_num_decimal_area'],
+                'name' => 'ps_num_decimal_area',
+                'value' => $settings['ps_num_decimal_area'],
                 'type' => 'number',
                 'min' => 0,
                 'max' => 5,
