@@ -319,7 +319,7 @@ class PropertyShift_Properties {
 				),
 			),
 		);
-		$property_settings_init = apply_filters( 'ns_real_estate_property_settings_init_filter', $property_settings_init, $post_id);
+		$property_settings_init = apply_filters('propertyshift_property_settings_init_filter', $property_settings_init, $post_id);
 		uasort($property_settings_init, 'ns_basics_sort_by_order');
 
 		// Return default settings
@@ -1130,7 +1130,7 @@ class PropertyShift_Properties {
 	        ),
 	    );
 
-		$property_detail_items_init = apply_filters( 'ns_real_estate_property_detail_items_init_filter', $property_detail_items_init);
+		$property_detail_items_init = apply_filters( 'propertyshift_property_detail_items_init_filter', $property_detail_items_init);
 	    return $property_detail_items_init;
 	}
 	
@@ -1165,7 +1165,7 @@ class PropertyShift_Properties {
             'map' => array('value' => esc_html__('Map', 'propertyshift')),
             'owner_info' => array('value' => esc_html__('Owner Info', 'propertyshift')),
 	    );
-	    $property_submit_fields_init = apply_filters( 'ns_real_estate_property_submit_fields_init_filter', $property_submit_fields_init);
+	    $property_submit_fields_init = apply_filters( 'propertyshift_property_submit_fields_init_filter', $property_submit_fields_init);
 	    return $property_submit_fields_init;
 	}
 
@@ -1326,7 +1326,7 @@ class PropertyShift_Properties {
 		        update_post_meta( $post_ID, 'ns_agent_custom_url', wp_kses( $_POST['agent_custom_url'], $allowed ) );
 
 		    //hook in for other add-ons
-	    	do_action('ns_real_estate_save_property_submit', $post_ID);
+	    	do_action('propertyshift_save_property_submit', $post_ID);
 
 			if($members_submit_property_approval == 'true') {
 		        $output['success'] = esc_html__('Your property,', 'propertyshift') .' <b>'. $title .',</b> '. esc_html__('was submitted for review!', 'propertyshift');
