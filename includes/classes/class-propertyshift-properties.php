@@ -351,7 +351,7 @@ class PropertyShift_Properties {
 	            <li><a href="#map" title="<?php esc_html_e('Map', 'propertyshift'); ?>" onclick="refreshMap()"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Map', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#video" title="<?php esc_html_e('Video', 'propertyshift'); ?>"><i class="fa fa-video"></i> <span class="tab-text"><?php echo esc_html_e('Video', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#agent" title="<?php esc_html_e('Owner Info', 'propertyshift'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Owner Info', 'propertyshift'); ?></span></a></li>
-	            <?php do_action('ns_real_estate_after_property_tabs'); ?>
+	            <?php do_action('propertyshift_after_property_tabs'); ?>
 	        </ul>
 
 	        <div class="ns-tabs-content">
@@ -451,7 +451,7 @@ class PropertyShift_Properties {
 	            } ?>
 	        </div>
 
-	        <?php do_action('ns_real_estate_after_property_tab_content', $property_settings); ?>
+	        <?php do_action('propertyshift_after_property_tab_content', $property_settings); ?>
 
         	</div><!-- end ns-tabs-content -->
         	<div class="clear"></div>
