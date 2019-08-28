@@ -3,7 +3,7 @@
     $admin_obj = new PropertyShift_Admin();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
-    $agent_listing_crop = $admin_obj->load_settings(false, 'ns_agent_listing_crop');
+    $agent_listing_crop = $admin_obj->load_settings(false, 'ps_agent_listing_crop');
 
 	//Get agent details
     $agents_obj = new PropertyShift_Agents();
@@ -32,14 +32,14 @@
                 <?php if($agent_listing_crop == 'true') { the_post_thumbnail('agent-thumbnail'); } else { the_post_thumbnail('full'); } ?>  
             </a>
 		<?php } else { ?>
-			<a href="<?php the_permalink(); ?>" class="agent-img-link"><img src="<?php echo plugins_url( '/ns-real-estate/images/agent-img-default.gif' ); ?>" alt="" /></a>
+			<a href="<?php the_permalink(); ?>" class="agent-img-link"><img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" alt="" /></a>
 		<?php } ?>
 	</div>
 	
 	<div class="agent-content">
 		  
         <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
-            <a href="<?php the_permalink(); ?>" class="agent-property-count right"><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Property', 'ns-real-estate'); } else { esc_html_e('Properties', 'ns-real-estate'); } ?></a>
+            <a href="<?php the_permalink(); ?>" class="agent-property-count right"><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Property', 'propertyshift'); } else { esc_html_e('Properties', 'propertyshift'); } ?></a>
         <?php } ?>
 
         <div class="agent-title left">

@@ -99,8 +99,8 @@
         'end_size'     => 1,
         'mid_size'     => 2,
         'prev_next'    => True,
-        'prev_text'    => esc_html__('&raquo; Previous', 'ns-real-estate'),
-        'next_text'    => esc_html__('Next &raquo;', 'ns-real-estate'),
+        'prev_text'    => esc_html__('&raquo; Previous', 'propertyshift'),
+        'next_text'    => esc_html__('Next &raquo;', 'propertyshift'),
         'type'         => 'plain',
         'add_args'     => False,
         'add_fragment' => '',
@@ -127,10 +127,10 @@
 	<div class="col-lg-12">
 		<p>
             <?php
-            if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no agents were found.', 'ns-real-estate'); } 
+            if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no agents were found.', 'propertyshift'); } 
             if(is_user_logged_in() && current_user_can('administrator')) { 
                 $new_agent_url = esc_url(home_url('/')).'wp-admin/post-new.php?post_type=ps-agent';
-                printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new agent.</b></em>', 'ns-real-estate'), $new_agent_url );  
+                printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new agent.</b></em>', 'propertyshift'), $new_agent_url );  
             } ?>
         </p>
 	</div>

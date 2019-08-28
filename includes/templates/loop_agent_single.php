@@ -4,7 +4,7 @@
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
     $num_properties_per_page = $admin_obj->load_settings(false, 'ps_num_properties_per_page');
-    $agent_detail_items = $admin_obj->load_settings(false, 'ns_agent_detail_items', false);
+    $agent_detail_items = $admin_obj->load_settings(false, 'ps_agent_detail_items', false);
 
     //Get template location
     if(isset($template_args)) { $template_location = $template_args['location']; } else { $template_location = ''; }
@@ -57,26 +57,26 @@
 
                         <a href="<?php the_permalink(); ?>" class="agent-img">
                             <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
-                                <div class="button alt button-icon agent-tag agent-assigned"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Assigned Property', 'ns-real-estate'); } else { esc_html_e('Assigned Properties', 'ns-real-estate'); } ?></div>
+                                <div class="button alt button-icon agent-tag agent-assigned"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Assigned Property', 'propertyshift'); } else { esc_html_e('Assigned Properties', 'propertyshift'); } ?></div>
                             <?php } ?>
                             <?php if ( has_post_thumbnail() ) {  ?>
                                 <div class="img-fade"></div>
                                 <?php the_post_thumbnail('full'); ?>
                             <?php } else { ?>
-                                <img src="<?php echo plugins_url( '/ns-real-estate/images/agent-img-default.gif' ); ?>" alt="" />
+                                <img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" alt="" />
                             <?php } ?>
                         </a>
 
                         <div class="agent-content">
                             <div class="agent-details">
-        	                	<?php if(!empty($agent_title)) { ?><p><span><?php echo esc_attr($agent_title); ?></span><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php esc_html_e('Title', 'ns-real-estate'); ?>:</p><?php } ?>
-        	                	<?php if(!empty($agent_email)) { ?><p><span><?php echo esc_attr($agent_email); ?></span><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php esc_html_e('Email', 'ns-real-estate'); ?>:</p><?php } ?>
-        	                	<?php if(!empty($agent_mobile_phone)) { ?><p><span><?php echo esc_attr($agent_mobile_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php esc_html_e('Mobile', 'ns-real-estate'); ?>:</p><?php } ?>
-        	                	<?php if(!empty($agent_office_phone)) { ?><p><span><?php echo esc_attr($agent_office_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php esc_html_e('Office', 'ns-real-estate'); ?>:</p><?php } ?>
+        	                	<?php if(!empty($agent_title)) { ?><p><span><?php echo esc_attr($agent_title); ?></span><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php esc_html_e('Title', 'propertyshift'); ?>:</p><?php } ?>
+        	                	<?php if(!empty($agent_email)) { ?><p><span><?php echo esc_attr($agent_email); ?></span><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php esc_html_e('Email', 'propertyshift'); ?>:</p><?php } ?>
+        	                	<?php if(!empty($agent_mobile_phone)) { ?><p><span><?php echo esc_attr($agent_mobile_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php esc_html_e('Mobile', 'propertyshift'); ?>:</p><?php } ?>
+        	                	<?php if(!empty($agent_office_phone)) { ?><p><span><?php echo esc_attr($agent_office_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php esc_html_e('Office', 'propertyshift'); ?>:</p><?php } ?>
                                 <?php do_action('ns_real_estate_after_agent_details', $post->ID); ?>
                             </div>
                             <?php if(in_array('agent_detail_item_contact', $agent_detail_items)) { ?> 
-                                <div class="button button-icon agent-message right"><?php echo ns_core_get_icon($icon_set, 'envelope'); ?><?php esc_html_e('Message Agent', 'ns-real-estate'); ?></div>
+                                <div class="button button-icon agent-message right"><?php echo ns_core_get_icon($icon_set, 'envelope'); ?><?php esc_html_e('Message Agent', 'propertyshift'); ?></div>
                             <?php } ?>
                             <?php if(!empty($agent_fb) || !empty($agent_twitter) || !empty($agent_google) || !empty($agent_linkedin) || !empty($agent_youtube) || !empty($agent_instagram)) { ?>
                             <div class="center">
@@ -154,7 +154,7 @@
                                 $template_args_properties['custom_layout'] = 'grid';
                                 $template_args_properties['custom_pagination'] = true;
                                 if($template_location_sidebar == 'true') { $template_args_properties['custom_cols'] = 1; }
-                                $template_args_properties['no_post_message'] = esc_html__( 'Sorry, no properties were found.', 'ns-real-estate' );
+                                $template_args_properties['no_post_message'] = esc_html__( 'Sorry, no properties were found.', 'propertyshift' );
                                 
                                 //Load template
                                 propertyshift_template_loader('loop_properties.php', $template_args_properties);

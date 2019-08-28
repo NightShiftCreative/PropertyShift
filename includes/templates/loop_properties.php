@@ -273,8 +273,8 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
         'end_size'     => 1,
         'mid_size'     => 2,
         'prev_next'    => True,
-        'prev_text'    => esc_html__('&raquo; Previous', 'ns-real-estate'),
-        'next_text'    => esc_html__('Next &raquo;', 'ns-real-estate'),
+        'prev_text'    => esc_html__('&raquo; Previous', 'propertyshift'),
+        'next_text'    => esc_html__('Next &raquo;', 'propertyshift'),
         'type'         => 'plain',
         'add_args'     => False,
         'add_fragment' => '',
@@ -302,10 +302,10 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
 	<div class="col-lg-12">
         <p>
             <?php 
-            if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no properties were found.', 'ns-real-estate'); }
+            if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no properties were found.', 'propertyshift'); }
             if(is_user_logged_in() && current_user_can('administrator')) { 
                 $new_property_url = esc_url(home_url('/')).'wp-admin/post-new.php?post_type=ns-property';
-                printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new property.</b></em>', 'ns-real-estate'), $new_property_url );  
+                printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new property.</b></em>', 'propertyshift'), $new_property_url );  
             } ?>
         </p>
     </div>
