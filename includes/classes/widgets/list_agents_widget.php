@@ -9,10 +9,10 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
 
         $widget_options = array(
           'classname'=>'list-agents-widget',
-          'description'=> esc_html__('Display a list of agents.', 'ns-real-estate'),
-          'panels_groups' => array('ns-real-estate')
+          'description'=> esc_html__('Display a list of agents.', 'propertyshift'),
+          'panels_groups' => array('propertyshift')
         );
-		parent::__construct('ns_real_estate_list_agents_widget', esc_html__('(Nightshift) List Agents', 'ns-real-estate'), $widget_options);
+		parent::__construct('ns_real_estate_list_agents_widget', esc_html__('(Nightshift) List Agents', 'propertyshift'), $widget_options);
     }
 
     /** @see WP_Widget::widget */
@@ -81,7 +81,7 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
                                             <?php if (!empty($agent['img'])) {  ?>
                                                 <a href="<?php echo esc_url($agent['permalink']); ?>" class="property-img-link"><?php echo wp_kses_post($agent['img']); ?></a>
                                             <?php } else { ?>
-                                                <a href="<?php echo esc_url($agent['permalink']); ?>" class="property-img-link"><img src="<?php echo plugins_url( '/ns-real-estate/images/agent-img-default.gif' ); ?>" alt="" /></a>
+                                                <a href="<?php echo esc_url($agent['permalink']); ?>" class="property-img-link"><img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" alt="" /></a>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
                                         <h5 title="<?php the_title(); ?>"><a href="<?php echo esc_url($agent['permalink']); ?>"><?php echo esc_attr($agent['name']); ?></a></h5>
                                         <?php if(!empty($agent['title'])) { ?><p><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php echo esc_attr($agent['title']); ?></p><?php } ?>
                                         <?php if(!empty($agent['email'])) { ?><p><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php echo esc_attr($agent['email']); ?></p><?php } ?>
-                                        <p><a href="<?php echo esc_url($agent['permalink']); ?>"><i class="fa fa-angle-right icon"></i><?php esc_html_e('View Details', 'ns-real-estate'); ?></a></p>
+                                        <p><a href="<?php echo esc_url($agent['permalink']); ?>"><i class="fa fa-angle-right icon"></i><?php esc_html_e('View Details', 'propertyshift'); ?></a></p>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
                             $count++; 
                             }
                         } else {
-                            esc_html_e('Sorry, no agents were found.', 'ns-real-estate');
+                            esc_html_e('Sorry, no agents were found.', 'propertyshift');
                         }
                         ?>
 
@@ -126,20 +126,20 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
         ?>
 
         <p>
-           <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title:', 'ns-real-estate'); ?></label>
+           <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title:', 'propertyshift'); ?></label>
            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
         </p>
 
         <p>
-          <label for="<?php echo esc_attr($this->get_field_id('num')); ?>"><?php esc_html_e('Number of Agents:', 'ns-real-estate'); ?></label>
+          <label for="<?php echo esc_attr($this->get_field_id('num')); ?>"><?php esc_html_e('Number of Agents:', 'propertyshift'); ?></label>
           <input class="widefat" id="<?php echo esc_attr($this->get_field_id('num')); ?>" name="<?php echo esc_attr($this->get_field_name('num')); ?>" type="number" value="<?php echo esc_attr($num); ?>" />
         </p>
 
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('filter')); ?>"><?php esc_html_e('Filter By:', 'ns-real-estate'); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('filter')); ?>"><?php esc_html_e('Filter By:', 'propertyshift'); ?></label>
             <select class="widefat" id="<?php echo esc_attr($this->get_field_id('filter')); ?>" name="<?php echo esc_attr($this->get_field_name('filter')); ?>">
-                <option value="recent" <?php if($filter == 'recent') { echo 'selected'; } ?>><?php esc_html_e('Most Recent', 'ns-real-estate'); ?></option>
-                <option value="num_properties" <?php if($filter == 'num_properties') { echo 'selected'; } ?>><?php esc_html_e('Number of Assigned Properties', 'ns-real-estate'); ?></option>
+                <option value="recent" <?php if($filter == 'recent') { echo 'selected'; } ?>><?php esc_html_e('Most Recent', 'propertyshift'); ?></option>
+                <option value="num_properties" <?php if($filter == 'num_properties') { echo 'selected'; } ?>><?php esc_html_e('Number of Assigned Properties', 'propertyshift'); ?></option>
             </select>
         </p>
 

@@ -5,7 +5,7 @@ property details, agents, property filters, and more. It is also easily extendab
 
 ## Installation and Docs ##
 
-For detailed information on installing and using PropertyShift, please see the [knowledge base](https://products.nightshiftcreative.co/docs/ns-real-estate/) 
+For detailed information on installing and using PropertyShift, please see the [knowledge base](https://products.nightshiftcreative.co/docs/propertyshift/) 
 
 ## Support ##
 

@@ -9,10 +9,10 @@ class ns_real_estate_mortgage_calculator_widget extends WP_Widget {
 
         $widget_options = array(
           'classname'=>'mortgage-calculator',
-          'description'=> esc_html__('Display a mortgage calculator.', 'ns-real-estate'),
-          'panels_groups' => array('ns-real-estate')
+          'description'=> esc_html__('Display a mortgage calculator.', 'propertyshift'),
+          'panels_groups' => array('propertyshift')
         );
-        parent::__construct('ns_real_estate_mortgage_calculator_widget', esc_html__('(Nightshift) Mortgage Calculator', 'ns-real-estate'), $widget_options);
+        parent::__construct('ns_real_estate_mortgage_calculator_widget', esc_html__('(Nightshift) Mortgage Calculator', 'propertyshift'), $widget_options);
     }
 
     /** @see WP_Widget::widget */
@@ -48,7 +48,7 @@ class ns_real_estate_mortgage_calculator_widget extends WP_Widget {
         ?>
 
         <p>
-           <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title:', 'ns-real-estate'); ?></label>
+           <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title:', 'propertyshift'); ?></label>
            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
         </p>
 

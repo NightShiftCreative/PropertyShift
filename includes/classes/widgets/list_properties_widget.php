@@ -9,10 +9,10 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
 
         $widget_options = array(
           'classname'=>'list-properties-widget',
-          'description'=> esc_html__('Display a list of properties.', 'ns-real-estate'),
-          'panels_groups' => array('ns-real-estate')
+          'description'=> esc_html__('Display a list of properties.', 'propertyshift'),
+          'panels_groups' => array('propertyshift')
         );
-		parent::__construct('ns_real_estate_list_properties_widget', esc_html__('(Nightshift) List Properties', 'ns-real-estate'), $widget_options);
+		parent::__construct('ns_real_estate_list_properties_widget', esc_html__('(Nightshift) List Properties', 'propertyshift'), $widget_options);
     }
 
     /** @see WP_Widget::widget */
@@ -75,7 +75,7 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
                                                         <?php if($property_listing_crop == 'true') { the_post_thumbnail('property-thumbnail'); } else { the_post_thumbnail('full'); } ?>
                                                     </a>
                                                 <?php } else { ?>
-                                                    <a href="<?php the_permalink(); ?>" class="property-img-link"><img src="<?php echo plugins_url( '/ns-real-estate/images/property-img-default.gif' ); ?>" alt="" /></a>
+                                                    <a href="<?php the_permalink(); ?>" class="property-img-link"><img src="<?php echo PROPERTYSHIFT_DIR.'/images/property-img-default.gif'; ?>" alt="" /></a>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
 
                             <?php endwhile; wp_reset_postdata();
                             else: ?>
-                                <p><?php esc_html_e('Sorry, no properties were found.', 'ns-real-estate'); ?> <?php if(is_user_logged_in() && current_user_can('administrator')) { echo '<i><b><a target="_blank" href="'. esc_url(home_url('/')) .'wp-admin/post-new.php?post_type=properties">Click here</a> to add a new property.</b></i>'; } ?></p>
+                                <p><?php esc_html_e('Sorry, no properties were found.', 'propertyshift'); ?> <?php if(is_user_logged_in() && current_user_can('administrator')) { echo '<i><b><a target="_blank" href="'. esc_url(home_url('/')) .'wp-admin/post-new.php?post_type=properties">Click here</a> to add a new property.</b></i>'; } ?></p>
                             <?php endif;
                         }
 
@@ -121,19 +121,19 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
         ?>
 
         <p>
-           <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title:', 'ns-real-estate'); ?></label>
+           <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title:', 'propertyshift'); ?></label>
            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
         </p>
 
         <p>
-          <label for="<?php echo esc_attr($this->get_field_id('num')); ?>"><?php esc_html_e('Number of Properties:', 'ns-real-estate'); ?></label>
+          <label for="<?php echo esc_attr($this->get_field_id('num')); ?>"><?php esc_html_e('Number of Properties:', 'propertyshift'); ?></label>
           <input class="widefat" id="<?php echo esc_attr($this->get_field_id('num')); ?>" name="<?php echo esc_attr($this->get_field_name('num')); ?>" type="number" value="<?php echo esc_attr($num); ?>" />
         </p>
 
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('property_status')); ?>"><?php esc_html_e('Property Status:', 'ns-real-estate'); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('property_status')); ?>"><?php esc_html_e('Property Status:', 'propertyshift'); ?></label>
             <select name="<?php echo esc_attr($this->get_field_name('property_status')); ?>">
-                <option value=""><?php esc_html_e( 'All', 'ns-real-estate' ); ?></option>
+                <option value=""><?php esc_html_e( 'All', 'propertyshift' ); ?></option>
                 <?php
                     $property_statuses = get_terms('property_status'); 
                     if ( !empty( $property_statuses ) && !is_wp_error( $property_statuses ) ) { ?>
@@ -145,9 +145,9 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
         </p>
 
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('property_location')); ?>"><?php esc_html_e('Property Location:', 'ns-real-estate'); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('property_location')); ?>"><?php esc_html_e('Property Location:', 'propertyshift'); ?></label>
             <select name="<?php echo esc_attr($this->get_field_name('property_location')); ?>">
-                <option value=""><?php esc_html_e( 'All', 'ns-real-estate' ); ?></option>
+                <option value=""><?php esc_html_e( 'All', 'propertyshift' ); ?></option>
                 <?php
                 $property_locations = get_terms('property_location'); 
                 if ( !empty( $property_locations ) && !is_wp_error( $property_locations ) ) { ?>
@@ -159,9 +159,9 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
         </p>
 
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('property_type')); ?>"><?php esc_html_e('Property Type:', 'ns-real-estate'); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('property_type')); ?>"><?php esc_html_e('Property Type:', 'propertyshift'); ?></label>
             <select name="<?php echo esc_attr($this->get_field_name('property_type')); ?>">
-                <option value=""><?php esc_html_e( 'All', 'ns-real-estate' ); ?></option>
+                <option value=""><?php esc_html_e( 'All', 'propertyshift' ); ?></option>
                 <?php
                     $property_types = get_terms('property_type'); 
                     if ( !empty( $property_types ) && !is_wp_error( $property_types ) ) { ?>
@@ -173,10 +173,10 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
         </p>
 
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('filter')); ?>"><?php esc_html_e('Filter By:', 'ns-real-estate'); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('filter')); ?>"><?php esc_html_e('Filter By:', 'propertyshift'); ?></label>
             <select class="widefat" id="<?php echo esc_attr($this->get_field_id('filter')); ?>" name="<?php echo esc_attr($this->get_field_name('filter')); ?>">
-                <option value="recent" <?php if($filter == 'recent') { echo 'selected'; } ?>><?php esc_html_e('Most Recent', 'ns-real-estate'); ?></option>
-                <option value="featured" <?php if($filter == 'featured') { echo 'selected'; } ?>><?php esc_html_e('Featured', 'ns-real-estate'); ?></option>
+                <option value="recent" <?php if($filter == 'recent') { echo 'selected'; } ?>><?php esc_html_e('Most Recent', 'propertyshift'); ?></option>
+                <option value="featured" <?php if($filter == 'featured') { echo 'selected'; } ?>><?php esc_html_e('Featured', 'propertyshift'); ?></option>
             </select>
         </p>
 

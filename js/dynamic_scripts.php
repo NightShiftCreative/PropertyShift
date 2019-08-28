@@ -8,7 +8,7 @@ $settings = $admin_obj->load_settings();
 
 $dynamic_script = '';
 
-//OUTPUT VARIABLES FOR USE IN ns-real-estate.js
+//OUTPUT VARIABLES FOR USE IN propertyshift.js
 $dynamic_script .= "var rtl = '{$rtl}';";
 $dynamic_script .= "var currency_symbol = '{$settings['ps_currency_symbol']}';";
 $dynamic_script .= "var currency_symbol_position = '{$settings['ps_currency_symbol_position']}';";
