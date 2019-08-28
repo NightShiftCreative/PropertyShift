@@ -1,7 +1,7 @@
 <?php
     //Get global settings
     $admin_obj = new PropertyShift_Admin();
-    $properties_page = $admin_obj->load_settings(false, 'ns_properties_page');
+    $properties_page = $admin_obj->load_settings(false, 'ps_properties_page');
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 
@@ -103,7 +103,7 @@
                     <?php 
                     if($count == 4) { ?>
                         <div style="margin-right:0;" class="form-block filter-item filter-item-submit <?php if($label_count > 0) { echo 'has-label'; } ?> <?php if($show_advanced == false) { echo 'hide-advanced'; } ?> <?php echo esc_attr($filter_class); ?>">
-                            <div class="advanced-options-toggle"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'ns-real-estate' ); ?></span></div>
+                            <div class="advanced-options-toggle"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'propertyshift' ); ?></span></div>
                             <input type="hidden" name="advancedSearch" value="true" />
                             <button type="submit" class="button alt"><?php echo ns_core_get_icon($icon_set, 'search', 'magnifier', 'search' ); ?></button>
                         </div>
@@ -194,7 +194,7 @@
                         <?php if($slug == 'beds') { ?>
                             <select name="beds" class="filter-input">
                                 <option value="" disabled selected><?php echo $placeholder; ?></option>
-                                <option value=""><?php esc_html_e( 'Any', 'ns-real-estate' ); ?></option>
+                                <option value=""><?php esc_html_e( 'Any', 'propertyshift' ); ?></option>
                                 <option value="1" <?php if($currentFilters['beds'] == '1') { echo 'selected'; } ?>>1</option>
                                 <option value="2" <?php if($currentFilters['beds'] == '2') { echo 'selected'; } ?>>2</option>
                                 <option value="3" <?php if($currentFilters['beds'] == '3') { echo 'selected'; } ?>>3</option>
@@ -211,7 +211,7 @@
                         <?php if($slug == 'baths') { ?>
                             <select name="baths" class="filter-input">
                                 <option value="" disabled selected><?php echo $placeholder; ?></option>
-                                <option value=""><?php esc_html_e( 'Any', 'ns-real-estate' ); ?></option>
+                                <option value=""><?php esc_html_e( 'Any', 'propertyshift' ); ?></option>
                                 <option value="1" <?php if($currentFilters['baths'] == '1') { echo 'selected'; } ?>>1</option>
                                 <option value="2" <?php if($currentFilters['baths'] == '2') { echo 'selected'; } ?>>2</option>
                                 <option value="3" <?php if($currentFilters['baths'] == '3') { echo 'selected'; } ?>>3</option>
@@ -239,7 +239,7 @@
 
                     if($filter_num <= 4 && $count >= ($filter_num - 1)) { ?>
                         <div style="margin-right:0;" class="form-block filter-item filter-item-submit <?php if($label_count > 0) { echo 'has-label'; } ?> <?php if($show_advanced == false) { echo 'hide-advanced'; } ?> <?php echo esc_attr($filter_class); ?>">
-                            <div class="advanced-options-toggle"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'ns-real-estate' ); ?></span></div>
+                            <div class="advanced-options-toggle"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'propertyshift' ); ?></span></div>
                             <input type="hidden" name="advancedSearch" value="true" />
                             <button type="submit" class="button alt"><?php echo ns_core_get_icon($icon_set, 'search', 'magnifier', 'search' ); ?></button>
                         </div>

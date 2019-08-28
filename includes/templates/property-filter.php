@@ -2,7 +2,7 @@
 
 //Get global settings
 $admin_obj = new PropertyShift_Admin();
-$properties_page = $admin_obj->load_settings(false, 'ns_properties_page');
+$properties_page = $admin_obj->load_settings(false, 'ps_properties_page');
 
 //Get template args
 $property_filter_id = $template_args['id'];
@@ -87,7 +87,7 @@ if (!empty($filter_fields)) { ?>
 	            <?php
 	            if ( !empty( $property_statuses ) && !is_wp_error( $property_statuses ) ){
 	                echo "<ul>"; ?>
-	                <li><a href="#tabs-1"><?php esc_html_e( 'All', 'ns-real-estate' ); ?></a></li>
+	                <li><a href="#tabs-1"><?php esc_html_e( 'All', 'propertyshift' ); ?></a></li>
 	                <?php $count = 0; ?>
 	                <?php foreach ( $property_statuses as $property_status ) { ?>
 	                    <?php $count++; ?>
@@ -95,7 +95,7 @@ if (!empty($filter_fields)) { ?>
 	                <?php } 
 	                echo "</ul>";
 	            } else {
-	                echo '<ul><li><a href="#tabs-1">'. esc_html__('All', 'ns-real-estate') .'</a></li></ul>';
+	                echo '<ul><li><a href="#tabs-1">'. esc_html__('All', 'propertyshift') .'</a></li></ul>';
 	            } ?>
 	        </div><!-- end filter header -->
 
