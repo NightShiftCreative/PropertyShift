@@ -49,7 +49,6 @@ class PropertyShift_Properties {
 		add_action('edited_property_status', array( $this, 'save_tax_fields'), 10, 2);
 		add_action('property_status_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
 		add_action('created_property_status', array( $this, 'save_tax_fields'), 10, 2);
-
 		add_action( 'property_status_edit_form_fields', array( $this, 'add_tax_price_range_field'), 10, 2);
 		add_action('property_status_add_form_fields', array( $this, 'add_tax_price_range_field'), 10, 2 );
 
@@ -340,7 +339,7 @@ class PropertyShift_Properties {
 	public function output_meta_box($post) {
 
 		$property_settings = $this->load_property_settings($post->ID); 
-		wp_nonce_field( 'ns_property_details_meta_box_nonce', 'ns_property_details_meta_box_nonce' ); ?>
+		wp_nonce_field( 'ps_property_details_meta_box_nonce', 'ps_property_details_meta_box_nonce' ); ?>
 		
 		<div class="ns-tabs meta-box-form meta-box-form-property-details">
 			<ul class="ns-tabs-nav">
@@ -468,7 +467,7 @@ class PropertyShift_Properties {
         if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
 
         // if our nonce isn't there, or we can't verify it, bail
-        if( !isset( $_POST['ns_property_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['ns_property_details_meta_box_nonce'], 'ns_property_details_meta_box_nonce' ) ) return;
+        if( !isset( $_POST['ps_property_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['ps_property_details_meta_box_nonce'], 'ps_property_details_meta_box_nonce' ) ) return;
 
         // if our current user can't edit this post, bail
         if( !current_user_can( 'edit_post', $post_id ) ) return;
