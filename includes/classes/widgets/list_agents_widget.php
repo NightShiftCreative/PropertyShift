@@ -52,7 +52,7 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
                             //property post count
                             $args = array(
                                 'post_type' => 'ps-property',
-                                'meta_key' => 'ns_agent_select',
+                                'meta_key' => 'ps_agent_select',
                                 'meta_value' => get_the_ID()
                             );
 

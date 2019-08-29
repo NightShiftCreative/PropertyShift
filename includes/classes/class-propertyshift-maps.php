@@ -65,8 +65,8 @@ class PropertyShift_Maps {
 
 			jQuery(document).ready(function($){
 
-			    var latInput = $('.admin-module-ns_property_latitude input');
-			    var lngInput = $('.admin-module-ns_property_longitude input');
+			    var latInput = $('.admin-module-ps_property_latitude input');
+			    var lngInput = $('.admin-module-ps_property_longitude input');
           
 			    map = new google.maps.Map(document.getElementById('map-canvas-one-pin'), {
 			        mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -200,8 +200,8 @@ class PropertyShift_Maps {
 			//remove marker
 			jQuery(document).ready(function($){
 			    $('.remove-pin').click(function() {
-			        $('.admin-module-ns_property_latitude input').val('');
-			        $('.admin-module-ns_property_longitude input').val('');
+			        $('.admin-module-ps_property_latitude input').val('');
+			        $('.admin-module-ps_property_longitude input').val('');
 			        $('#pac-input').val('');
 			    });
 			});
@@ -262,8 +262,8 @@ class PropertyShift_Maps {
 
 		                //Get post meta data
 		                $values = get_post_custom( $post->ID );
-		                $latitude = isset( $values['ns_property_latitude'] ) ? esc_attr( $values['ns_property_latitude'][0] ) : '';
-		                $longitude = isset( $values['ns_property_longitude'] ) ? esc_attr( $values['ns_property_longitude'][0] ) : '';
+		                $latitude = isset( $values['ps_property_latitude'] ) ? esc_attr( $values['ps_property_latitude'][0] ) : '';
+		                $longitude = isset( $values['ps_property_longitude'] ) ? esc_attr( $values['ps_property_longitude'][0] ) : '';
 		                $price = isset( $values['ps_property_price'] ) ? esc_attr( $values['ps_property_price'][0] ) : '';
 		                $price_postfix = isset( $values['ps_property_price_postfix'] ) ? esc_attr( $values['ps_property_price_postfix'][0] ) : '';
 		            ?>

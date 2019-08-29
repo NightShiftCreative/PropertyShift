@@ -394,11 +394,11 @@ class PropertyShift_Agents {
 
 	    $meta_query = array();
 	    $meta_query['relation'] = 'AND';
-	    $meta_query[] = array('key' => 'ns_agent_display', 'value' => 'agent');
+	    $meta_query[] = array('key' => 'ps_agent_display', 'value' => 'agent');
 	    if(is_array($agent_id)) {
-	        $meta_query[] = array('key' => 'ns_agent_select', 'value' => $agent_id, 'compare' => 'IN');
+	        $meta_query[] = array('key' => 'ps_agent_select', 'value' => $agent_id, 'compare' => 'IN');
 	    } else {
-	        $meta_query[] = array('key' => 'ns_agent_select', 'value' => $agent_id);
+	        $meta_query[] = array('key' => 'ps_agent_select', 'value' => $agent_id);
 	    }
 	    
 	    $args = array(

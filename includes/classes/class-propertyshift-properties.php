@@ -172,7 +172,7 @@ class PropertyShift_Properties {
 			'beds' => array(
 				'group' => 'general',
 				'title' => esc_html__('Bedrooms', 'propertyshift'),
-				'name' => 'ns_property_bedrooms',
+				'name' => 'ps_property_bedrooms',
 				'description' => esc_html__('Provide the number of bedrooms', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
@@ -181,7 +181,7 @@ class PropertyShift_Properties {
 			'baths' => array(
 				'group' => 'general',
 				'title' => esc_html__('Bathrooms', 'propertyshift'),
-				'name' => 'ns_property_bathrooms',
+				'name' => 'ps_property_bathrooms',
 				'description' => esc_html__('Provide the number of bathrooms', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
@@ -191,7 +191,7 @@ class PropertyShift_Properties {
 			'garages' => array(
 				'group' => 'general',
 				'title' => esc_html__('Garages', 'propertyshift'),
-				'name' => 'ns_property_garages',
+				'name' => 'ps_property_garages',
 				'description' => esc_html__('Provide the number of garages', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
@@ -200,7 +200,7 @@ class PropertyShift_Properties {
 			'area' => array(
 				'group' => 'general',
 				'title' => esc_html__('Area', 'propertyshift'),
-				'name' => 'ns_property_area',
+				'name' => 'ps_property_area',
 				'description' => esc_html__('Provide the area. Use only numbers and decimals, do not include commas.', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
@@ -210,7 +210,7 @@ class PropertyShift_Properties {
 			'area_postfix' => array(
 				'group' => 'general',
 				'title' => esc_html__('Area Postfix', 'propertyshift'),
-				'name' => 'ns_property_area_postfix',
+				'name' => 'ps_property_area_postfix',
 				'description' => esc_html__('Provide the text to display directly after the area (ex. - Sq Ft)', 'propertyshift'),
 				'type' => 'text',
 				'value' => 'Sq Ft',
@@ -218,7 +218,7 @@ class PropertyShift_Properties {
 			),
 			'description' => array(
 				'group' => 'description',
-				'name' => 'ns_property_description',
+				'name' => 'ps_property_description',
 				'type' => 'editor',
 				'order' => 10,
 				'class' => 'full-width no-padding',
@@ -226,7 +226,7 @@ class PropertyShift_Properties {
 			),
 			'gallery' => array(
 				'group' => 'gallery',
-				'name' => 'ns_additional_img',
+				'name' => 'ps_additional_img',
 				'type' => 'gallery',
 				'serialized' => true,
 				'order' => 11,
@@ -234,7 +234,7 @@ class PropertyShift_Properties {
 			),
 			'floor_plans' => array(
 				'group' => 'floor_plans',
-				'name' => 'ns_property_floor_plans',
+				'name' => 'ps_property_floor_plans',
 				'type' => 'floor_plans',
 				'serialized' => true,
 				'order' => 12,
@@ -243,28 +243,28 @@ class PropertyShift_Properties {
 			'latitude' => array(
 				'group' => 'map',
 				'title' => esc_html__('Latitude', 'propertyshift'),
-				'name' => 'ns_property_latitude',
+				'name' => 'ps_property_latitude',
 				'type' => 'text',
 				'order' => 13,
 			),
 			'longitude' => array(
 				'group' => 'map',
 				'title' => esc_html__('Longitude', 'propertyshift'),
-				'name' => 'ns_property_longitude',
+				'name' => 'ps_property_longitude',
 				'type' => 'text',
 				'order' => 14,	
 			),
 			'video_url' => array(
 				'group' => 'video',
 				'title' => esc_html__('Video URL', 'propertyshift'),
-				'name' => 'ns_property_video_url',
+				'name' => 'ps_property_video_url',
 				'type' => 'text',
 				'order' => 15,
 			),
 			'video_cover' => array(
 				'group' => 'video',
 				'title' => esc_html__('Video Cover Image', 'propertyshift'),
-				'name' => 'ns_property_video_img',
+				'name' => 'ps_property_video_img',
 				'type' => 'image_upload',
 				'display_img' => true,
 				'order' => 16,
@@ -272,7 +272,7 @@ class PropertyShift_Properties {
 			'owner_display' => array(
 				'group' => 'owner_info',
 				'title' => esc_html__('What to display for owner information?', 'propertyshift'),
-				'name' => 'ns_agent_display',
+				'name' => 'ps_agent_display',
 				'type' => 'radio_image',
 				'class' => 'full-width',
 				'order' => 17,
@@ -286,32 +286,32 @@ class PropertyShift_Properties {
 				'children' => array(
 					'agent' => array(
 						'title' => esc_html__('Select Agent', 'propertyshift'),
-						'name' => 'ns_agent_select',
+						'name' => 'ps_agent_select',
 						'type' => 'select',
 						'options' => $agents_array,
 						'parent_val' => 'agent',
 					),
 					'owner_custom_name' => array(
 						'title' => esc_html__('Custom Name', 'propertyshift'),
-						'name' => 'ns_agent_custom_name',
+						'name' => 'ps_agent_custom_name',
 						'type' => 'text',
 						'parent_val' => 'custom',
 					),
 					'owner_custom_email' => array(
 						'title' => esc_html__('Custom Email', 'propertyshift'),
-						'name' => 'ns_agent_custom_email',
+						'name' => 'ps_agent_custom_email',
 						'type' => 'text',
 						'parent_val' => 'custom',
 					),
 					'owner_custom_phone' => array(
 						'title' => esc_html__('Custom Phone', 'propertyshift'),
-						'name' => 'ns_agent_custom_phone',
+						'name' => 'ps_agent_custom_phone',
 						'type' => 'text',
 						'parent_val' => 'custom',
 					),
 					'owner_custom_url' => array(
 						'title' => esc_html__('Custom Website', 'propertyshift'),
-						'name' => 'ns_agent_custom_url',
+						'name' => 'ps_agent_custom_url',
 						'type' => 'text',
 						'parent_val' => 'custom',
 					),
@@ -1251,7 +1251,7 @@ class PropertyShift_Properties {
 		    }  
 		    if(!empty($edit_property_id)) { 
 		    	$edit_values = get_post_custom( $edit_property_id );
-				$edit_additional_images = isset($edit_values['ns_additional_img']) ? $edit_values['ns_additional_img'] : '';
+				$edit_additional_images = isset($edit_values['ps_additional_img']) ? $edit_values['ps_additional_img'] : '';
 		    	$additional_img_urls = array_merge($edit_additional_images, $additional_img_urls); 
 		    }
 
@@ -1267,62 +1267,62 @@ class PropertyShift_Properties {
 		    	update_post_meta( $post_ID, 'ps_property_price_postfix', wp_kses( $_POST['price_post'], $allowed ) );
 
 		    if( isset( $_POST['beds'] ) )
-		    	update_post_meta( $post_ID, 'ns_property_bedrooms', wp_kses( $_POST['beds'], $allowed ) );
+		    	update_post_meta( $post_ID, 'ps_property_bedrooms', wp_kses( $_POST['beds'], $allowed ) );
 
 		    if( isset( $_POST['baths'] ) )
-		    	update_post_meta( $post_ID, 'ns_property_bathrooms', wp_kses( $_POST['baths'], $allowed ) );
+		    	update_post_meta( $post_ID, 'ps_property_bathrooms', wp_kses( $_POST['baths'], $allowed ) );
 
 		    if( isset( $_POST['garages'] ) )
-		    	update_post_meta( $post_ID, 'ns_property_garages', wp_kses( $_POST['garages'], $allowed ) );
+		    	update_post_meta( $post_ID, 'ps_property_garages', wp_kses( $_POST['garages'], $allowed ) );
 
 		    if( isset( $_POST['area'] ) )
-		    	update_post_meta( $post_ID, 'ns_property_area', wp_kses( $_POST['area'], $allowed ) );
+		    	update_post_meta( $post_ID, 'ps_property_area', wp_kses( $_POST['area'], $allowed ) );
 
 		    if( isset( $_POST['area_post'] ) )
-		    	update_post_meta( $post_ID, 'ns_property_area_postfix', wp_kses( $_POST['area_post'], $allowed ) );
+		    	update_post_meta( $post_ID, 'ps_property_area_postfix', wp_kses( $_POST['area_post'], $allowed ) );
 
 		    if( isset( $_POST['video_url'] ) )
-		    	update_post_meta( $post_ID, 'ns_property_video_url', wp_kses( $_POST['video_url'], $allowed ) );
+		    	update_post_meta( $post_ID, 'ps_property_video_url', wp_kses( $_POST['video_url'], $allowed ) );
 
 		    if( isset( $_POST['video_img'] ) )
-		    	update_post_meta( $post_ID, 'ns_property_video_img', wp_kses( $_POST['video_img'], $allowed ) );
+		    	update_post_meta( $post_ID, 'ps_property_video_img', wp_kses( $_POST['video_img'], $allowed ) );
 
-		    if (isset( $_POST['ns_property_floor_plans'] )) {
-		        update_post_meta( $post_ID, 'ns_property_floor_plans', $_POST['ns_property_floor_plans'] );
+		    if (isset( $_POST['ps_property_floor_plans'] )) {
+		        update_post_meta( $post_ID, 'ps_property_floor_plans', $_POST['ps_property_floor_plans'] );
 		    }
 
 		    if( isset( $_POST['description'] ) )
-	        	update_post_meta( $post_ID, 'ns_property_description', wp_kses_post($_POST['description']) );
+	        	update_post_meta( $post_ID, 'ps_property_description', wp_kses_post($_POST['description']) );
 
 		    if (!empty( $additional_img_urls )) { 
-		        update_post_meta( $post_ID, 'ns_additional_img', $additional_img_urls);
+		        update_post_meta( $post_ID, 'ps_additional_img', $additional_img_urls);
 		    } else {
-		        update_post_meta( $post_ID, 'ns_additional_img', '');
+		        update_post_meta( $post_ID, 'ps_additional_img', '');
 		    }
 
 		    if( isset( $_POST['latitude'] ) )
-	        	update_post_meta( $post_ID, 'ns_property_latitude', wp_kses( $_POST['latitude'], $allowed ) );
+	        	update_post_meta( $post_ID, 'ps_property_latitude', wp_kses( $_POST['latitude'], $allowed ) );
 
 		    if( isset( $_POST['longitude'] ) )
-		        update_post_meta( $post_ID, 'ns_property_longitude', wp_kses( $_POST['longitude'], $allowed ) );
+		        update_post_meta( $post_ID, 'ps_property_longitude', wp_kses( $_POST['longitude'], $allowed ) );
 
 		    if( isset( $_POST['agent_display'] ) )
-		        update_post_meta( $post_ID, 'ns_agent_display', wp_kses( $_POST['agent_display'], $allowed ) );
+		        update_post_meta( $post_ID, 'ps_agent_display', wp_kses( $_POST['agent_display'], $allowed ) );
 
 		    if( isset( $_POST['agent_select'] ) )
-		        update_post_meta( $post_ID, 'ns_agent_select', wp_kses( $_POST['agent_select'], $allowed ) );
+		        update_post_meta( $post_ID, 'ps_agent_select', wp_kses( $_POST['agent_select'], $allowed ) );
 
 		    if( isset( $_POST['agent_custom_name'] ) )
-		        update_post_meta( $post_ID, 'ns_agent_custom_name', wp_kses( $_POST['agent_custom_name'], $allowed ) );
+		        update_post_meta( $post_ID, 'ps_agent_custom_name', wp_kses( $_POST['agent_custom_name'], $allowed ) );
 
 		    if( isset( $_POST['agent_custom_email'] ) )
-		        update_post_meta( $post_ID, 'ns_agent_custom_email', wp_kses( $_POST['agent_custom_email'], $allowed ) );
+		        update_post_meta( $post_ID, 'ps_agent_custom_email', wp_kses( $_POST['agent_custom_email'], $allowed ) );
 
 		    if( isset( $_POST['agent_custom_phone'] ) )
-		        update_post_meta( $post_ID, 'ns_agent_custom_phone', wp_kses( $_POST['agent_custom_phone'], $allowed ) );
+		        update_post_meta( $post_ID, 'ps_agent_custom_phone', wp_kses( $_POST['agent_custom_phone'], $allowed ) );
 
 		    if( isset( $_POST['agent_custom_url'] ) )
-		        update_post_meta( $post_ID, 'ns_agent_custom_url', wp_kses( $_POST['agent_custom_url'], $allowed ) );
+		        update_post_meta( $post_ID, 'ps_agent_custom_url', wp_kses( $_POST['agent_custom_url'], $allowed ) );
 
 		    //hook in for other add-ons
 	    	do_action('propertyshift_save_property_submit', $post_ID);

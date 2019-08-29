@@ -155,7 +155,7 @@
 
         if(!empty($_GET['beds'])) {
             $meta_query[] = array(
-                'key'     => 'ns_property_bedrooms',
+                'key'     => 'ps_property_bedrooms',
                 'value'   => $_GET['beds']
             );
         }
@@ -164,14 +164,14 @@
             $numBaths = intval($_GET['baths']);
             $numBathsDemical = $numBaths + 0.5;
             $meta_query[] = array(
-                'key' => 'ns_property_bathrooms',
+                'key' => 'ps_property_bathrooms',
                 'compare' => 'IN',
                 'value'   => array($_GET['baths'], $numBathsDemical)
             );
         }
 
         $meta_query[] = array(
-            'key' => 'ns_property_area',
+            'key' => 'ps_property_area',
             'value'   => $areaValue,
             'type'    => 'numeric',
             'compare' => $areaCompare,

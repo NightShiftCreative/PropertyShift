@@ -67,7 +67,7 @@
 
 		    //update values
 		    $strAdditionalImgs = implode(",", $new_edit_additional_images);
-		    update_post_meta( $edit_property_id, 'ns_additional_img', $strAdditionalImgs );
+		    update_post_meta( $edit_property_id, 'ps_additional_img', $strAdditionalImgs );
 		}
     	
 	} else {
@@ -320,17 +320,17 @@
                                     <h4 class="accordion-tab"><span class="floor-plan-title-mirror"><?php echo $floor_plan['title']; ?></span> <span class="delete-floor-plan right"><i class="fa fa-trash"></i> <?php esc_html_e('Delete', 'propertyshift'); ?></span></h4>
                                     <div class="floor-plan-item"> 
                                         <div class="floor-plan-left"> 
-                                            <label><?php esc_html_e('Title:', 'propertyshift'); ?> </label> <input class="border floor-plan-title" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][title]" placeholder="<?php esc_html_e('New Floor Plan', 'propertyshift'); ?>" value="<?php echo $floor_plan['title']; ?>" /><br/>
-                                            <label><?php esc_html_e('Size:', 'propertyshift'); ?> </label> <input class="border" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][size]" value="<?php echo $floor_plan['size']; ?>" /><br/>
-                                            <label><?php esc_html_e('Rooms:', 'propertyshift'); ?> </label> <input class="border" type="number" name="ns_property_floor_plans[<?php echo $count; ?>][rooms]" value="<?php echo $floor_plan['rooms']; ?>" /><br/>
-                                            <label><?php esc_html_e('Bathrooms:', 'propertyshift'); ?> </label> <input class="border" type="number" name="ns_property_floor_plans[<?php echo $count; ?>][baths]" value="<?php echo $floor_plan['baths']; ?>" /><br/>
+                                            <label><?php esc_html_e('Title:', 'propertyshift'); ?> </label> <input class="border floor-plan-title" type="text" name="ps_property_floor_plans[<?php echo $count; ?>][title]" placeholder="<?php esc_html_e('New Floor Plan', 'propertyshift'); ?>" value="<?php echo $floor_plan['title']; ?>" /><br/>
+                                            <label><?php esc_html_e('Size:', 'propertyshift'); ?> </label> <input class="border" type="text" name="ps_property_floor_plans[<?php echo $count; ?>][size]" value="<?php echo $floor_plan['size']; ?>" /><br/>
+                                            <label><?php esc_html_e('Rooms:', 'propertyshift'); ?> </label> <input class="border" type="number" name="ps_property_floor_plans[<?php echo $count; ?>][rooms]" value="<?php echo $floor_plan['rooms']; ?>" /><br/>
+                                            <label><?php esc_html_e('Bathrooms:', 'propertyshift'); ?> </label> <input class="border" type="number" name="ps_property_floor_plans[<?php echo $count; ?>][baths]" value="<?php echo $floor_plan['baths']; ?>" /><br/>
                                         </div>
                                         <div class="floor-plan-right">
                                             <label><?php esc_html_e('Description:', 'propertyshift'); ?></label>
-                                            <textarea class="border" name="ns_property_floor_plans[<?php echo $count; ?>][description]"><?php echo $floor_plan['description']; ?></textarea>
+                                            <textarea class="border" name="ps_property_floor_plans[<?php echo $count; ?>][description]"><?php echo $floor_plan['description']; ?></textarea>
                                             <div>
                                                 <label><?php esc_html_e('Image', 'propertyshift'); ?></label>
-                                                <input class="border" type="text" name="ns_property_floor_plans[<?php echo $count; ?>][img]" value="<?php echo $floor_plan['img']; ?>" />
+                                                <input class="border" type="text" name="ps_property_floor_plans[<?php echo $count; ?>][img]" value="<?php echo $floor_plan['img']; ?>" />
                                                 <span><em><?php esc_html_e('Provide the absolute url to a hosted image.', 'propertyshift'); ?></em></span>
                                             </div>
                                         </div>

@@ -93,17 +93,17 @@ jQuery(document).ready(function($) {
                 <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <span class="repeater-title-mirror floor-plan-title-mirror">'+ propertyshift_local_script.new_floor_plan +'</span> <span class="action delete delete-floor-plan"><i class="fa fa-trash"></i> '+ propertyshift_local_script.delete_text +'</span></div> \
     			<div class="ns-accordion-content floor-plan-item"> \
     				<div class="floor-plan-left"> \
-    					<label>'+ propertyshift_local_script.floor_plan_title +' </label> <input class="repeater-title floor-plan-title" type="text" name="ns_property_floor_plans['+count+'][title]" placeholder="'+ propertyshift_local_script.new_floor_plan +'" /><br/> \
-    					<label>'+ propertyshift_local_script.floor_plan_size +' </label> <input type="text" name="ns_property_floor_plans['+count+'][size]" /><br/> \
-    					<label>'+ propertyshift_local_script.floor_plan_rooms +' </label> <input type="number" name="ns_property_floor_plans['+count+'][rooms]" /><br/> \
-    					<label>'+ propertyshift_local_script.floor_plan_bathrooms +' </label> <input type="number" name="ns_property_floor_plans['+count+'][baths]" /><br/> \
+    					<label>'+ propertyshift_local_script.floor_plan_title +' </label> <input class="repeater-title floor-plan-title" type="text" name="ps_property_floor_plans['+count+'][title]" placeholder="'+ propertyshift_local_script.new_floor_plan +'" /><br/> \
+    					<label>'+ propertyshift_local_script.floor_plan_size +' </label> <input type="text" name="ps_property_floor_plans['+count+'][size]" /><br/> \
+    					<label>'+ propertyshift_local_script.floor_plan_rooms +' </label> <input type="number" name="ps_property_floor_plans['+count+'][rooms]" /><br/> \
+    					<label>'+ propertyshift_local_script.floor_plan_bathrooms +' </label> <input type="number" name="ps_property_floor_plans['+count+'][baths]" /><br/> \
     				</div> \
                     <div class="floor-plan-right"> \
                         <label>'+ propertyshift_local_script.floor_plan_description +' </label> \
-    				    <textarea name="ns_property_floor_plans['+count+'][description]"></textarea> \
+    				    <textarea name="ps_property_floor_plans['+count+'][description]"></textarea> \
     				    <div class="floor-plan-img"> \
                             <label>'+ propertyshift_local_script.floor_plan_img +' </label> \
-                            <input type="text" name="ns_property_floor_plans['+count+'][img]" /> \
+                            <input type="text" name="ps_property_floor_plans['+count+'][img]" /> \
                             <input id="_btn" class="ns_upload_image_button" type="button" value="'+ propertyshift_local_script.upload_img +'" /> \
                             <span class="button-secondary remove">'+ propertyshift_local_script.remove_text +'</span> \
                         </div> \
