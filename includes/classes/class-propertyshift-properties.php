@@ -1330,7 +1330,7 @@ class PropertyShift_Properties {
 		    //hook in for other add-ons
 	    	do_action('propertyshift_save_property_submit', $post_ID);
 
-			if($members_submit_property_approval == 'true') {
+			if($members_submit_property_approval == 'pending') {
 		        $output['success'] = esc_html__('Your property,', 'propertyshift') .' <b>'. $title .',</b> '. esc_html__('was submitted for review!', 'propertyshift');
 		    } else {
 		        $output['success'] = esc_html__('Your property,', 'propertyshift') .' <b>'. $title .',</b> '. esc_html__('was published!', 'propertyshift');
