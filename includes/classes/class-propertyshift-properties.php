@@ -785,7 +785,7 @@ class PropertyShift_Properties {
 		$args_total_properties = array(
             'post_type' => 'ps-property',
             'showposts' => -1,
-            'author_name' => $user_id,
+            'author' => $user_id,
             'post_status' => $type 
         );
 
@@ -1386,18 +1386,23 @@ class PropertyShift_Properties {
 	/**
 	 *	Add dashboard stats
 	 */
-	public function add_dashboard_stats() { ?>
+	public function add_dashboard_stats() { 
+		$current_user = wp_get_current_user();
+		$post_likes_obj = new NS_Basics_Post_Likes();
+		$pending_properties = $this->count_properties('pending', $current_user->ID); 
+		$published_properties = $this->count_properties('publish', $current_user->ID); 
+		$saved_properties = $post_likes_obj->show_user_likes_count($current_user);?>
 		<div class="user-dashboard-widget stat">
-			<span>4</span>
-			<p>Pending Properties</p>
+			<span><?php echo $pending_properties; ?></span>
+			<p><?php esc_html_e( 'Pending Properties', 'propertyshift' ) ?></p>
 		</div>
 		<div class="user-dashboard-widget stat">
-			<span>8</span>
-			<p>Approved Properties</p>
+			<span><?php echo $published_properties; ?></span>
+			<p><?php esc_html_e( 'Published Properties', 'propertyshift' ) ?></p>
 		</div>
 		<div class="user-dashboard-widget stat">
-			<span>4</span>
-			<p>Pending Properties</p>
+			<span><?php echo $saved_properties; ?></span>
+			<p><?php esc_html_e( 'Saved Posts', 'propertyshift' ) ?></p>
 		</div>
 	<?php }
 
