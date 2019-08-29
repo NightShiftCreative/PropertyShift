@@ -19,7 +19,7 @@
                 <td class="my-property-title"><?php esc_html_e('Title', 'propertyshift'); ?></td>
                 <td class="my-property-type"><?php esc_html_e('Type', 'propertyshift'); ?></td>
                 <td class="my-property-status"><?php esc_html_e('Status', 'propertyshift'); ?></td>
-                <td class="my-property-date"><?php esc_html_e('Date Created', 'propertyshift'); ?></td>
+                <td class="my-property-date"><?php esc_html_e('Date', 'propertyshift'); ?></td>
                 <td class="user-dashboard-table-actions my-property-actions"><?php esc_html_e('Actions', 'propertyshift'); ?></td>
             </tr>
 

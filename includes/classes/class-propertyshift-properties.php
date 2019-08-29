@@ -36,7 +36,6 @@ class PropertyShift_Properties {
 		add_action( 'save_post', array( $this, 'save_meta_box'));
 		add_filter( 'ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
 		add_action( 'widgets_init', array( $this, 'properties_sidebar_init'));
-		add_filter( 'ns_core_after_top_bar_member_menu', array( $this, 'add_topbar_links'));
 
 		//add property type tax fields
 		add_action('property_type_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
@@ -59,8 +58,12 @@ class PropertyShift_Properties {
 		add_action('created_property_location', array( $this, 'save_tax_fields'), 10, 2);
 
 		//front-end template hooks
+		add_filter( 'ns_core_after_top_bar_member_menu', array( $this, 'add_topbar_links'));
 		add_action('propertyshift_property_actions', array($this, 'add_property_share'));
 		add_action('propertyshift_property_actions', array($this, 'add_property_favoriting'));
+		add_action('ns_basics_dashboard_stats', array($this, 'add_dashboard_stats'));
+		add_action('ns_basics_after_dashboard', array($this, 'add_dashboard_widgets'));
+		
 	}
 
 	/**
@@ -1379,6 +1382,38 @@ class PropertyShift_Properties {
 			echo $post_likes_obj->get_post_likes_button($post->ID);
 		}
 	}
+
+	/**
+	 *	Add dashboard stats
+	 */
+	public function add_dashboard_stats() { ?>
+		<div class="user-dashboard-widget stat">
+			<span>4</span>
+			<p>Pending Properties</p>
+		</div>
+		<div class="user-dashboard-widget stat">
+			<span>8</span>
+			<p>Approved Properties</p>
+		</div>
+		<div class="user-dashboard-widget stat">
+			<span>4</span>
+			<p>Pending Properties</p>
+		</div>
+		<div class="user-dashboard-widget stat">
+			<span>8</span>
+			<p>Approved Properties</p>
+		</div>
+	<?php }
+
+	/**
+	 *	Add dashboard widgets
+	 */
+	public function add_dashboard_widgets() { ?>
+		<div class="user-dashboard-widget">
+			<h4>Your Recent Properties</h4>
+			<?php echo do_shortcode('[ps_my_properties]'); ?>
+		</div>
+	<?php }
 
 
 	/************************************************************************/
