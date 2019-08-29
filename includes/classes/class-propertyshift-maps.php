@@ -248,7 +248,7 @@ class PropertyShift_Maps {
 		        // MARKERS
 		        /****************************************************************/
 		        <?php
-		        $property_listing_args = array('post_type' => 'ns-property', 'posts_per_page' => -1);
+		        $property_listing_args = array('post_type' => 'ps-property', 'posts_per_page' => -1);
 		        $property_listing_query = new WP_Query( $property_listing_args ); 
 		        $map_count = 1;
 		        ?>

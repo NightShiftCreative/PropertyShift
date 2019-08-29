@@ -30,8 +30,8 @@ class PropertyShift_Properties {
 		add_action( 'init', array( $this, 'property_status_init' ));
 		add_action( 'init', array( $this, 'property_location_init' ));
 		add_action( 'init', array( $this, 'property_amenities_init' ));
-		add_filter( 'manage_edit-ns-property_columns', array( $this, 'add_properties_columns' ));
-		add_action( 'manage_ns-property_posts_custom_column', array( $this, 'manage_properties_columns' ), 10, 2 );
+		add_filter( 'manage_edit-ps-property_columns', array( $this, 'add_properties_columns' ));
+		add_action( 'manage_ps-property_posts_custom_column', array( $this, 'manage_properties_columns' ), 10, 2 );
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_box'));
 		add_action( 'save_post', array( $this, 'save_meta_box'));
 		add_filter( 'ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
@@ -86,7 +86,7 @@ class PropertyShift_Properties {
 	 */
 	public function add_custom_post_type() {
 		$properties_slug = $this->global_settings['ps_property_detail_slug'];
-	    register_post_type( 'ns-property',
+	    register_post_type( 'ps-property',
 	        array(
 	            'labels' => array(
 	                'name' => __( 'Properties', 'propertyshift' ),
@@ -109,7 +109,7 @@ class PropertyShift_Properties {
 	 *	Register meta box
 	 */
 	public function register_meta_box() {
-		add_meta_box( 'property-details-meta-box', 'Property Details', array($this, 'output_meta_box'), 'ns-property', 'normal', 'high' );
+		add_meta_box( 'property-details-meta-box', 'Property Details', array($this, 'output_meta_box'), 'ps-property', 'normal', 'high' );
 	}
 
 	/**
@@ -507,7 +507,7 @@ class PropertyShift_Properties {
 	    
 	    register_taxonomy(
 	        'property_type',
-	        'ns-property',
+	        'ps-property',
 	        array(
 	            'label'         => __( 'Property Types', 'propertyshift' ),
 	            'labels'        => $labels,
@@ -540,7 +540,7 @@ class PropertyShift_Properties {
 	    
 	    register_taxonomy(
 	        'property_status',
-	        'ns-property',
+	        'ps-property',
 	        array(
 	            'label'         => __( 'Property Status', 'propertyshift' ),
 	            'labels'        => $labels,
@@ -573,7 +573,7 @@ class PropertyShift_Properties {
 	    
 	    register_taxonomy(
 	        'property_location',
-	        'ns-property',
+	        'ps-property',
 	        array(
 	            'label'         => __( 'Property Location', 'propertyshift' ),
 	            'labels'        => $labels,
@@ -606,7 +606,7 @@ class PropertyShift_Properties {
 	    
 	    register_taxonomy(
 	        'property_amenities',
-	        'ns-property',
+	        'ps-property',
 	        array(
 	            'label'         => __( 'Amenities', 'propertyshift' ),
 	            'labels'        => $labels,
@@ -780,7 +780,7 @@ class PropertyShift_Properties {
 	 */
 	public function count_properties($type, $user_id = null) {
 		$args_total_properties = array(
-            'post_type' => 'ns-property',
+            'post_type' => 'ps-property',
             'showposts' => -1,
             'author_name' => $user_id,
             'post_status' => $type 
@@ -990,7 +990,7 @@ class PropertyShift_Properties {
 	 * @param array $post_types
 	 */
 	public function add_page_settings_meta_box($post_types) {
-		$post_types[] = 'ns-property';
+		$post_types[] = 'ps-property';
     	return $post_types;
 	}
 
@@ -1033,10 +1033,10 @@ class PropertyShift_Properties {
 		);
 
 		// Set default page layout
-		if($_GET['post_type'] == 'ns-property') { $page_settings_init['page_layout']['value'] = 'right sidebar'; }
+		if($_GET['post_type'] == 'ps-property') { $page_settings_init['page_layout']['value'] = 'right sidebar'; }
 			
 		// Set default page sidebar
-		if($_GET['post_type'] == 'ns-property') { $page_settings_init['page_layout_widget_area']['value'] = 'properties_sidebar'; }
+		if($_GET['post_type'] == 'ps-property') { $page_settings_init['page_layout_widget_area']['value'] = 'properties_sidebar'; }
 
 		return $page_settings_init;
 	}
@@ -1215,14 +1215,14 @@ class PropertyShift_Properties {
 				$post_information = array(
 		            'ID' => $edit_property_id,
 		            'post_title' => wp_strip_all_tags( $title ),
-		            'post_type' => 'ns-property'
+		            'post_type' => 'ps-property'
 		        );
 		        wp_update_post( $post_information );
 		        $post_ID = $edit_property_id;
 			} else {
 				$post_information = array(
 			        'post_title' => wp_strip_all_tags( $title ),
-			        'post_type' => 'ns-property',
+			        'post_type' => 'ps-property',
 			        'post_status' => $members_submit_property_approval
 			    );
 			    $post_ID = wp_insert_post( $post_information );

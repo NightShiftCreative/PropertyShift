@@ -41,7 +41,7 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
                         }
 
                         $args = array(
-                            'post_type' => 'ns-property',
+                            'post_type' => 'ps-property',
                             'showposts' => $num,
                             'property_status' => $property_status,
                             'property_location' => $property_location,

@@ -42,7 +42,7 @@ function propertyshift_template_loader_single($template, $post_type, $plugin_pat
 /*-----------------------------------------------------------------------------------*/
 function propertyshift_template_property_single( $content ) {
 	ob_start();
-	propertyshift_template_loader_single('loop_property_single.php', 'ns-property');
+	propertyshift_template_loader_single('loop_property_single.php', 'ps-property');
     $content = $content.ob_get_clean();
     return $content;
 }

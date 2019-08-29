@@ -402,7 +402,7 @@ class PropertyShift_Agents {
 	    }
 	    
 	    $args = array(
-	        'post_type' => 'ns-property',
+	        'post_type' => 'ps-property',
 	        'meta_query' => $meta_query,
 	    );
 

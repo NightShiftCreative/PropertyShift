@@ -11,7 +11,7 @@ $site_title = get_bloginfo('name');
 $agent_form_submit_text = $admin_obj->load_settings(false, 'ps_agent_form_submit_text');
 $agent_form_success = $admin_obj->load_settings(false, 'ps_agent_form_success');
 
-if(is_singular('ns-property')) {
+if(is_singular('ps-property')) {
     $agent_form_message_placeholder = $admin_obj->load_settings(false, 'ps_agent_form_message_placeholder');
 } else {
     $agent_form_message_placeholder =  esc_html__( 'Message', 'propertyshift' );

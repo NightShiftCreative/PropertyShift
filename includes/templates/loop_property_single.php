@@ -464,7 +464,7 @@
                             <?php } ?>
                             <?php 
                                 $args_related_properties = array(
-                                    'post_type' => 'ns-property',
+                                    'post_type' => 'ps-property',
                                     'showposts' => 2,
                                     'tax_query' => array(
                                         'relation' => 'OR',

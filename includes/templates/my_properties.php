@@ -25,7 +25,7 @@
 
             <?php
             $property_listing_args = array(
-                'post_type' => 'ns-property',
+                'post_type' => 'ps-property',
                 'posts_per_page' => 12,
                 'paged' => $paged,
                 'author_name' => $author,
