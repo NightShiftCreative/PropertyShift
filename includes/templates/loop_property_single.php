@@ -59,7 +59,7 @@
 
 	<div class="property-single">
 
-        <?php do_action('ns_real_estate_before_property_detail', $property_settings); ?>
+        <?php do_action('propertyshift_before_property_detail', $property_settings); ?>
 	
 		<?php if(!empty($property_detail_items)) {
             foreach($property_detail_items as $value) { ?>
@@ -186,7 +186,7 @@
                                 <?php if(!empty($property_status)) { ?><div class="property-detail-item"><?php esc_html_e('Status', 'propertyshift'); ?>:<span><?php echo wp_kses_post($property_status); ?></span></div><?php } ?>
                                 <?php if(!empty($property_type)) { ?><div class="property-detail-item"><?php esc_html_e('Type', 'propertyshift'); ?>:<span><?php echo wp_kses_post($property_type); ?></span></div><?php } ?>
                                 <div class="property-detail-item publish-date"><?php esc_html_e('Posted On', 'propertyshift'); ?>:<span><?php echo get_the_date(); ?></span></div>
-                                <?php do_action('ns_real_estate_property_details_widget', $postID); ?>
+                                <?php do_action('propertyshift_property_details_widget', $postID); ?>
                                 <div class="clear"></div>
                             </div>
 
@@ -409,7 +409,7 @@
                                                 <?php if(!empty($agent_email)) { ?><p><span><?php echo esc_attr($agent_email); ?></span><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php esc_html_e('Email', 'propertyshift'); ?>:</p><?php } ?>
                                                 <?php if(!empty($agent_mobile_phone)) { ?><p><span><?php echo esc_attr($agent_mobile_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php esc_html_e('Mobile', 'propertyshift'); ?>:</p><?php } ?>
                                                 <?php if(!empty($agent_office_phone)) { ?><p><span><?php echo esc_attr($agent_office_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php esc_html_e('Office', 'propertyshift'); ?>:</p><?php } ?>
-                                                <?php do_action('ns_real_estate_after_agent_details', $post->ID); ?>
+                                                <?php do_action('propertyshift_after_agent_details', $post->ID); ?>
 
                                                 <?php if(!empty($agent_fb) || !empty($agent_twitter) || !empty($agent_google) || !empty($agent_linkedin) || !empty($agent_youtube) || !empty($agent_instagram)) { ?>
                                                 <ul class="social-icons circle clean-list">
@@ -507,13 +507,13 @@
                         <!--******************************************************-->
                         <!-- ADD-ONS -->
                         <!--******************************************************-->
-                        <?php do_action('ns_real_estate_property_detail_items', $property_settings, $value); ?>
+                        <?php do_action('propertyshift_property_detail_items', $property_settings, $value); ?>
                     <?php } ?>
 
                 <?php } ?>
             <?php } //end foreach ?>
         <?php } //end if ?>
 
-        <?php do_action('ns_real_estate_after_property_detail', $property_settings); ?>
+        <?php do_action('propertyshift_after_property_detail', $property_settings); ?>
 
 	</div><!-- end property single -->

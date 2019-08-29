@@ -3,7 +3,7 @@
  * Property Filter Widget Class
  */
 
-class ns_real_estate_property_filter_widget extends WP_Widget {
+class propertyshift_property_filter_widget extends WP_Widget {
 
     /** constructor */
     function __construct() {
@@ -13,7 +13,7 @@ class ns_real_estate_property_filter_widget extends WP_Widget {
           'description'=> esc_html__('Display property filter.', 'propertyshift'),
           'panels_groups' => array('propertyshift')
         );
-		parent::__construct('ns_real_estate_property_filter_widget', esc_html__('(Nightshift) Property Filter', 'propertyshift'), $widget_options);
+		parent::__construct('propertyshift_property_filter_widget', esc_html__('(PropertyShift) Property Filter', 'propertyshift'), $widget_options);
     }
 
     /** @see WP_Widget::widget */
@@ -88,6 +88,6 @@ class ns_real_estate_property_filter_widget extends WP_Widget {
     <?php }
 
 } // class utopian_recent_posts
-add_action('widgets_init', create_function('', 'return register_widget("ns_real_estate_property_filter_widget");'));
+add_action('widgets_init', create_function('', 'return register_widget("propertyshift_property_filter_widget");'));
 
 ?>

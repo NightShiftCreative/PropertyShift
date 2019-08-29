@@ -4,8 +4,8 @@
 /** Shortcodes are located in /includes/shortcodes.php
 /*****************************************************************/ 
 
-add_action('vc_before_init', 'ns_real_estate_vc_map');
-function ns_real_estate_vc_map() {
+add_action('vc_before_init', 'propertyshift_vc_map');
+function propertyshift_vc_map() {
 
 	/** GET GLOBAL SETTINGS **/
 	$num_properties_per_page = esc_attr(get_option('ps_num_properties_per_page', 12));
@@ -18,7 +18,7 @@ function ns_real_estate_vc_map() {
 		'description' => esc_html__( 'Display your property listings', 'propertyshift' ),
 		'icon' => PROPERTYSHIFT_DIR.'/images/icon-real-estate.svg',
 		'class' => '',
-		'category' => 'NS Real Estate',
+		'category' => 'PropertyShift',
 		'params' => array(
 			array(
 				'type' => 'textfield',
@@ -82,7 +82,7 @@ function ns_real_estate_vc_map() {
 			'description' => esc_html__( 'Display property taxonomy terms', 'propertyshift' ),
 			'icon' => PROPERTYSHIFT_DIR.'/images/icon-real-estate.svg',
 			'class' => '',
-			'category' => 'NS Real Estate',
+			'category' => 'PropertyShift',
 			'params' => array(
 				array(
 					'type' => 'dropdown',
@@ -152,7 +152,7 @@ function ns_real_estate_vc_map() {
 		'description' => esc_html__( 'Allow users to submit a property', 'propertyshift' ),
 		'icon' => PROPERTYSHIFT_DIR.'/images/icon-real-estate.svg',
 		'class' => '',
-		'category' => 'NS Real Estate',
+		'category' => 'PropertyShift',
 	));
 
 	/** MY PROPERTIES **/
@@ -162,7 +162,7 @@ function ns_real_estate_vc_map() {
 		'description' => esc_html__( 'Display the current users properties', 'propertyshift' ),
 		'icon' => PROPERTYSHIFT_DIR.'/images/icon-real-estate.svg',
 		'class' => '',
-		'category' => 'NS Real Estate',
+		'category' => 'PropertyShift',
 	));
 
 	/** PROPERTY FILTER **/
@@ -172,7 +172,7 @@ function ns_real_estate_vc_map() {
 		'description' => esc_html__( 'Display a property search filter', 'propertyshift' ),
 		'icon' => PROPERTYSHIFT_DIR.'/images/icon-real-estate.svg',
 		'class' => '',
-		'category' => 'NS Real Estate',
+		'category' => 'PropertyShift',
 		'params' => array(
 			array(
 				'type' => 'textfield',
@@ -190,7 +190,7 @@ function ns_real_estate_vc_map() {
 		'description' => esc_html__( 'Display a list of agents', 'propertyshift' ),
 		'icon' => PROPERTYSHIFT_DIR.'/images/icon-real-estate.svg',
 		'class' => '',
-		'category' => 'NS Real Estate',
+		'category' => 'PropertyShift',
 		'params' => array(
 			array(
 				'type' => 'textfield',

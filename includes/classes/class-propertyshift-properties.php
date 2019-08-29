@@ -488,7 +488,7 @@ class PropertyShift_Properties {
 	 *	Register property type taxonomy
 	 */
 	public function property_type_init() {
-		$property_type_tax_slug = $this->global_settings['ns_property_type_tax_slug'];
+		$property_type_tax_slug = $this->global_settings['ps_property_type_tax_slug'];
 	    $labels = array(
 	    'name'                          => __( 'Property Type', 'propertyshift' ),
 	    'singular_name'                 => __( 'Property Type', 'propertyshift' ),
@@ -521,7 +521,7 @@ class PropertyShift_Properties {
 	 *	Register property status taxonomy
 	 */
 	public function property_status_init() {
-		$property_status_tax_slug = $this->global_settings['ns_property_status_tax_slug'];
+		$property_status_tax_slug = $this->global_settings['ps_property_status_tax_slug'];
 	    $labels = array(
 	    'name'                          => __( 'Property Status', 'propertyshift' ),
 	    'singular_name'                 => __( 'Property Status', 'propertyshift' ),
@@ -554,7 +554,7 @@ class PropertyShift_Properties {
 	 *	Register property location taxonomy
 	 */
 	public function property_location_init() {
-		$property_location_tax_slug = $this->global_settings['ns_property_location_tax_slug'];
+		$property_location_tax_slug = $this->global_settings['ps_property_location_tax_slug'];
 	    $labels = array(
 	    'name'                          => __( 'Property Location', 'propertyshift' ),
 	    'singular_name'                 => __( 'Property Location', 'propertyshift' ),
@@ -587,7 +587,7 @@ class PropertyShift_Properties {
 	 *	Register property amenities taxonomy
 	 */
 	public function property_amenities_init() {
-		$property_amenities_tax_slug = $this->global_settings['ns_property_amenities_tax_slug'];
+		$property_amenities_tax_slug = $this->global_settings['ps_property_amenities_tax_slug'];
 	    $labels = array(
 	    'name'                          => __( 'Amenities', 'propertyshift' ),
 	    'singular_name'                 => __( 'Amenity', 'propertyshift' ),

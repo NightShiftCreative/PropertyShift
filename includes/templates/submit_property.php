@@ -305,7 +305,7 @@
 				</div><!-- end row -->
 			</div><!-- end general info -->
 
-            <?php do_action('ns_real_estate_after_property_submit_general', $edit_property_settings); ?>
+            <?php do_action('propertyshift_after_property_submit_general', $edit_property_settings); ?>
 
             <?php if(ns_basics_in_array_key('floor_plans', $members_submit_property_fields )) { ?>
             <div class="submit-property-section" id="property-floor-plans">

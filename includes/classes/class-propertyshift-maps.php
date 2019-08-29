@@ -229,7 +229,7 @@ class PropertyShift_Maps {
 
     	<div class="module no-padding ns-properties-map">
     		<div id="map-canvas"></div>
-    		<?php do_action('ns_real_estate_after_properties_map', $values); ?>
+    		<?php do_action('propertyshift_after_properties_map', $values); ?>
     		<script>
 		        "use strict";
 

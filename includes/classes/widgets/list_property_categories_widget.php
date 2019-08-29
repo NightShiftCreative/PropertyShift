@@ -2,7 +2,7 @@
 /**
  * List Property Taxonomies Widget Class
  */
-class ns_real_estate_list_property_categories_widget extends WP_Widget {
+class propertyshift_list_property_categories_widget extends WP_Widget {
 
     /** constructor */
     function __construct() {
@@ -12,7 +12,7 @@ class ns_real_estate_list_property_categories_widget extends WP_Widget {
           'description'=> esc_html__('Display a list of property categories.', 'propertyshift'),
           'panels_groups' => array('propertyshift')
         );
-        parent::__construct('ns_real_estate_list_property_categories_widget', esc_html__('(Nightshift) List Property Categories', 'propertyshift'), $widget_options);
+        parent::__construct('propertyshift_list_property_categories_widget', esc_html__('(PropertyShift) List Property Categories', 'propertyshift'), $widget_options);
     }
 
     /** @see WP_Widget::widget */
@@ -162,6 +162,6 @@ class ns_real_estate_list_property_categories_widget extends WP_Widget {
     }
 
 } // class utopian_recent_posts
-add_action('widgets_init', create_function('', 'return register_widget("ns_real_estate_list_property_categories_widget");'));
+add_action('widgets_init', create_function('', 'return register_widget("propertyshift_list_property_categories_widget");'));
 
 ?>

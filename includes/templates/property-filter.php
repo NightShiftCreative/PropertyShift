@@ -225,7 +225,7 @@ if (!empty($filter_fields)) { ?>
 		                            <div class="clear"></div>
 		                        <?php } ?>
 
-		                        <?php do_action('ns_real_estate_after_filter_fields', $value, $filter_settings); ?>
+		                        <?php do_action('propertyshift_after_filter_fields', $value, $filter_settings); ?>
 
                         	</div>
                         <?php }
@@ -370,7 +370,7 @@ if (!empty($filter_fields)) { ?>
 	                                <div class="clear"></div>
 	                            <?php } ?>
 
-	                            <?php do_action('ns_real_estate_after_filter_fields', $value, $filter_settings); ?>
+	                            <?php do_action('propertyshift_after_filter_fields', $value, $filter_settings); ?>
 	                        </div>
 	                        <?php } ?>
 

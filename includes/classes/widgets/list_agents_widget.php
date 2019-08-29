@@ -2,7 +2,7 @@
 /**
  * List Agents Widget Class
  */
-class ns_real_estate_list_agents_widget extends WP_Widget {
+class propertyshift_list_agents_widget extends WP_Widget {
 
     /** constructor */
     function __construct() {
@@ -12,7 +12,7 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
           'description'=> esc_html__('Display a list of agents.', 'propertyshift'),
           'panels_groups' => array('propertyshift')
         );
-		parent::__construct('ns_real_estate_list_agents_widget', esc_html__('(Nightshift) List Agents', 'propertyshift'), $widget_options);
+		parent::__construct('propertyshift_list_agents_widget', esc_html__('(PropertyShift) List Agents', 'propertyshift'), $widget_options);
     }
 
     /** @see WP_Widget::widget */
@@ -67,8 +67,8 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
                         endif; 
 
                         if($filter == 'num_properties') {
-                            function ns_real_estate_sortByCount($a, $b) { return $b['count'] - $a['count']; }
-                            usort($agent_counts, 'ns_real_estate_sortByCount');
+                            function propertyshift_sortByCount($a, $b) { return $b['count'] - $a['count']; }
+                            usort($agent_counts, 'propertyshift_sortByCount');
                         } 
 
                         $count = 1;
@@ -147,6 +147,6 @@ class ns_real_estate_list_agents_widget extends WP_Widget {
     }
 
 } // class utopian_recent_posts
-add_action('widgets_init', create_function('', 'return register_widget("ns_real_estate_list_agents_widget");'));
+add_action('widgets_init', create_function('', 'return register_widget("propertyshift_list_agents_widget");'));
 
 ?>
