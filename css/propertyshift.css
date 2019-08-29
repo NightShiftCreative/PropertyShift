@@ -23,17 +23,17 @@
 .note { font-style:italic; font-size:13px; color:#727272; }
 
 /** FORM ELEMENTS **/
-.ns-real-estate input, .ns-real-estate textarea, .ns-real-estate select {
+.propertyshift input, .propertyshift textarea, .propertyshift select {
     width:100%;
     padding:14px;
     margin-bottom:20px;
 } 
-.ns-real-estate textarea,
-.ns-real-estate select[multiple] { height:140px; }
+.propertyshift textarea,
+.propertyshift select[multiple] { height:140px; }
 
-.ns-real-estate input[type="checkbox"], .ns-real-estate input[type="radio"] { width:auto; margin-right:5px; }
+.propertyshift input[type="checkbox"], .propertyshift input[type="radio"] { width:auto; margin-right:5px; }
 
-.ns-real-estate .form-loader { display:none; }
+.propertyshift .form-loader { display:none; }
 
 /** ALERT BOXES **/
 .alert-box {
@@ -195,7 +195,7 @@
 .filter-minimal .hide-advanced .advanced-options-toggle { display:none; }
 .filter-minimal .hide-advanced button[type="submit"] { width:100%; float:none; }
 
-.ns-real-estate .button.filter-minimal-mobile-toggle,
+.propertyshift .button.filter-minimal-mobile-toggle,
 .filter-minimal-mobile-toggle { display:none; }
 
 /*********************************************/
@@ -313,7 +313,7 @@
     font-size:15px;
 }
 
-.ns-real-estate .gallery-images > a {
+.propertyshift .gallery-images > a {
 	width:24%;
 	display:block;
 	float:left;

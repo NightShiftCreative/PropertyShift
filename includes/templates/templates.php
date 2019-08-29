@@ -6,7 +6,7 @@
 function propertyshift_template_loader($template, $template_args = array(), $wrapper = true, $plugin_path = null) {
 	$theme_file = locate_template(array( 'propertyshift/' . $template));
 
-	if($wrapper == true) { echo '<div class="ns-real-estate">'; }
+	if($wrapper == true) { echo '<div class="propertyshift">'; }
 	if(empty($theme_file)) {
 		if(empty($plugin_path)) { $plugin_path = plugin_dir_path( __FILE__ ); }
 		include( $plugin_path . $template);
@@ -26,7 +26,7 @@ function propertyshift_template_loader_single($template, $post_type, $plugin_pat
 
 	if(is_singular($post_type)) {
 		if(empty($theme_file)) {
-			echo '<div class="ns-real-estate">'; 
+			echo '<div class="propertyshift">'; 
 			if(empty($plugin_path)) { $plugin_path = plugin_dir_path( __FILE__ ); }
 	    	include( $plugin_path . $template);
 	    	echo '</div>';
