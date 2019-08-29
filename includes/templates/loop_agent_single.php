@@ -53,7 +53,7 @@
                     <!--******************************************************-->
                     <!-- OVERVIEW -->
                     <!--******************************************************-->
-                	<div class="agent-single-item ns-single-item widget agent-<?php echo esc_attr($slug); ?>">
+                	<div class="agent-single-item ps-single-item widget agent-<?php echo esc_attr($slug); ?>">
 
                         <a href="<?php the_permalink(); ?>" class="agent-img">
                             <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
@@ -100,7 +100,7 @@
                     <!--******************************************************-->
                     <!-- DESCRIPTION -->
                     <!--******************************************************-->
-                		<div class="agent-single-item ns-single-item content widget agent-<?php echo esc_attr($slug); ?>">
+                		<div class="agent-single-item ps-single-item content widget agent-<?php echo esc_attr($slug); ?>">
                 			<?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
@@ -116,7 +116,7 @@
                     <!-- CONTACT -->
                     <!--******************************************************-->
                         <a class="anchor" name="anchor-agent-contact"></a>
-                		<div class="agent-single-item ns-single-item widget agent-<?php echo esc_attr($slug); ?>">
+                		<div class="agent-single-item ps-single-item widget agent-<?php echo esc_attr($slug); ?>">
                 			<?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
@@ -139,7 +139,7 @@
                     <!-- AGENT PROPERTIES -->
                     <!--******************************************************-->
                         <a class="anchor" name="anchor-agent-properties"></a>
-                		<div class="agent-single-item ns-single-item widget agent-<?php echo esc_attr($slug); ?>">
+                		<div class="agent-single-item ps-single-item widget agent-<?php echo esc_attr($slug); ?>">
                 		    <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
