@@ -1174,8 +1174,8 @@ class PropertyShift_Properties {
 	public function insert_property_post($edit_property_id = null) {
 		
 		$admin_obj = new PropertyShift_Admin();
-		$members_submit_property_approval = $admin_obj->load_settings(false, 'ns_members_submit_property_approval');
-		if($members_submit_property_approval == 'true') {$members_submit_property_approval = 'pending';} else {$members_submit_property_approval = 'publish'; }
+		$members_submit_property_approval = $admin_obj->load_settings(false, 'ps_members_submit_property_approval');
+		if($members_submit_property_approval == 'true') {$members_submit_property_approval = 'pending'; } else { $members_submit_property_approval = 'publish'; }
 
 		$output = array();
 		$errors = array();
@@ -1351,8 +1351,8 @@ class PropertyShift_Properties {
 	public function add_topbar_links() {
 		$icon_set = 'fa';
 		if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
-		$members_my_properties_page = $this->global_settings['ns_members_my_properties_page'];
-		$members_submit_property_page = $this->global_settings['ns_members_submit_property_page']; ?>
+		$members_my_properties_page = $this->global_settings['ps_members_my_properties_page'];
+		$members_submit_property_page = $this->global_settings['ps_members_submit_property_page']; ?>
 		<?php if(!empty($members_my_properties_page)) { ?><li><a href="<?php echo $members_my_properties_page; ?>"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php esc_html_e( 'My Properties', 'propertyshift' ); ?></a></li><?php } ?>
 		<?php if(!empty($members_submit_property_page)) { ?><li><a href="<?php echo $members_submit_property_page; ?>"><?php echo ns_core_get_icon($icon_set, 'plus'); ?><?php esc_html_e( 'Submit Property', 'propertyshift' ); ?></a></li><?php } ?>
 	<?php }
@@ -1361,7 +1361,7 @@ class PropertyShift_Properties {
 	 *	Add property sharing
 	 */
 	public function add_property_share() {
-		$property_listing_display_share = esc_attr(get_option('ns_property_listing_display_share', 'true'));
+		$property_listing_display_share = esc_attr(get_option('ps_property_listing_display_share', 'true'));
 		if(class_exists('NS_Basics_Post_Sharing') && $property_listing_display_share == 'true') {
 			$post_share_obj = new NS_Basics_Post_Sharing();
 			echo $post_share_obj->build_post_sharing_links();
@@ -1372,7 +1372,7 @@ class PropertyShift_Properties {
 	 *	Add property favoriting
 	 */
 	public function add_property_favoriting() {
-		$property_listing_display_favorite = esc_attr(get_option('ns_property_listing_display_favorite', 'true'));
+		$property_listing_display_favorite = esc_attr(get_option('ps_property_listing_display_favorite', 'true'));
 		if(class_exists('NS_Basics_Post_Likes') && $property_listing_display_favorite == 'true') {
 			$post_likes_obj = new NS_Basics_Post_Likes();
 			global $post;
