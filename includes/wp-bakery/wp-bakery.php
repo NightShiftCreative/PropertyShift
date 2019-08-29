@@ -9,7 +9,7 @@ function propertyshift_vc_map() {
 
 	/** GET GLOBAL SETTINGS **/
 	$num_properties_per_page = esc_attr(get_option('ps_num_properties_per_page', 12));
-	$num_agents_per_page = esc_attr(get_option('ns_num_agents_per_page', 12));
+	$num_agents_per_page = esc_attr(get_option('ps_num_agents_per_page', 12));
 
 	/** LIST PROPERTIES **/
 	vc_map(array(

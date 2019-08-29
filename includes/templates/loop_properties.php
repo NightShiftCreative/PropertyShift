@@ -1,11 +1,11 @@
 <?php
     //GET GLOBAL SETTINGS
     global $post;
-    $properties_page = get_option('ns_properties_page');
-    $properties_tax_layout = get_option('ns_properties_default_layout', 'grid');
+    $properties_page = get_option('ps_properties_page');
+    $properties_tax_layout = get_option('ps_properties_default_layout', 'grid');
     $num_properties_per_page = esc_attr(get_option('ps_num_properties_per_page', 12));
     $page_template = get_post_meta($post->ID, '_wp_page_template', true);
-    $property_listing_header_display = esc_attr(get_option('ns_property_listing_header_display', 'true'));
+    $property_listing_header_display = esc_attr(get_option('ps_property_listing_header_display', 'true'));
 
     //GET CUSTOM ARGS
     if(isset($template_args)) {
@@ -93,7 +93,7 @@
 
     //DETERMINE HOW POSTS ARE SORTED
     $meta_key = '';
-    $order_by = get_option('ns_property_listing_default_sortby', 'date_desc');
+    $order_by = get_option('ps_property_listing_default_sortby', 'date_desc');
     if(isset($_GET['sort_by'])) { $order_by = $_GET['sort_by']; }
 
     if ($order_by == 'date_desc') {

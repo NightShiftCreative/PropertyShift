@@ -1,7 +1,7 @@
 <?php
     //GET GLOBAL SETTINGS
 	global $post;
-    $num_agents_per_page = esc_attr(get_option('ns_num_agents_per_page', 12));
+    $num_agents_per_page = esc_attr(get_option('ps_num_agents_per_page', 12));
 
     //GET CUSTOM ARGS
     if(isset($template_args)) {
