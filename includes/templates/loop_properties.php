@@ -176,20 +176,6 @@
             'type'    => 'numeric',
             'compare' => $areaCompare,
         );
-
-        //custom fields query
-        $custom_fields = get_option('ns_property_custom_fields');
-        if(!empty($custom_fields)) {
-            foreach($custom_fields as $field) {
-                $custom_field_key = strtolower(str_replace(' ', '_', $field['name'])); 
-                if(!empty($_GET[$custom_field_key])) {
-                    $meta_query[] = array(
-                        'key'     => 'ns_property_custom_field_'.$field['id'],
-                        'value'   => $_GET[$custom_field_key]
-                    );
-                }
-            }
-        }
     }
 
 	$property_listing_args = array(
@@ -219,6 +205,7 @@
         }
     }
 
+    $property_listing_args = apply_filters('propertyshift_pre_get_properties', $property_listing_args);
 	$property_listing_query = new WP_Query( $property_listing_args );
 ?>
 
