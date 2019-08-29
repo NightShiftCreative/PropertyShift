@@ -280,9 +280,7 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
     } 
     
     if($show_pagination === true) {  ?>
-	<div class="page-list">
-        <?php echo paginate_links( $args ); ?> 
-    </div>
+	   <div class="page-list"><?php echo paginate_links( $args ); ?></div>
     <?php } ?>
 	
 <?php else: ?>

@@ -1,4 +1,5 @@
 <?php
+    //GET GLOBAL SETTINGS
     global $post;
     $admin_obj = new PropertyShift_Admin();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
@@ -7,6 +8,12 @@
     $current_user = wp_get_current_user();
     $author = $current_user->user_login;
     $members_submit_property_page = $admin_obj->load_settings(false, 'ps_members_submit_property_page');
+
+    //GET CUSTOM ARGS
+    if(isset($template_args)) {
+        $custom_args = $template_args['custom_args'];
+        $custom_pagination = $template_args['custom_pagination'];
+    }
 ?>
 
 <!-- start user my properties -->
@@ -31,6 +38,20 @@
                 'author_name' => $author,
                 'post_status' => array( 'pending', 'publish' )
             );
+
+            //OVERWRITE QUERY WITH CUSTOM ARGS
+            if(isset($custom_args)) {
+                foreach($property_listing_args as $key=>$value) {
+                    if(array_key_exists($key, $custom_args)) { 
+                        if(!empty($custom_args[$key])) { $property_listing_args[$key] = $custom_args[$key]; }
+                    } 
+                }
+                foreach($custom_args as $key=>$value) {
+                    if(!array_key_exists($key, $property_listing_args)) { 
+                        if(!empty($custom_args[$key])) { $property_listing_args[$key] = $custom_args[$key]; }
+                    } 
+                }
+            }
 
             $property_listing_query = new WP_Query( $property_listing_args );
 
@@ -84,8 +105,19 @@
                 'before_page_number' => '',
                 'after_page_number' => ''
             );
-            ?>
-            <div class="page-list"><?php echo paginate_links( $args ); ?> </div>
+            
+            //DETERMINE IF PAGINATION IS NEEDED
+            if(isset($custom_pagination)) { 
+                if ($custom_pagination === false || $custom_pagination === 'false') { $custom_pagination = false; } else { $custom_pagination = true; }
+                $show_pagination = $custom_pagination; 
+            } else { 
+                $show_pagination = true; 
+            }
+
+            if($show_pagination === true) { ?>
+                <div class="page-list"><?php echo paginate_links( $args ); ?> </div>
+            <?php } ?>
+
         <?php else: ?>
             </table>
             <p><?php esc_html_e('You have not posted any properties.', 'propertyshift'); ?></p>

@@ -1399,19 +1399,17 @@ class PropertyShift_Properties {
 			<span>4</span>
 			<p>Pending Properties</p>
 		</div>
-		<div class="user-dashboard-widget stat">
-			<span>8</span>
-			<p>Approved Properties</p>
-		</div>
 	<?php }
 
 	/**
 	 *	Add dashboard widgets
 	 */
-	public function add_dashboard_widgets() { ?>
+	public function add_dashboard_widgets() { 
+		$members_my_properties_page = $this->global_settings['ps_members_my_properties_page']; ?>
 		<div class="user-dashboard-widget">
-			<h4>Your Recent Properties</h4>
-			<?php echo do_shortcode('[ps_my_properties]'); ?>
+			<h4><?php esc_html_e( 'Your Recent Properties', 'propertyshift' ) ?></h4>
+			<?php echo do_shortcode('[ps_my_properties show_posts=3 show_pagination="false"]'); ?>
+			<?php if(!empty($members_my_properties_page)) { ?><a href="<?php echo $members_my_properties_page; ?>" class="button small">View All Properties</a><?php } ?>
 		</div>
 	<?php }
 

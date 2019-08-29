@@ -210,12 +210,16 @@ class PropertyShift_Shortcodes {
 		$atts = shortcode_atts(
 	        array (
 	        'show_posts' => '',
+	        'show_pagination' => true,
 	    ), $atts);
 
 	    ob_start();
 
 	    //Set template args
+	    $args = array('posts_per_page' => $atts['show_posts']);
 	    $template_args = array();
+	    $template_args['custom_args'] = $args;
+	    $template_args['custom_pagination'] = $atts['show_pagination'];
 	        
 	    //Load template
 	    propertyshift_template_loader('my_properties.php', $template_args);
