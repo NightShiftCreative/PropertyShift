@@ -69,7 +69,7 @@ class PropertyShift_Shortcodes {
 	    $meta_query_featured = array();
 	    if ($atts['featured'] != 'false') {
 	        $meta_query_featured[] = array(
-	            'key' => 'ns_property_featured',
+	            'key' => 'ps_property_featured',
 	            'value'   => 'true'
 	        );
 	    }

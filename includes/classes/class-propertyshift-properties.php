@@ -131,7 +131,7 @@ class PropertyShift_Properties {
 				'group' => 'general',
 				'title' => esc_html__('Property Code', 'propertyshift'),
 				'description' => esc_html__('An optional string to used to identify properties', 'propertyshift'),
-				'name' => 'ns_property_code',
+				'name' => 'ps_property_code',
 				'type' => 'text',
 				'value' => $post_id,
 				'order' => 0,
@@ -139,7 +139,7 @@ class PropertyShift_Properties {
 			'featured' => array(
 				'group' => 'general',
 				'title' => esc_html__('Featured Property', 'propertyshift'),
-				'name' => 'ns_property_featured',
+				'name' => 'ps_property_featured',
 				'type' => 'checkbox',
 				'value' => 'false',
 				'order' => 1,
@@ -147,7 +147,7 @@ class PropertyShift_Properties {
 			'street_address' => array(
 				'group' => 'general',
 				'title' => esc_html__('Street Address', 'propertyshift'),
-				'name' => 'ns_property_address',
+				'name' => 'ps_property_address',
 				'description' => esc_html__('Provide the address for the property', 'propertyshift'),
 				'type' => 'text',
 				'order' => 2,
@@ -155,7 +155,7 @@ class PropertyShift_Properties {
 			'price' => array(
 				'group' => 'general',
 				'title' => esc_html__('Price', 'propertyshift'),
-				'name' => 'ns_property_price',
+				'name' => 'ps_property_price',
 				'description' => esc_html__('Use only numbers. Do not include commas or dollar sign (ex.- 250000)', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
@@ -164,7 +164,7 @@ class PropertyShift_Properties {
 			'price_postfix' => array(
 				'group' => 'general',
 				'title' => esc_html__('Price Postfix', 'propertyshift'),
-				'name' => 'ns_property_price_postfix',
+				'name' => 'ps_property_price_postfix',
 				'description' => esc_html__('Provide the text displayed after the price (ex.- Per Month)', 'propertyshift'),
 				'type' => 'text',
 				'order' => 4,
@@ -1012,7 +1012,7 @@ class PropertyShift_Properties {
 			'group' => 'banner',
 			'title' => esc_html__('Use Custom Property Filter Settings', 'propertyshift'),
 			'name' => 'ns_banner_property_filter_override',
-			'description' => esc_html__('The global property filter settings can be configured in NS Real Estate > Settings', 'propertyshift'),
+			'description' => esc_html__('The global property filter settings can be configured in PropertyShift > Settings', 'propertyshift'),
 			'value' => 'false',
 			'type' => 'switch',
 			'order' => 14,
@@ -1258,13 +1258,13 @@ class PropertyShift_Properties {
 		    //Set Post Meta
 		    $allowed = '';
 		    if( isset( $_POST['street_address'] ) )
-		    	update_post_meta( $post_ID, 'ns_property_address', wp_kses( $_POST['street_address'], $allowed ) );
+		    	update_post_meta( $post_ID, 'ps_property_address', wp_kses( $_POST['street_address'], $allowed ) );
 
 		    if( isset( $_POST['price'] ) )
-		    	update_post_meta( $post_ID, 'ns_property_price', wp_kses( $_POST['price'], $allowed ) );
+		    	update_post_meta( $post_ID, 'ps_property_price', wp_kses( $_POST['price'], $allowed ) );
 
 		    if( isset( $_POST['price_post'] ) )
-		    	update_post_meta( $post_ID, 'ns_property_price_postfix', wp_kses( $_POST['price_post'], $allowed ) );
+		    	update_post_meta( $post_ID, 'ps_property_price_postfix', wp_kses( $_POST['price_post'], $allowed ) );
 
 		    if( isset( $_POST['beds'] ) )
 		    	update_post_meta( $post_ID, 'ns_property_bedrooms', wp_kses( $_POST['beds'], $allowed ) );

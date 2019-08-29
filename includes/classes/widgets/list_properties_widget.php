@@ -35,7 +35,7 @@ class ns_real_estate_list_properties_widget extends WP_Widget {
                         $meta_query_featured = array();
                         if ($filter == 'featured') {
                             $meta_query_featured[] = array(
-                                'key' => 'ns_property_featured',
+                                'key' => 'ps_property_featured',
                                 'value'   => 'true'
                             );
                         }

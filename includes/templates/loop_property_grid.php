@@ -24,7 +24,7 @@
 
 <div <?php post_class(); ?>>
 
-	<?php do_action('ns_real_estate_before_property_card', $property_settings); ?>
+	<?php do_action('propertyshift_before_property_card', $property_settings); ?>
 
 	<div class="property-img">
 
@@ -80,6 +80,6 @@
         </table>
 	</div>
 
-	<?php do_action('ns_real_estate_after_property_card', $property_settings); ?>
+	<?php do_action('propertyshift_after_property_card', $property_settings); ?>
 
 </div>

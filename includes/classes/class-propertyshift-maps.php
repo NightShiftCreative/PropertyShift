@@ -264,8 +264,8 @@ class PropertyShift_Maps {
 		                $values = get_post_custom( $post->ID );
 		                $latitude = isset( $values['ns_property_latitude'] ) ? esc_attr( $values['ns_property_latitude'][0] ) : '';
 		                $longitude = isset( $values['ns_property_longitude'] ) ? esc_attr( $values['ns_property_longitude'][0] ) : '';
-		                $price = isset( $values['ns_property_price'] ) ? esc_attr( $values['ns_property_price'][0] ) : '';
-		                $price_postfix = isset( $values['ns_property_price_postfix'] ) ? esc_attr( $values['ns_property_price_postfix'][0] ) : '';
+		                $price = isset( $values['ps_property_price'] ) ? esc_attr( $values['ps_property_price'][0] ) : '';
+		                $price_postfix = isset( $values['ps_property_price_postfix'] ) ? esc_attr( $values['ps_property_price_postfix'][0] ) : '';
 		            ?>
 
 		            <?php if(!empty($latitude) && !empty($longitude)) { ?>

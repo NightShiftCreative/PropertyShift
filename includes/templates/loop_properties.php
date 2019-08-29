@@ -103,11 +103,11 @@
     } else if($order_by == 'price_asc') {
         $order = 'ASC';
         $order_by = 'meta_value_num';
-        $meta_key = 'ns_property_price';
+        $meta_key = 'ps_property_price';
     } else if($order_by == 'price_desc') {
         $order = 'DESC';
         $order_by = 'meta_value_num';
-        $meta_key = 'ns_property_price';
+        $meta_key = 'ps_property_price';
     }
 
     //SET TAXONOMIES
@@ -121,7 +121,7 @@
     //FILTER FEATURED PROPERTIES
     if (isset($_GET['featured'])) {
         $meta_query[] = array(
-            'key' => 'ns_property_featured',
+            'key' => 'ps_property_featured',
             'value'   => 'true'
         );
     }
@@ -146,7 +146,7 @@
 
         if(isset($_GET['priceMin']) && isset($_GET['priceMax'])) {
             $meta_query[] = array(
-                'key' => 'ns_property_price',
+                'key' => 'ps_property_price',
                 'value'   => array( $priceMin, $priceMax ),
                 'type'    => 'numeric',
                 'compare' => 'BETWEEN',
