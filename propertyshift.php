@@ -242,6 +242,7 @@ class PropertyShift {
 
 		// Load license keys class
 		$this->license_keys = new PropertyShift_License_Keys();
+		$this->license_keys->init();
 
 		// Load shortcodes class
 		$this->shortcodes = new PropertyShift_Shortcodes();

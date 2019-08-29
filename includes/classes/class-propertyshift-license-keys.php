@@ -9,9 +9,9 @@ if (!defined( 'ABSPATH')) { exit; }
 class PropertyShift_License_Keys {
 
 	/**
-	 *	Constructor
+	 *	Init
 	 */
-	public function __construct() {
+	public function init() {
 		add_action('admin_init', array($this, 'activate_license'));
 		add_action('admin_init', array($this, 'deactivate_license'));
 		add_action('admin_notices', array($this, 'admin_notices'));
