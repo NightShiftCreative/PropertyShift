@@ -8,6 +8,7 @@
     
     $admin_obj = new PropertyShift_Admin();
     $properties_page = $admin_obj->load_settings(false, 'ps_properties_page');
+    $property_listing_display_time = $admin_obj->load_settings(false, 'ps_property_listing_display_time');
     $google_maps_pin = $admin_obj->load_settings(false, 'ps_google_maps_pin');
     $property_detail_amenities_hide_empty = $admin_obj->load_settings(false, 'ps_property_detail_amenities_hide_empty');
     $property_detail_map_zoom = $admin_obj->load_settings(false, 'ps_property_detail_map_zoom');
@@ -102,7 +103,12 @@
                                     <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'propertyshift'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
                                 </div>
                                 <div class="right property-actions">
-                                    <?php do_action('propertyshift_property_actions'); ?>
+                                    <?php if($property_listing_display_time == 'true') {
+                                        $toggle = ns_core_get_icon($icon_set, 'clock', 'clock3', 'clock');
+                                        $content = human_time_diff( get_the_time('U'), current_time('timestamp') ) . esc_html__(' ago', 'propertyshift'); 
+                                        echo ns_basics_tooltip($toggle, $content); 
+                                    }
+                                    do_action('propertyshift_property_actions'); ?>
                                 </div>
                                 <div class="clear"></div>
                             </div>
