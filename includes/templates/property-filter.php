@@ -49,6 +49,7 @@ if($filter_position == 'above') {
 } else if($filter_position == 'below')  {
 	$filter_module_class .= 'filter-below-banner ';  
 }
+if($display_filter_tabs == 'true') { $filter_module_class .= 'filter-has-tabs'; }
 
 //Calculate filter item class
 $filter_class = '';
@@ -116,7 +117,7 @@ if (!empty($filter_fields)) { ?>
 
                         	//label count
                         	if(isset($label) && !empty($label)) { $label_count++; } ?>
-                        	
+
                         	<div class="form-block filter-item <?php echo esc_attr($filter_class); ?>">
 
                         		<?php if(!empty($label) && $custom != 'true') { echo '<label>'.esc_attr($label).'</label>'; } ?>
