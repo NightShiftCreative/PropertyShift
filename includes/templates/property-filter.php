@@ -112,7 +112,11 @@ if (!empty($filter_fields)) { ?>
                         if(isset($value['active']) && $value['active'] == 'true') { $active = 'true'; } else { $active = 'false'; }
                         if(isset($value['custom']) && $value['custom'] == 'true') { $custom = 'true'; } else { $custom = 'false'; } 
 
-                        if($active == 'true') { ?>
+                        if($active == 'true') { 
+
+                        	//label count
+                        	if(isset($label) && !empty($label)) { $label_count++; } ?>
+                        	
                         	<div class="form-block filter-item <?php echo esc_attr($filter_class); ?>">
 
                         		<?php if(!empty($label) && $custom != 'true') { echo '<label>'.esc_attr($label).'</label>'; } ?>
@@ -231,7 +235,7 @@ if (!empty($filter_fields)) { ?>
                         <?php }
 					} ?>
 
-					<div class="filter-item filter-item-submit <?php if($label_count > 0) { echo 'has-label'; } ?> <?php echo esc_attr($filter_class); ?>">
+					<div class="form-block filter-item filter-item-submit <?php if($label_count > 0) { echo 'has-label'; } ?> <?php echo esc_attr($filter_class); ?>">
 		                <input type="hidden" name="advancedSearch" value="true" />
 		                <input type="submit" class="button" value="<?php echo esc_attr($submit_text); ?>" />
 		            </div>
