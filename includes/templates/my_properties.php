@@ -31,7 +31,7 @@
             </tr>
 
             <?php
-            $property_listing_args = array(
+            $my_properties_listing_args = array(
                 'post_type' => 'ps-property',
                 'posts_per_page' => 12,
                 'paged' => $paged,
@@ -41,19 +41,19 @@
 
             //OVERWRITE QUERY WITH CUSTOM ARGS
             if(isset($custom_args)) {
-                foreach($property_listing_args as $key=>$value) {
+                foreach($my_properties_listing_args as $key=>$value) {
                     if(array_key_exists($key, $custom_args)) { 
-                        if(!empty($custom_args[$key])) { $property_listing_args[$key] = $custom_args[$key]; }
+                        if(!empty($custom_args[$key])) { $my_properties_listing_args[$key] = $custom_args[$key]; }
                     } 
                 }
                 foreach($custom_args as $key=>$value) {
-                    if(!array_key_exists($key, $property_listing_args)) { 
-                        if(!empty($custom_args[$key])) { $property_listing_args[$key] = $custom_args[$key]; }
+                    if(!array_key_exists($key, $my_properties_listing_args)) { 
+                        if(!empty($custom_args[$key])) { $my_properties_listing_args[$key] = $custom_args[$key]; }
                     } 
                 }
             }
 
-            $property_listing_query = new WP_Query( $property_listing_args );
+            $property_listing_query = new WP_Query( $my_properties_listing_args );
 
             if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->have_posts() ) : $property_listing_query->the_post(); ?>
                 
