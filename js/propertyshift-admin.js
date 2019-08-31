@@ -1,6 +1,14 @@
 jQuery(document).ready(function($) {
 
     /********************************************/
+    /* TRIGGER POST SUBMIT */
+    /********************************************/
+    $('.trigger-submit').on("click", function(e) {
+        e.preventDefault();
+        $('#publish').click();
+    });
+
+    /********************************************/
     /* LICENSE INPUT CHANGE */
     /********************************************/
     $(".license-key-input").on("change paste keyup", function() {
