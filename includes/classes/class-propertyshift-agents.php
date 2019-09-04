@@ -86,7 +86,7 @@ class PropertyShift_Agents {
 	        'show_in_menu' => true,
 	        'menu_icon' => 'dashicons-businessman',
 	        'has_archive' => false,
-	        'supports' => array('title', 'thumbnail', 'page_attributes'),
+	        'supports' => array('title', 'page_attributes'),
 	        'rewrite' => array('slug' => $agents_slug),
 	        )
 	    );
@@ -241,10 +241,7 @@ class PropertyShift_Agents {
 
 		<div class="ns-tabs meta-box-form meta-box-form-agent">
 			<ul class="ns-tabs-nav">
-	            <li><a href="#general"><i class="fa fa-user"></i> <span class="tab-text"><?php esc_html_e('General Info', 'propertyshift'); ?></span></a></li>
-	            <li><a href="#description"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php esc_html_e('Description', 'propertyshift'); ?></span></a></li>
-	            <li><a href="#social"><i class="fa fa-share-alt"></i> <span class="tab-text"><?php esc_html_e('Social', 'propertyshift'); ?></span></a></li>
-	            <li><a href="#contact"><i class="fa fa-envelope"></i> <span class="tab-text"><?php esc_html_e('Contact Form', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#general"><i class="fa fa-user"></i> <span class="tab-text"><?php esc_html_e('Agent Details', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#properties"><i class="fa fa-home"></i> <span class="tab-text"><?php esc_html_e('Properties', 'propertyshift'); ?></span></a></li>
 	            <?php do_action('propertyshift_after_agent_detail_tabs'); ?>
 	        </ul>
