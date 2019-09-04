@@ -9,31 +9,17 @@
     $agents_obj = new PropertyShift_Agents();
     $agent_settings = $agents_obj->load_agent_settings($post->ID);
     $agent_user_sync_id = $agent_settings['user_sync']['value'];
+    $agent_email = $agent_settings['email']['value'];
+    $agent_title = $agent_settings['job_title']['value'];
+    $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
+    $agent_office_phone = $agent_settings['office_phone']['value'];
+    $agent_fb = $agent_settings['facebook']['value'];
+    $agent_twitter = $agent_settings['twitter']['value'];
+    $agent_google = $agent_settings['google']['value'];
+    $agent_linkedin = $agent_settings['linkedin']['value'];
+    $agent_youtube = $agent_settings['youtube']['value'];
+    $agent_instagram = $agent_settings['instagram']['value'];
 
-    if(!empty($agent_user_sync_id)) {
-        $user_data = get_userdata($agent_user_sync_id);
-        $agent_email = $user_data->user_email;
-        $agent_title = get_user_meta($agent_user_sync_id, 'ps_agent_job_title', true);
-        $agent_mobile_phone = get_user_meta($agent_user_sync_id, 'ps_agent_mobile_phone', true);
-        $agent_office_phone = get_user_meta($agent_user_sync_id, 'ps_agent_office_phone', true);
-        $agent_fb = get_user_meta($agent_user_sync_id, 'ps_agent_facebook', true);
-        $agent_twitter = get_user_meta($agent_user_sync_id, 'ps_agent_twitter', true);
-        $agent_google = get_user_meta($agent_user_sync_id, 'ps_agent_google', true);
-        $agent_linkedin = get_user_meta($agent_user_sync_id, 'ps_agent_linkedin', true);
-        $agent_youtube = get_user_meta($agent_user_sync_id, 'ps_agent_youtube', true);
-        $agent_instagram = get_user_meta($agent_user_sync_id, 'ps_agent_instagram', true);
-    } else {
-        $agent_title = '';
-        $agent_email = '';
-        $agent_mobile_phone = '';
-        $agent_office_phone = '';
-        $agent_fb = '';
-        $agent_twitter = '';
-        $agent_google = '';
-        $agent_linkedin = '';
-        $agent_youtube = '';
-        $agent_instagram = '';
-    }
 
     //Get agent property count
     $agent_properties = $agents_obj->get_agent_properties(get_the_id());

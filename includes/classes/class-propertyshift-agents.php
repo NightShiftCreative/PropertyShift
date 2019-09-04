@@ -131,6 +131,22 @@ class PropertyShift_Agents {
 		// Return saved settings
 		} else {
 			$agent_settings = $this->admin_obj->get_meta_box_values($post_id, $agent_settings_init);
+			
+			$agent_user_sync_id = $agent_settings['user_sync']['value'];
+			if(!empty($agent_user_sync_id)) {
+		        $user_data = get_userdata($agent_user_sync_id);
+		        $agent_settings['email'] = array('title' => 'Email', 'value' => $user_data->user_email);
+		    	$agent_settings['job_title'] = array('title' => 'Job Title', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_job_title', true));
+		    	$agent_settings['mobile_phone'] = array('title' => 'Mobile Phone', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_mobile_phone', true));
+		    	$agent_settings['office_phone'] = array('title' => 'Office Phone', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_office_phone', true));
+		    	$agent_settings['facebook'] = array('title' => 'Facebook', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_facebook', true));
+		    	$agent_settings['twitter'] = array('title' => 'Twitter', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_twitter', true));
+		    	$agent_settings['google'] = array('title' => 'Google Plus', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_google', true));
+		    	$agent_settings['linkedin'] = array('title' => 'Linkedin', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_linkedin', true));
+		    	$agent_settings['youtube'] = array('title' => 'Youtube', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_youtube', true));
+		    	$agent_settings['instagram'] = array('title' => 'Instagram', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_instagram', true));
+		    }
+
 			return $agent_settings;
 		}
 	}
