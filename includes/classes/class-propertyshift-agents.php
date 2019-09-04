@@ -236,7 +236,7 @@ class PropertyShift_Agents {
 	 */
 	public function output_meta_box($post) {
 
-		$agent_settings = $this->load_agent_settings($post->ID); 
+		
 		wp_nonce_field( 'ps_agent_details_meta_box_nonce', 'ps_agent_details_meta_box_nonce' ); ?>
 
 		<div class="ns-tabs meta-box-form meta-box-form-agent">
@@ -254,51 +254,7 @@ class PropertyShift_Agents {
 	        <!--*************************************************-->
 	        <div id="general" class="tab-content">
 	            <h3><?php esc_html_e('General Info', 'propertyshift'); ?></h3>
-	            <?php
-	            foreach($agent_settings as $setting) {
-	            	if($setting['group'] == 'general') {
-            			$this->admin_obj->build_admin_field($setting);
-            		}
-	            } ?>
-	        </div>
-
-	        <!--*************************************************-->
-	        <!-- DESCRIPTION -->
-	        <!--*************************************************-->
-	        <div id="description" class="tab-content">
-	            <h3><?php echo esc_html_e('Description', 'propertyshift'); ?></h3>
-	            <?php
-	            foreach($agent_settings as $setting) {
-	            	if($setting['group'] == 'description') {
-            			$this->admin_obj->build_admin_field($setting);
-            		}
-	            } ?>
-	        </div>
-
-	        <!--*************************************************-->
-	        <!-- SOCIAL -->
-	        <!--*************************************************-->
-	        <div id="social" class="tab-content">
-	            <h3><?php esc_html_e('Social', 'propertyshift'); ?></h3>
-	            <?php
-	            foreach($agent_settings as $setting) {
-	            	if($setting['group'] == 'social') {
-            			$this->admin_obj->build_admin_field($setting);
-            		}
-	            } ?>
-	        </div>
-
-	        <!--*************************************************-->
-	        <!-- CONTACT -->
-	        <!--*************************************************-->
-	        <div id="contact" class="tab-content">
-	            <h3><?php esc_html_e('Contact', 'propertyshift'); ?></h3>
-	            <?php
-	            foreach($agent_settings as $setting) {
-	            	if($setting['group'] == 'contact') {
-            			$this->admin_obj->build_admin_field($setting);
-            		}
-	            } ?>
+	            
 	        </div>
 
 	        <!--*************************************************-->
