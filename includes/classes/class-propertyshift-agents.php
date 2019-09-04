@@ -232,7 +232,7 @@ class PropertyShift_Agents {
 	}
 
 	/**
-	 *	Output meta box interface
+	 *	Output meta box interfacee
 	 */
 	public function output_meta_box($post) {
 
