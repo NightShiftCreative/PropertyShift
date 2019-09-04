@@ -276,6 +276,11 @@ class PropertyShift_Agents {
             		<h3><?php esc_html_e('General Info', 'propertyshift'); ?></h3>
             		<?php 
             		$user_data = get_userdata($user_sync_id);
+            		$user_avatar = get_user_meta($user_sync_id, 'avatar', true);
+            		if(!empty($user_avatar)) { 
+            			$user_avatar_url = wp_get_attachment_url($user_avatar); 
+            			echo '<div><img width="60" src="'.$user_avatar_url.'" alt="" /></div>';
+            		}
             		echo 'Username: <strong>'.$user_data->user_login.'</strong><br/>';
             		echo 'Display Name: <strong>'.$user_data->display_name.'</strong><br/>';
             		echo 'First Name: <strong>'.$user_data->first_name.'</strong><br/>';
