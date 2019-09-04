@@ -86,7 +86,7 @@ class PropertyShift_Agents {
 	        'show_in_menu' => true,
 	        'menu_icon' => 'dashicons-businessman',
 	        'has_archive' => false,
-	        'supports' => array('title', 'editor', 'thumbnail', 'page_attributes'),
+	        'supports' => array('title', 'thumbnail', 'page_attributes'),
 	        'rewrite' => array('slug' => $agents_slug),
 	        )
 	    );
