@@ -83,7 +83,7 @@ class PropertyShift_Agents {
 	                'edit_item' => __( 'Edit Agent', 'propertyshift' ),
 	            ),
 	        'public' => true,
-	        'show_in_menu' => true,
+	        'show_in_menu' => false,
 	        'menu_icon' => 'dashicons-businessman',
 	        'has_archive' => false,
 	        'supports' => array('title', 'page_attributes'),

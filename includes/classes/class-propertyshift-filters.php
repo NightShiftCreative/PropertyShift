@@ -48,6 +48,7 @@ class PropertyShift_Filters {
 	            ),
 	        'public' => false,
 			'publicly_queryable' => true,
+			'show_in_menu' => false,
 			'show_ui' => true,
 	        'show_in_nav_menus' => false,
 	        'menu_icon' => 'dashicons-filter',
