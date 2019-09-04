@@ -127,7 +127,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        array('name' => esc_html__('Properties', 'propertyshift'), 'link' => '#properties', 'icon' => 'fa-home', 'order' => 1),
 	        array('name' => esc_html__('Agents', 'propertyshift'), 'link' => '#agents', 'icon' => 'fa-user-tie', 'order' => 2),
 	        array('name' => esc_html__('Maps', 'propertyshift'), 'link' => '#maps', 'icon' => 'fa-map', 'order' => 3),
-	        array('name' => esc_html__('Members', 'propertyshift'), 'link' => '#members', 'icon' => 'fa-key', 'order' => 4),
+	        array('name' => esc_html__('Front-End Settings', 'propertyshift'), 'link' => '#front-end', 'icon' => 'fa-laptop', 'order' => 4),
 	        array('name' => esc_html__('Currency & Numbers', 'propertyshift'), 'link' => '#currency', 'icon' => 'fa-money-bill-alt', 'order' => 5),
 	    );
 	    $content_nav = apply_filters( 'propertyshift_setting_tabs_filter', $content_nav);
@@ -573,8 +573,8 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 
 	    </div><!-- end map settings -->
 
-	    <div id="members" class="tab-content">
-	        <h2><?php echo esc_html_e('Member Settings', 'propertyshift'); ?></h2>
+	    <div id="front-end" class="tab-content">
+	        <h2><?php echo esc_html_e('Front-End Settings', 'propertyshift'); ?></h2>
 
 	        <?php
 	        $page_options = array('Select a page' => '');
