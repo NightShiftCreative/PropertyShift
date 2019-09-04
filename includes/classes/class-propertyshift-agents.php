@@ -98,7 +98,21 @@ class PropertyShift_Agents {
 	 * @param int $post_id
 	 */
 	public function load_agent_settings($post_id, $return_defaults = false) {
+
+		$users = get_users();
+		$user_sync_options = array('Select a user...' => '');
+		foreach($users as $user) { $user_sync_options[$user->display_name] = $user->ID; }
+
 		$agent_settings_init = array(
+			'user_sync' => array(
+				'group' => 'general',
+				'title' => esc_html__('Synced User', 'propertyshift'),
+				'name' => 'ps_agent_user_sync',
+				'description' => esc_html__('Agents must be synced with a user account to inherit their info.', 'propertyshift'),
+				'type' => 'select',
+				'options' => $user_sync_options,
+				'order' => 0,
+			),
 			'job_title' => array(
 				'group' => 'general',
 				'title' => esc_html__('Job Title', 'propertyshift'),
@@ -236,7 +250,7 @@ class PropertyShift_Agents {
 	 */
 	public function output_meta_box($post) {
 
-		
+		$agent_settings = $this->load_agent_settings($post->ID); 
 		wp_nonce_field( 'ps_agent_details_meta_box_nonce', 'ps_agent_details_meta_box_nonce' ); ?>
 
 		<div class="ns-tabs meta-box-form meta-box-form-agent">
@@ -254,7 +268,9 @@ class PropertyShift_Agents {
 	        <!--*************************************************-->
 	        <div id="general" class="tab-content">
 	            <h3><?php esc_html_e('General Info', 'propertyshift'); ?></h3>
-	            
+	            <?php
+            		$this->admin_obj->build_admin_field($agent_settings['user_sync']);
+	            ?>
 	        </div>
 
 	        <!--*************************************************-->
