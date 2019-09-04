@@ -38,8 +38,6 @@ class PropertyShift_Agents {
         add_action( 'edit_user_profile', array($this, 'create_agent_user_fields'));
         add_action( 'personal_options_update', array($this, 'save_agent_user_fields'));
         add_action( 'edit_user_profile_update', array($this, 'save_agent_user_fields'));
-	
-        //front-end user fields
         add_action( 'ns_basics_edit_profile_fields', array($this, 'create_agent_user_fields'));
         add_action( 'ns_basics_edit_profile_save', array($this, 'save_agent_user_fields'));
 	}
