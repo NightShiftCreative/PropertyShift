@@ -1,13 +1,12 @@
 <?php
     //global settings
-    $admin_obj = new PropertyShift_Admin();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
-    $agent_listing_crop = $admin_obj->load_settings(false, 'ps_agent_listing_crop');
 
 	//Get agent details
     $agents_obj = new PropertyShift_Agents();
     $agent_settings = $agents_obj->load_agent_settings($post->ID);
+    $agent_avatar_url = $agent_settings['avatar_url']['value'];
     $agent_email = $agent_settings['email']['value'];
     $agent_title = $agent_settings['job_title']['value'];
     $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
@@ -28,9 +27,9 @@
 <div <?php post_class(); ?>>
 
 	<div class="agent-img">
-		<?php if ( has_post_thumbnail() ) {  ?>
+		<?php if(!empty($agent_avatar_url)) {  ?>
 			<a href="<?php the_permalink(); ?>" class="agent-img-link">
-                <?php if($agent_listing_crop == 'true') { the_post_thumbnail('agent-thumbnail'); } else { the_post_thumbnail('full'); } ?>  
+                <img src="<?php echo $agent_avatar_url; ?>" alt="<?php echo get_the_title(); ?>" />  
             </a>
 		<?php } else { ?>
 			<a href="<?php the_permalink(); ?>" class="agent-img-link"><img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" alt="" /></a>

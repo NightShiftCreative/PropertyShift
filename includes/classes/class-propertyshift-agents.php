@@ -135,8 +135,14 @@ class PropertyShift_Agents {
 			$agent_user_sync_id = $agent_settings['user_sync']['value'];
 			if(!empty($agent_user_sync_id)) {
 		        $user_data = get_userdata($agent_user_sync_id);
+		        
 		        $agent_settings['avatar'] = array('title' => 'Avatar ID', 'value' => get_user_meta($agent_user_sync_id, 'avatar', true)); 
-		        if(!empty($agent_settings['avatar']['value'])) { $agent_settings['avatar_url'] = array('title' => 'Avatar URL', 'value' => wp_get_attachment_url($agent_settings['avatar']['value'])); }
+		        if(!empty($agent_settings['avatar']['value'])) { 
+		        	$agent_listing_crop = $this->global_settings['ps_agent_listing_crop'];
+		        	if($agent_listing_crop == 'true') { $avatar_size = 'agent-thumbnail'; } else { $avatar_size = 'full';  }
+		        	$agent_settings['avatar_url'] = array('title' => 'Avatar URL', 'value' => wp_get_attachment_image_url($agent_settings['avatar']['value'], $avatar_size)); 
+		        }
+		        
 		        $agent_settings['email'] = array('title' => 'Email', 'value' => $user_data->user_email);
 		    	$agent_settings['job_title'] = array('title' => 'Job Title', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_job_title', true));
 		    	$agent_settings['mobile_phone'] = array('title' => 'Mobile Phone', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_mobile_phone', true));
