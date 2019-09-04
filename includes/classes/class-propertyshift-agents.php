@@ -279,13 +279,15 @@ class PropertyShift_Agents {
             		$user_avatar = get_user_meta($user_sync_id, 'avatar', true);
             		if(!empty($user_avatar)) { 
             			$user_avatar_url = wp_get_attachment_url($user_avatar); 
-            			echo '<div><img width="60" src="'.$user_avatar_url.'" alt="" /></div>';
+            			echo '<div><img width="80" src="'.$user_avatar_url.'" alt="" /></div>';
             		}
             		echo 'Username: <strong>'.$user_data->user_login.'</strong><br/>';
             		echo 'Display Name: <strong>'.$user_data->display_name.'</strong><br/>';
             		echo 'First Name: <strong>'.$user_data->first_name.'</strong><br/>';
             		echo 'Last Name: <strong>'.$user_data->last_name.'</strong><br/>';
-            		echo 'Email: <strong>'.$user_data->user_email.'</strong><br/>'; ?>
+            		echo 'Email: <strong>'.$user_data->user_email.'</strong><br/>';
+            		echo 'Website: <strong>'.$user_data->user_url.'</strong><br/>';
+            		echo 'Bio: '.$user_data->description.'<br/>'; ?>
 
             		<h3><?php esc_html_e('Social Profiles', 'propertyshift'); ?></h3>
 
