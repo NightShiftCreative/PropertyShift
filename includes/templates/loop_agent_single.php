@@ -17,8 +17,8 @@
 	//Get agent details
     $agents_obj = new PropertyShift_Agents();
     $agent_settings = $agents_obj->load_agent_settings($post->ID);
-    $agent_title = $agent_settings['job_title']['value'];
     $agent_email = $agent_settings['email']['value'];
+    $agent_title = $agent_settings['job_title']['value'];
     $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
     $agent_office_phone = $agent_settings['office_phone']['value'];
     $agent_description = $agent_settings['description']['value'];
@@ -31,7 +31,7 @@
     $agent_form_source = $agent_settings['contact_form_source']['value'];
     $agent_form_id = $agent_settings['contact_form_source']['children']['contact_form_7_id']['value'];
 
-    //Get agent property count
+    //Get agent properties
     $agent_properties = $agents_obj->get_agent_properties(get_the_id(), $num_properties_per_page);
     $agent_properties_count = $agent_properties['count'];
 ?>	

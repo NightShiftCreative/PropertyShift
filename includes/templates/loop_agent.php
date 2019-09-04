@@ -8,7 +8,6 @@
 	//Get agent details
     $agents_obj = new PropertyShift_Agents();
     $agent_settings = $agents_obj->load_agent_settings($post->ID);
-    $agent_user_sync_id = $agent_settings['user_sync']['value'];
     $agent_email = $agent_settings['email']['value'];
     $agent_title = $agent_settings['job_title']['value'];
     $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
