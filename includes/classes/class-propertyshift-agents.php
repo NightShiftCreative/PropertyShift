@@ -108,7 +108,7 @@ class PropertyShift_Agents {
 				'group' => 'general',
 				'title' => esc_html__('Synced User', 'propertyshift'),
 				'name' => 'ps_agent_user_sync',
-				'description' => esc_html__('Agents must be synced with a user account to inherit their info.', 'propertyshift'),
+				'description' => esc_html__('All agent details are managed from the user level. Sync this agent with a user to inherit their info. Click Update to reflect changes.', 'propertyshift'),
 				'type' => 'select',
 				'options' => $user_sync_options,
 				'order' => 0,
@@ -267,10 +267,24 @@ class PropertyShift_Agents {
 	        <!-- GENERAL INFO -->
 	        <!--*************************************************-->
 	        <div id="general" class="tab-content">
-	            <h3><?php esc_html_e('General Info', 'propertyshift'); ?></h3>
-	            <?php
-            		$this->admin_obj->build_admin_field($agent_settings['user_sync']);
-	            ?>
+
+	            <?php $this->admin_obj->build_admin_field($agent_settings['user_sync']); ?>
+
+            	<?php 
+            	$user_sync_id = $agent_settings['user_sync']['value'];
+            	if(!empty($user_sync_id)) { ?>
+            		<h3><?php esc_html_e('General Info', 'propertyshift'); ?></h3>
+            		<?php 
+            		$user_data = get_userdata($user_sync_id);
+            		echo 'Username: <strong>'.$user_data->user_login.'</strong><br/>';
+            		echo 'Display Name: <strong>'.$user_data->display_name.'</strong><br/>';
+            		echo 'First Name: <strong>'.$user_data->first_name.'</strong><br/>';
+            		echo 'Last Name: <strong>'.$user_data->last_name.'</strong><br/>';
+            		echo 'Email: <strong>'.$user_data->user_email.'</strong><br/>'; ?>
+
+            		<h3><?php esc_html_e('Social Profiles', 'propertyshift'); ?></h3>
+
+            	<?php } ?>
 	        </div>
 
 	        <!--*************************************************-->
