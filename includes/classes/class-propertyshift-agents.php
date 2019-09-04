@@ -32,6 +32,12 @@ class PropertyShift_Agents {
 		add_action('add_meta_boxes', array( $this, 'register_meta_box'));
 		add_action('save_post', array( $this, 'save_meta_box'));
 		add_filter('ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
+	
+		//user fields
+		add_action( 'show_user_profile', array($this, 'create_agent_user_fields'));
+        add_action( 'edit_user_profile', array($this, 'create_agent_user_fields'));
+        add_action( 'personal_options_update', array($this, 'save_agent_user_fields'));
+        add_action( 'edit_user_profile_update', array($this, 'save_agent_user_fields'));
 	}
 
 	/**
@@ -121,14 +127,6 @@ class PropertyShift_Agents {
 				'type' => 'text',
 				'order' => 1,
 			),
-			'email' => array(
-				'group' => 'general',
-				'title' => esc_html__('Email', 'propertyshift'),
-				'name' => 'ps_agent_email',
-				'description' => esc_html__('Provide the agents email address. This address will be used for the agent contact form.', 'propertyshift'),
-				'type' => 'text',
-				'order' => 2,
-			),
 			'mobile_phone' => array(
 				'group' => 'general',
 				'title' => esc_html__('Mobile Phone', 'propertyshift'),
@@ -144,13 +142,6 @@ class PropertyShift_Agents {
 				'description' => esc_html__('Provide the agents office phone number.', 'propertyshift'),
 				'type' => 'text',
 				'order' => 4,
-			),
-			'description' => array(
-				'group' => 'description',
-				'name' => 'ps_agent_description',
-				'type' => 'editor',
-				'order' => 5,
-				'class' => 'full-width no-padding',
 			),
 			'facebook' => array(
 				'group' => 'social',
@@ -367,6 +358,147 @@ class PropertyShift_Agents {
         $agent_settings = $this->load_agent_settings($post_id);
         $this->admin_obj->save_meta_box($post_id, $agent_settings, $allowed);
 	}
+
+	/************************************************************************/
+	// Agent User Fields
+	/************************************************************************/
+
+	/**
+     *  Create Agent User Fields
+     */
+    public function create_agent_user_fields($user) { ?>
+        <h3><?php _e("Agent Information", "propertyshift"); ?></h3>
+
+        <table class="form-table">
+        <tr>
+            <th><label><?php esc_html_e('Agent Profile ID', 'propertyshift'); ?></label></th>
+            <td>
+                <input type="number" name="ps_agent_id" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_id', $user->ID ) ); ?>" class="regular-text" /><br/>
+                <span class="description"><?php esc_html_e("Provide the agents id.", 'propertyshift'); ?></span>
+            </td>
+        </tr>
+        </table>
+
+        <table class="form-table">
+        <tr>
+            <th><label><?php esc_html_e('Job Title', 'propertyshift'); ?></label></th>
+            <td>
+                <input type="text" name="ps_agent_job_title" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_job_title', $user->ID ) ); ?>" class="regular-text" /><br/>
+                <span class="description"><?php esc_html_e("Provide the agents job title. For example: Broker", 'propertyshift'); ?></span>
+            </td>
+        </tr>
+        </table>
+
+        <table class="form-table">
+        <tr>
+            <th><label><?php esc_html_e('Mobile Phone', 'propertyshift'); ?></label></th>
+            <td>
+                <input type="text" name="ps_agent_mobile_phone" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_mobile_phone', $user->ID ) ); ?>" class="regular-text" /><br/>
+                <span class="description"><?php esc_html_e("Provide the agents mobile phone number.", 'propertyshift'); ?></span>
+            </td>
+        </tr>
+        </table>
+
+        <table class="form-table">
+        <tr>
+            <th><label><?php esc_html_e('Office Phone', 'propertyshift'); ?></label></th>
+            <td>
+                <input type="text" name="ps_agent_office_phone" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_office_phone', $user->ID ) ); ?>" class="regular-text" /><br/>
+                <span class="description"><?php esc_html_e("Provide the agents office phone number.", 'propertyshift'); ?></span>
+            </td>
+        </tr>
+        </table>
+
+        <table class="form-table">
+        <tr>
+            <th><label><?php esc_html_e('Facebook', 'propertyshift'); ?></label></th>
+            <td>
+                <input type="text" name="ps_agent_facebook" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_facebook', $user->ID ) ); ?>" class="regular-text" /><br/>
+                <span class="description"><?php esc_html_e("Provide the agents Facebook profile URL.", 'propertyshift'); ?></span>
+            </td>
+        </tr>
+        </table>
+
+        <table class="form-table">
+        <tr>
+            <th><label><?php esc_html_e('Twitter', 'propertyshift'); ?></label></th>
+            <td>
+                <input type="text" name="ps_agent_twitter" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_twitter', $user->ID ) ); ?>" class="regular-text" /><br/>
+                <span class="description"><?php esc_html_e("Provide the agents Twitter profile URL.", 'propertyshift'); ?></span>
+            </td>
+        </tr>
+        </table>
+
+        <table class="form-table">
+        <tr>
+            <th><label><?php esc_html_e('Linkedin', 'propertyshift'); ?></label></th>
+            <td>
+                <input type="text" name="ps_agent_linkedin" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_linkedin', $user->ID ) ); ?>" class="regular-text" /><br/>
+                <span class="description"><?php esc_html_e("Provide the agents Linkedin profile URL.", 'propertyshift'); ?></span>
+            </td>
+        </tr>
+        </table>
+
+        <table class="form-table">
+        <tr>
+            <th><label><?php esc_html_e('Google Plus', 'propertyshift'); ?></label></th>
+            <td>
+                <input type="text" name="ps_agent_google" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_google', $user->ID ) ); ?>" class="regular-text" /><br/>
+                <span class="description"><?php esc_html_e("Provide the agents Google Plus profile URL.", 'propertyshift'); ?></span>
+            </td>
+        </tr>
+        </table>
+
+        <table class="form-table">
+        <tr>
+            <th><label><?php esc_html_e('Youtube', 'propertyshift'); ?></label></th>
+            <td>
+                <input type="text" name="ps_agent_youtube" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_youtube', $user->ID ) ); ?>" class="regular-text" /><br/>
+                <span class="description"><?php esc_html_e("Provide the agents Youtube profile URL.", 'propertyshift'); ?></span>
+            </td>
+        </tr>
+        </table>
+
+        <table class="form-table">
+        <tr>
+            <th><label><?php esc_html_e('Instagram', 'propertyshift'); ?></label></th>
+            <td>
+                <input type="text" name="ps_agent_instagram" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_instagram', $user->ID ) ); ?>" class="regular-text" /><br/>
+                <span class="description"><?php esc_html_e("Provide the agents Instagram profile URL.", 'propertyshift'); ?></span>
+            </td>
+        </tr>
+        </table>
+
+        <table class="form-table">
+        <tr>
+            <th><label><?php esc_html_e('Agent Contact Form', 'propertyshift'); ?></label></th>
+            <td>
+            	<input type="radio" name="ps_agent_contact" checked <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'default' ) { ?>checked="checked"<?php }?> value="default" />Default Contact Form<br/>
+            	<input type="radio" name="ps_agent_contact" <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'contact_form_7' ) { ?>checked="checked"<?php }?> value="contact_form_7" />Contact Form 7<br/>
+            	<input type="radio" name="ps_agent_contact" <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'none' ) { ?>checked="checked"<?php }?> value="none" />None
+            </td>
+        </tr>
+        </table>
+    <?php }
+
+    /**
+     *  Save Agent User Fields
+     */
+    public function save_agent_user_fields($user_id) {
+        if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
+        update_user_meta( $user_id, 'ps_agent_id', $_POST['ps_agent_id'] );
+        update_user_meta( $user_id, 'ps_agent_job_title', $_POST['ps_agent_job_title'] );
+        update_user_meta( $user_id, 'ps_agent_mobile_phone', $_POST['ps_agent_mobile_phone'] );
+        update_user_meta( $user_id, 'ps_agent_office_phone', $_POST['ps_agent_office_phone'] );
+        update_user_meta( $user_id, 'ps_agent_facebook', $_POST['ps_agent_facebook'] );
+        update_user_meta( $user_id, 'ps_agent_twitter', $_POST['ps_agent_twitter'] );
+        update_user_meta( $user_id, 'ps_agent_linkedin', $_POST['ps_agent_linkedin'] );
+        update_user_meta( $user_id, 'ps_agent_google', $_POST['ps_agent_google'] );
+        update_user_meta( $user_id, 'ps_agent_youtube', $_POST['ps_agent_youtube'] );
+        update_user_meta( $user_id, 'ps_agent_instagram', $_POST['ps_agent_instagram'] );
+        update_user_meta( $user_id, 'ps_agent_contact', $_POST['ps_agent_contact'] );
+    }
+
 
 	/************************************************************************/
 	// Agent Utilities
