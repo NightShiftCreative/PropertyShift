@@ -403,6 +403,7 @@ class PropertyShift_Agents {
         </tr>
         </table>
 
+        <?php if(is_admin()) { ?>
         <table class="form-table">
         <tr>
             <th><label><?php esc_html_e('Agent Contact Form', 'propertyshift'); ?></label></th>
@@ -413,6 +414,7 @@ class PropertyShift_Agents {
             </td>
         </tr>
         </table>
+    	<?php } ?>
     <?php }
 
     /**
