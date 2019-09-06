@@ -301,120 +301,121 @@ class PropertyShift_Agents {
      *  Create Agent User Fields
      */
     public function create_agent_user_fields($user) { ?>
-        <h3><?php _e("Agent Information", "propertyshift"); ?></h3>
+    	<div class="form-section">
+	        <h3><?php _e("Agent Information", "propertyshift"); ?></h3>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Agent Profile ID', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="number" name="ps_agent_id" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_id', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents id.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-        <table class="form-table">
-        <tr>
-            <th><label><?php esc_html_e('Agent Profile ID', 'propertyshift'); ?></label></th>
-            <td>
-                <input type="number" name="ps_agent_id" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_id', $user->ID ) ); ?>" class="regular-text" /><br/>
-                <span class="description"><?php esc_html_e("Provide the agents id.", 'propertyshift'); ?></span>
-            </td>
-        </tr>
-        </table>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Job Title', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_job_title" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_job_title', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents job title. For example: Broker", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-        <table class="form-table">
-        <tr>
-            <th><label><?php esc_html_e('Job Title', 'propertyshift'); ?></label></th>
-            <td>
-                <input type="text" name="ps_agent_job_title" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_job_title', $user->ID ) ); ?>" class="regular-text" /><br/>
-                <span class="description"><?php esc_html_e("Provide the agents job title. For example: Broker", 'propertyshift'); ?></span>
-            </td>
-        </tr>
-        </table>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Mobile Phone', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_mobile_phone" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_mobile_phone', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents mobile phone number.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-        <table class="form-table">
-        <tr>
-            <th><label><?php esc_html_e('Mobile Phone', 'propertyshift'); ?></label></th>
-            <td>
-                <input type="text" name="ps_agent_mobile_phone" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_mobile_phone', $user->ID ) ); ?>" class="regular-text" /><br/>
-                <span class="description"><?php esc_html_e("Provide the agents mobile phone number.", 'propertyshift'); ?></span>
-            </td>
-        </tr>
-        </table>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Office Phone', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_office_phone" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_office_phone', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents office phone number.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-        <table class="form-table">
-        <tr>
-            <th><label><?php esc_html_e('Office Phone', 'propertyshift'); ?></label></th>
-            <td>
-                <input type="text" name="ps_agent_office_phone" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_office_phone', $user->ID ) ); ?>" class="regular-text" /><br/>
-                <span class="description"><?php esc_html_e("Provide the agents office phone number.", 'propertyshift'); ?></span>
-            </td>
-        </tr>
-        </table>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Facebook', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_facebook" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_facebook', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents Facebook profile URL.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-        <table class="form-table">
-        <tr>
-            <th><label><?php esc_html_e('Facebook', 'propertyshift'); ?></label></th>
-            <td>
-                <input type="text" name="ps_agent_facebook" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_facebook', $user->ID ) ); ?>" class="regular-text" /><br/>
-                <span class="description"><?php esc_html_e("Provide the agents Facebook profile URL.", 'propertyshift'); ?></span>
-            </td>
-        </tr>
-        </table>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Twitter', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_twitter" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_twitter', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents Twitter profile URL.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-        <table class="form-table">
-        <tr>
-            <th><label><?php esc_html_e('Twitter', 'propertyshift'); ?></label></th>
-            <td>
-                <input type="text" name="ps_agent_twitter" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_twitter', $user->ID ) ); ?>" class="regular-text" /><br/>
-                <span class="description"><?php esc_html_e("Provide the agents Twitter profile URL.", 'propertyshift'); ?></span>
-            </td>
-        </tr>
-        </table>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Linkedin', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_linkedin" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_linkedin', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents Linkedin profile URL.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-        <table class="form-table">
-        <tr>
-            <th><label><?php esc_html_e('Linkedin', 'propertyshift'); ?></label></th>
-            <td>
-                <input type="text" name="ps_agent_linkedin" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_linkedin', $user->ID ) ); ?>" class="regular-text" /><br/>
-                <span class="description"><?php esc_html_e("Provide the agents Linkedin profile URL.", 'propertyshift'); ?></span>
-            </td>
-        </tr>
-        </table>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Google Plus', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_google" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_google', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents Google Plus profile URL.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-        <table class="form-table">
-        <tr>
-            <th><label><?php esc_html_e('Google Plus', 'propertyshift'); ?></label></th>
-            <td>
-                <input type="text" name="ps_agent_google" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_google', $user->ID ) ); ?>" class="regular-text" /><br/>
-                <span class="description"><?php esc_html_e("Provide the agents Google Plus profile URL.", 'propertyshift'); ?></span>
-            </td>
-        </tr>
-        </table>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Youtube', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_youtube" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_youtube', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents Youtube profile URL.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-        <table class="form-table">
-        <tr>
-            <th><label><?php esc_html_e('Youtube', 'propertyshift'); ?></label></th>
-            <td>
-                <input type="text" name="ps_agent_youtube" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_youtube', $user->ID ) ); ?>" class="regular-text" /><br/>
-                <span class="description"><?php esc_html_e("Provide the agents Youtube profile URL.", 'propertyshift'); ?></span>
-            </td>
-        </tr>
-        </table>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Instagram', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_instagram" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_instagram', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents Instagram profile URL.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-        <table class="form-table">
-        <tr>
-            <th><label><?php esc_html_e('Instagram', 'propertyshift'); ?></label></th>
-            <td>
-                <input type="text" name="ps_agent_instagram" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_instagram', $user->ID ) ); ?>" class="regular-text" /><br/>
-                <span class="description"><?php esc_html_e("Provide the agents Instagram profile URL.", 'propertyshift'); ?></span>
-            </td>
-        </tr>
-        </table>
-
-        <?php if(is_admin()) { ?>
-        <table class="form-table">
-        <tr>
-            <th><label><?php esc_html_e('Agent Contact Form', 'propertyshift'); ?></label></th>
-            <td>
-            	<input type="radio" name="ps_agent_contact" checked <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'default' ) { ?>checked="checked"<?php }?> value="default" />Default Contact Form<br/>
-            	<input type="radio" name="ps_agent_contact" <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'contact_form_7' ) { ?>checked="checked"<?php }?> value="contact_form_7" />Contact Form 7<br/>
-            	<input type="radio" name="ps_agent_contact" <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'none' ) { ?>checked="checked"<?php }?> value="none" />None
-            </td>
-        </tr>
-        </table>
+	        <?php if(is_admin()) { ?>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Agent Contact Form', 'propertyshift'); ?></label></th>
+	            <td>
+	            	<input type="radio" name="ps_agent_contact" checked <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'default' ) { ?>checked="checked"<?php }?> value="default" />Default Contact Form<br/>
+	            	<input type="radio" name="ps_agent_contact" <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'contact_form_7' ) { ?>checked="checked"<?php }?> value="contact_form_7" />Contact Form 7<br/>
+	            	<input type="radio" name="ps_agent_contact" <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'none' ) { ?>checked="checked"<?php }?> value="none" />None
+	            </td>
+	        </tr>
+	        </table>
     	<?php } ?>
+    	</div>
     <?php }
 
     /**
