@@ -145,7 +145,12 @@ class PropertyShift_Agents {
 		        	$agent_settings['avatar_url'] = array('title' => 'Avatar URL', 'value' => wp_get_attachment_image_url($agent_settings['avatar']['value'], $avatar_size)); 
 		        }
 		        
+		        $agent_settings['username'] = array('title' => 'Username', 'value' => $user_data->user_login);
+		        $agent_settings['display_name'] = array('title' => 'Display Name', 'value' => $user_data->display_name);
 		        $agent_settings['email'] = array('title' => 'Email', 'value' => $user_data->user_email);
+		    	$agent_settings['first_name'] = array('title' => 'First Name', 'value' => $user_data->first_name);
+		    	$agent_settings['last_name'] = array('title' => 'Last Name', 'value' => $user_data->last_name);
+		    	$agent_settings['website'] = array('title' => 'Website', 'value' => $user_data->user_url);
 		    	$agent_settings['job_title'] = array('title' => 'Job Title', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_job_title', true));
 		    	$agent_settings['mobile_phone'] = array('title' => 'Mobile Phone', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_mobile_phone', true));
 		    	$agent_settings['office_phone'] = array('title' => 'Office Phone', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_office_phone', true));
@@ -198,25 +203,22 @@ class PropertyShift_Agents {
 
             	<?php 
             	$user_sync_id = $agent_settings['user_sync']['value'];
-            	$agent_avatar_url = $agent_settings['avatar_url']['value'];
 
             	if(!empty($user_sync_id)) { ?>
             		<h3><?php esc_html_e('General Info', 'propertyshift'); ?></h3>
             		<?php 
-            		$user_data = get_userdata($user_sync_id);
-            		$user_avatar = get_user_meta($user_sync_id, 'avatar', true);
-            		if(!empty($agent_avatar_url)) { 
-            			echo '<div><img width="80" src="'.$agent_avatar_url.'" alt="" /></div>';
-            		}
-            		echo 'Username: <strong>'.$user_data->user_login.'</strong><br/>';
-            		echo 'Display Name: <strong>'.$user_data->display_name.'</strong><br/>';
-            		echo 'First Name: <strong>'.$user_data->first_name.'</strong><br/>';
-            		echo 'Last Name: <strong>'.$user_data->last_name.'</strong><br/>';
-            		echo 'Email: <strong>'.$user_data->user_email.'</strong><br/>';
-            		echo 'Website: <strong>'.$user_data->user_url.'</strong><br/>';
-            		echo 'Bio: '.$user_data->description.'<br/>'; ?>
+            		if(!empty($agent_settings['avatar_url']['value'])) { echo '<div><img width="100" src="'.$agent_settings['avatar_url']['value'].'" alt="" /></div>'; }
+            		if(!empty($agent_settings['username']['value'])) { echo 'Username: <strong>'.$agent_settings['username']['value'].'</strong><br/>'; }
+            		if(!empty($agent_settings['display_name']['value'])) { echo 'Display Name: <strong>'.$agent_settings['display_name']['value'].'</strong><br/>'; }
+            		if(!empty($agent_settings['first_name']['value'])) { echo 'First Name: <strong>'.$agent_settings['first_name']['value'].'</strong><br/>'; }
+            		if(!empty($agent_settings['last_name']['value'])) { echo 'Last Name: <strong>'.$agent_settings['last_name']['value'].'</strong><br/>'; }
+            		if(!empty($agent_settings['email']['value'])) { echo 'Email: <strong>'.$agent_settings['email']['value'].'</strong><br/>'; }
+            		if(!empty($agent_settings['website']['value'])) { echo 'Website: <strong><a href="'.$agent_settings['website']['value'].'" target="_blank">'.$agent_settings['website']['value'].'</a></strong><br/>'; }
+            		if(!empty($agent_settings['description']['value'])) { echo 'Bio: '.$agent_settings['description']['value'].'<br/>'; } ?>
 
             		<h3><?php esc_html_e('Social Profiles', 'propertyshift'); ?></h3>
+            		<?php if(!empty($agent_settings['facebook']['value'])) { echo 'Facebook: <strong>'.$agent_settings['facebook']['value'].'</strong><br/>'; } ?>
+            		<?php if(!empty($agent_settings['twitter']['value'])) { echo 'Twitter: <strong>'.$agent_settings['twitter']['value'].'</strong><br/>'; } ?>
 
             	<?php } ?>
 	        </div>
