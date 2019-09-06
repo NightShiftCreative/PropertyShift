@@ -156,6 +156,7 @@ class PropertyShift_Agents {
 		    	$agent_settings['linkedin'] = array('title' => 'Linkedin', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_linkedin', true));
 		    	$agent_settings['youtube'] = array('title' => 'Youtube', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_youtube', true));
 		    	$agent_settings['instagram'] = array('title' => 'Instagram', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_instagram', true));
+		    	$agent_settings['contact_form_source'] = array('title' => 'Contact Form Source', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_contact', true));
 		    }
 
 			return $agent_settings;
@@ -412,8 +413,17 @@ class PropertyShift_Agents {
 	            <th><label><?php esc_html_e('Agent Contact Form', 'propertyshift'); ?></label></th>
 	            <td>
 	            	<input type="radio" name="ps_agent_contact" checked <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'default' ) { ?>checked="checked"<?php }?> value="default" />Default Contact Form<br/>
-	            	<input type="radio" name="ps_agent_contact" <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'contact_form_7' ) { ?>checked="checked"<?php }?> value="contact_form_7" />Contact Form 7<br/>
+	            	<input type="radio" name="ps_agent_contact" <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'contact-form-7' ) { ?>checked="checked"<?php }?> value="contact-form-7" />Contact Form 7<br/>
 	            	<input type="radio" name="ps_agent_contact" <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'none' ) { ?>checked="checked"<?php }?> value="none" />None
+	            </td>
+	        </tr>
+	        </table>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Contact Form 7 ID', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_contact_form_7" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_contact_form_7', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the Contact Form 7 ID.", 'propertyshift'); ?></span>
 	            </td>
 	        </tr>
 	        </table>
@@ -437,6 +447,7 @@ class PropertyShift_Agents {
         if(isset($_POST['ps_agent_youtube'])) {update_user_meta( $user_id, 'ps_agent_youtube', $_POST['ps_agent_youtube'] ); }
         if(isset($_POST['ps_agent_instagram'])) {update_user_meta( $user_id, 'ps_agent_instagram', $_POST['ps_agent_instagram'] ); }
         if(isset($_POST['ps_agent_contact'])) {update_user_meta( $user_id, 'ps_agent_contact', $_POST['ps_agent_contact'] ); }
+    	if(isset($_POST['ps_agent_contact_form_7'])) {update_user_meta( $user_id, 'ps_agent_contact_form_7', $_POST['ps_agent_contact_form_7'] ); }
     }
 
 
