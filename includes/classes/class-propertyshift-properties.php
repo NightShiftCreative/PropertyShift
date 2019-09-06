@@ -125,8 +125,8 @@ class PropertyShift_Properties {
 		//get all agents
 		$agents_array = array();
         $agents_array[esc_html__('Select an agent...', 'propertyshift')] = '';
-        $agent_listing_query = get_users();
-        foreach($agent_listing_query as $agent) { $agents_array[$agent->display_name] = $agent->ID; }
+        $agent_listing_query = get_posts(array('post_type' => 'ps-agent', 'posts_per_page' => -1));
+        foreach($agent_listing_query as $agent) { $agents_array[$agent->post_title] = $agent->ID; }
 
         // settings
 		$property_settings_init = array(
@@ -274,7 +274,7 @@ class PropertyShift_Properties {
 			),
 			'owner_display' => array(
 				'group' => 'owner_info',
-				'title' => esc_html__('What to display for owner information?', 'propertyshift'),
+				'title' => esc_html__('What to display for agent information?', 'propertyshift'),
 				'name' => 'ps_agent_display',
 				'type' => 'radio_image',
 				'class' => 'full-width',
@@ -351,7 +351,7 @@ class PropertyShift_Properties {
 	            <li><a href="#floor-plans" title="<?php esc_html_e('Floor Plans', 'propertyshift'); ?>"><i class="fa fa-th-large"></i> <span class="tab-text"><?php echo esc_html_e('Floor Plans', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#map" title="<?php esc_html_e('Map', 'propertyshift'); ?>" onclick="refreshMap()"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Map', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#video" title="<?php esc_html_e('Video', 'propertyshift'); ?>"><i class="fa fa-video"></i> <span class="tab-text"><?php echo esc_html_e('Video', 'propertyshift'); ?></span></a></li>
-	            <li><a href="#agent" title="<?php esc_html_e('Owner Info', 'propertyshift'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Owner Info', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#agent" title="<?php esc_html_e('Contact Info', 'propertyshift'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Contact Info', 'propertyshift'); ?></span></a></li>
 	            <?php do_action('propertyshift_after_property_tabs'); ?>
 	        </ul>
 
@@ -440,10 +440,10 @@ class PropertyShift_Properties {
 	        </div>
 
 	        <!--*************************************************-->
-	        <!-- OWNER INFO -->
+	        <!-- CONTACT INFO -->
 	        <!--*************************************************-->
 	        <div id="agent" class="tab-content">
-	            <h3><?php echo esc_html_e('Owner Info', 'propertyshift'); ?></h3>
+	            <h3><?php echo esc_html_e('Contact Info', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'owner_info') {
