@@ -102,7 +102,7 @@ class PropertyShift_Properties {
 	        'show_in_menu' => true,
 	        'menu_icon' => 'dashicons-admin-home',
 	        'has_archive' => false,
-	        'supports' => array('title', 'author', 'editor', 'revisions', 'thumbnail', 'page_attributes'),
+	        'supports' => array('title', 'editor', 'revisions', 'thumbnail', 'page_attributes'),
 	        'rewrite' => array('slug' => $properties_slug),
 	        )
 	    );
@@ -125,8 +125,8 @@ class PropertyShift_Properties {
 		//get all agents
 		$agents_array = array();
         $agents_array[esc_html__('Select an agent...', 'propertyshift')] = '';
-        $agent_listing_query = get_posts(array('post_type' => 'ps-agent', 'posts_per_page' => -1));
-        foreach($agent_listing_query as $agent) { $agents_array[$agent->post_title] = $agent->ID; }
+        $agent_listing_query = get_users();
+        foreach($agent_listing_query as $agent) { $agents_array[$agent->display_name] = $agent->ID; }
 
         // settings
 		$property_settings_init = array(
@@ -638,7 +638,7 @@ class PropertyShift_Properties {
 	        'type' => __( 'Type', 'propertyshift' ),
 	        'status' => __( 'Status', 'propertyshift' ),
 	        'price'  => __( 'Price','propertyshift' ),
-	        'author' => __('Author', 'propertyshift'),
+	        'agent' => __('Assigned Agent', 'propertyshift'),
 	        'date' => __( 'Date', 'propertyshift' )
 	    );
 	    return $columns;
@@ -683,6 +683,14 @@ class PropertyShift_Properties {
 	            //Get property status
 	        	$property_status = $this->get_tax($post_id, 'property_status');
 	            if(empty($property_status)) { echo '--'; } else { echo $property_status; }
+	            break;
+
+	        case 'agent' :
+
+	        	$agent_id = $property_settings['owner_display']['children']['agent']['value'];
+	            $agent_data = get_userdata($agent_id);
+	            $agent_edit_profile = get_edit_user_link($agent_id);
+	            echo '<a href="'.$agent_edit_profile.'">'.$agent_data->display_name.'</a>';
 	            break;
 
 	        default :
