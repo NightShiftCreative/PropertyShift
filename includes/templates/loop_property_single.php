@@ -356,8 +356,9 @@
                                     <?php
                                     $agent_obj = new PropertyShift_Agents();
                                     $agent_settings = $agent_obj->load_agent_settings($post->ID);
-                                    $agent_title = $agent_settings['job_title']['value'];
+                                    $agent_avatar_url = $agent_settings['avatar_url']['value'];
                                     $agent_email = $agent_settings['email']['value'];
+                                    $agent_title = $agent_settings['job_title']['value'];
                                     $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
                                     $agent_office_phone = $agent_settings['office_phone']['value'];
                                     $agent_fb = $agent_settings['facebook']['value'];
@@ -368,25 +369,19 @@
                                     $agent_instagram = $agent_settings['instagram']['value'];
                                     $agent_form_source = $agent_settings['contact_form_source']['value'];
                                     $agent_form_id = $agent_settings['contact_form_source']['children']['contact_form_7_id']['value'];
-
-                                    //Get agent property count
-                                    $agent_properties = $agent_obj->get_agent_properties(get_the_id());
-                                    $agent_properties_count = $agent_properties['count'];
                                     ?>
 
                                     <div class="ps-agent property-agent">
-                                        
-                                        <a href="<?php the_permalink(); ?>" class="agent-img">
-                                            <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
-                                                <div class="button alt agent-tag"><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Property', 'propertyshift'); } else { esc_html_e('Properties', 'propertyshift'); } ?></div>
-                                            <?php } ?>
-                                            <?php if ( has_post_thumbnail() ) {  ?>
-                                                <div class="img-fade"></div>
-                                                <?php the_post_thumbnail('full'); ?>
+
+                                        <div class="agent-img">
+                                            <?php if(!empty($agent_avatar_url)) {  ?>
+                                                <a href="<?php the_permalink(); ?>" class="agent-img-link">
+                                                    <img src="<?php echo $agent_avatar_url; ?>" alt="<?php echo get_the_title(); ?>" />  
+                                                </a>
                                             <?php } else { ?>
-                                                <img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" alt="" />
+                                                <a href="<?php the_permalink(); ?>" class="agent-img-link"><img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" alt="" /></a>
                                             <?php } ?>
-                                        </a>
+                                        </div>
 
                                         <div class="agent-content">
                                             <div class="agent-details">
