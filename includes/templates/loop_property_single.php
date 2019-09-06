@@ -333,43 +333,25 @@
                     <!-- OWNER INFO -->
                     <!--******************************************************-->
 						<div class="property-single-item ps-single-item widget property-<?php echo esc_attr($slug); ?>">
+                            
                             <?php if(!empty($label)) { ?>
                                 <div class="module-header module-header-left">
                                     <h4><?php echo esc_attr($label); ?></h4>
                                     <div class="widget-divider"><div class="bar"></div></div>
                                 </div>
                             <?php } ?>
-                            <?php if($agent_display == 'author') { ?>
 
-                                <div class="author-info">
-                                    <?php 
-                                        $avatar_id = get_user_meta( get_the_author_meta( 'ID' ), 'avatar', true ); 
-                                        if(!empty($avatar_id)) {
-                                            echo wp_get_attachment_image($avatar_id, array('96', '96'));
-                                        } else {
-                                            echo '<img src="'.PROPERTYSHIFT_DIR.'/images/agent-img-default.gif" alt="Agent Image" />';
-                                        }
-                                    ?>
-                                    <p class="author-display-name"><?php echo ns_core_get_icon($icon_set, 'user'); ?> <?php the_author_meta('display_name'); ?></p>
-                                    <p class="author-email"><?php echo ns_core_get_icon($icon_set, 'envelope'); ?> <?php the_author_meta('user_email'); ?></p>
-                                    <?php if (get_the_author_meta('user_url')  != '') { ?><a class="author-url" href="<?php the_author_meta('user_url'); ?>" target="_blank"><?php echo ns_core_get_icon($icon_set, 'globe', 'link'); ?> <?php the_author_meta('user_url'); ?> </a><?php } ?>
-									<div class="clear"></div>
-								</div>
-
-                            <?php } else if($agent_display == 'agent') { ?>
+                            <?php if($agent_display == 'agent') {
                                 
-                                <?php
+                                $agent_listing_args = array(
+                                    'post_type' => 'ps-agent',
+                                    'posts_per_page' => 1,
+                                    'meta_key' => 'ps_agent_user_sync',
+                                    'meta_value' => $agent_select,
+                                );
+                                $agent_listing_query = new WP_Query( $agent_listing_args );
 
-                                    $agent_listing_args = array(
-                                        'post_type' => 'ps-agent',
-                                        'posts_per_page' => 1,
-                                        'p' => $agent_select
-                                    );
-
-                                    $agent_listing_query = new WP_Query( $agent_listing_args );
-                                ?>
-
-                                <?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
+                                if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
 
                                     <?php
                                     $agent_obj = new PropertyShift_Agents();

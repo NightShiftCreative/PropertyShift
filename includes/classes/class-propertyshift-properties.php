@@ -122,7 +122,7 @@ class PropertyShift_Properties {
 	 */
 	public function load_property_settings($post_id, $return_defaults = false) {
 		
-		//get all agents
+		//get all agents (users)
 		$agents_array = array();
         $agents_array[esc_html__('Select an agent...', 'propertyshift')] = '';
         $agent_listing_query = get_users();
@@ -282,7 +282,6 @@ class PropertyShift_Properties {
 				'value' => 'none',
 				'options' => array(
 					esc_html__('None', 'propertyshift') => array('value' => 'none'),
-					esc_html__('Author Info', 'propertyshift') => array('value' => 'author'),
 					esc_html__('Agent Info', 'propertyshift') => array('value' => 'agent'),
 					esc_html__('Custom Info', 'propertyshift') => array('value' => 'custom'),
 				),
@@ -688,9 +687,13 @@ class PropertyShift_Properties {
 	        case 'agent' :
 
 	        	$agent_id = $property_settings['owner_display']['children']['agent']['value'];
-	            $agent_data = get_userdata($agent_id);
-	            $agent_edit_profile = get_edit_user_link($agent_id);
-	            echo '<a href="'.$agent_edit_profile.'">'.$agent_data->display_name.'</a>';
+	            if(!empty($agent_id)) {
+	            	$agent_data = get_userdata($agent_id);
+	            	$agent_edit_profile = get_edit_user_link($agent_id);
+	            	echo '<a href="'.$agent_edit_profile.'">'.$agent_data->display_name.'</a>';
+	            } else {
+	            	echo '--';
+	            }
 	            break;
 
 	        default :
