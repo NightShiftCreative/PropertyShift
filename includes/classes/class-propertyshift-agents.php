@@ -33,7 +33,7 @@ class PropertyShift_Agents {
 		add_action('save_post', array( $this, 'save_meta_box'));
 		add_filter('ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
 	
-		//user fields
+		//add & save user fields
 		add_action( 'show_user_profile', array($this, 'create_agent_user_fields'));
         add_action( 'edit_user_profile', array($this, 'create_agent_user_fields'));
         add_action( 'personal_options_update', array($this, 'save_agent_user_fields'));
@@ -199,12 +199,9 @@ class PropertyShift_Agents {
 	        <!--*************************************************-->
 	        <div id="general" class="tab-content">
 
-	            <?php $this->admin_obj->build_admin_field($agent_settings['user_sync']); ?>
+	            <?php $this->admin_obj->build_admin_field($agent_settings['user_sync']);
 
-            	<?php 
-            	$user_sync_id = $agent_settings['user_sync']['value'];
-
-            	if(!empty($user_sync_id)) { ?>
+            	if(!empty($agent_settings['user_sync']['value'])) { ?>
             		<h3><?php esc_html_e('General Info', 'propertyshift'); ?></h3>
             		<?php 
             		if(!empty($agent_settings['avatar_url']['value'])) { echo '<div><img width="100" src="'.$agent_settings['avatar_url']['value'].'" alt="" /></div>'; }
@@ -217,10 +214,10 @@ class PropertyShift_Agents {
             		if(!empty($agent_settings['description']['value'])) { echo 'Bio: '.$agent_settings['description']['value'].'<br/>'; } ?>
 
             		<h3><?php esc_html_e('Social Profiles', 'propertyshift'); ?></h3>
-            		<?php if(!empty($agent_settings['facebook']['value'])) { echo 'Facebook: <strong>'.$agent_settings['facebook']['value'].'</strong><br/>'; } ?>
-            		<?php if(!empty($agent_settings['twitter']['value'])) { echo 'Twitter: <strong>'.$agent_settings['twitter']['value'].'</strong><br/>'; } ?>
+            		<?php if(!empty($agent_settings['facebook']['value'])) { echo 'Facebook: <strong>'.$agent_settings['facebook']['value'].'</strong><br/>'; }
+            		if(!empty($agent_settings['twitter']['value'])) { echo 'Twitter: <strong>'.$agent_settings['twitter']['value'].'</strong><br/>'; }
 
-            	<?php } ?>
+            	} ?>
 	        </div>
 
 	        <!--*************************************************-->
@@ -493,10 +490,6 @@ class PropertyShift_Agents {
 	    $agent_properties['count'] =  $agent_properties['properties']->found_posts;
 	    return $agent_properties;
 	}
-
-	/************************************************************************/
-	// Agent Detail Methods
-	/************************************************************************/
 
 	/**
 	 *	Load agent detail items
