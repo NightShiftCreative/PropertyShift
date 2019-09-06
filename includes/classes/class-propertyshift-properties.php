@@ -122,7 +122,7 @@ class PropertyShift_Properties {
 	 */
 	public function load_property_settings($post_id, $return_defaults = false) {
 		
-		//get all agents (users)
+		//get all agents
 		$agents_array = array();
         $agents_array[esc_html__('Select an agent...', 'propertyshift')] = '';
         $agent_listing_query = get_users();
@@ -688,9 +688,9 @@ class PropertyShift_Properties {
 
 	        	$agent_id = $property_settings['owner_display']['children']['agent']['value'];
 	            if(!empty($agent_id)) {
-	            	$agent_data = get_userdata($agent_id);
-	            	$agent_edit_profile = get_edit_user_link($agent_id);
-	            	echo '<a href="'.$agent_edit_profile.'">'.$agent_data->display_name.'</a>';
+	            	$agent_obj = new PropertyShift_Agents();
+	            	$agent_settings = $agent_obj->load_agent_settings($agent_id);
+	            	echo '<a href="'.$agent_settings['edit_profile_url']['value'].'">'.$agent_settings['display_name']['value'].'</a>';
 	            } else {
 	            	echo '--';
 	            }
