@@ -17,6 +17,7 @@
 	//Get agent details
     $agents_obj = new PropertyShift_Agents();
     $agent_settings = $agents_obj->load_agent_settings($post->ID);
+    $agent_avatar_url = $agent_settings['avatar_url']['value'];
     $agent_email = $agent_settings['email']['value'];
     $agent_title = $agent_settings['job_title']['value'];
     $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
@@ -55,17 +56,13 @@
                     <!--******************************************************-->
                 	<div class="agent-single-item ps-single-item widget agent-<?php echo esc_attr($slug); ?>">
 
-                        <a href="<?php the_permalink(); ?>" class="agent-img">
-                            <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
-                                <div class="button alt button-icon agent-tag agent-assigned"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Assigned Property', 'propertyshift'); } else { esc_html_e('Assigned Properties', 'propertyshift'); } ?></div>
-                            <?php } ?>
-                            <?php if ( has_post_thumbnail() ) {  ?>
-                                <div class="img-fade"></div>
-                                <?php the_post_thumbnail('full'); ?>
+                        <div class="agent-img">
+                            <?php if(!empty($agent_avatar_url)) {  ?>
+                                <img src="<?php echo $agent_avatar_url; ?>" alt="<?php echo get_the_title(); ?>" />  
                             <?php } else { ?>
                                 <img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" alt="" />
                             <?php } ?>
-                        </a>
+                        </div>
 
                         <div class="agent-content">
                             <div class="agent-details">
