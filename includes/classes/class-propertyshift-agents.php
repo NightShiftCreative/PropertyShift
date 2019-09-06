@@ -157,6 +157,7 @@ class PropertyShift_Agents {
 		    	$agent_settings['youtube'] = array('title' => 'Youtube', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_youtube', true));
 		    	$agent_settings['instagram'] = array('title' => 'Instagram', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_instagram', true));
 		    	$agent_settings['contact_form_source'] = array('title' => 'Contact Form Source', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_contact', true));
+		    	$agent_settings['contact_form_7_id'] = array('title' => 'Contact Form 7 ID', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_contact_form_7', true));
 		    }
 
 			return $agent_settings;
