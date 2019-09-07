@@ -114,7 +114,14 @@ class PropertyShift_Agents {
 
 		$users = get_users();
 		$user_sync_options = array('Select a user...' => '');
-		foreach($users as $user) { $user_sync_options[$user->display_name] = $user->ID; }
+		foreach($users as $user) { 
+			$synced_agent = $this->get_synced_agent_id($user->ID);
+			if(empty($synced_agent)) {
+				$user_sync_options[$user->display_name] = $user->ID; 
+			} else {
+				$user_sync_options[$user->display_name.' (In Use)'] = $user->ID; 
+			}
+		}
 
 		$agent_settings_init = array(
 			'user_sync' => array(
@@ -206,9 +213,9 @@ class PropertyShift_Agents {
 	        <!--*************************************************-->
 	        <div id="general" class="tab-content">
 
-	            <?php $this->admin_obj->build_admin_field($agent_settings['user_sync']);
+	            <?php $this->admin_obj->build_admin_field($agent_settings['user_sync']); ?>
 
-            	if(!empty($agent_settings['user_sync']['value'])) { ?>
+            	<?php if(!empty($agent_settings['user_sync']['value'])) { ?>
             		<h3><?php esc_html_e('General Info', 'propertyshift'); ?></h3>
             		<?php 
             		if(!empty($agent_settings['avatar_url']['value'])) { echo '<div><img width="100" src="'.$agent_settings['avatar_url']['value'].'" alt="" /></div>'; }
@@ -586,7 +593,7 @@ class PropertyShift_Agents {
 	public function add_dashboard_stats() { 
 		
 		$current_user = wp_get_current_user();
-		
+
 		//Get post likes
 		$post_likes_obj = new NS_Basics_Post_Likes();
 		$saved_posts = $post_likes_obj->show_user_likes_count($current_user); 
