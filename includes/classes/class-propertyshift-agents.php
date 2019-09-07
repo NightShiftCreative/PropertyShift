@@ -30,6 +30,7 @@ class PropertyShift_Agents {
 		add_action('template_redirect', array($this, 'paginate_agent_single'), 0);
 		add_action('init', array( $this, 'add_custom_post_type' ));
 		add_action('add_meta_boxes', array( $this, 'register_meta_box'));
+		add_filter('wp_insert_post_data', array( $this, 'modify_post_title'), '99', 2);
 		add_action('save_post', array( $this, 'save_meta_box'));
 		add_filter('ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
 	
@@ -94,7 +95,7 @@ class PropertyShift_Agents {
 	        'show_in_menu' => false,
 	        'menu_icon' => 'dashicons-businessman',
 	        'has_archive' => false,
-	        'supports' => array('title', 'page_attributes'),
+	        'supports' => array('page_attributes'),
 	        'rewrite' => array('slug' => $agents_slug),
 	        )
 	    );
@@ -274,6 +275,20 @@ class PropertyShift_Agents {
 	    </div><!-- end ns-tabs -->
 
 	<?php }
+
+	/**
+	 * Auto-generate Post Title
+	 */
+	public function modify_post_title($data, $postarr) {
+	    if(isset($_POST['ps_agent_user_sync']) && !empty($_POST['ps_agent_user_sync'])) {
+	    	$user_data = get_userdata($_POST['ps_agent_user_sync']);
+	    	$post_title = $user_data->display_name;
+	    } else {
+	    	$post_title = 'Agent '.$postarr['ID'];
+	    }
+	    $data['post_title'] = $post_title;
+		return $data;
+	}
 
 	/**
 	 * Save Meta Box
