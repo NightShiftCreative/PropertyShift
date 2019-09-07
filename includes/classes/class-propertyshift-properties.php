@@ -61,9 +61,6 @@ class PropertyShift_Properties {
 		add_filter( 'ns_core_after_top_bar_member_menu', array( $this, 'add_topbar_links'));
 		add_action('propertyshift_property_actions', array($this, 'add_property_share'));
 		add_action('propertyshift_property_actions', array($this, 'add_property_favoriting'));
-		add_action('ns_basics_dashboard_stats', array($this, 'add_dashboard_stats'));
-		add_action('ns_basics_after_dashboard', array($this, 'add_dashboard_widgets'));
-		
 	}
 
 	/**
@@ -1400,41 +1397,6 @@ class PropertyShift_Properties {
 			echo $post_likes_obj->get_post_likes_button($post->ID);
 		}
 	}
-
-	/**
-	 *	Add dashboard stats
-	 */
-	public function add_dashboard_stats() { 
-		$current_user = wp_get_current_user();
-		$post_likes_obj = new NS_Basics_Post_Likes();
-		$pending_properties = $this->count_properties('pending', $current_user->ID); 
-		$published_properties = $this->count_properties('publish', $current_user->ID); 
-		$saved_properties = $post_likes_obj->show_user_likes_count($current_user);?>
-		<div class="user-dashboard-widget stat">
-			<span><?php echo $pending_properties; ?></span>
-			<p><?php esc_html_e( 'Pending Properties', 'propertyshift' ) ?></p>
-		</div>
-		<div class="user-dashboard-widget stat">
-			<span><?php echo $published_properties; ?></span>
-			<p><?php esc_html_e( 'Published Properties', 'propertyshift' ) ?></p>
-		</div>
-		<div class="user-dashboard-widget stat">
-			<span><?php echo $saved_properties; ?></span>
-			<p><?php esc_html_e( 'Saved Posts', 'propertyshift' ) ?></p>
-		</div>
-	<?php }
-
-	/**
-	 *	Add dashboard widgets
-	 */
-	public function add_dashboard_widgets() { 
-		$members_my_properties_page = $this->global_settings['ps_members_my_properties_page']; ?>
-		<div class="user-dashboard-widget">
-			<h4><?php esc_html_e( 'Your Recent Properties', 'propertyshift' ) ?></h4>
-			<?php echo do_shortcode('[ps_my_properties show_posts=3 show_pagination="false"]'); ?>
-			<?php if(!empty($members_my_properties_page)) { ?><a href="<?php echo $members_my_properties_page; ?>" class="button small">View All Properties</a><?php } ?>
-		</div>
-	<?php }
 
 
 	/************************************************************************/

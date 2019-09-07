@@ -41,6 +41,10 @@ class PropertyShift_Agents {
         add_action( 'edit_user_profile_update', array($this, 'save_agent_user_fields'));
         add_action( 'ns_basics_edit_profile_fields', array($this, 'create_agent_user_fields'));
         add_action( 'ns_basics_edit_profile_save', array($this, 'save_agent_user_fields'));
+
+        //front-end template hooks
+        add_action('ns_basics_dashboard_stats', array($this, 'add_dashboard_stats'));
+		add_action('ns_basics_after_dashboard', array($this, 'add_dashboard_widgets'));
 	}
 
 	/**
@@ -487,7 +491,7 @@ class PropertyShift_Agents {
 	 * @param int $posts_per_page
 	 * @param boolean $pagination
 	 */
-	public function get_agent_properties($agent_id, $posts_per_page = null, $pagination = false) {
+	public function get_agent_properties($agent_id, $posts_per_page = null, $pagination = false, $post_status = array('publish')) {
 		$agent_properties = array(); 
 
 	    $meta_query = array();
@@ -509,6 +513,8 @@ class PropertyShift_Agents {
 	        $paged = isset($_GET['paged']) ? $_GET['paged'] : 1;
 	        $args['paged'] = $paged; 
 	    }
+
+	    $args['post_status'] = $post_status;
 
 	    $agent_properties['args'] = $args;
 	    $agent_properties['properties'] = new WP_Query($args);
@@ -569,6 +575,52 @@ class PropertyShift_Agents {
 		$agent_detail_items_init = apply_filters( 'propertyshift_agent_detail_items_init_filter', $agent_detail_items_init);
 	    return $agent_detail_items_init;
 	}
+
+	/************************************************************************/
+	// Front-end Template Hooks
+	/************************************************************************/
+
+	/**
+	 *	Add dashboard stats
+	 */
+	public function add_dashboard_stats() { 
+		
+		//Get post likes
+		$post_likes_obj = new NS_Basics_Post_Likes();
+		$saved_posts = $post_likes_obj->show_user_likes_count($current_user); 
+
+		//Get synced agent
+		$current_user = wp_get_current_user();
+    	$synced_agent = $this->get_synced_agent_id($current_user->ID);
+		$pending_properties = $this->get_agent_properties($synced_agent, null, false, array('pending'));
+		$published_properties = $this->get_agent_properties($synced_agent, null, false, array('publish')); ?>
+		
+		<div class="user-dashboard-widget stat">
+			<span><?php echo $pending_properties['count']; ?></span>
+			<p><?php esc_html_e( 'Pending Properties', 'propertyshift' ) ?></p>
+		</div>
+		<div class="user-dashboard-widget stat">
+			<span><?php echo $published_properties['count']; ?></span>
+			<p><?php esc_html_e( 'Published Properties', 'propertyshift' ) ?></p>
+		</div>
+		<div class="user-dashboard-widget stat">
+			<span><?php echo $saved_posts; ?></span>
+			<p><?php esc_html_e( 'Saved Posts', 'propertyshift' ) ?></p>
+		</div>
+	<?php }
+
+	/**
+	 *	Add dashboard widgets
+	 */
+	public function add_dashboard_widgets() { 
+		$members_my_properties_page = $this->global_settings['ps_members_my_properties_page']; ?>
+		<div class="user-dashboard-widget">
+			<h4><?php esc_html_e( 'Your Recent Properties', 'propertyshift' ) ?></h4>
+			<?php echo do_shortcode('[ps_my_properties show_posts=3 show_pagination="false"]'); ?>
+			<?php if(!empty($members_my_properties_page)) { ?><a href="<?php echo $members_my_properties_page; ?>" class="button small">View All Properties</a><?php } ?>
+		</div>
+	<?php }
+
 
 	/************************************************************************/
 	// Agent Page Settings Methods
