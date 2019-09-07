@@ -346,8 +346,7 @@
                                 $agent_listing_args = array(
                                     'post_type' => 'ps-agent',
                                     'posts_per_page' => 1,
-                                    'meta_key' => 'ps_agent_user_sync',
-                                    'meta_value' => $agent_select,
+                                    'p' => $agent_select,
                                 );
                                 $agent_listing_query = new WP_Query( $agent_listing_args );
 
@@ -411,7 +410,7 @@
                                         if($property_detail_agent_contact_form == 'true') {
                                             if($agent_form_source == 'contact-form-7') {
                                                 $agent_form_title = get_the_title( $agent_form_id );
-                                                echo do_shortcode('[contact-form-7 id="<?php echo esc_attr($agent_form_id); ?>" title="'.$agent_form_title.'"]');
+                                                echo do_shortcode('[contact-form-7 id="'.esc_attr($agent_form_id).'" title="'.$agent_form_title.'"]');
                                             } else {
                                                 propertyshift_template_loader('agent_contact_form.php');
                                             } 
