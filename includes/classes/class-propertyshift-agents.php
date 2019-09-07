@@ -277,7 +277,7 @@ class PropertyShift_Agents {
 	<?php }
 
 	/**
-	 * Auto-generate Post Title
+	 * Auto-generate post title
 	 */
 	public function modify_post_title($data, $postarr) {
 	    if($data['post_type'] == 'ps-agent') {
@@ -330,14 +330,13 @@ class PropertyShift_Agents {
 	            <th><label><?php esc_html_e('Synced Agent Profile', 'propertyshift'); ?></label></th>
 	            <td>
 	            	<?php
-	            	$synced_agent = get_the_author_meta('ps_agent_id', $user->ID);
-	            	if(!empty($synced_agent)) {
-	            		echo $synced_agent;
-	            	} else {
-	            		esc_html_e('No agent profile found.', 'propertyshift');
-	            		echo ' <a href="#">Create an agent profile</a>';
-	            	}
-	            	?>
+	            	$synced_agent = $this->get_synced_agent_id($user->ID);
+	            	if(!empty($synced_agent)) { ?>
+	            		<a href="<?php echo get_edit_post_link($synced_agent); ?>" class="button"><?php esc_html_e('Manage Agent Profile', 'propertyshift') ?></a>
+	            	<?php } else { 
+	            		esc_html_e('No agent profile found.', 'propertyshift'); ?>
+	            		<a href="<?php echo admin_url('post-new.php?post_type=ps-agent'); ?>"><?php esc_html_e('Create an agent profile', 'propertyshift'); ?></a>
+	            	<?php } ?>
 	            </td>
 	        </tr>
 	        </table>
@@ -515,6 +514,21 @@ class PropertyShift_Agents {
 	    $agent_properties['properties'] = new WP_Query($args);
 	    $agent_properties['count'] =  $agent_properties['properties']->found_posts;
 	    return $agent_properties;
+	}
+
+	/**
+	 *	Get synced agent id
+	 */
+	public function get_synced_agent_id($user_id) {
+		$synced_agent = '';
+		$args = array(
+			'post_type' => 'ps-agent',
+			'meta_key' => 'ps_agent_user_sync',
+			'meta_value' => $user_id,
+		);
+		$agents = get_posts($args);
+		foreach($agents as $agent) { $synced_agent = $agent->ID; }
+		return $synced_agent;
 	}
 
 	/**
