@@ -18,7 +18,6 @@
     $agent_youtube = $agent_settings['youtube']['value'];
     $agent_instagram = $agent_settings['instagram']['value'];
 
-
     //Get agent property count
     $agent_properties = $agents_obj->get_agent_properties(get_the_id());
     $agent_properties_count = $agent_properties['count'];
