@@ -367,7 +367,7 @@
                                     $agent_youtube = $agent_settings['youtube']['value'];
                                     $agent_instagram = $agent_settings['instagram']['value'];
                                     $agent_form_source = $agent_settings['contact_form_source']['value'];
-                                    $agent_form_id = $agent_settings['contact_form_source']['children']['contact_form_7_id']['value'];
+                                    $agent_form_id = $agent_settings['contact_form_7_id']['value'];
                                     ?>
 
                                     <div class="ps-agent property-agent">
