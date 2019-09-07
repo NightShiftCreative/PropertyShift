@@ -327,10 +327,17 @@ class PropertyShift_Agents {
 	        <?php if(is_admin()) { ?>
 	        <table class="form-table">
 	        <tr>
-	            <th><label><?php esc_html_e('Agent Profile ID', 'propertyshift'); ?></label></th>
+	            <th><label><?php esc_html_e('Synced Agent Profile', 'propertyshift'); ?></label></th>
 	            <td>
-	                <input type="number" name="ps_agent_id" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_id', $user->ID ) ); ?>" class="regular-text" /><br/>
-	                <span class="description"><?php esc_html_e("Provide the agents id.", 'propertyshift'); ?></span>
+	            	<?php
+	            	$synced_agent = get_the_author_meta('ps_agent_id', $user->ID);
+	            	if(!empty($synced_agent)) {
+	            		echo $synced_agent;
+	            	} else {
+	            		esc_html_e('No agent profile found.', 'propertyshift');
+	            		echo ' <a href="#">Create an agent profile</a>';
+	            	}
+	            	?>
 	            </td>
 	        </tr>
 	        </table>
