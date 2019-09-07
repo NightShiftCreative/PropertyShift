@@ -331,4 +331,14 @@ jQuery(document).ready(function($) {
         }
     });
 
+    /******************************************************************************/
+    /** SCROLL TO AGENT PROPERTIES **/
+    /******************************************************************************/
+    $(".button.agent-assigned").click(function(e) {
+        e.preventDefault();
+        $('html, body').animate({
+            scrollTop: $('a[name="anchor-agent-properties"]').offset().top
+        }, 800);
+    });
+
 });

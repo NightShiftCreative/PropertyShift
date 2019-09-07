@@ -64,6 +64,10 @@
                             <?php } ?>
                         </div>
 
+                        <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
+                            <div class="button alt button-icon agent-tag agent-assigned"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Assigned Property', 'propertyshift'); } else { esc_html_e('Assigned Properties', 'propertyshift'); } ?></div>
+                        <?php } ?>
+
                         <div class="agent-content">
                             <div class="agent-details">
         	                	<?php if(!empty($agent_title)) { ?><p><span><?php echo esc_attr($agent_title); ?></span><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php esc_html_e('Title', 'propertyshift'); ?>:</p><?php } ?>
