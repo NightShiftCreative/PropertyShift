@@ -280,13 +280,15 @@ class PropertyShift_Agents {
 	 * Auto-generate Post Title
 	 */
 	public function modify_post_title($data, $postarr) {
-	    if(isset($_POST['ps_agent_user_sync']) && !empty($_POST['ps_agent_user_sync'])) {
-	    	$user_data = get_userdata($_POST['ps_agent_user_sync']);
-	    	$post_title = $user_data->display_name;
-	    } else {
-	    	$post_title = 'Agent '.$postarr['ID'];
-	    }
-	    $data['post_title'] = $post_title;
+	    if($data['post_type'] == 'ps-agent') {
+		    if(isset($_POST['ps_agent_user_sync']) && !empty($_POST['ps_agent_user_sync'])) {
+		    	$user_data = get_userdata($_POST['ps_agent_user_sync']);
+		    	$post_title = $user_data->display_name;
+		    } else {
+		    	$post_title = 'Agent '.$postarr['ID'];
+		    }
+		    $data['post_title'] = $post_title;
+		}
 		return $data;
 	}
 
