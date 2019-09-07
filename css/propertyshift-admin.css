@@ -30,6 +30,11 @@
 #side-sortables .remove-pin { margin:5px 0px; display:block; width:100%; }
 #side-sortables .admin-module.admin-module-coordinates { width:100%; }
 
+/** WP LIST TABLE **/
+.wp-list-table .attachment-thumbnail { border-radius:5px; width:100px; }
+.wp-list-table .agent-link { display:block; }
+.wp-list-table .agent-link img { width:35px; height:35px; margin-right:5px; margin-bottom:-12px; border-radius:100px; }
+
 /** RESPONSIVE **/
 @media only screen and (max-width: 750px) {
 	.floor-plan-left, .floor-plan-right { width:100%; float:none; }

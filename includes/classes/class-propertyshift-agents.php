@@ -143,10 +143,12 @@ class PropertyShift_Agents {
 		        	$agent_listing_crop = $this->global_settings['ps_agent_listing_crop'];
 		        	if($agent_listing_crop == 'true') { $avatar_size = 'agent-thumbnail'; } else { $avatar_size = 'full';  }
 		        	$agent_settings['avatar_url'] = array('title' => 'Avatar URL', 'value' => wp_get_attachment_image_url($agent_settings['avatar']['value'], $avatar_size)); 
+		        	$agent_settings['avatar_url_thumb'] = array('title' => 'Avatar Thumbnail URL', 'value' => wp_get_attachment_image_url($agent_settings['avatar']['value'], 'thumbnail'));
 		        }
 		        
 		        $agent_settings['username'] = array('title' => 'Username', 'value' => $user_data->user_login);
 		        $agent_settings['display_name'] = array('title' => 'Display Name', 'value' => $user_data->display_name);
+		        $agent_settings['edit_profile_url'] = array('title' => 'Edit Profile URL', 'value' => get_edit_user_link($agent_user_sync_id));
 		        $agent_settings['email'] = array('title' => 'Email', 'value' => $user_data->user_email);
 		    	$agent_settings['first_name'] = array('title' => 'First Name', 'value' => $user_data->first_name);
 		    	$agent_settings['last_name'] = array('title' => 'Last Name', 'value' => $user_data->last_name);

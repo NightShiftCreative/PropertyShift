@@ -658,15 +658,19 @@ class PropertyShift_Properties {
 	        case 'thumbnail' :
 	            if(has_post_thumbnail()) { echo the_post_thumbnail('thumbnail'); } else { echo '--'; }
 	            break;
+
 	        case 'price' :
 	            $price = $property_settings['price']['value'];
 	            if(!empty($price)) { $price = $this->get_formatted_price($price); }
 	            if(empty($price)) { echo '--'; } else { echo $price; }
 	            break;
+
 	        case 'location' :
 
 	            //Get property location
 	          	$property_location = $this->get_tax_location($post_id);
+	          	$address = $property_settings['street_address']['value'];
+	          	if(!empty($address)) { echo $address.'<br/>'; }
 	            if(empty($property_location)) { echo '--'; } else { echo $property_location; }
 	            break;
 
@@ -689,9 +693,12 @@ class PropertyShift_Properties {
 	        	$agent_id = $property_settings['owner_display']['children']['agent']['value'];
 	            if(!empty($agent_id)) {
 	            	$agent_obj = new PropertyShift_Agents();
-	            	$agent_settings = $agent_obj->load_agent_settings($agent_id);
-	            	echo '<a href="'.$agent_settings['edit_profile_url']['value'].'">'.$agent_settings['display_name']['value'].'</a>';
-	            } else {
+	            	$agent_settings = $agent_obj->load_agent_settings($agent_id); ?>
+	            	<a class="agent-link" href="<?php echo $agent_settings['edit_profile_url']['value']; ?>">
+	            		<?php if(!empty($agent_settings['avatar_url_thumb']['value'])) { ?><img width="35" src="<?php echo $agent_settings['avatar_url_thumb']['value']; ?>" alt="" /><?php } ?>
+	            		<span><?php echo $agent_settings['display_name']['value']; ?></span>
+	            	</a>
+	            <?php } else {
 	            	echo '--';
 	            }
 	            break;
