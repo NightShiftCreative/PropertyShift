@@ -585,12 +585,13 @@ class PropertyShift_Agents {
 	 */
 	public function add_dashboard_stats() { 
 		
+		$current_user = wp_get_current_user();
+		
 		//Get post likes
 		$post_likes_obj = new NS_Basics_Post_Likes();
 		$saved_posts = $post_likes_obj->show_user_likes_count($current_user); 
 
 		//Get synced agent
-		$current_user = wp_get_current_user();
     	$synced_agent = $this->get_synced_agent_id($current_user->ID);
 		$pending_properties = $this->get_agent_properties($synced_agent, null, false, array('pending'));
 		$published_properties = $this->get_agent_properties($synced_agent, null, false, array('publish')); ?>
