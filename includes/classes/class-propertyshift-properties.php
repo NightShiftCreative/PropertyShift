@@ -118,12 +118,6 @@ class PropertyShift_Properties {
 	 * @param int $post_id
 	 */
 	public function load_property_settings($post_id, $return_defaults = false) {
-		
-		//get all agents
-		$agents_array = array();
-        $agents_array[esc_html__('Select an agent...', 'propertyshift')] = '';
-        $agent_listing_query = get_posts(array('post_type' => 'ps-agent', 'posts_per_page' => -1));
-        foreach($agent_listing_query as $agent) { $agents_array[$agent->post_title] = $agent->ID; }
 
         // settings
 		$property_settings_init = array(
@@ -271,25 +265,18 @@ class PropertyShift_Properties {
 			),
 			'owner_display' => array(
 				'group' => 'owner_info',
-				'title' => esc_html__('What to display for agent information?', 'propertyshift'),
+				'title' => esc_html__('What to display for contact information?', 'propertyshift'),
 				'name' => 'ps_agent_display',
 				'type' => 'radio_image',
 				'class' => 'full-width',
 				'order' => 17,
 				'value' => 'none',
 				'options' => array(
-					esc_html__('None', 'propertyshift') => array('value' => 'none'),
 					esc_html__('Agent Info', 'propertyshift') => array('value' => 'agent'),
 					esc_html__('Custom Info', 'propertyshift') => array('value' => 'custom'),
+					esc_html__('None', 'propertyshift') => array('value' => 'none'),
 				),
 				'children' => array(
-					'agent' => array(
-						'title' => esc_html__('Select Agent', 'propertyshift'),
-						'name' => 'ps_agent_select',
-						'type' => 'select',
-						'options' => $agents_array,
-						'parent_val' => 'agent',
-					),
 					'owner_custom_name' => array(
 						'title' => esc_html__('Custom Name', 'propertyshift'),
 						'name' => 'ps_agent_custom_name',
@@ -441,7 +428,9 @@ class PropertyShift_Properties {
 	        <!--*************************************************-->
 	        <div id="agent" class="tab-content">
 	            <h3><?php echo esc_html_e('Contact Info', 'propertyshift'); ?></h3>
+	            <strong><?php echo esc_html_e('Assigned Agent', 'propertyshift'); ?></strong>
 	            <?php
+	            echo post_author_meta_box($post);
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'owner_info') {
             			$this->admin_obj->build_admin_field($setting);
