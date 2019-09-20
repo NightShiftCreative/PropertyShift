@@ -494,25 +494,16 @@ class PropertyShift_Agents {
 	/**
 	 *	Get agent properties
 	 *
-	 * @param int $agent_id
+	 * @param int $user_id
 	 * @param int $posts_per_page
 	 * @param boolean $pagination
 	 */
-	public function get_agent_properties($agent_id, $posts_per_page = null, $pagination = false, $post_status = array('publish')) {
+	public function get_agent_properties($user_id, $posts_per_page = null, $pagination = false, $post_status = array('publish')) {
 		$agent_properties = array(); 
-
-	    $meta_query = array();
-	    $meta_query['relation'] = 'AND';
-	    $meta_query[] = array('key' => 'ps_agent_display', 'value' => 'agent');
-	    if(is_array($agent_id)) {
-	        $meta_query[] = array('key' => 'ps_agent_select', 'value' => $agent_id, 'compare' => 'IN');
-	    } else {
-	        $meta_query[] = array('key' => 'ps_agent_select', 'value' => $agent_id);
-	    }
 	    
 	    $args = array(
 	        'post_type' => 'ps-property',
-	        'meta_query' => $meta_query,
+	        'author' => $user_id,
 	    );
 
 	    if(!empty($posts_per_page)) { $args['posts_per_page'] = $posts_per_page; }
@@ -598,10 +589,9 @@ class PropertyShift_Agents {
 		$post_likes_obj = new NS_Basics_Post_Likes();
 		$saved_posts = $post_likes_obj->show_user_likes_count($current_user); 
 
-		//Get synced agent
-    	$synced_agent = $this->get_synced_agent_id($current_user->ID);
-		$pending_properties = $this->get_agent_properties($synced_agent, null, false, array('pending'));
-		$published_properties = $this->get_agent_properties($synced_agent, null, false, array('publish')); ?>
+		//Get properties
+		$pending_properties = $this->get_agent_properties($current_user->ID, null, false, array('pending'));
+		$published_properties = $this->get_agent_properties($current_user->ID, null, false, array('publish')); ?>
 		
 		<div class="user-dashboard-widget stat">
 			<span><?php echo $pending_properties['count']; ?></span>

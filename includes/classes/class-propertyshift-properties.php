@@ -263,46 +263,6 @@ class PropertyShift_Properties {
 				'display_img' => true,
 				'order' => 16,
 			),
-			'owner_display' => array(
-				'group' => 'owner_info',
-				'title' => esc_html__('What to display for contact information?', 'propertyshift'),
-				'name' => 'ps_agent_display',
-				'type' => 'radio_image',
-				'class' => 'full-width',
-				'order' => 17,
-				'value' => 'none',
-				'options' => array(
-					esc_html__('Agent Info', 'propertyshift') => array('value' => 'agent'),
-					esc_html__('Custom Info', 'propertyshift') => array('value' => 'custom'),
-					esc_html__('None', 'propertyshift') => array('value' => 'none'),
-				),
-				'children' => array(
-					'owner_custom_name' => array(
-						'title' => esc_html__('Custom Name', 'propertyshift'),
-						'name' => 'ps_agent_custom_name',
-						'type' => 'text',
-						'parent_val' => 'custom',
-					),
-					'owner_custom_email' => array(
-						'title' => esc_html__('Custom Email', 'propertyshift'),
-						'name' => 'ps_agent_custom_email',
-						'type' => 'text',
-						'parent_val' => 'custom',
-					),
-					'owner_custom_phone' => array(
-						'title' => esc_html__('Custom Phone', 'propertyshift'),
-						'name' => 'ps_agent_custom_phone',
-						'type' => 'text',
-						'parent_val' => 'custom',
-					),
-					'owner_custom_url' => array(
-						'title' => esc_html__('Custom Website', 'propertyshift'),
-						'name' => 'ps_agent_custom_url',
-						'type' => 'text',
-						'parent_val' => 'custom',
-					),
-				),
-			),
 		);
 		$property_settings_init = apply_filters('propertyshift_property_settings_init_filter', $property_settings_init, $post_id);
 		uasort($property_settings_init, 'ns_basics_sort_by_order');
@@ -1312,12 +1272,6 @@ class PropertyShift_Properties {
 
 		    if( isset( $_POST['longitude'] ) )
 		        update_post_meta( $post_ID, 'ps_property_longitude', wp_kses( $_POST['longitude'], $allowed ) );
-
-		    if( isset( $_POST['agent_display'] ) )
-		        update_post_meta( $post_ID, 'ps_agent_display', wp_kses( $_POST['agent_display'], $allowed ) );
-
-		    if( isset( $_POST['agent_select'] ) )
-		        update_post_meta( $post_ID, 'ps_agent_select', wp_kses( $_POST['agent_select'], $allowed ) );
 
 		    if( isset( $_POST['agent_custom_name'] ) )
 		        update_post_meta( $post_ID, 'ps_agent_custom_name', wp_kses( $_POST['agent_custom_name'], $allowed ) );
