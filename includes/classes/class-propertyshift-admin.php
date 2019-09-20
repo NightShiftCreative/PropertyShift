@@ -778,6 +778,9 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 
 	        foreach($nodes as $node) { echo '<div class="admin-module add-on">'.DOMinnerHTML($node).'</div>'; }
 	        echo '</div>';
+	    } else { 
+	    	esc_html_e('There was an issue connecting to the add-ons store. Get more information about our add-ons', 'propertyshift'); 
+	    	echo ' <a href="'.NS_SHOP_URL.'" target="_blank">here</a>.';
 	    }
 
 		$output = ob_get_clean();

@@ -11,8 +11,7 @@
 
     //Get agent properties
     $agent_obj = new PropertyShift_Agents();
-    $synced_agent = $agent_obj->get_synced_agent_id($current_user->ID);
-    $agent_properties = $agent_obj->get_agent_properties($synced_agent, 12, true, array('pending', 'publish'));
+    $agent_properties = $agent_obj->get_agent_properties($current_user->ID, 12, true, array('pending', 'publish'));
 
     //GET CUSTOM ARGS
     if(isset($template_args)) {
