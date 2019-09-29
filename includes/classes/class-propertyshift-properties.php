@@ -636,14 +636,10 @@ class PropertyShift_Properties {
 
 	        case 'agent' :
 
-	        	$agent_id = $property_settings['owner_display']['children']['agent']['value'];
-	            if(!empty($agent_id)) {
-	            	$agent_obj = new PropertyShift_Agents();
-	            	$agent_settings = $agent_obj->load_agent_settings($agent_id); ?>
-	            	<a class="agent-link" href="<?php echo $agent_settings['edit_profile_url']['value']; ?>">
-	            		<?php if(!empty($agent_settings['avatar_url_thumb']['value'])) { ?><img width="35" src="<?php echo $agent_settings['avatar_url_thumb']['value']; ?>" alt="" /><?php } ?>
-	            		<span><?php echo $agent_settings['display_name']['value']; ?></span>
-	            	</a>
+	        	$agent_id = get_the_author_meta('ID');
+	            if(!empty($agent_id)) { 
+	            	$agent = get_userdata($agent_id); ?>
+	            	<a href="<?php echo get_edit_user_link($agent_id); ?>"><?php echo $agent->display_name; ?></a>
 	            <?php } else {
 	            	echo '--';
 	            }

@@ -25,9 +25,14 @@ class PropertyShift_Agents {
 	 *	Init
 	 */
 	public function init() {
-
 		$this->add_image_sizes();
 		add_action('init', array( $this, 'rewrite_rules' ));
+		add_action('template_redirect', array($this, 'paginate_agent_single'), 0);
+		add_action('init', array( $this, 'add_custom_post_type' ));
+		add_action('add_meta_boxes', array( $this, 'register_meta_box'));
+		add_filter('wp_insert_post_data', array( $this, 'modify_post_title'), '99', 2);
+		add_action('save_post', array( $this, 'save_meta_box'));
+		add_filter('ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
 	
 		//add & save user fields
 		add_action( 'show_user_profile', array($this, 'create_agent_user_fields'));
@@ -56,9 +61,49 @@ class PropertyShift_Agents {
 		add_rewrite_rule('^agents/page/([0-9]+)','index.php?pagename=agents&paged=$matches[1]', 'top');
 	}
 
+	/**
+	 *	Allow pagination on agent single page
+	 */
+	public function paginate_agent_single() {
+		if ( is_singular( 'ps-agent' ) ) {
+	        global $wp_query;
+	        $page = ( int ) $wp_query->get( 'page' );
+	        if ( $page > 1 ) {
+	            // convert 'page' to 'paged'
+	            $query->set( 'page', 1 );
+	            $query->set( 'paged', $page );
+	        }
+	        remove_action( 'template_redirect', 'redirect_canonical' );
+	    }
+	}
+
 	/************************************************************************/
 	// Agents Custom Post Type
 	/************************************************************************/
+
+	/**
+	 *	Add custom post type
+	 */
+	public function add_custom_post_type() {
+		$agents_slug = $this->global_settings['ps_agent_detail_slug'];
+	    register_post_type( 'ps-agent',
+	        array(
+	            'labels' => array(
+	                'name' => __( 'Agents', 'propertyshift' ),
+	                'singular_name' => __( 'Agent', 'propertyshift' ),
+	                'add_new_item' => __( 'Add New Agent', 'propertyshift' ),
+	                'search_items' => __( 'Search Agents', 'propertyshift' ),
+	                'edit_item' => __( 'Edit Agent', 'propertyshift' ),
+	            ),
+	        'public' => true,
+	        'show_in_menu' => false,
+	        'menu_icon' => 'dashicons-businessman',
+	        'has_archive' => false,
+	        'supports' => array('page_attributes'),
+	        'rewrite' => array('slug' => $agents_slug),
+	        )
+	    );
+	}
 
 	/**
 	 *	Load agent settings
@@ -136,6 +181,147 @@ class PropertyShift_Agents {
 
 			return $agent_settings;
 		}
+	}
+
+	/**
+	 *	Register meta box
+	 */
+	public function register_meta_box() {
+		add_meta_box( 'agent-details-meta-box', 'Agent Details', array($this, 'output_meta_box'), 'ps-agent', 'normal', 'high' );
+	}
+
+	/**
+	 *	Output meta box interface
+	 */
+	public function output_meta_box($post) {
+
+		$agent_settings = $this->load_agent_settings($post->ID); 
+		wp_nonce_field( 'ps_agent_details_meta_box_nonce', 'ps_agent_details_meta_box_nonce' ); ?>
+
+		<div class="ns-tabs meta-box-form meta-box-form-agent">
+			<ul class="ns-tabs-nav">
+	            <li><a href="#general"><i class="fa fa-user"></i> <span class="tab-text"><?php esc_html_e('Agent Details', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#properties"><i class="fa fa-home"></i> <span class="tab-text"><?php esc_html_e('Properties', 'propertyshift'); ?></span></a></li>
+	            <?php do_action('propertyshift_after_agent_detail_tabs'); ?>
+	        </ul>
+
+	        <div class="ns-tabs-content">
+        	<div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e('Loading...', 'propertyshift'); ?></div>
+
+        	<!--*************************************************-->
+	        <!-- GENERAL INFO -->
+	        <!--*************************************************-->
+	        <div id="general" class="tab-content">
+
+	            <?php $this->admin_obj->build_admin_field($agent_settings['user_sync']); ?>
+
+            	<?php if(!empty($agent_settings['user_sync']['value'])) { ?>
+            		<h3><?php esc_html_e('General Info', 'propertyshift'); ?></h3>
+            		<?php 
+            		if(!empty($agent_settings['avatar_url']['value'])) { echo '<div><img width="100" src="'.$agent_settings['avatar_url']['value'].'" alt="" /></div>'; }
+            		if(!empty($agent_settings['username']['value'])) { echo 'Username: <strong>'.$agent_settings['username']['value'].'</strong><br/>'; }
+            		if(!empty($agent_settings['display_name']['value'])) { echo 'Display Name: <strong>'.$agent_settings['display_name']['value'].'</strong><br/>'; }
+            		if(!empty($agent_settings['first_name']['value'])) { echo 'First Name: <strong>'.$agent_settings['first_name']['value'].'</strong><br/>'; }
+            		if(!empty($agent_settings['last_name']['value'])) { echo 'Last Name: <strong>'.$agent_settings['last_name']['value'].'</strong><br/>'; }
+            		if(!empty($agent_settings['email']['value'])) { echo 'Email: <strong>'.$agent_settings['email']['value'].'</strong><br/>'; }
+            		if(!empty($agent_settings['website']['value'])) { echo 'Website: <strong><a href="'.$agent_settings['website']['value'].'" target="_blank">'.$agent_settings['website']['value'].'</a></strong><br/>'; }
+            		if(!empty($agent_settings['description']['value'])) { echo 'Bio: '.$agent_settings['description']['value'].'<br/>'; } ?>
+
+            		<h3><?php esc_html_e('Social Profiles', 'propertyshift'); ?></h3>
+            		<?php if(!empty($agent_settings['facebook']['value'])) { echo 'Facebook: <strong>'.$agent_settings['facebook']['value'].'</strong><br/>'; }
+            		if(!empty($agent_settings['twitter']['value'])) { echo 'Twitter: <strong>'.$agent_settings['twitter']['value'].'</strong><br/>'; }
+
+            	} ?>
+	        </div>
+
+	        <!--*************************************************-->
+	        <!-- AGENT PROPERTIES -->
+	        <!--*************************************************-->
+	        <div id="properties" class="tab-content">
+	            <h3><?php esc_html_e('Agent Properties', 'propertyshift'); ?></h3>
+	            <?php
+	            $agent_properties = $this->get_agent_properties(get_the_id(), 20, true);
+            	$agent_properties_query = $agent_properties['properties']; ?>
+            	<p><?php echo $agent_properties['count']; ?> <?php esc_html_e('total properties found', 'propertyshift'); ?></p>
+	        	<table class="admin-table">
+	                <tr>
+	                    <th><?php esc_html_e('Property ID', 'propertyshift'); ?></th>
+	                    <th><?php esc_html_e('Title', 'propertyshift'); ?></th>
+	                    <th><?php esc_html_e('Status', 'propertyshift'); ?></th>
+	                    <th><?php esc_html_e('Date Published', 'propertyshift'); ?></th>
+	                    <th><?php esc_html_e('Actions', 'propertyshift'); ?></th>
+	                </tr>
+	                <?php if ($agent_properties_query->have_posts() ) : while ($agent_properties_query->have_posts() ) : $agent_properties_query->the_post();
+	                    echo '<tr>';
+	                    echo '<td>'.get_the_id().'</td>';
+	                    echo '<td>'.get_the_title().'</td>';
+	                    echo '<td>'.get_post_status().'</td>';
+	                    echo '<td>'.get_the_date().'</td>';
+	                    echo '<td><a href="'.get_the_permalink().'" target="_blank">View</a> | <a href="'.admin_url().'post.php?post='.get_the_id().'&action=edit">Edit</a></td>';
+	                    echo '</tr>';
+	                endwhile;
+	                    wp_reset_postdata();
+	                    $paged = isset($_GET['paged']) ? $_GET['paged'] : 1;
+	                    $pagination_args = array(
+	                        'base'         => '%_%#properties',
+	                        'format'       => '?paged=%#%',
+	                        'total'        => $agent_properties_query->max_num_pages,
+	                        'current'      => max( 1, $paged ),
+	                        'show_all'     => true,
+	                        'prev_next'    => True,
+	                        'prev_text'    => esc_html__('&raquo; Previous', 'propertyshift'),
+	                        'next_text'    => esc_html__('Next &raquo;', 'propertyshift'),
+	                    ); 
+	                    echo '<tr class="admin-table-pagination"><td colspan="5">'.paginate_links($pagination_args).'</td></tr>';
+	                else:
+	                    echo '<tr><td colspan="5">'.esc_html__('This agent has no assigned properties.', 'propertyshift').'</td></tr>';
+	                endif; ?>
+	            </table>
+	        </div>
+
+	        <?php do_action('propertyshift_after_agent_details_tab_content', $agent_settings); ?>
+
+        	</div><!-- end ns-tabs-content -->
+        	<div class="clear"></div>
+	    </div><!-- end ns-tabs -->
+
+	<?php }
+
+	/**
+	 * Auto-generate post title
+	 */
+	public function modify_post_title($data, $postarr) {
+	    if($data['post_type'] == 'ps-agent') {
+		    if(isset($_POST['ps_agent_user_sync']) && !empty($_POST['ps_agent_user_sync'])) {
+		    	$user_data = get_userdata($_POST['ps_agent_user_sync']);
+		    	$post_title = $user_data->display_name;
+		    } else {
+		    	$post_title = 'Agent '.$postarr['ID'];
+		    }
+		    $data['post_title'] = $post_title;
+		}
+		return $data;
+	}
+
+	/**
+	 * Save Meta Box
+	 */
+	public function save_meta_box($post_id) {
+		// Bail if we're doing an auto save
+        if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+
+        // if our nonce isn't there, or we can't verify it, bail
+        if( !isset( $_POST['ps_agent_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['ps_agent_details_meta_box_nonce'], 'ps_agent_details_meta_box_nonce' ) ) return;
+
+        // if our current user can't edit this post, bail
+        if( !current_user_can( 'edit_post', $post_id ) ) return;
+
+        // allow certain attributes
+        $allowed = array('a' => array('href' => array()));
+
+        // Load settings and save
+        $agent_settings = $this->load_agent_settings($post_id);
+        $this->admin_obj->save_meta_box($post_id, $agent_settings, $allowed);
 	}
 
 	/************************************************************************/
@@ -433,4 +619,20 @@ class PropertyShift_Agents {
 		</div>
 	<?php }
 
-} ?>
+
+	/************************************************************************/
+	// Agent Page Settings Methods
+	/************************************************************************/
+
+	/**
+	 *	Add page settings meta box
+	 *
+	 * @param array $post_types
+	 */
+	public function add_page_settings_meta_box($post_types) {
+		$post_types[] = 'ps-agent';
+    	return $post_types;
+	}
+
+}
+?>
