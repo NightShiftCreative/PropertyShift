@@ -268,7 +268,6 @@ class PropertyShift_Agents {
      */
     public function save_agent_user_fields($user_id) {
         if(!current_user_can( 'edit_user', $user_id )) { return false; }
-        if(isset($_POST['ps_agent_id'])) { update_user_meta( $user_id, 'ps_agent_id', $_POST['ps_agent_id'] ); }
         if(isset($_POST['ps_agent_job_title'])) {update_user_meta( $user_id, 'ps_agent_job_title', $_POST['ps_agent_job_title'] ); }
         if(isset($_POST['ps_agent_mobile_phone'])) {update_user_meta( $user_id, 'ps_agent_mobile_phone', $_POST['ps_agent_mobile_phone'] ); }
         if(isset($_POST['ps_agent_office_phone'])) {update_user_meta( $user_id, 'ps_agent_office_phone', $_POST['ps_agent_office_phone'] ); }
