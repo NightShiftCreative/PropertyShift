@@ -148,24 +148,6 @@ class PropertyShift_Agents {
     public function create_agent_user_fields($user) { ?>
     	<div class="form-section">
 	        <h3><?php _e("Agent Information", "propertyshift"); ?></h3>
-	        
-	        <?php if(is_admin()) { ?>
-	        <table class="form-table">
-	        <tr>
-	            <th><label><?php esc_html_e('Synced Agent Profile', 'propertyshift'); ?></label></th>
-	            <td>
-	            	<?php
-	            	$synced_agent = $this->get_synced_agent_id($user->ID);
-	            	if(!empty($synced_agent)) { ?>
-	            		<a href="<?php echo get_edit_post_link($synced_agent); ?>" class="button"><?php esc_html_e('Manage Agent Profile', 'propertyshift') ?></a>
-	            	<?php } else { 
-	            		esc_html_e('No agent profile found.', 'propertyshift'); ?>
-	            		<a href="<?php echo admin_url('post-new.php?post_type=ps-agent'); ?>"><?php esc_html_e('Create an agent profile', 'propertyshift'); ?></a>
-	            	<?php } ?>
-	            </td>
-	        </tr>
-	        </table>
-	    	<?php } ?>
 
 	        <table class="form-table">
 	        <tr>
