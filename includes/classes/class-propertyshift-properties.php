@@ -295,7 +295,7 @@ class PropertyShift_Properties {
 	            <li><a href="#floor-plans" title="<?php esc_html_e('Floor Plans', 'propertyshift'); ?>"><i class="fa fa-th-large"></i> <span class="tab-text"><?php echo esc_html_e('Floor Plans', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#map" title="<?php esc_html_e('Map', 'propertyshift'); ?>" onclick="refreshMap()"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Map', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#video" title="<?php esc_html_e('Video', 'propertyshift'); ?>"><i class="fa fa-video"></i> <span class="tab-text"><?php echo esc_html_e('Video', 'propertyshift'); ?></span></a></li>
-	            <li><a href="#agent" title="<?php esc_html_e('Contact Info', 'propertyshift'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Contact Info', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#agent" title="<?php esc_html_e('Contacts', 'propertyshift'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Contacts', 'propertyshift'); ?></span></a></li>
 	            <?php do_action('propertyshift_after_property_tabs'); ?>
 	        </ul>
 
@@ -387,8 +387,8 @@ class PropertyShift_Properties {
 	        <!-- CONTACT INFO -->
 	        <!--*************************************************-->
 	        <div id="agent" class="tab-content">
-	            <h3><?php echo esc_html_e('Contact Info', 'propertyshift'); ?></h3>
-	            <strong><?php echo esc_html_e('Assigned Agent', 'propertyshift'); ?></strong>
+	            <h3><?php echo esc_html_e('Primary Agent', 'propertyshift'); ?></h3>
+	            <strong><?php echo esc_html_e('Select an Agent', 'propertyshift'); ?></strong>
 	            <?php
 	            echo post_author_meta_box($post);
 	            foreach($property_settings as $setting) {
@@ -396,6 +396,8 @@ class PropertyShift_Properties {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } ?>
+
+	            <h3><?php echo esc_html_e('Additional Contacts', 'propertyshift'); ?></h3>
 	        </div>
 
 	        <?php do_action('propertyshift_after_property_tab_content', $property_settings); ?>
