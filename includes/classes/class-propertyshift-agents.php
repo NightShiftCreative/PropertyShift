@@ -28,6 +28,12 @@ class PropertyShift_Agents {
 
 		$this->add_image_sizes();
 		add_action('init', array( $this, 'rewrite_rules' ));
+
+		//agents custom post type
+		add_action('init', array( $this, 'add_custom_post_type' ));
+		add_action('add_meta_boxes', array( $this, 'register_meta_box'));
+		add_filter('wp_insert_post_data', array( $this, 'modify_post_title'), '99', 2);
+		add_action('save_post', array( $this, 'save_meta_box'));
 	
 		//add & save user fields
 		add_action( 'show_user_profile', array($this, 'create_agent_user_fields'));
@@ -59,6 +65,30 @@ class PropertyShift_Agents {
 	/************************************************************************/
 	// Agents Custom Post Type
 	/************************************************************************/
+
+	/**
+	 *	Add custom post type
+	 */
+	public function add_custom_post_type() {
+		$agents_slug = $this->global_settings['ps_agent_detail_slug'];
+	    register_post_type( 'ps-agent',
+	        array(
+	            'labels' => array(
+	                'name' => __( 'Agents', 'propertyshift' ),
+	                'singular_name' => __( 'Agent', 'propertyshift' ),
+	                'add_new_item' => __( 'Add New Agent', 'propertyshift' ),
+	                'search_items' => __( 'Search Agents', 'propertyshift' ),
+	                'edit_item' => __( 'Edit Agent', 'propertyshift' ),
+	            ),
+	        'public' => true,
+	        'show_in_menu' => false,
+	        'menu_icon' => 'dashicons-businessman',
+	        'has_archive' => false,
+	        'supports' => array('page_attributes'),
+	        'rewrite' => array('slug' => $agents_slug),
+	        )
+	    );
+	}
 
 	/**
 	 *	Load agent settings
@@ -136,6 +166,81 @@ class PropertyShift_Agents {
 
 			return $agent_settings;
 		}
+	}
+
+	/**
+	 *	Register meta box
+	 */
+	public function register_meta_box() {
+		add_meta_box( 'agent-details-meta-box', 'Agent Details', array($this, 'output_meta_box'), 'ps-agent', 'normal', 'high' );
+	}
+
+	/**
+	 *	Output meta box interface
+	 */
+	public function output_meta_box($post) {
+		wp_nonce_field( 'ps_agent_details_meta_box_nonce', 'ps_agent_details_meta_box_nonce' );
+		$agent_settings = $this->load_agent_settings($post->ID); 
+		$this->admin_obj->build_admin_field($agent_settings['user_sync']);
+	}
+
+	/**
+	 * Auto-generate post title
+	 */
+	public function modify_post_title($data, $postarr) {
+	    if($data['post_type'] == 'ps-agent') {
+		    if(isset($_POST['ps_agent_user_sync']) && !empty($_POST['ps_agent_user_sync'])) {
+		    	$user_data = get_userdata($_POST['ps_agent_user_sync']);
+		    	$post_title = $user_data->user_login;
+		    } else {
+		    	$post_title = 'Agent '.$postarr['ID'];
+		    }
+		    $data['post_title'] = $post_title;
+		}
+		return $data;
+	}
+
+	/**
+	 * Save Meta Box
+	 */
+	public function save_meta_box($post_id) {
+		// Bail if we're doing an auto save
+        if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+
+        // if our nonce isn't there, or we can't verify it, bail
+        if( !isset( $_POST['ps_agent_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['ps_agent_details_meta_box_nonce'], 'ps_agent_details_meta_box_nonce' ) ) return;
+
+        // if our current user can't edit this post, bail
+        if( !current_user_can( 'edit_post', $post_id ) ) return;
+
+        // allow certain attributes
+        $allowed = array('a' => array('href' => array()));
+
+        // update permalink to username
+	    if(!wp_is_post_revision( $post_id)) {
+
+	        // unhook this function to prevent infinite looping
+	        remove_action( 'save_post', array($this, 'save_meta_box'));
+
+	        // update the permalink
+	        $permalink = $post_id;
+	        if(isset($_POST['ps_agent_user_sync']) && !empty($_POST['ps_agent_user_sync'])) {
+	        	$user_data = get_userdata($_POST['ps_agent_user_sync']);
+	        	$permalink = $user_data->user_login;
+	        }
+	        wp_update_post( array(
+	            'ID' => $post_id,
+	            'post_name' => $permalink
+	        ));
+
+	        // re-hook this function
+	        add_action( 'save_post', array($this, 'save_meta_box'));
+
+	    }
+
+        // Load settings and save
+        $agent_settings = $this->load_agent_settings($post_id);
+        $this->admin_obj->save_meta_box($post_id, $agent_settings, $allowed);
 	}
 
 	/************************************************************************/
