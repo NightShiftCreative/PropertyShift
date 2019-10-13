@@ -97,6 +97,7 @@ class PropertyShift_Properties {
 	            ),
 	        'public' => true,
 	        'capability_type' => 'ps-property',
+	        'map_meta_cap' => true,
 	        'show_in_menu' => true,
 	        'menu_icon' => 'dashicons-admin-home',
 	        'has_archive' => false,

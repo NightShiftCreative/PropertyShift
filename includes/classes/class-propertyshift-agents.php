@@ -68,8 +68,9 @@ class PropertyShift_Agents {
 	 *	Add Agent Role
 	 */
 	public function add_agent_role() {
-		$capabilities = array();
-		add_role('ps_agent', 'PS Agent', $capabilities);
+		global $wp_roles;
+    	$author_role = $wp_roles->get_role('subscriber');
+		add_role('ps_agent', 'PS Agent', $author_role->capabilities);
 	}
 
 	/************************************************************************/
