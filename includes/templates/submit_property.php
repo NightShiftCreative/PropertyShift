@@ -2,7 +2,7 @@
 
 <!-- start submit property -->
 <div class="user-dashboard">
-	<?php if(is_user_logged_in()) { 
+	<?php if(is_user_logged_in() && current_user_can('ps_agent')) { 
 
 	//global settings
 	$icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));

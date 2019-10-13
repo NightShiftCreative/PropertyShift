@@ -22,7 +22,7 @@
 
 <!-- start user my properties -->
 <div class="user-dashboard">
-    <?php if(is_user_logged_in()) { ?>
+    <?php if(is_user_logged_in() && current_user_can('ps_agent')) { ?>
 
     	<table class="user-dashboard-table my-properties-table">
     		<tr class="user-dashboard-table-header my-properties-header">
