@@ -132,6 +132,15 @@ class PropertyShift_Properties {
 	 */
 	public function load_property_settings($post_id, $return_defaults = false) {
 
+		global $post;
+
+		//populate agent select
+		$agent_select_options = array();
+		$agents = get_users(array('role__in' => array('ps_agent', 'administrator')));
+		foreach($agents as $agent) {
+			$agent_select_options[$agent->display_name.' ('.$agent->user_login.')'] = $agent->ID;
+		}
+
         // settings
 		$property_settings_init = array(
 			'id' => array(
@@ -276,6 +285,15 @@ class PropertyShift_Properties {
 				'display_img' => true,
 				'order' => 16,
 			),
+			'agent' => array(
+				'group' => 'owner_info',
+				'title' => esc_html__('Select an Agent', 'propertyshift'),
+				'name' => 'post_author_override', //overrides the author
+				'type' => 'select',
+				'options' => $agent_select_options,
+				'value' => $post->post_author,
+				'order' => 17,
+			),
 		);
 		$property_settings_init = apply_filters('propertyshift_property_settings_init_filter', $property_settings_init, $post_id);
 		uasort($property_settings_init, 'ns_basics_sort_by_order');
@@ -314,7 +332,7 @@ class PropertyShift_Properties {
 
 	        <div class="ns-tabs-content">
         	<div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php echo esc_html_e('Loading...', 'propertyshift'); ?></div>
-        	
+
         	<!--*************************************************-->
 	        <!-- GENERAL INFO -->
 	        <!--*************************************************-->
@@ -401,9 +419,9 @@ class PropertyShift_Properties {
 	        <!--*************************************************-->
 	        <div id="agent" class="tab-content">
 	            <h3><?php echo esc_html_e('Primary Agent', 'propertyshift'); ?></h3>
-	            <strong><?php echo esc_html_e('Select an Agent', 'propertyshift'); ?></strong>
+
 	            <?php
-	            global $user_ID;
+	            /*global $user_ID;
 	            wp_dropdown_users(
 			        array(
 			            'who'              => 'ps_agent',
@@ -411,9 +429,9 @@ class PropertyShift_Properties {
 			            'selected'         => empty( $post->ID ) ? $user_ID : $post->post_author,
 			            'include_selected' => true,
 			            'show'             => 'display_name_with_login',
-			            'role' => 'ps_agent',
+			            'role' => array('ps_agent', 'administrator'),
 			        )
-			    );
+			    );*/
 
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'owner_info') {
