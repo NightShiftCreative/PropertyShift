@@ -29,7 +29,7 @@ class PropertyShift_Agents {
 		//basic setup
 		$this->add_image_sizes();
 		add_action('init', array( $this, 'rewrite_rules' ));
-		add_action('admin_init', array( $this, 'manage_agent_role' ));
+		add_action('admin_init', array( $this, 'add_agent_role' ));
 
 		//agents custom post type
 		add_action('init', array( $this, 'add_custom_post_type' ));
@@ -65,9 +65,9 @@ class PropertyShift_Agents {
 	}
 
 	/**
-	 *	Manage Agent Role
+	 *	Add Agent Role
 	 */
-	public function manage_agent_role() {
+	public function add_agent_role() {
 		$capabilities = array();
 		add_role('ps_agent', 'PS Agent', $capabilities);
 	}
