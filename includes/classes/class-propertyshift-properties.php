@@ -96,6 +96,7 @@ class PropertyShift_Properties {
 	                'edit_item' => __( 'Edit Property', 'propertyshift' ),
 	            ),
 	        'public' => true,
+	        'capability_type' => 'ps-property',
 	        'show_in_menu' => true,
 	        'menu_icon' => 'dashicons-admin-home',
 	        'has_archive' => false,

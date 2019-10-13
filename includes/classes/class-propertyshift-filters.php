@@ -47,6 +47,7 @@ class PropertyShift_Filters {
 	                'edit_item' => __( 'Edit Property Filter', 'propertyshift' ),
 	            ),
 	        'public' => false,
+	        'capability_type' => 'ps-property-filter',
 			'publicly_queryable' => true,
 			'show_in_menu' => false,
 			'show_ui' => true,

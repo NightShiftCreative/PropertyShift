@@ -26,8 +26,10 @@ class PropertyShift_Agents {
 	 */
 	public function init() {
 
+		//basic setup
 		$this->add_image_sizes();
 		add_action('init', array( $this, 'rewrite_rules' ));
+		add_action('admin_init', array( $this, 'manage_agent_role' ));
 
 		//agents custom post type
 		add_action('init', array( $this, 'add_custom_post_type' ));
@@ -62,6 +64,14 @@ class PropertyShift_Agents {
 		add_rewrite_rule('^agents/page/([0-9]+)','index.php?pagename=agents&paged=$matches[1]', 'top');
 	}
 
+	/**
+	 *	Manage Agent Role
+	 */
+	public function manage_agent_role() {
+		$capabilities = array();
+		add_role('ps_agent', 'PS Agent', $capabilities);
+	}
+
 	/************************************************************************/
 	// Agents Custom Post Type
 	/************************************************************************/
@@ -81,6 +91,7 @@ class PropertyShift_Agents {
 	                'edit_item' => __( 'Edit Agent', 'propertyshift' ),
 	            ),
 	        'public' => true,
+	        'capability_type' => 'ps-agent',
 	        'show_in_menu' => false,
 	        'menu_icon' => 'dashicons-businessman',
 	        'has_archive' => false,
