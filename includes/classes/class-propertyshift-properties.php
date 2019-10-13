@@ -97,7 +97,18 @@ class PropertyShift_Properties {
 	            ),
 	        'public' => true,
 	        'capability_type' => 'ps-property',
-	        'map_meta_cap' => true,
+	        'capabilities' => array(
+			    'edit_post'          => 'edit_ps-property',
+			    'read_post'          => 'read_ps-property',
+			    'read_posts'         => 'read_ps-propertys',
+			    'delete_post'        => 'delete_ps-property',
+			    'delete_posts'       => 'delete_ps-propertys',
+			    'edit_posts'         => 'edit_ps-propertys',
+			    'edit_others_posts'  => 'edit_others_ps-propertys',
+			    'publish_posts'      => 'publish_ps-propertys',
+			    'read_private_posts' => 'read_private_ps-propertys',
+			    'create_posts'       => 'create_ps-propertys',
+			  ),
 	        'show_in_menu' => true,
 	        'menu_icon' => 'dashicons-admin-home',
 	        'has_archive' => false,
@@ -392,7 +403,18 @@ class PropertyShift_Properties {
 	            <h3><?php echo esc_html_e('Primary Agent', 'propertyshift'); ?></h3>
 	            <strong><?php echo esc_html_e('Select an Agent', 'propertyshift'); ?></strong>
 	            <?php
-	            echo post_author_meta_box($post);
+	            global $user_ID;
+	            wp_dropdown_users(
+			        array(
+			            'who'              => 'ps_agent',
+			            'name'             => 'post_author_override',
+			            'selected'         => empty( $post->ID ) ? $user_ID : $post->post_author,
+			            'include_selected' => true,
+			            'show'             => 'display_name_with_login',
+			            'role' => 'ps_agent',
+			        )
+			    );
+
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'owner_info') {
             			$this->admin_obj->build_admin_field($setting);

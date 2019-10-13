@@ -69,8 +69,20 @@ class PropertyShift_Agents {
 	 */
 	public function add_agent_role() {
 		global $wp_roles;
+		remove_role('ps_agent');
     	$author_role = $wp_roles->get_role('subscriber');
 		add_role('ps_agent', 'PS Agent', $author_role->capabilities);
+
+		$role = $wp_roles->get_role('ps_agent');               
+	    $role->add_cap( 'edit_ps-property');
+	    $role->add_cap( 'read_ps-property');
+	    $role->add_cap( 'read_ps-propertys');
+	    $role->add_cap( 'delete_ps-property');
+	    $role->add_cap( 'delete_ps-propertys');
+	    $role->add_cap( 'edit_ps-propertys');
+	    $role->add_cap( 'publish_ps-propertys');
+	    $role->add_cap( 'read_private_ps-propertys');
+	    $role->add_cap( 'create_ps-propertys');
 	}
 
 	/************************************************************************/
