@@ -341,7 +341,7 @@
 
                             <?php 
                             $agent = get_userdata($agent_id);
-                            echo $agent->display_name;
+                            echo '<div class="agent-display-name">'.$agent->display_name.'</div>';
                             ?>
 
 						</div>

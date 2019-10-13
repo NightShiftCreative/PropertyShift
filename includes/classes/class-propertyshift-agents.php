@@ -34,7 +34,6 @@ class PropertyShift_Agents {
 		//agents custom post type
 		add_action('init', array( $this, 'add_custom_post_type' ));
 		add_action('add_meta_boxes', array( $this, 'register_meta_box'));
-		add_filter('wp_insert_post_data', array( $this, 'modify_post_title'), '99', 2);
 		add_action('save_post', array( $this, 'save_meta_box'));
 	
 		//add & save user fields
@@ -209,22 +208,6 @@ class PropertyShift_Agents {
 	}
 
 	/**
-	 * Auto-generate post title
-	 */
-	public function modify_post_title($data, $postarr) {
-	    if($data['post_type'] == 'ps-agent') {
-		    if(isset($_POST['ps_agent_user_sync']) && !empty($_POST['ps_agent_user_sync'])) {
-		    	$user_data = get_userdata($_POST['ps_agent_user_sync']);
-		    	$post_title = $user_data->user_login;
-		    } else {
-		    	$post_title = 'Agent '.$postarr['ID'];
-		    }
-		    $data['post_title'] = $post_title;
-		}
-		return $data;
-	}
-
-	/**
 	 * Save Meta Box
 	 */
 	public function save_meta_box($post_id) {
@@ -277,6 +260,16 @@ class PropertyShift_Agents {
     public function create_agent_user_fields($user) { ?>
     	<div class="form-section">
 	        <h3><?php _e("Agent Information", "propertyshift"); ?></h3>
+
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Show In Public Agent Listings?', 'propertyshift'); ?></label></th>
+	            <td>
+	            	<input type="radio" name="ps_agent_profile" checked <?php if (get_the_author_meta( 'ps_agent_profile', $user->ID) == 'true' ) { ?>checked="checked"<?php }?> value="true" />Yes<br/>
+	            	<input type="radio" name="ps_agent_profile" <?php if (get_the_author_meta( 'ps_agent_profile', $user->ID) == 'false' ) { ?>checked="checked"<?php }?> value="false" />No<br/>
+	            </td>
+	        </tr>
+	        </table>
 
 	        <table class="form-table">
 	        <tr>
@@ -397,6 +390,35 @@ class PropertyShift_Agents {
      */
     public function save_agent_user_fields($user_id) {
         if(!current_user_can( 'edit_user', $user_id )) { return false; }
+        
+        if(isset($_POST['ps_agent_profile'])) {
+        	update_user_meta( $user_id, 'ps_agent_profile', $_POST['ps_agent_profile']); 
+
+        	//create agent profile
+        	if($_POST['ps_agent_profile'] == 'true') {
+        		$user = get_userdata($user_id);
+        		$postarr = array(
+        			'post_type' => 'ps-agent',
+        			'post_title' => $user->user_login,
+        			'post_name' => $user->user_login,
+        			'post_status' => 'publish',
+        		);
+        		$agent_profile_id = wp_insert_post($postarr);
+        		update_post_meta($agent_profile_id, 'ps_agent_user_sync', $user_id);
+        	
+        	//remove agent profile
+        	} else {
+        		$agent_profiles = get_posts(array('post_type' => 'ps-agent', 'showposts' => -1));
+        		foreach($agent_profiles as $agent_profile) {
+        			$user_sync = get_post_meta($agent_profile->ID, 'ps_agent_user_sync', true);
+        			if($user_sync == $user_id) {
+        				wp_delete_post($agent_profile->ID);
+        			}
+        		}
+        	}
+
+        }
+        
         if(isset($_POST['ps_agent_job_title'])) {update_user_meta( $user_id, 'ps_agent_job_title', $_POST['ps_agent_job_title'] ); }
         if(isset($_POST['ps_agent_mobile_phone'])) {update_user_meta( $user_id, 'ps_agent_mobile_phone', $_POST['ps_agent_mobile_phone'] ); }
         if(isset($_POST['ps_agent_office_phone'])) {update_user_meta( $user_id, 'ps_agent_office_phone', $_POST['ps_agent_office_phone'] ); }

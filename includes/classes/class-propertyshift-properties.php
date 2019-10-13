@@ -419,20 +419,7 @@ class PropertyShift_Properties {
 	        <!--*************************************************-->
 	        <div id="agent" class="tab-content">
 	            <h3><?php echo esc_html_e('Primary Agent', 'propertyshift'); ?></h3>
-
 	            <?php
-	            /*global $user_ID;
-	            wp_dropdown_users(
-			        array(
-			            'who'              => 'ps_agent',
-			            'name'             => 'post_author_override',
-			            'selected'         => empty( $post->ID ) ? $user_ID : $post->post_author,
-			            'include_selected' => true,
-			            'show'             => 'display_name_with_login',
-			            'role' => array('ps_agent', 'administrator'),
-			        )
-			    );*/
-
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'owner_info') {
             			$this->admin_obj->build_admin_field($setting);
