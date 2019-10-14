@@ -1341,8 +1341,12 @@ class PropertyShift_Properties {
 		if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 		$members_my_properties_page = $this->global_settings['ps_members_my_properties_page'];
 		$members_submit_property_page = $this->global_settings['ps_members_submit_property_page']; ?>
-		<?php if(!empty($members_my_properties_page)) { ?><li><a href="<?php echo $members_my_properties_page; ?>"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php esc_html_e( 'My Properties', 'propertyshift' ); ?></a></li><?php } ?>
-		<?php if(!empty($members_submit_property_page)) { ?><li><a href="<?php echo $members_submit_property_page; ?>"><?php echo ns_core_get_icon($icon_set, 'plus'); ?><?php esc_html_e( 'Submit Property', 'propertyshift' ); ?></a></li><?php } ?>
+		<?php if(!empty($members_my_properties_page) && (current_user_can('ps_agent') || current_user_can('administrator'))) { ?>
+			<li><a href="<?php echo $members_my_properties_page; ?>"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php esc_html_e( 'My Properties', 'propertyshift' ); ?></a></li>
+		<?php } ?>
+		<?php if(!empty($members_submit_property_page) && (current_user_can('ps_agent') || current_user_can('administrator'))) { ?>
+			<li><a href="<?php echo $members_submit_property_page; ?>"><?php echo ns_core_get_icon($icon_set, 'plus'); ?><?php esc_html_e( 'Submit Property', 'propertyshift' ); ?></a></li>
+		<?php } ?>
 	<?php }
 
 	/**
