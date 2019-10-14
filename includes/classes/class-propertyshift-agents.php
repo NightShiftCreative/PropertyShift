@@ -257,7 +257,8 @@ class PropertyShift_Agents {
 	/**
      *  Create Agent User Fields
      */
-    public function create_agent_user_fields($user) { ?>
+    public function create_agent_user_fields($user) { 
+    	if(in_array('ps_agent', $user->roles) || in_array('administrator', $user->roles)) { ?>
     	<div class="form-section">
 	        <h3><?php _e("Agent Information", "propertyshift"); ?></h3>
 
@@ -383,7 +384,8 @@ class PropertyShift_Agents {
 	        </table>
     		<?php } ?>
     	</div>
-    <?php }
+    	<?php }
+    }
 
     /**
      *  Save Agent User Fields
