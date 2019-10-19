@@ -212,12 +212,12 @@ class PropertyShift_Agents {
 
 	            	if(!empty($current_profile)) { 
 	            		foreach($current_profile as $profile) { ?>
-	            			<div class="button">Agent Profile ID: <?php echo $profile; ?></div>
+	            			<div class="button"><?php _e("Agent Profile ID:", "propertyshift"); ?> <?php echo $profile; ?></div>
 	            		<?php } ?>
-	            		<input type="checkbox" name="ps_agent_profile_remove" value="true" />Remove Profile
+	            		<input type="checkbox" name="ps_agent_profile_remove" value="true" /><?php _e("Remove Profile", "propertyshift"); ?>
 	            	<?php } else { ?>
-	            		<span class="admin-module-note">No front-end profile has exists for this agent.</span><br/>
-	            		<input type="checkbox" name="ps_agent_profile_create" value="true" />Create Profile
+	            		<span class="admin-module-note"><?php _e("No front-end profile exists for this agent.", "propertyshift"); ?></span><br/>
+	            		<input type="checkbox" name="ps_agent_profile_create" value="true" /><?php _e("Create Profile", "propertyshift"); ?>
 	            	<?php } ?>
 	            </td>
 	        </tr>
