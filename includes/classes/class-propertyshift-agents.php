@@ -198,10 +198,27 @@ class PropertyShift_Agents {
 
 	        <table class="form-table">
 	        <tr>
-	            <th><label><?php esc_html_e('Display in public agent listings?', 'propertyshift'); ?></label></th>
+	            <th><label><?php esc_html_e('Front-end Agent Profile', 'propertyshift'); ?></label></th>
 	            <td>
-	            	<input type="radio" name="ps_agent_profile" checked <?php if (get_the_author_meta( 'ps_agent_profile', $user->ID) == 'true' ) { ?>checked="checked"<?php }?> value="true" />Yes<br/>
-	            	<input type="radio" name="ps_agent_profile" <?php if (get_the_author_meta( 'ps_agent_profile', $user->ID) == 'false' ) { ?>checked="checked"<?php }?> value="false" />No<br/>
+	            	<?php 
+	            	$current_profile = array();
+	            	$agent_profiles = get_posts(array('post_type' => 'ps-agent', 'showposts' => -1));
+        			foreach($agent_profiles as $agent_profile) {
+        				$user_sync = get_post_meta($agent_profile->ID, 'ps_agent_user_sync', true);
+		        		if($user_sync == $user->ID) {
+		        			$current_profile[] = $agent_profile->ID;
+		        		}
+        			}
+
+	            	if(!empty($current_profile)) { 
+	            		foreach($current_profile as $profile) { ?>
+	            			<div class="button">Agent Profile ID: <?php echo $profile; ?></div>
+	            		<?php } ?>
+	            		<input type="checkbox" name="ps_agent_profile_remove" value="true" />Remove Profile
+	            	<?php } else { ?>
+	            		<span class="admin-module-note">No front-end profile has exists for this agent.</span><br/>
+	            		<input type="checkbox" name="ps_agent_profile_create" value="true" />Create Profile
+	            	<?php } ?>
 	            </td>
 	        </tr>
 	        </table>
@@ -327,32 +344,28 @@ class PropertyShift_Agents {
     public function save_agent_user_fields($user_id) {
         if(!current_user_can( 'edit_user', $user_id )) { return false; }
         
-        if(isset($_POST['ps_agent_profile'])) {
-        	update_user_meta( $user_id, 'ps_agent_profile', $_POST['ps_agent_profile']); 
+        //create agent profile
+        if(isset($_POST['ps_agent_profile_create'])) {
+        	$user = get_userdata($user_id);
+        	$postarr = array(
+        		'post_type' => 'ps-agent',
+        		'post_title' => $user->user_login,
+        		'post_name' => $user->user_login,
+        		'post_status' => 'publish',
+        	);
+        	$agent_profile_id = wp_insert_post($postarr);
+        	update_post_meta($agent_profile_id, 'ps_agent_user_sync', $user_id);
+        }
 
-        	//create agent profile
-        	if($_POST['ps_agent_profile'] == 'true') {
-        		$user = get_userdata($user_id);
-        		$postarr = array(
-        			'post_type' => 'ps-agent',
-        			'post_title' => $user->user_login,
-        			'post_name' => $user->user_login,
-        			'post_status' => 'publish',
-        		);
-        		$agent_profile_id = wp_insert_post($postarr);
-        		update_post_meta($agent_profile_id, 'ps_agent_user_sync', $user_id);
-        	
-        	//remove agent profile
-        	} else {
-        		$agent_profiles = get_posts(array('post_type' => 'ps-agent', 'showposts' => -1));
-        		foreach($agent_profiles as $agent_profile) {
-        			$user_sync = get_post_meta($agent_profile->ID, 'ps_agent_user_sync', true);
-        			if($user_sync == $user_id) {
-        				wp_delete_post($agent_profile->ID);
-        			}
+        //remove agent profile
+        if(isset($_POST['ps_agent_profile_remove'])) {
+        	$agent_profiles = get_posts(array('post_type' => 'ps-agent', 'showposts' => -1));
+        	foreach($agent_profiles as $agent_profile) {
+        		$user_sync = get_post_meta($agent_profile->ID, 'ps_agent_user_sync', true);
+        		if($user_sync == $user_id) {
+        			wp_delete_post($agent_profile->ID);
         		}
         	}
-
         }
         
         if(isset($_POST['ps_agent_job_title'])) {update_user_meta( $user_id, 'ps_agent_job_title', $_POST['ps_agent_job_title'] ); }
