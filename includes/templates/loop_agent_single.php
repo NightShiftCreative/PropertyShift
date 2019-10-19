@@ -15,8 +15,11 @@
     }
 
 	//Get agent details
+    global $post;
+    $synced_user = get_post_meta($post->ID, 'ps_agent_user_sync', true);
+    
     $agents_obj = new PropertyShift_Agents();
-    $agent_settings = $agents_obj->load_agent_settings($post->ID);
+    $agent_settings = $agents_obj->load_agent_settings($synced_user);
     $agent_avatar_url = $agent_settings['avatar_url']['value'];
     $agent_email = $agent_settings['email']['value'];
     $agent_title = $agent_settings['job_title']['value'];

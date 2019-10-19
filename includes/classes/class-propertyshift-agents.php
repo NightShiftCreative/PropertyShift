@@ -48,6 +48,10 @@ class PropertyShift_Agents {
 		add_action('ns_basics_after_dashboard', array($this, 'add_dashboard_widgets'));
 	}
 
+	/************************************************************************/
+	// Basic Setup
+	/************************************************************************/
+
 	/**
 	 *	Add Image Sizes
 	 */
@@ -147,7 +151,7 @@ class PropertyShift_Agents {
 		$agent_settings = array();
 		$user_data = get_userdata($user_id);
 		        
-		$agent_settings['avatar'] = array('title' => 'Avatar ID', 'value' => get_user_meta($agent_user_sync_id, 'avatar', true)); 
+		$agent_settings['avatar'] = array('title' => 'Avatar ID', 'value' => get_user_meta($user_id, 'avatar', true)); 
 		if(!empty($agent_settings['avatar']['value'])) { 
 			$agent_listing_crop = $this->global_settings['ps_agent_listing_crop'];
 			if($agent_listing_crop == 'true') { $avatar_size = 'agent-thumbnail'; } else { $avatar_size = 'full';  }
@@ -157,23 +161,23 @@ class PropertyShift_Agents {
 		        
 		$agent_settings['username'] = array('title' => 'Username', 'value' => $user_data->user_login);
 		$agent_settings['display_name'] = array('title' => 'Display Name', 'value' => $user_data->display_name);
-		$agent_settings['edit_profile_url'] = array('title' => 'Edit Profile URL', 'value' => get_edit_user_link($agent_user_sync_id));
+		$agent_settings['edit_profile_url'] = array('title' => 'Edit Profile URL', 'value' => get_edit_user_link($user_id));
 		$agent_settings['email'] = array('title' => 'Email', 'value' => $user_data->user_email);
 		$agent_settings['first_name'] = array('title' => 'First Name', 'value' => $user_data->first_name);
 		$agent_settings['last_name'] = array('title' => 'Last Name', 'value' => $user_data->last_name);
 		$agent_settings['website'] = array('title' => 'Website', 'value' => $user_data->user_url);
-		$agent_settings['job_title'] = array('title' => 'Job Title', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_job_title', true));
-		$agent_settings['mobile_phone'] = array('title' => 'Mobile Phone', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_mobile_phone', true));
-		$agent_settings['office_phone'] = array('title' => 'Office Phone', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_office_phone', true));
+		$agent_settings['job_title'] = array('title' => 'Job Title', 'value' => get_user_meta($user_id, 'ps_agent_job_title', true));
+		$agent_settings['mobile_phone'] = array('title' => 'Mobile Phone', 'value' => get_user_meta($user_id, 'ps_agent_mobile_phone', true));
+		$agent_settings['office_phone'] = array('title' => 'Office Phone', 'value' => get_user_meta($user_id, 'ps_agent_office_phone', true));
 		$agent_settings['description'] = array('title' => 'Description', 'value' => $user_data->description);
-		$agent_settings['facebook'] = array('title' => 'Facebook', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_facebook', true));
-		$agent_settings['twitter'] = array('title' => 'Twitter', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_twitter', true));
-		$agent_settings['google'] = array('title' => 'Google Plus', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_google', true));
-		$agent_settings['linkedin'] = array('title' => 'Linkedin', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_linkedin', true));
-		$agent_settings['youtube'] = array('title' => 'Youtube', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_youtube', true));
-		$agent_settings['instagram'] = array('title' => 'Instagram', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_instagram', true));
-		$agent_settings['contact_form_source'] = array('title' => 'Contact Form Source', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_contact', true));
-		$agent_settings['contact_form_7_id'] = array('title' => 'Contact Form 7 ID', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_contact_form_7', true));
+		$agent_settings['facebook'] = array('title' => 'Facebook', 'value' => get_user_meta($user_id, 'ps_agent_facebook', true));
+		$agent_settings['twitter'] = array('title' => 'Twitter', 'value' => get_user_meta($user_id, 'ps_agent_twitter', true));
+		$agent_settings['google'] = array('title' => 'Google Plus', 'value' => get_user_meta($user_id, 'ps_agent_google', true));
+		$agent_settings['linkedin'] = array('title' => 'Linkedin', 'value' => get_user_meta($user_id, 'ps_agent_linkedin', true));
+		$agent_settings['youtube'] = array('title' => 'Youtube', 'value' => get_user_meta($user_id, 'ps_agent_youtube', true));
+		$agent_settings['instagram'] = array('title' => 'Instagram', 'value' => get_user_meta($user_id, 'ps_agent_instagram', true));
+		$agent_settings['contact_form_source'] = array('title' => 'Contact Form Source', 'value' => get_user_meta($user_id, 'ps_agent_contact', true));
+		$agent_settings['contact_form_7_id'] = array('title' => 'Contact Form 7 ID', 'value' => get_user_meta($user_id, 'ps_agent_contact_form_7', true));
 
 		$agent_settings = apply_filters( 'propertyshift_agent_settings_filter', $agent_settings, $user_id);
 
