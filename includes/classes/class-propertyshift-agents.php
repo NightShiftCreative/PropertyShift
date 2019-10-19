@@ -34,7 +34,6 @@ class PropertyShift_Agents {
 		//agents custom post type
 		add_action('init', array( $this, 'add_custom_post_type' ));
 		add_action('add_meta_boxes', array( $this, 'register_meta_box'));
-		add_action('save_post', array( $this, 'save_meta_box'));
 	
 		//add & save user fields
 		add_action( 'show_user_profile', array($this, 'create_agent_user_fields'));
@@ -114,84 +113,6 @@ class PropertyShift_Agents {
 	}
 
 	/**
-	 *	Load agent settings
-	 *
-	 * @param int $post_id
-	 */
-	public function load_agent_settings($post_id, $return_defaults = false) {
-
-		$users = get_users();
-		$user_sync_options = array('Select a user...' => '');
-		foreach($users as $user) { 
-			$synced_agent = $this->get_synced_agent_id($user->ID);
-			if(empty($synced_agent)) {
-				$user_sync_options[$user->display_name] = $user->ID; 
-			} else {
-				$user_sync_options[$user->display_name.' (In Use)'] = $user->ID; 
-			}
-		}
-
-		$agent_settings_init = array(
-			'user_sync' => array(
-				'group' => 'general',
-				'title' => esc_html__('Synced User', 'propertyshift'),
-				'name' => 'ps_agent_user_sync',
-				'description' => esc_html__('All agent details are managed from the user level. Sync this agent with a user to inherit their info. Click Update to reflect changes.', 'propertyshift'),
-				'type' => 'select',
-				'options' => $user_sync_options,
-				'order' => 0,
-			),
-		);
-		$agent_settings_init = apply_filters( 'propertyshift_agent_settings_init_filter', $agent_settings_init, $post_id);
-		uasort($agent_settings_init, 'ns_basics_sort_by_order');
-
-		// Return default settings
-		if($return_defaults == true) {
-			
-			return $agent_settings_init;
-		
-		// Return saved settings
-		} else {
-			$agent_settings = $this->admin_obj->get_meta_box_values($post_id, $agent_settings_init);
-			
-			$agent_user_sync_id = $agent_settings['user_sync']['value'];
-			if(!empty($agent_user_sync_id)) {
-		        $user_data = get_userdata($agent_user_sync_id);
-		        
-		        $agent_settings['avatar'] = array('title' => 'Avatar ID', 'value' => get_user_meta($agent_user_sync_id, 'avatar', true)); 
-		        if(!empty($agent_settings['avatar']['value'])) { 
-		        	$agent_listing_crop = $this->global_settings['ps_agent_listing_crop'];
-		        	if($agent_listing_crop == 'true') { $avatar_size = 'agent-thumbnail'; } else { $avatar_size = 'full';  }
-		        	$agent_settings['avatar_url'] = array('title' => 'Avatar URL', 'value' => wp_get_attachment_image_url($agent_settings['avatar']['value'], $avatar_size)); 
-		        	$agent_settings['avatar_url_thumb'] = array('title' => 'Avatar Thumbnail URL', 'value' => wp_get_attachment_image_url($agent_settings['avatar']['value'], 'thumbnail'));
-		        }
-		        
-		        $agent_settings['username'] = array('title' => 'Username', 'value' => $user_data->user_login);
-		        $agent_settings['display_name'] = array('title' => 'Display Name', 'value' => $user_data->display_name);
-		        $agent_settings['edit_profile_url'] = array('title' => 'Edit Profile URL', 'value' => get_edit_user_link($agent_user_sync_id));
-		        $agent_settings['email'] = array('title' => 'Email', 'value' => $user_data->user_email);
-		    	$agent_settings['first_name'] = array('title' => 'First Name', 'value' => $user_data->first_name);
-		    	$agent_settings['last_name'] = array('title' => 'Last Name', 'value' => $user_data->last_name);
-		    	$agent_settings['website'] = array('title' => 'Website', 'value' => $user_data->user_url);
-		    	$agent_settings['job_title'] = array('title' => 'Job Title', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_job_title', true));
-		    	$agent_settings['mobile_phone'] = array('title' => 'Mobile Phone', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_mobile_phone', true));
-		    	$agent_settings['office_phone'] = array('title' => 'Office Phone', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_office_phone', true));
-		    	$agent_settings['description'] = array('title' => 'Description', 'value' => $user_data->description);
-		    	$agent_settings['facebook'] = array('title' => 'Facebook', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_facebook', true));
-		    	$agent_settings['twitter'] = array('title' => 'Twitter', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_twitter', true));
-		    	$agent_settings['google'] = array('title' => 'Google Plus', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_google', true));
-		    	$agent_settings['linkedin'] = array('title' => 'Linkedin', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_linkedin', true));
-		    	$agent_settings['youtube'] = array('title' => 'Youtube', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_youtube', true));
-		    	$agent_settings['instagram'] = array('title' => 'Instagram', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_instagram', true));
-		    	$agent_settings['contact_form_source'] = array('title' => 'Contact Form Source', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_contact', true));
-		    	$agent_settings['contact_form_7_id'] = array('title' => 'Contact Form 7 ID', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_contact_form_7', true));
-		    }
-
-			return $agent_settings;
-		}
-	}
-
-	/**
 	 *	Register meta box
 	 */
 	public function register_meta_box() {
@@ -202,52 +123,61 @@ class PropertyShift_Agents {
 	 *	Output meta box interface
 	 */
 	public function output_meta_box($post) {
-		wp_nonce_field( 'ps_agent_details_meta_box_nonce', 'ps_agent_details_meta_box_nonce' );
-		$agent_settings = $this->load_agent_settings($post->ID); 
-		$this->admin_obj->build_admin_field($agent_settings['user_sync']);
+		$user_sync = get_post_meta($post->ID, 'ps_agent_user_sync', true);
+		$users = get_users(array('role__in' => array('ps_agent', 'administrator')));
+		foreach($users as $user) {
+			if($user->ID == $user_sync) {
+				echo 'Synced User: '.$user->user_login;
+				echo '<br/><br/>';
+			}
+		}
 	}
 
+	/************************************************************************/
+	// Load agent settings
+	/************************************************************************/
+
 	/**
-	 * Save Meta Box
+	 *	Load agent settings
+	 *
+	 * @param int $user_id
 	 */
-	public function save_meta_box($post_id) {
-		// Bail if we're doing an auto save
-        if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+	public function load_agent_settings($user_id) {
 
-        // if our nonce isn't there, or we can't verify it, bail
-        if( !isset( $_POST['ps_agent_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['ps_agent_details_meta_box_nonce'], 'ps_agent_details_meta_box_nonce' ) ) return;
+		$agent_settings = array();
+		$user_data = get_userdata($user_id);
+		        
+		$agent_settings['avatar'] = array('title' => 'Avatar ID', 'value' => get_user_meta($agent_user_sync_id, 'avatar', true)); 
+		if(!empty($agent_settings['avatar']['value'])) { 
+			$agent_listing_crop = $this->global_settings['ps_agent_listing_crop'];
+			if($agent_listing_crop == 'true') { $avatar_size = 'agent-thumbnail'; } else { $avatar_size = 'full';  }
+			$agent_settings['avatar_url'] = array('title' => 'Avatar URL', 'value' => wp_get_attachment_image_url($agent_settings['avatar']['value'], $avatar_size)); 
+			$agent_settings['avatar_url_thumb'] = array('title' => 'Avatar Thumbnail URL', 'value' => wp_get_attachment_image_url($agent_settings['avatar']['value'], 'thumbnail'));
+		}
+		        
+		$agent_settings['username'] = array('title' => 'Username', 'value' => $user_data->user_login);
+		$agent_settings['display_name'] = array('title' => 'Display Name', 'value' => $user_data->display_name);
+		$agent_settings['edit_profile_url'] = array('title' => 'Edit Profile URL', 'value' => get_edit_user_link($agent_user_sync_id));
+		$agent_settings['email'] = array('title' => 'Email', 'value' => $user_data->user_email);
+		$agent_settings['first_name'] = array('title' => 'First Name', 'value' => $user_data->first_name);
+		$agent_settings['last_name'] = array('title' => 'Last Name', 'value' => $user_data->last_name);
+		$agent_settings['website'] = array('title' => 'Website', 'value' => $user_data->user_url);
+		$agent_settings['job_title'] = array('title' => 'Job Title', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_job_title', true));
+		$agent_settings['mobile_phone'] = array('title' => 'Mobile Phone', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_mobile_phone', true));
+		$agent_settings['office_phone'] = array('title' => 'Office Phone', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_office_phone', true));
+		$agent_settings['description'] = array('title' => 'Description', 'value' => $user_data->description);
+		$agent_settings['facebook'] = array('title' => 'Facebook', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_facebook', true));
+		$agent_settings['twitter'] = array('title' => 'Twitter', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_twitter', true));
+		$agent_settings['google'] = array('title' => 'Google Plus', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_google', true));
+		$agent_settings['linkedin'] = array('title' => 'Linkedin', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_linkedin', true));
+		$agent_settings['youtube'] = array('title' => 'Youtube', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_youtube', true));
+		$agent_settings['instagram'] = array('title' => 'Instagram', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_instagram', true));
+		$agent_settings['contact_form_source'] = array('title' => 'Contact Form Source', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_contact', true));
+		$agent_settings['contact_form_7_id'] = array('title' => 'Contact Form 7 ID', 'value' => get_user_meta($agent_user_sync_id, 'ps_agent_contact_form_7', true));
 
-        // if our current user can't edit this post, bail
-        if( !current_user_can( 'edit_post', $post_id ) ) return;
+		$agent_settings = apply_filters( 'propertyshift_agent_settings_filter', $agent_settings, $user_id);
 
-        // allow certain attributes
-        $allowed = array('a' => array('href' => array()));
-
-        // update permalink to username
-	    if(!wp_is_post_revision( $post_id)) {
-
-	        // unhook this function to prevent infinite looping
-	        remove_action( 'save_post', array($this, 'save_meta_box'));
-
-	        // update the permalink
-	        $permalink = $post_id;
-	        if(isset($_POST['ps_agent_user_sync']) && !empty($_POST['ps_agent_user_sync'])) {
-	        	$user_data = get_userdata($_POST['ps_agent_user_sync']);
-	        	$permalink = $user_data->user_login;
-	        }
-	        wp_update_post( array(
-	            'ID' => $post_id,
-	            'post_name' => $permalink
-	        ));
-
-	        // re-hook this function
-	        add_action( 'save_post', array($this, 'save_meta_box'));
-
-	    }
-
-        // Load settings and save
-        $agent_settings = $this->load_agent_settings($post_id);
-        $this->admin_obj->save_meta_box($post_id, $agent_settings, $allowed);
+		return $agent_settings;
 	}
 
 	/************************************************************************/
