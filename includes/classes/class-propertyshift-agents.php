@@ -194,7 +194,7 @@ class PropertyShift_Agents {
 
 	        <table class="form-table">
 	        <tr>
-	            <th><label><?php esc_html_e('Has Public Agent Profile?', 'propertyshift'); ?></label></th>
+	            <th><label><?php esc_html_e('Display in public agent listings?', 'propertyshift'); ?></label></th>
 	            <td>
 	            	<input type="radio" name="ps_agent_profile" checked <?php if (get_the_author_meta( 'ps_agent_profile', $user->ID) == 'true' ) { ?>checked="checked"<?php }?> value="true" />Yes<br/>
 	            	<input type="radio" name="ps_agent_profile" <?php if (get_the_author_meta( 'ps_agent_profile', $user->ID) == 'false' ) { ?>checked="checked"<?php }?> value="false" />No<br/>
