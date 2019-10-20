@@ -137,17 +137,15 @@ class PropertyShift_Agents {
 
 		$user_sync = get_post_meta($post->ID, 'ps_agent_user_sync', true);
 		$agent_select_options = $this->get_agents($empty_default = true);
-
-		$user_select = array(
+		$user_sync_field = array(
 			'title' => esc_html__('Synced User', 'propertyshift'),
-			'description' => esc_html__('Select a user to display their information. Only users with the role of PS Agent or Administrator will show.', 'propertyshift'),
+			'description' => esc_html__('All agent info is pulled from the selected user.', 'propertyshift'),
 			'name' => 'ps_agent_user_sync',
 			'type' => 'select',
 			'options' => $agent_select_options,
 			'value' => $user_sync,
-			'order' => 0,
 		);
-		$this->admin_obj->build_admin_field($user_select);
+		$this->admin_obj->build_admin_field($user_sync_field);
 	}
 
 	/**
