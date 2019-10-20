@@ -135,17 +135,66 @@ class PropertyShift_Agents {
 
 		wp_nonce_field( 'ps_agent_details_meta_box_nonce', 'ps_agent_details_meta_box_nonce' );
 
-		$user_sync = get_post_meta($post->ID, 'ps_agent_user_sync', true);
-		$agent_select_options = $this->get_agents($empty_default = true);
-		$user_sync_field = array(
-			'title' => esc_html__('Synced User', 'propertyshift'),
-			'description' => esc_html__('All agent info is pulled from the selected user.', 'propertyshift'),
-			'name' => 'ps_agent_user_sync',
-			'type' => 'select',
-			'options' => $agent_select_options,
-			'value' => $user_sync,
+		$agent_url_field = array(
+			'title' => esc_html__('Agent Profile URL', 'propertyshift'),
+			'description' => esc_html__('Link to the agents front-end profile url', 'propertyshift'),
+			'type' => 'custom',
+			'value' => '<a target="_blank" href="'.get_the_permalink().'">'.get_the_permalink().'</a>',
 		);
-		$this->admin_obj->build_admin_field($user_sync_field);
+		$this->admin_obj->build_admin_field($agent_url_field);
+
+		$user_sync = get_post_meta($post->ID, 'ps_agent_user_sync', true);
+
+		if(!empty($user_sync)) {
+			$edit_user_link = get_edit_user_link($user_sync);
+			$agent_info_field = array(
+				'title' => esc_html__('Synced User', 'propertyshift'),
+				'description' => '<a href="#" class="button" style="margin-right:5px;">Change User</a><a href="'.$edit_user_link.'" class="button">Edit User</a>',
+				'type' => 'custom',
+				'value' => $this->output_agent_user_info($user_sync),
+			);
+			$this->admin_obj->build_admin_field($agent_info_field);
+		} else {
+			$agent_select_options = $this->get_agents($empty_default = true);
+			$user_sync_field = array(
+				'title' => esc_html__('Sync with Existing User', 'propertyshift'),
+				'description' => esc_html__('All agent info is pulled from the selected user.', 'propertyshift'),
+				'name' => 'ps_agent_user_sync',
+				'type' => 'select',
+				'options' => $agent_select_options,
+				'value' => $user_sync,
+			);
+			$this->admin_obj->build_admin_field($user_sync_field);
+		}
+	}
+
+	public function output_agent_user_info($user_id) {
+		ob_start(); 
+		$user_data = get_userdata($user_id); ?>
+		<table class="agent-user-data">
+			<tr>
+				<td><?php esc_html_e('Username:', 'propertyshift'); ?></td>
+				<td><?php echo $user_data->user_login; ?></td>
+			</tr>
+			<tr>
+				<td><?php esc_html_e('First Name:', 'propertyshift'); ?></td>
+				<td><?php echo $user_data->first_name; ?></td>
+			</tr>
+			<tr>
+				<td><?php esc_html_e('Last Name:', 'propertyshift'); ?></td>
+				<td><?php echo $user_data->last_name; ?></td>
+			</tr>
+			<tr>
+				<td><?php esc_html_e('Email:', 'propertyshift'); ?></td>
+				<td><?php echo $user_data->user_email; ?></td>
+			</tr>
+			<tr>
+				<td><?php esc_html_e('Website:', 'propertyshift'); ?></td>
+				<td><?php echo '<a target="_blank" href="'.$user_data->user_url.'">'.$user_data->user_url.'</a>'; ?></td>
+			</tr>
+		</table>
+		<?php $content = ob_get_clean();
+		return $content;
 	}
 
 	/**
