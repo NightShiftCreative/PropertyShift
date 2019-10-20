@@ -135,11 +135,8 @@ class PropertyShift_Properties {
 		global $post;
 
 		//populate agent select
-		$agent_select_options = array();
-		$agents = get_users(array('role__in' => array('ps_agent', 'administrator')));
-		foreach($agents as $agent) {
-			$agent_select_options[$agent->display_name.' ('.$agent->user_login.')'] = $agent->ID;
-		}
+		$agent_obj = new PropertyShift_Agents();
+		$agent_select_options = $agent_obj->get_agents();
 
         // settings
 		$property_settings_init = array(

@@ -136,16 +136,14 @@ class PropertyShift_Agents {
 		wp_nonce_field( 'ps_agent_details_meta_box_nonce', 'ps_agent_details_meta_box_nonce' );
 
 		$user_sync = get_post_meta($post->ID, 'ps_agent_user_sync', true);
-		$users = get_users(array('role__in' => array('ps_agent', 'administrator')));
-		$user_options = array();
-		foreach($users as $user) { $user_options[$user->user_login] = $user->ID; }
+		$agent_select_options = $this->get_agents();
 
 		$user_select = array(
 			'title' => esc_html__('Synced User', 'propertyshift'),
 			'description' => esc_html__('Select a user to display their information. Only users with the role of PS Agent or Administrator will show.', 'propertyshift'),
 			'name' => 'ps_agent_user_sync',
 			'type' => 'select',
-			'options' => $user_options,
+			'options' => $agent_select_options,
 			'value' => $user_sync,
 			'order' => 0,
 		);
@@ -480,6 +478,19 @@ class PropertyShift_Agents {
         		wp_delete_post($agent_profile->ID);
         	}
         }
+    }
+
+    /**
+     *  Get agents
+     *
+     */
+    public function get_agents() {
+    	$agents = array();
+    	$user_agents = get_users(array('role__in' => array('ps_agent', 'administrator')));
+    	foreach($user_agents as $user) {
+			$agents[$user->display_name.' ('.$user->user_login.')'] = $user->ID;
+		}
+		return $agents;
     }
 
 	/**
