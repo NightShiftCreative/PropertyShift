@@ -96,6 +96,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 			'ps_google_maps_pin' => array('value' => PROPERTYSHIFT_DIR.'/images/pin.png'),
 			'ps_members_my_properties_page' => array('value' => ''),
 			'ps_members_submit_property_page' => array('value' => ''),
+			'ps_members_auto_agent_profile' => array('value' => 'false'),
 			'ps_members_submit_property_approval' => array('value' => 'true'),
 			'ps_members_add_locations' => array('value' => 'true'),
 			'ps_members_add_amenities' => array('value' => 'true'),
@@ -602,6 +603,15 @@ class PropertyShift_Admin extends NS_Basics_Admin {
                 'options' => $page_options,
             );
             $this->build_admin_field($submit_property_page_field);
+
+            $auto_agent_profile = array(
+                'title' => esc_html__('Automatically create agent profiles on front-end registration', 'propertyshift'),
+                'name' => 'ps_members_auto_agent_profile',
+                'description' => esc_html__('When you users register as an agent on the front-end, they will have an agent profile synced, and will appear in agent listings.', 'propertyshift'),
+                'value' => $settings['ps_members_auto_agent_profile'],
+                'type' => 'switch',
+            );
+            $this->build_admin_field($auto_agent_profile);
 
             $submit_property_approval = array(
                 'title' => esc_html__('Front-end property submissions must be approved before being published', 'propertyshift'),

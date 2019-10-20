@@ -427,10 +427,13 @@ class PropertyShift_Agents {
      *  On agent registration
      */
     public function on_agent_register($user_id) {
-    	$user_meta = get_userdata($user_id);
-		$user_roles = $user_meta->roles;
-    	if(in_array("ps_agent", $user_roles)) {
-    		$this->create_agent_profile($user_id);
+    	$auto_agent_profile = $this->global_settings['ps_members_auto_agent_profile'];
+    	if($auto_agent_profile == 'true') {
+    		$user_meta = get_userdata($user_id);
+			$user_roles = $user_meta->roles;
+	    	if(in_array("ps_agent", $user_roles)) {
+	    		$this->create_agent_profile($user_id);
+	    	}
     	}
     }
 
