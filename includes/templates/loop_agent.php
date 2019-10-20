@@ -3,7 +3,7 @@
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 
-	//Get agent details
+    //Get agent details
     global $post;
     $synced_user = get_post_meta($post->ID, 'ps_agent_user_sync', true);
 

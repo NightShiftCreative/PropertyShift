@@ -136,7 +136,7 @@ class PropertyShift_Agents {
 		wp_nonce_field( 'ps_agent_details_meta_box_nonce', 'ps_agent_details_meta_box_nonce' );
 
 		$user_sync = get_post_meta($post->ID, 'ps_agent_user_sync', true);
-		$agent_select_options = $this->get_agents();
+		$agent_select_options = $this->get_agents($empty_default = true);
 
 		$user_select = array(
 			'title' => esc_html__('Synced User', 'propertyshift'),
@@ -484,8 +484,9 @@ class PropertyShift_Agents {
      *  Get agents
      *
      */
-    public function get_agents() {
+    public function get_agents($empty_default = false) {
     	$agents = array();
+    	if($empty_default == true) { $agents['Select an agent...'] = ''; }
     	$user_agents = get_users(array('role__in' => array('ps_agent', 'administrator')));
     	foreach($user_agents as $user) {
 			$agents[$user->display_name.' ('.$user->user_login.')'] = $user->ID;
