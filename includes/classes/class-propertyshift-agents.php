@@ -43,6 +43,7 @@ class PropertyShift_Agents {
         add_action( 'edit_user_profile_update', array($this, 'save_agent_user_fields'));
         add_action( 'ns_basics_edit_profile_fields', array($this, 'create_agent_user_fields'));
         add_action( 'ns_basics_edit_profile_save', array($this, 'save_agent_user_fields'));
+        add_action( 'user_register', array($this, 'on_front_end_register'), 10, 1 );
 
         //front-end template hooks
         add_action('ns_basics_dashboard_stats', array($this, 'add_dashboard_stats'));
@@ -271,7 +272,7 @@ class PropertyShift_Agents {
 	            		<?php } ?>
 	            		<input type="checkbox" name="ps_agent_profile_remove" value="true" /><?php _e("Remove Profile", "propertyshift"); ?>
 	            	<?php } else { ?>
-	            		<span class="admin-module-note"><?php _e("No front-end profile exists for this agent.", "propertyshift"); ?></span><br/>
+	            		<span class="admin-module-note"><?php _e("No agent profile exists for this user.", "propertyshift"); ?></span><br/>
 	            		<input type="checkbox" name="ps_agent_profile_create" value="true" /><?php _e("Create Profile", "propertyshift"); ?>
 	            	<?php } ?>
 	            </td>
@@ -401,26 +402,12 @@ class PropertyShift_Agents {
         
         //create agent profile
         if(isset($_POST['ps_agent_profile_create'])) {
-        	$user = get_userdata($user_id);
-        	$postarr = array(
-        		'post_type' => 'ps-agent',
-        		'post_title' => $user->user_login,
-        		'post_name' => $user->user_login,
-        		'post_status' => 'publish',
-        	);
-        	$agent_profile_id = wp_insert_post($postarr);
-        	update_post_meta($agent_profile_id, 'ps_agent_user_sync', $user_id);
+        	$this->create_agent_profile($user_id);
         }
 
         //remove agent profile
         if(isset($_POST['ps_agent_profile_remove'])) {
-        	$agent_profiles = get_posts(array('post_type' => 'ps-agent', 'showposts' => -1));
-        	foreach($agent_profiles as $agent_profile) {
-        		$user_sync = get_post_meta($agent_profile->ID, 'ps_agent_user_sync', true);
-        		if($user_sync == $user_id) {
-        			wp_delete_post($agent_profile->ID);
-        		}
-        	}
+        	$this->delete_agent_profile($user_id);
         }
         
         if(isset($_POST['ps_agent_job_title'])) {update_user_meta( $user_id, 'ps_agent_job_title', $_POST['ps_agent_job_title'] ); }
@@ -437,9 +424,51 @@ class PropertyShift_Agents {
     }
 
 
+    public function on_front_end_register($user_id) {
+    	$user_meta = get_userdata($user_id);
+		$user_roles = $user_meta->roles;
+    	if(in_array("ps_agent", $user_roles)) {
+    		$this->create_agent_profile($user_id);
+    	}
+    }
+
+
 	/************************************************************************/
 	// Agent Utilities
 	/************************************************************************/
+
+	/**
+     *  Create agent profile (from user)
+     *
+     * @param int $user_id
+     */
+    public function create_agent_profile($user_id) {
+        $user = get_userdata($user_id);
+        $postarr = array(
+        	'post_type' => 'ps-agent',
+        	'post_title' => $user->user_login,
+        	'post_name' => $user->user_login,
+        	'post_status' => 'publish',
+        );
+        $agent_profile_id = wp_insert_post($postarr);
+        update_post_meta($agent_profile_id, 'ps_agent_user_sync', $user_id);
+        return $agent_profile_id;
+    }
+
+    /**
+     *  Delete agent profile (from user)
+     *
+     * @param int $user_id
+     */
+    public function delete_agent_profile($user_id) {
+    	$agent_profiles = get_posts(array('post_type' => 'ps-agent', 'showposts' => -1));
+        foreach($agent_profiles as $agent_profile) {
+        	$user_sync = get_post_meta($agent_profile->ID, 'ps_agent_user_sync', true);
+        	if($user_sync == $user_id) {
+        		wp_delete_post($agent_profile->ID);
+        	}
+        }
+    }
 
 	/**
 	 *	Get agent properties
@@ -468,21 +497,6 @@ class PropertyShift_Agents {
 	    $agent_properties['properties'] = new WP_Query($args);
 	    $agent_properties['count'] =  $agent_properties['properties']->found_posts;
 	    return $agent_properties;
-	}
-
-	/**
-	 *	Get synced agent id
-	 */
-	public function get_synced_agent_id($user_id) {
-		$synced_agent = '';
-		$args = array(
-			'post_type' => 'ps-agent',
-			'meta_key' => 'ps_agent_user_sync',
-			'meta_value' => $user_id,
-		);
-		$agents = get_posts($args);
-		foreach($agents as $agent) { $synced_agent = $agent->ID; }
-		return $synced_agent;
 	}
 
 	/**
