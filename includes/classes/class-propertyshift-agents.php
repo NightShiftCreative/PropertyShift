@@ -404,14 +404,10 @@ class PropertyShift_Agents {
         if(!current_user_can( 'edit_user', $user_id )) { return false; }
         
         //create agent profile
-        if(isset($_POST['ps_agent_profile_create'])) {
-        	$this->create_agent_profile($user_id);
-        }
+        if(isset($_POST['ps_agent_profile_create'])) { $this->create_agent_profile($user_id); }
 
         //remove agent profile
-        if(isset($_POST['ps_agent_profile_remove'])) {
-        	$this->delete_agent_profile($user_id);
-        }
+        if(isset($_POST['ps_agent_profile_remove'])) { $this->delete_agent_profile($user_id); }
         
         if(isset($_POST['ps_agent_job_title'])) {update_user_meta( $user_id, 'ps_agent_job_title', $_POST['ps_agent_job_title'] ); }
         if(isset($_POST['ps_agent_mobile_phone'])) {update_user_meta( $user_id, 'ps_agent_mobile_phone', $_POST['ps_agent_mobile_phone'] ); }
