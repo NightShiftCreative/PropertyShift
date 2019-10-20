@@ -34,6 +34,7 @@ class PropertyShift_Agents {
 		//agents custom post type
 		add_action('init', array( $this, 'add_custom_post_type' ));
 		add_action('add_meta_boxes', array( $this, 'register_meta_box'));
+		add_action( 'save_post', array( $this, 'save_meta_box'));
 	
 		//add & save user fields
 		add_action( 'show_user_profile', array($this, 'create_agent_user_fields'));
@@ -127,14 +128,68 @@ class PropertyShift_Agents {
 	 *	Output meta box interface
 	 */
 	public function output_meta_box($post) {
+
+		wp_nonce_field( 'ps_agent_details_meta_box_nonce', 'ps_agent_details_meta_box_nonce' );
+
 		$user_sync = get_post_meta($post->ID, 'ps_agent_user_sync', true);
 		$users = get_users(array('role__in' => array('ps_agent', 'administrator')));
-		foreach($users as $user) {
-			if($user->ID == $user_sync) {
-				echo 'Synced User: '.$user->user_login;
-				echo '<br/><br/>';
-			}
-		}
+		$user_options = array();
+		foreach($users as $user) { $user_options[$user->user_login] = $user->ID; }
+
+		$user_select = array(
+			'title' => esc_html__('Synced User', 'propertyshift'),
+			'description' => esc_html__('Select a user to display their information. Only users with the role of PS Agent or Administrator will show.', 'propertyshift'),
+			'name' => 'ps_agent_user_sync',
+			'type' => 'select',
+			'options' => $user_options,
+			'value' => $user_sync,
+			'order' => 0,
+		);
+		$this->admin_obj->build_admin_field($user_select);
+	}
+
+	/**
+	 * Save Meta Box
+	 */
+	public function save_meta_box($post_id) {
+		// Bail if we're doing an auto save
+        if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+
+        // if our nonce isn't there, or we can't verify it, bail
+        if( !isset( $_POST['ps_agent_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['ps_agent_details_meta_box_nonce'], 'ps_agent_details_meta_box_nonce' ) ) return;
+
+        // if our current user can't edit this post, bail
+        if( !current_user_can( 'edit_post', $post_id ) ) return;
+
+        // allow certain attributes
+        $allowed = array('a' => array('href' => array()));
+
+        // update permalink and title to username
+	    if(!wp_is_post_revision( $post_id)) {
+
+	        // unhook this function to prevent infinite looping
+	        remove_action( 'save_post', array($this, 'save_meta_box'));
+
+	        $post_slug = $post_id;
+	        if(isset($_POST['ps_agent_user_sync']) && !empty($_POST['ps_agent_user_sync'])) {
+	        	$user_data = get_userdata($_POST['ps_agent_user_sync']);
+	        	$post_slug = $user_data->user_login;
+	        }
+	        wp_update_post( array(
+	            'ID' => $post_id,
+	            'post_name' => $post_slug,
+	            'post_title' => $post_slug,
+	        ));
+
+	        // re-hook this function
+	        add_action( 'save_post', array($this, 'save_meta_box'));
+
+	    }
+
+        // save settings
+        if(isset($_POST['ps_agent_user_sync'])) {
+        	update_post_meta( $post_id, 'ps_agent_user_sync', wp_kses( $_POST['ps_agent_user_sync'], $allowed));
+        }
 	}
 
 	/************************************************************************/
@@ -198,7 +253,7 @@ class PropertyShift_Agents {
 
 	        <table class="form-table">
 	        <tr>
-	            <th><label><?php esc_html_e('Front-end Agent Profile', 'propertyshift'); ?></label></th>
+	            <th><label><?php esc_html_e('Agent Profile', 'propertyshift'); ?></label></th>
 	            <td>
 	            	<?php 
 	            	$current_profile = array();
