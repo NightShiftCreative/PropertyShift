@@ -36,7 +36,7 @@
     $agent_form_id = $agent_settings['contact_form_7_id']['value'];
 
     //Get agent properties
-    $agent_properties = $agents_obj->get_agent_properties(get_the_id(), $num_properties_per_page);
+    $agent_properties = $agents_obj->get_agent_properties($synced_user, $num_properties_per_page);
     $agent_properties_count = $agent_properties['count'];
 ?>	
 

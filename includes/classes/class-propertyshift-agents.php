@@ -424,7 +424,7 @@ class PropertyShift_Agents {
 
 
     /**
-     *  On agent registration
+     *  On user registration
      */
     public function on_agent_register($user_id) {
     	$auto_agent_profile = $this->global_settings['ps_members_auto_agent_profile'];
@@ -438,7 +438,7 @@ class PropertyShift_Agents {
     }
 
     /**
-     *  On agent deletion
+     *  On user deletion
      */
     public function on_agent_delete($user_id) {
     	$this->delete_agent_profile($user_id);

@@ -22,7 +22,7 @@
     $agent_instagram = $agent_settings['instagram']['value'];
 
     //Get agent property count
-    $agent_properties = $agents_obj->get_agent_properties(get_the_id());
+    $agent_properties = $agents_obj->get_agent_properties($synced_user);
     $agent_properties_count = $agent_properties['count'];
 ?>
 
