@@ -145,52 +145,92 @@ class PropertyShift_Agents {
 
 		$user_sync = get_post_meta($post->ID, 'ps_agent_user_sync', true);
 
+		$agent_select_options = $this->get_agents($empty_default = true);
+		$agent_source_field = array(
+			'title' => esc_html__('Agent Source', 'propertyshift'),
+			'description' => esc_html__('Choose how you would like to create the agent.', 'propertyshift'),
+			'name' => 'ps_agent_source',
+			'type' => 'radio_image',
+			'options' => array(
+				esc_html__('Sync With Existing User', 'propertyshift') => array('value' => 'existing', ), 
+				esc_html__('Create New', 'ns-basics') => array('value' => 'new',),
+			),
+			'value' => 'existing',
+			'children' => array(
+				'user_sync' => array(
+					'title' => esc_html__('Select User', 'propertyshift'),
+					'description' => esc_html__('All agent info is pulled from the selected user.', 'propertyshift'),
+					'name' => 'ps_agent_user_sync',
+					'type' => 'select',
+					'options' => $agent_select_options,
+					'value' => $user_sync,
+					'parent_val' => 'existing',
+				),
+				'register_username' => array(
+					'title' => esc_html__('Username', 'propertyshift'),
+					'description' => esc_html__('Provide the agents username.', 'propertyshift'),
+					'name' => 'ps_agent_register_username',
+					'type' => 'text',
+					'parent_val' => 'new',
+				),
+				'register_password' => array(
+					'title' => esc_html__('Password', 'propertyshift'),
+					'description' => esc_html__('Provide the agents password.', 'propertyshift'),
+					'name' => 'ps_agent_register_password',
+					'type' => 'text',
+					'parent_val' => 'new',
+				),
+				'register_email' => array(
+					'title' => esc_html__('Email', 'propertyshift'),
+					'description' => esc_html__('Provide the agents email.', 'propertyshift'),
+					'name' => 'ps_agent_register_email',
+					'type' => 'text',
+					'parent_val' => 'new',
+				),
+			),
+		);
+		
 		if(!empty($user_sync)) {
 			$edit_user_link = get_edit_user_link($user_sync);
 			$agent_info_field = array(
 				'title' => esc_html__('Synced User', 'propertyshift'),
-				'description' => '<a href="#" class="button" style="margin-right:5px;">Change User</a><a href="'.$edit_user_link.'" class="button">Edit User</a>',
+				'description' => '<a href="'.$edit_user_link.'" class="button">Edit User</a>',
 				'type' => 'custom',
 				'value' => $this->output_agent_user_info($user_sync),
+				'parent_val' => 'existing',
 			);
-			$this->admin_obj->build_admin_field($agent_info_field);
-		} else {
-			$agent_select_options = $this->get_agents($empty_default = true);
-			$user_sync_field = array(
-				'title' => esc_html__('Sync with Existing User', 'propertyshift'),
-				'description' => esc_html__('All agent info is pulled from the selected user.', 'propertyshift'),
-				'name' => 'ps_agent_user_sync',
-				'type' => 'select',
-				'options' => $agent_select_options,
-				'value' => $user_sync,
-			);
-			$this->admin_obj->build_admin_field($user_sync_field);
+			$agent_source_field['children']['user_sync_info'] = $agent_info_field;
 		}
+
+		$this->admin_obj->build_admin_field($agent_source_field);
 	}
 
 	public function output_agent_user_info($user_id) {
-		ob_start(); 
-		$user_data = get_userdata($user_id); ?>
+		ob_start();  
+		$agent_settings = $this->load_agent_settings($user_id); ?>
 		<table class="agent-user-data">
 			<tr>
+				<td colspan="2"><img style="width:80px;border-radius:6px;" src="<?php echo $agent_settings['avatar_url_thumb']['value']; ?>" alt="" /></td>
+			</tr>
+			<tr>
 				<td><?php esc_html_e('Username:', 'propertyshift'); ?></td>
-				<td><?php echo $user_data->user_login; ?></td>
+				<td><?php echo $agent_settings['username']['value']; ?></td>
 			</tr>
 			<tr>
 				<td><?php esc_html_e('First Name:', 'propertyshift'); ?></td>
-				<td><?php echo $user_data->first_name; ?></td>
+				<td><?php echo $agent_settings['first_name']['value']; ?></td>
 			</tr>
 			<tr>
 				<td><?php esc_html_e('Last Name:', 'propertyshift'); ?></td>
-				<td><?php echo $user_data->last_name; ?></td>
+				<td><?php echo $agent_settings['last_name']['value']; ?></td>
 			</tr>
 			<tr>
 				<td><?php esc_html_e('Email:', 'propertyshift'); ?></td>
-				<td><?php echo $user_data->user_email; ?></td>
+				<td><?php echo $agent_settings['email']['value']; ?></td>
 			</tr>
 			<tr>
 				<td><?php esc_html_e('Website:', 'propertyshift'); ?></td>
-				<td><?php echo '<a target="_blank" href="'.$user_data->user_url.'">'.$user_data->user_url.'</a>'; ?></td>
+				<td><?php echo '<a target="_blank" href="'.$agent_settings['website']['value'].'">'.$agent_settings['website']['value'].'</a>'; ?></td>
 			</tr>
 		</table>
 		<?php $content = ob_get_clean();
@@ -213,32 +253,41 @@ class PropertyShift_Agents {
         // allow certain attributes
         $allowed = array('a' => array('href' => array()));
 
+        $post_slug = $post_id;
+
+        // save existing user
+        if(isset($_POST['ps_agent_source']) && $_POST['ps_agent_source'] == 'existing') {
+        	
+        	if(isset($_POST['ps_agent_user_sync']) && !empty($_POST['ps_agent_user_sync'])) {
+        		update_post_meta( $post_id, 'ps_agent_user_sync', wp_kses( $_POST['ps_agent_user_sync'], $allowed));
+        		$user_data = get_userdata($_POST['ps_agent_user_sync']);
+	        	$post_slug = $user_data->user_login;
+        	}
+
+        //register new user
+        } else if(isset($_POST['ps_agent_source']) && $_POST['ps_agent_source'] == 'new') {
+        	$register_user_data = array(
+                'user_login'  =>  sanitize_user($_POST['ps_agent_register_username'], true),
+                'user_pass'    =>  $_POST['ps_agent_register_password'],
+                'user_email'   =>  $_POST['ps_agent_register_email'],
+                'role' => 'ps_agent',
+            );
+            $new_user_id = wp_insert_user($register_user_data);
+            if(!is_wp_error($new_user_id) ) {
+                update_post_meta( $post_id, 'ps_agent_user_sync', $new_user_id);
+                $new_user_data = get_userdata($new_user_id);
+	        	$post_slug = $new_user_data->user_login;
+            } else {
+            	//error message
+            }
+        }
+
         // update permalink and title to username
 	    if(!wp_is_post_revision( $post_id)) {
-
-	        // unhook this function to prevent infinite looping
 	        remove_action( 'save_post', array($this, 'save_meta_box'));
-
-	        $post_slug = $post_id;
-	        if(isset($_POST['ps_agent_user_sync']) && !empty($_POST['ps_agent_user_sync'])) {
-	        	$user_data = get_userdata($_POST['ps_agent_user_sync']);
-	        	$post_slug = $user_data->user_login;
-	        }
-	        wp_update_post( array(
-	            'ID' => $post_id,
-	            'post_name' => $post_slug,
-	            'post_title' => $post_slug,
-	        ));
-
-	        // re-hook this function
+	        wp_update_post( array('ID' => $post_id,'post_name' => $post_slug,'post_title' => $post_slug));
 	        add_action( 'save_post', array($this, 'save_meta_box'));
-
 	    }
-
-        // save settings
-        if(isset($_POST['ps_agent_user_sync'])) {
-        	update_post_meta( $post_id, 'ps_agent_user_sync', wp_kses( $_POST['ps_agent_user_sync'], $allowed));
-        }
 	}
 
 	/************************************************************************/
