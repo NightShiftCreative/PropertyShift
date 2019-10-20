@@ -43,7 +43,10 @@ class PropertyShift_Agents {
         add_action( 'edit_user_profile_update', array($this, 'save_agent_user_fields'));
         add_action( 'ns_basics_edit_profile_fields', array($this, 'create_agent_user_fields'));
         add_action( 'ns_basics_edit_profile_save', array($this, 'save_agent_user_fields'));
-        add_action( 'user_register', array($this, 'on_front_end_register'), 10, 1 );
+        
+        //on user creation and deletion
+        add_action( 'user_register', array($this, 'on_agent_register'), 10, 1 );
+        add_action( 'delete_user', array($this, 'on_agent_delete'));
 
         //front-end template hooks
         add_action('ns_basics_dashboard_stats', array($this, 'add_dashboard_stats'));
@@ -424,12 +427,22 @@ class PropertyShift_Agents {
     }
 
 
-    public function on_front_end_register($user_id) {
+    /**
+     *  On agent registration
+     */
+    public function on_agent_register($user_id) {
     	$user_meta = get_userdata($user_id);
 		$user_roles = $user_meta->roles;
     	if(in_array("ps_agent", $user_roles)) {
     		$this->create_agent_profile($user_id);
     	}
+    }
+
+    /**
+     *  On agent deletion
+     */
+    public function on_agent_delete($user_id) {
+    	$this->delete_agent_profile($user_id);
     }
 
 
