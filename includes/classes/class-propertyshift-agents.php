@@ -87,9 +87,15 @@ class PropertyShift_Agents {
 	    $role->add_cap( 'delete_ps-property');
 	    $role->add_cap( 'delete_ps-propertys');
 	    $role->add_cap( 'edit_ps-propertys');
-	    $role->add_cap( 'publish_ps-propertys');
 	    $role->add_cap( 'read_private_ps-propertys');
 	    $role->add_cap( 'create_ps-propertys');
+
+	    // Allow agents to publish properties
+	    $agent_property_approval = $this->global_settings['ps_members_submit_property_approval'];
+	    if($agent_property_approval != 'true') {
+	    	$role->add_cap( 'publish_ps-propertys');
+	    }
+	    
 	}
 
 	/************************************************************************/
