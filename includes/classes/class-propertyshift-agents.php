@@ -200,7 +200,7 @@ class PropertyShift_Agents {
 			$edit_user_link = get_edit_user_link($user_sync);
 			$agent_info_field = array(
 				'title' => esc_html__('Synced User', 'propertyshift'),
-				'description' => '<a href="'.$edit_user_link.'" class="button">Edit User</a>',
+				'description' => '<a href="'.$edit_user_link.'" class="button">'.esc_html__('Edit Details', 'propertyshift').'</a>',
 				'type' => 'custom',
 				'value' => $this->output_agent_user_info($user_sync),
 				'parent_val' => 'existing',
@@ -371,7 +371,7 @@ class PropertyShift_Agents {
 
 	            	if(!empty($current_profile)) { 
 	            		foreach($current_profile as $profile) { ?>
-	            			<div class="button"><?php _e("Agent Profile ID:", "propertyshift"); ?> <?php echo $profile; ?></div>
+	            			<a href="<?php echo get_the_permalink($profile); ?>" target="_blank" class="button"><?php _e("Agent Profile ID:", "propertyshift"); ?> <?php echo $profile; ?></a>
 	            		<?php } ?>
 	            		<input type="checkbox" name="ps_agent_profile_remove" value="true" /><?php _e("Remove Profile", "propertyshift"); ?>
 	            	<?php } else { ?>
