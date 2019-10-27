@@ -129,7 +129,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	    
 	    $content_nav = array(
 	        array('name' => esc_html__('Properties', 'propertyshift'), 'link' => '#properties', 'icon' => 'fa-home', 'order' => 1),
-	        array('name' => esc_html__('Agents', 'propertyshift'), 'link' => '#agents', 'icon' => 'fa-user-tie', 'order' => 2),
+	        array('name' => esc_html__('Agents & Users', 'propertyshift'), 'link' => '#agents', 'icon' => 'fa-user-tie', 'order' => 2),
 	        array('name' => esc_html__('Maps', 'propertyshift'), 'link' => '#maps', 'icon' => 'fa-map', 'order' => 3),
 	        array('name' => esc_html__('Front-End Settings', 'propertyshift'), 'link' => '#front-end', 'icon' => 'fa-laptop', 'order' => 4),
 	        array('name' => esc_html__('Currency & Numbers', 'propertyshift'), 'link' => '#currency', 'icon' => 'fa-money-bill-alt', 'order' => 5),
@@ -584,10 +584,22 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        $page_options = array('Select a page' => '');
 	        $pages = get_pages();
 	        foreach ( $pages as $page ) { $page_options[esc_attr($page->post_title)] = get_page_link( $page->ID ); }
+	        
+	        $agent_profile_page_field = array(
+                'title' => esc_html__('Select Agent Profile Page', 'propertyshift'),
+                'name' => 'ps_members_profile_page',
+                'description' => esc_html__('Create a page and add the [ps_agent_profile] shortcode.', 'propertyshift'),
+                'value' => $settings['ps_members_profile_page'],
+                'type' => 'select',
+                'options' => $page_options,
+            );
+            $this->build_admin_field($agent_profile_page_field);
+
+
 	        $my_properties_page_field = array(
                 'title' => esc_html__('Select My Properties Page', 'propertyshift'),
                 'name' => 'ps_members_my_properties_page',
-                'description' => esc_html__('Create a page and assign it the My Properties template.', 'propertyshift'),
+                'description' => esc_html__('Create a page and add the [ps_my_properties] shortcode.', 'propertyshift'),
                 'value' => $settings['ps_members_my_properties_page'],
                 'type' => 'select',
                 'options' => $page_options,
@@ -597,7 +609,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
             $submit_property_page_field = array(
                 'title' => esc_html__('Select Submit Property Page', 'propertyshift'),
                 'name' => 'ps_members_submit_property_page',
-                'description' => esc_html__('Create a page and assign it the Submit Property template.', 'propertyshift'),
+                'description' => esc_html__('Create a page and add the [ps_submit_property] shortcode.', 'propertyshift'),
                 'value' => $settings['ps_members_submit_property_page'],
                 'type' => 'select',
                 'options' => $page_options,
@@ -614,7 +626,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
             $this->build_admin_field($auto_agent_profile);
 
             $submit_property_approval = array(
-                'title' => esc_html__('Front-end property submissions must be approved before being published', 'propertyshift'),
+                'title' => esc_html__('Agent property submissions must be approved before being published', 'propertyshift'),
                 'name' => 'ps_members_submit_property_approval',
                 'value' => $settings['ps_members_submit_property_approval'],
                 'type' => 'switch',
@@ -622,7 +634,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
             $this->build_admin_field($submit_property_approval);
 
             $submit_add_locations = array(
-                'title' => esc_html__('Allow members to add new property locations from the front-end', 'propertyshift'),
+                'title' => esc_html__('Agents can add new property locations', 'propertyshift'),
                 'name' => 'ps_members_add_locations',
                 'value' => $settings['ps_members_add_locations'],
                 'type' => 'switch',
@@ -630,7 +642,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
             $this->build_admin_field($submit_add_locations);
 
             $submit_add_amenities = array(
-                'title' => esc_html__('Allow members to add new property amenities from the front-end', 'propertyshift'),
+                'title' => esc_html__('Agent can add new property amenities', 'propertyshift'),
                 'name' => 'ps_members_add_amenities',
                 'value' => $settings['ps_members_add_amenities'],
                 'type' => 'switch',
