@@ -464,9 +464,7 @@ class PropertyShift_Agents {
 	 */
 	function change_author_link($link, $author_id) {
 		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
-		$user_meta = get_userdata($author_id);
-		$user_roles = $user_meta->roles;
-		if(in_array('ps_agent', $user_roles)) {
+		if($this->is_agent($author_id)) {
 			$link = str_replace( 'author', $agent_slug, $link );
 		}
 	    return $link;
