@@ -94,6 +94,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 			'ps_default_map_latitude' => array('value' => 39.2904),
 			'ps_default_map_longitude' => array('value' => -76.5000),
 			'ps_google_maps_pin' => array('value' => PROPERTYSHIFT_DIR.'/images/pin.png'),
+			'ps_members_profile_page' => array('value' => ''),
 			'ps_members_my_properties_page' => array('value' => ''),
 			'ps_members_submit_property_page' => array('value' => ''),
 			'ps_members_auto_agent_profile' => array('value' => 'false'),

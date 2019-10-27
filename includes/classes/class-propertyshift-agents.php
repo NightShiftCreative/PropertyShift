@@ -443,9 +443,12 @@ class PropertyShift_Agents {
 	 */
 	public function agent_profile_template_redirect($query_vars) {
 		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
-		$agent_profile_page = 247;
+		$agent_profile_page = $this->global_settings['ps_members_profile_page'];
+
 		if(!empty($agent_profile_page)) {
 			$query_vars['page_id'] = isset($query_vars[$agent_slug]) ? $agent_profile_page : $query_vars['page_id'];
+		} else {
+			//redirect to author archive
 		}
 	    
     	return $query_vars;
