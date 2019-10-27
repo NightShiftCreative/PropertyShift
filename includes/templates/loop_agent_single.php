@@ -1,6 +1,7 @@
 <?php
 //Global settings
 $admin_obj = new PropertyShift_Admin();
+$agents_obj = new PropertyShift_Agents();
 $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
 if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 $num_properties_per_page = $admin_obj->load_settings(false, 'ps_num_properties_per_page');
@@ -28,7 +29,6 @@ if(!empty($user_slug)) {
 if(!empty($user)) {
     
     //Get agent details
-    $agents_obj = new PropertyShift_Agents();
     $agent_settings = $agents_obj->load_agent_settings($user->ID);
     $agent_avatar_url = $agent_settings['avatar_url']['value'];
     $agent_email = $agent_settings['email']['value'];

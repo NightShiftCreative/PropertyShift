@@ -157,31 +157,37 @@ class PropertyShift_Agents {
     	<div class="form-section">
 	        <h3><?php _e("Agent Information", "propertyshift"); ?></h3>
 
-	        <table class="form-table">
-	        <tr>
-	            <th><label><?php esc_html_e('Agent Actions', 'propertyshift'); ?></label></th>
-	            <td>
-	            	<a href="<?php echo admin_url().'edit.php?post_type=ps-property&author='.$user->ID; ?>" class="button">
-	            		<?php esc_html_e('Manage Properties', 'propertyshift'); ?>
-						<?php 
-						$agent_properties = $this->get_agent_properties($user->ID, null, false, array('publish', 'pending'));
-						echo '('.$agent_properties['count'].')';
-						?>	
-	            	</a>
-	            	<a target="_blank" href="<?php echo get_author_posts_url($user->ID); ?>" class="button"><?php esc_html_e('View Profile', 'propertyshift'); ?>	</a>
-	            </td>
-	        </tr>
-	        </table>
+	        <?php
+	        $user_meta = get_userdata($user->ID);
+	    	$user_roles = $user_meta->roles; 
+	    	if(in_array("administrator", $user_roles)) { ?>
+	    		<table class="form-table">
+		        <tr>
+		            <th><label><?php esc_html_e('Agent Actions', 'propertyshift'); ?></label></th>
+		            <td>
+		            	<a href="<?php echo admin_url().'edit.php?post_type=ps-property&author='.$user->ID; ?>" class="button">
+		            		<?php esc_html_e('Manage Properties', 'propertyshift'); ?>
+							<?php 
+							$agent_properties = $this->get_agent_properties($user->ID, null, false, array('publish', 'pending'));
+							echo '('.$agent_properties['count'].')';
+							?>	
+		            	</a>
+		            	<a target="_blank" href="<?php echo get_author_posts_url($user->ID); ?>" class="button"><?php esc_html_e('View Profile', 'propertyshift'); ?>	</a>
+		            </td>
+		        </tr>
+		        </table>
+	    	
+		        <table class="form-table">
+		        <tr>
+		            <th><label><?php esc_html_e('Show in Agent Listings', 'propertyshift'); ?></label></th>
+		            <td>
+		            	<input type="radio" name="ps_agent_show_in_listings" checked <?php if (get_the_author_meta( 'ps_agent_show_in_listings', $user->ID) == 'true' ) { ?>checked="checked"<?php }?> value="true" />Yes<br/>
+		            	<input type="radio" name="ps_agent_show_in_listings" <?php if (get_the_author_meta( 'ps_agent_show_in_listings', $user->ID) == 'false' ) { ?>checked="checked"<?php }?> value="false" />No<br/>
+		            </td>
+		        </tr>
+		        </table>
 
-	        <table class="form-table">
-	        <tr>
-	            <th><label><?php esc_html_e('Show in Agent Listings', 'propertyshift'); ?></label></th>
-	            <td>
-	            	<input type="radio" name="ps_agent_show_in_listings" checked <?php if (get_the_author_meta( 'ps_agent_show_in_listings', $user->ID) == 'true' ) { ?>checked="checked"<?php }?> value="true" />Yes<br/>
-	            	<input type="radio" name="ps_agent_show_in_listings" <?php if (get_the_author_meta( 'ps_agent_show_in_listings', $user->ID) == 'false' ) { ?>checked="checked"<?php }?> value="false" />No<br/>
-	            </td>
-	        </tr>
-	        </table>
+	        <?php } ?>
 
 	        <table class="form-table">
 	        <tr>
@@ -354,7 +360,7 @@ class PropertyShift_Agents {
     public function is_agent($user_id) {
     	$user_meta = get_userdata($user_id);
     	$user_roles = $user_meta->roles; 
-    	if(in_array("ps_agent", $user_roles) || in_array("administrator", $user_roles)){
+    	if(!empty($user_roles) && (in_array("ps_agent", $user_roles) || in_array("administrator", $user_roles))) {
     		return true;
     	} else {
     		return false;
@@ -462,13 +468,14 @@ class PropertyShift_Agents {
 		$agent_profile_page = $this->global_settings['ps_members_profile_page'];
 
 		//Redirect to agent page (fallback to author archive if agent page isn't set)
-		if(!empty($agent_profile_page)) {
-			if(isset($query_vars[$agent_slug])) { $query_vars['page_id'] = $agent_profile_page; }
-		} else {
-			if(isset($query_vars[$agent_slug])) { 
-				$agent_id = get_user_by('slug', $query_vars[$agent_slug]);
-				$agent_id = $agent_id->ID;
-				$query_vars['author'] = $agent_id; 
+		if(isset($query_vars[$agent_slug])) {
+
+			$agent = get_user_by('slug', $query_vars[$agent_slug]);
+
+			if(!empty($agent_profile_page) && $this->is_agent($agent->ID)) {
+				$query_vars['page_id'] = $agent_profile_page;
+			} else {
+				$query_vars['author'] = $agent->ID; 
 			}
 		}
 	    
