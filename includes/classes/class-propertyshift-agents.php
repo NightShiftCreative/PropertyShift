@@ -30,11 +30,6 @@ class PropertyShift_Agents {
 		$this->add_image_sizes();
 		add_action('init', array( $this, 'rewrite_rules' ));
 		add_action('admin_init', array( $this, 'add_agent_role' ));
-
-		//agents custom post type
-		add_action('init', array( $this, 'add_custom_post_type' ));
-		add_action('add_meta_boxes', array( $this, 'register_meta_box'));
-		add_action( 'save_post', array( $this, 'save_meta_box'));
 	
 		//add & save user fields
 		add_action( 'show_user_profile', array($this, 'create_agent_user_fields'));
@@ -43,15 +38,19 @@ class PropertyShift_Agents {
         add_action( 'edit_user_profile_update', array($this, 'save_agent_user_fields'));
         add_action( 'ns_basics_edit_profile_fields', array($this, 'create_agent_user_fields'));
         add_action( 'ns_basics_edit_profile_save', array($this, 'save_agent_user_fields'));
-        
-        //on user creation and deletion
-        add_action( 'user_register', array($this, 'on_agent_register'), 10, 1 );
-        add_action( 'delete_user', array($this, 'on_agent_delete'));
+
+        //front-end agent profiles
+		add_filter( 'query_vars', array($this, 'agent_query_vars'));
+		add_action('init', array($this, 'agent_rewrite_rule'));
+		add_filter( 'request', array($this, 'agent_profile_template_redirect'));
+		add_shortcode('ps_agent_profile', array( $this, 'add_shortcode_agent_profile'));
+		add_filter( 'author_link', array( $this, 'change_author_link'), 10, 2 );
 
         //front-end template hooks
         add_action('ns_basics_dashboard_stats', array($this, 'add_dashboard_stats'));
 		add_action('ns_basics_after_dashboard', array($this, 'add_dashboard_widgets'));
 	}
+	
 
 	/************************************************************************/
 	// Basic Setup
@@ -96,204 +95,6 @@ class PropertyShift_Agents {
 	    	$role->add_cap( 'publish_ps-propertys');
 	    }
 	    
-	}
-
-	/************************************************************************/
-	// Agents Custom Post Type
-	/************************************************************************/
-
-	/**
-	 *	Add custom post type
-	 */
-	public function add_custom_post_type() {
-		$agents_slug = $this->global_settings['ps_agent_detail_slug'];
-	    register_post_type( 'ps-agent',
-	        array(
-	            'labels' => array(
-	                'name' => __( 'Agents', 'propertyshift' ),
-	                'singular_name' => __( 'Agent', 'propertyshift' ),
-	                'add_new_item' => __( 'Add New Agent', 'propertyshift' ),
-	                'search_items' => __( 'Search Agents', 'propertyshift' ),
-	                'edit_item' => __( 'Edit Agent', 'propertyshift' ),
-	            ),
-	        'public' => true,
-	        'capability_type' => 'ps-agent',
-	        'show_in_menu' => false,
-	        'menu_icon' => 'dashicons-businessman',
-	        'has_archive' => false,
-	        'supports' => array('page_attributes'),
-	        'rewrite' => array('slug' => $agents_slug),
-	        )
-	    );
-	}
-
-	/**
-	 *	Register meta box
-	 */
-	public function register_meta_box() {
-		add_meta_box( 'agent-details-meta-box', 'Agent Details', array($this, 'output_meta_box'), 'ps-agent', 'normal', 'high' );
-	}
-
-	/**
-	 *	Output meta box interface
-	 */
-	public function output_meta_box($post) {
-
-		wp_nonce_field( 'ps_agent_details_meta_box_nonce', 'ps_agent_details_meta_box_nonce' );
-
-		$agent_url_field = array(
-			'title' => esc_html__('Agent Profile URL', 'propertyshift'),
-			'description' => esc_html__('Link to the agents front-end profile url', 'propertyshift'),
-			'type' => 'custom',
-			'value' => '<a target="_blank" href="'.get_the_permalink().'">'.get_the_permalink().'</a>',
-		);
-		$this->admin_obj->build_admin_field($agent_url_field);
-
-		$user_sync = get_post_meta($post->ID, 'ps_agent_user_sync', true);
-
-		$agent_select_options = $this->get_agents($empty_default = true);
-		$agent_source_field = array(
-			'title' => esc_html__('Agent Source', 'propertyshift'),
-			'description' => esc_html__('Choose how you would like to create the agent.', 'propertyshift'),
-			'name' => 'ps_agent_source',
-			'type' => 'radio_image',
-			'options' => array(
-				esc_html__('Sync With Existing User', 'propertyshift') => array('value' => 'existing', ), 
-				esc_html__('Create New', 'ns-basics') => array('value' => 'new',),
-			),
-			'value' => 'existing',
-			'children' => array(
-				'user_sync' => array(
-					'title' => esc_html__('Select User', 'propertyshift'),
-					'description' => esc_html__('All agent info is pulled from the selected user.', 'propertyshift'),
-					'name' => 'ps_agent_user_sync',
-					'type' => 'select',
-					'options' => $agent_select_options,
-					'value' => $user_sync,
-					'parent_val' => 'existing',
-				),
-				'register_username' => array(
-					'title' => esc_html__('Username', 'propertyshift'),
-					'description' => esc_html__('Provide the agents username.', 'propertyshift'),
-					'name' => 'ps_agent_register_username',
-					'type' => 'text',
-					'parent_val' => 'new',
-				),
-				'register_password' => array(
-					'title' => esc_html__('Password', 'propertyshift'),
-					'description' => esc_html__('Provide the agents password.', 'propertyshift'),
-					'name' => 'ps_agent_register_password',
-					'type' => 'text',
-					'parent_val' => 'new',
-				),
-				'register_email' => array(
-					'title' => esc_html__('Email', 'propertyshift'),
-					'description' => esc_html__('Provide the agents email.', 'propertyshift'),
-					'name' => 'ps_agent_register_email',
-					'type' => 'text',
-					'parent_val' => 'new',
-				),
-			),
-		);
-		
-		if(!empty($user_sync)) {
-			$edit_user_link = get_edit_user_link($user_sync);
-			$agent_info_field = array(
-				'title' => esc_html__('Synced User', 'propertyshift'),
-				'description' => '<a href="'.$edit_user_link.'" class="button">'.esc_html__('Edit Details', 'propertyshift').'</a>',
-				'type' => 'custom',
-				'value' => $this->output_agent_user_info($user_sync),
-				'parent_val' => 'existing',
-			);
-			$agent_source_field['children']['user_sync_info'] = $agent_info_field;
-		}
-
-		$this->admin_obj->build_admin_field($agent_source_field);
-	}
-
-	public function output_agent_user_info($user_id) {
-		ob_start();  
-		$agent_settings = $this->load_agent_settings($user_id); ?>
-		<table class="agent-user-data">
-			<tr>
-				<td colspan="2"><img style="width:80px;border-radius:6px;" src="<?php echo $agent_settings['avatar_url_thumb']['value']; ?>" alt="" /></td>
-			</tr>
-			<tr>
-				<td><?php esc_html_e('Username:', 'propertyshift'); ?></td>
-				<td><?php echo $agent_settings['username']['value']; ?></td>
-			</tr>
-			<tr>
-				<td><?php esc_html_e('First Name:', 'propertyshift'); ?></td>
-				<td><?php echo $agent_settings['first_name']['value']; ?></td>
-			</tr>
-			<tr>
-				<td><?php esc_html_e('Last Name:', 'propertyshift'); ?></td>
-				<td><?php echo $agent_settings['last_name']['value']; ?></td>
-			</tr>
-			<tr>
-				<td><?php esc_html_e('Email:', 'propertyshift'); ?></td>
-				<td><?php echo $agent_settings['email']['value']; ?></td>
-			</tr>
-			<tr>
-				<td><?php esc_html_e('Website:', 'propertyshift'); ?></td>
-				<td><?php echo '<a target="_blank" href="'.$agent_settings['website']['value'].'">'.$agent_settings['website']['value'].'</a>'; ?></td>
-			</tr>
-		</table>
-		<?php $content = ob_get_clean();
-		return $content;
-	}
-
-	/**
-	 * Save Meta Box
-	 */
-	public function save_meta_box($post_id) {
-		// Bail if we're doing an auto save
-        if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
-
-        // if our nonce isn't there, or we can't verify it, bail
-        if( !isset( $_POST['ps_agent_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['ps_agent_details_meta_box_nonce'], 'ps_agent_details_meta_box_nonce' ) ) return;
-
-        // if our current user can't edit this post, bail
-        if( !current_user_can( 'edit_post', $post_id ) ) return;
-
-        // allow certain attributes
-        $allowed = array('a' => array('href' => array()));
-
-        $post_slug = $post_id;
-
-        // save existing user
-        if(isset($_POST['ps_agent_source']) && $_POST['ps_agent_source'] == 'existing') {
-        	
-        	if(isset($_POST['ps_agent_user_sync']) && !empty($_POST['ps_agent_user_sync'])) {
-        		update_post_meta( $post_id, 'ps_agent_user_sync', wp_kses( $_POST['ps_agent_user_sync'], $allowed));
-        		$user_data = get_userdata($_POST['ps_agent_user_sync']);
-	        	$post_slug = $user_data->user_login;
-        	}
-
-        //register new user
-        } else if(isset($_POST['ps_agent_source']) && $_POST['ps_agent_source'] == 'new') {
-        	$register_user_data = array(
-                'user_login'  =>  sanitize_user($_POST['ps_agent_register_username'], true),
-                'user_pass'    =>  $_POST['ps_agent_register_password'],
-                'user_email'   =>  $_POST['ps_agent_register_email'],
-                'role' => 'ps_agent',
-            );
-            $new_user_id = wp_insert_user($register_user_data);
-            if(!is_wp_error($new_user_id) ) {
-                update_post_meta( $post_id, 'ps_agent_user_sync', $new_user_id);
-                $new_user_data = get_userdata($new_user_id);
-	        	$post_slug = $new_user_data->user_login;
-            } else {
-            	//error message
-            }
-        }
-
-        // update permalink and title to username
-	    if(!wp_is_post_revision( $post_id)) {
-	        remove_action( 'save_post', array($this, 'save_meta_box'));
-	        wp_update_post( array('ID' => $post_id,'post_name' => $post_slug,'post_title' => $post_slug));
-	        add_action( 'save_post', array($this, 'save_meta_box'));
-	    }
 	}
 
 	/************************************************************************/
@@ -357,27 +158,10 @@ class PropertyShift_Agents {
 
 	        <table class="form-table">
 	        <tr>
-	            <th><label><?php esc_html_e('Agent Profile', 'propertyshift'); ?></label></th>
+	            <th><label><?php esc_html_e('Show in Agent Listings', 'propertyshift'); ?></label></th>
 	            <td>
-	            	<?php 
-	            	$current_profile = array();
-	            	$agent_profiles = get_posts(array('post_type' => 'ps-agent', 'showposts' => -1));
-        			foreach($agent_profiles as $agent_profile) {
-        				$user_sync = get_post_meta($agent_profile->ID, 'ps_agent_user_sync', true);
-		        		if($user_sync == $user->ID) {
-		        			$current_profile[] = $agent_profile->ID;
-		        		}
-        			}
-
-	            	if(!empty($current_profile)) { 
-	            		foreach($current_profile as $profile) { ?>
-	            			<a href="<?php echo get_the_permalink($profile); ?>" target="_blank" class="button"><?php _e("Agent Profile ID:", "propertyshift"); ?> <?php echo $profile; ?></a>
-	            		<?php } ?>
-	            		<input type="checkbox" name="ps_agent_profile_remove" value="true" /><?php _e("Remove Profile", "propertyshift"); ?>
-	            	<?php } else { ?>
-	            		<span class="admin-module-note"><?php _e("No agent profile exists for this user.", "propertyshift"); ?></span><br/>
-	            		<input type="checkbox" name="ps_agent_profile_create" value="true" /><?php _e("Create Profile", "propertyshift"); ?>
-	            	<?php } ?>
+	            	<input type="radio" name="ps_agent_show_in_listings" checked <?php if (get_the_author_meta( 'ps_agent_show_in_listings', $user->ID) == 'true' ) { ?>checked="checked"<?php }?> value="true" />Yes<br/>
+	            	<input type="radio" name="ps_agent_show_in_listings" <?php if (get_the_author_meta( 'ps_agent_show_in_listings', $user->ID) == 'false' ) { ?>checked="checked"<?php }?> value="false" />No<br/>
 	            </td>
 	        </tr>
 	        </table>
@@ -502,13 +286,7 @@ class PropertyShift_Agents {
      */
     public function save_agent_user_fields($user_id) {
         if(!current_user_can( 'edit_user', $user_id )) { return false; }
-        
-        //create agent profile
-        if(isset($_POST['ps_agent_profile_create'])) { $this->create_agent_profile($user_id); }
-
-        //remove agent profile
-        if(isset($_POST['ps_agent_profile_remove'])) { $this->delete_agent_profile($user_id); }
-        
+        if(isset($_POST['ps_agent_show_in_listings'])) {update_user_meta( $user_id, 'ps_agent_show_in_listings', $_POST['ps_agent_show_in_listings'] ); }
         if(isset($_POST['ps_agent_job_title'])) {update_user_meta( $user_id, 'ps_agent_job_title', $_POST['ps_agent_job_title'] ); }
         if(isset($_POST['ps_agent_mobile_phone'])) {update_user_meta( $user_id, 'ps_agent_mobile_phone', $_POST['ps_agent_mobile_phone'] ); }
         if(isset($_POST['ps_agent_office_phone'])) {update_user_meta( $user_id, 'ps_agent_office_phone', $_POST['ps_agent_office_phone'] ); }
@@ -523,64 +301,9 @@ class PropertyShift_Agents {
     }
 
 
-    /**
-     *  On user registration
-     */
-    public function on_agent_register($user_id) {
-    	$auto_agent_profile = $this->global_settings['ps_members_auto_agent_profile'];
-    	if($auto_agent_profile == 'true') {
-    		$user_meta = get_userdata($user_id);
-			$user_roles = $user_meta->roles;
-	    	if(in_array("ps_agent", $user_roles)) {
-	    		$this->create_agent_profile($user_id);
-	    	}
-    	}
-    }
-
-    /**
-     *  On user deletion
-     */
-    public function on_agent_delete($user_id) {
-    	$this->delete_agent_profile($user_id);
-    }
-
-
 	/************************************************************************/
 	// Agent Utilities
 	/************************************************************************/
-
-	/**
-     *  Create agent profile (from user)
-     *
-     * @param int $user_id
-     */
-    public function create_agent_profile($user_id) {
-        $user = get_userdata($user_id);
-        $postarr = array(
-        	'post_type' => 'ps-agent',
-        	'post_title' => $user->user_login,
-        	'post_name' => $user->user_login,
-        	'post_status' => 'publish',
-        );
-        $agent_profile_id = wp_insert_post($postarr);
-        update_post_meta($agent_profile_id, 'ps_agent_user_sync', $user_id);
-        return $agent_profile_id;
-    }
-
-    /**
-     *  Delete agent profile (from user)
-     *
-     * @param int $user_id
-     */
-    public function delete_agent_profile($user_id) {
-    	$agent_profiles = get_posts(array('post_type' => 'ps-agent', 'showposts' => -1));
-        foreach($agent_profiles as $agent_profile) {
-        	$user_sync = get_post_meta($agent_profile->ID, 'ps_agent_user_sync', true);
-        	if($user_sync == $user_id) {
-        		wp_delete_post($agent_profile->ID);
-        	}
-        }
-    }
 
     /**
      *  Get agents
@@ -662,6 +385,72 @@ class PropertyShift_Agents {
 
 		$agent_detail_items_init = apply_filters( 'propertyshift_agent_detail_items_init_filter', $agent_detail_items_init);
 	    return $agent_detail_items_init;
+	}
+
+	/************************************************************************/
+	// Front-End Agent Profiles
+	/************************************************************************/
+
+	/**
+	 *	Add query var
+	 */
+	public function agent_query_vars( $vars ) {
+	    $vars[] = $this->global_settings['ps_agent_detail_slug'];
+	    return $vars;
+	}
+	
+	/**
+	 *	Add rewrite rule
+	 */
+	public function agent_rewrite_rule() {
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+	    add_rewrite_tag( '%'.$agent_slug.'%', '([^&]+)' );
+	    add_rewrite_rule(
+	        '^'.$agent_slug.'/([^/]*)/?',
+	        'index.php?'.$agent_slug.'=$matches[1]',
+	        'top'
+	    );
+	}
+	
+	/**
+	 *	Redirect to agent profile template
+	 */
+	public function agent_profile_template_redirect($query_vars) {
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+		$agent_profile_page = 247;
+		if(!empty($agent_profile_page)) {
+			$query_vars['page_id'] = isset($query_vars[$agent_slug]) ? $agent_profile_page : $query_vars['page_id'];
+		}
+	    
+    	return $query_vars;
+	}
+
+	/**
+	 *	Agent profile shortcode
+	 */
+	public function add_shortcode_agent_profile($atts, $content=null) {
+		ob_start();
+		
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+		$user_slug = get_query_var($agent_slug);
+		$user = get_user_by( 'slug', $user_slug);
+		print_r($user);
+
+		$output = ob_get_clean();
+	    return $output;
+	}
+
+	/**
+	 *	Modify author link
+	 */
+	function change_author_link($link, $author_id) {
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+		$user_meta = get_userdata($author_id);
+		$user_roles = $user_meta->roles;
+		if(in_array('ps_agent', $user_roles)) {
+			$link = str_replace( 'author', $agent_slug, $link );
+		}
+	    return $link;
 	}
 
 	/************************************************************************/
