@@ -30,6 +30,7 @@ if(!empty($user)) {
     
     //Get agent details
     $agent_settings = $agents_obj->load_agent_settings($user->ID);
+    $agent_display_name = $agent_settings['display_name']['value'];
     $agent_avatar_url = $agent_settings['avatar_url']['value'];
     $agent_email = $agent_settings['email']['value'];
     $agent_title = $agent_settings['job_title']['value'];
@@ -82,6 +83,7 @@ if(!empty($user)) {
                         <?php } ?>
 
                         <div class="agent-content">
+                            <h2><?php echo $agent_display_name; ?></h2>
                             <div class="agent-details">
         	                	<?php if(!empty($agent_title)) { ?><p><span><?php echo esc_attr($agent_title); ?></span><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php esc_html_e('Title', 'propertyshift'); ?>:</p><?php } ?>
         	                	<?php if(!empty($agent_email)) { ?><p><span><?php echo esc_attr($agent_email); ?></span><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php esc_html_e('Email', 'propertyshift'); ?>:</p><?php } ?>
