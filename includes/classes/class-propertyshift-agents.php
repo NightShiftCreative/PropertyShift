@@ -153,9 +153,25 @@ class PropertyShift_Agents {
      *  Create Agent User Fields
      */
     public function create_agent_user_fields($user) { 
-    	if(in_array('ps_agent', $user->roles) || in_array('administrator', $user->roles)) { ?>
+    	if($this->is_agent($user->ID)) { ?>
     	<div class="form-section">
 	        <h3><?php _e("Agent Information", "propertyshift"); ?></h3>
+
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Agent Actions', 'propertyshift'); ?></label></th>
+	            <td>
+	            	<a href="<?php echo admin_url().'edit.php?post_type=ps-property&author='.$user->ID; ?>" class="button">
+	            		<?php esc_html_e('Manage Properties', 'propertyshift'); ?>
+						<?php 
+						$agent_properties = $this->get_agent_properties($user->ID, null, false, array('publish', 'pending'));
+						echo '('.$agent_properties['count'].')';
+						?>	
+	            	</a>
+	            	<a target="_blank" href="<?php echo get_author_posts_url($user->ID); ?>" class="button"><?php esc_html_e('View Profile', 'propertyshift'); ?>	</a>
+	            </td>
+	        </tr>
+	        </table>
 
 	        <table class="form-table">
 	        <tr>
