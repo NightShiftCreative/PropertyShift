@@ -445,10 +445,15 @@ class PropertyShift_Agents {
 		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
 		$agent_profile_page = $this->global_settings['ps_members_profile_page'];
 
+		//Redirect to agent page (fallback to author archive if agent page isn't set)
 		if(!empty($agent_profile_page)) {
-			$query_vars['page_id'] = isset($query_vars[$agent_slug]) ? $agent_profile_page : $query_vars['page_id'];
+			if(isset($query_vars[$agent_slug])) { $query_vars['page_id'] = $agent_profile_page; }
 		} else {
-			//redirect to author archive
+			if(isset($query_vars[$agent_slug])) { 
+				$agent_id = get_user_by('slug', $query_vars[$agent_slug]);
+				$agent_id = $agent_id->ID;
+				$query_vars['author'] = $agent_id; 
+			}
 		}
 	    
     	return $query_vars;

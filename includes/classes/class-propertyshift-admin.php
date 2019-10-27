@@ -583,8 +583,12 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 
 	        <?php
 	        $page_options = array('Select a page' => '');
+	        $page_options_ids = array('Select a page' => '');
 	        $pages = get_pages();
-	        foreach ( $pages as $page ) { $page_options[esc_attr($page->post_title)] = get_page_link( $page->ID ); }
+	        foreach ( $pages as $page ) { 
+	        	$page_options[esc_attr($page->post_title)] = get_page_link( $page->ID ); 
+	        	$page_options_ids[esc_attr($page->post_title)] = $page->ID; 
+	        }
 	        
 	        $agent_profile_page_field = array(
                 'title' => esc_html__('Select Agent Profile Page', 'propertyshift'),
@@ -592,7 +596,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
                 'description' => esc_html__('Create a page and add the [ps_agent_profile] shortcode.', 'propertyshift'),
                 'value' => $settings['ps_members_profile_page'],
                 'type' => 'select',
-                'options' => $page_options,
+                'options' => $page_options_ids,
             );
             $this->build_admin_field($agent_profile_page_field);
 
