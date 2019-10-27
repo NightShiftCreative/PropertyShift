@@ -30,7 +30,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	    add_submenu_page('propertyshift-settings', 'Settings', 'Settings', 'administrator', 'propertyshift-settings');
 		add_submenu_page('propertyshift-settings', 'Properties', 'Properties', 'administrator', 'edit.php?post_type=ps-property');
 		add_submenu_page('propertyshift-settings', 'Property Filters', 'Property Filters', 'administrator', 'edit.php?post_type=ps-property-filter');
-	    add_submenu_page('propertyshift-settings', 'Agents', 'Agents', 'administrator', 'edit.php?post_type=ps-agent');
+	    add_submenu_page('propertyshift-settings', 'Agents', 'Agents', 'administrator', 'users.php?role=ps_agent');
 	    add_submenu_page('propertyshift-settings', 'Add-Ons', 'Add-Ons', 'administrator', 'propertyshift-add-ons', array( $this, 'add_ons_page' ));
 	    add_submenu_page('propertyshift-settings', 'License Keys', 'License Keys', 'administrator', 'propertyshift-license-keys', array( $this, 'license_keys_page' ));
 	    add_submenu_page('propertyshift-settings', 'Help', 'Help', 'administrator', 'propertyshift-help', array( $this, 'help_page' ));

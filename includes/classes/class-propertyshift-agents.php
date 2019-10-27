@@ -430,11 +430,9 @@ class PropertyShift_Agents {
 	 */
 	public function add_shortcode_agent_profile($atts, $content=null) {
 		ob_start();
-		
-		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
-		$user_slug = get_query_var($agent_slug);
-		$user = get_user_by( 'slug', $user_slug);
-		print_r($user);
+	        
+	    //Load template
+	    propertyshift_template_loader('loop_agent_single.php');
 
 		$output = ob_get_clean();
 	    return $output;

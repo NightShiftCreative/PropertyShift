@@ -1,25 +1,35 @@
 <?php
-    //Global settings
-    $admin_obj = new PropertyShift_Admin();
-    $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
-    if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
-    $num_properties_per_page = $admin_obj->load_settings(false, 'ps_num_properties_per_page');
-    $agent_detail_items = $admin_obj->load_settings(false, 'ps_agent_detail_items', false);
+//Global settings
+$admin_obj = new PropertyShift_Admin();
+$icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
+if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
+$num_properties_per_page = $admin_obj->load_settings(false, 'ps_num_properties_per_page');
+$agent_detail_items = $admin_obj->load_settings(false, 'ps_agent_detail_items', false);
 
-    //Get template location
-    if(isset($template_args)) { $template_location = $template_args['location']; } else { $template_location = ''; }
-    if($template_location == 'sidebar') { 
-        $template_location_sidebar = 'true'; 
-    } else { 
-        $template_location_sidebar = 'false';
-    }
+//Get template location
+if(isset($template_args)) { $template_location = $template_args['location']; } else { $template_location = ''; }
+if($template_location == 'sidebar') { 
+    $template_location_sidebar = 'true'; 
+} else { 
+    $template_location_sidebar = 'false';
+}
 
-	//Get agent details
-    global $post;
-    $synced_user = get_post_meta($post->ID, 'ps_agent_user_sync', true);
+//Get agent
+$agent_slug = $admin_obj->load_settings(false, 'ps_agent_detail_slug');
+$user_slug = get_query_var($agent_slug);
+if(!empty($user_slug)) {
+    $user = get_user_by( 'slug', $user_slug);
+} else if(is_user_logged_in()) {
+    $user = wp_get_current_user();
+} else {
+    $user = '';
+}
+
+if(!empty($user)) {
     
+    //Get agent details
     $agents_obj = new PropertyShift_Agents();
-    $agent_settings = $agents_obj->load_agent_settings($synced_user);
+    $agent_settings = $agents_obj->load_agent_settings($user->ID);
     $agent_avatar_url = $agent_settings['avatar_url']['value'];
     $agent_email = $agent_settings['email']['value'];
     $agent_title = $agent_settings['job_title']['value'];
@@ -36,11 +46,10 @@
     $agent_form_id = $agent_settings['contact_form_7_id']['value'];
 
     //Get agent properties
-    $agent_properties = $agents_obj->get_agent_properties($synced_user, $num_properties_per_page);
+    $agent_properties = $agents_obj->get_agent_properties($user->ID, $num_properties_per_page);
     $agent_properties_count = $agent_properties['count'];
-?>	
 
-	<?php if (!empty($agent_detail_items)) { 
+	if (!empty($agent_detail_items)) { 
 		foreach($agent_detail_items as $value) { ?>
 
 				<?php
@@ -170,3 +179,5 @@
 
         <?php } //end foreach ?>
 	<?php } ?>
+
+<?php } ?>
