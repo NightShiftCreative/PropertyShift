@@ -17,19 +17,23 @@
 
 <div class="row ps-agent-listing">
 <?php $counter = 1; ?>
-<?php foreach($agents as $agent) { ?>
+<?php foreach($agents as $agent) {
 
-    <div class="<?php echo esc_attr($agent_col_class); ?>">
+    $agents_obj = new PropertyShift_Agents();
+    $agent_settings = $agents_obj->load_agent_settings($agent->ID);
+    if($agent_settings['show_in_listings']['value']) { ?>
+
+        <div class="<?php echo esc_attr($agent_col_class); ?>">
+            <?php 
+                $template_args = array();
+                $template_args['id'] = $agent->ID;
+                propertyshift_template_loader('loop_agent.php', $template_args, false); 
+            ?>
+        </div>
+
         <?php 
-        $template_args = array();
-        $template_args['id'] = $agent->ID;
-        propertyshift_template_loader('loop_agent.php', $template_args, false); 
-        ?>
-    </div>
+        if($counter % $agent_col_num == 0) { echo '<div class="clear"></div>'; } 
+        $counter++; 
+    }
 
-    <?php 
-    if($counter % $agent_col_num == 0) { echo '<div class="clear"></div>'; } 
-    $counter++; 
-    ?>
-
-<?php } ?>
+} ?>

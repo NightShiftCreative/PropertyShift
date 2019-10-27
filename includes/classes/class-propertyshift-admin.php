@@ -605,9 +605,9 @@ class PropertyShift_Admin extends NS_Basics_Admin {
             $this->build_admin_field($submit_property_page_field);
 
             $auto_agent_profile = array(
-                'title' => esc_html__('Automatically create agent profiles on front-end registration', 'propertyshift'),
+                'title' => esc_html__('Automatically show agents in listing on registration', 'propertyshift'),
                 'name' => 'ps_members_auto_agent_profile',
-                'description' => esc_html__('When users register as an agent on the front-end, they will have an agent profile synced, and will appear in agent listings.', 'propertyshift'),
+                'description' => esc_html__('When users register as an agent role, their profile will automatically appear in agent listings.', 'propertyshift'),
                 'value' => $settings['ps_members_auto_agent_profile'],
                 'type' => 'switch',
             );

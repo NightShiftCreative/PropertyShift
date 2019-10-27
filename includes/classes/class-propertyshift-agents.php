@@ -38,6 +38,7 @@ class PropertyShift_Agents {
         add_action( 'edit_user_profile_update', array($this, 'save_agent_user_fields'));
         add_action( 'ns_basics_edit_profile_fields', array($this, 'create_agent_user_fields'));
         add_action( 'ns_basics_edit_profile_save', array($this, 'save_agent_user_fields'));
+        add_action( 'user_register', array($this, 'on_agent_register'));
 
         //front-end agent profiles
 		add_filter( 'query_vars', array($this, 'agent_query_vars'));
@@ -126,6 +127,7 @@ class PropertyShift_Agents {
 		$agent_settings['first_name'] = array('title' => 'First Name', 'value' => $user_data->first_name);
 		$agent_settings['last_name'] = array('title' => 'Last Name', 'value' => $user_data->last_name);
 		$agent_settings['website'] = array('title' => 'Website', 'value' => $user_data->user_url);
+		$agent_settings['show_in_listings'] = array('title' => 'Show In Listings', 'value' => get_user_meta($user_id, 'ps_agent_show_in_listings', true));
 		$agent_settings['job_title'] = array('title' => 'Job Title', 'value' => get_user_meta($user_id, 'ps_agent_job_title', true));
 		$agent_settings['mobile_phone'] = array('title' => 'Mobile Phone', 'value' => get_user_meta($user_id, 'ps_agent_mobile_phone', true));
 		$agent_settings['office_phone'] = array('title' => 'Office Phone', 'value' => get_user_meta($user_id, 'ps_agent_office_phone', true));
@@ -300,6 +302,17 @@ class PropertyShift_Agents {
     	if(isset($_POST['ps_agent_contact_form_7'])) {update_user_meta( $user_id, 'ps_agent_contact_form_7', $_POST['ps_agent_contact_form_7'] ); }
     }
 
+    /**
+     *  On agent register
+     */
+    public function on_agent_register($user_id) {
+    	if($this->global_settings['ps_members_auto_agent_profile'] == 'true') {
+    		update_user_meta( $user_id, 'ps_agent_show_in_listings', 'true');
+    	} else {
+    		update_user_meta( $user_id, 'ps_agent_show_in_listings', 'false');
+    	}
+    }
+
 
 	/************************************************************************/
 	// Agent Utilities
@@ -317,6 +330,20 @@ class PropertyShift_Agents {
 			$agents[$user->display_name.' ('.$user->user_login.')'] = $user->ID;
 		}
 		return $agents;
+    }
+
+    /**
+     *  Check if user is an agent
+     *
+     */
+    public function is_agent($user_id) {
+    	$user_meta = get_userdata($user_id);
+    	$user_roles = $user_meta->roles; 
+    	if(in_array("ps_agent", $user_roles) || in_array("administrator", $user_roles)){
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
 
 	/**
