@@ -363,7 +363,8 @@
     padding:0;
 }
 
-.ps-agent .agent-img-link { display:block; line-height:0; }
+.ps-agent .agent-img { line-height:0; }
+.ps-agent .agent-img-link { display:block; }
 
 .ps-agent .agent-content { padding:5%; border:1px solid rgba(0, 0, 0, 0.1); }
 .ps-agent .agent-title h4 { margin:15px 0px; }

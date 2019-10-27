@@ -44,7 +44,6 @@ class PropertyShift_Agents {
 		add_filter( 'query_vars', array($this, 'agent_query_vars'));
 		add_action('init', array($this, 'agent_rewrite_rule'));
 		add_filter( 'request', array($this, 'agent_profile_template_redirect'));
-		add_shortcode('ps_agent_profile', array( $this, 'add_shortcode_agent_profile'));
 		add_filter( 'author_link', array( $this, 'change_author_link'), 10, 2 );
 
         //front-end template hooks
@@ -450,19 +449,6 @@ class PropertyShift_Agents {
 		}
 	    
     	return $query_vars;
-	}
-
-	/**
-	 *	Agent profile shortcode
-	 */
-	public function add_shortcode_agent_profile($atts, $content=null) {
-		ob_start();
-	        
-	    //Load template
-	    propertyshift_template_loader('loop_agent_single.php');
-
-		$output = ob_get_clean();
-	    return $output;
 	}
 
 	/**

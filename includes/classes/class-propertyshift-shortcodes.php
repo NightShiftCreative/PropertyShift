@@ -22,6 +22,7 @@ class PropertyShift_Shortcodes {
 		add_shortcode('ps_my_properties', array( $this, 'add_shortcode_my_properties'));
 		add_shortcode('ps_property_filter', array( $this, 'add_shortcode_property_filter'));
 		add_shortcode('ps_list_agents', array( $this, 'add_shortcode_list_agents'));
+		add_shortcode('ps_agent_profile', array( $this, 'add_shortcode_agent_profile'));
 	}
 
 	/**
@@ -295,6 +296,22 @@ class PropertyShift_Shortcodes {
 	        propertyshift_template_loader('loop_agents.php', $template_args);
 	    }
 	    $output = ob_get_clean();
+	    return $output;
+	}
+
+	/**
+	 *	Agent profile shortcode
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 */
+	public function add_shortcode_agent_profile($atts, $content=null) {
+		ob_start();
+	        
+	    //Load template
+	    propertyshift_template_loader('loop_agent_single.php');
+
+		$output = ob_get_clean();
 	    return $output;
 	}
 
