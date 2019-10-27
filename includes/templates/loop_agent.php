@@ -26,7 +26,7 @@
     $agent_properties_count = $agent_properties['count'];
 ?>
 
-<div <?php post_class(); ?>>
+<div class="ps-agent ps-agent-<?php echo $agent_id; ?>">
 
 	<div class="agent-img">
 		<?php if(!empty($agent_avatar_url)) {  ?>

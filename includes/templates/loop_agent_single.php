@@ -47,9 +47,10 @@ if(!empty($user)) {
 
     //Get agent properties
     $agent_properties = $agents_obj->get_agent_properties($user->ID, $num_properties_per_page);
-    $agent_properties_count = $agent_properties['count'];
+    $agent_properties_count = $agent_properties['count']; ?>
 
-	if (!empty($agent_detail_items)) { 
+    <div class="ps-agent ps-agent-single ps-agent-<?php echo $user->ID; ?>">
+	<?php if (!empty($agent_detail_items)) { 
 		foreach($agent_detail_items as $value) { ?>
 
 				<?php
@@ -179,5 +180,6 @@ if(!empty($user)) {
 
         <?php } //end foreach ?>
 	<?php } ?>
+    </div> <!-- end ps-agent -->
 
 <?php } ?>
