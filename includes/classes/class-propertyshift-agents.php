@@ -45,12 +45,13 @@ class PropertyShift_Agents {
 		add_action('init', array($this, 'agent_rewrite_rule'));
 		add_filter( 'request', array($this, 'agent_profile_template_redirect'));
 		add_filter( 'author_link', array( $this, 'change_author_link'), 10, 2 );
+		add_filter( 'document_title_parts', array($this, 'change_agent_doc_title'), 10, 2 );
+		add_filter('the_title', array($this, 'change_agent_title'), 10, 2);
 
         //front-end template hooks
         add_action('ns_basics_dashboard_stats', array($this, 'add_dashboard_stats'));
 		add_action('ns_basics_after_dashboard', array($this, 'add_dashboard_widgets'));
 	}
-	
 
 	/************************************************************************/
 	// Basic Setup
@@ -491,6 +492,31 @@ class PropertyShift_Agents {
 			$link = str_replace( 'author', $agent_slug, $link );
 		}
 	    return $link;
+	}
+
+	/**
+	 *	Modify agent page doc title
+	 */
+	public function change_agent_doc_title($title_parts_array) {
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+		if(get_query_var($agent_slug)) {
+			$user = get_user_by('slug', get_query_var($agent_slug));
+			$title_parts_array['title'] = $user->display_name;
+		}
+	    
+	    return $title_parts_array;
+	}
+
+	/**
+	 *	Modify agent title
+	 */
+	public function change_agent_title($title, $id) {
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+		if(get_query_var($agent_slug) && in_the_loop()) { 
+			$user = get_user_by('slug', get_query_var($agent_slug));
+			$title = $user->display_name; 
+		}
+	    return $title;
 	}
 
 	/************************************************************************/
