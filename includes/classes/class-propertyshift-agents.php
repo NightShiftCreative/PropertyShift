@@ -159,9 +159,7 @@ class PropertyShift_Agents {
 	        <h3><?php _e("Agent Information", "propertyshift"); ?></h3>
 
 	        <?php
-	        $user_meta = get_userdata($user->ID);
-	    	$user_roles = $user_meta->roles; 
-	    	if(in_array("administrator", $user_roles)) { ?>
+	    	if(current_user_can('administrator')) { ?>
 	    		<table class="form-table">
 		        <tr>
 		            <th><label><?php esc_html_e('Agent Actions', 'propertyshift'); ?></label></th>
