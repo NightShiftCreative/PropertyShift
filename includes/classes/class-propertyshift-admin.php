@@ -132,8 +132,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        array('name' => esc_html__('Properties', 'propertyshift'), 'link' => '#properties', 'icon' => 'fa-home', 'order' => 1),
 	        array('name' => esc_html__('Agents & Users', 'propertyshift'), 'link' => '#agents', 'icon' => 'fa-user-tie', 'order' => 2),
 	        array('name' => esc_html__('Maps', 'propertyshift'), 'link' => '#maps', 'icon' => 'fa-map', 'order' => 3),
-	        array('name' => esc_html__('Front-End Settings', 'propertyshift'), 'link' => '#front-end', 'icon' => 'fa-laptop', 'order' => 4),
-	        array('name' => esc_html__('Currency & Numbers', 'propertyshift'), 'link' => '#currency', 'icon' => 'fa-money-bill-alt', 'order' => 5),
+	        array('name' => esc_html__('Currency & Numbers', 'propertyshift'), 'link' => '#currency', 'icon' => 'fa-money-bill-alt', 'order' => 4),
 	    );
 	    $content_nav = apply_filters( 'propertyshift_setting_tabs_filter', $content_nav);
 	    usort($content_nav, function ($a, $b) {return ($a["order"]-$b["order"]); });
@@ -393,7 +392,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
                 	$this->build_admin_field($property_detail_id_field);
 
                 	$property_detail_items_field = array(
-                		'title' => esc_html__('Property Detail Sections', 'propertyshift'),
+                		'title' => esc_html__('Property Detail Layout', 'propertyshift'),
                 		'name' => 'ps_property_detail_items',
                 		'description' => esc_html__('Drag & drop the sections to rearrange their order', 'propertyshift'),
                 		'value' => $settings['ps_property_detail_items'],
@@ -450,15 +449,6 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	            <div class="ns-accordion-content">
 
 	            	<?php
-	            	$agent_detail_slug_field = array(
-                		'title' => esc_html__('Agents Slug', 'propertyshift'),
-                		'name' => 'ps_agent_detail_slug',
-                		'description' => esc_html__('After changing the slug, make sure you re-save your permalinks in Settings > Permalinks. The default slug is agents.', 'propertyshift'),
-                		'value' => $settings['ps_agent_detail_slug'],
-                		'type' => 'text',
-                	);
-                	$this->build_admin_field($agent_detail_slug_field);
-
                 	$agents_num_field = array(
                 		'title' => esc_html__('Number of Agents Per Page', 'propertyshift'),
                 		'name' => 'ps_num_agents_per_page',
@@ -480,12 +470,60 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        </div>
 
 	        <div class="ns-accordion" data-name="agent-detail">
-	            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Agent Detail Options', 'propertyshift'); ?></div>
+	            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Agent Profile Options', 'propertyshift'); ?></div>
 	            <div class="ns-accordion-content">
 
 	            	<?php
+	            	$agent_profile_slug_field = array(
+                		'title' => esc_html__('Agent Profile Slug', 'propertyshift'),
+                		'name' => 'ps_agent_detail_slug',
+                		'description' => esc_html__('After changing the slug, make sure you re-save your permalinks in Settings > Permalinks. The default slug is agents.', 'propertyshift'),
+                		'value' => $settings['ps_agent_detail_slug'],
+                		'type' => 'text',
+                	);
+                	$this->build_admin_field($agent_profile_slug_field);
+
+                	$page_options = array('Select a page' => '');
+			        $page_options_ids = array('Select a page' => '');
+			        $pages = get_pages();
+			        foreach ( $pages as $page ) { 
+			        	$page_options[esc_attr($page->post_title)] = get_page_link( $page->ID ); 
+			        	$page_options_ids[esc_attr($page->post_title)] = $page->ID; 
+			        }
+			        
+			        $agent_profile_page_field = array(
+		                'title' => esc_html__('Select Agent Profile Page', 'propertyshift'),
+		                'name' => 'ps_members_profile_page',
+		                'description' => esc_html__('Create a page and add the [ps_agent_profile] shortcode.', 'propertyshift'),
+		                'value' => $settings['ps_members_profile_page'],
+		                'type' => 'select',
+		                'options' => $page_options_ids,
+		            );
+		            $this->build_admin_field($agent_profile_page_field);
+
+
+			        $my_properties_page_field = array(
+		                'title' => esc_html__('Select My Properties Page', 'propertyshift'),
+		                'name' => 'ps_members_my_properties_page',
+		                'description' => esc_html__('Create a page and add the [ps_my_properties] shortcode.', 'propertyshift'),
+		                'value' => $settings['ps_members_my_properties_page'],
+		                'type' => 'select',
+		                'options' => $page_options,
+		            );
+		            $this->build_admin_field($my_properties_page_field);
+
+		            $submit_property_page_field = array(
+		                'title' => esc_html__('Select Submit Property Page', 'propertyshift'),
+		                'name' => 'ps_members_submit_property_page',
+		                'description' => esc_html__('Create a page and add the [ps_submit_property] shortcode.', 'propertyshift'),
+		                'value' => $settings['ps_members_submit_property_page'],
+		                'type' => 'select',
+		                'options' => $page_options,
+		            );
+		            $this->build_admin_field($submit_property_page_field);
+
 	            	$agent_detail_items_field = array(
-                		'title' => esc_html__('Agent Detail Sections', 'propertyshift'),
+                		'title' => esc_html__('Agent Profile Layout', 'propertyshift'),
                 		'name' => 'ps_agent_detail_items',
                 		'description' => esc_html__('Drag & drop the sections to rearrange their order', 'propertyshift'),
                 		'value' => $settings['ps_agent_detail_items'],
@@ -517,6 +555,59 @@ class PropertyShift_Admin extends NS_Basics_Admin {
                 	);
                 	$this->build_admin_field($agent_detail_items_field);
                 	?>
+
+	            </div>
+	        </div>
+
+	        <div class="ns-accordion" data-name="agent-capabilities">
+	            <div class="ns-accordion-header"><i class="fa fa-chevron-right"></i> <?php echo esc_html_e('Agent Capabilities', 'propertyshift'); ?></div>
+	            <div class="ns-accordion-content">
+
+	            	<?php
+		            $auto_agent_profile = array(
+		                'title' => esc_html__('Automatically show agents in listing on registration', 'propertyshift'),
+		                'name' => 'ps_members_auto_agent_profile',
+		                'description' => esc_html__('When users register as an agent role, their profile will automatically appear in agent listings.', 'propertyshift'),
+		                'value' => $settings['ps_members_auto_agent_profile'],
+		                'type' => 'switch',
+		            );
+		            $this->build_admin_field($auto_agent_profile);
+
+		            $submit_property_approval = array(
+		                'title' => esc_html__('Agent property submissions must be approved before being published', 'propertyshift'),
+		                'name' => 'ps_members_submit_property_approval',
+		                'value' => $settings['ps_members_submit_property_approval'],
+		                'type' => 'switch',
+		            );
+		            $this->build_admin_field($submit_property_approval);
+
+		            $submit_add_locations = array(
+		                'title' => esc_html__('Agents can add new property locations', 'propertyshift'),
+		                'name' => 'ps_members_add_locations',
+		                'value' => $settings['ps_members_add_locations'],
+		                'type' => 'switch',
+		            );
+		            $this->build_admin_field($submit_add_locations);
+
+		            $submit_add_amenities = array(
+		                'title' => esc_html__('Agent can add new property amenities', 'propertyshift'),
+		                'name' => 'ps_members_add_amenities',
+		                'value' => $settings['ps_members_add_amenities'],
+		                'type' => 'switch',
+		            );
+		            $this->build_admin_field($submit_add_amenities);
+
+		            $submit_form_fields = array(
+		                'title' => esc_html__('Property Submit Form Fields', 'propertyshift'),
+		                'name' => 'ps_members_submit_property_fields',
+		                'description' => esc_html__('Choose which fields display on the front-end property submit form.', 'propertyshift'),
+		                'value' => $settings['ps_members_submit_property_fields'],
+		                'options' => PropertyShift_Properties::load_property_submit_fields(),
+		                'type' => 'checkbox_group',
+		            );
+		            $this->build_admin_field($submit_form_fields);
+
+			        do_action( 'propertyshift_after_agent_capabilities_settings'); ?>
 
 	            </div>
 	        </div>
@@ -577,97 +668,6 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        <?php do_action( 'propertyshift_after_map_settings'); ?>
 
 	    </div><!-- end map settings -->
-
-	    <div id="front-end" class="tab-content">
-	        <h2><?php echo esc_html_e('Front-End Settings', 'propertyshift'); ?></h2>
-
-	        <?php
-	        $page_options = array('Select a page' => '');
-	        $page_options_ids = array('Select a page' => '');
-	        $pages = get_pages();
-	        foreach ( $pages as $page ) { 
-	        	$page_options[esc_attr($page->post_title)] = get_page_link( $page->ID ); 
-	        	$page_options_ids[esc_attr($page->post_title)] = $page->ID; 
-	        }
-	        
-	        $agent_profile_page_field = array(
-                'title' => esc_html__('Select Agent Profile Page', 'propertyshift'),
-                'name' => 'ps_members_profile_page',
-                'description' => esc_html__('Create a page and add the [ps_agent_profile] shortcode.', 'propertyshift'),
-                'value' => $settings['ps_members_profile_page'],
-                'type' => 'select',
-                'options' => $page_options_ids,
-            );
-            $this->build_admin_field($agent_profile_page_field);
-
-
-	        $my_properties_page_field = array(
-                'title' => esc_html__('Select My Properties Page', 'propertyshift'),
-                'name' => 'ps_members_my_properties_page',
-                'description' => esc_html__('Create a page and add the [ps_my_properties] shortcode.', 'propertyshift'),
-                'value' => $settings['ps_members_my_properties_page'],
-                'type' => 'select',
-                'options' => $page_options,
-            );
-            $this->build_admin_field($my_properties_page_field);
-
-            $submit_property_page_field = array(
-                'title' => esc_html__('Select Submit Property Page', 'propertyshift'),
-                'name' => 'ps_members_submit_property_page',
-                'description' => esc_html__('Create a page and add the [ps_submit_property] shortcode.', 'propertyshift'),
-                'value' => $settings['ps_members_submit_property_page'],
-                'type' => 'select',
-                'options' => $page_options,
-            );
-            $this->build_admin_field($submit_property_page_field);
-
-            $auto_agent_profile = array(
-                'title' => esc_html__('Automatically show agents in listing on registration', 'propertyshift'),
-                'name' => 'ps_members_auto_agent_profile',
-                'description' => esc_html__('When users register as an agent role, their profile will automatically appear in agent listings.', 'propertyshift'),
-                'value' => $settings['ps_members_auto_agent_profile'],
-                'type' => 'switch',
-            );
-            $this->build_admin_field($auto_agent_profile);
-
-            $submit_property_approval = array(
-                'title' => esc_html__('Agent property submissions must be approved before being published', 'propertyshift'),
-                'name' => 'ps_members_submit_property_approval',
-                'value' => $settings['ps_members_submit_property_approval'],
-                'type' => 'switch',
-            );
-            $this->build_admin_field($submit_property_approval);
-
-            $submit_add_locations = array(
-                'title' => esc_html__('Agents can add new property locations', 'propertyshift'),
-                'name' => 'ps_members_add_locations',
-                'value' => $settings['ps_members_add_locations'],
-                'type' => 'switch',
-            );
-            $this->build_admin_field($submit_add_locations);
-
-            $submit_add_amenities = array(
-                'title' => esc_html__('Agent can add new property amenities', 'propertyshift'),
-                'name' => 'ps_members_add_amenities',
-                'value' => $settings['ps_members_add_amenities'],
-                'type' => 'switch',
-            );
-            $this->build_admin_field($submit_add_amenities);
-
-            $submit_form_fields = array(
-                'title' => esc_html__('Property Submit Form Fields', 'propertyshift'),
-                'name' => 'ps_members_submit_property_fields',
-                'description' => esc_html__('Choose which fields display on the front-end property submit form.', 'propertyshift'),
-                'value' => $settings['ps_members_submit_property_fields'],
-                'options' => PropertyShift_Properties::load_property_submit_fields(),
-                'type' => 'checkbox_group',
-            );
-            $this->build_admin_field($submit_form_fields);
-	        ?>
-
-	        <?php do_action( 'propertyshift_after_member_settings'); ?>
-
-	    </div><!-- end members settings -->
 
 	    <div id="currency" class="tab-content">
 	        <h2><?php echo esc_html_e('Currency & Numbers', 'propertyshift'); ?></h2>

@@ -24,6 +24,7 @@
     //OVERWRITE QUERY WITH CUSTOM ARGS
     if(isset($custom_args)) { $agent_listing_args = propertyshift_overwrite_query_args($agent_listing_args, $custom_args); }
 
+    //FILTER AND SET QUERY
     $agent_listing_args = apply_filters('propertyshift_pre_get_agents', $agent_listing_args);
     $agents = get_users($agent_listing_args);
 
