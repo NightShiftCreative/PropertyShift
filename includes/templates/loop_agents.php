@@ -38,7 +38,7 @@ if(!empty($agents)) {
 
         $agents_obj = new PropertyShift_Agents();
         $agent_settings = $agents_obj->load_agent_settings($agent->ID);
-        if($agent_settings['show_in_listings']['value']) { ?>
+        if($agent_settings['show_in_listings']['value'] == 'true') { ?>
 
             <div class="<?php echo esc_attr($agent_col_class); ?>">
                 <?php 
