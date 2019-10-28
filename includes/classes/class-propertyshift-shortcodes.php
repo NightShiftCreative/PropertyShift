@@ -275,12 +275,16 @@ class PropertyShift_Shortcodes {
 	    $atts = shortcode_atts(
 	    array (
 	        'number' => $num_agents_per_page,
+	        'orderby' => 'display_name',
+	        'order' => 'ASC',
 	        'show_pagination' => false,
 	        'cols' => null,
 	    ), $atts);
 
 	    $custom_args = array(
 	        'number' => $atts['number'],
+	        'orderby' => $atts['orderby'],
+	        'order' => $atts['order'],
 	    );
 
 	    ob_start();

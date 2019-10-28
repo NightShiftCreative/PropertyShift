@@ -11,29 +11,9 @@
     }
 
     //GENERATE COLUMN LAYOUT
-    $agent_col_class = 'col-lg-4 col-md-4 col-sm-6 ns-listing-col'; 
     $agent_col_num = 3;
-
-    if(isset($custom_cols)) {
-        switch($custom_cols) {
-            case 1:
-                $agent_col_class = 'col-lg-12 ns-listing-col';
-                $agent_col_num = 1;
-                break;
-            case 2:
-                $agent_col_class = 'col-lg-6 ns-listing-col'; 
-                $agent_col_num = 2;
-                break;
-            case 3:
-                $agent_col_class = 'col-lg-4 ns-listing-col'; 
-                $agent_col_num = 3;
-                break;
-            case 4:
-                $agent_col_class = 'col-lg-3 ns-listing-col';
-                $agent_col_num = 4; 
-                break;
-        }
-    }
+    if(isset($custom_cols)) { $agent_col_num = $custom_cols; }
+    $agent_col_class = propertyshift_col_class($agent_col_num);
 
     //GET AGENTS
     $agent_listing_args = array(
@@ -42,19 +22,9 @@
     );
 
     //OVERWRITE QUERY WITH CUSTOM ARGS
-    if(isset($custom_args)) {
-        foreach($agent_listing_args as $key=>$value) {
-            if(array_key_exists($key, $custom_args)) { 
-                if(!empty($custom_args[$key])) { $agent_listing_args[$key] = $custom_args[$key]; }
-            } 
-        }
-        foreach($custom_args as $key=>$value) {
-            if(!array_key_exists($key, $agent_listing_args)) { 
-                if(!empty($custom_args[$key])) { $agent_listing_args[$key] = $custom_args[$key]; }
-            } 
-        }
-    }
+    if(isset($custom_args)) { $agent_listing_args = propertyshift_overwrite_query_args($agent_listing_args, $custom_args); }
 
+    $agent_listing_args = apply_filters('propertyshift_pre_get_agents', $agent_listing_args);
     $agents = get_users($agent_listing_args);
 
 ?>

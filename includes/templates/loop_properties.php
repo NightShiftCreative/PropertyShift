@@ -32,32 +32,9 @@
     }
 	
 	//GENERATE COLUMN LAYOUT
-	$property_col_class = 'col-lg-6 col-md-6 col-sm-6 ns-listing-col'; 
     $property_col_num = 2;
-
-    if(isset($custom_cols)) {
-        switch($custom_cols) {
-            case 1:
-                $property_col_class = 'col-lg-12 ns-listing-col';
-                $property_col_num = 1;
-                break;
-            case 2:
-                $property_col_class = 'col-lg-6 ns-listing-col'; 
-                $property_col_num = 2;
-                break;
-            case 3:
-                $property_col_class = 'col-lg-4 ns-listing-col'; 
-                $property_col_num = 3;
-                break;
-            case 4:
-                $property_col_class = 'col-lg-3 ns-listing-col';
-                $property_col_num = 4; 
-                break;
-        }
-    } else if($page_layout == 'full') { 
-        $property_col_class = 'col-lg-4 col-md-4 col-sm-4 ns-listing-col'; 
-        $property_col_num = 3;
-    }
+    if(isset($custom_cols)) { $property_col_num = $custom_cols; } else if($page_layout == 'full') { $property_col_num = 3; }
+    $property_col_class = propertyshift_col_class($property_col_num);
 
     //GET PROPERTY LAYOUT
     if(isset($custom_layout)) {
@@ -193,16 +170,7 @@
 
     //OVERWRITE QUERY WITH CUSTOM ARGS
     if(isset($custom_args) && !isset($_GET['advancedSearch'])) {
-        foreach($property_listing_args as $key=>$value) {
-            if(array_key_exists($key, $custom_args)) { 
-                if(!empty($custom_args[$key])) { $property_listing_args[$key] = $custom_args[$key]; }
-            } 
-        }
-        foreach($custom_args as $key=>$value) {
-            if(!array_key_exists($key, $property_listing_args)) { 
-                if(!empty($custom_args[$key])) { $property_listing_args[$key] = $custom_args[$key]; }
-            } 
-        }
+        $property_listing_args = propertyshift_overwrite_query_args($property_listing_args, $custom_args);
     }
 
     $property_listing_args = apply_filters('propertyshift_pre_get_properties', $property_listing_args);
