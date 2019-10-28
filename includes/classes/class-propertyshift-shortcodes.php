@@ -274,13 +274,13 @@ class PropertyShift_Shortcodes {
 		$num_agents_per_page = esc_attr(get_option('ps_num_agents_per_page', 12));
 	    $atts = shortcode_atts(
 	    array (
-	        'show_posts' => $num_agents_per_page,
+	        'number' => $num_agents_per_page,
 	        'show_pagination' => false,
 	        'cols' => null,
 	    ), $atts);
 
 	    $custom_args = array(
-	        'showposts' => $atts['show_posts'],
+	        'number' => $atts['number'],
 	    );
 
 	    ob_start();
