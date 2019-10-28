@@ -110,6 +110,7 @@ class PropertyShift_Properties {
 			    'create_posts'       => 'create_ps-propertys',
 			  ),
 	        'show_in_menu' => true,
+	        'menu_position' => 26,
 	        'menu_icon' => 'dashicons-admin-home',
 	        'has_archive' => false,
 	        'supports' => array('title', 'editor', 'revisions', 'thumbnail', 'page_attributes'),

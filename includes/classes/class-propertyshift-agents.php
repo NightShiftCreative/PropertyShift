@@ -78,7 +78,7 @@ class PropertyShift_Agents {
 		global $wp_roles;
 		remove_role('ps_agent');
     	$author_role = $wp_roles->get_role('subscriber');
-		add_role('ps_agent', 'PS Agent', $author_role->capabilities);
+		add_role('ps_agent', 'Agent', $author_role->capabilities);
 
 		$role = $wp_roles->get_role('ps_agent');               
 	    $role->add_cap( 'edit_ps-property');
