@@ -1,11 +1,9 @@
 <?php
 //Get agent settings
-global $post;
+$agent_id = $template_args['id'];
 $agent_obj = new PropertyShift_Agents();
-$agent_settings = $agent_obj->load_agent_settings($post->ID);
+$agent_settings = $agent_obj->load_agent_settings($agent_id);
 $agent_email = $agent_settings['email']['value'];
-
-echo $agent_email;
 
 //Get global settings
 $admin_obj = new PropertyShift_Admin();

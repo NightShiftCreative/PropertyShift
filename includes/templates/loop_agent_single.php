@@ -139,15 +139,8 @@ if(!empty($agent)) {
                                     <h4><?php echo esc_attr($label); ?></h4>
                                     <div class="widget-divider"><div class="bar"></div></div>
                                 </div>
-                            <?php } ?>
-                            <?php
-                                if($agent_form_source == 'contact-form-7') {
-                                    $agent_form_title = get_the_title( $agent_form_id );
-                                    echo do_shortcode('[contact-form-7 id="'.esc_attr($agent_form_id).'" title="'.$agent_form_title.'"]');
-                                } else { 
-                                    propertyshift_template_loader('agent_contact_form.php');
-                                } 
-                            ?>
+                            <?php }
+                            $agents_obj->get_contact_form($agent->ID); ?>
                 		</div>
                 	<?php } ?>
 

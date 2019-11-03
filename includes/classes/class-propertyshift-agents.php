@@ -396,6 +396,21 @@ class PropertyShift_Agents {
 	}
 
 	/**
+	 *	Load agent contact form
+	 */
+	public function get_contact_form($agent_id) {
+		$agent_settings = $this->load_agent_settings($agent_id);
+		if($agent_settings['contact_form_source']['value'] == 'contact-form-7') {
+            $agent_form_id = $agent_settings['contact_form_7_id']['value'];
+            $agent_form_title = get_the_title($agent_form_id);
+            echo do_shortcode('[contact-form-7 id="'.esc_attr($agent_form_id).'" title="'.$agent_form_title.'"]');
+        } else if($agent_settings['contact_form_source']['value'] != 'none') {
+        	$template_args = array('id' => $agent_id);
+            propertyshift_template_loader('agent_contact_form.php', $template_args);
+        } 
+	}
+
+	/**
 	 *	Load agent detail items
 	 */
 	public static function load_agent_detail_items() {
