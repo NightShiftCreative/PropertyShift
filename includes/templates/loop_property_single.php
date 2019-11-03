@@ -53,7 +53,6 @@
 
     //Get agent details
     $agent_id = get_the_author_meta('ID');
-
 ?>	
 
 	<div class="property-single">
@@ -340,8 +339,12 @@
                             <?php } ?>
 
                             <?php 
-                            $agent = get_userdata($agent_id);
-                            echo '<div class="agent-display-name">'.$agent->display_name.'</div>';
+                            $agents_obj = new PropertyShift_Agents();
+                            $agent_settings = $agents_obj->load_agent_settings($agent_id);
+                            if(!empty($agent_settings['avatar_url_thumb']['value'])) { echo '<img src="'.$agent_settings['avatar_url_thumb']['value'].'" alt="" />'; }
+                            echo '<div class="agent-display-name">'.$agent_settings['display_name']['value'].'</div>';
+                            echo '<div class="agent-email">'.$agent_settings['email']['value'].'</div>';
+                            echo '<a href="'.get_author_posts_url($agent_id).'" class="button">View Profile</a>';
                             ?>
 
 						</div>
