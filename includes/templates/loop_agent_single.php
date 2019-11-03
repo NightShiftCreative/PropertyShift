@@ -36,6 +36,7 @@ if(!empty($user)) {
     $agent_title = $agent_settings['job_title']['value'];
     $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
     $agent_office_phone = $agent_settings['office_phone']['value'];
+    $agent_website = $agent_settings['website']['value'];
     $agent_description = $agent_settings['description']['value'];
     $agent_fb = $agent_settings['facebook']['value'];
     $agent_twitter = $agent_settings['twitter']['value'];
@@ -89,6 +90,7 @@ if(!empty($user)) {
         	                	<?php if(!empty($agent_email)) { ?><p><span><?php echo esc_attr($agent_email); ?></span><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php esc_html_e('Email', 'propertyshift'); ?>:</p><?php } ?>
         	                	<?php if(!empty($agent_mobile_phone)) { ?><p><span><?php echo esc_attr($agent_mobile_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php esc_html_e('Mobile', 'propertyshift'); ?>:</p><?php } ?>
         	                	<?php if(!empty($agent_office_phone)) { ?><p><span><?php echo esc_attr($agent_office_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php esc_html_e('Office', 'propertyshift'); ?>:</p><?php } ?>
+                                <?php if(!empty($agent_website)) { ?><p><span><?php echo '<a href="'.esc_attr($agent_website).'" target="_blank">'.esc_attr($agent_website).'</a>'; ?></span><?php echo ns_core_get_icon($icon_set, 'globe'); ?><?php esc_html_e('Website', 'propertyshift'); ?>:</p><?php } ?>
                                 <?php do_action('propertyshift_after_agent_details', $post->ID); ?>
                             </div>
                             <?php if(in_array('agent_detail_item_contact', $agent_detail_items)) { ?> 
@@ -127,7 +129,7 @@ if(!empty($user)) {
                 		</div>
                 	<?php } ?>
 
-                	<?php if($slug == 'contact') { ?>
+                	<?php if($slug == 'contact' && $agents_obj->is_agent($user_id)) { ?>
                     <!--******************************************************-->
                     <!-- CONTACT -->
                     <!--******************************************************-->
@@ -150,7 +152,7 @@ if(!empty($user)) {
                 		</div>
                 	<?php } ?>
 
-                	<?php if($slug == 'properties') { ?>
+                	<?php if($slug == 'properties' && $agents_obj->is_agent($user_id)) { ?>
                     <!--******************************************************-->
                     <!-- AGENT PROPERTIES -->
                     <!--******************************************************-->
