@@ -35,13 +35,10 @@
 <div class="row ps-agent-listing">
     <?php 
     if(!empty($agents)) {
-        $counter = 1;
         foreach($agents as $agent) {
-
             $agents_obj = new PropertyShift_Agents();
             $agent_settings = $agents_obj->load_agent_settings($agent->ID);
             if($agent_settings['show_in_listings']['value'] == 'true') { ?>
-
                 <div class="<?php echo esc_attr($agent_col_class); ?>">
                     <?php 
                         $template_args = array();
@@ -49,12 +46,7 @@
                         propertyshift_template_loader('loop_agent.php', $template_args, false); 
                     ?>
                 </div>
-
-                <?php 
-                if($counter % $agent_col_num == 0) { echo '<div class="clear"></div>'; } 
-                $counter++; 
-            }
-
+            <?php }
         }
     } else { 
         if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no agents were found.', 'propertyshift'); } 

@@ -222,9 +222,11 @@
 /** PROPERTIES LISTINGS GRID **/
 /*********************************************/
 .ns-listing-col {
-    width:48%;
+    width:47.5%;
     margin-right:4%;
-    float:left;
+    margin-bottom:4%;
+    display:inline-block;
+    vertical-align:top;
 }
 .ns-listing-col:nth-child(2n) { margin-right:0; }
 

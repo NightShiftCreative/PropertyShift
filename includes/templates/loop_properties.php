@@ -189,8 +189,6 @@ if($property_listing_header_display == 'true') {
 
 <div class="row ps-property-listing">
 <?php
-$counter = 1;
-
 if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->have_posts() ) : $property_listing_query->the_post(); ?>
 
     <?php if ($property_layout == 'row' || $property_layout == 'grid') { ?>
@@ -204,11 +202,6 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
     <?php } else if($property_layout == 'tile') {
         propertyshift_template_loader('loop_property_grid.php', null, false);
     } ?>
-
-    <?php 
-    if($counter % $property_col_num == 0) { echo '<div class="clear"></div>'; } 
-    $counter++; 
-    ?>
 
 <?php endwhile; ?>
     <div class="clear"></div>
