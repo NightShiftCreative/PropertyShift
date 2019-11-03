@@ -228,7 +228,7 @@
                                 <?php 
                                     if(!empty($floor_plans)) {   
                                         foreach ($floor_plans as $floor_plan) { ?>
-                                            <h3 class="accordion-tab"><?php echo esc_html_e($floor_plan['title'], 'propertyshift'); ?></h3>
+                                            <h4 class="accordion-tab"><?php echo esc_html_e($floor_plan['title'], 'propertyshift'); ?></h4>
                                             <div class="floor-plan-item"> 
                                                 <table>
                                                     <tr>
