@@ -21,6 +21,8 @@
         'role__in' => array('ps_agent', 'administrator'),
         'number' => $num_agents_per_page,
         'paged' => $current_page,
+        'meta_key' => 'ps_agent_show_in_listings',
+        'meta_value' => 'true',
     );
 
     //OVERWRITE QUERY WITH CUSTOM ARGS
@@ -35,19 +37,15 @@
 <div class="row ps-agent-listing">
     <?php 
     if(!empty($agents)) {
-        foreach($agents as $agent) {
-            $agents_obj = new PropertyShift_Agents();
-            $agent_settings = $agents_obj->load_agent_settings($agent->ID);
-            if($agent_settings['show_in_listings']['value'] == 'true') { ?>
-                <div class="<?php echo esc_attr($agent_col_class); ?>">
-                    <?php 
-                        $template_args = array();
-                        $template_args['id'] = $agent->ID;
-                        propertyshift_template_loader('loop_agent.php', $template_args, false); 
-                    ?>
-                </div>
-            <?php }
-        }
+        foreach($agents as $agent) { ?>
+            <div class="<?php echo esc_attr($agent_col_class); ?>">
+                <?php 
+                    $template_args = array();
+                    $template_args['id'] = $agent->ID;
+                    propertyshift_template_loader('loop_agent.php', $template_args, false); 
+                ?>
+            </div>
+        <?php }
     } else { 
         if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no agents were found.', 'propertyshift'); } 
     } ?>

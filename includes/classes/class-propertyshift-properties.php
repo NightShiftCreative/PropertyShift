@@ -292,6 +292,15 @@ class PropertyShift_Properties {
 				'value' => $post->post_author,
 				'order' => 17,
 			),
+			'agent_display' => array(
+				'group' => 'owner_info',
+				'title' => esc_html__('Display Agent Info on Listing', 'propertyshift'),
+				'description' => 'If checked, the agents info will be publicly displayed on the listing',
+				'name' => 'ps_property_agent_display',
+				'type' => 'checkbox',
+				'value' => true,
+				'order' => 18,
+			),
 		);
 		$property_settings_init = apply_filters('propertyshift_property_settings_init_filter', $property_settings_init, $post_id);
 		uasort($property_settings_init, 'ns_basics_sort_by_order');
@@ -423,8 +432,6 @@ class PropertyShift_Properties {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } ?>
-
-	            <h3><?php echo esc_html_e('Additional Contacts', 'propertyshift'); ?></h3>
 	        </div>
 
 	        <?php do_action('propertyshift_after_property_tab_content', $property_settings); ?>
