@@ -12,6 +12,8 @@
     $members_submit_property_fields = $admin_obj->load_settings(false, 'ps_members_submit_property_fields', false);
     if(empty($members_submit_property_fields)) { $members_submit_property_fields = array(); }
     $members_my_properties_page = $admin_obj->load_settings(false, 'ps_members_my_properties_page');
+    $members_add_types = $admin_obj->load_settings(false, 'ps_members_add_types');
+    $members_add_status = $admin_obj->load_settings(false, 'ps_members_add_status');
     $members_add_locations = $admin_obj->load_settings(false, 'ps_members_add_locations');
     $members_add_amenities = $admin_obj->load_settings(false, 'ps_members_add_amenities');
     $area_postfix_default = $admin_obj->load_settings(false, 'ps_default_area_postfix');
@@ -284,6 +286,18 @@
 		                            <option value="<?php echo esc_attr($property_type_term->slug); ?>" <?php if(isset($edit_property_type)) { if(in_array($property_type_term->slug, $edit_property_type)) { echo 'selected'; } } else if(isset($_POST['property_type'])) { if($_POST['property_type'] == $property_type_term->slug) { echo 'selected'; } } ?>><?php echo esc_attr($property_type_term ->name); ?></option>;
 		                    <?php } ?>
 		                </select>
+
+                        <?php if($members_add_types == 'true') { ?>
+                        <div class="property-add-tax-form property-type-new">
+                            <span class="property-location-new-toggle note"><?php esc_html_e("Don't see your type?", 'propertyshift'); ?> <a href="#"><?php esc_html_e('Add a new one.', 'propertyshift'); ?></a></span>
+                            <div class="property-location-new-content show-none">
+                                <input class="border" type="text" placeholder="Type name" />
+                                <a href="#" class="button"><?php echo ns_core_get_icon($icon_set, 'plus', 'plus'); ?> <?php esc_html_e('Add', 'propertyshift'); ?></a>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <?php } ?>
+
 		            </div>
                     <?php } ?>
 
@@ -298,6 +312,17 @@
 		                            <option value="<?php echo esc_attr($property_status_term->slug); ?>" <?php if(isset($edit_property_status)) { if(in_array($property_status_term->slug, $edit_property_status)) { echo 'selected'; } } else if(isset($_POST['contract_type'])) { if($_POST['contract_type'] == $property_status_term->slug) { echo 'selected'; } } ?>><?php echo esc_attr($property_status_term ->name); ?></option>;
 		                    <?php } ?>
 		                </select>
+
+                        <?php if($members_add_status == 'true') { ?>
+                        <div class="property-add-tax-form property-status-new">
+                            <span class="property-location-new-toggle note"><?php esc_html_e("Don't see your status?", 'propertyshift'); ?> <a href="#"><?php esc_html_e('Add a new one.', 'propertyshift'); ?></a></span>
+                            <div class="property-location-new-content show-none">
+                                <input class="border" type="text" placeholder="Type name" />
+                                <a href="#" class="button"><?php echo ns_core_get_icon($icon_set, 'plus', 'plus'); ?> <?php esc_html_e('Add', 'propertyshift'); ?></a>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <?php } ?>
 		            </div>
                     <?php } ?>
 
