@@ -5,6 +5,8 @@ $agent_obj = new PropertyShift_Agents();
 $agent_settings = $agent_obj->load_agent_settings($post->ID);
 $agent_email = $agent_settings['email']['value'];
 
+echo $agent_email;
+
 //Get global settings
 $admin_obj = new PropertyShift_Admin();
 $site_title = get_bloginfo('name');

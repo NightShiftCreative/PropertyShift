@@ -351,7 +351,7 @@
                                 if(!empty($agent_settings['office_phone']['value'])) { echo '<div class="agent-office-phone">Office: '.$agent_settings['office_phone']['value'].'</div>'; }
                                 if(!empty($agent_settings['mobile_phone']['value'])) { echo '<div class="agent-mobile-phone">Mobile: '.$agent_settings['mobile_phone']['value'].'</div>'; }
                                 echo '<a href="'.get_author_posts_url($agent_id).'" class="button">'.__("View Listings", "propertyshift").'</a>';
-                                ?>
+                                do_action('propertyshift_after_agent_details', $agent_id); ?>
                             </div>
 
                             <?php

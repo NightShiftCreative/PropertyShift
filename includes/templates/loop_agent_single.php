@@ -16,20 +16,19 @@ if($template_location == 'sidebar') {
 }
 
 //Get agent
+$agent = '';
 $agent_slug = $admin_obj->load_settings(false, 'ps_agent_detail_slug');
 $user_slug = get_query_var($agent_slug);
 if(!empty($user_slug)) {
-    $user = get_user_by( 'slug', $user_slug);
+    $agent = get_user_by( 'slug', $user_slug);
 } else if(is_user_logged_in()) {
-    $user = wp_get_current_user();
-} else {
-    $user = '';
+    $agent = wp_get_current_user();
 }
 
-if(!empty($user)) {
+if(!empty($agent)) {
     
     //Get agent details
-    $agent_settings = $agents_obj->load_agent_settings($user->ID);
+    $agent_settings = $agents_obj->load_agent_settings($agent->ID);
     $agent_display_name = $agent_settings['display_name']['value'];
     $agent_avatar_url = $agent_settings['avatar_url']['value'];
     $agent_email = $agent_settings['email']['value'];
@@ -48,10 +47,10 @@ if(!empty($user)) {
     $agent_form_id = $agent_settings['contact_form_7_id']['value'];
 
     //Get agent properties
-    $agent_properties = $agents_obj->get_agent_properties($user->ID, $num_properties_per_page);
+    $agent_properties = $agents_obj->get_agent_properties($agent->ID, $num_properties_per_page);
     $agent_properties_count = $agent_properties['count']; ?>
 
-    <div class="ps-agent ps-agent-single ps-agent-<?php echo $user->ID; ?>">
+    <div class="ps-agent ps-agent-single ps-agent-<?php echo $agent->ID; ?>">
 	<?php if (!empty($agent_detail_items)) { 
 		foreach($agent_detail_items as $value) { ?>
 
@@ -129,7 +128,7 @@ if(!empty($user)) {
                 		</div>
                 	<?php } ?>
 
-                	<?php if($slug == 'contact' && $agents_obj->is_agent($user->ID)) { ?>
+                	<?php if($slug == 'contact' && $agents_obj->is_agent($agent->ID)) { ?>
                     <!--******************************************************-->
                     <!-- CONTACT -->
                     <!--******************************************************-->
@@ -152,7 +151,7 @@ if(!empty($user)) {
                 		</div>
                 	<?php } ?>
 
-                	<?php if($slug == 'properties' && $agents_obj->is_agent($user->ID)) { ?>
+                	<?php if($slug == 'properties' && $agents_obj->is_agent($agent->ID)) { ?>
                     <!--******************************************************-->
                     <!-- AGENT PROPERTIES -->
                     <!--******************************************************-->
