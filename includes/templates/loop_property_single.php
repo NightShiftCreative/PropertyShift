@@ -354,6 +354,17 @@
                                 ?>
                             </div>
 
+                            <?php
+                            if($property_detail_agent_contact_form == 'true') {
+                                if($agent_settings['contact_form_source']['value'] == 'contact-form-7') {
+                                    $agent_form_id = $agent_settings['contact_form_7_id']['value'];
+                                    $agent_form_title = get_the_title($agent_form_id);
+                                    echo do_shortcode('[contact-form-7 id="'.esc_attr($agent_form_id).'" title="'.$agent_form_title.'"]');
+                                } else if($agent_settings['contact_form_source']['value'] != 'none') {
+                                    propertyshift_template_loader('agent_contact_form.php');
+                                } 
+                            } ?>
+
 						</div>
                     <?php } ?>
 					
