@@ -58,7 +58,7 @@ class PropertyShift_Shortcodes {
 	        array (
 	            'show_posts' => $num_properties_per_page,
 	            'show_header' => false,
-	            'show_pagination' => false,
+	            'show_pagination' => true,
 	            'layout' => 'grid',
 	            'cols' => null,
 	            'property_status' => '',
@@ -277,7 +277,7 @@ class PropertyShift_Shortcodes {
 	        'number' => $num_agents_per_page,
 	        'orderby' => 'display_name',
 	        'order' => 'ASC',
-	        'show_pagination' => false,
+	        'show_pagination' => true,
 	        'cols' => null,
 	    ), $atts);
 
