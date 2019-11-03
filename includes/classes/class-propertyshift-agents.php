@@ -510,9 +510,12 @@ class PropertyShift_Agents {
 	 */
 	public function change_agent_title($title, $id) {
 		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
-		if(get_query_var($agent_slug) && in_the_loop()) { 
-			$user = get_user_by('slug', get_query_var($agent_slug));
-			$title = $user->display_name; 
+		$post = get_post( $id );
+		if ($post instanceof WP_Post && $post->post_type == 'page') {
+			if(get_query_var($agent_slug) && in_the_loop()) { 
+				$user = get_user_by('slug', get_query_var($agent_slug));
+				$title = $user->display_name; 
+			}
 		}
 	    return $title;
 	}

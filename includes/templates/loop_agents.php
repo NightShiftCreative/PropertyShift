@@ -62,7 +62,6 @@
     <div class="clear"></div>
 
     <?php
-    //output pagination
     $total_users = $agents_query->get_total();
     $num_pages = ceil($total_users / $agent_listing_args['number']);
     $big = 999999999;
