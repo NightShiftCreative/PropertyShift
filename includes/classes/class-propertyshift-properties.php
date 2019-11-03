@@ -496,7 +496,13 @@ class PropertyShift_Properties {
 	            'label'         => __( 'Property Types', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
-	            'rewrite' => array( 'slug' => $property_type_tax_slug )
+	            'rewrite' => array( 'slug' => $property_type_tax_slug ),
+	            'capabilities' => array(
+	            	'manage_terms' => 'manage_property_type',
+    				'edit_terms' => 'edit_property_type',
+    				'delete_terms' => 'delete_property_type',
+	            	'assign_terms' => 'assign_property_type',
+	            ),
 	        )
 	    );
 	}
@@ -529,7 +535,13 @@ class PropertyShift_Properties {
 	            'label'         => __( 'Property Status', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
-	            'rewrite' => array( 'slug' => $property_status_tax_slug )
+	            'rewrite' => array( 'slug' => $property_status_tax_slug ),
+	            'capabilities' => array(
+	            	'manage_terms' => 'manage_property_status',
+    				'edit_terms' => 'edit_property_status',
+    				'delete_terms' => 'delete_property_status',
+	            	'assign_terms' => 'assign_property_status',
+	            ),
 	        )
 	    );
 	}
@@ -562,7 +574,13 @@ class PropertyShift_Properties {
 	            'label'         => __( 'Property Location', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
-	            'rewrite' => array( 'slug' => $property_location_tax_slug )
+	            'rewrite' => array( 'slug' => $property_location_tax_slug ),
+	            'capabilities' => array(
+	            	'manage_terms' => 'manage_property_location',
+    				'edit_terms' => 'edit_property_location',
+    				'delete_terms' => 'delete_property_location',
+	            	'assign_terms' => 'assign_property_location',
+	            ),
 	        )
 	    );
 	}
@@ -595,7 +613,13 @@ class PropertyShift_Properties {
 	            'label'         => __( 'Amenities', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
-	            'rewrite' => array( 'slug' => $property_amenities_tax_slug )
+	            'rewrite' => array( 'slug' => $property_amenities_tax_slug ),
+	            'capabilities' => array(
+	            	'manage_terms' => 'manage_property_amenities',
+    				'edit_terms' => 'edit_property_amenities',
+    				'delete_terms' => 'delete_property_amenities',
+	            	'assign_terms' => 'assign_property_amenities',
+	            ),
 	        )
 	    );
 	}

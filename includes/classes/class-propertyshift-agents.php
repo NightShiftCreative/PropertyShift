@@ -90,6 +90,43 @@ class PropertyShift_Agents {
 	    $role->add_cap( 'read_private_ps-propertys');
 	    $role->add_cap( 'create_ps-propertys');
 
+	    $role->add_cap( 'assign_property_type');
+	    $role->add_cap( 'assign_property_status');
+	    $role->add_cap( 'assign_property_location');
+	    $role->add_cap( 'assign_property_amenities');
+
+	    // Allow agents to manage property types
+	    $agent_add_types = $this->global_settings['ps_members_add_types'];
+	    if($agent_add_types == 'true') {
+		    $role->add_cap( 'manage_property_type');
+		    $role->add_cap( 'edit_property_type');
+		    $role->add_cap( 'delete_property_type');
+		}
+
+		// Allow agents to manage property statuses
+	    $agent_add_status = $this->global_settings['ps_members_add_status'];
+	    if($agent_add_status == 'true') {
+		    $role->add_cap( 'manage_property_status');
+		    $role->add_cap( 'edit_property_status');
+		    $role->add_cap( 'delete_property_status');
+		}
+
+	    // Allow agents to manage property locations
+	    $agent_add_locations = $this->global_settings['ps_members_add_locations'];
+	    if($agent_add_locations == 'true') {
+	    	$role->add_cap( 'manage_property_location');
+	    	$role->add_cap( 'edit_property_location');
+	    	$role->add_cap( 'delete_property_location');
+	    }
+
+	    // Allow agents to manage property amenities
+	    $agent_add_amenities = $this->global_settings['ps_members_add_amenities'];
+	    if($agent_add_amenities == 'true') {
+	    	$role->add_cap( 'manage_property_amenities');
+	    	$role->add_cap( 'edit_property_amenities');
+	    	$role->add_cap( 'delete_property_amenities');
+	    }
+
 	    // Allow agents to publish properties
 	    $agent_property_approval = $this->global_settings['ps_members_submit_property_approval'];
 	    if($agent_property_approval != 'true') {

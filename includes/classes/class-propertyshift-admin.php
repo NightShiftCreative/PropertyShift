@@ -99,6 +99,8 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 			'ps_members_submit_property_page' => array('value' => ''),
 			'ps_members_auto_agent_profile' => array('value' => 'false'),
 			'ps_members_submit_property_approval' => array('value' => 'true'),
+			'ps_members_add_types' => array('value' => 'true'),
+			'ps_members_add_status' => array('value' => 'true'),
 			'ps_members_add_locations' => array('value' => 'true'),
 			'ps_members_add_amenities' => array('value' => 'true'),
 			'ps_members_submit_property_fields' => array('value' => PropertyShift_Properties::load_property_submit_fields(), 'esc' => false),
@@ -581,8 +583,24 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 		            );
 		            $this->build_admin_field($submit_property_approval);
 
+		            $submit_add_types = array(
+		                'title' => esc_html__('Agents can manage property types', 'propertyshift'),
+		                'name' => 'ps_members_add_types',
+		                'value' => $settings['ps_members_add_types'],
+		                'type' => 'switch',
+		            );
+		            $this->build_admin_field($submit_add_types);
+
+		            $submit_add_status = array(
+		                'title' => esc_html__('Agents can manage property statuses', 'propertyshift'),
+		                'name' => 'ps_members_add_status',
+		                'value' => $settings['ps_members_add_status'],
+		                'type' => 'switch',
+		            );
+		            $this->build_admin_field($submit_add_status);
+
 		            $submit_add_locations = array(
-		                'title' => esc_html__('Agents can add new property locations', 'propertyshift'),
+		                'title' => esc_html__('Agents can manage property locations', 'propertyshift'),
 		                'name' => 'ps_members_add_locations',
 		                'value' => $settings['ps_members_add_locations'],
 		                'type' => 'switch',
@@ -590,7 +608,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 		            $this->build_admin_field($submit_add_locations);
 
 		            $submit_add_amenities = array(
-		                'title' => esc_html__('Agent can add new property amenities', 'propertyshift'),
+		                'title' => esc_html__('Agent can manage property amenities', 'propertyshift'),
 		                'name' => 'ps_members_add_amenities',
 		                'value' => $settings['ps_members_add_amenities'],
 		                'type' => 'switch',
