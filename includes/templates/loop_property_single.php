@@ -53,6 +53,7 @@
 
     //Get agent details
     $agent_id = get_the_author_meta('ID');
+    $agent_display = $property_settings['agent_display']['value'];
 ?>	
 
 	<div class="property-single">
@@ -325,7 +326,7 @@
 						</div>
                 	<?php } ?>
 
-                    <?php if($slug == 'agent_info' && !empty($agent_id)) { ?>
+                    <?php if($slug == 'agent_info' && !empty($agent_id) && $agent_display == 'true') { ?>
                     <!--******************************************************-->
                     <!-- OWNER INFO -->
                     <!--******************************************************-->

@@ -295,7 +295,7 @@ class PropertyShift_Properties {
 			'agent_display' => array(
 				'group' => 'owner_info',
 				'title' => esc_html__('Display Agent Info on Listing', 'propertyshift'),
-				'description' => 'If checked, the agents info will be publicly displayed on the listing',
+				'description' => esc_html__('If checked, the agents info will be publicly displayed on the listing', 'propertyshift'),
 				'name' => 'ps_property_agent_display',
 				'type' => 'checkbox',
 				'value' => true,
