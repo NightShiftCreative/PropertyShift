@@ -129,7 +129,7 @@ if(!empty($user)) {
                 		</div>
                 	<?php } ?>
 
-                	<?php if($slug == 'contact' && $agents_obj->is_agent($user_id)) { ?>
+                	<?php if($slug == 'contact' && $agents_obj->is_agent($user->ID)) { ?>
                     <!--******************************************************-->
                     <!-- CONTACT -->
                     <!--******************************************************-->
@@ -152,7 +152,7 @@ if(!empty($user)) {
                 		</div>
                 	<?php } ?>
 
-                	<?php if($slug == 'properties' && $agents_obj->is_agent($user_id)) { ?>
+                	<?php if($slug == 'properties' && $agents_obj->is_agent($user->ID)) { ?>
                     <!--******************************************************-->
                     <!-- AGENT PROPERTIES -->
                     <!--******************************************************-->
