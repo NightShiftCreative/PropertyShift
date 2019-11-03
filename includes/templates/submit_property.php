@@ -95,7 +95,9 @@
 
 		<?php if ($success != '') { ?>
 	        <div class="alert-box success"><h4><?php echo wp_kses_post($success); ?></h4><?php if (!empty($members_my_properties_page)) { echo '<a href="'.esc_url($members_my_properties_page).'">'. esc_html__('View your properties.', 'propertyshift').'</a>'; } ?></div>
-	    <?php } ?>
+	    <?php } else if(!empty($errors)) { ?>
+            <div class="alert-box error"><h4><?php esc_html_e('There was an error submitting your property.', 'propertyshift'); ?></h4></div>
+        <?php } ?>
 
 	    <form method="post" action="<?php echo get_the_permalink().$form_action; ?>" enctype="multipart/form-data">
 
@@ -209,14 +211,14 @@
                             $property_locations = get_terms('property_location', array( 'hide_empty' => false, 'parent' => 0 )); 
                             if ( !empty( $property_locations ) && !is_wp_error( $property_locations ) ) { ?>
                                 <?php foreach ( $property_locations as $property_location ) { ?>
-                                    <option value="<?php echo esc_attr($property_location->slug); ?>" <?php if(isset($edit_property_location) && in_array($property_location->slug, $edit_property_location)) { echo 'selected'; } else if(isset($_POST['property_location']) && in_array($property_location->slug, $_POST['property_location'])) { echo 'selected'; } ?>><?php echo esc_attr($property_location->name); ?></option>
+                                    <option value="<?php echo esc_attr($property_location->slug); ?>" <?php if(!empty($edit_property_location) && in_array($property_location->slug, $edit_property_location)) { echo 'selected'; } else if(isset($_POST['property_location']) && in_array($property_location->slug, $_POST['property_location'])) { echo 'selected'; } ?>><?php echo esc_attr($property_location->name); ?></option>
                                     <?php 
                                         $term_children = get_term_children($property_location->term_id, 'property_location'); 
                                         if(!empty($term_children)) {
                                             echo '<optgroup>';
                                             foreach ( $term_children as $child ) {
                                                 $term = get_term_by( 'id', $child, 'property_location' ); ?>
-                                                <option value="<?php echo $term->slug; ?>" <?php if(isset($edit_property_location) && in_array($term->slug, $edit_property_location)) { echo 'selected'; } else if(isset($_POST['property_location']) && in_array($term->slug, $_POST['property_location'])) { echo 'selected'; } ?>><?php echo $term->name; ?></option>
+                                                <option value="<?php echo $term->slug; ?>" <?php if(!empty($edit_property_location) && in_array($term->slug, $edit_property_location)) { echo 'selected'; } else if(isset($_POST['property_location']) && in_array($term->slug, $_POST['property_location'])) { echo 'selected'; } ?>><?php echo $term->name; ?></option>
                                             <?php }
                                             echo '</optgroup>';
                                         }
@@ -246,14 +248,14 @@
                             $property_amenities = get_terms('property_amenities', array( 'hide_empty' => false, 'parent' => 0 )); 
                             if ( !empty( $property_amenities ) && !is_wp_error( $property_amenities ) ) { ?>
                                 <?php foreach ( $property_amenities as $property_amenity ) { ?>
-                                    <option value="<?php echo esc_attr($property_amenity->slug); ?>" <?php if(isset($edit_property_amenities) && in_array($property_amenity->slug, $edit_property_amenities)) { echo 'selected'; } else if(isset($_POST['property_amenities']) && in_array($property_amenity->slug, $_POST['property_amenities'])) { echo 'selected'; } ?>><?php echo esc_attr($property_amenity->name); ?></option>
+                                    <option value="<?php echo esc_attr($property_amenity->slug); ?>" <?php if(!empty($edit_property_amenities) && in_array($property_amenity->slug, $edit_property_amenities)) { echo 'selected'; } else if(isset($_POST['property_amenities']) && in_array($property_amenity->slug, $_POST['property_amenities'])) { echo 'selected'; } ?>><?php echo esc_attr($property_amenity->name); ?></option>
                                     <?php 
                                         $term_children = get_term_children($property_amenity->term_id, 'property_amenities'); 
                                         if(!empty($term_children)) {
                                             echo '<optgroup>';
                                             foreach ( $term_children as $child ) {
                                                 $term = get_term_by( 'id', $child, 'property_amenities' ); ?>
-                                                <option value="<?php echo $term->slug; ?>" <?php if(isset($edit_property_amenities) && in_array($term->slug, $edit_property_amenities)) { echo 'selected'; } else if(isset($_POST['property_amenities']) && in_array($term->slug, $_POST['property_amenities'])) { echo 'selected'; } ?>><?php echo $term->name; ?></option>
+                                                <option value="<?php echo $term->slug; ?>" <?php if(!empty($edit_property_amenities) && in_array($term->slug, $edit_property_amenities)) { echo 'selected'; } else if(isset($_POST['property_amenities']) && in_array($term->slug, $_POST['property_amenities'])) { echo 'selected'; } ?>><?php echo $term->name; ?></option>
                                             <?php }
                                             echo '</optgroup>';
                                         }
@@ -283,7 +285,7 @@
 		                    <?php 
 		                        $property_type_terms = get_terms('property_type', array('hide_empty' => false)); 
 		                        foreach ( $property_type_terms as $property_type_term ) { ?>
-		                            <option value="<?php echo esc_attr($property_type_term->slug); ?>" <?php if(isset($edit_property_type)) { if(in_array($property_type_term->slug, $edit_property_type)) { echo 'selected'; } } else if(isset($_POST['property_type'])) { if($_POST['property_type'] == $property_type_term->slug) { echo 'selected'; } } ?>><?php echo esc_attr($property_type_term ->name); ?></option>;
+		                            <option value="<?php echo esc_attr($property_type_term->slug); ?>" <?php if(!empty($edit_property_type)) { if(in_array($property_type_term->slug, $edit_property_type)) { echo 'selected'; } } else if(isset($_POST['property_type'])) { if($_POST['property_type'] == $property_type_term->slug) { echo 'selected'; } } ?>><?php echo esc_attr($property_type_term ->name); ?></option>;
 		                    <?php } ?>
 		                </select>
 
@@ -309,7 +311,7 @@
 		                    <?php 
 		                        $property_status_terms = get_terms('property_status', array('hide_empty' => false)); 
 		                        foreach ( $property_status_terms as $property_status_term ) { ?>
-		                            <option value="<?php echo esc_attr($property_status_term->slug); ?>" <?php if(isset($edit_property_status)) { if(in_array($property_status_term->slug, $edit_property_status)) { echo 'selected'; } } else if(isset($_POST['contract_type'])) { if($_POST['contract_type'] == $property_status_term->slug) { echo 'selected'; } } ?>><?php echo esc_attr($property_status_term ->name); ?></option>;
+		                            <option value="<?php echo esc_attr($property_status_term->slug); ?>" <?php if(!empty($edit_property_status)) { if(in_array($property_status_term->slug, $edit_property_status)) { echo 'selected'; } } else if(isset($_POST['contract_type'])) { if($_POST['contract_type'] == $property_status_term->slug) { echo 'selected'; } } ?>><?php echo esc_attr($property_status_term ->name); ?></option>;
 		                    <?php } ?>
 		                </select>
 
