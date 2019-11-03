@@ -342,9 +342,11 @@
                             $agents_obj = new PropertyShift_Agents();
                             $agent_settings = $agents_obj->load_agent_settings($agent_id);
                             if(!empty($agent_settings['avatar_url_thumb']['value'])) { echo '<img src="'.$agent_settings['avatar_url_thumb']['value'].'" alt="" />'; }
-                            echo '<div class="agent-display-name">'.$agent_settings['display_name']['value'].'</div>';
-                            echo '<div class="agent-email">'.$agent_settings['email']['value'].'</div>';
-                            echo '<a href="'.get_author_posts_url($agent_id).'" class="button">View Profile</a>';
+                            echo '<div class="agent-display-name"><strong>'.$agent_settings['display_name']['value'].'</strong></div>';
+                            echo '<div class="agent-email">Email: '.$agent_settings['email']['value'].'</div>';
+                            if(!empty($agent_settings['office_phone']['value'])) { echo '<div class="agent-office-phone">Office: '.$agent_settings['office_phone']['value'].'</div>'; }
+                            if(!empty($agent_settings['mobile_phone']['value'])) { echo '<div class="agent-mobile-phone">Mobile: '.$agent_settings['mobile_phone']['value'].'</div>'; }
+                            echo '<a href="'.get_author_posts_url($agent_id).'" class="button">'.__("View Listings", "propertyshift").'</a>';
                             ?>
 
 						</div>
