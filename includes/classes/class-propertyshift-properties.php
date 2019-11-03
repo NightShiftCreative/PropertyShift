@@ -1185,7 +1185,6 @@ class PropertyShift_Properties {
             'featured_image' => array('value' => esc_html__('Featured Image', 'propertyshift')),
             'gallery_images' => array('value' => esc_html__('Gallery Images', 'propertyshift')),
             'map' => array('value' => esc_html__('Map', 'propertyshift')),
-            'owner_info' => array('value' => esc_html__('Owner Info', 'propertyshift')),
 	    );
 	    $property_submit_fields_init = apply_filters( 'propertyshift_property_submit_fields_init_filter', $property_submit_fields_init);
 	    return $property_submit_fields_init;

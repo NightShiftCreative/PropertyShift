@@ -423,55 +423,6 @@
             </div>
             <?php } ?>
 
-            <?php if(ns_basics_in_array_key('owner_info', $members_submit_property_fields )) { ?>
-            <div class="submit-property-section" id="owner-info">
-	            <h3><?php esc_html_e('Owner Info', 'propertyshift'); ?></h3>
-
-	            <div class="form-block form-block-property-agent-display">
-	                <label><?php esc_html_e('What do you want displayed for the agent info?', 'propertyshift'); ?></label><br/>
-	                <input type="radio" name="agent_display" id="agent_display_author" value="author" <?php if (!empty($_POST)) { if($_POST['agent_display'] == 'author') { echo 'checked'; } } else if(!isset($_POST['agent_display'])) { echo 'checked'; }  ?> /><?php esc_html_e('Your Profile Info', 'propertyshift'); ?><br/>
-	                <input type="radio" name="agent_display" id="agent_display_agent" value="agent" <?php if(isset($edit_agent_display)) { if($edit_agent_display == 'agent') { echo 'checked'; } } else { if($_POST['agent_display'] == 'agent') { echo 'checked'; } } ?> /><?php esc_html_e('Existing Agent', 'propertyshift'); ?><br/>
-	                <input type="radio" name="agent_display" id="agent_display_custom" value="custom" <?php if(isset($edit_agent_display)) { if($edit_agent_display == 'custom') { echo 'checked'; } } else { if($_POST['agent_display'] == 'custom') { echo 'checked'; } } ?> /><?php esc_html_e('Custom', 'propertyshift'); ?><br/>
-	                <input type="radio" name="agent_display" id="agent_display_none" value="none" <?php if(isset($edit_agent_display)) { if($edit_agent_display == 'none') { echo 'checked'; } } else { if($_POST['agent_display'] == 'none') { echo 'checked'; } } ?> /><?php esc_html_e('None', 'propertyshift'); ?><br/>
-	            </div>
-	            <br/>
-
-	            <div class="form-block form-block-agent-options form-block-select-agent <?php if(isset($edit_agent_display) && $edit_agent_display == 'agent') { echo 'show'; } else { echo 'show-none'; } ?>">
-	                <?php
-	                    $agent_listing_args = array(
-	                        'post_type' => 'ps-agent',
-	                        'posts_per_page' => -1
-	                    );
-
-	                    $agent_listing_query = new WP_Query( $agent_listing_args );
-	                ?>
-	                <label for="agent_select"><?php esc_html_e('Select Agent', 'propertyshift'); ?></label><br/>
-	                <div class="form-block border">
-	                    <select name="agent_select">
-	                        <option value="" placeholder="<?php esc_html_e('Select an option...', 'propertyshift'); ?>"></option>
-	                        <?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
-
-	                        <option value="<?php echo get_the_ID(); ?>" <?php if(isset($edit_agent_select) && $edit_agent_select == get_the_ID()) { echo 'selected'; } else { if ($_POST['agent_select'] == get_the_ID()) { echo 'selected'; } } ?>><?php the_title(); ?></option>
-
-	                    <?php endwhile; ?>
-	                        </select>
-	                    <?php else: ?>
-	                        <option value=""><?php esc_html_e('Sorry, no agents have been posted yet.', 'propertyshift'); ?></option>
-	                        </select>
-	                    <?php endif; ?>
-	                </div>
-	            </div>
-
-	            <div class="form-block form-block-agent-options form-block-custom-agent <?php if(isset($edit_agent_display) && $edit_agent_display == 'custom') { echo 'show'; } else { echo 'show-none'; } ?>">
-	                <label><?php esc_html_e('Custom Owner/Agent Details', 'propertyshift'); ?></label>
-	                <input type="text" class="border" name="agent_custom_name" placeholder="<?php esc_html_e('Name', 'propertyshift'); ?>" value="<?php if(isset($edit_agent_custom_name)) { echo $edit_agent_custom_name; } else { echo esc_attr($_POST['agent_custom_name']); } ?>" />
-	                <input type="text" class="border" name="agent_custom_email" placeholder="<?php esc_html_e('Email', 'propertyshift'); ?>" value="<?php if(isset($edit_agent_custom_email)) { echo $edit_agent_custom_email; } else { echo esc_attr($_POST['agent_custom_email']); } ?>" />
-	                <input type="text" class="border" name="agent_custom_phone" placeholder="<?php esc_html_e('Phone', 'propertyshift'); ?>" value="<?php if(isset($edit_agent_custom_phone)) { echo $edit_agent_custom_phone; } else { echo esc_attr($_POST['agent_custom_phone']); } ?>" />
-	                <input type="text" class="border" name="agent_custom_url" placeholder="<?php esc_html_e('Website', 'propertyshift'); ?>" value="<?php if(isset($edit_agent_custom_url)) { echo esc_url($edit_agent_custom_url); } else { echo esc_url($_POST['agent_custom_url']); } ?>" />
-	            </div>
-	        </div><!-- end owner info -->
-            <?php } ?>
-
 	        <input type="submit" class="button alt right" value="<?php echo $form_submit_text; ?>" />
 	    </form>
 
