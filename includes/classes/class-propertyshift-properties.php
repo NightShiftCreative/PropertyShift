@@ -1271,9 +1271,9 @@ class PropertyShift_Properties {
 		            }
 		        }
 		    }  
-		    if(!empty($edit_property_id)) { 
-		    	$edit_values = get_post_custom( $edit_property_id );
-				$edit_additional_images = isset($edit_values['ps_additional_img']) ? $edit_values['ps_additional_img'] : '';
+		    if(!empty($edit_property_id)) { 		    	
+				$edit_property_settings = $this->load_property_settings($edit_property_id);
+				$edit_additional_images = $edit_property_settings['gallery']['value'];
 		    	$additional_img_urls = array_merge($edit_additional_images, $additional_img_urls); 
 		    }
 
