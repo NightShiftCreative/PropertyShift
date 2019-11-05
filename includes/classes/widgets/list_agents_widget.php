@@ -35,7 +35,7 @@ class propertyshift_list_agents_widget extends WP_Widget {
         $template_args = array(
             'custom_args' => array('number' => $num),
         );
-        propertyshift_template_loader('loop_agents.php', $template_args, $wrapper = true); 
+        propertyshift_template_loader('loop_agents.php', $template_args, $wrapper = true);
 
         echo wp_kses_post($after_widget); 
 

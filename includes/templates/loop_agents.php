@@ -38,6 +38,15 @@
     $agent_listing_args = apply_filters('propertyshift_pre_get_agents', $agent_listing_args);
     $agents_query = new WP_User_Query($agent_listing_args);
     $agents = $agents_query->get_results();
+
+    //SORT
+    /*$sorted_agents = array();
+    foreach($agents as $agent) {
+        $agent_properties = PropertyShift_Agents::get_agent_properties($agent->ID);
+        $sorted_agents[$agent->ID] = $agent_properties['count'];
+    }
+    arsort($sorted_agents);
+    $agents = $sorted_agents;*/
 ?>
 
 <div class="row ps-agent-listing">
@@ -48,6 +57,7 @@
                 <?php 
                     $template_args = array();
                     $template_args['id'] = $agent->ID;
+                    //$template_args['id'] = $key;
                     propertyshift_template_loader('loop_agent.php', $template_args, false); 
                 ?>
             </div>
