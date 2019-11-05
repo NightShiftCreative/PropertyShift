@@ -1,7 +1,6 @@
 <?php
     //GET GLOBAL SETTINGS
     $num_agents_per_page = esc_attr(get_option('ps_num_agents_per_page', 12));
-    $current_page = get_query_var('paged') ? (int) get_query_var('paged') : 1;
 
     //GET CUSTOM ARGS
     if(isset($template_args)) {
@@ -16,11 +15,18 @@
     if(isset($custom_cols)) { $agent_col_num = $custom_cols; }
     $agent_col_class = propertyshift_col_class($agent_col_num);
 
+    //SET PAGED VARIABLE
+    if(is_front_page()) {  
+        $paged = (get_query_var('page')) ? get_query_var('page') : 1;
+    } else {  
+        $paged = get_query_var('paged') ? (int) get_query_var('paged') : 1;
+    }
+
     //SET QUERY ARGS
     $agent_listing_args = array(
         'role__in' => array('ps_agent', 'administrator'),
         'number' => $num_agents_per_page,
-        'paged' => $current_page,
+        'paged' => $paged,
         'meta_key' => 'ps_agent_show_in_listings',
         'meta_value' => 'true',
     );
@@ -60,7 +66,7 @@
         'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
         'format' => '/page/%#%',
         'total' => $num_pages,
-        'current' => $current_page,
+        'current' => $paged,
         'prev_text'    => esc_html__('&raquo; Previous', 'propertyshift'),
         'next_text'    => esc_html__('Next &raquo;', 'propertyshift'),
         'end_size' => 1,
