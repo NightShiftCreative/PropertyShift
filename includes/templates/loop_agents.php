@@ -49,7 +49,7 @@
     $agents = $sorted_agents;*/
 ?>
 
-<div class="ps-agent-listing">
+<div class="ps-listing ps-agent-listing">
     <?php 
     if(!empty($agents)) {
         foreach($agents as $agent) { ?>

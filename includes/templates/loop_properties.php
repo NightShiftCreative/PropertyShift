@@ -187,7 +187,7 @@ if($property_listing_header_display == 'true') {
 }
 ?>
 
-<div class="row ps-property-listing">
+<div class="ps-listing ps-property-listing">
 <?php
 if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->have_posts() ) : $property_listing_query->the_post(); ?>
 
