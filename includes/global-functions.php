@@ -44,16 +44,19 @@ function propertyshift_col_class($cols = 3) {
     $class = '';
     switch($cols) {
         case 1:
-            $class = 'col-lg-12 ns-listing-col';
+            $class = 'ns-listing-col ns-col-1';
             break;
         case 2:
-            $class = 'col-lg-6 ns-listing-col'; 
+            $class = 'ns-listing-col ns-col-2'; 
             break;
         case 3:
-            $class = 'col-lg-4 ns-listing-col'; 
+            $class = 'ns-listing-col ns-col-3'; 
             break;
         case 4:
-            $class = 'col-lg-3 ns-listing-col';
+            $class = 'ns-listing-col ns-col-4';
+            break;
+        case 5:
+            $class = 'ns-listing-col ns-col-5';
             break;
     }
     return $class;
