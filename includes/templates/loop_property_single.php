@@ -45,7 +45,7 @@
     $longitude = $property_settings['longitude']['value'];
     $video_url = $property_settings['video_url']['value'];
     $video_img = $property_settings['video_cover']['value'];
-    
+
     $property_type = $property_obj->get_tax($postID, 'property_type');
     $property_status = $property_obj->get_tax($postID, 'property_status');
     $property_location = $property_obj->get_tax($postID, 'property_location');
