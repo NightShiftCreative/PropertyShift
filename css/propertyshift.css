@@ -184,24 +184,28 @@
 .ps-listing { word-spacing:-6px; }
 .ps-listing-col {
     width:100%;
-    margin-bottom:4%;
+    margin-bottom:2.5%;
     display:inline-block;
     vertical-align:top;
     word-spacing:0px;
 }
 .ps-no-posts { word-spacing:0px; }
 
-.ns-col-2 { width:48%; margin-right:4%; }
-.ns-col-2:nth-child(2n) { margin-right:0px; }
+.ps-col-2 { width:48.7%; margin-right:2.5%; }
+.ps-col-2:nth-child(2n) { margin-right:0px; }
 
-.ns-col-3 { width:30.66%; margin-right:4%; }
-.ns-col-3:nth-child(3n) { margin-right:0px; }
+.ps-col-3 { width:31.66%; margin-right:2.5%; }
+.ps-col-3:nth-child(3n) { margin-right:0px; }
 
-.ns-col-4 { width:22.75%; margin-right:3%; }
-.ns-col-4:nth-child(4n) { margin-right:0px; }
+.ps-col-4 { width:23.1%; margin-right:2.5%; }
+.ps-col-4:nth-child(4n) { margin-right:0px; }
 
-.ns-col-5 { width:18.4%; margin-right:2%; }
-.ns-col-5:nth-child(5n) { margin-right:0px; }
+.ps-col-5 { width:18.4%; margin-right:2%; margin-bottom:2%; }
+.ps-col-5:nth-child(5n) { margin-right:0px; }
+
+@media only screen and (max-width: 767px) {
+    .ps-listing-col { width:100%; margin-right:0; }
+}
 
 
 /*********************************************/
