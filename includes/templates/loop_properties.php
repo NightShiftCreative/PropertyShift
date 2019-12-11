@@ -245,7 +245,7 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
     <?php } ?>
 	
 <?php else: ?>
-	<div class="col-lg-12">
+	<div class="ps-no-posts">
         <p>
             <?php 
             if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no properties were found.', 'propertyshift'); }
