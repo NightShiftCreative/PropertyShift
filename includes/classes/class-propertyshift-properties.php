@@ -1414,7 +1414,7 @@ class PropertyShift_Properties {
 	        'id' => 'properties_sidebar',
 	        'before_widget' => '<div class="widget widget-sidebar widget-sidebar-properties %2$s">',
 	        'after_widget' => '</div>',
-	        'before_title' => '<h4>',
+	        'before_title' => '<h4 class="widget-header">',
 	        'after_title' => '</h4>',
 	    ));
 	}
