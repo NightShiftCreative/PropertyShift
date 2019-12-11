@@ -182,7 +182,7 @@
 /** COLUMNS **/
 /*********************************************/
 .ps-listing { word-spacing:-6px; }
-.ns-listing-col {
+.ps-listing-col {
     width:100%;
     margin-bottom:4%;
     display:inline-block;
@@ -402,4 +402,4 @@
 /*********************************************/
 .mortgage-calculator-container .label-radio { margin-right:10px; }
 
-.widget.widget-sidebar .ns-listing-col { width:100%; margin-right:0; }
+.widget.widget-sidebar .ps-listing-col { width:100%; margin-right:0; }
