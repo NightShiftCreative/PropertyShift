@@ -7,14 +7,15 @@
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
     
     $admin_obj = new PropertyShift_Admin();
-    $properties_page = $admin_obj->load_settings(false, 'ps_properties_page');
-    $property_listing_display_time = $admin_obj->load_settings(false, 'ps_property_listing_display_time');
-    $google_maps_pin = $admin_obj->load_settings(false, 'ps_google_maps_pin');
-    $property_detail_amenities_hide_empty = $admin_obj->load_settings(false, 'ps_property_detail_amenities_hide_empty');
-    $property_detail_map_zoom = $admin_obj->load_settings(false, 'ps_property_detail_map_zoom');
-    $property_detail_items = $admin_obj->load_settings(false, 'ps_property_detail_items', false);
-    $property_detail_id = $admin_obj->load_settings(false, 'ps_property_detail_id');
-    $property_detail_agent_contact_form = $admin_obj->load_settings(false, 'ps_property_detail_agent_contact_form');
+    $global_settings = $admin_obj->load_settings(false, null);
+    $properties_page = $global_settings['ps_properties_page'];
+    $property_listing_display_time = $global_settings['ps_property_listing_display_time'];
+    $google_maps_pin = $global_settings['ps_google_maps_pin'];
+    $property_detail_items = $global_settings['ps_property_detail_items'];
+    $property_detail_amenities_hide_empty = $global_settings['ps_property_detail_amenities_hide_empty'];
+    $property_detail_map_zoom = $global_settings['ps_property_detail_map_zoom'];
+    $property_detail_id = $global_settings['ps_property_detail_id'];
+    $property_detail_agent_contact_form = $global_settings['ps_property_detail_agent_contact_form'];
 
     //Get template location
     if(isset($template_args)) { $template_location = $template_args['location']; } else { $template_location = ''; }
