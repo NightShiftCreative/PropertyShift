@@ -61,6 +61,7 @@ class PropertyShift_Properties {
 		add_filter( 'ns_core_after_top_bar_member_menu', array( $this, 'add_topbar_links'));
 		add_action('propertyshift_property_actions', array($this, 'add_property_share'));
 		add_action('propertyshift_property_actions', array($this, 'add_property_favoriting'));
+		add_action('ns_core_before_sidebar', array($this, 'add_property_detail_sidebar_template'));
 	}
 
 	/**
@@ -1397,6 +1398,15 @@ class PropertyShift_Properties {
 			$post_likes_obj = new NS_Basics_Post_Likes();
 			global $post;
 			echo $post_likes_obj->get_post_likes_button($post->ID);
+		}
+	}
+
+	/**
+	 *	Add property detail sidebar template
+	 */
+	public function add_property_detail_sidebar_template() {
+		if(is_singular('ps-property') && function_exists('propertyshift_template_loader')) {
+			propertyshift_template_loader('loop_property_single.php', ['location' => 'sidebar']); 
 		}
 	}
 
