@@ -43,12 +43,28 @@ class PropertyShift {
 	}
 
 	/**
+	 * Get latest github release
+	 */
+	public function get_latest_github_release($repo_name) {
+		$release_tag = '1.0.0';
+		$request = wp_remote_get('https://api.github.com/repos/NightshiftCreative/'.$repo_name.'/releases/latest');
+		if(is_wp_error($request)) { return false; }
+		$body = wp_remote_retrieve_body($request);
+		$data = json_decode($body);
+		if(!empty($data) && !empty($data->tag_name)) { $release_tag = $data->tag_name; }
+		return $release_tag;
+	}
+
+	/**
 	 * Define constants
 	 */
 	public function define_constants() {
+
+		$ns_basics_latest_release = $this->get_latest_github_release('NS-Basics');
+
 		define('NS_URL', 'https://nightshiftcreative.co/');
 		define('NS_SHOP_URL', 'https://products.nightshiftcreative.co/');
-		define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/1.0.0.zip');
+		define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/'.$ns_basics_latest_release.'.zip');
 		define('PROPERTYSHIFT_GITHUB', '/NightShiftCreative/PropertyShift/');
 		define('PROPERTYSHIFT_LICENSE_PAGE', 'propertyshift-license-keys' );
 		define('PROPERTYSHIFT_DIR', plugins_url('', __FILE__));
