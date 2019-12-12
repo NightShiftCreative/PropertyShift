@@ -61,7 +61,6 @@ class PropertyShift {
 	public function define_constants() {
 
 		$ns_basics_latest_release = $this->get_latest_github_release('NS-Basics');
-
 		define('NS_URL', 'https://nightshiftcreative.co/');
 		define('NS_SHOP_URL', 'https://products.nightshiftcreative.co/');
 		define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/'.$ns_basics_latest_release.'.zip');
