@@ -51,6 +51,7 @@ class PropertyShift_Agents {
         //front-end template hooks
         add_action('ns_basics_dashboard_stats', array($this, 'add_dashboard_stats'));
 		add_action('ns_basics_after_dashboard', array($this, 'add_dashboard_widgets'));
+		add_action('ns_core_before_sidebar', array($this, 'add_agent_detail_sidebar_template'));
 	}
 
 	/************************************************************************/
@@ -616,5 +617,15 @@ class PropertyShift_Agents {
 			<?php if(!empty($members_my_properties_page)) { ?><a href="<?php echo $members_my_properties_page; ?>" class="button small">View All Properties</a><?php } ?>
 		</div>
 	<?php }
+
+	/**
+	 *	Add agent detail sidebar template
+	 */
+	public function add_agent_detail_sidebar_template() {
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+		if(get_query_var($agent_slug) && function_exists('propertyshift_template_loader')) {
+			propertyshift_template_loader('loop_agent_single.php', ['location' => 'sidebar']); 
+		}
+	}
 
 } ?>
