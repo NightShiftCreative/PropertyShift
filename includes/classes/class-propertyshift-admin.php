@@ -64,7 +64,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 			'ps_property_status_tax_slug' => array('value' => 'property-status', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
 			'ps_property_location_tax_slug' => array('value' => 'property-location', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
 			'ps_property_amenities_tax_slug' => array('value' => 'property-amenity', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
-			'ps_property_filter_display' => array('value' => 'true'),
+			'ps_property_filter_display' => array('value' => 'false'),
 			'ps_property_filter_id' => array('value' => ''),
 			'ps_properties_page' => array('value' => ''),
 			'ps_num_properties_per_page' => array('value' => 12),
