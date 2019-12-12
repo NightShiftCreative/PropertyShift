@@ -1,26 +1,41 @@
 <?php
-    //Global settings
-    $admin_obj = new PropertyShift_Admin();
-    $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
-    if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
-    $num_properties_per_page = $admin_obj->load_settings(false, 'ps_num_properties_per_page');
-    $agent_detail_items = $admin_obj->load_settings(false, 'ps_agent_detail_items', false);
+//Global settings
+$admin_obj = new PropertyShift_Admin();
+$agents_obj = new PropertyShift_Agents();
+$icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
+if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
+$num_properties_per_page = $admin_obj->load_settings(false, 'ps_num_properties_per_page');
+$agent_detail_items = $admin_obj->load_settings(false, 'ps_agent_detail_items', false);
 
-    //Get template location
-    if(isset($template_args)) { $template_location = $template_args['location']; } else { $template_location = ''; }
-    if($template_location == 'sidebar') { 
-        $template_location_sidebar = 'true'; 
-    } else { 
-        $template_location_sidebar = 'false';
-    }
+//Get template location
+if(isset($template_args)) { $template_location = $template_args['location']; } else { $template_location = ''; }
+if($template_location == 'sidebar') { 
+    $template_location_sidebar = 'true'; 
+} else { 
+    $template_location_sidebar = 'false';
+}
 
-	//Get agent details
-    $agents_obj = new PropertyShift_Agents();
-    $agent_settings = $agents_obj->load_agent_settings($post->ID);
-    $agent_title = $agent_settings['job_title']['value'];
+//Get agent
+$agent = '';
+$agent_slug = $admin_obj->load_settings(false, 'ps_agent_detail_slug');
+$user_slug = get_query_var($agent_slug);
+if(!empty($user_slug)) {
+    $agent = get_user_by( 'slug', $user_slug);
+} else if(is_user_logged_in()) {
+    $agent = wp_get_current_user();
+}
+
+if(!empty($agent)) {
+    
+    //Get agent details
+    $agent_settings = $agents_obj->load_agent_settings($agent->ID);
+    $agent_display_name = $agent_settings['display_name']['value'];
+    $agent_avatar_url = $agent_settings['avatar_url']['value'];
     $agent_email = $agent_settings['email']['value'];
+    $agent_title = $agent_settings['job_title']['value'];
     $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
     $agent_office_phone = $agent_settings['office_phone']['value'];
+    $agent_website = $agent_settings['website']['value'];
     $agent_description = $agent_settings['description']['value'];
     $agent_fb = $agent_settings['facebook']['value'];
     $agent_twitter = $agent_settings['twitter']['value'];
@@ -29,13 +44,13 @@
     $agent_youtube = $agent_settings['youtube']['value'];
     $agent_instagram = $agent_settings['instagram']['value'];
     $agent_form_source = $agent_settings['contact_form_source']['value'];
-    $agent_form_id = $agent_settings['contact_form_source']['children']['contact_form_7_id']['value'];
+    $agent_form_id = $agent_settings['contact_form_7_id']['value'];
 
-    //Get agent property count
-    $agent_properties = $agents_obj->get_agent_properties(get_the_id(), $num_properties_per_page);
-    $agent_properties_count = $agent_properties['count'];
-?>	
+    //Get agent properties
+    $agent_properties = $agents_obj->get_agent_properties($agent->ID, $num_properties_per_page);
+    $agent_properties_count = $agent_properties['count']; ?>
 
+    <div class="ps-agent ps-agent-single ps-agent-<?php echo $agent->ID; ?>">
 	<?php if (!empty($agent_detail_items)) { 
 		foreach($agent_detail_items as $value) { ?>
 
@@ -55,24 +70,26 @@
                     <!--******************************************************-->
                 	<div class="agent-single-item ps-single-item widget agent-<?php echo esc_attr($slug); ?>">
 
-                        <a href="<?php the_permalink(); ?>" class="agent-img">
-                            <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
-                                <div class="button alt button-icon agent-tag agent-assigned"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Assigned Property', 'propertyshift'); } else { esc_html_e('Assigned Properties', 'propertyshift'); } ?></div>
-                            <?php } ?>
-                            <?php if ( has_post_thumbnail() ) {  ?>
-                                <div class="img-fade"></div>
-                                <?php the_post_thumbnail('full'); ?>
+                        <div class="agent-img">
+                            <?php if(!empty($agent_avatar_url)) {  ?>
+                                <img src="<?php echo $agent_avatar_url; ?>" alt="<?php echo get_the_title(); ?>" />  
                             <?php } else { ?>
                                 <img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" alt="" />
                             <?php } ?>
-                        </a>
+                        </div>
+
+                        <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
+                            <div class="button alt agent-tag agent-assigned"><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Assigned Property', 'propertyshift'); } else { esc_html_e('Assigned Properties', 'propertyshift'); } ?></div>
+                        <?php } ?>
 
                         <div class="agent-content">
+                            <h2><?php echo $agent_display_name; ?></h2>
                             <div class="agent-details">
         	                	<?php if(!empty($agent_title)) { ?><p><span><?php echo esc_attr($agent_title); ?></span><?php echo ns_core_get_icon($icon_set, 'tag'); ?><?php esc_html_e('Title', 'propertyshift'); ?>:</p><?php } ?>
         	                	<?php if(!empty($agent_email)) { ?><p><span><?php echo esc_attr($agent_email); ?></span><?php echo ns_core_get_icon($icon_set, 'envelope', 'envelope', 'mail'); ?><?php esc_html_e('Email', 'propertyshift'); ?>:</p><?php } ?>
         	                	<?php if(!empty($agent_mobile_phone)) { ?><p><span><?php echo esc_attr($agent_mobile_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php esc_html_e('Mobile', 'propertyshift'); ?>:</p><?php } ?>
         	                	<?php if(!empty($agent_office_phone)) { ?><p><span><?php echo esc_attr($agent_office_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php esc_html_e('Office', 'propertyshift'); ?>:</p><?php } ?>
+                                <?php if(!empty($agent_website)) { ?><p><span><?php echo '<a href="'.esc_attr($agent_website).'" target="_blank">'.esc_attr($agent_website).'</a>'; ?></span><?php echo ns_core_get_icon($icon_set, 'globe'); ?><?php esc_html_e('Website', 'propertyshift'); ?>:</p><?php } ?>
                                 <?php do_action('propertyshift_after_agent_details', $post->ID); ?>
                             </div>
                             <?php if(in_array('agent_detail_item_contact', $agent_detail_items)) { ?> 
@@ -111,7 +128,7 @@
                 		</div>
                 	<?php } ?>
 
-                	<?php if($slug == 'contact') { ?>
+                	<?php if($slug == 'contact' && $agents_obj->is_agent($agent->ID)) { ?>
                     <!--******************************************************-->
                     <!-- CONTACT -->
                     <!--******************************************************-->
@@ -122,19 +139,12 @@
                                     <h4><?php echo esc_attr($label); ?></h4>
                                     <div class="widget-divider"><div class="bar"></div></div>
                                 </div>
-                            <?php } ?>
-                            <?php
-                                if($agent_form_source == 'contact-form-7') {
-                                    $agent_form_title = get_the_title( $agent_form_id );
-                                    echo do_shortcode('[contact-form-7 id="<?php echo esc_attr($agent_form_id); ?>" title="'.$agent_form_title.'"]');
-                                } else { 
-                                    propertyshift_template_loader('agent_contact_form.php');
-                                } 
-                            ?>
+                            <?php }
+                            $agents_obj->get_contact_form($agent->ID); ?>
                 		</div>
                 	<?php } ?>
 
-                	<?php if($slug == 'properties') { ?>
+                	<?php if($slug == 'properties' && $agents_obj->is_agent($agent->ID)) { ?>
                     <!--******************************************************-->
                     <!-- AGENT PROPERTIES -->
                     <!--******************************************************-->
@@ -166,3 +176,6 @@
 
         <?php } //end foreach ?>
 	<?php } ?>
+    </div> <!-- end ps-agent -->
+
+<?php } ?>

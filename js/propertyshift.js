@@ -317,18 +317,13 @@ jQuery(document).ready(function($) {
     });
 
     /******************************************************************************/
-    /** SUBMIT PROPERTY - OWNER INFO **/
+    /** SCROLL TO AGENT PROPERTIES **/
     /******************************************************************************/
-    $('#owner-info input[type="radio"]').click(function() {
-        var input = $(this).val();
-        $('#owner-info .form-block-agent-options').removeClass('show');
-        $('#owner-info .form-block-agent-options').hide();
-        if(input == 'agent') {
-            $('#owner-info .form-block-select-agent').slideDown('fast');
-        }
-        if(input == 'custom') {
-            $('#owner-info .form-block-custom-agent').slideDown('fast');
-        }
+    $(".button.agent-assigned").click(function(e) {
+        e.preventDefault();
+        $('html, body').animate({
+            scrollTop: $('a[name="anchor-agent-properties"]').offset().top
+        }, 800);
     });
 
 });

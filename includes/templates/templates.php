@@ -48,16 +48,4 @@ function propertyshift_template_property_single( $content ) {
 }
 add_filter( 'the_content', 'propertyshift_template_property_single', 20 );
 
-
-/*-----------------------------------------------------------------------------------*/
-/*  Agent Single Template
-/*-----------------------------------------------------------------------------------*/
-function propertyshift_template_agent_single( $content ) {
-	ob_start();
-	propertyshift_template_loader_single('loop_agent_single.php', 'ps-agent');
-    $content = $content.ob_get_clean();
-    return $content;
-}
-add_filter( 'the_content', 'propertyshift_template_agent_single', 20 );
-
 ?>

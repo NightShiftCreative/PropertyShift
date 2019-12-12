@@ -179,6 +179,36 @@
 }
 
 /*********************************************/
+/** COLUMNS **/
+/*********************************************/
+.ps-listing { word-spacing:-6px; }
+.ps-listing-col {
+    width:100%;
+    margin-bottom:2.5%;
+    display:inline-block;
+    vertical-align:top;
+    word-spacing:0px;
+}
+.ps-no-posts { word-spacing:0px; }
+
+.ps-col-2 { width:48.7%; margin-right:2.5%; }
+.ps-col-2:nth-child(2n) { margin-right:0px; }
+
+.ps-col-3 { width:31.66%; margin-right:2.5%; }
+.ps-col-3:nth-child(3n) { margin-right:0px; }
+
+.ps-col-4 { width:23.1%; margin-right:2.5%; }
+.ps-col-4:nth-child(4n) { margin-right:0px; }
+
+.ps-col-5 { width:18.4%; margin-right:2%; margin-bottom:2%; }
+.ps-col-5:nth-child(5n) { margin-right:0px; }
+
+@media only screen and (max-width: 767px) {
+    .ps-listing-col { width:100%; margin-right:0; }
+}
+
+
+/*********************************************/
 /** PROPERTY FILTERS **/
 /*********************************************/
 .filter-minimal .advanced-options-toggle { 
@@ -221,16 +251,8 @@
 /*********************************************/
 /** PROPERTIES LISTINGS GRID **/
 /*********************************************/
-.ns-listing-col {
-    width:48%;
-    margin-right:4%;
-    float:left;
-}
-.ns-listing-col:nth-child(2n) { margin-right:0; }
-
 .ps-property-listing .ps-property, .ps-property-listing .hentry.ps-property { 
 	margin:0;
-	margin-bottom:30px; 
 	padding-top:0; 
 	position:relative;
 }
@@ -357,22 +379,18 @@
 /*********************************************/
 /** AGENTS **/
 /*********************************************/
-.ps-agent-listing .ps-agent, .ps-agent-listing .hentry.ps-agent {
+.ps-agent-listing .ps-agent {
     margin:0;
-    margin-bottom:30px; 
     padding:0;
 }
 
-.ps-agent .agent-content { padding:5%; }
-.ps-agent .agent-title h4 { margin:15px 0px; }
-.ps-agent .agent-details p { margin-bottom:10px; }
-.ps-agent .social-icons { margin-bottom:0; }
+.ps-agent .agent-img { line-height:0; }
+.ps-agent .agent-img-link { display:block; }
 
-/*********************************************/
-/** AGENTS SINGLE **/
-/*********************************************/
-.ps-agent .agent-content { padding:0; padding-top:30px; }
-.ps-agent .agent-details p {
+.ps-agent .agent-content { padding:5%; border:1px solid rgba(0, 0, 0, 0.1); }
+.ps-agent .agent-title h4 { margin:15px 0px; }
+
+.ps-agent .agent-details p { 
     border-bottom:1px solid rgba(0, 0, 0, 0.1);
     padding-top:4px;
     padding-bottom:4px;
@@ -380,7 +398,14 @@
 }
 .ps-agent .agent-details p span { float:right; font-weight:600; }
 
+.ps-agent .social-icons { margin-bottom:0; }
+
+.agent-contact-form { margin-top:20px; }
+
+
 /*********************************************/
 /** WIDGETS **/
 /*********************************************/
 .mortgage-calculator-container .label-radio { margin-right:10px; }
+
+.widget.widget-sidebar .ps-listing-col { width:100%; margin-right:0; }

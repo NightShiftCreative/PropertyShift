@@ -9,6 +9,10 @@
     $author = $current_user->user_login;
     $members_submit_property_page = $admin_obj->load_settings(false, 'ps_members_submit_property_page');
 
+    //Get agent properties
+    $agent_obj = new PropertyShift_Agents();
+    $agent_properties = $agent_obj->get_agent_properties($current_user->ID, 12, true, array('pending', 'publish'));
+
     //GET CUSTOM ARGS
     if(isset($template_args)) {
         $custom_args = $template_args['custom_args'];
@@ -18,7 +22,7 @@
 
 <!-- start user my properties -->
 <div class="user-dashboard">
-    <?php if(is_user_logged_in()) { ?>
+    <?php if(is_user_logged_in() && (current_user_can('ps_agent') || current_user_can('administrator'))) { ?>
 
     	<table class="user-dashboard-table my-properties-table">
     		<tr class="user-dashboard-table-header my-properties-header">
@@ -31,13 +35,8 @@
             </tr>
 
             <?php
-            $my_properties_listing_args = array(
-                'post_type' => 'ps-property',
-                'posts_per_page' => 12,
-                'paged' => $paged,
-                'author_name' => $author,
-                'post_status' => array( 'pending', 'publish' )
-            );
+            $my_properties_listing_args = $agent_properties['args'];
+            //$my_properties_listing_args['post_status'] = array('pending', 'publish');
 
             //OVERWRITE QUERY WITH CUSTOM ARGS
             if(isset($custom_args)) {
@@ -54,7 +53,6 @@
             }
 
             $property_listing_query = new WP_Query( $my_properties_listing_args );
-
             if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->have_posts() ) : $property_listing_query->the_post(); ?>
                 
                 <?php

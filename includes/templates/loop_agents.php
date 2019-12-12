@@ -1,6 +1,5 @@
 <?php
     //GET GLOBAL SETTINGS
-	global $post;
     $num_agents_per_page = esc_attr(get_option('ps_num_agents_per_page', 12));
 
     //GET CUSTOM ARGS
@@ -12,100 +11,68 @@
     }
 
     //GENERATE COLUMN LAYOUT
-    $agent_col_class = 'col-lg-4 col-md-4 col-sm-6 ns-listing-col'; 
     $agent_col_num = 3;
-
-    if(isset($custom_cols)) {
-        switch($custom_cols) {
-            case 1:
-                $agent_col_class = 'col-lg-12 ns-listing-col';
-                $$agent_col_num = 1;
-                break;
-            case 2:
-                $agent_col_class = 'col-lg-6 ns-listing-col'; 
-                $agent_col_num = 2;
-                break;
-            case 3:
-                $agent_col_class = 'col-lg-4 ns-listing-col'; 
-                $agent_col_num = 3;
-                break;
-            case 4:
-                $agent_col_class = 'col-lg-3 ns-listing-col';
-                $agent_col_num = 4; 
-                break;
-        }
-    }
-
-    /***************************************************************************/
-    /** SET QUERY ARGS **/
-    /***************************************************************************/
+    if(isset($custom_cols)) { $agent_col_num = $custom_cols; }
+    $agent_col_class = propertyshift_col_class($agent_col_num);
 
     //SET PAGED VARIABLE
     if(is_front_page()) {  
         $paged = (get_query_var('page')) ? get_query_var('page') : 1;
     } else {  
-        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        $paged = get_query_var('paged') ? (int) get_query_var('paged') : 1;
     }
 
-    //SET ARGS
+    //SET QUERY ARGS
     $agent_listing_args = array(
-        'post_type' => 'ps-agent',
-        'posts_per_page' => $num_agents_per_page,
-        'paged' => $paged
+        'role__in' => array('ps_agent', 'administrator'),
+        'number' => $num_agents_per_page,
+        'paged' => $paged,
+        'meta_key' => 'ps_agent_show_in_listings',
+        'meta_value' => 'true',
     );
 
     //OVERWRITE QUERY WITH CUSTOM ARGS
-    if(isset($custom_args)) {
-        foreach($agent_listing_args as $key=>$value) {
-            if(array_key_exists($key, $custom_args)) { 
-                if(!empty($custom_args[$key])) { $agent_listing_args[$key] = $custom_args[$key]; }
-            } 
-        }
-        foreach($custom_args as $key=>$value) {
-            if(!array_key_exists($key, $agent_listing_args)) { 
-                if(!empty($custom_args[$key])) { $agent_listing_args[$key] = $custom_args[$key]; }
-            } 
-        }
-    }
+    if(isset($custom_args)) { $agent_listing_args = propertyshift_overwrite_query_args($agent_listing_args, $custom_args); }
 
-	$agent_listing_query = new WP_Query( $agent_listing_args );
+    //FILTER AND SET QUERY
+    $agent_listing_args = apply_filters('propertyshift_pre_get_agents', $agent_listing_args);
+    $agents_query = new WP_User_Query($agent_listing_args);
+    $agents = $agents_query->get_results();
 ?>
 
-<div class="row ps-agent-listing">
-<?php $counter = 1; ?>
-<?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
-
-    <div class="<?php echo esc_attr($agent_col_class); ?>"><?php propertyshift_template_loader('loop_agent.php', null, false); ?></div>
-
+<div class="ps-listing ps-agent-listing">
     <?php 
-    if($counter % $agent_col_num == 0) { echo '<div class="clear"></div>'; } 
-    $counter++; 
-    ?>
-
-<?php endwhile; ?>
+    if(!empty($agents)) {
+        foreach($agents as $agent) { ?>
+            <div class="<?php echo esc_attr($agent_col_class); ?>">
+                <?php 
+                    $template_args = array();
+                    $template_args['id'] = $agent->ID;
+                    propertyshift_template_loader('loop_agent.php', $template_args, false); 
+                ?>
+            </div>
+        <?php }
+    } else { 
+        echo '<div class="ps-no-posts">';
+        if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no agents were found.', 'propertyshift'); } 
+        echo '</div>';
+    } ?>
     <div class="clear"></div>
-	</div><!-- end row -->
 
-    <?php 
-    wp_reset_postdata();
-    $big = 999999999; // need an unlikely integer
+    <?php
+    $total_users = $agents_query->get_total();
+    $num_pages = ceil($total_users / $agent_listing_args['number']);
+    $big = 999999999;
 
-    $args = array(
-        'base'         => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-        'format'       => '/page/%#%',
-        'total'        => $agent_listing_query->max_num_pages,
-        'current'      => max( 1, get_query_var('paged') ),
-        'show_all'     => False,
-        'end_size'     => 1,
-        'mid_size'     => 2,
-        'prev_next'    => True,
+    $pagination_args = array(
+        'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+        'format' => '/page/%#%',
+        'total' => $num_pages,
+        'current' => $paged,
         'prev_text'    => esc_html__('&raquo; Previous', 'propertyshift'),
         'next_text'    => esc_html__('Next &raquo;', 'propertyshift'),
-        'type'         => 'plain',
-        'add_args'     => False,
-        'add_fragment' => '',
-        'before_page_number' => '',
-        'after_page_number' => ''
+        'end_size' => 1,
+        'mid_size' => 5,
     ); ?>
 
     <?php 
@@ -118,22 +85,9 @@
     }
 
     if($show_pagination === true) {  ?>
-    <div class="page-list">
-        <?php echo paginate_links( $args ); ?> 
+    <div class="page-list page-list-agents">
+        <?php echo paginate_links($pagination_args); ?> 
     </div>
     <?php } ?>
 
-<?php else: ?>
-	<div class="col-lg-12">
-		<p>
-            <?php
-            if(isset($no_post_message)) { echo wp_kses_post($no_post_message); } else { esc_html_e('Sorry, no agents were found.', 'propertyshift'); } 
-            if(is_user_logged_in() && current_user_can('administrator')) { 
-                $new_agent_url = esc_url(home_url('/')).'wp-admin/post-new.php?post_type=ps-agent';
-                printf(__('<em><b><a href="%s" target="_blank"> Click here</a> to add a new agent.</b></em>', 'propertyshift'), $new_agent_url );  
-            } ?>
-        </p>
-	</div>
-    <div class="clear"></div>
-	</div><!-- end row -->
-<?php endif; ?>
+</div><!-- end agent listings -->

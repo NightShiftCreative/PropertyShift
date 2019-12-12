@@ -61,9 +61,7 @@ class PropertyShift_Properties {
 		add_filter( 'ns_core_after_top_bar_member_menu', array( $this, 'add_topbar_links'));
 		add_action('propertyshift_property_actions', array($this, 'add_property_share'));
 		add_action('propertyshift_property_actions', array($this, 'add_property_favoriting'));
-		add_action('ns_basics_dashboard_stats', array($this, 'add_dashboard_stats'));
-		add_action('ns_basics_after_dashboard', array($this, 'add_dashboard_widgets'));
-		
+		add_action('ns_core_before_sidebar', array($this, 'add_property_detail_sidebar_template'));
 	}
 
 	/**
@@ -99,10 +97,24 @@ class PropertyShift_Properties {
 	                'edit_item' => __( 'Edit Property', 'propertyshift' ),
 	            ),
 	        'public' => true,
+	        'capability_type' => 'ps-property',
+	        'capabilities' => array(
+			    'edit_post'          => 'edit_ps-property',
+			    'read_post'          => 'read_ps-property',
+			    'read_posts'         => 'read_ps-propertys',
+			    'delete_post'        => 'delete_ps-property',
+			    'delete_posts'       => 'delete_ps-propertys',
+			    'edit_posts'         => 'edit_ps-propertys',
+			    'edit_others_posts'  => 'edit_others_ps-propertys',
+			    'publish_posts'      => 'publish_ps-propertys',
+			    'read_private_posts' => 'read_private_ps-propertys',
+			    'create_posts'       => 'create_ps-propertys',
+			  ),
 	        'show_in_menu' => true,
+	        'menu_position' => 26,
 	        'menu_icon' => 'dashicons-admin-home',
 	        'has_archive' => false,
-	        'supports' => array('title', 'author', 'editor', 'revisions', 'thumbnail', 'page_attributes'),
+	        'supports' => array('title', 'editor', 'revisions', 'thumbnail', 'page_attributes'),
 	        'rewrite' => array('slug' => $properties_slug),
 	        )
 	    );
@@ -121,12 +133,12 @@ class PropertyShift_Properties {
 	 * @param int $post_id
 	 */
 	public function load_property_settings($post_id, $return_defaults = false) {
-		
-		//get all agents
-		$agents_array = array();
-        $agents_array[esc_html__('Select an agent...', 'propertyshift')] = '';
-        $agent_listing_query = get_posts(array('post_type' => 'ps-agent', 'posts_per_page' => -1));
-        foreach($agent_listing_query as $agent) { $agents_array[$agent->post_title] = $agent->ID; }
+
+		global $post;
+
+		//populate agent select
+		$agent_obj = new PropertyShift_Agents();
+		$agent_select_options = $agent_obj->get_agents();
 
         // settings
 		$property_settings_init = array(
@@ -272,53 +284,23 @@ class PropertyShift_Properties {
 				'display_img' => true,
 				'order' => 16,
 			),
-			'owner_display' => array(
+			'agent' => array(
 				'group' => 'owner_info',
-				'title' => esc_html__('What to display for owner information?', 'propertyshift'),
-				'name' => 'ps_agent_display',
-				'type' => 'radio_image',
-				'class' => 'full-width',
+				'title' => esc_html__('Select an Agent', 'propertyshift'),
+				'name' => 'post_author_override', //overrides the author
+				'type' => 'select',
+				'options' => $agent_select_options,
+				'value' => $post->post_author,
 				'order' => 17,
-				'value' => 'none',
-				'options' => array(
-					esc_html__('None', 'propertyshift') => array('value' => 'none'),
-					esc_html__('Author Info', 'propertyshift') => array('value' => 'author'),
-					esc_html__('Agent Info', 'propertyshift') => array('value' => 'agent'),
-					esc_html__('Custom Info', 'propertyshift') => array('value' => 'custom'),
-				),
-				'children' => array(
-					'agent' => array(
-						'title' => esc_html__('Select Agent', 'propertyshift'),
-						'name' => 'ps_agent_select',
-						'type' => 'select',
-						'options' => $agents_array,
-						'parent_val' => 'agent',
-					),
-					'owner_custom_name' => array(
-						'title' => esc_html__('Custom Name', 'propertyshift'),
-						'name' => 'ps_agent_custom_name',
-						'type' => 'text',
-						'parent_val' => 'custom',
-					),
-					'owner_custom_email' => array(
-						'title' => esc_html__('Custom Email', 'propertyshift'),
-						'name' => 'ps_agent_custom_email',
-						'type' => 'text',
-						'parent_val' => 'custom',
-					),
-					'owner_custom_phone' => array(
-						'title' => esc_html__('Custom Phone', 'propertyshift'),
-						'name' => 'ps_agent_custom_phone',
-						'type' => 'text',
-						'parent_val' => 'custom',
-					),
-					'owner_custom_url' => array(
-						'title' => esc_html__('Custom Website', 'propertyshift'),
-						'name' => 'ps_agent_custom_url',
-						'type' => 'text',
-						'parent_val' => 'custom',
-					),
-				),
+			),
+			'agent_display' => array(
+				'group' => 'owner_info',
+				'title' => esc_html__('Display Agent Info on Listing', 'propertyshift'),
+				'description' => esc_html__('If checked, the agents info will be publicly displayed on the listing', 'propertyshift'),
+				'name' => 'ps_property_agent_display',
+				'type' => 'checkbox',
+				'value' => true,
+				'order' => 18,
 			),
 		);
 		$property_settings_init = apply_filters('propertyshift_property_settings_init_filter', $property_settings_init, $post_id);
@@ -352,13 +334,13 @@ class PropertyShift_Properties {
 	            <li><a href="#floor-plans" title="<?php esc_html_e('Floor Plans', 'propertyshift'); ?>"><i class="fa fa-th-large"></i> <span class="tab-text"><?php echo esc_html_e('Floor Plans', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#map" title="<?php esc_html_e('Map', 'propertyshift'); ?>" onclick="refreshMap()"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Map', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#video" title="<?php esc_html_e('Video', 'propertyshift'); ?>"><i class="fa fa-video"></i> <span class="tab-text"><?php echo esc_html_e('Video', 'propertyshift'); ?></span></a></li>
-	            <li><a href="#agent" title="<?php esc_html_e('Owner Info', 'propertyshift'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Owner Info', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#agent" title="<?php esc_html_e('Contacts', 'propertyshift'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Contacts', 'propertyshift'); ?></span></a></li>
 	            <?php do_action('propertyshift_after_property_tabs'); ?>
 	        </ul>
 
 	        <div class="ns-tabs-content">
         	<div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php echo esc_html_e('Loading...', 'propertyshift'); ?></div>
-        	
+
         	<!--*************************************************-->
 	        <!-- GENERAL INFO -->
 	        <!--*************************************************-->
@@ -441,10 +423,10 @@ class PropertyShift_Properties {
 	        </div>
 
 	        <!--*************************************************-->
-	        <!-- OWNER INFO -->
+	        <!-- CONTACT INFO -->
 	        <!--*************************************************-->
 	        <div id="agent" class="tab-content">
-	            <h3><?php echo esc_html_e('Owner Info', 'propertyshift'); ?></h3>
+	            <h3><?php echo esc_html_e('Primary Agent', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'owner_info') {
@@ -515,7 +497,13 @@ class PropertyShift_Properties {
 	            'label'         => __( 'Property Types', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
-	            'rewrite' => array( 'slug' => $property_type_tax_slug )
+	            'rewrite' => array( 'slug' => $property_type_tax_slug ),
+	            'capabilities' => array(
+	            	'manage_terms' => 'manage_property_type',
+    				'edit_terms' => 'edit_property_type',
+    				'delete_terms' => 'delete_property_type',
+	            	'assign_terms' => 'assign_property_type',
+	            ),
 	        )
 	    );
 	}
@@ -548,7 +536,13 @@ class PropertyShift_Properties {
 	            'label'         => __( 'Property Status', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
-	            'rewrite' => array( 'slug' => $property_status_tax_slug )
+	            'rewrite' => array( 'slug' => $property_status_tax_slug ),
+	            'capabilities' => array(
+	            	'manage_terms' => 'manage_property_status',
+    				'edit_terms' => 'edit_property_status',
+    				'delete_terms' => 'delete_property_status',
+	            	'assign_terms' => 'assign_property_status',
+	            ),
 	        )
 	    );
 	}
@@ -581,7 +575,13 @@ class PropertyShift_Properties {
 	            'label'         => __( 'Property Location', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
-	            'rewrite' => array( 'slug' => $property_location_tax_slug )
+	            'rewrite' => array( 'slug' => $property_location_tax_slug ),
+	            'capabilities' => array(
+	            	'manage_terms' => 'manage_property_location',
+    				'edit_terms' => 'edit_property_location',
+    				'delete_terms' => 'delete_property_location',
+	            	'assign_terms' => 'assign_property_location',
+	            ),
 	        )
 	    );
 	}
@@ -614,7 +614,13 @@ class PropertyShift_Properties {
 	            'label'         => __( 'Amenities', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
-	            'rewrite' => array( 'slug' => $property_amenities_tax_slug )
+	            'rewrite' => array( 'slug' => $property_amenities_tax_slug ),
+	            'capabilities' => array(
+	            	'manage_terms' => 'manage_property_amenities',
+    				'edit_terms' => 'edit_property_amenities',
+    				'delete_terms' => 'delete_property_amenities',
+	            	'assign_terms' => 'assign_property_amenities',
+	            ),
 	        )
 	    );
 	}
@@ -638,7 +644,7 @@ class PropertyShift_Properties {
 	        'type' => __( 'Type', 'propertyshift' ),
 	        'status' => __( 'Status', 'propertyshift' ),
 	        'price'  => __( 'Price','propertyshift' ),
-	        'author' => __('Author', 'propertyshift'),
+	        'agent' => __('Assigned Agent', 'propertyshift'),
 	        'date' => __( 'Date', 'propertyshift' )
 	    );
 	    return $columns;
@@ -659,15 +665,19 @@ class PropertyShift_Properties {
 	        case 'thumbnail' :
 	            if(has_post_thumbnail()) { echo the_post_thumbnail('thumbnail'); } else { echo '--'; }
 	            break;
+
 	        case 'price' :
 	            $price = $property_settings['price']['value'];
 	            if(!empty($price)) { $price = $this->get_formatted_price($price); }
 	            if(empty($price)) { echo '--'; } else { echo $price; }
 	            break;
+
 	        case 'location' :
 
 	            //Get property location
 	          	$property_location = $this->get_tax_location($post_id);
+	          	$address = $property_settings['street_address']['value'];
+	          	if(!empty($address)) { echo $address.'<br/>'; }
 	            if(empty($property_location)) { echo '--'; } else { echo $property_location; }
 	            break;
 
@@ -683,6 +693,17 @@ class PropertyShift_Properties {
 	            //Get property status
 	        	$property_status = $this->get_tax($post_id, 'property_status');
 	            if(empty($property_status)) { echo '--'; } else { echo $property_status; }
+	            break;
+
+	        case 'agent' :
+
+	        	$agent_id = get_the_author_meta('ID');
+	            if(!empty($agent_id)) { 
+	            	$agent = get_userdata($agent_id); ?>
+	            	<a href="<?php echo get_edit_user_link($agent_id); ?>"><?php echo $agent->display_name; ?></a>
+	            <?php } else {
+	            	echo '--';
+	            }
 	            break;
 
 	        default :
@@ -1165,7 +1186,6 @@ class PropertyShift_Properties {
             'featured_image' => array('value' => esc_html__('Featured Image', 'propertyshift')),
             'gallery_images' => array('value' => esc_html__('Gallery Images', 'propertyshift')),
             'map' => array('value' => esc_html__('Map', 'propertyshift')),
-            'owner_info' => array('value' => esc_html__('Owner Info', 'propertyshift')),
 	    );
 	    $property_submit_fields_init = apply_filters( 'propertyshift_property_submit_fields_init_filter', $property_submit_fields_init);
 	    return $property_submit_fields_init;
@@ -1252,9 +1272,9 @@ class PropertyShift_Properties {
 		            }
 		        }
 		    }  
-		    if(!empty($edit_property_id)) { 
-		    	$edit_values = get_post_custom( $edit_property_id );
-				$edit_additional_images = isset($edit_values['ps_additional_img']) ? $edit_values['ps_additional_img'] : '';
+		    if(!empty($edit_property_id)) { 		    	
+				$edit_property_settings = $this->load_property_settings($edit_property_id);
+				$edit_additional_images = $edit_property_settings['gallery']['value'];
 		    	$additional_img_urls = array_merge($edit_additional_images, $additional_img_urls); 
 		    }
 
@@ -1309,12 +1329,6 @@ class PropertyShift_Properties {
 		    if( isset( $_POST['longitude'] ) )
 		        update_post_meta( $post_ID, 'ps_property_longitude', wp_kses( $_POST['longitude'], $allowed ) );
 
-		    if( isset( $_POST['agent_display'] ) )
-		        update_post_meta( $post_ID, 'ps_agent_display', wp_kses( $_POST['agent_display'], $allowed ) );
-
-		    if( isset( $_POST['agent_select'] ) )
-		        update_post_meta( $post_ID, 'ps_agent_select', wp_kses( $_POST['agent_select'], $allowed ) );
-
 		    if( isset( $_POST['agent_custom_name'] ) )
 		        update_post_meta( $post_ID, 'ps_agent_custom_name', wp_kses( $_POST['agent_custom_name'], $allowed ) );
 
@@ -1356,8 +1370,12 @@ class PropertyShift_Properties {
 		if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 		$members_my_properties_page = $this->global_settings['ps_members_my_properties_page'];
 		$members_submit_property_page = $this->global_settings['ps_members_submit_property_page']; ?>
-		<?php if(!empty($members_my_properties_page)) { ?><li><a href="<?php echo $members_my_properties_page; ?>"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php esc_html_e( 'My Properties', 'propertyshift' ); ?></a></li><?php } ?>
-		<?php if(!empty($members_submit_property_page)) { ?><li><a href="<?php echo $members_submit_property_page; ?>"><?php echo ns_core_get_icon($icon_set, 'plus'); ?><?php esc_html_e( 'Submit Property', 'propertyshift' ); ?></a></li><?php } ?>
+		<?php if(!empty($members_my_properties_page) && (current_user_can('ps_agent') || current_user_can('administrator'))) { ?>
+			<li><a href="<?php echo $members_my_properties_page; ?>"><?php echo ns_core_get_icon($icon_set, 'home'); ?><?php esc_html_e( 'My Properties', 'propertyshift' ); ?></a></li>
+		<?php } ?>
+		<?php if(!empty($members_submit_property_page) && (current_user_can('ps_agent') || current_user_can('administrator'))) { ?>
+			<li><a href="<?php echo $members_submit_property_page; ?>"><?php echo ns_core_get_icon($icon_set, 'plus'); ?><?php esc_html_e( 'Submit Property', 'propertyshift' ); ?></a></li>
+		<?php } ?>
 	<?php }
 
 	/**
@@ -1384,39 +1402,13 @@ class PropertyShift_Properties {
 	}
 
 	/**
-	 *	Add dashboard stats
+	 *	Add property detail sidebar template
 	 */
-	public function add_dashboard_stats() { 
-		$current_user = wp_get_current_user();
-		$post_likes_obj = new NS_Basics_Post_Likes();
-		$pending_properties = $this->count_properties('pending', $current_user->ID); 
-		$published_properties = $this->count_properties('publish', $current_user->ID); 
-		$saved_properties = $post_likes_obj->show_user_likes_count($current_user);?>
-		<div class="user-dashboard-widget stat">
-			<span><?php echo $pending_properties; ?></span>
-			<p><?php esc_html_e( 'Pending Properties', 'propertyshift' ) ?></p>
-		</div>
-		<div class="user-dashboard-widget stat">
-			<span><?php echo $published_properties; ?></span>
-			<p><?php esc_html_e( 'Published Properties', 'propertyshift' ) ?></p>
-		</div>
-		<div class="user-dashboard-widget stat">
-			<span><?php echo $saved_properties; ?></span>
-			<p><?php esc_html_e( 'Saved Posts', 'propertyshift' ) ?></p>
-		</div>
-	<?php }
-
-	/**
-	 *	Add dashboard widgets
-	 */
-	public function add_dashboard_widgets() { 
-		$members_my_properties_page = $this->global_settings['ps_members_my_properties_page']; ?>
-		<div class="user-dashboard-widget">
-			<h4><?php esc_html_e( 'Your Recent Properties', 'propertyshift' ) ?></h4>
-			<?php echo do_shortcode('[ps_my_properties show_posts=3 show_pagination="false"]'); ?>
-			<?php if(!empty($members_my_properties_page)) { ?><a href="<?php echo $members_my_properties_page; ?>" class="button small">View All Properties</a><?php } ?>
-		</div>
-	<?php }
+	public function add_property_detail_sidebar_template() {
+		if(is_singular('ps-property') && function_exists('propertyshift_template_loader')) {
+			propertyshift_template_loader('loop_property_single.php', ['location' => 'sidebar']); 
+		}
+	}
 
 
 	/************************************************************************/
@@ -1432,7 +1424,7 @@ class PropertyShift_Properties {
 	        'id' => 'properties_sidebar',
 	        'before_widget' => '<div class="widget widget-sidebar widget-sidebar-properties %2$s">',
 	        'after_widget' => '</div>',
-	        'before_title' => '<h4>',
+	        'before_title' => '<h4 class="widget-header">',
 	        'after_title' => '</h4>',
 	    ));
 	}

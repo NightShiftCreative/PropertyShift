@@ -37,4 +37,46 @@ function propertyshift_get_attachment_id_by_url( $url ) {
     return $attachment[0];
 } 
 
+/*-----------------------------------------------------------------------------------*/
+/* Generate listing column class */
+/*-----------------------------------------------------------------------------------*/
+function propertyshift_col_class($cols = 3) {
+    $class = '';
+    switch($cols) {
+        case 1:
+            $class = 'ps-listing-col ps-col-1';
+            break;
+        case 2:
+            $class = 'ps-listing-col ps-col-2'; 
+            break;
+        case 3:
+            $class = 'ps-listing-col ps-col-3'; 
+            break;
+        case 4:
+            $class = 'ps-listing-col ps-col-4';
+            break;
+        case 5:
+            $class = 'ps-listing-col ps-col-5';
+            break;
+    }
+    return $class;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* Overwrite query with custom args */
+/*-----------------------------------------------------------------------------------*/
+function propertyshift_overwrite_query_args($query_args, $custom_args) {
+    foreach($query_args as $key=>$value) {
+        if(array_key_exists($key, $custom_args)) { 
+            if(!empty($custom_args[$key])) { $query_args[$key] = $custom_args[$key]; }
+        } 
+    }
+    foreach($custom_args as $key=>$value) {
+        if(!array_key_exists($key, $query_args)) { 
+            if(!empty($custom_args[$key])) { $query_args[$key] = $custom_args[$key]; }
+        } 
+    }
+    return $query_args;
+}
+
 ?>

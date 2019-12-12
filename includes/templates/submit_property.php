@@ -2,7 +2,7 @@
 
 <!-- start submit property -->
 <div class="user-dashboard">
-	<?php if(is_user_logged_in()) { 
+	<?php if(is_user_logged_in() && (current_user_can('ps_agent') || current_user_can('administrator'))) {
 
 	//global settings
 	$icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
@@ -12,6 +12,8 @@
     $members_submit_property_fields = $admin_obj->load_settings(false, 'ps_members_submit_property_fields', false);
     if(empty($members_submit_property_fields)) { $members_submit_property_fields = array(); }
     $members_my_properties_page = $admin_obj->load_settings(false, 'ps_members_my_properties_page');
+    $members_add_types = $admin_obj->load_settings(false, 'ps_members_add_types');
+    $members_add_status = $admin_obj->load_settings(false, 'ps_members_add_status');
     $members_add_locations = $admin_obj->load_settings(false, 'ps_members_add_locations');
     $members_add_amenities = $admin_obj->load_settings(false, 'ps_members_add_amenities');
     $area_postfix_default = $admin_obj->load_settings(false, 'ps_default_area_postfix');
@@ -93,7 +95,9 @@
 
 		<?php if ($success != '') { ?>
 	        <div class="alert-box success"><h4><?php echo wp_kses_post($success); ?></h4><?php if (!empty($members_my_properties_page)) { echo '<a href="'.esc_url($members_my_properties_page).'">'. esc_html__('View your properties.', 'propertyshift').'</a>'; } ?></div>
-	    <?php } ?>
+	    <?php } else if(!empty($errors)) { ?>
+            <div class="alert-box error"><h4><?php esc_html_e('There was an error submitting your property.', 'propertyshift'); ?></h4></div>
+        <?php } ?>
 
 	    <form method="post" action="<?php echo get_the_permalink().$form_action; ?>" enctype="multipart/form-data">
 
@@ -207,14 +211,14 @@
                             $property_locations = get_terms('property_location', array( 'hide_empty' => false, 'parent' => 0 )); 
                             if ( !empty( $property_locations ) && !is_wp_error( $property_locations ) ) { ?>
                                 <?php foreach ( $property_locations as $property_location ) { ?>
-                                    <option value="<?php echo esc_attr($property_location->slug); ?>" <?php if(isset($edit_property_location) && in_array($property_location->slug, $edit_property_location)) { echo 'selected'; } else if(isset($_POST['property_location']) && in_array($property_location->slug, $_POST['property_location'])) { echo 'selected'; } ?>><?php echo esc_attr($property_location->name); ?></option>
+                                    <option value="<?php echo esc_attr($property_location->slug); ?>" <?php if(!empty($edit_property_location) && in_array($property_location->slug, $edit_property_location)) { echo 'selected'; } else if(isset($_POST['property_location']) && in_array($property_location->slug, $_POST['property_location'])) { echo 'selected'; } ?>><?php echo esc_attr($property_location->name); ?></option>
                                     <?php 
                                         $term_children = get_term_children($property_location->term_id, 'property_location'); 
                                         if(!empty($term_children)) {
                                             echo '<optgroup>';
                                             foreach ( $term_children as $child ) {
                                                 $term = get_term_by( 'id', $child, 'property_location' ); ?>
-                                                <option value="<?php echo $term->slug; ?>" <?php if(isset($edit_property_location) && in_array($term->slug, $edit_property_location)) { echo 'selected'; } else if(isset($_POST['property_location']) && in_array($term->slug, $_POST['property_location'])) { echo 'selected'; } ?>><?php echo $term->name; ?></option>
+                                                <option value="<?php echo $term->slug; ?>" <?php if(!empty($edit_property_location) && in_array($term->slug, $edit_property_location)) { echo 'selected'; } else if(isset($_POST['property_location']) && in_array($term->slug, $_POST['property_location'])) { echo 'selected'; } ?>><?php echo $term->name; ?></option>
                                             <?php }
                                             echo '</optgroup>';
                                         }
@@ -244,14 +248,14 @@
                             $property_amenities = get_terms('property_amenities', array( 'hide_empty' => false, 'parent' => 0 )); 
                             if ( !empty( $property_amenities ) && !is_wp_error( $property_amenities ) ) { ?>
                                 <?php foreach ( $property_amenities as $property_amenity ) { ?>
-                                    <option value="<?php echo esc_attr($property_amenity->slug); ?>" <?php if(isset($edit_property_amenities) && in_array($property_amenity->slug, $edit_property_amenities)) { echo 'selected'; } else if(isset($_POST['property_amenities']) && in_array($property_amenity->slug, $_POST['property_amenities'])) { echo 'selected'; } ?>><?php echo esc_attr($property_amenity->name); ?></option>
+                                    <option value="<?php echo esc_attr($property_amenity->slug); ?>" <?php if(!empty($edit_property_amenities) && in_array($property_amenity->slug, $edit_property_amenities)) { echo 'selected'; } else if(isset($_POST['property_amenities']) && in_array($property_amenity->slug, $_POST['property_amenities'])) { echo 'selected'; } ?>><?php echo esc_attr($property_amenity->name); ?></option>
                                     <?php 
                                         $term_children = get_term_children($property_amenity->term_id, 'property_amenities'); 
                                         if(!empty($term_children)) {
                                             echo '<optgroup>';
                                             foreach ( $term_children as $child ) {
                                                 $term = get_term_by( 'id', $child, 'property_amenities' ); ?>
-                                                <option value="<?php echo $term->slug; ?>" <?php if(isset($edit_property_amenities) && in_array($term->slug, $edit_property_amenities)) { echo 'selected'; } else if(isset($_POST['property_amenities']) && in_array($term->slug, $_POST['property_amenities'])) { echo 'selected'; } ?>><?php echo $term->name; ?></option>
+                                                <option value="<?php echo $term->slug; ?>" <?php if(!empty($edit_property_amenities) && in_array($term->slug, $edit_property_amenities)) { echo 'selected'; } else if(isset($_POST['property_amenities']) && in_array($term->slug, $_POST['property_amenities'])) { echo 'selected'; } ?>><?php echo $term->name; ?></option>
                                             <?php }
                                             echo '</optgroup>';
                                         }
@@ -281,9 +285,21 @@
 		                    <?php 
 		                        $property_type_terms = get_terms('property_type', array('hide_empty' => false)); 
 		                        foreach ( $property_type_terms as $property_type_term ) { ?>
-		                            <option value="<?php echo esc_attr($property_type_term->slug); ?>" <?php if(isset($edit_property_type)) { if(in_array($property_type_term->slug, $edit_property_type)) { echo 'selected'; } } else if(isset($_POST['property_type'])) { if($_POST['property_type'] == $property_type_term->slug) { echo 'selected'; } } ?>><?php echo esc_attr($property_type_term ->name); ?></option>;
+		                            <option value="<?php echo esc_attr($property_type_term->slug); ?>" <?php if(!empty($edit_property_type)) { if(in_array($property_type_term->slug, $edit_property_type)) { echo 'selected'; } } else if(isset($_POST['property_type'])) { if($_POST['property_type'] == $property_type_term->slug) { echo 'selected'; } } ?>><?php echo esc_attr($property_type_term ->name); ?></option>;
 		                    <?php } ?>
 		                </select>
+
+                        <?php if($members_add_types == 'true') { ?>
+                        <div class="property-add-tax-form property-type-new">
+                            <span class="property-location-new-toggle note"><?php esc_html_e("Don't see your type?", 'propertyshift'); ?> <a href="#"><?php esc_html_e('Add a new one.', 'propertyshift'); ?></a></span>
+                            <div class="property-location-new-content show-none">
+                                <input class="border" type="text" placeholder="Type name" />
+                                <a href="#" class="button"><?php echo ns_core_get_icon($icon_set, 'plus', 'plus'); ?> <?php esc_html_e('Add', 'propertyshift'); ?></a>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <?php } ?>
+
 		            </div>
                     <?php } ?>
 
@@ -295,9 +311,20 @@
 		                    <?php 
 		                        $property_status_terms = get_terms('property_status', array('hide_empty' => false)); 
 		                        foreach ( $property_status_terms as $property_status_term ) { ?>
-		                            <option value="<?php echo esc_attr($property_status_term->slug); ?>" <?php if(isset($edit_property_status)) { if(in_array($property_status_term->slug, $edit_property_status)) { echo 'selected'; } } else if(isset($_POST['contract_type'])) { if($_POST['contract_type'] == $property_status_term->slug) { echo 'selected'; } } ?>><?php echo esc_attr($property_status_term ->name); ?></option>;
+		                            <option value="<?php echo esc_attr($property_status_term->slug); ?>" <?php if(!empty($edit_property_status)) { if(in_array($property_status_term->slug, $edit_property_status)) { echo 'selected'; } } else if(isset($_POST['contract_type'])) { if($_POST['contract_type'] == $property_status_term->slug) { echo 'selected'; } } ?>><?php echo esc_attr($property_status_term ->name); ?></option>;
 		                    <?php } ?>
 		                </select>
+
+                        <?php if($members_add_status == 'true') { ?>
+                        <div class="property-add-tax-form property-status-new">
+                            <span class="property-location-new-toggle note"><?php esc_html_e("Don't see your status?", 'propertyshift'); ?> <a href="#"><?php esc_html_e('Add a new one.', 'propertyshift'); ?></a></span>
+                            <div class="property-location-new-content show-none">
+                                <input class="border" type="text" placeholder="Type name" />
+                                <a href="#" class="button"><?php echo ns_core_get_icon($icon_set, 'plus', 'plus'); ?> <?php esc_html_e('Add', 'propertyshift'); ?></a>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <?php } ?>
 		            </div>
                     <?php } ?>
 
@@ -421,55 +448,6 @@
                 $maps_obj->build_single_property_map($latitude, $longitude);
                 ?>
             </div>
-            <?php } ?>
-
-            <?php if(ns_basics_in_array_key('owner_info', $members_submit_property_fields )) { ?>
-            <div class="submit-property-section" id="owner-info">
-	            <h3><?php esc_html_e('Owner Info', 'propertyshift'); ?></h3>
-
-	            <div class="form-block form-block-property-agent-display">
-	                <label><?php esc_html_e('What do you want displayed for the agent info?', 'propertyshift'); ?></label><br/>
-	                <input type="radio" name="agent_display" id="agent_display_author" value="author" <?php if (!empty($_POST)) { if($_POST['agent_display'] == 'author') { echo 'checked'; } } else if(!isset($_POST['agent_display'])) { echo 'checked'; }  ?> /><?php esc_html_e('Your Profile Info', 'propertyshift'); ?><br/>
-	                <input type="radio" name="agent_display" id="agent_display_agent" value="agent" <?php if(isset($edit_agent_display)) { if($edit_agent_display == 'agent') { echo 'checked'; } } else { if($_POST['agent_display'] == 'agent') { echo 'checked'; } } ?> /><?php esc_html_e('Existing Agent', 'propertyshift'); ?><br/>
-	                <input type="radio" name="agent_display" id="agent_display_custom" value="custom" <?php if(isset($edit_agent_display)) { if($edit_agent_display == 'custom') { echo 'checked'; } } else { if($_POST['agent_display'] == 'custom') { echo 'checked'; } } ?> /><?php esc_html_e('Custom', 'propertyshift'); ?><br/>
-	                <input type="radio" name="agent_display" id="agent_display_none" value="none" <?php if(isset($edit_agent_display)) { if($edit_agent_display == 'none') { echo 'checked'; } } else { if($_POST['agent_display'] == 'none') { echo 'checked'; } } ?> /><?php esc_html_e('None', 'propertyshift'); ?><br/>
-	            </div>
-	            <br/>
-
-	            <div class="form-block form-block-agent-options form-block-select-agent <?php if(isset($edit_agent_display) && $edit_agent_display == 'agent') { echo 'show'; } else { echo 'show-none'; } ?>">
-	                <?php
-	                    $agent_listing_args = array(
-	                        'post_type' => 'ps-agent',
-	                        'posts_per_page' => -1
-	                    );
-
-	                    $agent_listing_query = new WP_Query( $agent_listing_args );
-	                ?>
-	                <label for="agent_select"><?php esc_html_e('Select Agent', 'propertyshift'); ?></label><br/>
-	                <div class="form-block border">
-	                    <select name="agent_select">
-	                        <option value="" placeholder="<?php esc_html_e('Select an option...', 'propertyshift'); ?>"></option>
-	                        <?php if ( $agent_listing_query->have_posts() ) : while ( $agent_listing_query->have_posts() ) : $agent_listing_query->the_post(); ?>
-
-	                        <option value="<?php echo get_the_ID(); ?>" <?php if(isset($edit_agent_select) && $edit_agent_select == get_the_ID()) { echo 'selected'; } else { if ($_POST['agent_select'] == get_the_ID()) { echo 'selected'; } } ?>><?php the_title(); ?></option>
-
-	                    <?php endwhile; ?>
-	                        </select>
-	                    <?php else: ?>
-	                        <option value=""><?php esc_html_e('Sorry, no agents have been posted yet.', 'propertyshift'); ?></option>
-	                        </select>
-	                    <?php endif; ?>
-	                </div>
-	            </div>
-
-	            <div class="form-block form-block-agent-options form-block-custom-agent <?php if(isset($edit_agent_display) && $edit_agent_display == 'custom') { echo 'show'; } else { echo 'show-none'; } ?>">
-	                <label><?php esc_html_e('Custom Owner/Agent Details', 'propertyshift'); ?></label>
-	                <input type="text" class="border" name="agent_custom_name" placeholder="<?php esc_html_e('Name', 'propertyshift'); ?>" value="<?php if(isset($edit_agent_custom_name)) { echo $edit_agent_custom_name; } else { echo esc_attr($_POST['agent_custom_name']); } ?>" />
-	                <input type="text" class="border" name="agent_custom_email" placeholder="<?php esc_html_e('Email', 'propertyshift'); ?>" value="<?php if(isset($edit_agent_custom_email)) { echo $edit_agent_custom_email; } else { echo esc_attr($_POST['agent_custom_email']); } ?>" />
-	                <input type="text" class="border" name="agent_custom_phone" placeholder="<?php esc_html_e('Phone', 'propertyshift'); ?>" value="<?php if(isset($edit_agent_custom_phone)) { echo $edit_agent_custom_phone; } else { echo esc_attr($_POST['agent_custom_phone']); } ?>" />
-	                <input type="text" class="border" name="agent_custom_url" placeholder="<?php esc_html_e('Website', 'propertyshift'); ?>" value="<?php if(isset($edit_agent_custom_url)) { echo esc_url($edit_agent_custom_url); } else { echo esc_url($_POST['agent_custom_url']); } ?>" />
-	            </div>
-	        </div><!-- end owner info -->
             <?php } ?>
 
 	        <input type="submit" class="button alt right" value="<?php echo $form_submit_text; ?>" />

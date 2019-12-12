@@ -25,14 +25,38 @@ class PropertyShift_Agents {
 	 *	Init
 	 */
 	public function init() {
+
+		//basic setup
 		$this->add_image_sizes();
 		add_action('init', array( $this, 'rewrite_rules' ));
-		add_action('template_redirect', array($this, 'paginate_agent_single'), 0);
-		add_action('init', array( $this, 'add_custom_post_type' ));
-		add_action('add_meta_boxes', array( $this, 'register_meta_box'));
-		add_action('save_post', array( $this, 'save_meta_box'));
-		add_filter('ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
+		add_action('admin_init', array( $this, 'add_agent_role' ));
+	
+		//add & save user fields
+		add_action( 'show_user_profile', array($this, 'create_agent_user_fields'));
+        add_action( 'edit_user_profile', array($this, 'create_agent_user_fields'));
+        add_action( 'personal_options_update', array($this, 'save_agent_user_fields'));
+        add_action( 'edit_user_profile_update', array($this, 'save_agent_user_fields'));
+        add_action( 'ns_basics_edit_profile_fields', array($this, 'create_agent_user_fields'));
+        add_action( 'ns_basics_edit_profile_save', array($this, 'save_agent_user_fields'));
+        add_action( 'user_register', array($this, 'on_agent_register'));
+
+        //front-end agent profiles
+		add_filter( 'query_vars', array($this, 'agent_query_vars'));
+		add_action('init', array($this, 'agent_rewrite_rule'));
+		add_filter( 'request', array($this, 'agent_profile_template_redirect'));
+		add_filter( 'author_link', array( $this, 'change_author_link'), 10, 2 );
+		add_filter( 'document_title_parts', array($this, 'change_agent_doc_title'), 10, 2 );
+		add_filter('the_title', array($this, 'change_agent_title'), 10, 2);
+
+        //front-end template hooks
+        add_action('ns_basics_dashboard_stats', array($this, 'add_dashboard_stats'));
+		add_action('ns_basics_after_dashboard', array($this, 'add_dashboard_widgets'));
+		add_action('ns_core_before_sidebar', array($this, 'add_agent_detail_sidebar_template'));
 	}
+
+	/************************************************************************/
+	// Basic Setup
+	/************************************************************************/
 
 	/**
 	 *	Add Image Sizes
@@ -49,361 +73,350 @@ class PropertyShift_Agents {
 	}
 
 	/**
-	 *	Allow pagination on agent single page
+	 *	Add Agent Role
 	 */
-	public function paginate_agent_single() {
-		if ( is_singular( 'ps-agent' ) ) {
-	        global $wp_query;
-	        $page = ( int ) $wp_query->get( 'page' );
-	        if ( $page > 1 ) {
-	            // convert 'page' to 'paged'
-	            $query->set( 'page', 1 );
-	            $query->set( 'paged', $page );
-	        }
-	        remove_action( 'template_redirect', 'redirect_canonical' );
+	public function add_agent_role() {
+		global $wp_roles;
+		remove_role('ps_agent');
+    	$author_role = $wp_roles->get_role('subscriber');
+		add_role('ps_agent', 'Agent', $author_role->capabilities);
+
+		$role = $wp_roles->get_role('ps_agent');               
+	    $role->add_cap( 'edit_ps-property');
+	    $role->add_cap( 'read_ps-property');
+	    $role->add_cap( 'read_ps-propertys');
+	    $role->add_cap( 'delete_ps-property');
+	    $role->add_cap( 'delete_ps-propertys');
+	    $role->add_cap( 'edit_ps-propertys');
+	    $role->add_cap( 'read_private_ps-propertys');
+	    $role->add_cap( 'create_ps-propertys');
+
+	    $role->add_cap( 'assign_property_type');
+	    $role->add_cap( 'assign_property_status');
+	    $role->add_cap( 'assign_property_location');
+	    $role->add_cap( 'assign_property_amenities');
+
+	    // Allow agents to manage property types
+	    $agent_add_types = $this->global_settings['ps_members_add_types'];
+	    if($agent_add_types == 'true') {
+		    $role->add_cap( 'manage_property_type');
+		    $role->add_cap( 'edit_property_type');
+		    $role->add_cap( 'delete_property_type');
+		}
+
+		// Allow agents to manage property statuses
+	    $agent_add_status = $this->global_settings['ps_members_add_status'];
+	    if($agent_add_status == 'true') {
+		    $role->add_cap( 'manage_property_status');
+		    $role->add_cap( 'edit_property_status');
+		    $role->add_cap( 'delete_property_status');
+		}
+
+	    // Allow agents to manage property locations
+	    $agent_add_locations = $this->global_settings['ps_members_add_locations'];
+	    if($agent_add_locations == 'true') {
+	    	$role->add_cap( 'manage_property_location');
+	    	$role->add_cap( 'edit_property_location');
+	    	$role->add_cap( 'delete_property_location');
 	    }
+
+	    // Allow agents to manage property amenities
+	    $agent_add_amenities = $this->global_settings['ps_members_add_amenities'];
+	    if($agent_add_amenities == 'true') {
+	    	$role->add_cap( 'manage_property_amenities');
+	    	$role->add_cap( 'edit_property_amenities');
+	    	$role->add_cap( 'delete_property_amenities');
+	    }
+
+	    // Allow agents to publish properties
+	    $agent_property_approval = $this->global_settings['ps_members_submit_property_approval'];
+	    if($agent_property_approval != 'true') {
+	    	$role->add_cap( 'publish_ps-propertys');
+	    }
+	    
 	}
 
 	/************************************************************************/
-	// Agents Custom Post Type
+	// Load agent settings
 	/************************************************************************/
-
-	/**
-	 *	Add custom post type
-	 */
-	public function add_custom_post_type() {
-		$agents_slug = $this->global_settings['ps_agent_detail_slug'];
-	    register_post_type( 'ps-agent',
-	        array(
-	            'labels' => array(
-	                'name' => __( 'Agents', 'propertyshift' ),
-	                'singular_name' => __( 'Agent', 'propertyshift' ),
-	                'add_new_item' => __( 'Add New Agent', 'propertyshift' ),
-	                'search_items' => __( 'Search Agents', 'propertyshift' ),
-	                'edit_item' => __( 'Edit Agent', 'propertyshift' ),
-	            ),
-	        'public' => true,
-	        'show_in_menu' => true,
-	        'menu_icon' => 'dashicons-businessman',
-	        'has_archive' => false,
-	        'supports' => array('title', 'thumbnail', 'page_attributes'),
-	        'rewrite' => array('slug' => $agents_slug),
-	        )
-	    );
-	}
 
 	/**
 	 *	Load agent settings
 	 *
-	 * @param int $post_id
+	 * @param int $user_id
 	 */
-	public function load_agent_settings($post_id, $return_defaults = false) {
-		$agent_settings_init = array(
-			'job_title' => array(
-				'group' => 'general',
-				'title' => esc_html__('Job Title', 'propertyshift'),
-				'name' => 'ps_agent_title',
-				'description' => esc_html__('Provide the agents job title.', 'propertyshift'),
-				'type' => 'text',
-				'order' => 1,
-			),
-			'email' => array(
-				'group' => 'general',
-				'title' => esc_html__('Email', 'propertyshift'),
-				'name' => 'ps_agent_email',
-				'description' => esc_html__('Provide the agents email address. This address will be used for the agent contact form.', 'propertyshift'),
-				'type' => 'text',
-				'order' => 2,
-			),
-			'mobile_phone' => array(
-				'group' => 'general',
-				'title' => esc_html__('Mobile Phone', 'propertyshift'),
-				'name' => 'ps_agent_mobile_phone',
-				'description' => esc_html__('Provide the agents mobile phone number.', 'propertyshift'),
-				'type' => 'text',
-				'order' => 3,
-			),
-			'office_phone' => array(
-				'group' => 'general',
-				'title' => esc_html__('Office Phone', 'propertyshift'),
-				'name' => 'ps_agent_office_phone',
-				'description' => esc_html__('Provide the agents office phone number.', 'propertyshift'),
-				'type' => 'text',
-				'order' => 4,
-			),
-			'description' => array(
-				'group' => 'description',
-				'name' => 'ps_agent_description',
-				'type' => 'editor',
-				'order' => 5,
-				'class' => 'full-width no-padding',
-			),
-			'facebook' => array(
-				'group' => 'social',
-				'title' => esc_html__('Facebook', 'propertyshift'),
-				'name' => 'ps_agent_fb',
-				'description' => esc_html__('Provide a url for the agents Facebook profile.', 'propertyshift'),
-				'type' => 'text',
-				'order' => 6,
-			),
-			'twitter' => array(
-				'group' => 'social',
-				'title' => esc_html__('Twitter', 'propertyshift'),
-				'name' => 'ps_agent_twitter',
-				'description' => esc_html__('Provide a url for the agents Twitter profile.', 'propertyshift'),
-				'type' => 'text',
-				'order' => 7,
-			),
-			'google' => array(
-				'group' => 'social',
-				'title' => esc_html__('Google Plus', 'propertyshift'),
-				'name' => 'ps_agent_google',
-				'description' => esc_html__('Provide a url for the agents Google Plus profile.', 'propertyshift'),
-				'type' => 'text',
-				'order' => 8,
-			),
-			'linkedin' => array(
-				'group' => 'social',
-				'title' => esc_html__('Linkedin', 'propertyshift'),
-				'name' => 'ps_agent_linkedin',
-				'description' => esc_html__('Provide a url for the agents Linkedin profile.', 'propertyshift'),
-				'type' => 'text',
-				'order' => 9,
-			),
-			'youtube' => array(
-				'group' => 'social',
-				'title' => esc_html__('Youtube', 'propertyshift'),
-				'name' => 'ps_agent_youtube',
-				'description' => esc_html__('Provide a url for the agents Youtube profile.', 'propertyshift'),
-				'type' => 'text',
-				'order' => 10,
-			),
-			'instagram' => array(
-				'group' => 'social',
-				'title' => esc_html__('Instagram', 'propertyshift'),
-				'name' => 'ps_agent_instagram',
-				'description' => esc_html__('Provide a url for the agents Instagram profile.', 'propertyshift'),
-				'type' => 'text',
-				'order' => 11,
-			),
-			'contact_form_source' => array(
-				'group' => 'contact',
-				'title' => esc_html__('Agent Contact Form Source', 'propertyshift'),
-				'name' => 'ps_agent_form_source',
-				'type' => 'radio_image',
-				'value' => 'default',
-				'options' => array(
-					esc_html__('Default Theme Form', 'propertyshift') => array('value' => 'default'),
-					esc_html__('Contact Form 7', 'propertyshift') => array('value' => 'contact-form-7'),
-				),
-				'order' => 12,
-				'class' => 'full-width',
-				'children' => array(
-					'contact_form_7_id' => array(
-						'title' => esc_html__('Contact From 7 ID', 'propertyshift'),
-						'description' => esc_html__('Provide the ID of the contact form you would like displayed', 'propertyshift'),
-						'name' => 'ps_agent_form_id',
-						'type' => 'number',
-						'parent_val' => 'contact-form-7',
-					),
-				),
-			),
-		);
-		$agent_settings_init = apply_filters( 'propertyshift_agent_settings_init_filter', $agent_settings_init, $post_id);
-		uasort($agent_settings_init, 'ns_basics_sort_by_order');
+	public function load_agent_settings($user_id) {
 
-		// Return default settings
-		if($return_defaults == true) {
-			
-			return $agent_settings_init;
-		
-		// Return saved settings
-		} else {
-			$agent_settings = $this->admin_obj->get_meta_box_values($post_id, $agent_settings_init);
-			return $agent_settings;
+		$agent_settings = array();
+		$user_data = get_userdata($user_id);
+		        
+		$agent_settings['avatar'] = array('title' => 'Avatar ID', 'value' => get_user_meta($user_id, 'avatar', true)); 
+		if(!empty($agent_settings['avatar']['value'])) { 
+			$agent_listing_crop = $this->global_settings['ps_agent_listing_crop'];
+			if($agent_listing_crop == 'true') { $avatar_size = 'agent-thumbnail'; } else { $avatar_size = 'full';  }
+			$agent_settings['avatar_url'] = array('title' => 'Avatar URL', 'value' => wp_get_attachment_image_url($agent_settings['avatar']['value'], $avatar_size)); 
+			$agent_settings['avatar_url_thumb'] = array('title' => 'Avatar Thumbnail URL', 'value' => wp_get_attachment_image_url($agent_settings['avatar']['value'], 'thumbnail'));
 		}
+		        
+		$agent_settings['username'] = array('title' => 'Username', 'value' => $user_data->user_login);
+		$agent_settings['display_name'] = array('title' => 'Display Name', 'value' => $user_data->display_name);
+		$agent_settings['edit_profile_url'] = array('title' => 'Edit Profile URL', 'value' => get_edit_user_link($user_id));
+		$agent_settings['email'] = array('title' => 'Email', 'value' => $user_data->user_email);
+		$agent_settings['first_name'] = array('title' => 'First Name', 'value' => $user_data->first_name);
+		$agent_settings['last_name'] = array('title' => 'Last Name', 'value' => $user_data->last_name);
+		$agent_settings['website'] = array('title' => 'Website', 'value' => $user_data->user_url);
+		$agent_settings['show_in_listings'] = array('title' => 'Show In Listings', 'value' => get_user_meta($user_id, 'ps_agent_show_in_listings', true));
+		$agent_settings['job_title'] = array('title' => 'Job Title', 'value' => get_user_meta($user_id, 'ps_agent_job_title', true));
+		$agent_settings['mobile_phone'] = array('title' => 'Mobile Phone', 'value' => get_user_meta($user_id, 'ps_agent_mobile_phone', true));
+		$agent_settings['office_phone'] = array('title' => 'Office Phone', 'value' => get_user_meta($user_id, 'ps_agent_office_phone', true));
+		$agent_settings['description'] = array('title' => 'Description', 'value' => $user_data->description);
+		$agent_settings['facebook'] = array('title' => 'Facebook', 'value' => get_user_meta($user_id, 'ps_agent_facebook', true));
+		$agent_settings['twitter'] = array('title' => 'Twitter', 'value' => get_user_meta($user_id, 'ps_agent_twitter', true));
+		$agent_settings['google'] = array('title' => 'Google Plus', 'value' => get_user_meta($user_id, 'ps_agent_google', true));
+		$agent_settings['linkedin'] = array('title' => 'Linkedin', 'value' => get_user_meta($user_id, 'ps_agent_linkedin', true));
+		$agent_settings['youtube'] = array('title' => 'Youtube', 'value' => get_user_meta($user_id, 'ps_agent_youtube', true));
+		$agent_settings['instagram'] = array('title' => 'Instagram', 'value' => get_user_meta($user_id, 'ps_agent_instagram', true));
+		$agent_settings['contact_form_source'] = array('title' => 'Contact Form Source', 'value' => get_user_meta($user_id, 'ps_agent_contact', true));
+		$agent_settings['contact_form_7_id'] = array('title' => 'Contact Form 7 ID', 'value' => get_user_meta($user_id, 'ps_agent_contact_form_7', true));
+
+		$agent_settings = apply_filters( 'propertyshift_agent_settings_filter', $agent_settings, $user_id);
+
+		return $agent_settings;
 	}
 
-	/**
-	 *	Register meta box
-	 */
-	public function register_meta_box() {
-		add_meta_box( 'agent-details-meta-box', 'Agent Details', array($this, 'output_meta_box'), 'ps-agent', 'normal', 'high' );
-	}
+	/************************************************************************/
+	// Agent User Fields
+	/************************************************************************/
 
 	/**
-	 *	Output meta box interface
-	 */
-	public function output_meta_box($post) {
+     *  Create Agent User Fields
+     */
+    public function create_agent_user_fields($user) { 
+    	if($this->is_agent($user->ID)) { ?>
+    	<div class="form-section">
+	        <h3><?php _e("Agent Information", "propertyshift"); ?></h3>
 
-		$agent_settings = $this->load_agent_settings($post->ID); 
-		wp_nonce_field( 'ps_agent_details_meta_box_nonce', 'ps_agent_details_meta_box_nonce' ); ?>
+	        <?php
+	    	if(current_user_can('administrator')) { ?>
+	    		<table class="form-table">
+		        <tr>
+		            <th><label><?php esc_html_e('Agent Actions', 'propertyshift'); ?></label></th>
+		            <td>
+		            	<a href="<?php echo admin_url().'edit.php?post_type=ps-property&author='.$user->ID; ?>" class="button">
+		            		<?php esc_html_e('Manage Properties', 'propertyshift'); ?>
+							<?php 
+							$agent_properties = $this->get_agent_properties($user->ID, null, false, array('publish', 'pending'));
+							echo '('.$agent_properties['count'].')';
+							?>	
+		            	</a>
+		            	<a target="_blank" href="<?php echo get_author_posts_url($user->ID); ?>" class="button"><?php esc_html_e('View Profile', 'propertyshift'); ?>	</a>
+		            </td>
+		        </tr>
+		        </table>
+	    	
+		        <table class="form-table">
+		        <tr>
+		            <th><label><?php esc_html_e('Show in Agent Listings', 'propertyshift'); ?></label></th>
+		            <td>
+		            	<input type="radio" name="ps_agent_show_in_listings" checked <?php if (get_the_author_meta( 'ps_agent_show_in_listings', $user->ID) == 'true' ) { ?>checked="checked"<?php }?> value="true" />Yes<br/>
+		            	<input type="radio" name="ps_agent_show_in_listings" <?php if (get_the_author_meta( 'ps_agent_show_in_listings', $user->ID) == 'false' ) { ?>checked="checked"<?php }?> value="false" />No<br/>
+		            </td>
+		        </tr>
+		        </table>
 
-		<div class="ns-tabs meta-box-form meta-box-form-agent">
-			<ul class="ns-tabs-nav">
-	            <li><a href="#general"><i class="fa fa-user"></i> <span class="tab-text"><?php esc_html_e('General Info', 'propertyshift'); ?></span></a></li>
-	            <li><a href="#description"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php esc_html_e('Description', 'propertyshift'); ?></span></a></li>
-	            <li><a href="#social"><i class="fa fa-share-alt"></i> <span class="tab-text"><?php esc_html_e('Social', 'propertyshift'); ?></span></a></li>
-	            <li><a href="#contact"><i class="fa fa-envelope"></i> <span class="tab-text"><?php esc_html_e('Contact Form', 'propertyshift'); ?></span></a></li>
-	            <li><a href="#properties"><i class="fa fa-home"></i> <span class="tab-text"><?php esc_html_e('Properties', 'propertyshift'); ?></span></a></li>
-	            <?php do_action('propertyshift_after_agent_detail_tabs'); ?>
-	        </ul>
+	        <?php } ?>
 
-	        <div class="ns-tabs-content">
-        	<div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e('Loading...', 'propertyshift'); ?></div>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Job Title', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_job_title" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_job_title', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents job title. For example: Broker", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-        	<!--*************************************************-->
-	        <!-- GENERAL INFO -->
-	        <!--*************************************************-->
-	        <div id="general" class="tab-content">
-	            <h3><?php esc_html_e('General Info', 'propertyshift'); ?></h3>
-	            <?php
-	            foreach($agent_settings as $setting) {
-	            	if($setting['group'] == 'general') {
-            			$this->admin_obj->build_admin_field($setting);
-            		}
-	            } ?>
-	        </div>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Mobile Phone', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_mobile_phone" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_mobile_phone', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents mobile phone number.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-	        <!--*************************************************-->
-	        <!-- DESCRIPTION -->
-	        <!--*************************************************-->
-	        <div id="description" class="tab-content">
-	            <h3><?php echo esc_html_e('Description', 'propertyshift'); ?></h3>
-	            <?php
-	            foreach($agent_settings as $setting) {
-	            	if($setting['group'] == 'description') {
-            			$this->admin_obj->build_admin_field($setting);
-            		}
-	            } ?>
-	        </div>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Office Phone', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_office_phone" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_office_phone', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents office phone number.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-	        <!--*************************************************-->
-	        <!-- SOCIAL -->
-	        <!--*************************************************-->
-	        <div id="social" class="tab-content">
-	            <h3><?php esc_html_e('Social', 'propertyshift'); ?></h3>
-	            <?php
-	            foreach($agent_settings as $setting) {
-	            	if($setting['group'] == 'social') {
-            			$this->admin_obj->build_admin_field($setting);
-            		}
-	            } ?>
-	        </div>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Facebook', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_facebook" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_facebook', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents Facebook profile URL.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-	        <!--*************************************************-->
-	        <!-- CONTACT -->
-	        <!--*************************************************-->
-	        <div id="contact" class="tab-content">
-	            <h3><?php esc_html_e('Contact', 'propertyshift'); ?></h3>
-	            <?php
-	            foreach($agent_settings as $setting) {
-	            	if($setting['group'] == 'contact') {
-            			$this->admin_obj->build_admin_field($setting);
-            		}
-	            } ?>
-	        </div>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Twitter', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_twitter" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_twitter', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents Twitter profile URL.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-	        <!--*************************************************-->
-	        <!-- AGENT PROPERTIES -->
-	        <!--*************************************************-->
-	        <div id="properties" class="tab-content">
-	            <h3><?php esc_html_e('Agent Properties', 'propertyshift'); ?></h3>
-	            <?php
-	            $agent_properties = $this->get_agent_properties(get_the_id(), 20, true);
-            	$agent_properties_query = $agent_properties['properties']; ?>
-            	<p><?php echo $agent_properties['count']; ?> <?php esc_html_e('total properties found', 'propertyshift'); ?></p>
-	        	<table class="admin-table">
-	                <tr>
-	                    <th><?php esc_html_e('Property ID', 'propertyshift'); ?></th>
-	                    <th><?php esc_html_e('Title', 'propertyshift'); ?></th>
-	                    <th><?php esc_html_e('Status', 'propertyshift'); ?></th>
-	                    <th><?php esc_html_e('Date Published', 'propertyshift'); ?></th>
-	                    <th><?php esc_html_e('Actions', 'propertyshift'); ?></th>
-	                </tr>
-	                <?php if ($agent_properties_query->have_posts() ) : while ($agent_properties_query->have_posts() ) : $agent_properties_query->the_post();
-	                    echo '<tr>';
-	                    echo '<td>'.get_the_id().'</td>';
-	                    echo '<td>'.get_the_title().'</td>';
-	                    echo '<td>'.get_post_status().'</td>';
-	                    echo '<td>'.get_the_date().'</td>';
-	                    echo '<td><a href="'.get_the_permalink().'" target="_blank">View</a> | <a href="'.admin_url().'post.php?post='.get_the_id().'&action=edit">Edit</a></td>';
-	                    echo '</tr>';
-	                endwhile;
-	                    wp_reset_postdata();
-	                    $paged = isset($_GET['paged']) ? $_GET['paged'] : 1;
-	                    $pagination_args = array(
-	                        'base'         => '%_%#properties',
-	                        'format'       => '?paged=%#%',
-	                        'total'        => $agent_properties_query->max_num_pages,
-	                        'current'      => max( 1, $paged ),
-	                        'show_all'     => true,
-	                        'prev_next'    => True,
-	                        'prev_text'    => esc_html__('&raquo; Previous', 'propertyshift'),
-	                        'next_text'    => esc_html__('Next &raquo;', 'propertyshift'),
-	                    ); 
-	                    echo '<tr class="admin-table-pagination"><td colspan="5">'.paginate_links($pagination_args).'</td></tr>';
-	                else:
-	                    echo '<tr><td colspan="5">'.esc_html__('This agent has no assigned properties.', 'propertyshift').'</td></tr>';
-	                endif; ?>
-	            </table>
-	        </div>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Linkedin', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_linkedin" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_linkedin', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents Linkedin profile URL.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-	        <?php do_action('propertyshift_after_agent_details_tab_content', $agent_settings); ?>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Google Plus', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_google" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_google', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents Google Plus profile URL.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-        	</div><!-- end ns-tabs-content -->
-        	<div class="clear"></div>
-	    </div><!-- end ns-tabs -->
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Youtube', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_youtube" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_youtube', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents Youtube profile URL.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-	<?php }
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Instagram', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_instagram" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_instagram', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the agents Instagram profile URL.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
 
-	/**
-	 * Save Meta Box
-	 */
-	public function save_meta_box($post_id) {
-		// Bail if we're doing an auto save
-        if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+	        <?php if(is_admin()) { ?>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Agent Contact Form', 'propertyshift'); ?></label></th>
+	            <td>
+	            	<input type="radio" name="ps_agent_contact" checked <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'default' ) { ?>checked="checked"<?php }?> value="default" />Default Contact Form<br/>
+	            	<input type="radio" name="ps_agent_contact" <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'contact-form-7' ) { ?>checked="checked"<?php }?> value="contact-form-7" />Contact Form 7<br/>
+	            	<input type="radio" name="ps_agent_contact" <?php if (get_the_author_meta( 'ps_agent_contact', $user->ID) == 'none' ) { ?>checked="checked"<?php }?> value="none" />None
+	            </td>
+	        </tr>
+	        </table>
+	        <table class="form-table">
+	        <tr>
+	            <th><label><?php esc_html_e('Contact Form 7 ID', 'propertyshift'); ?></label></th>
+	            <td>
+	                <input type="text" name="ps_agent_contact_form_7" value="<?php echo esc_attr( get_the_author_meta( 'ps_agent_contact_form_7', $user->ID ) ); ?>" class="regular-text" /><br/>
+	                <span class="description"><?php esc_html_e("Provide the Contact Form 7 ID.", 'propertyshift'); ?></span>
+	            </td>
+	        </tr>
+	        </table>
+    		<?php } ?>
+    	</div>
+    	<?php }
+    }
 
-        // if our nonce isn't there, or we can't verify it, bail
-        if( !isset( $_POST['ps_agent_details_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['ps_agent_details_meta_box_nonce'], 'ps_agent_details_meta_box_nonce' ) ) return;
+    /**
+     *  Save Agent User Fields
+     */
+    public function save_agent_user_fields($user_id) {
+        if(!current_user_can( 'edit_user', $user_id )) { return false; }
+        if(isset($_POST['ps_agent_show_in_listings'])) {update_user_meta( $user_id, 'ps_agent_show_in_listings', $_POST['ps_agent_show_in_listings'] ); }
+        if(isset($_POST['ps_agent_job_title'])) {update_user_meta( $user_id, 'ps_agent_job_title', $_POST['ps_agent_job_title'] ); }
+        if(isset($_POST['ps_agent_mobile_phone'])) {update_user_meta( $user_id, 'ps_agent_mobile_phone', $_POST['ps_agent_mobile_phone'] ); }
+        if(isset($_POST['ps_agent_office_phone'])) {update_user_meta( $user_id, 'ps_agent_office_phone', $_POST['ps_agent_office_phone'] ); }
+        if(isset($_POST['ps_agent_facebook'])) {update_user_meta( $user_id, 'ps_agent_facebook', $_POST['ps_agent_facebook'] ); }
+        if(isset($_POST['ps_agent_twitter'])) {update_user_meta( $user_id, 'ps_agent_twitter', $_POST['ps_agent_twitter'] ); }
+        if(isset($_POST['ps_agent_linkedin'])) {update_user_meta( $user_id, 'ps_agent_linkedin', $_POST['ps_agent_linkedin'] ); }
+        if(isset($_POST['ps_agent_google'])) {update_user_meta( $user_id, 'ps_agent_google', $_POST['ps_agent_google'] ); }
+        if(isset($_POST['ps_agent_youtube'])) {update_user_meta( $user_id, 'ps_agent_youtube', $_POST['ps_agent_youtube'] ); }
+        if(isset($_POST['ps_agent_instagram'])) {update_user_meta( $user_id, 'ps_agent_instagram', $_POST['ps_agent_instagram'] ); }
+        if(isset($_POST['ps_agent_contact'])) {update_user_meta( $user_id, 'ps_agent_contact', $_POST['ps_agent_contact'] ); }
+    	if(isset($_POST['ps_agent_contact_form_7'])) {update_user_meta( $user_id, 'ps_agent_contact_form_7', $_POST['ps_agent_contact_form_7'] ); }
+    }
 
-        // if our current user can't edit this post, bail
-        if( !current_user_can( 'edit_post', $post_id ) ) return;
+    /**
+     *  On agent register
+     */
+    public function on_agent_register($user_id) {
+    	if($this->global_settings['ps_members_auto_agent_profile'] == 'true') {
+    		update_user_meta( $user_id, 'ps_agent_show_in_listings', 'true');
+    	} else {
+    		update_user_meta( $user_id, 'ps_agent_show_in_listings', 'false');
+    	}
+    }
 
-        // allow certain attributes
-        $allowed = array('a' => array('href' => array()));
-
-        // Load settings and save
-        $agent_settings = $this->load_agent_settings($post_id);
-        $this->admin_obj->save_meta_box($post_id, $agent_settings, $allowed);
-	}
 
 	/************************************************************************/
 	// Agent Utilities
 	/************************************************************************/
 
+    /**
+     *  Get agents
+     *
+     */
+    public function get_agents($empty_default = false) {
+    	$agents = array();
+    	if($empty_default == true) { $agents['Select an agent...'] = ''; }
+    	$user_agents = get_users(array('role__in' => array('ps_agent', 'administrator')));
+    	foreach($user_agents as $user) {
+			$agents[$user->display_name.' ('.$user->user_login.')'] = $user->ID;
+		}
+		return $agents;
+    }
+
+    /**
+     *  Check if user is an agent
+     *
+     */
+    public function is_agent($user_id) {
+    	$user_meta = get_userdata($user_id);
+    	$user_roles = $user_meta->roles; 
+    	if(!empty($user_roles) && (in_array("ps_agent", $user_roles) || in_array("administrator", $user_roles))) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+
 	/**
 	 *	Get agent properties
 	 *
-	 * @param int $agent_id
+	 * @param int $user_id
 	 * @param int $posts_per_page
 	 * @param boolean $pagination
 	 */
-	public function get_agent_properties($agent_id, $posts_per_page = null, $pagination = false) {
+	public function get_agent_properties($user_id, $posts_per_page = null, $pagination = false, $post_status = array('publish')) {
 		$agent_properties = array(); 
-
-	    $meta_query = array();
-	    $meta_query['relation'] = 'AND';
-	    $meta_query[] = array('key' => 'ps_agent_display', 'value' => 'agent');
-	    if(is_array($agent_id)) {
-	        $meta_query[] = array('key' => 'ps_agent_select', 'value' => $agent_id, 'compare' => 'IN');
-	    } else {
-	        $meta_query[] = array('key' => 'ps_agent_select', 'value' => $agent_id);
-	    }
 	    
 	    $args = array(
 	        'post_type' => 'ps-property',
-	        'meta_query' => $meta_query,
+	        'author' => $user_id,
 	    );
 
 	    if(!empty($posts_per_page)) { $args['posts_per_page'] = $posts_per_page; }
@@ -412,15 +425,28 @@ class PropertyShift_Agents {
 	        $args['paged'] = $paged; 
 	    }
 
+	    $args['post_status'] = $post_status;
+
 	    $agent_properties['args'] = $args;
 	    $agent_properties['properties'] = new WP_Query($args);
 	    $agent_properties['count'] =  $agent_properties['properties']->found_posts;
 	    return $agent_properties;
 	}
 
-	/************************************************************************/
-	// Agent Detail Methods
-	/************************************************************************/
+	/**
+	 *	Load agent contact form
+	 */
+	public function get_contact_form($agent_id) {
+		$agent_settings = $this->load_agent_settings($agent_id);
+		if($agent_settings['contact_form_source']['value'] == 'contact-form-7') {
+            $agent_form_id = $agent_settings['contact_form_7_id']['value'];
+            $agent_form_title = get_the_title($agent_form_id);
+            echo do_shortcode('[contact-form-7 id="'.esc_attr($agent_form_id).'" title="'.$agent_form_title.'"]');
+        } else if($agent_settings['contact_form_source']['value'] != 'none') {
+        	$template_args = array('id' => $agent_id);
+            propertyshift_template_loader('agent_contact_form.php', $template_args);
+        } 
+	}
 
 	/**
 	 *	Load agent detail items
@@ -462,18 +488,144 @@ class PropertyShift_Agents {
 	}
 
 	/************************************************************************/
-	// Agent Page Settings Methods
+	// Front-End Agent Profiles
 	/************************************************************************/
 
 	/**
-	 *	Add page settings meta box
-	 *
-	 * @param array $post_types
+	 *	Add query var
 	 */
-	public function add_page_settings_meta_box($post_types) {
-		$post_types[] = 'ps-agent';
-    	return $post_types;
+	public function agent_query_vars( $vars ) {
+	    $vars[] = $this->global_settings['ps_agent_detail_slug'];
+	    return $vars;
+	}
+	
+	/**
+	 *	Add rewrite rule
+	 */
+	public function agent_rewrite_rule() {
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+	    add_rewrite_tag( '%'.$agent_slug.'%', '([^&]+)' );
+	    add_rewrite_rule(
+	        '^'.$agent_slug.'/([^/]*)/?',
+	        'index.php?'.$agent_slug.'=$matches[1]',
+	        'top'
+	    );
+	}
+	
+	/**
+	 *	Redirect to agent profile template
+	 */
+	public function agent_profile_template_redirect($query_vars) {
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+		$agent_profile_page = $this->global_settings['ps_members_profile_page'];
+
+		//Redirect to agent page (fallback to author archive if agent page isn't set)
+		if(isset($query_vars[$agent_slug])) {
+
+			$agent = get_user_by('slug', $query_vars[$agent_slug]);
+
+			if(!empty($agent_profile_page) && $this->is_agent($agent->ID)) {
+				$query_vars['page_id'] = $agent_profile_page;
+			} else {
+				$query_vars['author'] = $agent->ID; 
+			}
+		}
+	    
+    	return $query_vars;
 	}
 
-}
-?>
+	/**
+	 *	Modify author link
+	 */
+	function change_author_link($link, $author_id) {
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+		if($this->is_agent($author_id)) {
+			$link = str_replace( 'author', $agent_slug, $link );
+		}
+	    return $link;
+	}
+
+	/**
+	 *	Modify agent page doc title
+	 */
+	public function change_agent_doc_title($title_parts_array) {
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+		if(get_query_var($agent_slug)) {
+			$user = get_user_by('slug', get_query_var($agent_slug));
+			$title_parts_array['title'] = $user->display_name;
+		}
+	    
+	    return $title_parts_array;
+	}
+
+	/**
+	 *	Modify agent title
+	 */
+	public function change_agent_title($title, $id) {
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+		$post = get_post( $id );
+		if ($post instanceof WP_Post && $post->post_type == 'page') {
+			if(get_query_var($agent_slug) && in_the_loop()) { 
+				$user = get_user_by('slug', get_query_var($agent_slug));
+				$title = $user->display_name; 
+			}
+		}
+	    return $title;
+	}
+
+	/************************************************************************/
+	// Front-end Template Hooks
+	/************************************************************************/
+
+	/**
+	 *	Add dashboard stats
+	 */
+	public function add_dashboard_stats() { 
+		
+		$current_user = wp_get_current_user();
+
+		//Get post likes
+		$post_likes_obj = new NS_Basics_Post_Likes();
+		$saved_posts = $post_likes_obj->show_user_likes_count($current_user); 
+
+		//Get properties
+		$pending_properties = $this->get_agent_properties($current_user->ID, null, false, array('pending'));
+		$published_properties = $this->get_agent_properties($current_user->ID, null, false, array('publish')); ?>
+		
+		<div class="user-dashboard-widget stat">
+			<span><?php echo $pending_properties['count']; ?></span>
+			<p><?php esc_html_e( 'Pending Properties', 'propertyshift' ) ?></p>
+		</div>
+		<div class="user-dashboard-widget stat">
+			<span><?php echo $published_properties['count']; ?></span>
+			<p><?php esc_html_e( 'Published Properties', 'propertyshift' ) ?></p>
+		</div>
+		<div class="user-dashboard-widget stat">
+			<span><?php echo $saved_posts; ?></span>
+			<p><?php esc_html_e( 'Saved Posts', 'propertyshift' ) ?></p>
+		</div>
+	<?php }
+
+	/**
+	 *	Add dashboard widgets
+	 */
+	public function add_dashboard_widgets() { 
+		$members_my_properties_page = $this->global_settings['ps_members_my_properties_page']; ?>
+		<div class="user-dashboard-widget">
+			<h4><?php esc_html_e( 'Your Recent Properties', 'propertyshift' ) ?></h4>
+			<?php echo do_shortcode('[ps_my_properties show_posts=3 show_pagination="false"]'); ?>
+			<?php if(!empty($members_my_properties_page)) { ?><a href="<?php echo $members_my_properties_page; ?>" class="button small">View All Properties</a><?php } ?>
+		</div>
+	<?php }
+
+	/**
+	 *	Add agent detail sidebar template
+	 */
+	public function add_agent_detail_sidebar_template() {
+		$agent_slug = $this->global_settings['ps_agent_detail_slug'];
+		if(get_query_var($agent_slug) && function_exists('propertyshift_template_loader')) {
+			propertyshift_template_loader('loop_agent_single.php', ['location' => 'sidebar']); 
+		}
+	}
+
+} ?>

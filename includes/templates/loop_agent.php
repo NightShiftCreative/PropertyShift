@@ -1,15 +1,17 @@
 <?php
     //global settings
-    $admin_obj = new PropertyShift_Admin();
     $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
-    $agent_listing_crop = $admin_obj->load_settings(false, 'ps_agent_listing_crop');
 
-	//Get agent details
+    //Get agent details
+    $agent_id = $template_args['id'];
+
     $agents_obj = new PropertyShift_Agents();
-    $agent_settings = $agents_obj->load_agent_settings($post->ID);
-    $agent_title = $agent_settings['job_title']['value'];
+    $agent_settings = $agents_obj->load_agent_settings($agent_id);
+    $agent_display_name = $agent_settings['display_name']['value'];
+    $agent_avatar_url = $agent_settings['avatar_url']['value'];
     $agent_email = $agent_settings['email']['value'];
+    $agent_title = $agent_settings['job_title']['value'];
     $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
     $agent_office_phone = $agent_settings['office_phone']['value'];
     $agent_fb = $agent_settings['facebook']['value'];
@@ -20,30 +22,30 @@
     $agent_instagram = $agent_settings['instagram']['value'];
 
     //Get agent property count
-    $agent_properties = $agents_obj->get_agent_properties(get_the_id());
+    $agent_properties = $agents_obj->get_agent_properties($agent_id);
     $agent_properties_count = $agent_properties['count'];
 ?>
 
-<div <?php post_class(); ?>>
+<div class="ps-agent ps-agent-<?php echo $agent_id; ?>">
 
 	<div class="agent-img">
-		<?php if ( has_post_thumbnail() ) {  ?>
-			<a href="<?php the_permalink(); ?>" class="agent-img-link">
-                <?php if($agent_listing_crop == 'true') { the_post_thumbnail('agent-thumbnail'); } else { the_post_thumbnail('full'); } ?>  
+		<?php if(!empty($agent_avatar_url)) {  ?>
+			<a href="<?php echo get_author_posts_url($agent_id); ?>" class="agent-img-link">
+                <img src="<?php echo $agent_avatar_url; ?>" alt="<?php echo $agent_display_name; ?>" />  
             </a>
 		<?php } else { ?>
-			<a href="<?php the_permalink(); ?>" class="agent-img-link"><img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" alt="" /></a>
+			<a href="<?php echo get_author_posts_url($agent_id); ?>" class="agent-img-link"><img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" alt="" /></a>
 		<?php } ?>
 	</div>
 	
 	<div class="agent-content">
 		  
         <?php if(isset($agent_properties_count) && $agent_properties_count > 0) { ?>
-            <a href="<?php the_permalink(); ?>" class="agent-property-count right"><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Property', 'propertyshift'); } else { esc_html_e('Properties', 'propertyshift'); } ?></a>
+            <a href="<?php echo get_author_posts_url($agent_id); ?>" class="agent-property-count right"><?php echo esc_attr($agent_properties_count); ?> <?php if($agent_properties_count <= 1) { esc_html_e('Property', 'propertyshift'); } else { esc_html_e('Properties', 'propertyshift'); } ?></a>
         <?php } ?>
 
         <div class="agent-title left">
-            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+            <h4><a href="<?php echo get_author_posts_url($agent_id); ?>"><?php echo $agent_display_name; ?></a></h4>
             <?php if(!empty($agent_title)) { ?><p title="<?php echo esc_attr($agent_title); ?>"><?php echo esc_attr($agent_title); ?></p><?php } ?>
         </div>
         <div class="clear"></div>
