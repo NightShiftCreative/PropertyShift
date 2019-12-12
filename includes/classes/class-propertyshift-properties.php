@@ -288,6 +288,7 @@ class PropertyShift_Properties {
 				'group' => 'owner_info',
 				'title' => esc_html__('Select an Agent', 'propertyshift'),
 				'name' => 'post_author_override', //overrides the author
+				'description' => '<a href="users.php?role=ps_agent">Manage Agents</a>',
 				'type' => 'select',
 				'options' => $agent_select_options,
 				'value' => $post->post_author,
