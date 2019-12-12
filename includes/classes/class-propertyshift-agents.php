@@ -40,6 +40,10 @@ class PropertyShift_Agents {
         add_action( 'ns_basics_edit_profile_save', array($this, 'save_agent_user_fields'));
         add_action( 'user_register', array($this, 'on_agent_register'));
 
+        //manage user columns
+		add_filter( 'manage_users_columns', array($this, 'new_modify_user_table'));
+		add_filter( 'manage_users_custom_column', array($this, 'new_modify_user_table_row'), 10, 3 );
+
         //front-end agent profiles
 		add_filter( 'query_vars', array($this, 'agent_query_vars'));
 		add_action('init', array($this, 'agent_rewrite_rule'));
@@ -371,6 +375,29 @@ class PropertyShift_Agents {
     	}
     }
 
+    /************************************************************************/
+	// Manage User Columns
+	/************************************************************************/
+    public function new_modify_user_table( $column ) {
+	    $column['properties'] = esc_html__('Properties', 'propertyshift');
+	    return $column;
+	}
+	
+	public function new_modify_user_table_row( $val, $column_name, $user_id ) {
+	    switch ($column_name) {
+	        case 'properties' :
+	        	$agent_properties = $this->get_agent_properties($user_id, null, false, array('publish', 'pending'));
+	        	if($agent_properties['count'] > 0) {
+	        		$return_link = '<a href="'.admin_url().'edit.php?post_type=ps-property&author='.$user_id.'">'.$agent_properties['count'].'</a>';
+	        	} else {
+	        		$return_link = '0';
+	        	}
+	        	
+	            return $return_link;
+	        default:
+	    }
+	    return $val;
+	}
 
 	/************************************************************************/
 	// Agent Utilities
