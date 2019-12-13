@@ -57,7 +57,7 @@ class propertyshift_list_properties_widget extends WP_Widget {
                                 <?php
                                 // Load admin object & settings
                                 $this->admin_obj = new PropertyShift_Admin();
-                                $property_listing_crop = $this->admin_obj->load_settings(false, 'ns_property_listing_crop');
+                                $property_listing_crop = $this->admin_obj->load_settings(false, 'ps_property_listing_crop');
 
                                 // Load property settings
                                 $properties_obj = new PropertyShift_Properties();
