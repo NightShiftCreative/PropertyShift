@@ -173,7 +173,7 @@ class propertyshift_list_properties_widget extends WP_Widget {
         </p>
 
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('filter')); ?>"><?php esc_html_e('Filter By:', 'propertyshift'); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('filter')); ?>"><?php esc_html_e('Sort By:', 'propertyshift'); ?></label>
             <select class="widefat" id="<?php echo esc_attr($this->get_field_id('filter')); ?>" name="<?php echo esc_attr($this->get_field_name('filter')); ?>">
                 <option value="recent" <?php if($filter == 'recent') { echo 'selected'; } ?>><?php esc_html_e('Most Recent', 'propertyshift'); ?></option>
                 <option value="featured" <?php if($filter == 'featured') { echo 'selected'; } ?>><?php esc_html_e('Featured', 'propertyshift'); ?></option>

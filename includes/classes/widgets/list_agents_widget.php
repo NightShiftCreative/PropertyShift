@@ -34,6 +34,7 @@ class propertyshift_list_agents_widget extends WP_Widget {
 
         $template_args = array(
             'custom_args' => array('number' => $num),
+            'custom_pagination' => 'false',
         );
         propertyshift_template_loader('loop_agents.php', $template_args, $wrapper = true);
 
@@ -71,7 +72,7 @@ class propertyshift_list_agents_widget extends WP_Widget {
         </p>
 
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('filter')); ?>"><?php esc_html_e('Filter By:', 'propertyshift'); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('filter')); ?>"><?php esc_html_e('Sort By:', 'propertyshift'); ?></label>
             <select class="widefat" id="<?php echo esc_attr($this->get_field_id('filter')); ?>" name="<?php echo esc_attr($this->get_field_name('filter')); ?>">
                 <option value="recent" <?php if($filter == 'recent') { echo 'selected'; } ?>><?php esc_html_e('Most Recent', 'propertyshift'); ?></option>
                 <option value="num_properties" <?php if($filter == 'num_properties') { echo 'selected'; } ?>><?php esc_html_e('Number of Assigned Properties', 'propertyshift'); ?></option>
