@@ -26,14 +26,15 @@ class propertyshift_list_agents_widget extends WP_Widget {
 
         $title = isset( $instance['title'] ) ? apply_filters( 'widget_title', $instance['title'] ) : '';
         $num = isset( $instance['num'] ) ? $instance['num'] : 3;
-        $filter = isset( $instance['filter'] ) ? $instance['filter'] : '';
+        $filter = isset( $instance['filter'] ) ? $instance['filter'] : 'user_registered';
+        $order = isset( $instance['order'] ) ? $instance['order'] : 'ASC';
 
         echo wp_kses_post($before_widget);
                   
         if($title) {echo wp_kses_post($before_title . $title . $after_title); } 
 
         $template_args = array(
-            'custom_args' => array('number' => $num),
+            'custom_args' => array('number' => $num, 'orderby' => $filter, 'order' => $order),
             'custom_pagination' => 'false',
         );
         propertyshift_template_loader('loop_agents.php', $template_args, $wrapper = true);
@@ -48,6 +49,7 @@ class propertyshift_list_agents_widget extends WP_Widget {
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['num'] = strip_tags($new_instance['num']);
         $instance['filter'] = strip_tags($new_instance['filter']);
+        $instance['order'] = strip_tags($new_instance['order']);
         return $instance;
     }
 
@@ -58,7 +60,7 @@ class propertyshift_list_agents_widget extends WP_Widget {
         $title = esc_attr($instance['title']);
         $num = esc_attr($instance['num']);
         if(isset($instance['filter'])) { $filter = esc_attr($instance['filter']); } else { $filter = null; }
-
+        if(isset($instance['order'])) { $order = esc_attr($instance['order']); } else { $order = null; }
         ?>
 
         <p>
@@ -74,8 +76,16 @@ class propertyshift_list_agents_widget extends WP_Widget {
         <p>
             <label for="<?php echo esc_attr($this->get_field_id('filter')); ?>"><?php esc_html_e('Sort By:', 'propertyshift'); ?></label>
             <select class="widefat" id="<?php echo esc_attr($this->get_field_id('filter')); ?>" name="<?php echo esc_attr($this->get_field_name('filter')); ?>">
-                <option value="recent" <?php if($filter == 'recent') { echo 'selected'; } ?>><?php esc_html_e('Most Recent', 'propertyshift'); ?></option>
-                <option value="num_properties" <?php if($filter == 'num_properties') { echo 'selected'; } ?>><?php esc_html_e('Number of Assigned Properties', 'propertyshift'); ?></option>
+                <option value="user_registered" <?php if($filter == 'user_registered') { echo 'selected'; } ?>><?php esc_html_e('Most Recent', 'propertyshift'); ?></option>
+                <option value="display_name" <?php if($filter == 'display_name') { echo 'selected'; } ?>><?php esc_html_e('Display Name', 'propertyshift'); ?></option>
+            </select>
+        </p>
+
+        <p>
+            <label for="<?php echo esc_attr($this->get_field_id('order')); ?>"><?php esc_html_e('Order:', 'propertyshift'); ?></label>
+            <select class="widefat" id="<?php echo esc_attr($this->get_field_id('order')); ?>" name="<?php echo esc_attr($this->get_field_name('order')); ?>">
+                <option value="ASC" <?php if($order == 'ASC') { echo 'selected'; } ?>><?php esc_html_e('Ascending', 'propertyshift'); ?></option>
+                <option value="DESC" <?php if($order == 'DESC') { echo 'selected'; } ?>><?php esc_html_e('Descending', 'propertyshift'); ?></option>
             </select>
         </p>
 
