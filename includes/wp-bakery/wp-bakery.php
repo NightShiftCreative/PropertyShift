@@ -48,6 +48,13 @@ function propertyshift_vc_map() {
 				'std' => 'false',
 			),
 			array(
+				'type' => 'dropdown',
+				'heading' => esc_html__( 'Columns', 'propertyshift' ),
+				'param_name' => 'cols',
+				'value' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5'),
+				'std' => '3',
+			),
+			array(
 				'type' => 'textfield',
 				'heading' => esc_html__( 'Property Status', 'propertyshift' ),
 				'param_name' => 'property_status',
