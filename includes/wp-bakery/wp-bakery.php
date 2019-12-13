@@ -38,7 +38,7 @@ function propertyshift_vc_map() {
 				'heading' => esc_html__( 'Show Pagination', 'propertyshift' ),
 				'param_name' => 'show_pagination',
 				'value' => array('Yes' => 'true', 'No' => 'false'),
-				'std' => 'false',
+				'std' => 'true',
 			),
 			array(
 				'type' => 'dropdown',

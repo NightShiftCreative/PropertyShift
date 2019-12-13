@@ -58,7 +58,7 @@ class PropertyShift_Shortcodes {
 	        array (
 	            'show_posts' => $num_properties_per_page,
 	            'show_header' => false,
-	            'show_pagination' => true,
+	            'show_pagination' => 'true',
 	            'layout' => 'grid',
 	            'cols' => null,
 	            'property_status' => '',
