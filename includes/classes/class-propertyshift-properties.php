@@ -37,6 +37,10 @@ class PropertyShift_Properties {
 		add_filter( 'ns_basics_page_settings_post_types', array( $this, 'add_page_settings_meta_box'), 10, 3 );
 		add_action( 'widgets_init', array( $this, 'properties_sidebar_init'));
 
+		//admin property filter
+		add_action('restrict_manage_posts', array($this, 'add_admin_properties_filter'));
+		add_filter( 'parse_query', array($this, 'admin_process_filter'));
+
 		//add property type tax fields
 		add_action('property_type_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
 		add_action('edited_property_type', array( $this, 'save_tax_fields'), 10, 2);
@@ -463,6 +467,47 @@ class PropertyShift_Properties {
         // Load property settings and save
         $property_settings = $this->load_property_settings($post_id);
         $this->admin_obj->save_meta_box($post_id, $property_settings, $allowed);
+	}
+
+	/************************************************************************/
+	// Admin Properties Filter
+	/************************************************************************/
+	public function add_admin_properties_filter($post_type) {
+		if($post_type == 'ps-property') { ?>
+			<select name="ps_beds">
+				<option value=""><?php _e( 'Beds', 'propertyshift' ) ?></option>
+				<?php for ($x = 1; $x <= 10; $x++) { echo '<option value="'.$x.'">'.$x.'</option>'; } ?>
+			</select>
+			<select name="ps_baths">
+				<option value=""><?php _e( 'Baths', 'propertyshift' ) ?></option>
+				<?php for ($x = 1; $x <= 10; $x++) { echo '<option value="'.$x.'">'.$x.'</option>'; } ?>
+			</select>
+			<select name="ps_agent">
+				<option value=""><?php _e( 'Assigned Agent', 'propertyshift' ) ?></option>
+				<?php
+				$agent_obj = new PropertyShift_Agents();
+				$agent_select_options = $agent_obj->get_agents();
+				foreach($agent_select_options as $key=>$value) { echo '<option value="'.$value.'">'.$key.'</option>'; } ?>
+			</select>
+		<?php }
+	}
+
+	public function admin_process_filter($query) {
+	    global $pagenow;
+	    if(is_admin() && $pagenow=='edit.php') {
+	    	if(isset($_GET['ps_beds']) && $_GET['ps_beds'] != '') {
+		        $query->query_vars['meta_key'] = 'ps_property_bedrooms';
+		        $query->query_vars['meta_value'] = $_GET['ps_beds'];
+		    }
+		    if(isset($_GET['ps_baths']) && $_GET['ps_baths'] != '') {
+		        $query->query_vars['meta_key'] = 'ps_property_bathrooms';
+		        $query->query_vars['meta_value'] = $_GET['ps_baths'];
+		    }
+		    if(isset($_GET['ps_agent']) && $_GET['ps_agent'] != '') {
+		        $query->query_vars['meta_key'] = 'post_author_override';
+		        $query->query_vars['meta_value'] = $_GET['ps_agent'];
+		    }
+	    }
 	}
 
 	/************************************************************************/
