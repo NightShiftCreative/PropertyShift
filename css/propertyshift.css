@@ -203,8 +203,13 @@
 .ps-col-5 { width:18.4%; margin-right:2%; margin-bottom:2%; }
 .ps-col-5:nth-child(5n) { margin-right:0px; }
 
+@media only screen and (max-width: 900px) {
+    .ps-listing-col { width:48.7%; margin-right:2.5% !important; }
+    .ps-listing-col:nth-child(2n) { margin-right:0px !important; }
+}
+
 @media only screen and (max-width: 767px) {
-    .ps-listing-col { width:100%; margin-right:0; }
+    .ps-listing-col { width:100%; margin-right:0 !important; }
 }
 
 
