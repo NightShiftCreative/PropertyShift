@@ -182,14 +182,6 @@ class PropertyShift {
 	            'calculate' => __( 'Calculate', 'propertyshift' ),
 	            'monthly_payment' => __( 'Your monthly payment:', 'propertyshift' ),
 	            'required_field' => __( 'This field is required', 'propertyshift' ),
-	            'floor_plan_title' => __( 'Title:', 'propertyshift' ),
-	            'floor_plan_size' => __( 'Size:', 'propertyshift' ),
-	            'floor_plan_rooms' => __( 'Bedrooms:', 'propertyshift' ),
-	            'floor_plan_bathrooms' => __( 'Bathrooms:', 'propertyshift' ),
-	            'floor_plan_img' => __( 'Image:', 'propertyshift' ),
-	            'floor_plan_description' => __( 'Description:', 'propertyshift' ),
-	            'new_floor_plan' => __( 'New Floor Plan', 'propertyshift' ),
-	            'floor_plan_note' => __( 'Provide the absolute url to a hosted image.', 'propertyshift' ),
 	        );
 	        wp_localize_script( 'propertyshift', 'propertyshift_local_script', $translation_array );
 	    

@@ -152,26 +152,6 @@ function propertyshift_vc_map() {
 			),
 	));
 
-	/** SUBMIT PROPERTY FORM **/
-	vc_map(array(
-		'name' => esc_html__( 'Submit Property Form', 'propertyshift' ),
-		'base' => 'ps_submit_property',
-		'description' => esc_html__( 'Allow users to submit a property', 'propertyshift' ),
-		'icon' => PROPERTYSHIFT_DIR.'/images/icon-real-estate.svg',
-		'class' => '',
-		'category' => 'PropertyShift',
-	));
-
-	/** MY PROPERTIES **/
-	vc_map(array(
-		'name' => esc_html__( 'My Properties', 'propertyshift' ),
-		'base' => 'ps_my_properties',
-		'description' => esc_html__( 'Display the current users properties', 'propertyshift' ),
-		'icon' => PROPERTYSHIFT_DIR.'/images/icon-real-estate.svg',
-		'class' => '',
-		'category' => 'PropertyShift',
-	));
-
 	/** PROPERTY FILTER **/
 	vc_map(array(
 		'name' => esc_html__( 'Property Filter', 'propertyshift' ),

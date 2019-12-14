@@ -18,8 +18,6 @@ class PropertyShift_Shortcodes {
 		add_shortcode('ps_list_properties', array( $this, 'add_shortcode_list_properties'));
 		add_shortcode('ps_properties_map', array( $this, 'add_shortcode_properties_map'));
 		add_shortcode('ps_list_property_tax', array( $this, 'add_shortcode_list_property_tax'));
-		add_shortcode('ps_submit_property', array( $this, 'add_shortcode_submit_property'));
-		add_shortcode('ps_my_properties', array( $this, 'add_shortcode_my_properties'));
 		add_shortcode('ps_property_filter', array( $this, 'add_shortcode_property_filter'));
 		add_shortcode('ps_list_agents', array( $this, 'add_shortcode_list_agents'));
 		add_shortcode('ps_agent_profile', array( $this, 'add_shortcode_agent_profile'));
@@ -31,7 +29,7 @@ class PropertyShift_Shortcodes {
 	 * Remove <p> and <br/> tags from shortcode content
 	 */
 	public function content_filter($content) {
-		$block = join("|",array('ps_list_properties', 'ps_list_property_tax', 'ps_submit_property', 'ps_my_properties', 'ps_property_filter', 'ps_list_agents'));
+		$block = join("|",array('ps_list_properties', 'ps_list_property_tax', 'ps_property_filter', 'ps_list_agents'));
     	$rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
     	$rep = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
 		return $rep;
@@ -185,47 +183,6 @@ class PropertyShift_Shortcodes {
 	        }
 	    }
 
-	    return $output;
-	}
-
-	/**
-	 * Submit Property Form
-	 *
-	 * @param array $atts
-	 * @param string $content
-	 */
-	public function add_shortcode_submit_property($atts, $content=null) {
-		ob_start();
-	    propertyshift_template_loader('submit_property.php');
-	    $output = ob_get_clean();
-	    return $output;
-	}
-
-	/**
-	 * My Properties
-	 *
-	 * @param array $atts
-	 * @param string $content
-	 */
-	public function add_shortcode_my_properties($atts, $content=null) {
-		$atts = shortcode_atts(
-	        array (
-	        'show_posts' => '',
-	        'show_pagination' => true,
-	    ), $atts);
-
-	    ob_start();
-
-	    //Set template args
-	    $args = array('posts_per_page' => $atts['show_posts']);
-	    $template_args = array();
-	    $template_args['custom_args'] = $args;
-	    $template_args['custom_pagination'] = $atts['show_pagination'];
-	        
-	    //Load template
-	    propertyshift_template_loader('my_properties.php', $template_args);
-
-	    $output = ob_get_clean();
 	    return $output;
 	}
 
