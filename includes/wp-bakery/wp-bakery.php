@@ -212,6 +212,13 @@ function propertyshift_vc_map() {
 				'value' => array('Yes' => 'true', 'No' => 'false'),
 				'std' => 'false',
 			),
+			array(
+				'type' => 'dropdown',
+				'heading' => esc_html__( 'Columns', 'propertyshift' ),
+				'param_name' => 'cols',
+				'value' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5'),
+				'std' => '3',
+			),
 		),
 	));
 
