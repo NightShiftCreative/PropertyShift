@@ -216,7 +216,6 @@ class PropertyShift {
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-properties.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-agents.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-filters.php');
-		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-maps.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-license-keys.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/class-propertyshift-shortcodes.php');
 		include( plugin_dir_path( __FILE__ ) . 'includes/classes/widgets/list_agents_widget.php');
@@ -242,10 +241,6 @@ class PropertyShift {
 		// Load filters class
 		$this->filters = new PropertyShift_Filters();
 		$this->filters->init();
-
-		// Load maps class
-		$this->maps = new PropertyShift_Maps();
-		$this->maps->init();
 
 		// Load license keys class
 		$this->license_keys = new PropertyShift_License_Keys();
