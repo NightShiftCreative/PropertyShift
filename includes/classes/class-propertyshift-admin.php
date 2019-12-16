@@ -125,7 +125,6 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	    $content_nav = array(
 	        array('name' => esc_html__('Properties', 'propertyshift'), 'link' => '#properties', 'icon' => 'fa-home', 'order' => 1),
 	        array('name' => esc_html__('Agents & Users', 'propertyshift'), 'link' => '#agents', 'icon' => 'fa-user-tie', 'order' => 2),
-	        array('name' => esc_html__('Maps', 'propertyshift'), 'link' => '#maps', 'icon' => 'fa-map', 'order' => 3),
 	        array('name' => esc_html__('Currency & Numbers', 'propertyshift'), 'link' => '#currency', 'icon' => 'fa-money-bill-alt', 'order' => 4),
 	    );
 	    $content_nav = apply_filters( 'propertyshift_setting_tabs_filter', $content_nav);
@@ -594,59 +593,6 @@ class PropertyShift_Admin extends NS_Basics_Admin {
         	<?php do_action( 'propertyshift_after_agent_settings'); ?>
 
 	    </div><!-- end agent settings -->
-
-	    <div id="maps" class="tab-content">
-	        <h2><?php echo esc_html_e('Map Settings', 'propertyshift'); ?></h2>
-
-	        <?php
-	        $google_maps_api_field = array(
-                'title' => esc_html__('Google Maps API Key', 'propertyshift'),
-                'name' => 'ps_google_maps_api',
-                'description' => wp_kses_post(__('Provide your unique Google maps API key. <a target="_blank" href="https://developers.google.com/maps/documentation/javascript/get-api-key">Click here</a> to get a key.', 'propertyshift')),
-                'value' => $settings['ps_google_maps_api'],
-                'type' => 'text',
-            );
-            $this->build_admin_field($google_maps_api_field);
-
-            $map_zoom_field = array(
-                'title' => esc_html__('Default Map Zoom', 'propertyshift'),
-                'name' => 'ps_default_map_zoom',
-                'description' => esc_html__('The map zoom ranges from 1 - 19. Zoom level 1 being the most zoomed out.', 'propertyshift'),
-                'value' => $settings['ps_default_map_zoom'],
-                'type' => 'number',
-                'min' => 1,
-                'max' => 19,
-            );
-            $this->build_admin_field($map_zoom_field);
-
-            $map_lat_field = array(
-                'title' => esc_html__('Default Map Latitude', 'propertyshift'),
-                'name' => 'ps_default_map_latitude',
-                'value' => $settings['ps_default_map_latitude'],
-                'type' => 'text',
-            );
-            $this->build_admin_field($map_lat_field);
-
-            $map_long_field = array(
-                'title' => esc_html__('Default Map Longitude', 'propertyshift'),
-                'name' => 'ps_default_map_longitude',
-                'value' => $settings['ps_default_map_longitude'],
-                'type' => 'text',
-            );
-            $this->build_admin_field($map_long_field);
-
-            $map_custom_pin_field = array(
-                'title' => esc_html__('Custom Pin Image', 'propertyshift'),
-                'name' => 'ps_google_maps_pin',
-                'value' => $settings['ps_google_maps_pin'],
-                'type' => 'image_upload',
-            );
-            $this->build_admin_field($map_custom_pin_field);
-	        ?>
-
-	        <?php do_action( 'propertyshift_after_map_settings'); ?>
-
-	    </div><!-- end map settings -->
 
 	    <div id="currency" class="tab-content">
 	        <h2><?php echo esc_html_e('Currency & Numbers', 'propertyshift'); ?></h2>
