@@ -336,7 +336,6 @@ class PropertyShift_Properties {
 	            <li><a href="#description" title="<?php esc_html_e('Description', 'propertyshift'); ?>"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php echo esc_html_e('Description', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#gallery" title="<?php esc_html_e('Gallery', 'propertyshift'); ?>"><i class="fa fa-image"></i> <span class="tab-text"><?php echo esc_html_e('Gallery', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#floor-plans" title="<?php esc_html_e('Floor Plans', 'propertyshift'); ?>"><i class="fa fa-th-large"></i> <span class="tab-text"><?php echo esc_html_e('Floor Plans', 'propertyshift'); ?></span></a></li>
-	            <li><a href="#map" title="<?php esc_html_e('Map', 'propertyshift'); ?>" onclick="refreshMap()"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Map', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#video" title="<?php esc_html_e('Video', 'propertyshift'); ?>"><i class="fa fa-video"></i> <span class="tab-text"><?php echo esc_html_e('Video', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#agent" title="<?php esc_html_e('Contacts', 'propertyshift'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Contacts', 'propertyshift'); ?></span></a></li>
 	            <?php do_action('propertyshift_after_property_tabs'); ?>
@@ -396,23 +395,7 @@ class PropertyShift_Properties {
             		}
 	            } ?>
 	        </div>
-
-	        <!--*************************************************-->
-	        <!-- MAP -->
-	        <!--*************************************************-->
-	        <div id="map" class="tab-content">
-	            <h3><?php echo esc_html_e('Map', 'propertyshift'); ?></h3>
-	            <?php
-	            foreach($property_settings as $setting) {
-	            	if($setting['group'] == 'map') {
-            			$this->admin_obj->build_admin_field($setting);
-            		}
-	            }
-	            $maps_obj = new PropertyShift_Maps();
-	            $maps_obj->build_single_property_map($property_settings['latitude']['value'], $property_settings['longitude']['value']);
-	            ?>
-	        </div>
-
+	        
 	        <!--*************************************************-->
 	        <!-- VIDEO -->
 	        <!--*************************************************-->
