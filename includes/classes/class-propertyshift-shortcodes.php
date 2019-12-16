@@ -16,7 +16,6 @@ class PropertyShift_Shortcodes {
 		add_action( 'media_buttons', array( $this, 'add_shortcode_wizard'));
 		add_filter("the_content", array( $this, 'content_filter'));
 		add_shortcode('ps_list_properties', array( $this, 'add_shortcode_list_properties'));
-		add_shortcode('ps_properties_map', array( $this, 'add_shortcode_properties_map'));
 		add_shortcode('ps_list_property_tax', array( $this, 'add_shortcode_list_property_tax'));
 		add_shortcode('ps_property_filter', array( $this, 'add_shortcode_property_filter'));
 		add_shortcode('ps_list_agents', array( $this, 'add_shortcode_list_agents'));
@@ -99,17 +98,6 @@ class PropertyShift_Shortcodes {
 	    $output = ob_get_clean();
 
 	    return $output;
-	}
-
-	/**
-	 * Properties Map
-	 *
-	 * @param array $atts
-	 * @param string $content
-	 */
-	public function add_shortcode_properties_map($atts, $content=null) {
-		$maps_obj = new PropertyShift_Maps();
-		$maps_obj->build_properties_map();
 	}
 
 	/**
