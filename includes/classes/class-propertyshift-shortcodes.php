@@ -28,7 +28,7 @@ class PropertyShift_Shortcodes {
 	 * Remove <p> and <br/> tags from shortcode content
 	 */
 	public function content_filter($content) {
-		$block = join("|",array('ps_list_properties', 'ps_list_property_tax', 'ps_property_filter', 'ps_list_agents'));
+		$block = join("|",array('ps_list_properties', 'ps_list_property_tax', 'ps_property_filter', 'ps_list_agents', 'ps_agent_profile'));
     	$rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
     	$rep = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
 		return $rep;
