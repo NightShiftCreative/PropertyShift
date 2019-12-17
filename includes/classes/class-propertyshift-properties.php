@@ -1166,27 +1166,20 @@ class PropertyShift_Properties {
 	            'sidebar' => 'false',
 	        ),
 	        7 => array(
-	            'name' => esc_html__('Location', 'propertyshift'),
-	            'label' => esc_html__('Location', 'propertyshift'),
-	            'slug' => 'location',
-	            'active' => 'true',
-	            'sidebar' => 'false',
-	        ),
-	        8 => array(
 	            'name' => esc_html__('Walk Score', 'propertyshift'),
 	            'label' => esc_html__('Walk Score', 'propertyshift'),
 	            'slug' => 'walk_score',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        9 => array(
+	        8 => array(
 	            'name' => esc_html__('Agent Info', 'propertyshift'),
 	            'label' => 'Agent Information',
 	            'slug' => 'agent_info',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        10 => array(
+	        9 => array(
 	            'name' => esc_html__('Related Properties', 'propertyshift'),
 	            'label' => 'Related Properties',
 	            'slug' => 'related',
