@@ -138,12 +138,6 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        $alerts[] = $incompatible_theme_alert; 
 	    }
 
-	    $google_maps_api = esc_attr(get_option('ps_google_maps_api'));
-	    if(empty($google_maps_api)) {
-	        $google_api_key_alert = $this->admin_alert('warning', esc_html__('Please provide a Google Maps API Key within the Maps tab.', 'propertyshift'), $action = null, $action_text = null, true);
-	        $alerts[] = $google_api_key_alert; 
-	    }
-
 	    $properties_page = esc_attr(get_option('ps_properties_page'));
 	    if(empty($properties_page)) {
 	        $properties_page_alert = $this->admin_alert('warning', esc_html__('You have not set your properties listing page. Go to Properties > Property Listing Options, to set this field.', 'propertyshift'), $action = null, $action_text = null, true);
