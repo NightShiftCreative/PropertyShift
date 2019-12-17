@@ -372,9 +372,6 @@
 .user-dashboard-table-img { width:20%; }
 .user-dashboard-table-actions a { display:block; }
 
-#map-canvas-one-pin, #map-canvas { height:250px; width:100%; }
-#pac-input { width:65%; top:10px !important; font-size:14px; }
-
 /*********************************************/
 /** AGENTS **/
 /*********************************************/

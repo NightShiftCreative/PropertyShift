@@ -127,11 +127,8 @@ class PropertyShift {
 	public function admin_scripts() {
 		if (is_admin()) {
 
-			$google_maps_api = esc_attr(get_option('ps_google_maps_api'));
-
 			wp_enqueue_script('propertyshift-admin-js', plugins_url('/js/propertyshift-admin.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'media-upload', 'thickbox'), '', true);
 			wp_enqueue_style('propertyshift-admin-css', plugins_url('/css/propertyshift-admin.css',  __FILE__), array(), '1.0', 'all');
-			wp_enqueue_script( 'propertyshift-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
 
 			/* localize scripts */
 	        $translation_array = array(
@@ -157,15 +154,12 @@ class PropertyShift {
 	 */
 	public function frontend_scripts() {
 		if (!is_admin()) {
-	        
-	        $google_maps_api = esc_attr(get_option('ps_google_maps_api'));
 	    	
 	    	wp_enqueue_script('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.js', __FILE__), array('jquery'), '', true);
 	        wp_enqueue_style('nouislider', plugins_url('/assets/noUiSlider/nouislider.min.css',  __FILE__), array(), '1.0', 'all');
 	        wp_enqueue_script('wnumb', plugins_url('/assets/noUiSlider/wNumb.js', __FILE__), array('jquery'), '', true);
 	        wp_enqueue_style('propertyshift', plugins_url('/css/propertyshift.css',  __FILE__), array(), '1.0', 'all');
 	    	wp_enqueue_script('propertyshift', plugins_url('/js/propertyshift.js', __FILE__), array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), '', true);
-	    	wp_enqueue_script( 'propertyshift-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$google_maps_api.'&libraries=places', '', '', false );
 
 	    	/* localize scripts */
 	        $translation_array = array(
