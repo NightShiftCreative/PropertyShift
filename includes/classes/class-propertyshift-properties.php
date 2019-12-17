@@ -162,14 +162,6 @@ class PropertyShift_Properties {
 				'value' => 'false',
 				'order' => 1,
 			),
-			'street_address' => array(
-				'group' => 'general',
-				'title' => esc_html__('Street Address', 'propertyshift'),
-				'name' => 'ps_property_address',
-				'description' => esc_html__('Provide the address for the property', 'propertyshift'),
-				'type' => 'text',
-				'order' => 2,
-			),
 			'price' => array(
 				'group' => 'general',
 				'title' => esc_html__('Price', 'propertyshift'),
@@ -177,7 +169,7 @@ class PropertyShift_Properties {
 				'description' => esc_html__('Use only numbers. Do not include commas or dollar sign (ex.- 250000)', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
-				'order' => 3,
+				'order' => 2,
 			),
 			'price_postfix' => array(
 				'group' => 'general',
@@ -185,7 +177,7 @@ class PropertyShift_Properties {
 				'name' => 'ps_property_price_postfix',
 				'description' => esc_html__('Provide the text displayed after the price (ex.- Per Month)', 'propertyshift'),
 				'type' => 'text',
-				'order' => 4,
+				'order' => 3,
 			),
 			'beds' => array(
 				'group' => 'general',
@@ -194,7 +186,7 @@ class PropertyShift_Properties {
 				'description' => esc_html__('Provide the number of bedrooms', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
-				'order' => 5,
+				'order' => 4,
 			),
 			'baths' => array(
 				'group' => 'general',
@@ -204,7 +196,7 @@ class PropertyShift_Properties {
 				'type' => 'number',
 				'min' => 0,
 				'step' => 0.5,
-				'order' => 6,
+				'order' => 5,
 			),
 			'garages' => array(
 				'group' => 'general',
@@ -213,7 +205,7 @@ class PropertyShift_Properties {
 				'description' => esc_html__('Provide the number of garages', 'propertyshift'),
 				'type' => 'number',
 				'min' => 0,
-				'order' => 7,
+				'order' => 6,
 			),
 			'area' => array(
 				'group' => 'general',
@@ -223,7 +215,7 @@ class PropertyShift_Properties {
 				'type' => 'number',
 				'min' => 0,
 				'step' => 0.01,
-				'order' => 8,
+				'order' => 7,
 			),
 			'area_postfix' => array(
 				'group' => 'general',
@@ -232,13 +224,35 @@ class PropertyShift_Properties {
 				'description' => esc_html__('Provide the text to display directly after the area (ex. - Sq Ft)', 'propertyshift'),
 				'type' => 'text',
 				'value' => 'Sq Ft',
+				'order' => 8,
+			),
+			'street_address' => array(
+				'group' => 'location',
+				'title' => esc_html__('Street Address', 'propertyshift'),
+				'name' => 'ps_property_address',
+				'description' => esc_html__('Provide the address for the property', 'propertyshift'),
+				'type' => 'text',
 				'order' => 9,
+			),
+			'latitude' => array(
+				'group' => 'location',
+				'title' => esc_html__('Latitude', 'propertyshift'),
+				'name' => 'ps_property_latitude',
+				'type' => 'text',
+				'order' => 10,
+			),
+			'longitude' => array(
+				'group' => 'location',
+				'title' => esc_html__('Longitude', 'propertyshift'),
+				'name' => 'ps_property_longitude',
+				'type' => 'text',
+				'order' => 11,	
 			),
 			'description' => array(
 				'group' => 'description',
 				'name' => 'ps_property_description',
 				'type' => 'editor',
-				'order' => 10,
+				'order' => 12,
 				'class' => 'full-width no-padding',
 				'esc' => false,
 			),
@@ -247,7 +261,7 @@ class PropertyShift_Properties {
 				'name' => 'ps_additional_img',
 				'type' => 'gallery',
 				'serialized' => true,
-				'order' => 11,
+				'order' => 13,
 				'class' => 'full-width no-padding',
 			),
 			'floor_plans' => array(
@@ -255,22 +269,8 @@ class PropertyShift_Properties {
 				'name' => 'ps_property_floor_plans',
 				'type' => 'floor_plans',
 				'serialized' => true,
-				'order' => 12,
+				'order' => 14,
 				'class' => 'full-width no-padding',
-			),
-			'latitude' => array(
-				'group' => 'map',
-				'title' => esc_html__('Latitude', 'propertyshift'),
-				'name' => 'ps_property_latitude',
-				'type' => 'text',
-				'order' => 13,
-			),
-			'longitude' => array(
-				'group' => 'map',
-				'title' => esc_html__('Longitude', 'propertyshift'),
-				'name' => 'ps_property_longitude',
-				'type' => 'text',
-				'order' => 14,	
 			),
 			'video_url' => array(
 				'group' => 'video',
@@ -333,6 +333,7 @@ class PropertyShift_Properties {
 		<div class="ns-tabs meta-box-form meta-box-form-property-details">
 			<ul class="ns-tabs-nav">
 	            <li><a href="#general" title="<?php esc_html_e('General Info', 'propertyshift'); ?>"><i class="fa fa-home"></i> <span class="tab-text"><?php echo esc_html_e('General Info', 'propertyshift'); ?></span></a></li>
+	            <li><a href="#location" title="<?php esc_html_e('Location', 'propertyshift'); ?>"><i class="fa fa-map"></i> <span class="tab-text"><?php echo esc_html_e('Location', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#description" title="<?php esc_html_e('Description', 'propertyshift'); ?>"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php echo esc_html_e('Description', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#gallery" title="<?php esc_html_e('Gallery', 'propertyshift'); ?>"><i class="fa fa-image"></i> <span class="tab-text"><?php echo esc_html_e('Gallery', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#floor-plans" title="<?php esc_html_e('Floor Plans', 'propertyshift'); ?>"><i class="fa fa-th-large"></i> <span class="tab-text"><?php echo esc_html_e('Floor Plans', 'propertyshift'); ?></span></a></li>
@@ -352,6 +353,19 @@ class PropertyShift_Properties {
 	            <?php
 	            foreach($property_settings as $setting) {
 	            	if($setting['group'] == 'general') {
+            			$this->admin_obj->build_admin_field($setting);
+            		}
+	            } ?>
+	        </div>
+
+	        <!--*************************************************-->
+	        <!-- LOCATION -->
+	        <!--*************************************************-->
+	        <div id="location" class="tab-content">
+	            <h3><?php echo esc_html_e('Location', 'propertyshift'); ?></h3>
+	            <?php
+	            foreach($property_settings as $setting) {
+	            	if($setting['group'] == 'location') {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } ?>
