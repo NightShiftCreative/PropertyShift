@@ -253,25 +253,6 @@
 
                         </div>
                     <?php } ?>
-						
-					<?php if($slug == 'location' && !empty($latitude) && !empty($longitude)) { ?>
-                    <!--******************************************************-->
-                    <!-- LOCATION -->
-                    <!--******************************************************-->
-						<div class="property-single-item ps-single-item widget property-<?php echo esc_attr($slug); ?>">
-							<?php if(!empty($label)) { ?>
-                                <div class="module-header module-header-left">
-                                    <h4><?php echo esc_attr($label); ?></h4>
-                                    <div class="widget-divider"><div class="bar"></div></div>
-                                </div>
-                            <?php }
-
-                            $maps_obj = new PropertyShift_Maps();
-                            $maps_obj->build_single_property_map($latitude, $longitude, true);
-                            ?>
-							
-						</div>
-					<?php } ?>
 					
 					<?php if($slug == 'walk_score' && (!empty($latitude) && !empty($longitude))) { ?>
                     <!--******************************************************-->
