@@ -139,6 +139,11 @@ class PropertyShift_Properties {
 
 		global $post;
 
+		//populate countries
+		$countries = array("Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
+		$countries_select_options = array();
+		foreach($countries as $country) { $countries_select_options[$country] = $country; }
+
 		//populate agent select
 		$agent_obj = new PropertyShift_Agents();
 		$agent_select_options = $agent_obj->get_agents();
@@ -230,7 +235,8 @@ class PropertyShift_Properties {
 				'group' => 'location',
 				'title' => esc_html__('Street Address', 'propertyshift'),
 				'name' => 'ps_property_address',
-				'description' => esc_html__('Provide the address for the property', 'propertyshift'),
+				'placeholder' => 'Ex. 123 Smith Drive',
+				'description' => __('Provide <strong>only</strong> the street address. Use the categories to the right to select city & state', 'propertyshift'),
 				'type' => 'text',
 				'order' => 9,
 			),
@@ -242,6 +248,15 @@ class PropertyShift_Properties {
 				'type' => 'text',
 				'order' => 10,
 			),
+			'country' => array(
+				'group' => 'location',
+				'title' => esc_html__('Country', 'propertyshift'),
+				'name' => 'ps_property_country',
+				'description' => esc_html__('Provide the country for the property', 'propertyshift'),
+				'type' => 'select',
+				'options' => $countries_select_options,
+				'order' => 11,
+			),
 			'latitude' => array(
 				'group' => 'location',
 				'title' => esc_html__('Latitude', 'propertyshift'),
@@ -251,7 +266,7 @@ class PropertyShift_Properties {
 				    esc_url( NS_SHOP_URL.'plugins/propertyshift/advanced-maps/' ) 
 				),
 				'type' => 'text',
-				'order' => 10,
+				'order' => 12,
 			),
 			'longitude' => array(
 				'group' => 'location',
@@ -262,13 +277,13 @@ class PropertyShift_Properties {
 				    esc_url( NS_SHOP_URL.'plugins/propertyshift/advanced-maps/' ) 
 				),
 				'type' => 'text',
-				'order' => 11,	
+				'order' => 13,	
 			),
 			'description' => array(
 				'group' => 'description',
 				'name' => 'ps_property_description',
 				'type' => 'editor',
-				'order' => 12,
+				'order' => 14,
 				'class' => 'full-width no-padding',
 				'esc' => false,
 			),
@@ -277,7 +292,7 @@ class PropertyShift_Properties {
 				'name' => 'ps_additional_img',
 				'type' => 'gallery',
 				'serialized' => true,
-				'order' => 13,
+				'order' => 15,
 				'class' => 'full-width no-padding',
 			),
 			'floor_plans' => array(
@@ -285,7 +300,7 @@ class PropertyShift_Properties {
 				'name' => 'ps_property_floor_plans',
 				'type' => 'floor_plans',
 				'serialized' => true,
-				'order' => 14,
+				'order' => 16,
 				'class' => 'full-width no-padding',
 			),
 			'video_url' => array(
@@ -293,7 +308,7 @@ class PropertyShift_Properties {
 				'title' => esc_html__('Video URL', 'propertyshift'),
 				'name' => 'ps_property_video_url',
 				'type' => 'text',
-				'order' => 15,
+				'order' => 17,
 			),
 			'video_cover' => array(
 				'group' => 'video',
@@ -301,7 +316,7 @@ class PropertyShift_Properties {
 				'name' => 'ps_property_video_img',
 				'type' => 'image_upload',
 				'display_img' => true,
-				'order' => 16,
+				'order' => 18,
 			),
 			'agent' => array(
 				'group' => 'owner_info',
@@ -311,7 +326,7 @@ class PropertyShift_Properties {
 				'type' => 'select',
 				'options' => $agent_select_options,
 				'value' => $post->post_author,
-				'order' => 17,
+				'order' => 19,
 			),
 			'agent_display' => array(
 				'group' => 'owner_info',
@@ -320,7 +335,7 @@ class PropertyShift_Properties {
 				'name' => 'ps_property_agent_display',
 				'type' => 'checkbox',
 				'value' => true,
-				'order' => 18,
+				'order' => 20,
 			),
 		);
 		$property_settings_init = apply_filters('propertyshift_property_settings_init_filter', $property_settings_init, $post_id);
@@ -1141,55 +1156,62 @@ class PropertyShift_Properties {
 	            'sidebar' => 'false',
 	        ),
 	        2 => array(
+	            'name' => esc_html__('Address', 'propertyshift'),
+	            'label' => esc_html__('Address', 'propertyshift'),
+	            'slug' => 'address',
+	            'active' => 'true',
+	            'sidebar' => 'false',
+	        ),
+	        3 => array(
 	            'name' => esc_html__('Gallery', 'propertyshift'),
 	            'label' => esc_html__('Gallery', 'propertyshift'),
 	            'slug' => 'gallery',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        3 => array(
+	        4 => array(
 	            'name' => esc_html__('Property Details', 'propertyshift'),
 	            'label' => esc_html__('Property Details', 'propertyshift'),
 	            'slug' => 'property_details',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        4 => array(
+	        5 => array(
 	            'name' => esc_html__('Video', 'propertyshift'),
 	            'label' => esc_html__('Video', 'propertyshift'),
 	            'slug' => 'video',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        5 => array(
+	        6 => array(
 	            'name' => esc_html__('Amenities', 'propertyshift'),
 	            'label' => esc_html__('Amenities', 'propertyshift'),
 	            'slug' => 'amenities',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        6 => array(
+	        7 => array(
 	            'name' => esc_html__('Floor Plans', 'propertyshift'),
 	            'label' => esc_html__('Floor Plans', 'propertyshift'),
 	            'slug' => 'floor_plans',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        7 => array(
+	        8 => array(
 	            'name' => esc_html__('Walk Score', 'propertyshift'),
 	            'label' => esc_html__('Walk Score', 'propertyshift'),
 	            'slug' => 'walk_score',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        8 => array(
+	        9 => array(
 	            'name' => esc_html__('Agent Info', 'propertyshift'),
 	            'label' => 'Agent Information',
 	            'slug' => 'agent_info',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        9 => array(
+	        10 => array(
 	            'name' => esc_html__('Related Properties', 'propertyshift'),
 	            'label' => 'Related Properties',
 	            'slug' => 'related',
