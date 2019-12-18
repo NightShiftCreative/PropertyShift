@@ -10,10 +10,8 @@
     $global_settings = $admin_obj->load_settings(false, null);
     $properties_page = $global_settings['ps_properties_page'];
     $property_listing_display_time = $global_settings['ps_property_listing_display_time'];
-    $google_maps_pin = $global_settings['ps_google_maps_pin'];
     $property_detail_items = $global_settings['ps_property_detail_items'];
     $property_detail_amenities_hide_empty = $global_settings['ps_property_detail_amenities_hide_empty'];
-    $property_detail_map_zoom = $global_settings['ps_property_detail_map_zoom'];
     $property_detail_id = $global_settings['ps_property_detail_id'];
     $property_detail_agent_contact_form = $global_settings['ps_property_detail_agent_contact_form'];
 
