@@ -181,10 +181,6 @@ class PropertyShift {
 	    
 	        /* dynamic scripts */
         	include( plugin_dir_path( __FILE__ ) . '/js/dynamic_scripts.php');
-
-	        //dynamic styles
-        	wp_enqueue_style('propertyshift-dynamic-styles', plugins_url('/css/dynamic-styles.css', __FILE__));
-        	include( plugin_dir_path( __FILE__ ) . '/css/dynamic_styles.php');
 	    }
 	}
 
