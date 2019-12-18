@@ -234,6 +234,14 @@ class PropertyShift_Properties {
 				'type' => 'text',
 				'order' => 9,
 			),
+			'postal_code' => array(
+				'group' => 'location',
+				'title' => esc_html__('Postal Code', 'propertyshift'),
+				'name' => 'ps_property_postal_code',
+				'description' => esc_html__('Provide the postal code for the property', 'propertyshift'),
+				'type' => 'text',
+				'order' => 10,
+			),
 			'latitude' => array(
 				'group' => 'location',
 				'title' => esc_html__('Latitude', 'propertyshift'),
