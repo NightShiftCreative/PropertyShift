@@ -1066,12 +1066,6 @@ class PropertyShift_Properties {
 	 * @param array $page_settings_init
 	 */
 	public function add_page_settings($page_settings_init) {
-		
-		// Add map banner options
-		$page_settings_init['banner_source']['options'][esc_html__('Map Banner', 'propertyshift')] = array(
-			'value' => 'properties_map', 
-			'icon' => NS_BASICS_PLUGIN_DIR.'/images/google-maps-icon.png', 
-		);
 
 		// Add filter banner options
 		$page_settings_init['property_filter_override'] = array(
