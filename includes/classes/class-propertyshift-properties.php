@@ -62,6 +62,12 @@ class PropertyShift_Properties {
 		add_action('property_city_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
 		add_action('created_property_city', array( $this, 'save_tax_fields'), 10, 2);
 
+		//add property state tax fields
+		add_action('property_state_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
+		add_action('edited_property_state', array( $this, 'save_tax_fields'), 10, 2);
+		add_action('property_state_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
+		add_action('created_property_state', array( $this, 'save_tax_fields'), 10, 2);
+
 		//front-end template hooks
 		add_action('propertyshift_property_actions', array($this, 'add_property_share'));
 		add_action('propertyshift_property_actions', array($this, 'add_property_favoriting'));
@@ -740,9 +746,11 @@ class PropertyShift_Properties {
 	        case 'location' :
 
 	          	$property_city = $this->get_tax($post_id, 'property_city');
+	          	$property_state = $this->get_tax($post_id, 'property_state');
 	          	$address = $property_settings['street_address']['value'];
 	          	if(!empty($address)) { echo $address.'<br/>'; }
-	            if(empty($property_city)) { echo '--'; } else { echo $property_city; }
+	            if(!empty($property_city)) { echo '<div>'.__( 'City', 'propertyshift' ).': '.$property_city.'</div>'; }
+	            if(!empty($property_state)) { echo '<div>'.__( 'State', 'propertyshift' ).': '.$property_state.'</div>'; }
 	            break;
 
 	        case 'type' :
