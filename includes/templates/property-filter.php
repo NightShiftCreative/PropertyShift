@@ -171,6 +171,19 @@ if (!empty($filter_fields)) { ?>
 		                            </select>
 		                        <?php } ?>
 
+		                        <?php if($slug == 'property_state') { ?>
+		                            <select name="propertyState" class="form-dropdown property-state-dropdown">
+		                                <option value=""><?php echo $placeholder; ?></option>
+		                                <?php
+		                                	$property_states = get_terms('property_state');
+		                                    if ( !empty( $property_states ) && !is_wp_error( $property_states ) ) { ?>
+		                                        <?php foreach ( $property_states as $property_state_select ) { ?>
+		                                            <option value="<?php echo esc_attr($property_state_select->slug); ?>" <?php if($currentFilters['propertyState'] == $property_state_select->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_state_select->name); ?></option>
+		                                        <?php } ?>
+		                                <?php } ?>
+		                            </select>
+		                        <?php } ?>
+
 		                        <?php if($slug == 'price') { ?>
 		                        	<?php
 		                                if(!empty($currentFilters['priceMin'])) {
@@ -314,6 +327,19 @@ if (!empty($filter_fields)) { ?>
 	                                    <?php } ?>
 	                                </select>
 	                            <?php } ?>
+
+	                            <?php if($slug == 'property_state') { ?>
+		                            <select name="propertyState" class="form-dropdown property-state-dropdown">
+		                                <option value=""><?php echo $placeholder; ?></option>
+		                                <?php
+		                                	$property_states = get_terms('property_state');
+		                                    if ( !empty( $property_states ) && !is_wp_error( $property_states ) ) { ?>
+		                                        <?php foreach ( $property_states as $property_state_select ) { ?>
+		                                            <option value="<?php echo esc_attr($property_state_select->slug); ?>" <?php if($currentFilters['propertyState'] == $property_state_select->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_state_select->name); ?></option>
+		                                        <?php } ?>
+		                                <?php } ?>
+		                            </select>
+		                        <?php } ?>
 
 	                            <?php if($slug == 'price') { ?>
 	                            	<?php

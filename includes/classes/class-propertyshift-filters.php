@@ -241,26 +241,33 @@ class PropertyShift_Filters {
 	            'active' => 'true',
 	        ),
 	        3 => array(
+	            'name' => esc_html__('Property State', 'propertyshift'),
+	            'label' => esc_html__('Property State', 'propertyshift'),
+	            'placeholder' => esc_html__('Any', 'propertyshift'),
+	            'slug' => 'property_state',
+	            'active' => 'true',
+	        ),
+	        4 => array(
 	            'name' => esc_html__('Price Range', 'propertyshift'),
 	            'label' => esc_html__('Price Range', 'propertyshift'),
 	            'slug' => 'price',
 	            'active' => 'true',
 	        ),
-	        4 => array(
+	        5 => array(
 	            'name' => esc_html__('Bedrooms', 'propertyshift'),
 	            'label' => esc_html__('Bedrooms', 'propertyshift'),
 	            'placeholder' => esc_html__('Any', 'propertyshift'),
 	            'slug' => 'beds',
 	            'active' => 'true',
 	        ),
-	        5 => array(
+	        6 => array(
 	            'name' => esc_html__('Bathrooms', 'propertyshift'),
 	            'label' => esc_html__('Bathrooms', 'propertyshift'),
 	            'placeholder' => esc_html__('Any', 'propertyshift'),
 	            'slug' => 'baths',
 	            'active' => 'true',
 	        ),
-	        6 => array(
+	        7 => array(
 	            'name' => esc_html__('Area', 'propertyshift'),
 	            'label' => esc_html__('Area', 'propertyshift'),
 	            'placeholder' => esc_html__('Min', 'propertyshift'),
