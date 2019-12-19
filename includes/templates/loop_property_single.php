@@ -28,10 +28,8 @@
     $property_settings = $property_obj->load_property_settings($post->ID);
     $code = $property_settings['id']['value'];
     $featured = $property_settings['featured']['value'];
-    $street_address = $property_settings['street_address']['value'];
-    $address = $property_obj->get_full_address($post->ID);
-    $postal_code = $property_settings['postal_code']['value'];
-    $country = $property_settings['country']['value'];
+    $address = $property_obj->get_full_address($post->ID, array('Postal Code', 'Country'));
+    $address_array = $property_obj->get_full_address($post->ID, array(), 'array');
     $price = $property_settings['price']['value'];
     $price_postfix = $property_settings['price_postfix']['value'];
     $area = $property_settings['area']['value'];
@@ -51,6 +49,7 @@
     $property_type = $property_obj->get_tax($postID, 'property_type');
     $property_status = $property_obj->get_tax($postID, 'property_status');
     $property_city = $property_obj->get_tax($postID, 'property_city');
+    $property_state = $property_obj->get_tax($postID, 'property_state');
     $property_amenities = $property_obj->get_tax_amenities($postID, $property_detail_amenities_hide_empty, null);
 
     //Get agent details
@@ -154,10 +153,11 @@
                                 </div>
                             <?php } ?>
                             <div class="property-details-full">
-                                <?php if(!empty($street_address)) { ?><div class="property-detail-item"><?php esc_html_e('Address', 'propertyshift'); ?>:<span><?php echo esc_attr($street_address); ?></span></div><?php } ?>
-                                <?php if(!empty($postal_code)) { ?><div class="property-detail-item"><?php esc_html_e('Postal Code', 'propertyshift'); ?>:<span><?php echo esc_attr($postal_code); ?></span></div><?php } ?>
-                                <?php if(!empty($country)) { ?><div class="property-detail-item"><?php esc_html_e('Country', 'propertyshift'); ?>:<span><?php echo esc_attr($country); ?></span></div><?php } ?>
-                                <?php do_action('propertyshift_property_address_widget', $postID); ?>
+                                <?php
+                                foreach($address_array as $key=>$value) { ?>
+                                    <div class="property-detail-item"><?php echo $key.': '; ?><span><?php echo $value; ?></span></div>
+                                <?php }
+                                do_action('propertyshift_property_address_widget', $postID); ?>
                                 <div class="clear"></div>
                             </div>
                         </div>

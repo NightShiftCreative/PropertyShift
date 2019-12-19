@@ -961,12 +961,16 @@ class PropertyShift_Properties {
 	 * @param int $post_id
 	 *
 	 */
-	public function get_full_address($post_id, $return = 'string') {
+	public function get_full_address($post_id, $exclude = array(), $return = 'string') {
 	    $property_settings = $this->load_property_settings($post_id);
 	   	$property_address = array();
-	    $property_address['street_address'] = $property_settings['street_address']['value'];
-	    $property_address['city'] = $this->get_tax($post_id, 'property_city');
-	    $property_address['state'] = $this->get_tax($post_id, 'property_state');
+	    if(!in_array('Address', $exclude)) { $property_address['Address'] = $property_settings['street_address']['value']; }
+	    if(!in_array('City', $exclude)) { $property_address['City'] = $this->get_tax($post_id, 'property_city'); }
+	    if(!in_array('State', $exclude)) { $property_address['State'] = $this->get_tax($post_id, 'property_state'); }
+	    if(!in_array('Country', $exclude)) { $property_address['Country'] = $property_settings['country']['value']; }
+	    if(!in_array('Postal Code', $exclude)) { $property_address['Postal Code'] = $property_settings['postal_code']['value']; }
+	    
+	    $property_address = apply_filters('propertyshift_full_address', $property_address);
 	    $property_address = array_filter($property_address);
 
 	    if($return == 'string') {
