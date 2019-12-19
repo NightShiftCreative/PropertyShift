@@ -961,15 +961,20 @@ class PropertyShift_Properties {
 	 * @param int $post_id
 	 *
 	 */
-	public function get_full_address($post_id) {
+	public function get_full_address($post_id, $return = 'string') {
 	    $property_settings = $this->load_property_settings($post_id);
-	    $street_address = $property_settings['street_address']['value'];
-	    $property_address = '';
-	    $property_city = $this->get_tax($post_id, 'property_city');
-	    if(!empty($street_address)) { $property_address .= $street_address; }
-	    if(!empty($street_address) && !empty($property_city)) { $property_address .= ', '; }
-	    if(!empty($property_city)) { $property_address .= $property_city; }
-	    return $property_address;
+	   	$property_address = array();
+	    $property_address['street_address'] = $property_settings['street_address']['value'];
+	    $property_address['city'] = $this->get_tax($post_id, 'property_city');
+	    $property_address['state'] = $this->get_tax($post_id, 'property_state');
+	    $property_address = array_filter($property_address);
+
+	    if($return == 'string') {
+	    	$property_address = implode(', ',$property_address);
+	    	return $property_address;
+	    } else {
+	    	return $property_address;
+	    }
 	}
 
 	/**
