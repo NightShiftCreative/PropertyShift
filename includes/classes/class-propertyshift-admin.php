@@ -62,7 +62,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 			'ps_property_detail_slug' => array('value' => 'properties', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
 			'ps_property_type_tax_slug' => array('value' => 'property-type', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
 			'ps_property_status_tax_slug' => array('value' => 'property-status', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
-			'ps_property_city_tax_slug' => array('value' => 'property-city', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
+			'ps_property_city_tax_slug' => array('value' => 'city', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
 			'ps_property_amenities_tax_slug' => array('value' => 'property-amenity', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
 			'ps_property_filter_display' => array('value' => 'false'),
 			'ps_property_filter_id' => array('value' => ''),
@@ -207,7 +207,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
                 	$property_city_tax_slug_field = array(
                 		'title' => esc_html__('Property City Taxonomy Slug', 'propertyshift'),
                 		'name' => 'ps_property_city_tax_slug',
-                		'description' => esc_html__('Default: property-city', 'propertyshift'),
+                		'description' => esc_html__('Default: city', 'propertyshift'),
                 		'value' => $settings['ps_property_city_tax_slug'],
                 		'type' => 'text',
                 	);
