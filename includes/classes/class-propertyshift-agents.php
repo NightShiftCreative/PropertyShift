@@ -98,6 +98,7 @@ class PropertyShift_Agents {
 	    $role->add_cap( 'assign_property_type');
 	    $role->add_cap( 'assign_property_status');
 	    $role->add_cap( 'assign_property_city');
+	    $role->add_cap( 'assign_property_state');
 	    $role->add_cap( 'assign_property_amenities');
 
 	    // Allow agents to manage property types
@@ -122,6 +123,14 @@ class PropertyShift_Agents {
 	    	$role->add_cap( 'manage_property_city');
 	    	$role->add_cap( 'edit_property_city');
 	    	$role->add_cap( 'delete_property_city');
+	    }
+
+	    // Allow agents to manage property states
+	    $agent_add_state = $this->global_settings['ps_members_add_state'];
+	    if($agent_add_state == 'true') {
+	    	$role->add_cap( 'manage_property_state');
+	    	$role->add_cap( 'edit_property_state');
+	    	$role->add_cap( 'delete_property_state');
 	    }
 
 	    // Allow agents to manage property amenities

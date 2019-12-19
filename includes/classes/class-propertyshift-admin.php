@@ -94,6 +94,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 			'ps_members_add_types' => array('value' => 'true'),
 			'ps_members_add_status' => array('value' => 'true'),
 			'ps_members_add_city' => array('value' => 'true'),
+			'ps_members_add_state' => array('value' => 'true'),
 			'ps_members_add_amenities' => array('value' => 'true'),
 			'ps_currency_symbol' => array('value' => '$'),
 			'ps_currency_symbol_position' => array('value' => 'before'),
@@ -563,6 +564,14 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 		                'type' => 'switch',
 		            );
 		            $this->build_admin_field($submit_add_cities);
+
+		            $submit_add_states = array(
+		                'title' => esc_html__('Agents can manage property states', 'propertyshift'),
+		                'name' => 'ps_members_add_state',
+		                'value' => $settings['ps_members_add_state'],
+		                'type' => 'switch',
+		            );
+		            $this->build_admin_field($submit_add_states);
 
 		            $submit_add_amenities = array(
 		                'title' => esc_html__('Agent can manage property amenities', 'propertyshift'),
