@@ -29,6 +29,7 @@ class PropertyShift_Properties {
 		add_action( 'init', array( $this, 'property_type_init' ));
 		add_action( 'init', array( $this, 'property_status_init' ));
 		add_action( 'init', array( $this, 'property_city_init' ));
+		add_action( 'init', array( $this, 'property_state_init' ));
 		add_action( 'init', array( $this, 'property_amenities_init' ));
 		add_filter( 'manage_edit-ps-property_columns', array( $this, 'add_properties_columns' ));
 		add_action( 'manage_ps-property_posts_custom_column', array( $this, 'manage_properties_columns' ), 10, 2 );
@@ -542,26 +543,34 @@ class PropertyShift_Properties {
 	// Property Taxonomies
 	/************************************************************************/
 
+	public function create_tax_labels($tax = '', $tax_plural = '') {
+		$labels = array();
+		if(!empty($tax) && !empty($tax_plural)) {
+			$labels = array(
+		    'name'                          => $tax,
+		    'singular_name'                 => $tax,
+		    'search_items'                  => __( 'Search', 'propertyshift' ).' '.$tax_plural,
+		    'popular_items'                 => __( 'Popular', 'propertyshift' ).' '.$tax_plural,
+		    'all_items'                     => __( 'All', 'propertyshift' ).' '.$tax_plural,
+		    'parent_item'                   => __( 'Parent', 'propertyshift' ).' '.$tax,
+		    'edit_item'                     => __( 'Edit', 'propertyshift' ).' '.$tax,
+		    'update_item'                   => __( 'Update', 'propertyshift' ).' '.$tax,
+		    'add_new_item'                  => __( 'Add New', 'propertyshift' ).' '.$tax,
+		    'new_item_name'                 => __( 'New', 'propertyshift' ).' '.$tax,
+		    'separate_items_with_commas'    => sprintf(__( 'Separate %s with commas', 'propertyshift' ), $tax_plural),
+		    'add_or_remove_items'           => __( 'Add or remove', 'propertyshift' ).' '.$tax_plural,
+		    'choose_from_most_used'         => __( 'Choose from most used', 'propertyshift' ).' '.$tax_plural,
+		    );
+		}
+		return $labels;
+	}
+
 	/**
 	 *	Register property type taxonomy
 	 */
 	public function property_type_init() {
 		$property_type_tax_slug = $this->global_settings['ps_property_type_tax_slug'];
-	    $labels = array(
-	    'name'                          => __( 'Property Type', 'propertyshift' ),
-	    'singular_name'                 => __( 'Property Type', 'propertyshift' ),
-	    'search_items'                  => __( 'Search Property Types', 'propertyshift' ),
-	    'popular_items'                 => __( 'Popular Property Types', 'propertyshift' ),
-	    'all_items'                     => __( 'All Property Types', 'propertyshift' ),
-	    'parent_item'                   => __( 'Parent Property Type', 'propertyshift' ),
-	    'edit_item'                     => __( 'Edit Property Type', 'propertyshift' ),
-	    'update_item'                   => __( 'Update Property Type', 'propertyshift' ),
-	    'add_new_item'                  => __( 'Add New Property Type', 'propertyshift' ),
-	    'new_item_name'                 => __( 'New Property Type', 'propertyshift' ),
-	    'separate_items_with_commas'    => __( 'Separate property types with commas', 'propertyshift' ),
-	    'add_or_remove_items'           => __( 'Add or remove property types', 'propertyshift' ),
-	    'choose_from_most_used'         => __( 'Choose from most used property types', 'propertyshift' )
-	    );
+	    $labels = $this->create_tax_labels(__( 'Property Type', 'propertyshift' ), __( 'Property Types', 'propertyshift' ));
 	    
 	    register_taxonomy(
 	        'property_type',
@@ -586,21 +595,7 @@ class PropertyShift_Properties {
 	 */
 	public function property_status_init() {
 		$property_status_tax_slug = $this->global_settings['ps_property_status_tax_slug'];
-	    $labels = array(
-	    'name'                          => __( 'Property Status', 'propertyshift' ),
-	    'singular_name'                 => __( 'Property Status', 'propertyshift' ),
-	    'search_items'                  => __( 'Search Property Statuses', 'propertyshift' ),
-	    'popular_items'                 => __( 'Popular Property Statuses', 'propertyshift' ),
-	    'all_items'                     => __( 'All Property Statuses', 'propertyshift' ),
-	    'parent_item'                   => __( 'Parent Property Status', 'propertyshift' ),
-	    'edit_item'                     => __( 'Edit Property Status', 'propertyshift' ),
-	    'update_item'                   => __( 'Update Property Status', 'propertyshift' ),
-	    'add_new_item'                  => __( 'Add New Property Status', 'propertyshift' ),
-	    'new_item_name'                 => __( 'New Property Status', 'propertyshift' ),
-	    'separate_items_with_commas'    => __( 'Separate property statuses with commas', 'propertyshift' ),
-	    'add_or_remove_items'           => __( 'Add or remove property statuses', 'propertyshift' ),
-	    'choose_from_most_used'         => __( 'Choose from most used property statuses', 'propertyshift' )
-	    );
+	    $labels = $this->create_tax_labels(__( 'Property Status', 'propertyshift' ), __( 'Property Statuses', 'propertyshift' ));
 	    
 	    register_taxonomy(
 	        'property_status',
@@ -625,21 +620,7 @@ class PropertyShift_Properties {
 	 */
 	public function property_city_init() {
 		$property_city_tax_slug = $this->global_settings['ps_property_city_tax_slug'];
-	    $labels = array(
-	    'name'                          => __( 'City', 'propertyshift' ),
-	    'singular_name'                 => __( 'City', 'propertyshift' ),
-	    'search_items'                  => __( 'Search Cities', 'propertyshift' ),
-	    'popular_items'                 => __( 'Popular Cities', 'propertyshift' ),
-	    'all_items'                     => __( 'All Cities', 'propertyshift' ),
-	    'parent_item'                   => __( 'Parent City', 'propertyshift' ),
-	    'edit_item'                     => __( 'Edit City', 'propertyshift' ),
-	    'update_item'                   => __( 'Update City', 'propertyshift' ),
-	    'add_new_item'                  => __( 'Add New City', 'propertyshift' ),
-	    'new_item_name'                 => __( 'New City', 'propertyshift' ),
-	    'separate_items_with_commas'    => __( 'Separate cities with commas', 'propertyshift' ),
-	    'add_or_remove_items'           => __( 'Add or remove cities', 'propertyshift' ),
-	    'choose_from_most_used'         => __( 'Choose from most used cities', 'propertyshift' )
-	    );
+	    $labels = $this->create_tax_labels(__( 'City', 'propertyshift' ), __( 'Cities', 'propertyshift' ));
 	    
 	    register_taxonomy(
 	        'property_city',
@@ -660,25 +641,36 @@ class PropertyShift_Properties {
 	}
 
 	/**
+	 *	Register property state taxonomy
+	 */
+	public function property_state_init() {
+		$property_state_tax_slug = $this->global_settings['ps_property_state_tax_slug'];
+	    $labels = $this->create_tax_labels(__( 'State', 'propertyshift' ), __( 'States', 'propertyshift' ));
+	    
+	    register_taxonomy(
+	        'property_state',
+	        'ps-property',
+	        array(
+	            'label'         => __( 'State', 'propertyshift' ),
+	            'labels'        => $labels,
+	            'hierarchical'  => true,
+	            'rewrite' => array( 'slug' => $property_state_tax_slug ),
+	            'capabilities' => array(
+	            	'manage_terms' => 'manage_property_state',
+    				'edit_terms' => 'edit_property_state',
+    				'delete_terms' => 'delete_property_state',
+	            	'assign_terms' => 'assign_property_state',
+	            ),
+	        )
+	    );
+	}
+
+	/**
 	 *	Register property amenities taxonomy
 	 */
 	public function property_amenities_init() {
 		$property_amenities_tax_slug = $this->global_settings['ps_property_amenities_tax_slug'];
-	    $labels = array(
-	    'name'                          => __( 'Amenities', 'propertyshift' ),
-	    'singular_name'                 => __( 'Amenity', 'propertyshift' ),
-	    'search_items'                  => __( 'Search Amenities', 'propertyshift' ),
-	    'popular_items'                 => __( 'Popular Amenities', 'propertyshift' ),
-	    'all_items'                     => __( 'All Amenities', 'propertyshift' ),
-	    'parent_item'                   => __( 'Parent Amenity', 'propertyshift' ),
-	    'edit_item'                     => __( 'Edit Amenity', 'propertyshift' ),
-	    'update_item'                   => __( 'Update Amenity', 'propertyshift' ),
-	    'add_new_item'                  => __( 'Add New Amenity', 'propertyshift' ),
-	    'new_item_name'                 => __( 'New Amenity', 'propertyshift' ),
-	    'separate_items_with_commas'    => __( 'Separate amenities with commas', 'propertyshift' ),
-	    'add_or_remove_items'           => __( 'Add or remove amenities', 'propertyshift' ),
-	    'choose_from_most_used'         => __( 'Choose from most used amenities', 'propertyshift' )
-	    );
+	    $labels = $this->create_tax_labels(__( 'Amenity', 'propertyshift' ), __( 'Amenities', 'propertyshift' ));
 	    
 	    register_taxonomy(
 	        'property_amenities',
