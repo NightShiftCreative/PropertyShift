@@ -50,6 +50,7 @@ class PropertyShift_Shortcodes {
 	            'cols' => null,
 	            'property_status' => '',
 	            'property_city' => '',
+	            'property_state' => '',
 	            'property_type' => '',
 	            'featured' => 'false'
 	    ), $atts);
@@ -66,6 +67,7 @@ class PropertyShift_Shortcodes {
 	        'posts_per_page' => $atts['show_posts'],
 	        'property_status' => $atts['property_status'],
 	        'property_city' => $atts['property_city'],
+	        'property_state' => $atts['property_state'],
 	        'property_type' => $atts['property_type'],
 	        'meta_query' => $meta_query_featured,
 	    );

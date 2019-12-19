@@ -89,6 +89,7 @@
 
     //SET TAXONOMIES
     if(empty($property_city)) { if(!empty($_GET['propertyCity'])) { $property_city = $_GET['propertyCity']; } else { $property_city = ''; } }
+    if(empty($property_state)) { if(!empty($_GET['propertyState'])) { $property_state = $_GET['propertyState']; } else { $property_state = ''; } }
     if(empty($property_status)) { if(!empty($_GET['propertyStatus'])) { $property_status = $_GET['propertyStatus']; } else { $property_status = ''; } }
     if(empty($property_type)) { if(!empty($_GET['propertyType'])) { $property_type = $_GET['propertyType']; } else { $property_type = ''; } }
 
@@ -159,6 +160,7 @@
         'post_type' => 'ps-property',
         'posts_per_page' => $num_properties_per_page,
         'property_city' => $property_city,
+        'property_state' => $property_state,
         'property_status' => $property_status,
         'property_type' => $property_type,
         'order' => $order,
