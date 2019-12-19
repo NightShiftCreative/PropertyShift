@@ -234,10 +234,10 @@ class PropertyShift_Filters {
 	            'active' => 'true',
 	        ),
 	        2 => array(
-	            'name' => esc_html__('Property Location', 'propertyshift'),
-	            'label' => esc_html__('Property Location', 'propertyshift'),
+	            'name' => esc_html__('Property City', 'propertyshift'),
+	            'label' => esc_html__('Property City', 'propertyshift'),
 	            'placeholder' => esc_html__('Any', 'propertyshift'),
-	            'slug' => 'property_location',
+	            'slug' => 'property_city',
 	            'active' => 'true',
 	        ),
 	        3 => array(

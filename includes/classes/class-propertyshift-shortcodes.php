@@ -59,7 +59,7 @@ class PropertyShift_Shortcodes {
 	            'layout' => 'grid',
 	            'cols' => null,
 	            'property_status' => '',
-	            'property_location' => '',
+	            'property_city' => '',
 	            'property_type' => '',
 	            'featured' => 'false'
 	    ), $atts);
@@ -75,7 +75,7 @@ class PropertyShift_Shortcodes {
 	    $args = array(
 	        'posts_per_page' => $atts['show_posts'],
 	        'property_status' => $atts['property_status'],
-	        'property_location' => $atts['property_location'],
+	        'property_city' => $atts['property_city'],
 	        'property_type' => $atts['property_type'],
 	        'meta_query' => $meta_query_featured,
 	    );

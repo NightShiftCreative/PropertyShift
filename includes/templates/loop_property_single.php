@@ -50,7 +50,7 @@
 
     $property_type = $property_obj->get_tax($postID, 'property_type');
     $property_status = $property_obj->get_tax($postID, 'property_status');
-    $property_location = $property_obj->get_tax($postID, 'property_location');
+    $property_city = $property_obj->get_tax($postID, 'property_city');
     $property_amenities = $property_obj->get_tax_amenities($postID, $property_detail_amenities_hide_empty, null);
 
     //Get agent details
@@ -395,9 +395,9 @@
                                             'terms' => $property_type
                                         ),
                                         array(
-                                            'taxonomy' => 'property_location',
+                                            'taxonomy' => 'property_city',
                                             'field' => 'slug',
-                                            'terms' => $property_location
+                                            'terms' => $property_city
                                         ),
                                     ),
                                     'orderby' => 'rand',

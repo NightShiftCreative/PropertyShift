@@ -146,21 +146,21 @@
                             </select>
                         <?php } ?>
 
-                        <?php if($slug == 'property_location') { ?>
-                            <select name="propertyLocation" class="filter-input">
+                        <?php if($slug == 'property_city') { ?>
+                            <select name="propertyCity" class="filter-input">
                                 <option value=""><?php echo $placeholder; ?></option>
                                 <?php
-                                $property_locations = get_terms('property_location', array( 'hide_empty' => false, 'parent' => 0 )); 
-                                if ( !empty( $property_locations ) && !is_wp_error( $property_locations ) ) { ?>
-                                    <?php foreach ( $property_locations as $property_location ) { ?>
-                                        <option value="<?php echo esc_attr($property_location->slug); ?>" <?php if($currentFilters['propertyLocation'] == $property_location->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_location->name); ?></option>
+                                $property_cities = get_terms('property_city', array( 'hide_empty' => false, 'parent' => 0 )); 
+                                if ( !empty( $property_cities ) && !is_wp_error( $property_cities ) ) { ?>
+                                    <?php foreach ( $property_cities as $property_city ) { ?>
+                                        <option value="<?php echo esc_attr($property_city->slug); ?>" <?php if($currentFilters['propertyCity'] == $property_city->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_city->name); ?></option>
                                         <?php 
-                                            $term_children = get_term_children($property_location->term_id, 'property_location'); 
+                                            $term_children = get_term_children($property_city->term_id, 'property_city'); 
                                             if(!empty($term_children)) {
-                                                echo '<optgroup label="'.$property_location->name.'">';
+                                                echo '<optgroup label="'.$property_city->name.'">';
                                                 foreach ( $term_children as $child ) {
-                                                    $term = get_term_by( 'id', $child, 'property_location' ); ?>
-                                                    <option value="<?php echo $term->slug; ?>" <?php if($currentFilters['propertyLocation'] == $term->slug) { echo 'selected'; } ?>><?php echo $term->name; ?></option>
+                                                    $term = get_term_by( 'id', $child, 'property_city' ); ?>
+                                                    <option value="<?php echo $term->slug; ?>" <?php if($currentFilters['propertyCity'] == $term->slug) { echo 'selected'; } ?>><?php echo $term->name; ?></option>
                                                 <?php }
                                                 echo '</optgroup>';
                                             }

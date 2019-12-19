@@ -62,9 +62,9 @@ function propertyshift_vc_map() {
 			),
 			array(
 				'type' => 'textfield',
-				'heading' => esc_html__( 'Property Location', 'propertyshift' ),
-				'param_name' => 'property_location',
-				'description' => esc_html__( 'Enter the property location slug', 'propertyshift' ),
+				'heading' => esc_html__( 'Property City', 'propertyshift' ),
+				'param_name' => 'property_city',
+				'description' => esc_html__( 'Enter the property city slug', 'propertyshift' ),
 			),
 			array(
 				'type' => 'textfield',
@@ -98,7 +98,7 @@ function propertyshift_vc_map() {
 					'value' => array(
 						esc_html__( 'Property Type', 'propertyshift' ) => 'property_type', 
 						esc_html__( 'Property Status', 'propertyshift' ) => 'property_status', 
-						esc_html__( 'Property Location', 'propertyshift' ) => 'property_location', 
+						esc_html__( 'Property City', 'propertyshift' ) => 'property_city', 
 					),
 				),
 				array(

@@ -62,7 +62,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 			'ps_property_detail_slug' => array('value' => 'properties', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
 			'ps_property_type_tax_slug' => array('value' => 'property-type', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
 			'ps_property_status_tax_slug' => array('value' => 'property-status', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
-			'ps_property_location_tax_slug' => array('value' => 'property-location', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
+			'ps_property_city_tax_slug' => array('value' => 'property-city', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
 			'ps_property_amenities_tax_slug' => array('value' => 'property-amenity', 'esc' => true, 'args' => array('sanitize_callback' => 'sanitize_title')),
 			'ps_property_filter_display' => array('value' => 'false'),
 			'ps_property_filter_id' => array('value' => ''),
@@ -92,7 +92,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 			'ps_members_submit_property_approval' => array('value' => 'true'),
 			'ps_members_add_types' => array('value' => 'true'),
 			'ps_members_add_status' => array('value' => 'true'),
-			'ps_members_add_locations' => array('value' => 'true'),
+			'ps_members_add_city' => array('value' => 'true'),
 			'ps_members_add_amenities' => array('value' => 'true'),
 			'ps_currency_symbol' => array('value' => '$'),
 			'ps_currency_symbol_position' => array('value' => 'before'),
@@ -204,14 +204,14 @@ class PropertyShift_Admin extends NS_Basics_Admin {
                 	);
                 	$this->build_admin_field($property_status_tax_slug_field);
 
-                	$property_location_tax_slug_field = array(
-                		'title' => esc_html__('Property Location Taxonomy Slug', 'propertyshift'),
-                		'name' => 'ps_property_location_tax_slug',
-                		'description' => esc_html__('Default: property-location', 'propertyshift'),
-                		'value' => $settings['ps_property_location_tax_slug'],
+                	$property_city_tax_slug_field = array(
+                		'title' => esc_html__('Property City Taxonomy Slug', 'propertyshift'),
+                		'name' => 'ps_property_city_tax_slug',
+                		'description' => esc_html__('Default: property-city', 'propertyshift'),
+                		'value' => $settings['ps_property_city_tax_slug'],
                 		'type' => 'text',
                 	);
-                	$this->build_admin_field($property_location_tax_slug_field);
+                	$this->build_admin_field($property_city_tax_slug_field);
 
                 	$property_amenities_tax_slug_field = array(
                 		'title' => esc_html__('Property Amenities Taxonomy Slug', 'propertyshift'),
@@ -546,13 +546,13 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 		            );
 		            $this->build_admin_field($submit_add_status);
 
-		            $submit_add_locations = array(
-		                'title' => esc_html__('Agents can manage property locations', 'propertyshift'),
-		                'name' => 'ps_members_add_locations',
-		                'value' => $settings['ps_members_add_locations'],
+		            $submit_add_cities = array(
+		                'title' => esc_html__('Agents can manage property cities', 'propertyshift'),
+		                'name' => 'ps_members_add_city',
+		                'value' => $settings['ps_members_add_city'],
 		                'type' => 'switch',
 		            );
-		            $this->build_admin_field($submit_add_locations);
+		            $this->build_admin_field($submit_add_cities);
 
 		            $submit_add_amenities = array(
 		                'title' => esc_html__('Agent can manage property amenities', 'propertyshift'),
