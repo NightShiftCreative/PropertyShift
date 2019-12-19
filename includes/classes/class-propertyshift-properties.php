@@ -55,7 +55,7 @@ class PropertyShift_Properties {
 		add_action( 'property_status_edit_form_fields', array( $this, 'add_tax_price_range_field'), 10, 2);
 		add_action('property_status_add_form_fields', array( $this, 'add_tax_price_range_field'), 10, 2 );
 
-		//add property location tax fields
+		//add property city tax fields
 		add_action('property_city_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
 		add_action('edited_property_city', array( $this, 'save_tax_fields'), 10, 2);
 		add_action('property_city_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
@@ -747,8 +747,7 @@ class PropertyShift_Properties {
 
 	        case 'location' :
 
-	            //Get property location
-	          	$property_city = $this->get_tax_location($post_id);
+	          	$property_city = $this->get_tax($post_id, 'property_city');
 	          	$address = $property_settings['street_address']['value'];
 	          	if(!empty($address)) { echo $address.'<br/>'; }
 	            if(empty($property_city)) { echo '--'; } else { echo $property_city; }
@@ -756,14 +755,12 @@ class PropertyShift_Properties {
 
 	        case 'type' :
 
-	            //Get property type
 	        	$property_type = $this->get_tax($post_id, 'property_type');
 	            if(empty( $property_type)) { echo '--'; } else { echo $property_type; }
 	            break;
 
 	        case 'status' :
 
-	            //Get property status
 	        	$property_status = $this->get_tax($post_id, 'property_status');
 	            if(empty($property_status)) { echo '--'; } else { echo $property_status; }
 	            break;
@@ -959,55 +956,7 @@ class PropertyShift_Properties {
 	}
 
 	/**
-	 *	Get property location
-	 *
-	 * @param int $post_id
-	 */
-	public function get_tax_location($post_id, $output = null, $array = null) {
-		$property_location = '';
-	    $property_location_output = '';
-	    $property_location_terms = get_the_terms( $post_id, 'property_city');
-	    if ( $property_location_terms && ! is_wp_error( $property_location_terms) ) : 
-	        $property_location_links = array();
-	        $property_location_child_links = array();
-	        foreach ( $property_location_terms as $property_location_term ) {
-	            if($property_location_term->parent != 0) {
-	                if($array == 'true') {
-	                    $property_location_child_links[] = $property_location_term->slug;
-	                } else {
-	                    $property_location_child_links[] = '<a href="'. esc_attr(get_term_link($property_location_term ->slug, 'property_city')) .'">'.$property_location_term ->name.'</a>' ;
-	                }
-	            } else {
-	                if($array == 'true') {
-	                    $property_location_links[] = $property_location_term->slug;
-	                } else {
-	                    $property_location_links[] = '<a href="'. esc_attr(get_term_link($property_location_term ->slug, 'property_city')) .'">'.$property_location_term ->name.'</a>' ;
-	                }
-	            }
-	        }                   
-	        $property_location = join( "<span>, </span>", $property_location_links );
-	        $property_location_children = join( "<span>, </span>", $property_location_child_links );
-	    endif;
-
-	    if($array == 'true') {
-	        if(!empty($property_location_links)) { $property_location_output = array_merge($property_location_links, $property_location_child_links); }
-	    } else {
-	        if($output == 'parent') {
-	            $property_location_output = $property_location;
-	        } else if($output == 'children') {
-	            $property_location_output = $property_location_children;
-	        } else {
-	            $property_location_output .= $property_location_children;
-	            if(!empty($property_location_children) && !empty($property_location)) { $property_location_output .= ', '; } 
-	            $property_location_output .= $property_location;
-	        }
-	    }
-	    
-	    return $property_location_output; 
-	}
-
-	/**
-	 *	Retrieves the full address, including location
+	 *	Retrieves the FULL address
 	 *
 	 * @param int $post_id
 	 *
@@ -1016,10 +965,10 @@ class PropertyShift_Properties {
 	    $property_settings = $this->load_property_settings($post_id);
 	    $street_address = $property_settings['street_address']['value'];
 	    $property_address = '';
-	    $property_location = $this->get_tax_location($post_id);
+	    $property_city = $this->get_tax($post_id, 'property_city');
 	    if(!empty($street_address)) { $property_address .= $street_address; }
-	    if(!empty($street_address) && !empty($property_location)) { $property_address .= ', '; }
-	    if(!empty($property_location)) { $property_address .= $property_location; }
+	    if(!empty($street_address) && !empty($property_city)) { $property_address .= ', '; }
+	    if(!empty($property_city)) { $property_address .= $property_city; }
 	    return $property_address;
 	}
 

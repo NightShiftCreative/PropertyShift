@@ -13,7 +13,6 @@ class PropertyShift_Shortcodes {
 	 *	Constructor
 	 */
 	public function __construct() {
-		add_action( 'media_buttons', array( $this, 'add_shortcode_wizard'));
 		add_filter("the_content", array( $this, 'content_filter'));
 		add_shortcode('ps_list_properties', array( $this, 'add_shortcode_list_properties'));
 		add_shortcode('ps_list_property_tax', array( $this, 'add_shortcode_list_property_tax'));
@@ -32,15 +31,6 @@ class PropertyShift_Shortcodes {
     	$rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
     	$rep = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
 		return $rep;
-	}
-
-	/**
-	 * Add shortcode wizard
-	 */
-	public function add_shortcode_wizard($editor_id) {
-		if($editor_id == 'content') { ?>
-
-		<?php }
 	}
 
 	/**
