@@ -132,6 +132,7 @@ class propertyshift_list_property_categories_widget extends WP_Widget {
                 <option value="property_type" <?php if($category == 'property_type') { echo 'selected'; } ?>><?php esc_html_e('Property Type', 'propertyshift'); ?></option>
                 <option value="property_status" <?php if($category == 'property_status') { echo 'selected'; } ?>><?php esc_html_e('Property Status', 'propertyshift'); ?></option>
                 <option value="property_city" <?php if($category == 'property_city') { echo 'selected'; } ?>><?php esc_html_e('Property City', 'propertyshift'); ?></option>
+                <option value="property_state" <?php if($category == 'property_state') { echo 'selected'; } ?>><?php esc_html_e('Property State', 'propertyshift'); ?></option>
                 <option value="property_amenities" <?php if($category == 'property_amenities') { echo 'selected'; } ?>><?php esc_html_e('Property Amenities', 'propertyshift'); ?></option>
             </select>
         </p>

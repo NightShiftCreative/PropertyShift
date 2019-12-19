@@ -62,15 +62,21 @@ function propertyshift_vc_map() {
 			),
 			array(
 				'type' => 'textfield',
+				'heading' => esc_html__( 'Property Type', 'propertyshift' ),
+				'param_name' => 'property_type',
+				'description' => esc_html__( 'Enter the property type slug', 'propertyshift' ),
+			),
+			array(
+				'type' => 'textfield',
 				'heading' => esc_html__( 'Property City', 'propertyshift' ),
 				'param_name' => 'property_city',
 				'description' => esc_html__( 'Enter the property city slug', 'propertyshift' ),
 			),
 			array(
 				'type' => 'textfield',
-				'heading' => esc_html__( 'Property Type', 'propertyshift' ),
-				'param_name' => 'property_type',
-				'description' => esc_html__( 'Enter the property type slug', 'propertyshift' ),
+				'heading' => esc_html__( 'Property State', 'propertyshift' ),
+				'param_name' => 'property_state',
+				'description' => esc_html__( 'Enter the property state slug', 'propertyshift' ),
 			),
 			array(
 				'type' => 'dropdown',
@@ -99,6 +105,7 @@ function propertyshift_vc_map() {
 						esc_html__( 'Property Type', 'propertyshift' ) => 'property_type', 
 						esc_html__( 'Property Status', 'propertyshift' ) => 'property_status', 
 						esc_html__( 'Property City', 'propertyshift' ) => 'property_city', 
+						esc_html__( 'Property State', 'propertyshift' ) => 'property_state', 
 					),
 				),
 				array(
