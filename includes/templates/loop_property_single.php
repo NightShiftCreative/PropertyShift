@@ -28,7 +28,7 @@
     $property_settings = $property_obj->load_property_settings($post->ID);
     $code = $property_settings['id']['value'];
     $featured = $property_settings['featured']['value'];
-    $address = $property_obj->get_full_address($post->ID, array('Postal Code', 'Country'));
+    $address = $property_obj->get_full_address($post->ID, array('Postal Code', 'Country', 'Neighborhood'));
     $address_array = $property_obj->get_full_address($post->ID, array(), 'array');
     $price = $property_settings['price']['value'];
     $price_postfix = $property_settings['price_postfix']['value'];

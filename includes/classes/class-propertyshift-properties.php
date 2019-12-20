@@ -30,6 +30,7 @@ class PropertyShift_Properties {
 		add_action( 'init', array( $this, 'property_status_init' ));
 		add_action( 'init', array( $this, 'property_city_init' ));
 		add_action( 'init', array( $this, 'property_state_init' ));
+		add_action( 'init', array( $this, 'property_neighborhood_init' ));
 		add_action( 'init', array( $this, 'property_amenities_init' ));
 		add_filter( 'manage_edit-ps-property_columns', array( $this, 'add_properties_columns' ));
 		add_action( 'manage_ps-property_posts_custom_column', array( $this, 'manage_properties_columns' ), 10, 2 );
@@ -67,6 +68,12 @@ class PropertyShift_Properties {
 		add_action('edited_property_state', array( $this, 'save_tax_fields'), 10, 2);
 		add_action('property_state_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
 		add_action('created_property_state', array( $this, 'save_tax_fields'), 10, 2);
+
+		//add property neighborhood tax fields
+		add_action('property_neighborhood_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
+		add_action('edited_property_neighborhood', array( $this, 'save_tax_fields'), 10, 2);
+		add_action('property_neighborhood_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
+		add_action('created_property_neighborhood', array( $this, 'save_tax_fields'), 10, 2);
 
 		//front-end template hooks
 		add_action('propertyshift_property_actions', array($this, 'add_property_share'));
@@ -673,6 +680,31 @@ class PropertyShift_Properties {
 	}
 
 	/**
+	 *	Register property neighborhood taxonomy
+	 */
+	public function property_neighborhood_init() {
+		$property_neighborhood_tax_slug = $this->global_settings['ps_property_neighborhood_tax_slug'];
+	    $labels = $this->create_tax_labels(__( 'Neighborhood', 'propertyshift' ), __( 'Neighborhoods', 'propertyshift' ));
+	    
+	    register_taxonomy(
+	        'property_neighborhood',
+	        'ps-property',
+	        array(
+	            'label'         => __( 'Neighborhood', 'propertyshift' ),
+	            'labels'        => $labels,
+	            'hierarchical'  => true,
+	            'rewrite' => array( 'slug' => $property_neighborhood_tax_slug ),
+	            'capabilities' => array(
+	            	'manage_terms' => 'manage_property_neighborhood',
+    				'edit_terms' => 'edit_property_neighborhood',
+    				'delete_terms' => 'delete_property_neighborhood',
+	            	'assign_terms' => 'assign_property_neighborhood',
+	            ),
+	        )
+	    );
+	}
+
+	/**
 	 *	Register property amenities taxonomy
 	 */
 	public function property_amenities_init() {
@@ -746,12 +778,8 @@ class PropertyShift_Properties {
 
 	        case 'location' :
 
-	          	$property_city = $this->get_tax($post_id, 'property_city');
-	          	$property_state = $this->get_tax($post_id, 'property_state');
-	          	$address = $property_settings['street_address']['value'];
-	          	if(!empty($address)) { echo $address.'<br/>'; }
-	            if(!empty($property_city)) { echo '<div>'.__( 'City', 'propertyshift' ).': '.$property_city.'</div>'; }
-	            if(!empty($property_state)) { echo '<div>'.__( 'State', 'propertyshift' ).': '.$property_state.'</div>'; }
+	        	$address = $this->get_full_address($post_id, $exclude = array('Postal Code', 'Country'), $return = 'array');
+	          	foreach($address as $key=>$value) { echo $key.': '.$value.'<br/>'; }
 	            break;
 
 	        case 'type' :
@@ -966,11 +994,12 @@ class PropertyShift_Properties {
 	    $property_settings = $this->load_property_settings($post_id);
 	   	$property_address = array();
 	    if(!in_array('Address', $exclude)) { $property_address['Address'] = $property_settings['street_address']['value']; }
+	    if(!in_array('Neighborhood', $exclude)) { $property_address['Neighborhood'] = $this->get_tax($post_id, 'property_neighborhood'); }
 	    if(!in_array('City', $exclude)) { $property_address['City'] = $this->get_tax($post_id, 'property_city'); }
 	    if(!in_array('State', $exclude)) { $property_address['State'] = $this->get_tax($post_id, 'property_state'); }
 	    if(!in_array('Country', $exclude)) { $property_address['Country'] = $property_settings['country']['value']; }
 	    if(!in_array('Postal Code', $exclude)) { $property_address['Postal Code'] = $property_settings['postal_code']['value']; }
-	    
+
 	    $property_address = apply_filters('propertyshift_full_address', $property_address);
 	    $property_address = array_filter($property_address);
 
