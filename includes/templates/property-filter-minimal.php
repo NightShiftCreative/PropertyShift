@@ -146,6 +146,19 @@
                             </select>
                         <?php } ?>
 
+                        <?php if($slug == 'property_neighborhood') { ?>
+                            <select name="propertyNeighborhood" class="filter-input property-neighborhood-dropdown">
+                                <option value=""><?php echo $placeholder; ?></option>
+                                <?php
+                                    $property_neighborhoods = get_terms('property_neighborhood');
+                                    if ( !empty( $property_neighborhoods ) && !is_wp_error( $property_neighborhoods ) ) { ?>
+                                        <?php foreach ( $property_neighborhoods as $property_neighborhood_select ) { ?>
+                                            <option value="<?php echo esc_attr($property_neighborhood_select->slug); ?>" <?php if($currentFilters['propertyNeighborhood'] == $property_neighborhood_select->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_neighborhood_select->name); ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
+                        <?php } ?>
+
                         <?php if($slug == 'property_city') { ?>
                             <select name="propertyCity" class="filter-input">
                                 <option value=""><?php echo $placeholder; ?></option>

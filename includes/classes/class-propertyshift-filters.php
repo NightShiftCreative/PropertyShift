@@ -234,40 +234,47 @@ class PropertyShift_Filters {
 	            'active' => 'true',
 	        ),
 	        2 => array(
+	            'name' => esc_html__('Property Neighborhood', 'propertyshift'),
+	            'label' => esc_html__('Property Neighborhood', 'propertyshift'),
+	            'placeholder' => esc_html__('Any', 'propertyshift'),
+	            'slug' => 'property_neighborhood',
+	            'active' => 'true',
+	        ),
+	        3 => array(
 	            'name' => esc_html__('Property City', 'propertyshift'),
 	            'label' => esc_html__('Property City', 'propertyshift'),
 	            'placeholder' => esc_html__('Any', 'propertyshift'),
 	            'slug' => 'property_city',
 	            'active' => 'true',
 	        ),
-	        3 => array(
+	        4 => array(
 	            'name' => esc_html__('Property State', 'propertyshift'),
 	            'label' => esc_html__('Property State', 'propertyshift'),
 	            'placeholder' => esc_html__('Any', 'propertyshift'),
 	            'slug' => 'property_state',
 	            'active' => 'true',
 	        ),
-	        4 => array(
+	        5 => array(
 	            'name' => esc_html__('Price Range', 'propertyshift'),
 	            'label' => esc_html__('Price Range', 'propertyshift'),
 	            'slug' => 'price',
 	            'active' => 'true',
 	        ),
-	        5 => array(
+	        6 => array(
 	            'name' => esc_html__('Bedrooms', 'propertyshift'),
 	            'label' => esc_html__('Bedrooms', 'propertyshift'),
 	            'placeholder' => esc_html__('Any', 'propertyshift'),
 	            'slug' => 'beds',
 	            'active' => 'true',
 	        ),
-	        6 => array(
+	        7 => array(
 	            'name' => esc_html__('Bathrooms', 'propertyshift'),
 	            'label' => esc_html__('Bathrooms', 'propertyshift'),
 	            'placeholder' => esc_html__('Any', 'propertyshift'),
 	            'slug' => 'baths',
 	            'active' => 'true',
 	        ),
-	        7 => array(
+	        8 => array(
 	            'name' => esc_html__('Area', 'propertyshift'),
 	            'label' => esc_html__('Area', 'propertyshift'),
 	            'placeholder' => esc_html__('Min', 'propertyshift'),

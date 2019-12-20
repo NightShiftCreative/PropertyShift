@@ -49,7 +49,6 @@
     $property_type = $property_obj->get_tax($postID, 'property_type');
     $property_status = $property_obj->get_tax($postID, 'property_status');
     $property_city = $property_obj->get_tax($postID, 'property_city');
-    $property_state = $property_obj->get_tax($postID, 'property_state');
     $property_amenities = $property_obj->get_tax_amenities($postID, $property_detail_amenities_hide_empty, null);
 
     //Get agent details

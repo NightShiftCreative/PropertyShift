@@ -97,6 +97,7 @@ class PropertyShift_Agents {
 
 	    $role->add_cap( 'assign_property_type');
 	    $role->add_cap( 'assign_property_status');
+	    $role->add_cap( 'assign_property_neighborhood');
 	    $role->add_cap( 'assign_property_city');
 	    $role->add_cap( 'assign_property_state');
 	    $role->add_cap( 'assign_property_amenities');
@@ -116,6 +117,14 @@ class PropertyShift_Agents {
 		    $role->add_cap( 'edit_property_status');
 		    $role->add_cap( 'delete_property_status');
 		}
+
+		// Allow agents to manage property neighborhoods
+	    $agent_add_neighborhood = $this->global_settings['ps_members_add_neighborhood'];
+	    if($agent_add_neighborhood == 'true') {
+	    	$role->add_cap( 'manage_property_neighborhood');
+	    	$role->add_cap( 'edit_property_neighborhood');
+	    	$role->add_cap( 'delete_property_neighborhood');
+	    }
 
 	    // Allow agents to manage property cities
 	    $agent_add_city = $this->global_settings['ps_members_add_city'];

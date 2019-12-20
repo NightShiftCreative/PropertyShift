@@ -94,6 +94,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 			'ps_members_submit_property_approval' => array('value' => 'true'),
 			'ps_members_add_types' => array('value' => 'true'),
 			'ps_members_add_status' => array('value' => 'true'),
+			'ps_members_add_neighborhood' => array('value' => 'true'),
 			'ps_members_add_city' => array('value' => 'true'),
 			'ps_members_add_state' => array('value' => 'true'),
 			'ps_members_add_amenities' => array('value' => 'true'),
@@ -207,14 +208,14 @@ class PropertyShift_Admin extends NS_Basics_Admin {
                 	);
                 	$this->build_admin_field($property_status_tax_slug_field);
 
-                	$property_city_tax_slug_field = array(
+                	$property_neighborhood_tax_slug_field = array(
                 		'title' => esc_html__('Property Neighborhood Taxonomy Slug', 'propertyshift'),
                 		'name' => 'ps_property_neighborhood_tax_slug',
                 		'description' => esc_html__('Default: neighborhood', 'propertyshift'),
                 		'value' => $settings['ps_property_neighborhood_tax_slug'],
                 		'type' => 'text',
                 	);
-                	$this->build_admin_field($property_city_tax_slug_field);
+                	$this->build_admin_field($property_neighborhood_tax_slug_field);
 
                 	$property_city_tax_slug_field = array(
                 		'title' => esc_html__('Property City Taxonomy Slug', 'propertyshift'),
@@ -566,6 +567,14 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 		                'type' => 'switch',
 		            );
 		            $this->build_admin_field($submit_add_status);
+
+		            $submit_add_neighborhood = array(
+		                'title' => esc_html__('Agents can manage property neighborhoods', 'propertyshift'),
+		                'name' => 'ps_members_add_neighborhood',
+		                'value' => $settings['ps_members_add_neighborhood'],
+		                'type' => 'switch',
+		            );
+		            $this->build_admin_field($submit_add_neighborhood);
 
 		            $submit_add_cities = array(
 		                'title' => esc_html__('Agents can manage property cities', 'propertyshift'),
