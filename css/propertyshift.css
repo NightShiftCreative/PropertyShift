@@ -169,6 +169,7 @@
     border:none;
     display:inline-block;
     border-radius:100%;
+    text-align:center;
 }
 
 /** TRUNCATE **/
@@ -260,6 +261,7 @@
 	margin:0;
 	padding-top:0; 
 	position:relative;
+    background:white;
 }
 .ps-property .property-content { padding:5%; position:relative; border:1px solid rgba(0, 0, 0, 0.1); font-size:15px; }
 .ps-property .property-content p { margin:0; }
@@ -378,6 +380,7 @@
 .ps-agent-listing .ps-agent {
     margin:0;
     padding:0;
+    background:white;
 }
 
 .ps-agent .agent-img { line-height:0; }
