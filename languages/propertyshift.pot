@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PropertyShift\n"
-"POT-Creation-Date: 2019-08-28 22:30-0400\n"
+"POT-Creation-Date: 2019-12-22 20:44-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: Nightshift Creative\n"
@@ -16,762 +16,640 @@ msgstr ""
 "esc_html__;esc_html_e;esc_html_x;_n_noop;_nx_noop\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/classes/class-propertyshift-admin.php:86
+#: includes/classes/class-propertyshift-admin.php:89
 msgid "I am interested in this property and would like to know more."
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:87
+#: includes/classes/class-propertyshift-admin.php:90
 msgid "Thanks! Your email has been delivered!"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:88
+#: includes/classes/class-propertyshift-admin.php:91
 msgid "Contact Agent"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:127
-#: includes/classes/class-propertyshift-agents.php:248
-#: includes/classes/class-propertyshift-agents.php:452
-#: includes/classes/class-propertyshift-agents.php:453
-#: includes/classes/class-propertyshift-properties.php:92
+#: includes/classes/class-propertyshift-admin.php:128
+#: includes/classes/class-propertyshift-agents.php:400
+#: includes/classes/class-propertyshift-agents.php:523
+#: includes/classes/class-propertyshift-agents.php:524
+#: includes/classes/class-propertyshift-properties.php:110
+#: includes/classes/class-propertyshift-shortcodes.php:138
 #: includes/classes/class-propertyshift-shortcodes.php:157
-#: includes/classes/class-propertyshift-shortcodes.php:176
 #: includes/classes/widgets/list_property_categories_widget.php:52
-#: includes/templates/loop_agent.php:42
-#: includes/templates/loop_property_single.php:393
+#: includes/templates/loop_agent.php:44
 msgid "Properties"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:128
-#: includes/classes/class-propertyshift-agents.php:79
-msgid "Agents"
-msgstr ""
-
 #: includes/classes/class-propertyshift-admin.php:129
-msgid "Maps"
+msgid "Agents & Users"
 msgstr ""
 
 #: includes/classes/class-propertyshift-admin.php:130
-msgid "Members"
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:131
-#: includes/classes/class-propertyshift-admin.php:643
+#: includes/classes/class-propertyshift-admin.php:613
 msgid "Currency & Numbers"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:140
+#: includes/classes/class-propertyshift-admin.php:139
 msgid "The active theme ("
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:140
+#: includes/classes/class-propertyshift-admin.php:139
 msgid "Get a compatible theme"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:146
-msgid "Please provide a Google Maps API Key within the Maps tab."
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:152
+#: includes/classes/class-propertyshift-admin.php:145
 msgid ""
 "You have not set your properties listing page. Go to Properties > Property "
 "Listing Options, to set this field."
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:181
+#: includes/classes/class-propertyshift-admin.php:174
 msgid "Properties Settings"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:184
+#: includes/classes/class-propertyshift-admin.php:177
 msgid "Property URL Options"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:187
+#: includes/classes/class-propertyshift-admin.php:180
 msgid ""
 "After changing slugs, make sure you re-save your permalinks in Settings > "
 "Permalinks."
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:192
+#: includes/classes/class-propertyshift-admin.php:185
 msgid "Properties Slug"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:194
+#: includes/classes/class-propertyshift-admin.php:187
 msgid "Default: properties"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:201
+#: includes/classes/class-propertyshift-admin.php:194
 msgid "Property Type Taxonomy Slug"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:203
+#: includes/classes/class-propertyshift-admin.php:196
 msgid "Default: property-type"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:210
+#: includes/classes/class-propertyshift-admin.php:203
 msgid "Property Status Taxonomy Slug"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:212
+#: includes/classes/class-propertyshift-admin.php:205
 msgid "Default: property-status"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:219
-msgid "Property Location Taxonomy Slug"
+#: includes/classes/class-propertyshift-admin.php:212
+msgid "Property Neighborhood Taxonomy Slug"
+msgstr ""
+
+#: includes/classes/class-propertyshift-admin.php:214
+msgid "Default: neighborhood"
 msgstr ""
 
 #: includes/classes/class-propertyshift-admin.php:221
-msgid "Default: property-location"
+msgid "Property City Taxonomy Slug"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:228
-msgid "Property Amenities Taxonomy Slug"
+#: includes/classes/class-propertyshift-admin.php:223
+msgid "Default: city"
 msgstr ""
 
 #: includes/classes/class-propertyshift-admin.php:230
+msgid "Property State Taxonomy Slug"
+msgstr ""
+
+#: includes/classes/class-propertyshift-admin.php:232
+msgid "Default: state"
+msgstr ""
+
+#: includes/classes/class-propertyshift-admin.php:239
+msgid "Property Amenities Taxonomy Slug"
+msgstr ""
+
+#: includes/classes/class-propertyshift-admin.php:241
 msgid "Default: property-amenity"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:240
+#: includes/classes/class-propertyshift-admin.php:251
 msgid "Property Filter Options"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:244
+#: includes/classes/class-propertyshift-admin.php:255
 msgid "Display Property Filter in Page Banners"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:252
+#: includes/classes/class-propertyshift-admin.php:263
 msgid "Default Banner Filter"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:254
+#: includes/classes/class-propertyshift-admin.php:265
 msgid ""
 "This can be overriden on individual pages from the page settings meta box."
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:265
+#: includes/classes/class-propertyshift-admin.php:276
 msgid "Property Listing Options"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:273
+#: includes/classes/class-propertyshift-admin.php:284
 msgid "Select Your Property Listings Page"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:282
+#: includes/classes/class-propertyshift-admin.php:293
 msgid "Number of Properties Per Page"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:290
+#: includes/classes/class-propertyshift-admin.php:301
 msgid "Properties Taxonomy Layout"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:295
-#: includes/wp-bakery/wp-bakery.php:108
+#: includes/classes/class-propertyshift-admin.php:306
+#: includes/wp-bakery/wp-bakery.php:129
 msgid "Grid"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:296
+#: includes/classes/class-propertyshift-admin.php:307
 msgid "Row"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:302
+#: includes/classes/class-propertyshift-admin.php:313
 msgid "Display Listing Header?"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:304
+#: includes/classes/class-propertyshift-admin.php:315
 msgid ""
 "Toggle on/off the filter options that display directly above property "
 "listings."
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:311
+#: includes/classes/class-propertyshift-admin.php:322
 msgid "Default Sort By"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:313
+#: includes/classes/class-propertyshift-admin.php:324
 msgid "Choose the default sorting for property listings."
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:317
+#: includes/classes/class-propertyshift-admin.php:328
 #: includes/templates/property-listing-header.php:26
 msgid "New to Old"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:318
+#: includes/classes/class-propertyshift-admin.php:329
 #: includes/templates/property-listing-header.php:27
 msgid "Old to New"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:319
+#: includes/classes/class-propertyshift-admin.php:330
 #: includes/templates/property-listing-header.php:28
 msgid "Price (High to Low)"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:320
+#: includes/classes/class-propertyshift-admin.php:331
 #: includes/templates/property-listing-header.php:29
 msgid "Price (Low to High)"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:327
+#: includes/classes/class-propertyshift-admin.php:338
 msgid "If active, property listing thumbnails will be cropped to: "
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:329
+#: includes/classes/class-propertyshift-admin.php:340
 msgid "Hard crop property listing featured images?"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:338
+#: includes/classes/class-propertyshift-admin.php:349
 msgid "Display Time Stamp?"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:346
+#: includes/classes/class-propertyshift-admin.php:357
 msgid "Allow users to favorite properties?"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:354
+#: includes/classes/class-propertyshift-admin.php:365
 msgid "Allow users to share properties?"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:365
+#: includes/classes/class-propertyshift-admin.php:376
 msgid "Property Detail Options"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:370
+#: includes/classes/class-propertyshift-admin.php:381
 msgid "Select the default page layout for property detail pages"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:375
-#: includes/classes/class-propertyshift-filters.php:93
+#: includes/classes/class-propertyshift-admin.php:386
+#: includes/classes/class-propertyshift-filters.php:95
 msgid "Full Width"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:376
+#: includes/classes/class-propertyshift-admin.php:387
 msgid "Right Sidebar"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:377
+#: includes/classes/class-propertyshift-admin.php:388
 msgid "Left Sidebar"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:383
+#: includes/classes/class-propertyshift-admin.php:394
 msgid "Show Property Code on Front-End"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:391
-msgid "Property Detail Sections"
+#: includes/classes/class-propertyshift-admin.php:402
+msgid "Property Detail Layout"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:393
-#: includes/classes/class-propertyshift-admin.php:485
+#: includes/classes/class-propertyshift-admin.php:404
+#: includes/classes/class-propertyshift-admin.php:499
 msgid "Drag & drop the sections to rearrange their order"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:399
+#: includes/classes/class-propertyshift-admin.php:410
 msgid "Hide empty amenities?"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:406
-msgid "Map Zoom"
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:414
-msgid "Map Height"
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:421
+#: includes/classes/class-propertyshift-admin.php:417
 msgid "Display agent contact form underneath agent information?"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:423
+#: includes/classes/class-propertyshift-admin.php:419
 msgid "Configure the agent contact form options in the Agent Settings tab."
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:441
-msgid "Agent Settings"
+#: includes/classes/class-propertyshift-admin.php:437
+msgid "Agent & User Settings"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:444
+#: includes/classes/class-propertyshift-admin.php:440
 msgid "Agent Listing Options"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:449
-msgid "Agents Slug"
+#: includes/classes/class-propertyshift-admin.php:445
+msgid "Number of Agents Per Page"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:451
+#: includes/classes/class-propertyshift-admin.php:453
+msgid "Hard crop agent listing featured images?"
+msgstr ""
+
+#: includes/classes/class-propertyshift-admin.php:455
+msgid ""
+"If active, agent listing thumbnails will be cropped to 800 x 600 pixels."
+msgstr ""
+
+#: includes/classes/class-propertyshift-admin.php:465
+msgid "Agent Profile Options"
+msgstr ""
+
+#: includes/classes/class-propertyshift-admin.php:470
+msgid "Agent Profile Slug"
+msgstr ""
+
+#: includes/classes/class-propertyshift-admin.php:472
 msgid ""
 "After changing the slug, make sure you re-save your permalinks in Settings > "
 "Permalinks. The default slug is agents."
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:458
-msgid "Number of Agents Per Page"
+#: includes/classes/class-propertyshift-admin.php:487
+msgid "Select Agent Profile Page"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:466
-msgid "Hard crop agent listing featured images?"
+#: includes/classes/class-propertyshift-admin.php:489
+msgid "Create a page and add the [ps_agent_profile] shortcode."
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:468
-msgid ""
-"If active, agent listing thumbnails will be cropped to 800 x 600 pixels."
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:478
-msgid "Agent Detail Options"
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:483
-msgid "Agent Detail Sections"
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:491
-msgid "Message Placeholder on Property Pages"
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:498
-msgid "Success Message"
+#: includes/classes/class-propertyshift-admin.php:497
+msgid "Agent Profile Layout"
 msgstr ""
 
 #: includes/classes/class-propertyshift-admin.php:505
-#: includes/classes/class-propertyshift-filters.php:147
+msgid "Message Placeholder on Property Pages"
+msgstr ""
+
+#: includes/classes/class-propertyshift-admin.php:512
+msgid "Success Message"
+msgstr ""
+
+#: includes/classes/class-propertyshift-admin.php:519
+#: includes/classes/class-propertyshift-filters.php:149
 msgid "Submit Button Text"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:524
-msgid "Map Settings"
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:528
-msgid "Google Maps API Key"
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:530
-msgid ""
-"Provide your unique Google maps API key. <a target=\"_blank\" href=\"https://"
-"developers.google.com/maps/documentation/javascript/get-api-key\">Click "
-"here</a> to get a key."
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:537
-msgid "Default Map Zoom"
+#: includes/classes/class-propertyshift-admin.php:534
+msgid "Agent Capabilities"
 msgstr ""
 
 #: includes/classes/class-propertyshift-admin.php:539
+msgid "Automatically show agents in listing on registration"
+msgstr ""
+
+#: includes/classes/class-propertyshift-admin.php:541
 msgid ""
-"The map zoom ranges from 1 - 19. Zoom level 1 being the most zoomed out."
+"When users register as an agent role, their profile will automatically "
+"appear in agent listings."
 msgstr ""
 
 #: includes/classes/class-propertyshift-admin.php:548
-msgid "Default Map Latitude"
+msgid "Agent property submissions must be approved before being published"
 msgstr ""
 
 #: includes/classes/class-propertyshift-admin.php:556
-msgid "Default Map Longitude"
+msgid "Agents can manage property types"
 msgstr ""
 
 #: includes/classes/class-propertyshift-admin.php:564
-msgid "Custom Pin Image"
+msgid "Agents can manage property statuses"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:577
-msgid "Member Settings"
+#: includes/classes/class-propertyshift-admin.php:572
+msgid "Agents can manage property neighborhoods"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:584
-msgid "Select My Properties Page"
+#: includes/classes/class-propertyshift-admin.php:580
+msgid "Agents can manage property cities"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:586
-msgid "Create a page and assign it the My Properties template."
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:594
-msgid "Select Submit Property Page"
+#: includes/classes/class-propertyshift-admin.php:588
+msgid "Agents can manage property states"
 msgstr ""
 
 #: includes/classes/class-propertyshift-admin.php:596
-msgid "Create a page and assign it the Submit Property template."
+msgid "Agent can manage property amenities"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:604
-msgid "Front-end property submissions must be approved before being published"
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:612
-msgid "Allow members to add new property locations from the front-end"
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:620
-msgid "Allow members to add new property amenities from the front-end"
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:628
-msgid "Property Submit Form Fields"
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:630
-msgid "Choose which fields display on the front-end property submit form."
-msgstr ""
-
-#: includes/classes/class-propertyshift-admin.php:647
+#: includes/classes/class-propertyshift-admin.php:617
 msgid "Currency Symbol"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:655
+#: includes/classes/class-propertyshift-admin.php:625
 msgid "Currency Symbol Position"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:659
+#: includes/classes/class-propertyshift-admin.php:629
 msgid "Display before price"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:659
+#: includes/classes/class-propertyshift-admin.php:629
 msgid "Display after price"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:664
+#: includes/classes/class-propertyshift-admin.php:634
 msgid "Thousand Separator"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:672
+#: includes/classes/class-propertyshift-admin.php:642
 msgid "Decimal Separator"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:680
+#: includes/classes/class-propertyshift-admin.php:650
 msgid "Number of Decimals"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:689
+#: includes/classes/class-propertyshift-admin.php:659
 msgid "Area Formatting"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:691
+#: includes/classes/class-propertyshift-admin.php:661
 msgid "Deafult Area Postfix"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:699
+#: includes/classes/class-propertyshift-admin.php:669
 msgid "Area Thousand Separator"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:707
+#: includes/classes/class-propertyshift-admin.php:677
 msgid "Area Decimal Separator"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:715
+#: includes/classes/class-propertyshift-admin.php:685
 msgid "Area Number of Decimals"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:804
+#: includes/classes/class-propertyshift-admin.php:749
+msgid ""
+"There was an issue connecting to the add-ons store. Get more information "
+"about our add-ons"
+msgstr ""
+
+#: includes/classes/class-propertyshift-admin.php:777
 msgid ""
 "All premium add-ons require a valid license key for updates and support."
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:805
+#: includes/classes/class-propertyshift-admin.php:778
 msgid ""
 "Your licenses keys can be found in your account on the Nightshift Products "
 "website."
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:833
+#: includes/classes/class-propertyshift-admin.php:806
 msgid "Settings"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:834
+#: includes/classes/class-propertyshift-admin.php:807
 msgid "Add-Ons"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:835
+#: includes/classes/class-propertyshift-admin.php:808
 msgid "License Keys"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:836
+#: includes/classes/class-propertyshift-admin.php:809
 msgid "Help"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:868
-#: includes/classes/widgets/list_agents_widget.php:129
-#: includes/classes/widgets/list_properties_widget.php:124
+#: includes/classes/class-propertyshift-admin.php:841
+#: includes/classes/widgets/list_agents_widget.php:67
+#: includes/classes/widgets/list_properties_widget.php:132
 #: includes/classes/widgets/list_property_categories_widget.php:112
 #: includes/classes/widgets/mortgage_widget.php:51
-#: includes/classes/widgets/property_filter_widget.php:64
-#: includes/templates/submit_property.php:323 propertyshift.php:128
-#: propertyshift.php:170
+#: includes/classes/widgets/property_filter_widget.php:64 propertyshift.php:140
 msgid "Title:"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:869
-#: includes/templates/submit_property.php:324 propertyshift.php:129
-#: propertyshift.php:171
+#: includes/classes/class-propertyshift-admin.php:842 propertyshift.php:141
 msgid "Size:"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:870
-#: includes/templates/submit_property.php:325
+#: includes/classes/class-propertyshift-admin.php:843
 msgid "Rooms:"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:871
-#: includes/templates/submit_property.php:326 propertyshift.php:131
-#: propertyshift.php:173
+#: includes/classes/class-propertyshift-admin.php:844 propertyshift.php:143
 msgid "Bathrooms:"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:874
-#: includes/templates/submit_property.php:329 propertyshift.php:133
-#: propertyshift.php:175
+#: includes/classes/class-propertyshift-admin.php:847 propertyshift.php:145
 msgid "Description:"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:877 propertyshift.php:132
-#: propertyshift.php:174
+#: includes/classes/class-propertyshift-admin.php:850 propertyshift.php:144
 msgid "Image:"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:879
-#: includes/classes/class-propertyshift-properties.php:708
-#: propertyshift.php:127
+#: includes/classes/class-propertyshift-admin.php:852
+#: includes/classes/class-propertyshift-properties.php:831
+#: propertyshift.php:139
 msgid "Upload Image"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:880
-#: includes/classes/class-propertyshift-properties.php:709
-#: propertyshift.php:125
+#: includes/classes/class-propertyshift-admin.php:853
+#: includes/classes/class-propertyshift-properties.php:832
+#: propertyshift.php:137
 msgid "Remove"
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:891
+#: includes/classes/class-propertyshift-admin.php:864
 msgid "No floor plans were found."
 msgstr ""
 
-#: includes/classes/class-propertyshift-admin.php:892
-#: includes/templates/submit_property.php:344
+#: includes/classes/class-propertyshift-admin.php:865
 msgid "Create New Floor Plan"
 msgstr ""
 
-#: includes/classes/class-propertyshift-agents.php:80
-msgid "Agent"
+#: includes/classes/class-propertyshift-agents.php:219
+msgid "Agent Information"
 msgstr ""
 
-#: includes/classes/class-propertyshift-agents.php:81
-msgid "Add New Agent"
+#: includes/classes/class-propertyshift-agents.php:225
+msgid "Agent Actions"
 msgstr ""
 
-#: includes/classes/class-propertyshift-agents.php:82
-msgid "Search Agents"
+#: includes/classes/class-propertyshift-agents.php:228
+msgid "Manage Properties"
 msgstr ""
 
-#: includes/classes/class-propertyshift-agents.php:83
-msgid "Edit Agent"
+#: includes/classes/class-propertyshift-agents.php:234
+msgid "View Profile"
 msgstr ""
 
-#: includes/classes/class-propertyshift-agents.php:104
-msgid "Job Title"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:106
-msgid "Provide the agents job title."
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:112
-#: includes/templates/agent_contact_form.php:92
-#: includes/templates/loop_agent_single.php:73
-#: includes/templates/loop_property_single.php:409
-#: includes/templates/submit_property.php:468
-msgid "Email"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:114
-msgid ""
-"Provide the agents email address. This address will be used for the agent "
-"contact form."
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:120
-msgid "Mobile Phone"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:122
-msgid "Provide the agents mobile phone number."
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:128
-msgid "Office Phone"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:130
-msgid "Provide the agents office phone number."
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:143
-msgid "Facebook"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:145
-msgid "Provide a url for the agents Facebook profile."
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:151
-msgid "Twitter"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:153
-msgid "Provide a url for the agents Twitter profile."
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:159
-msgid "Google Plus"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:161
-msgid "Provide a url for the agents Google Plus profile."
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:167
-msgid "Linkedin"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:169
-msgid "Provide a url for the agents Linkedin profile."
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:175
-msgid "Youtube"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:177
-msgid "Provide a url for the agents Youtube profile."
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:183
-msgid "Instagram"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:185
-msgid "Provide a url for the agents Instagram profile."
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:191
-msgid "Agent Contact Form Source"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:196
-msgid "Default Theme Form"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:197
-msgid "Contact Form 7"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:203
-msgid "Contact From 7 ID"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:204
-msgid "Provide the ID of the contact form you would like displayed"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:244
-#: includes/classes/class-propertyshift-agents.php:259
-#: includes/classes/class-propertyshift-properties.php:346
-#: includes/classes/class-propertyshift-properties.php:363
-#: includes/templates/submit_property.php:101
-msgid "General Info"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:245
-#: includes/classes/class-propertyshift-agents.php:272
-#: includes/classes/class-propertyshift-agents.php:438
-#: includes/classes/class-propertyshift-agents.php:439
-#: includes/classes/class-propertyshift-properties.php:347
-#: includes/classes/class-propertyshift-properties.php:376
-#: includes/classes/class-propertyshift-properties.php:1061
-#: includes/classes/class-propertyshift-properties.php:1062
-#: includes/classes/class-propertyshift-properties.php:1150
-#: includes/templates/submit_property.php:113
-msgid "Description"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:246
-#: includes/classes/class-propertyshift-agents.php:285
-msgid "Social"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:247
-msgid "Contact Form"
+#: includes/classes/class-propertyshift-agents.php:241
+msgid "Show in Agent Listings"
 msgstr ""
 
 #: includes/classes/class-propertyshift-agents.php:253
-#: includes/classes/class-propertyshift-properties.php:357
-#: includes/templates/agent_contact_form.php:105
-msgid "Loading..."
+msgid "Job Title"
 msgstr ""
 
-#: includes/classes/class-propertyshift-agents.php:298
-#: includes/classes/class-propertyshift-agents.php:445
-#: includes/classes/class-propertyshift-agents.php:446
+#: includes/classes/class-propertyshift-agents.php:256
+msgid "Provide the agents job title. For example: Broker"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:263
+msgid "Mobile Phone"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:266
+msgid "Provide the agents mobile phone number."
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:273
+msgid "Office Phone"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:276
+msgid "Provide the agents office phone number."
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:283
+msgid "Facebook"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:286
+msgid "Provide the agents Facebook profile URL."
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:293
+msgid "Twitter"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:296
+msgid "Provide the agents Twitter profile URL."
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:303
+msgid "Linkedin"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:306
+msgid "Provide the agents Linkedin profile URL."
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:313
+msgid "Google Plus"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:316
+msgid "Provide the agents Google Plus profile URL."
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:323
+msgid "Youtube"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:326
+msgid "Provide the agents Youtube profile URL."
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:333
+msgid "Instagram"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:336
+msgid "Provide the agents Instagram profile URL."
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:344
+msgid "Agent Contact Form"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:354
+msgid "Contact Form 7 ID"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:357
+msgid "Provide the Contact Form 7 ID."
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:502
+#: includes/classes/class-propertyshift-agents.php:503
+#: includes/classes/class-propertyshift-properties.php:1133
+#: includes/classes/class-propertyshift-properties.php:1134
+msgid "Overview"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:509
+#: includes/classes/class-propertyshift-agents.php:510
+#: includes/classes/class-propertyshift-properties.php:383
+#: includes/classes/class-propertyshift-properties.php:424
+#: includes/classes/class-propertyshift-properties.php:1140
+#: includes/classes/class-propertyshift-properties.php:1141
+msgid "Description"
+msgstr ""
+
+#: includes/classes/class-propertyshift-agents.php:516
+#: includes/classes/class-propertyshift-agents.php:517
 msgid "Contact"
 msgstr ""
 
-#: includes/classes/class-propertyshift-agents.php:311
-msgid "Agent Properties"
+#: includes/classes/class-propertyshift-agents.php:642
+msgid "Pending Properties"
 msgstr ""
 
-#: includes/classes/class-propertyshift-agents.php:315
-msgid "total properties found"
+#: includes/classes/class-propertyshift-agents.php:646
+msgid "Published Properties"
 msgstr ""
 
-#: includes/classes/class-propertyshift-agents.php:318
-msgid "Property ID"
+#: includes/classes/class-propertyshift-agents.php:650
+msgid "Saved Posts"
 msgstr ""
 
-#: includes/classes/class-propertyshift-agents.php:319
-#: includes/classes/widgets/list_property_categories_widget.php:152
-#: includes/templates/loop_agent_single.php:72
-#: includes/templates/loop_property_single.php:408
-#: includes/templates/my_properties.php:19
-msgid "Title"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:320
-#: includes/classes/class-propertyshift-properties.php:636
-#: includes/plugins/class-tgm-plugin-activation.php:2647
-#: includes/templates/loop_property_single.php:186
-#: includes/templates/my_properties.php:21
-msgid "Status"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:321
-msgid "Date Published"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:322
-#: includes/templates/my_properties.php:23
-msgid "Actions"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:342
-#: includes/templates/loop_agents.php:102
-#: includes/templates/loop_properties.php:276
-#: includes/templates/my_properties.php:79
-msgid "&raquo; Previous"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:343
-#: includes/templates/loop_agents.php:103
-#: includes/templates/loop_properties.php:277
-#: includes/templates/my_properties.php:80
-msgid "Next &raquo;"
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:347
-msgid "This agent has no assigned properties."
-msgstr ""
-
-#: includes/classes/class-propertyshift-agents.php:431
-#: includes/classes/class-propertyshift-agents.php:432
-#: includes/classes/class-propertyshift-properties.php:1054
-#: includes/classes/class-propertyshift-properties.php:1055
-msgid "Overview"
+#: includes/classes/class-propertyshift-agents.php:660
+msgid "Your Recent Properties"
 msgstr ""
 
 #: includes/classes/class-propertyshift-filters.php:43
@@ -779,7 +657,7 @@ msgid "Property Filters"
 msgstr ""
 
 #: includes/classes/class-propertyshift-filters.php:44
-#: includes/wp-bakery/wp-bakery.php:170
+#: includes/wp-bakery/wp-bakery.php:171
 msgid "Property Filter"
 msgstr ""
 
@@ -795,183 +673,184 @@ msgstr ""
 msgid "Edit Property Filter"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:68
-#: includes/classes/class-propertyshift-filters.php:313
+#: includes/classes/class-propertyshift-filters.php:70
+#: includes/classes/class-propertyshift-filters.php:329
 msgid "Shortcode"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:69
+#: includes/classes/class-propertyshift-filters.php:71
 msgid "Copy/paste it into your post, page, or text widget content."
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:76
+#: includes/classes/class-propertyshift-filters.php:78
 msgid "Page Banner Position"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:78
+#: includes/classes/class-propertyshift-filters.php:80
 msgid "Choose the where the filter will display relative to page banners."
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:81
+#: includes/classes/class-propertyshift-filters.php:83
 msgid "Above Banner"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:82
+#: includes/classes/class-propertyshift-filters.php:84
 msgid "Inside Banner"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:83
+#: includes/classes/class-propertyshift-filters.php:85
 msgid "Below Banner"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:88
+#: includes/classes/class-propertyshift-filters.php:90
 msgid "Filter Layout"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:90
+#: includes/classes/class-propertyshift-filters.php:92
 msgid "Choose a layout to for the filter."
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:94
+#: includes/classes/class-propertyshift-filters.php:96
 msgid "Minimal"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:95
+#: includes/classes/class-propertyshift-filters.php:97
 msgid "Boxed"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:96
+#: includes/classes/class-propertyshift-filters.php:98
 msgid "Vertical"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:101
+#: includes/classes/class-propertyshift-filters.php:103
 msgid "Display Filter Tabs"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:103
+#: includes/classes/class-propertyshift-filters.php:105
 msgid "Will display tabs to switch between available property statuses."
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:108
+#: includes/classes/class-propertyshift-filters.php:110
 msgid "Filter Fields"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:110
+#: includes/classes/class-propertyshift-filters.php:112
 msgid "Drag and drop to rearrange order."
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:117
+#: includes/classes/class-propertyshift-filters.php:119
 msgid "Price Range Minimum"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:124
+#: includes/classes/class-propertyshift-filters.php:126
 msgid "Price Range Maximum"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:131
+#: includes/classes/class-propertyshift-filters.php:133
 msgid "Price Range Minimum Start"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:138
+#: includes/classes/class-propertyshift-filters.php:140
 msgid "Price Range Maximum Start"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:150
+#: includes/classes/class-propertyshift-filters.php:152
 msgid "Find Properties"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:221
-#: includes/classes/class-propertyshift-filters.php:222
-#: includes/classes/class-propertyshift-properties.php:493
-#: includes/classes/class-propertyshift-properties.php:494
-#: includes/classes/class-propertyshift-properties.php:1158
+#: includes/classes/class-propertyshift-filters.php:223
+#: includes/classes/class-propertyshift-filters.php:224
+#: includes/classes/class-propertyshift-properties.php:587
 #: includes/classes/widgets/list_property_categories_widget.php:132
-#: includes/templates/submit_property.php:278
-#: includes/wp-bakery/wp-bakery.php:64 includes/wp-bakery/wp-bakery.php:92
+#: includes/wp-bakery/wp-bakery.php:65 includes/wp-bakery/wp-bakery.php:111
 msgid "Property Type"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:223
-#: includes/classes/class-propertyshift-filters.php:230
-#: includes/classes/class-propertyshift-filters.php:237
-#: includes/classes/class-propertyshift-filters.php:250
-#: includes/classes/class-propertyshift-filters.php:257
-#: includes/templates/property-filter-minimal.php:197
-#: includes/templates/property-filter-minimal.php:214
+#: includes/classes/class-propertyshift-filters.php:225
+#: includes/classes/class-propertyshift-filters.php:232
+#: includes/classes/class-propertyshift-filters.php:239
+#: includes/classes/class-propertyshift-filters.php:252
+#: includes/classes/class-propertyshift-filters.php:259
+#: includes/classes/class-propertyshift-filters.php:274
+#: includes/classes/class-propertyshift-filters.php:281
+#: includes/templates/property-filter-minimal.php:223
+#: includes/templates/property-filter-minimal.php:240
 msgid "Any"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:228
-#: includes/classes/class-propertyshift-filters.php:229
-#: includes/classes/class-propertyshift-properties.php:526
-#: includes/classes/class-propertyshift-properties.php:527
-#: includes/classes/class-propertyshift-properties.php:545
-#: includes/classes/class-propertyshift-properties.php:1159
+#: includes/classes/class-propertyshift-filters.php:230
+#: includes/classes/class-propertyshift-filters.php:231
+#: includes/classes/class-propertyshift-properties.php:612
+#: includes/classes/class-propertyshift-properties.php:618
 #: includes/classes/widgets/list_property_categories_widget.php:133
-#: includes/wp-bakery/wp-bakery.php:52 includes/wp-bakery/wp-bakery.php:93
+#: includes/wp-bakery/wp-bakery.php:59 includes/wp-bakery/wp-bakery.php:112
 msgid "Property Status"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:235
-#: includes/classes/class-propertyshift-filters.php:236
-#: includes/classes/class-propertyshift-properties.php:559
-#: includes/classes/class-propertyshift-properties.php:560
-#: includes/classes/class-propertyshift-properties.php:578
-#: includes/classes/class-propertyshift-properties.php:1157
-#: includes/classes/widgets/list_property_categories_widget.php:134
-#: includes/templates/submit_property.php:204
-#: includes/wp-bakery/wp-bakery.php:58 includes/wp-bakery/wp-bakery.php:94
-msgid "Property Location"
+#: includes/classes/class-propertyshift-filters.php:237
+#: includes/classes/class-propertyshift-filters.php:238
+#: includes/classes/widgets/list_property_categories_widget.php:135
+#: includes/wp-bakery/wp-bakery.php:77 includes/wp-bakery/wp-bakery.php:114
+msgid "Property City"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:242
-#: includes/classes/class-propertyshift-filters.php:243
+#: includes/classes/class-propertyshift-filters.php:244
+#: includes/classes/class-propertyshift-filters.php:245
 msgid "Price Range"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:248
-#: includes/classes/class-propertyshift-filters.php:249
-#: includes/classes/class-propertyshift-properties.php:174
-#: includes/templates/submit_property.php:144
+#: includes/classes/class-propertyshift-filters.php:250
+#: includes/classes/class-propertyshift-filters.php:251
+#: includes/classes/class-propertyshift-properties.php:204
 msgid "Bedrooms"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:255
-#: includes/classes/class-propertyshift-filters.php:256
-#: includes/classes/class-propertyshift-properties.php:183
-#: includes/templates/loop_property_single.php:233
-#: includes/templates/submit_property.php:151
+#: includes/classes/class-propertyshift-filters.php:257
+#: includes/classes/class-propertyshift-filters.php:258
+#: includes/classes/class-propertyshift-properties.php:213
+#: includes/templates/loop_property_single.php:259
 msgid "Bathrooms"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:262
-#: includes/classes/class-propertyshift-filters.php:263
-#: includes/classes/class-propertyshift-properties.php:202
-#: includes/classes/class-propertyshift-properties.php:1154
-#: includes/templates/loop_property_single.php:184
-#: includes/templates/submit_property.php:166
+#: includes/classes/class-propertyshift-filters.php:264
+#: includes/classes/class-propertyshift-filters.php:265
+#: includes/classes/class-propertyshift-properties.php:232
+#: includes/templates/loop_property_single.php:210
 msgid "Area"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:264
+#: includes/classes/class-propertyshift-filters.php:266
 msgid "Min"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:265
+#: includes/classes/class-propertyshift-filters.php:267
 msgid "Max"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:312
-#: includes/classes/class-propertyshift-properties.php:93
-#: includes/classes/class-propertyshift-properties.php:632
-#: includes/templates/loop_agent.php:42
-#: includes/templates/loop_property_single.php:393
+#: includes/classes/class-propertyshift-filters.php:272
+#: includes/classes/class-propertyshift-filters.php:273
+#: includes/classes/widgets/list_property_categories_widget.php:134
+#: includes/wp-bakery/wp-bakery.php:71 includes/wp-bakery/wp-bakery.php:113
+msgid "Property Neighborhood"
+msgstr ""
+
+#: includes/classes/class-propertyshift-filters.php:279
+#: includes/classes/class-propertyshift-filters.php:280
+#: includes/classes/widgets/list_property_categories_widget.php:136
+#: includes/wp-bakery/wp-bakery.php:83 includes/wp-bakery/wp-bakery.php:115
+msgid "Property State"
+msgstr ""
+
+#: includes/classes/class-propertyshift-filters.php:328
+#: includes/classes/class-propertyshift-properties.php:111
+#: includes/classes/class-propertyshift-properties.php:745
+#: includes/templates/loop_agent.php:44
 msgid "Property"
 msgstr ""
 
-#: includes/classes/class-propertyshift-filters.php:314
-#: includes/classes/class-propertyshift-properties.php:639
-#: includes/classes/widgets/list_property_categories_widget.php:151
+#: includes/classes/class-propertyshift-filters.php:330
+#: includes/classes/class-propertyshift-properties.php:752
+#: includes/classes/widgets/list_property_categories_widget.php:153
 msgid "Date"
 msgstr ""
 
@@ -1040,570 +919,408 @@ msgstr ""
 msgid "Activate License"
 msgstr ""
 
-#: includes/classes/class-propertyshift-maps.php:52
-msgid "Enter an address in the search field below to add a marker to the map"
-msgstr ""
-
-#: includes/classes/class-propertyshift-maps.php:53
-msgid "Clear Location"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:94
+#: includes/classes/class-propertyshift-properties.php:112
 msgid "Add New Property"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:95
+#: includes/classes/class-propertyshift-properties.php:113
 msgid "Search Properties"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:96
+#: includes/classes/class-propertyshift-properties.php:114
 msgid "Edit Property"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:124
-msgid "Select an agent..."
+#: includes/classes/class-propertyshift-properties.php:159
+msgid "Selet a country"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:132
-#: includes/templates/loop_property_single.php:101
-#: includes/templates/loop_property_single.php:181
+#: includes/classes/class-propertyshift-properties.php:170
+#: includes/templates/loop_property_single.php:100
+#: includes/templates/loop_property_single.php:207
 msgid "Property Code"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:133
+#: includes/classes/class-propertyshift-properties.php:171
 msgid "An optional string to used to identify properties"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:141
+#: includes/classes/class-propertyshift-properties.php:179
 msgid "Featured Property"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:149
-msgid "Street Address"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:151
-msgid "Provide the address for the property"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:157
-#: includes/classes/class-propertyshift-properties.php:637
+#: includes/classes/class-propertyshift-properties.php:187
+#: includes/classes/class-propertyshift-properties.php:750
 msgid "Price"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:159
+#: includes/classes/class-propertyshift-properties.php:189
 msgid "Use only numbers. Do not include commas or dollar sign (ex.- 250000)"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:166
-#: includes/classes/class-propertyshift-properties.php:1148
-#: includes/templates/submit_property.php:136
+#: includes/classes/class-propertyshift-properties.php:196
 msgid "Price Postfix"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:168
+#: includes/classes/class-propertyshift-properties.php:198
 msgid "Provide the text displayed after the price (ex.- Per Month)"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:176
+#: includes/classes/class-propertyshift-properties.php:206
 msgid "Provide the number of bedrooms"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:185
+#: includes/classes/class-propertyshift-properties.php:215
 msgid "Provide the number of bathrooms"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:193
-#: includes/classes/class-propertyshift-properties.php:1153
-#: includes/templates/loop_property_single.php:185
-#: includes/templates/submit_property.php:158
+#: includes/classes/class-propertyshift-properties.php:223
+#: includes/templates/loop_property_single.php:211
 msgid "Garages"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:195
+#: includes/classes/class-propertyshift-properties.php:225
 msgid "Provide the number of garages"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:204
+#: includes/classes/class-propertyshift-properties.php:234
 msgid "Provide the area. Use only numbers and decimals, do not include commas."
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:212
-#: includes/classes/class-propertyshift-properties.php:1155
-#: includes/templates/submit_property.php:173
+#: includes/classes/class-propertyshift-properties.php:242
 msgid "Area Postfix"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:214
+#: includes/classes/class-propertyshift-properties.php:244
 msgid "Provide the text to display directly after the area (ex. - Sq Ft)"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:245
-#: includes/templates/submit_property.php:411
+#: includes/classes/class-propertyshift-properties.php:251
+msgid "Street Address"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:254
+msgid ""
+"Provide <strong>only</strong> the street address. Use the categories to the "
+"right to select city & state"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:260
+msgid "Postal Code"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:262
+msgid "Provide the postal code for the property"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:268
+msgid "Country"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:270
+msgid "Provide the country for the property"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:277
 msgid "Latitude"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:252
-#: includes/templates/submit_property.php:415
-msgid "Longitude"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:259
-#: includes/templates/submit_property.php:181
-msgid "Video URL"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:266
-#: includes/templates/submit_property.php:186
-msgid "Video Cover Image"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:274
-msgid "What to display for owner information?"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:281
-#: includes/templates/submit_property.php:435
-msgid "None"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:282
-msgid "Author Info"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:283
-#: includes/classes/class-propertyshift-properties.php:1117
-msgid "Agent Info"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:284
-msgid "Custom Info"
+#: includes/classes/class-propertyshift-properties.php:280
+#: includes/classes/class-propertyshift-properties.php:291
+#, php-format
+msgid ""
+"Used only for add-ons, such as <a href=\"%s\" target=\"_blank\">Advanced "
+"Maps</a>"
 msgstr ""
 
 #: includes/classes/class-propertyshift-properties.php:288
-#: includes/templates/submit_property.php:448
-msgid "Select Agent"
+msgid "Longitude"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:295
-msgid "Custom Name"
+#: includes/classes/class-propertyshift-properties.php:323
+msgid "Video URL"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:301
-msgid "Custom Email"
+#: includes/classes/class-propertyshift-properties.php:330
+msgid "Video Cover Image"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:307
-msgid "Custom Phone"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:313
-msgid "Custom Website"
+#: includes/classes/class-propertyshift-properties.php:338
+msgid "Select an Agent"
 msgstr ""
 
 #: includes/classes/class-propertyshift-properties.php:348
-#: includes/classes/class-propertyshift-properties.php:389
-#: includes/classes/class-propertyshift-properties.php:1068
-#: includes/classes/class-propertyshift-properties.php:1069
-msgid "Gallery"
+msgid "Display Agent Info on Listing"
 msgstr ""
 
 #: includes/classes/class-propertyshift-properties.php:349
-#: includes/classes/class-propertyshift-properties.php:402
-#: includes/classes/class-propertyshift-properties.php:1096
-#: includes/classes/class-propertyshift-properties.php:1097
-#: includes/classes/class-propertyshift-properties.php:1161
-#: includes/templates/submit_property.php:313
-msgid "Floor Plans"
+msgid "If checked, the agents info will be publicly displayed on the listing"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:350
-#: includes/classes/class-propertyshift-properties.php:415
-#: includes/classes/class-propertyshift-properties.php:1164
-#: includes/templates/submit_property.php:407
-msgid "Map"
+#: includes/classes/class-propertyshift-properties.php:381
+#: includes/classes/class-propertyshift-properties.php:398
+msgid "General Info"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:351
-#: includes/classes/class-propertyshift-properties.php:431
-#: includes/classes/class-propertyshift-properties.php:1082
-#: includes/classes/class-propertyshift-properties.php:1083
-#: includes/classes/class-propertyshift-properties.php:1156
-msgid "Video"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:352
-#: includes/classes/class-propertyshift-properties.php:444
-#: includes/classes/class-propertyshift-properties.php:1165
-#: includes/templates/submit_property.php:428
-msgid "Owner Info"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:495
-msgid "Search Property Types"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:496
-msgid "Popular Property Types"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:497
-msgid "All Property Types"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:498
-msgid "Parent Property Type"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:499
-msgid "Edit Property Type"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:500
-msgid "Update Property Type"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:501
-msgid "Add New Property Type"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:502
-msgid "New Property Type"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:503
-msgid "Separate property types with commas"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:504
-msgid "Add or remove property types"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:505
-msgid "Choose from most used property types"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:512
-msgid "Property Types"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:528
-msgid "Search Property Statuses"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:529
-msgid "Popular Property Statuses"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:530
-msgid "All Property Statuses"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:531
-msgid "Parent Property Status"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:532
-msgid "Edit Property Status"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:533
-msgid "Update Property Status"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:534
-msgid "Add New Property Status"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:535
-msgid "New Property Status"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:536
-msgid "Separate property statuses with commas"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:537
-msgid "Add or remove property statuses"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:538
-msgid "Choose from most used property statuses"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:561
-msgid "Search Property Locations"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:562
-msgid "Popular Property Locations"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:563
-msgid "All Property Locations"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:564
-msgid "Parent Property Location"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:565
-msgid "Edit Property Location"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:566
-msgid "Update Property Location"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:567
-msgid "Add New Property Location"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:568
-msgid "New Property Location"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:569
-msgid "Separate property locations with commas"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:570
-msgid "Add or remove property locations"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:571
-msgid "Choose from most used property locations"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:592
-#: includes/classes/class-propertyshift-properties.php:611
-#: includes/classes/class-propertyshift-properties.php:1089
-#: includes/classes/class-propertyshift-properties.php:1090
-#: includes/classes/class-propertyshift-properties.php:1160
-#: includes/templates/submit_property.php:241
-msgid "Amenities"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:593
-msgid "Amenity"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:594
-msgid "Search Amenities"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:595
-msgid "Popular Amenities"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:596
-msgid "All Amenities"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:597
-msgid "Parent Amenity"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:598
-msgid "Edit Amenity"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:599
-msgid "Update Amenity"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:600
-msgid "Add New Amenity"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:601
-msgid "New Amenity"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:602
-msgid "Separate amenities with commas"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:603
-msgid "Add or remove amenities"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:604
-msgid "Choose from most used amenities"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:633
-#: includes/templates/my_properties.php:18
-#: includes/templates/submit_property.php:332
-msgid "Image"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:634
-#: includes/classes/class-propertyshift-properties.php:1103
-#: includes/classes/class-propertyshift-properties.php:1104
+#: includes/classes/class-propertyshift-properties.php:382
+#: includes/classes/class-propertyshift-properties.php:411
+#: includes/classes/class-propertyshift-properties.php:747
 msgid "Location"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:635
+#: includes/classes/class-propertyshift-properties.php:384
+#: includes/classes/class-propertyshift-properties.php:437
+#: includes/classes/class-propertyshift-properties.php:1154
+#: includes/classes/class-propertyshift-properties.php:1155
+msgid "Gallery"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:385
+#: includes/classes/class-propertyshift-properties.php:450
+#: includes/classes/class-propertyshift-properties.php:1182
+#: includes/classes/class-propertyshift-properties.php:1183
+msgid "Floor Plans"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:386
+#: includes/classes/class-propertyshift-properties.php:463
+#: includes/classes/class-propertyshift-properties.php:1168
+#: includes/classes/class-propertyshift-properties.php:1169
+msgid "Video"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:387
+msgid "Contacts"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:392
+#: includes/templates/agent_contact_form.php:105
+msgid "Loading..."
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:476
+msgid "Primary Agent"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:521
+#: includes/templates/loop_property_grid.php:76
+#: includes/templates/loop_property_single.php:118
+#: includes/templates/loop_property_single.php:208
+msgid "Beds"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:525
+#: includes/templates/loop_property_grid.php:77
+#: includes/templates/loop_property_single.php:119
+#: includes/templates/loop_property_single.php:209
+msgid "Baths"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:529
+#: includes/classes/class-propertyshift-properties.php:751
+msgid "Assigned Agent"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:566
+msgid "Search"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:567
+msgid "Popular"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:568
+#: includes/classes/widgets/list_properties_widget.php:144
+#: includes/classes/widgets/list_properties_widget.php:158
+#: includes/classes/widgets/list_properties_widget.php:172
+#: includes/classes/widgets/list_properties_widget.php:186
+#: includes/classes/widgets/list_properties_widget.php:200
+#: includes/templates/property-filter.php:91
+#: includes/templates/property-filter.php:99
+msgid "All"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:569
+msgid "Parent"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:570
+#: propertyshift.php:138
+msgid "Edit"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:571
+#: includes/plugins/class-tgm-plugin-activation.php:2816
+msgid "Update"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:572
+msgid "Add New"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:573
+msgid "New"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:574
+#, php-format
+msgid "Separate %s with commas"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:575
+msgid "Add or remove"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:576
+msgid "Choose from most used"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:587
+#: includes/classes/class-propertyshift-properties.php:593
+msgid "Property Types"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:612
+msgid "Property Statuses"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:637
+#: includes/classes/class-propertyshift-properties.php:643
+msgid "City"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:637
+msgid "Cities"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:662
+#: includes/classes/class-propertyshift-properties.php:668
+msgid "State"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:662
+msgid "States"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:687
+#: includes/classes/class-propertyshift-properties.php:693
+msgid "Neighborhood"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:687
+msgid "Neighborhoods"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:712
+msgid "Amenity"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:712
+#: includes/classes/class-propertyshift-properties.php:718
+#: includes/classes/class-propertyshift-properties.php:1175
+#: includes/classes/class-propertyshift-properties.php:1176
+msgid "Amenities"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:746
+msgid "Image"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:748
 #: includes/plugins/class-tgm-plugin-activation.php:2642
-#: includes/templates/loop_property_single.php:187
-#: includes/templates/my_properties.php:20
+#: includes/templates/loop_property_single.php:213
 msgid "Type"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:638
-msgid "Author"
+#: includes/classes/class-propertyshift-properties.php:749
+#: includes/plugins/class-tgm-plugin-activation.php:2647
+#: includes/templates/loop_property_single.php:212
+msgid "Status"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:704
+#: includes/classes/class-propertyshift-properties.php:827
 msgid "Category Image Url"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:710
+#: includes/classes/class-propertyshift-properties.php:833
 msgid "Image for Term, use full url"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:727
+#: includes/classes/class-propertyshift-properties.php:850
 msgid "Price Range Settings"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:728
+#: includes/classes/class-propertyshift-properties.php:851
 msgid ""
 "Settings here will override the defaults configured in the plugin settings."
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:732
+#: includes/classes/class-propertyshift-properties.php:855
 msgid "Minimum"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:736
+#: includes/classes/class-propertyshift-properties.php:859
 msgid "Maximum"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:740
+#: includes/classes/class-propertyshift-properties.php:863
 msgid "Minimum Start"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:744
+#: includes/classes/class-propertyshift-properties.php:867
 msgid "Maximum Start"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:1005
-msgid "Map Banner"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1013
+#: includes/classes/class-propertyshift-properties.php:1092
 msgid "Use Custom Property Filter Settings"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:1015
+#: includes/classes/class-propertyshift-properties.php:1094
 msgid ""
 "The global property filter settings can be configured in PropertyShift > "
 "Settings"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:1021
+#: includes/classes/class-propertyshift-properties.php:1100
 msgid "Display Property Filter"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:1027
+#: includes/classes/class-propertyshift-properties.php:1106
 #: includes/classes/widgets/property_filter_widget.php:69
 msgid "Select a Filter"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:1075
-#: includes/classes/class-propertyshift-properties.php:1076
+#: includes/classes/class-propertyshift-properties.php:1147
+#: includes/classes/class-propertyshift-properties.php:1148
+msgid "Address"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:1161
+#: includes/classes/class-propertyshift-properties.php:1162
 msgid "Property Details"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:1110
-#: includes/classes/class-propertyshift-properties.php:1111
+#: includes/classes/class-propertyshift-properties.php:1189
+#: includes/classes/class-propertyshift-properties.php:1190
 msgid "Walk Score"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:1124
+#: includes/classes/class-propertyshift-properties.php:1196
+msgid "Agent Info"
+msgstr ""
+
+#: includes/classes/class-propertyshift-properties.php:1203
 msgid "Related Properties"
 msgstr ""
 
-#: includes/classes/class-propertyshift-properties.php:1146
-msgid "Property Title (required)"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1147
-msgid "Price (required)"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1149
-msgid "Street Address (required)"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1151
-#: includes/templates/loop_property_grid.php:76
-#: includes/templates/loop_property_single.php:114
-#: includes/templates/loop_property_single.php:182
-msgid "Beds"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1152
-#: includes/templates/loop_property_grid.php:77
-#: includes/templates/loop_property_single.php:115
-#: includes/templates/loop_property_single.php:183
-msgid "Baths"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1162
-#: includes/templates/submit_property.php:357
-msgid "Featured Image"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1163
-#: includes/templates/submit_property.php:364
-msgid "Gallery Images"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1185
-msgid "Please enter a title!"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1192
-msgid "Please enter an address!"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1199
-msgid "Please enter a price!"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1331
-#: includes/classes/class-propertyshift-properties.php:1333
-msgid "Your property,"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1331
-msgid "was submitted for review!"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1333
-msgid "was published!"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1356
-#: includes/wp-bakery/wp-bakery.php:160
-msgid "My Properties"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1357
-#: includes/templates/submit_property.php:76
-msgid "Submit Property"
-msgstr ""
-
-#: includes/classes/class-propertyshift-properties.php:1393
+#: includes/classes/class-propertyshift-properties.php:1261
 msgid "Properties Sidebar"
 msgstr ""
 
-#: includes/classes/class-propertyshift-shortcodes.php:95
-#: includes/classes/widgets/list_properties_widget.php:91
-#: includes/templates/loop_agent_single.php:157
-#: includes/templates/loop_properties.php:305
+#: includes/classes/class-propertyshift-shortcodes.php:87
+#: includes/classes/widgets/list_properties_widget.php:95
+#: includes/templates/loop_agent_single.php:167
+#: includes/templates/loop_properties.php:255
 msgid "Sorry, no properties were found."
 msgstr ""
 
@@ -1615,31 +1332,39 @@ msgstr ""
 msgid "(PropertyShift) List Agents"
 msgstr ""
 
-#: includes/classes/widgets/list_agents_widget.php:92
-msgid "View Details"
-msgstr ""
-
-#: includes/classes/widgets/list_agents_widget.php:101
-#: includes/templates/loop_agents.php:130
-msgid "Sorry, no agents were found."
-msgstr ""
-
-#: includes/classes/widgets/list_agents_widget.php:134
+#: includes/classes/widgets/list_agents_widget.php:72
 msgid "Number of Agents:"
 msgstr ""
 
-#: includes/classes/widgets/list_agents_widget.php:139
-#: includes/classes/widgets/list_properties_widget.php:176
-msgid "Filter By:"
+#: includes/classes/widgets/list_agents_widget.php:77
+#: includes/classes/widgets/list_properties_widget.php:212
+msgid "Sort By:"
 msgstr ""
 
-#: includes/classes/widgets/list_agents_widget.php:141
-#: includes/classes/widgets/list_properties_widget.php:178
+#: includes/classes/widgets/list_agents_widget.php:79
+#: includes/classes/widgets/list_properties_widget.php:214
 msgid "Most Recent"
 msgstr ""
 
-#: includes/classes/widgets/list_agents_widget.php:142
-msgid "Number of Assigned Properties"
+#: includes/classes/widgets/list_agents_widget.php:80
+msgid "Display Name"
+msgstr ""
+
+#: includes/classes/widgets/list_agents_widget.php:85
+#: includes/classes/widgets/list_property_categories_widget.php:142
+msgid "Order:"
+msgstr ""
+
+#: includes/classes/widgets/list_agents_widget.php:87
+#: includes/classes/widgets/list_property_categories_widget.php:145
+#: includes/wp-bakery/wp-bakery.php:154
+msgid "Ascending"
+msgstr ""
+
+#: includes/classes/widgets/list_agents_widget.php:88
+#: includes/classes/widgets/list_property_categories_widget.php:144
+#: includes/wp-bakery/wp-bakery.php:153
+msgid "Descending"
 msgstr ""
 
 #: includes/classes/widgets/list_properties_widget.php:12
@@ -1650,34 +1375,34 @@ msgstr ""
 msgid "(PropertyShift) List Properties"
 msgstr ""
 
-#: includes/classes/widgets/list_properties_widget.php:129
+#: includes/classes/widgets/list_properties_widget.php:137
 msgid "Number of Properties:"
 msgstr ""
 
-#: includes/classes/widgets/list_properties_widget.php:134
+#: includes/classes/widgets/list_properties_widget.php:142
 msgid "Property Status:"
 msgstr ""
 
-#: includes/classes/widgets/list_properties_widget.php:136
-#: includes/classes/widgets/list_properties_widget.php:150
-#: includes/classes/widgets/list_properties_widget.php:164
-#: includes/templates/property-filter.php:90
-#: includes/templates/property-filter.php:98
-msgid "All"
-msgstr ""
-
-#: includes/classes/widgets/list_properties_widget.php:148
-msgid "Property Location:"
-msgstr ""
-
-#: includes/classes/widgets/list_properties_widget.php:162
-#: includes/templates/loop_property_single.php:102
+#: includes/classes/widgets/list_properties_widget.php:156
+#: includes/templates/loop_property_single.php:101
 msgid "Property Type:"
 msgstr ""
 
-#: includes/classes/widgets/list_properties_widget.php:179
+#: includes/classes/widgets/list_properties_widget.php:170
+msgid "Property Neighborhood:"
+msgstr ""
+
+#: includes/classes/widgets/list_properties_widget.php:184
+msgid "Property City:"
+msgstr ""
+
+#: includes/classes/widgets/list_properties_widget.php:198
+msgid "Property State:"
+msgstr ""
+
+#: includes/classes/widgets/list_properties_widget.php:215
 #: includes/templates/loop_property_grid.php:33
-#: includes/templates/loop_property_single.php:97
+#: includes/templates/loop_property_single.php:96
 msgid "Featured"
 msgstr ""
 
@@ -1709,34 +1434,25 @@ msgstr ""
 msgid "Category:"
 msgstr ""
 
-#: includes/classes/widgets/list_property_categories_widget.php:135
+#: includes/classes/widgets/list_property_categories_widget.php:137
 msgid "Property Amenities"
 msgstr ""
 
-#: includes/classes/widgets/list_property_categories_widget.php:140
-msgid "Order:"
-msgstr ""
-
-#: includes/classes/widgets/list_property_categories_widget.php:142
-#: includes/wp-bakery/wp-bakery.php:132
-msgid "Descending"
-msgstr ""
-
-#: includes/classes/widgets/list_property_categories_widget.php:143
-#: includes/wp-bakery/wp-bakery.php:133
-msgid "Ascending"
-msgstr ""
-
-#: includes/classes/widgets/list_property_categories_widget.php:148
+#: includes/classes/widgets/list_property_categories_widget.php:150
 msgid "Order By:"
 msgstr ""
 
-#: includes/classes/widgets/list_property_categories_widget.php:150
-#: includes/wp-bakery/wp-bakery.php:123
+#: includes/classes/widgets/list_property_categories_widget.php:152
+#: includes/wp-bakery/wp-bakery.php:144
 msgid "Count"
 msgstr ""
 
-#: includes/classes/widgets/list_property_categories_widget.php:158
+#: includes/classes/widgets/list_property_categories_widget.php:154
+#: includes/templates/loop_agent_single.php:88
+msgid "Title"
+msgstr ""
+
+#: includes/classes/widgets/list_property_categories_widget.php:160
 msgid "Show Count"
 msgstr ""
 
@@ -2039,10 +1755,6 @@ msgstr ""
 msgid "Install"
 msgstr ""
 
-#: includes/plugins/class-tgm-plugin-activation.php:2816
-msgid "Update"
-msgstr ""
-
 #: includes/plugins/class-tgm-plugin-activation.php:2819
 msgid "Activate"
 msgstr ""
@@ -2194,41 +1906,54 @@ msgid "You forgot to enter a message!"
 msgstr ""
 
 #: includes/templates/agent_contact_form.php:87
-#: includes/templates/submit_property.php:467
-#: includes/wp-bakery/wp-bakery.php:124
+#: includes/wp-bakery/wp-bakery.php:145
 msgid "Name"
 msgstr ""
 
-#: includes/templates/loop_agent_single.php:60
+#: includes/templates/agent_contact_form.php:92
+#: includes/templates/loop_agent_single.php:89
+msgid "Email"
+msgstr ""
+
+#: includes/templates/loop_agent_single.php:82
 msgid "Assigned Property"
 msgstr ""
 
-#: includes/templates/loop_agent_single.php:60
+#: includes/templates/loop_agent_single.php:82
 msgid "Assigned Properties"
 msgstr ""
 
-#: includes/templates/loop_agent_single.php:74
-#: includes/templates/loop_property_single.php:410
+#: includes/templates/loop_agent_single.php:90
 msgid "Mobile"
 msgstr ""
 
-#: includes/templates/loop_agent_single.php:75
-#: includes/templates/loop_property_single.php:411
+#: includes/templates/loop_agent_single.php:91
 msgid "Office"
 msgstr ""
 
-#: includes/templates/loop_agent_single.php:79
+#: includes/templates/loop_agent_single.php:92
+msgid "Website"
+msgstr ""
+
+#: includes/templates/loop_agent_single.php:96
 msgid "Message Agent"
 msgstr ""
 
-#: includes/templates/loop_agents.php:133
-#, php-format
-msgid ""
-"<em><b><a href=\"%s\" target=\"_blank\"> Click here</a> to add a new agent.</"
-"b></em>"
+#: includes/templates/loop_agents.php:57
+msgid "Sorry, no agents were found."
 msgstr ""
 
-#: includes/templates/loop_properties.php:308
+#: includes/templates/loop_agents.php:72
+#: includes/templates/loop_properties.php:228
+msgid "&raquo; Previous"
+msgstr ""
+
+#: includes/templates/loop_agents.php:73
+#: includes/templates/loop_properties.php:229
+msgid "Next &raquo;"
+msgstr ""
+
+#: includes/templates/loop_properties.php:258
 #, php-format
 msgid ""
 "<em><b><a href=\"%s\" target=\"_blank\"> Click here</a> to add a new "
@@ -2236,60 +1961,36 @@ msgid ""
 msgstr ""
 
 #: includes/templates/loop_property_grid.php:56
+#: includes/templates/loop_property_single.php:106
 msgid " ago"
 msgstr ""
 
-#: includes/templates/loop_property_single.php:188
+#: includes/templates/loop_property_single.php:214
 msgid "Posted On"
 msgstr ""
 
-#: includes/templates/loop_property_single.php:231
+#: includes/templates/loop_property_single.php:257
 msgid "Size"
 msgstr ""
 
-#: includes/templates/loop_property_single.php:232
+#: includes/templates/loop_property_single.php:258
 msgid "Rooms"
 msgstr ""
 
-#: includes/templates/loop_property_single.php:298
+#: includes/templates/loop_property_single.php:305
 msgid "View More Details"
 msgstr ""
 
-#: includes/templates/loop_property_single.php:406
-msgid "View Agent Profile"
+#: includes/templates/loop_property_single.php:357
+msgid "View Listings"
 msgstr ""
 
-#: includes/templates/loop_property_single.php:442
-#: includes/templates/submit_property.php:459
-msgid "Sorry, no agents have been posted yet."
-msgstr ""
-
-#: includes/templates/loop_property_single.php:498
+#: includes/templates/loop_property_single.php:413
 msgid "Sorry, no related properties were found."
 msgstr ""
 
-#: includes/templates/my_properties.php:22
-msgid "Date Created"
-msgstr ""
-
-#: includes/templates/my_properties.php:56
-msgid "EDIT"
-msgstr ""
-
-#: includes/templates/my_properties.php:59
-msgid "REMOVE"
-msgstr ""
-
-#: includes/templates/my_properties.php:62
-msgid "VIEW"
-msgstr ""
-
-#: includes/templates/my_properties.php:91
-msgid "You have not posted any properties."
-msgstr ""
-
 #: includes/templates/property-filter-minimal.php:106
-#: includes/templates/property-filter-minimal.php:242
+#: includes/templates/property-filter-minimal.php:268
 msgid "Advanced"
 msgstr ""
 
@@ -2299,120 +2000,6 @@ msgstr ""
 
 #: includes/templates/property-listing-header.php:22
 msgid "Clear Filters"
-msgstr ""
-
-#: includes/templates/submit_property.php:28
-msgid "Update Property"
-msgstr ""
-
-#: includes/templates/submit_property.php:95
-msgid "View your properties."
-msgstr ""
-
-#: includes/templates/submit_property.php:107
-msgid "Title*"
-msgstr ""
-
-#: includes/templates/submit_property.php:130
-msgid "Price*"
-msgstr ""
-
-#: includes/templates/submit_property.php:198
-msgid "Street Address*"
-msgstr ""
-
-#: includes/templates/submit_property.php:205
-msgid "Select a location..."
-msgstr ""
-
-#: includes/templates/submit_property.php:228
-msgid "Don't see your location?"
-msgstr ""
-
-#: includes/templates/submit_property.php:228
-#: includes/templates/submit_property.php:265
-msgid "Add a new one."
-msgstr ""
-
-#: includes/templates/submit_property.php:231
-#: includes/templates/submit_property.php:268
-msgid "Add"
-msgstr ""
-
-#: includes/templates/submit_property.php:242
-msgid "Select an amenity..."
-msgstr ""
-
-#: includes/templates/submit_property.php:265
-msgid "Don't see your amenity?"
-msgstr ""
-
-#: includes/templates/submit_property.php:280
-msgid "Select a property type..."
-msgstr ""
-
-#: includes/templates/submit_property.php:292
-msgid "Contract Type"
-msgstr ""
-
-#: includes/templates/submit_property.php:294
-msgid "Select a contract type..."
-msgstr ""
-
-#: includes/templates/submit_property.php:320
-#: includes/templates/submit_property.php:378
-#: includes/templates/submit_property.php:392 propertyshift.php:124
-#: propertyshift.php:158
-msgid "Delete"
-msgstr ""
-
-#: includes/templates/submit_property.php:323 propertyshift.php:134
-#: propertyshift.php:176
-msgid "New Floor Plan"
-msgstr ""
-
-#: includes/templates/submit_property.php:334 propertyshift.php:177
-msgid "Provide the absolute url to a hosted image."
-msgstr ""
-
-#: includes/templates/submit_property.php:352
-msgid "Property Images"
-msgstr ""
-
-#: includes/templates/submit_property.php:398
-msgid "Add Image"
-msgstr ""
-
-#: includes/templates/submit_property.php:431
-msgid "What do you want displayed for the agent info?"
-msgstr ""
-
-#: includes/templates/submit_property.php:432
-msgid "Your Profile Info"
-msgstr ""
-
-#: includes/templates/submit_property.php:433
-msgid "Existing Agent"
-msgstr ""
-
-#: includes/templates/submit_property.php:434
-msgid "Custom"
-msgstr ""
-
-#: includes/templates/submit_property.php:451
-msgid "Select an option..."
-msgstr ""
-
-#: includes/templates/submit_property.php:466
-msgid "Custom Owner/Agent Details"
-msgstr ""
-
-#: includes/templates/submit_property.php:469
-msgid "Phone"
-msgstr ""
-
-#: includes/templates/submit_property.php:470
-msgid "Website"
 msgstr ""
 
 #: includes/wp-bakery/wp-bakery.php:16
@@ -2431,165 +2018,169 @@ msgstr ""
 msgid "Show Header"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:38 includes/wp-bakery/wp-bakery.php:203
+#: includes/wp-bakery/wp-bakery.php:38 includes/wp-bakery/wp-bakery.php:204
 msgid "Show Pagination"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:45 includes/wp-bakery/wp-bakery.php:105
+#: includes/wp-bakery/wp-bakery.php:45 includes/wp-bakery/wp-bakery.php:126
 msgid "Layout"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:54
+#: includes/wp-bakery/wp-bakery.php:52 includes/wp-bakery/wp-bakery.php:211
+msgid "Columns"
+msgstr ""
+
+#: includes/wp-bakery/wp-bakery.php:61
 msgid "Enter the property status slug"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:60
-msgid "Enter the property location slug"
-msgstr ""
-
-#: includes/wp-bakery/wp-bakery.php:66
+#: includes/wp-bakery/wp-bakery.php:67
 msgid "Enter the property type slug"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:70
-msgid "Filter By"
+#: includes/wp-bakery/wp-bakery.php:73
+msgid "Enter the property neighborhood slug"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:80
-msgid "List Property Taxonomy"
+#: includes/wp-bakery/wp-bakery.php:79
+msgid "Enter the property city slug"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:82
-msgid "Display property taxonomy terms"
+#: includes/wp-bakery/wp-bakery.php:85
+msgid "Enter the property state slug"
 msgstr ""
 
 #: includes/wp-bakery/wp-bakery.php:89
-msgid "Taxonomy"
+msgid "Filter By"
 msgstr ""
 
 #: includes/wp-bakery/wp-bakery.php:99
-msgid "Terms"
+msgid "List Property Taxonomy"
 msgstr ""
 
 #: includes/wp-bakery/wp-bakery.php:101
+msgid "Display property taxonomy terms"
+msgstr ""
+
+#: includes/wp-bakery/wp-bakery.php:108
+msgid "Taxonomy"
+msgstr ""
+
+#: includes/wp-bakery/wp-bakery.php:120
+msgid "Terms"
+msgstr ""
+
+#: includes/wp-bakery/wp-bakery.php:122
 msgid ""
 "Comma separated list of term slugs. If left empty, all terms will display."
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:109
+#: includes/wp-bakery/wp-bakery.php:130
 msgid "Carousel"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:114
+#: includes/wp-bakery/wp-bakery.php:135
 msgid "Number of Terms"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:120
+#: includes/wp-bakery/wp-bakery.php:141
 msgid "Order By"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:129
+#: includes/wp-bakery/wp-bakery.php:150
 msgid "Order Direction"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:138
+#: includes/wp-bakery/wp-bakery.php:159
 msgid "Hide Empty Terms"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:141
+#: includes/wp-bakery/wp-bakery.php:162
 msgid "True"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:142
+#: includes/wp-bakery/wp-bakery.php:163
 msgid "False"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:150
-msgid "Submit Property Form"
-msgstr ""
-
-#: includes/wp-bakery/wp-bakery.php:152
-msgid "Allow users to submit a property"
-msgstr ""
-
-#: includes/wp-bakery/wp-bakery.php:162
-msgid "Display the current users properties"
-msgstr ""
-
-#: includes/wp-bakery/wp-bakery.php:172
+#: includes/wp-bakery/wp-bakery.php:173
 msgid "Display a property search filter"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:179
+#: includes/wp-bakery/wp-bakery.php:180
 msgid "Filter ID"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:181
+#: includes/wp-bakery/wp-bakery.php:182
 msgid ""
 "Filters can be created and edited <a href=\"/wp-admin/edit.php?post_type=ps-"
 "property-filter\" target=\"_blank\">here.</a>"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:188
+#: includes/wp-bakery/wp-bakery.php:189
 msgid "List Agents"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:190
+#: includes/wp-bakery/wp-bakery.php:191
 msgid "Display a list of agents"
 msgstr ""
 
-#: includes/wp-bakery/wp-bakery.php:197
+#: includes/wp-bakery/wp-bakery.php:198
 msgid "Number of Agents"
 msgstr ""
 
-#: propertyshift.php:126
-msgid "Edit"
+#: propertyshift.php:136 propertyshift.php:167
+msgid "Delete"
 msgstr ""
 
-#: propertyshift.php:130 propertyshift.php:172
+#: propertyshift.php:142
 msgid "Bedrooms:"
 msgstr ""
 
-#: propertyshift.php:159
-msgid "Purchase Price"
-msgstr ""
-
-#: propertyshift.php:160
-msgid "Down Payment"
-msgstr ""
-
-#: propertyshift.php:161
-msgid "Percent"
-msgstr ""
-
-#: propertyshift.php:162
-msgid "Fixed"
-msgstr ""
-
-#: propertyshift.php:163
-msgid "Rate"
-msgstr ""
-
-#: propertyshift.php:164
-msgid "Term"
-msgstr ""
-
-#: propertyshift.php:165
-msgid "Years"
-msgstr ""
-
-#: propertyshift.php:166
-msgid "Months"
-msgstr ""
-
-#: propertyshift.php:167
-msgid "Calculate"
+#: propertyshift.php:146
+msgid "New Floor Plan"
 msgstr ""
 
 #: propertyshift.php:168
-msgid "Your monthly payment:"
+msgid "Purchase Price"
 msgstr ""
 
 #: propertyshift.php:169
+msgid "Down Payment"
+msgstr ""
+
+#: propertyshift.php:170
+msgid "Percent"
+msgstr ""
+
+#: propertyshift.php:171
+msgid "Fixed"
+msgstr ""
+
+#: propertyshift.php:172
+msgid "Rate"
+msgstr ""
+
+#: propertyshift.php:173
+msgid "Term"
+msgstr ""
+
+#: propertyshift.php:174
+msgid "Years"
+msgstr ""
+
+#: propertyshift.php:175
+msgid "Months"
+msgstr ""
+
+#: propertyshift.php:176
+msgid "Calculate"
+msgstr ""
+
+#: propertyshift.php:177
+msgid "Your monthly payment:"
+msgstr ""
+
+#: propertyshift.php:178
 msgid "This field is required"
 msgstr ""
