@@ -458,11 +458,9 @@ class PropertyShift_Agents {
 	 */
 	public function get_agent_properties($user_id, $posts_per_page = null, $pagination = false, $post_status = array('publish')) {
 		$agent_properties = array(); 
-	    
-	    $args = array(
-	        'post_type' => 'ps-property',
-	        'author' => $user_id,
-	    );
+
+	    $args = array('post_type' => 'ps-property');
+	    if(is_array($user_id)) { $args['author__in'] = $user_id; } else { $args['author'] = $user_id; }
 
 	    if(!empty($posts_per_page)) { $args['posts_per_page'] = $posts_per_page; }
 	    if($pagination == true) { 
