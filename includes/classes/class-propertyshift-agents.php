@@ -358,7 +358,10 @@ class PropertyShift_Agents {
 	            </td>
 	        </tr>
 	        </table>
-    		<?php } ?>
+    		<?php }
+
+    		do_action('propertyshift_after_agent_fields', $user); ?>
+
     	</div>
     	<?php }
     }
