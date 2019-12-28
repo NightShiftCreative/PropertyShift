@@ -5,9 +5,9 @@ $admin_obj = new PropertyShift_Admin();
 $properties_page = $admin_obj->load_settings(false, 'ps_properties_page');
 
 //Get template args
-$property_filter_id = $template_args['id'];
-$shortcode_filter = $template_args['shortcode_filter'];
-$widget_filter = $template_args['widget_filter'];
+$property_filter_id = isset($template_args['id']) ? $template_args['id'] : null;
+$shortcode_filter = isset($template_args['shortcode_filter']) ? $template_args['shortcode_filter'] : null;
+$widget_filter = isset($template_args['widget_filter']) ? $template_args['widget_filter'] : null;
 
 //Get filter details
 $filter_obj = new PropertyShift_Filters();
@@ -37,7 +37,7 @@ if(isset($widget_filter) || isset($shortcode_filter)) { $filter_position = ''; }
 
 //Calculate filter module class
 $filter_num = 1;
-foreach($filter_fields as $field) { if($field['active'] == 'true') { $filter_num++; }}
+foreach($filter_fields as $field) { if(isset($field['active']) && $field['active'] == 'true') { $filter_num++; }}
 
 $filter_module_class = 'filter-'.$property_filter_id.' filter-count-'.$filter_num.' ';
 if($filter_layout == 'boxed') { $filter_module_class .= 'filter-boxed ';  }
@@ -129,7 +129,7 @@ if (!empty($filter_fields)) { ?>
 		                                    $property_types = get_terms('property_type'); 
 		                                    if ( !empty( $property_types ) && !is_wp_error( $property_types ) ) { ?>
 		                                        <?php foreach ( $property_types as $property_type ) { ?>
-		                                            <option value="<?php echo esc_attr($property_type->slug); ?>" <?php if($currentFilters['propertyType'] == $property_type->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_type->name); ?></option>
+		                                            <option value="<?php echo esc_attr($property_type->slug); ?>" <?php if(isset($currentFilters['propertyType']) && $currentFilters['propertyType'] == $property_type->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_type->name); ?></option>
 		                                        <?php } ?>
 		                                <?php } ?>
 		                            </select>
@@ -141,32 +141,58 @@ if (!empty($filter_fields)) { ?>
 		                                <?php
 		                                    if ( !empty( $property_statuses ) && !is_wp_error( $property_statuses ) ) { ?>
 		                                        <?php foreach ( $property_statuses as $property_status_select ) { ?>
-		                                            <option value="<?php echo esc_attr($property_status_select->slug); ?>" <?php if($currentFilters['propertyStatus'] == $property_status_select->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_status_select->name); ?></option>
+		                                            <option value="<?php echo esc_attr($property_status_select->slug); ?>" <?php if(isset($currentFilters['propertyStatus']) && $currentFilters['propertyStatus'] == $property_status_select->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_status_select->name); ?></option>
 		                                        <?php } ?>
 		                                <?php } ?>
 		                            </select>
 		                        <?php } ?>
 
-		                        <?php if($slug == 'property_location') { ?>
-		                            <select name="propertyLocation" class="form-dropdown">
+		                        <?php if($slug == 'property_neighborhood') { ?>
+		                            <select name="propertyNeighborhood" class="form-dropdown property-neighborhood-dropdown">
 		                                <option value=""><?php echo $placeholder; ?></option>
 		                                <?php
-		                                $property_locations = get_terms('property_location', array( 'hide_empty' => false, 'parent' => 0 )); 
-		                                if ( !empty( $property_locations ) && !is_wp_error( $property_locations ) ) { ?>
-		                                    <?php foreach ( $property_locations as $property_location ) { ?>
-		                                        <option value="<?php echo esc_attr($property_location->slug); ?>" <?php if($currentFilters['propertyLocation'] == $property_location->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_location->name); ?></option>
+		                                	$property_neighborhoods = get_terms('property_neighborhood');
+		                                    if ( !empty( $property_neighborhoods ) && !is_wp_error( $property_neighborhoods ) ) { ?>
+		                                        <?php foreach ( $property_neighborhoods as $property_neighborhood_select ) { ?>
+		                                            <option value="<?php echo esc_attr($property_neighborhood_select->slug); ?>" <?php if(isset($currentFilters['propertyNeighborhood']) && $currentFilters['propertyNeighborhood'] == $property_neighborhood_select->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_neighborhood_select->name); ?></option>
+		                                        <?php } ?>
+		                                <?php } ?>
+		                            </select>
+		                        <?php } ?>
+
+		                        <?php if($slug == 'property_city') { ?>
+		                            <select name="propertyCity" class="form-dropdown">
+		                                <option value=""><?php echo $placeholder; ?></option>
+		                                <?php
+		                                $property_cities = get_terms('property_city', array( 'hide_empty' => false, 'parent' => 0 )); 
+		                                if ( !empty( $property_cities ) && !is_wp_error( $property_cities ) ) { ?>
+		                                    <?php foreach ( $property_cities as $property_city ) { ?>
+		                                        <option value="<?php echo esc_attr($property_city->slug); ?>" <?php if(isset($currentFilters['propertyCity']) && $currentFilters['propertyCity'] == $property_city->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_city->name); ?></option>
 		                                        <?php 
-		                                            $term_children = get_term_children($property_location->term_id, 'property_location'); 
+		                                            $term_children = get_term_children($property_city->term_id, 'property_city'); 
 		                                            if(!empty($term_children)) {
-		                                                echo '<optgroup label="'.$property_location->name.'">';
+		                                                echo '<optgroup label="'.$property_city->name.'">';
 		                                                foreach ( $term_children as $child ) {
-		                                                    $term = get_term_by( 'id', $child, 'property_location' ); ?>
-		                                                    <option value="<?php echo $term->slug; ?>" <?php if($currentFilters['propertyLocation'] == $term->slug) { echo 'selected'; } ?>><?php echo $term->name; ?></option>
+		                                                    $term = get_term_by( 'id', $child, 'property_city' ); ?>
+		                                                    <option value="<?php echo $term->slug; ?>" <?php if($currentFilters['propertyCity'] == $term->slug) { echo 'selected'; } ?>><?php echo $term->name; ?></option>
 		                                                <?php }
 		                                                echo '</optgroup>';
 		                                            }
 		                                        ?>
 		                                    <?php } ?>
+		                                <?php } ?>
+		                            </select>
+		                        <?php } ?>
+
+		                        <?php if($slug == 'property_state') { ?>
+		                            <select name="propertyState" class="form-dropdown property-state-dropdown">
+		                                <option value=""><?php echo $placeholder; ?></option>
+		                                <?php
+		                                	$property_states = get_terms('property_state');
+		                                    if ( !empty( $property_states ) && !is_wp_error( $property_states ) ) { ?>
+		                                        <?php foreach ( $property_states as $property_state_select ) { ?>
+		                                            <option value="<?php echo esc_attr($property_state_select->slug); ?>" <?php if(isset($currentFilters['propertyState']) && $currentFilters['propertyState'] == $property_state_select->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_state_select->name); ?></option>
+		                                        <?php } ?>
 		                                <?php } ?>
 		                            </select>
 		                        <?php } ?>
@@ -195,38 +221,38 @@ if (!empty($filter_fields)) { ?>
 		                        <?php if($slug == 'beds') { ?>
 		                            <select name="beds" class="form-dropdown">
 		                                <option value=""><?php echo $placeholder; ?></option>
-		                                <option value="1" <?php if($currentFilters['beds'] == '1') { echo 'selected'; } ?>>1</option>
-                                		<option value="2" <?php if($currentFilters['beds'] == '2') { echo 'selected'; } ?>>2</option>
-                                		<option value="3" <?php if($currentFilters['beds'] == '3') { echo 'selected'; } ?>>3</option>
-                                		<option value="4" <?php if($currentFilters['beds'] == '4') { echo 'selected'; } ?>>4</option>
-                                		<option value="5" <?php if($currentFilters['beds'] == '5') { echo 'selected'; } ?>>5</option>
-                                		<option value="6" <?php if($currentFilters['beds'] == '6') { echo 'selected'; } ?>>6</option>
-                                		<option value="7" <?php if($currentFilters['beds'] == '7') { echo 'selected'; } ?>>7</option>
-                                		<option value="8" <?php if($currentFilters['beds'] == '8') { echo 'selected'; } ?>>8</option>
-                                		<option value="9" <?php if($currentFilters['beds'] == '9') { echo 'selected'; } ?>>9</option>
-                                		<option value="10" <?php if($currentFilters['beds'] == '10') { echo 'selected'; } ?>>10</option>
+		                                <option value="1" <?php if(isset($currentFilters['beds']) && $currentFilters['beds'] == '1') { echo 'selected'; } ?>>1</option>
+                                		<option value="2" <?php if(isset($currentFilters['beds']) && $currentFilters['beds'] == '2') { echo 'selected'; } ?>>2</option>
+                                		<option value="3" <?php if(isset($currentFilters['beds']) && $currentFilters['beds'] == '3') { echo 'selected'; } ?>>3</option>
+                                		<option value="4" <?php if(isset($currentFilters['beds']) && $currentFilters['beds'] == '4') { echo 'selected'; } ?>>4</option>
+                                		<option value="5" <?php if(isset($currentFilters['beds']) && $currentFilters['beds'] == '5') { echo 'selected'; } ?>>5</option>
+                                		<option value="6" <?php if(isset($currentFilters['beds']) && $currentFilters['beds'] == '6') { echo 'selected'; } ?>>6</option>
+                                		<option value="7" <?php if(isset($currentFilters['beds']) && $currentFilters['beds'] == '7') { echo 'selected'; } ?>>7</option>
+                                		<option value="8" <?php if(isset($currentFilters['beds']) && $currentFilters['beds'] == '8') { echo 'selected'; } ?>>8</option>
+                                		<option value="9" <?php if(isset($currentFilters['beds']) && $currentFilters['beds'] == '9') { echo 'selected'; } ?>>9</option>
+                                		<option value="10" <?php if(isset($currentFilters['beds']) && $currentFilters['beds'] == '10') { echo 'selected'; } ?>>10</option>
 		                            </select>
 		                        <?php } ?>
 
 		                        <?php if($slug == 'baths') { ?>
 		                            <select name="baths" class="form-dropdown">
 		                                <option value=""><?php echo $placeholder; ?></option>
-		                                <option value="1" <?php if($currentFilters['baths'] == '1') { echo 'selected'; } ?>>1</option>
-                                		<option value="2" <?php if($currentFilters['baths'] == '2') { echo 'selected'; } ?>>2</option>
-                                		<option value="3" <?php if($currentFilters['baths'] == '3') { echo 'selected'; } ?>>3</option>
-                                		<option value="4" <?php if($currentFilters['baths'] == '4') { echo 'selected'; } ?>>4</option>
-                                		<option value="5" <?php if($currentFilters['baths'] == '5') { echo 'selected'; } ?>>5</option>
-                                		<option value="6" <?php if($currentFilters['baths'] == '6') { echo 'selected'; } ?>>6</option>
-                                		<option value="7" <?php if($currentFilters['baths'] == '7') { echo 'selected'; } ?>>7</option>
-                                		<option value="8" <?php if($currentFilters['baths'] == '8') { echo 'selected'; } ?>>8</option>
-                                		<option value="9" <?php if($currentFilters['baths'] == '9') { echo 'selected'; } ?>>9</option>
-                                		<option value="10" <?php if($currentFilters['baths'] == '10') { echo 'selected'; } ?>>10</option>
+		                                <option value="1" <?php if(isset($currentFilters['baths']) && $currentFilters['baths'] == '1') { echo 'selected'; } ?>>1</option>
+                                		<option value="2" <?php if(isset($currentFilters['baths']) && $currentFilters['baths'] == '2') { echo 'selected'; } ?>>2</option>
+                                		<option value="3" <?php if(isset($currentFilters['baths']) && $currentFilters['baths'] == '3') { echo 'selected'; } ?>>3</option>
+                                		<option value="4" <?php if(isset($currentFilters['baths']) && $currentFilters['baths'] == '4') { echo 'selected'; } ?>>4</option>
+                                		<option value="5" <?php if(isset($currentFilters['baths']) && $currentFilters['baths'] == '5') { echo 'selected'; } ?>>5</option>
+                                		<option value="6" <?php if(isset($currentFilters['baths']) && $currentFilters['baths'] == '6') { echo 'selected'; } ?>>6</option>
+                                		<option value="7" <?php if(isset($currentFilters['baths']) && $currentFilters['baths'] == '7') { echo 'selected'; } ?>>7</option>
+                                		<option value="8" <?php if(isset($currentFilters['baths']) && $currentFilters['baths'] == '8') { echo 'selected'; } ?>>8</option>
+                                		<option value="9" <?php if(isset($currentFilters['baths']) && $currentFilters['baths'] == '9') { echo 'selected'; } ?>>9</option>
+                                		<option value="10" <?php if(isset($currentFilters['baths']) && $currentFilters['baths'] == '10') { echo 'selected'; } ?>>10</option>
 		                            </select>
 		                        <?php } ?>
 
 		                        <?php if($slug == 'area') { ?>
-		                            <input type="number" name="areaMin" class="area-filter area-filter-min" placeholder="<?php echo $placeholder; ?>" value="<?php echo $currentFilters['areaMin']; ?>" />
-		                            <input type="number" name="areaMax" class="area-filter area-filter-max" placeholder="<?php echo $placeholder_second; ?>" value="<?php echo $currentFilters['areaMax']; ?>" />
+		                            <input type="number" name="areaMin" class="area-filter area-filter-min" placeholder="<?php echo $placeholder; ?>" value="<?php if(isset($currentFilters['areaMin'])) { echo $currentFilters['areaMin']; } ?>" />
+		                            <input type="number" name="areaMax" class="area-filter area-filter-max" placeholder="<?php echo $placeholder_second; ?>" value="<?php if(isset($currentFilters['areaMin'])) { echo $currentFilters['areaMax']; } ?>" />
 		                            <div class="clear"></div>
 		                        <?php } ?>
 
@@ -291,20 +317,33 @@ if (!empty($filter_fields)) { ?>
 	                                </select>
 	                            <?php } ?>
 
-	                            <?php if($slug == 'property_location') { ?>
-	                                <select name="propertyLocation" class="form-dropdown">
+	                            <?php if($slug == 'property_neighborhood') { ?>
+		                            <select name="propertyNeighborhood" class="form-dropdown property-neighborhood-dropdown">
+		                                <option value=""><?php echo $placeholder; ?></option>
+		                                <?php
+		                                	$property_neighborhoods = get_terms('property_neighborhood');
+		                                    if ( !empty( $property_neighborhoods ) && !is_wp_error( $property_neighborhoods ) ) { ?>
+		                                        <?php foreach ( $property_neighborhoods as $property_neighborhood_select ) { ?>
+		                                            <option value="<?php echo esc_attr($property_neighborhood_select->slug); ?>" <?php if($currentFilters['propertyNeighborhood'] == $property_neighborhood_select->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_neighborhood_select->name); ?></option>
+		                                        <?php } ?>
+		                                <?php } ?>
+		                            </select>
+		                        <?php } ?>
+
+	                            <?php if($slug == 'property_city') { ?>
+	                                <select name="propertyCity" class="form-dropdown">
 	                                    <option value=""><?php echo $placeholder; ?></option>
 	                                    <?php
-	                                    $property_locations = get_terms('property_location', array( 'hide_empty' => false, 'parent' => 0 )); 
-	                                    if ( !empty( $property_locations ) && !is_wp_error( $property_locations ) ) { ?>
-	                                        <?php foreach ( $property_locations as $property_location ) { ?>
-	                                            <option value="<?php echo esc_attr($property_location->slug); ?>"><?php echo esc_attr($property_location->name); ?></option>
+	                                    $property_cities = get_terms('property_city', array( 'hide_empty' => false, 'parent' => 0 )); 
+	                                    if ( !empty( $property_cities ) && !is_wp_error( $property_cities ) ) { ?>
+	                                        <?php foreach ( $property_cities as $property_city ) { ?>
+	                                            <option value="<?php echo esc_attr($property_city->slug); ?>"><?php echo esc_attr($property_city->name); ?></option>
 	                                            <?php 
-	                                                $term_children = get_term_children($property_location->term_id, 'property_location'); 
+	                                                $term_children = get_term_children($property_city->term_id, 'property_city'); 
 	                                                if(!empty($term_children)) {
-	                                                    echo '<optgroup label="'.$property_location->name.'">';
+	                                                    echo '<optgroup label="'.$property_city->name.'">';
 	                                                    foreach ( $term_children as $child ) {
-	                                                        $term = get_term_by( 'id', $child, 'property_location' );
+	                                                        $term = get_term_by( 'id', $child, 'property_city' );
 	                                                        echo '<option value="'.$term->slug.'">'.$term->name.'</option>';
 	                                                    }
 	                                                    echo '</optgroup>';
@@ -314,6 +353,19 @@ if (!empty($filter_fields)) { ?>
 	                                    <?php } ?>
 	                                </select>
 	                            <?php } ?>
+
+	                            <?php if($slug == 'property_state') { ?>
+		                            <select name="propertyState" class="form-dropdown property-state-dropdown">
+		                                <option value=""><?php echo $placeholder; ?></option>
+		                                <?php
+		                                	$property_states = get_terms('property_state');
+		                                    if ( !empty( $property_states ) && !is_wp_error( $property_states ) ) { ?>
+		                                        <?php foreach ( $property_states as $property_state_select ) { ?>
+		                                            <option value="<?php echo esc_attr($property_state_select->slug); ?>" <?php if($currentFilters['propertyState'] == $property_state_select->slug) { echo 'selected'; } ?>><?php echo esc_attr($property_state_select->name); ?></option>
+		                                        <?php } ?>
+		                                <?php } ?>
+		                            </select>
+		                        <?php } ?>
 
 	                            <?php if($slug == 'price') { ?>
 	                            	<?php

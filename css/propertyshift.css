@@ -161,14 +161,21 @@
 .accordion .ui-accordion-content { border:1px solid rgba(0, 0, 0, 0.1); padding:20px; margin-bottom:20px; }
 
 /* SOCIAL ICONS */
-.social-icons { margin-bottom:0; }
-.social-icons li { margin-left:0 !important; display:inline-block; padding-left:5px; padding-right:5px; line-height:1.4; }
+.social-icons, ul.social-icons { margin:0 !important; }
+.social-icons li { margin:0 !important; display:inline-block; padding-left:5px; padding-right:5px; line-height:1.4; }
 .social-icons li:first-child { padding-left:0px; }
 .social-icons li:last-child { padding-right:0px; }
 .social-icons.circle li a {
     border:none;
     display:inline-block;
     border-radius:100%;
+    text-align:center;
+    background:black;
+    color:white;
+    width:40px;
+    height:40px;
+    line-height:40px;
+    font-size:16px;
 }
 
 /** TRUNCATE **/
@@ -260,6 +267,7 @@
 	margin:0;
 	padding-top:0; 
 	position:relative;
+    background:white;
 }
 .ps-property .property-content { padding:5%; position:relative; border:1px solid rgba(0, 0, 0, 0.1); font-size:15px; }
 .ps-property .property-content p { margin:0; }
@@ -296,7 +304,7 @@
 	font-size:25px;
 }
 
-.ps-property .property-title h4 { margin:15px 0px; }
+.ps-property .property-title h4 { font-size:22px; margin:15px 0px; }
 
 .ps-property .property-details { margin-top:10px; margin-bottom:0; }
 
@@ -378,13 +386,14 @@
 .ps-agent-listing .ps-agent {
     margin:0;
     padding:0;
+    background:white;
 }
 
 .ps-agent .agent-img { line-height:0; }
 .ps-agent .agent-img-link { display:block; }
 
 .ps-agent .agent-content { padding:5%; border:1px solid rgba(0, 0, 0, 0.1); }
-.ps-agent .agent-title h4 { margin:15px 0px; }
+.ps-agent .agent-title h4 { font-size:22px; margin:15px 0px; }
 
 .ps-agent .agent-details p { 
     border-bottom:1px solid rgba(0, 0, 0, 0.1);
@@ -394,7 +403,7 @@
 }
 .ps-agent .agent-details p span { float:right; font-weight:600; }
 
-.ps-agent .social-icons { margin-bottom:0; }
+.ps-agent .social-icons { margin-top:10px !important; }
 
 .agent-contact-form { margin-top:20px; }
 

@@ -8,7 +8,7 @@ $num_properties_per_page = $admin_obj->load_settings(false, 'ps_num_properties_p
 $agent_detail_items = $admin_obj->load_settings(false, 'ps_agent_detail_items', false);
 
 //Get template location
-if(isset($template_args)) { $template_location = $template_args['location']; } else { $template_location = ''; }
+$template_location = isset($template_args['location']) ? $template_args['location'] : ''; 
 if($template_location == 'sidebar') { 
     $template_location_sidebar = 'true'; 
 } else { 
@@ -29,22 +29,22 @@ if(!empty($agent)) {
     
     //Get agent details
     $agent_settings = $agents_obj->load_agent_settings($agent->ID);
-    $agent_display_name = $agent_settings['display_name']['value'];
-    $agent_avatar_url = $agent_settings['avatar_url']['value'];
-    $agent_email = $agent_settings['email']['value'];
-    $agent_title = $agent_settings['job_title']['value'];
-    $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
-    $agent_office_phone = $agent_settings['office_phone']['value'];
-    $agent_website = $agent_settings['website']['value'];
-    $agent_description = $agent_settings['description']['value'];
-    $agent_fb = $agent_settings['facebook']['value'];
-    $agent_twitter = $agent_settings['twitter']['value'];
-    $agent_google = $agent_settings['google']['value'];
-    $agent_linkedin = $agent_settings['linkedin']['value'];
-    $agent_youtube = $agent_settings['youtube']['value'];
-    $agent_instagram = $agent_settings['instagram']['value'];
-    $agent_form_source = $agent_settings['contact_form_source']['value'];
-    $agent_form_id = $agent_settings['contact_form_7_id']['value'];
+    $agent_display_name = isset($agent_settings['display_name']['value']) ? $agent_settings['display_name']['value'] : '';
+    $agent_avatar_url = isset($agent_settings['avatar_url']['value']) ? $agent_settings['avatar_url']['value'] : '';
+    $agent_email = isset($agent_settings['email']['value']) ? $agent_settings['email']['value'] : '';
+    $agent_title = isset($agent_settings['job_title']['value']) ? $agent_settings['job_title']['value'] : '';
+    $agent_mobile_phone = isset($agent_settings['mobile_phone']['value']) ? $agent_settings['mobile_phone']['value'] : '';
+    $agent_office_phone = isset($agent_settings['office_phone']['value']) ? $agent_settings['office_phone']['value'] : '';
+    $agent_website = isset($agent_settings['website']['value']) ? $agent_settings['website']['value'] : '';
+    $agent_description = isset($agent_settings['description']['value']) ? $agent_settings['description']['value'] : '';
+    $agent_fb = isset($agent_settings['facebook']['value']) ? $agent_settings['facebook']['value'] : '';
+    $agent_twitter = isset($agent_settings['twitter']['value']) ? $agent_settings['twitter']['value'] : '';
+    $agent_google = isset($agent_settings['google']['value']) ? $agent_settings['google']['value'] : '';
+    $agent_linkedin = isset($agent_settings['linkedin']['value']) ? $agent_settings['linkedin']['value'] : '';
+    $agent_youtube = isset($agent_settings['youtube']['value']) ? $agent_settings['youtube']['value'] : '';
+    $agent_instagram = isset($agent_settings['instagram']['value']) ? $agent_settings['instagram']['value'] : '';
+    $agent_form_source = isset($agent_settings['contact_form_source']['value']) ? $agent_settings['contact_form_source']['value'] : '';
+    $agent_form_id = isset($agent_settings['contact_form_7_id']['value']) ? $agent_settings['contact_form_7_id']['value'] : '';
 
     //Get agent properties
     $agent_properties = $agents_obj->get_agent_properties($agent->ID, $num_properties_per_page);
@@ -90,7 +90,7 @@ if(!empty($agent)) {
         	                	<?php if(!empty($agent_mobile_phone)) { ?><p><span><?php echo esc_attr($agent_mobile_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'phone', 'telephone'); ?><?php esc_html_e('Mobile', 'propertyshift'); ?>:</p><?php } ?>
         	                	<?php if(!empty($agent_office_phone)) { ?><p><span><?php echo esc_attr($agent_office_phone); ?></span><?php echo ns_core_get_icon($icon_set, 'building', 'apartment', 'briefcase'); ?><?php esc_html_e('Office', 'propertyshift'); ?>:</p><?php } ?>
                                 <?php if(!empty($agent_website)) { ?><p><span><?php echo '<a href="'.esc_attr($agent_website).'" target="_blank">'.esc_attr($agent_website).'</a>'; ?></span><?php echo ns_core_get_icon($icon_set, 'globe'); ?><?php esc_html_e('Website', 'propertyshift'); ?>:</p><?php } ?>
-                                <?php do_action('propertyshift_after_agent_details', $post->ID); ?>
+                                <?php do_action('propertyshift_after_agent_details', $agent->ID); ?>
                             </div>
                             <?php if(in_array('agent_detail_item_contact', $agent_detail_items)) { ?> 
                                 <div class="button button-icon agent-message right"><?php echo ns_core_get_icon($icon_set, 'envelope'); ?><?php esc_html_e('Message Agent', 'propertyshift'); ?></div>

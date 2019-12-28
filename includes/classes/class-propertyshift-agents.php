@@ -97,7 +97,9 @@ class PropertyShift_Agents {
 
 	    $role->add_cap( 'assign_property_type');
 	    $role->add_cap( 'assign_property_status');
-	    $role->add_cap( 'assign_property_location');
+	    $role->add_cap( 'assign_property_neighborhood');
+	    $role->add_cap( 'assign_property_city');
+	    $role->add_cap( 'assign_property_state');
 	    $role->add_cap( 'assign_property_amenities');
 
 	    // Allow agents to manage property types
@@ -116,12 +118,28 @@ class PropertyShift_Agents {
 		    $role->add_cap( 'delete_property_status');
 		}
 
-	    // Allow agents to manage property locations
-	    $agent_add_locations = $this->global_settings['ps_members_add_locations'];
-	    if($agent_add_locations == 'true') {
-	    	$role->add_cap( 'manage_property_location');
-	    	$role->add_cap( 'edit_property_location');
-	    	$role->add_cap( 'delete_property_location');
+		// Allow agents to manage property neighborhoods
+	    $agent_add_neighborhood = $this->global_settings['ps_members_add_neighborhood'];
+	    if($agent_add_neighborhood == 'true') {
+	    	$role->add_cap( 'manage_property_neighborhood');
+	    	$role->add_cap( 'edit_property_neighborhood');
+	    	$role->add_cap( 'delete_property_neighborhood');
+	    }
+
+	    // Allow agents to manage property cities
+	    $agent_add_city = $this->global_settings['ps_members_add_city'];
+	    if($agent_add_city == 'true') {
+	    	$role->add_cap( 'manage_property_city');
+	    	$role->add_cap( 'edit_property_city');
+	    	$role->add_cap( 'delete_property_city');
+	    }
+
+	    // Allow agents to manage property states
+	    $agent_add_state = $this->global_settings['ps_members_add_state'];
+	    if($agent_add_state == 'true') {
+	    	$role->add_cap( 'manage_property_state');
+	    	$role->add_cap( 'edit_property_state');
+	    	$role->add_cap( 'delete_property_state');
 	    }
 
 	    // Allow agents to manage property amenities
@@ -340,7 +358,10 @@ class PropertyShift_Agents {
 	            </td>
 	        </tr>
 	        </table>
-    		<?php } ?>
+    		<?php }
+
+    		do_action('propertyshift_after_agent_fields', $user); ?>
+
     	</div>
     	<?php }
     }
@@ -362,6 +383,7 @@ class PropertyShift_Agents {
         if(isset($_POST['ps_agent_instagram'])) {update_user_meta( $user_id, 'ps_agent_instagram', $_POST['ps_agent_instagram'] ); }
         if(isset($_POST['ps_agent_contact'])) {update_user_meta( $user_id, 'ps_agent_contact', $_POST['ps_agent_contact'] ); }
     	if(isset($_POST['ps_agent_contact_form_7'])) {update_user_meta( $user_id, 'ps_agent_contact_form_7', $_POST['ps_agent_contact_form_7'] ); }
+    	do_action('propertyshift_save_agent_fields', $user_id); 
     }
 
     /**
@@ -440,11 +462,9 @@ class PropertyShift_Agents {
 	 */
 	public function get_agent_properties($user_id, $posts_per_page = null, $pagination = false, $post_status = array('publish')) {
 		$agent_properties = array(); 
-	    
-	    $args = array(
-	        'post_type' => 'ps-property',
-	        'author' => $user_id,
-	    );
+
+	    $args = array('post_type' => 'ps-property');
+	    if(is_array($user_id)) { $args['author__in'] = $user_id; } else { $args['author'] = $user_id; }
 
 	    if(!empty($posts_per_page)) { $args['posts_per_page'] = $posts_per_page; }
 	    if($pagination == true) { 

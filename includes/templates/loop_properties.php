@@ -9,12 +9,12 @@
 
     //GET CUSTOM ARGS
     if(isset($template_args)) {
-        $custom_args = $template_args['custom_args'];
-        $custom_show_filter = $template_args['custom_show_filter'];
-        $custom_layout = $template_args['custom_layout'];
-        $custom_pagination = $template_args['custom_pagination'];
-        $custom_cols = $template_args['custom_cols'];
-        $no_post_message = $template_args['no_post_message'];
+        $custom_args = isset($template_args['custom_args']) ? $template_args['custom_args'] : null;
+        $custom_show_filter = isset($template_args['custom_show_filter']) ? $template_args['custom_show_filter'] : null;
+        $custom_layout = isset($template_args['custom_layout']) ? $template_args['custom_layout'] : null;
+        $custom_pagination = isset($template_args['custom_pagination']) ? $template_args['custom_pagination'] : null;
+        $custom_cols = isset($template_args['custom_cols']) ? $template_args['custom_cols'] : null;
+        $no_post_message = isset($template_args['no_post_message']) ? $template_args['no_post_message'] : null;
     }
 	
     //PAGE SETTINGS
@@ -88,7 +88,9 @@
     }
 
     //SET TAXONOMIES
-    if(empty($property_location)) { if(!empty($_GET['propertyLocation'])) { $property_location = $_GET['propertyLocation']; } else { $property_location = ''; } }
+    if(empty($property_neighborhood)) { if(!empty($_GET['propertyNeighborhood'])) { $property_neighborhood = $_GET['propertyNeighborhood']; } else { $property_neighborhood = ''; } }
+    if(empty($property_city)) { if(!empty($_GET['propertyCity'])) { $property_city = $_GET['propertyCity']; } else { $property_city = ''; } }
+    if(empty($property_state)) { if(!empty($_GET['propertyState'])) { $property_state = $_GET['propertyState']; } else { $property_state = ''; } }
     if(empty($property_status)) { if(!empty($_GET['propertyStatus'])) { $property_status = $_GET['propertyStatus']; } else { $property_status = ''; } }
     if(empty($property_type)) { if(!empty($_GET['propertyType'])) { $property_type = $_GET['propertyType']; } else { $property_type = ''; } }
 
@@ -158,7 +160,9 @@
 	$property_listing_args = array(
         'post_type' => 'ps-property',
         'posts_per_page' => $num_properties_per_page,
-        'property_location' => $property_location,
+        'property_neighborhood' => $property_neighborhood,
+        'property_city' => $property_city,
+        'property_state' => $property_state,
         'property_status' => $property_status,
         'property_type' => $property_type,
         'order' => $order,

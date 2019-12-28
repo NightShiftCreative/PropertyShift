@@ -2,11 +2,11 @@
 
 /**
 * Plugin Name: PropertyShift
-* Plugin URI: http://nightshiftcreative.co/
+* Plugin URI: https://products.nightshiftcreative.co/plugins/propertyshift/
 * Description: Robust real estate listing system for agents and agencies of any size. 
 * Version: 1.0.0
 * Author: Nightshift Creative
-* Author URI: http://nightshiftcreative.co/
+* Author URI: https://products.nightshiftcreative.co/
 * Text Domain: propertyshift
 **/
 
@@ -61,9 +61,9 @@ class PropertyShift {
 	public function define_constants() {
 
 		$ns_basics_latest_release = $this->get_latest_github_release('NS-Basics');
-		define('NS_URL', 'https://nightshiftcreative.co/');
-		define('NS_SHOP_URL', 'https://products.nightshiftcreative.co/');
-		define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/'.$ns_basics_latest_release.'.zip');
+		if(!defined('NS_URL')) { define('NS_URL', 'https://nightshiftcreative.co/'); }
+		if(!defined('NS_SHOP_URL')) { define('NS_SHOP_URL', 'https://products.nightshiftcreative.co/'); }
+		if(!defined('NS_BASICS_GITHUB')) { define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/'.$ns_basics_latest_release.'.zip'); }
 		define('PROPERTYSHIFT_GITHUB', '/NightShiftCreative/PropertyShift/');
 		define('PROPERTYSHIFT_LICENSE_PAGE', 'propertyshift-license-keys' );
 		define('PROPERTYSHIFT_DIR', plugins_url('', __FILE__));

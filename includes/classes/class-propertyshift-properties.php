@@ -28,7 +28,9 @@ class PropertyShift_Properties {
 		add_action( 'init', array( $this, 'add_custom_post_type' ));
 		add_action( 'init', array( $this, 'property_type_init' ));
 		add_action( 'init', array( $this, 'property_status_init' ));
-		add_action( 'init', array( $this, 'property_location_init' ));
+		add_action( 'init', array( $this, 'property_city_init' ));
+		add_action( 'init', array( $this, 'property_state_init' ));
+		add_action( 'init', array( $this, 'property_neighborhood_init' ));
 		add_action( 'init', array( $this, 'property_amenities_init' ));
 		add_filter( 'manage_edit-ps-property_columns', array( $this, 'add_properties_columns' ));
 		add_action( 'manage_ps-property_posts_custom_column', array( $this, 'manage_properties_columns' ), 10, 2 );
@@ -55,11 +57,23 @@ class PropertyShift_Properties {
 		add_action( 'property_status_edit_form_fields', array( $this, 'add_tax_price_range_field'), 10, 2);
 		add_action('property_status_add_form_fields', array( $this, 'add_tax_price_range_field'), 10, 2 );
 
-		//add property location tax fields
-		add_action('property_location_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
-		add_action('edited_property_location', array( $this, 'save_tax_fields'), 10, 2);
-		add_action('property_location_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
-		add_action('created_property_location', array( $this, 'save_tax_fields'), 10, 2);
+		//add property city tax fields
+		add_action('property_city_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
+		add_action('edited_property_city', array( $this, 'save_tax_fields'), 10, 2);
+		add_action('property_city_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
+		add_action('created_property_city', array( $this, 'save_tax_fields'), 10, 2);
+
+		//add property state tax fields
+		add_action('property_state_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
+		add_action('edited_property_state', array( $this, 'save_tax_fields'), 10, 2);
+		add_action('property_state_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
+		add_action('created_property_state', array( $this, 'save_tax_fields'), 10, 2);
+
+		//add property neighborhood tax fields
+		add_action('property_neighborhood_edit_form_fields', array( $this, 'add_tax_fields'), 10, 2);
+		add_action('edited_property_neighborhood', array( $this, 'save_tax_fields'), 10, 2);
+		add_action('property_neighborhood_add_form_fields', array( $this, 'add_tax_fields'), 10, 2 );  
+		add_action('created_property_neighborhood', array( $this, 'save_tax_fields'), 10, 2);
 
 		//front-end template hooks
 		add_action('propertyshift_property_actions', array($this, 'add_property_share'));
@@ -138,6 +152,12 @@ class PropertyShift_Properties {
 	public function load_property_settings($post_id, $return_defaults = false) {
 
 		global $post;
+
+		//populate countries
+		$countries = array("Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
+		$countries_select_options = array();
+		$countries_select_options[__( 'Selet a country', 'propertyshift' )] = '';
+		foreach($countries as $country) { $countries_select_options[$country] = $country; }
 
 		//populate agent select
 		$agent_obj = new PropertyShift_Agents();
@@ -230,9 +250,27 @@ class PropertyShift_Properties {
 				'group' => 'location',
 				'title' => esc_html__('Street Address', 'propertyshift'),
 				'name' => 'ps_property_address',
-				'description' => esc_html__('Provide the address for the property', 'propertyshift'),
+				'placeholder' => 'Ex. 123 Smith Drive',
+				'description' => __('Provide <strong>only</strong> the street address. Use the categories to the right to select city & state', 'propertyshift'),
 				'type' => 'text',
 				'order' => 9,
+			),
+			'postal_code' => array(
+				'group' => 'location',
+				'title' => esc_html__('Postal Code', 'propertyshift'),
+				'name' => 'ps_property_postal_code',
+				'description' => esc_html__('Provide the postal code for the property', 'propertyshift'),
+				'type' => 'text',
+				'order' => 10,
+			),
+			'country' => array(
+				'group' => 'location',
+				'title' => esc_html__('Country', 'propertyshift'),
+				'name' => 'ps_property_country',
+				'description' => esc_html__('Provide the country for the property', 'propertyshift'),
+				'type' => 'select',
+				'options' => $countries_select_options,
+				'order' => 11,
 			),
 			'latitude' => array(
 				'group' => 'location',
@@ -243,7 +281,7 @@ class PropertyShift_Properties {
 				    esc_url( NS_SHOP_URL.'plugins/propertyshift/advanced-maps/' ) 
 				),
 				'type' => 'text',
-				'order' => 10,
+				'order' => 12,
 			),
 			'longitude' => array(
 				'group' => 'location',
@@ -254,13 +292,13 @@ class PropertyShift_Properties {
 				    esc_url( NS_SHOP_URL.'plugins/propertyshift/advanced-maps/' ) 
 				),
 				'type' => 'text',
-				'order' => 11,	
+				'order' => 13,	
 			),
 			'description' => array(
 				'group' => 'description',
 				'name' => 'ps_property_description',
 				'type' => 'editor',
-				'order' => 12,
+				'order' => 14,
 				'class' => 'full-width no-padding',
 				'esc' => false,
 			),
@@ -269,7 +307,7 @@ class PropertyShift_Properties {
 				'name' => 'ps_additional_img',
 				'type' => 'gallery',
 				'serialized' => true,
-				'order' => 13,
+				'order' => 15,
 				'class' => 'full-width no-padding',
 			),
 			'floor_plans' => array(
@@ -277,7 +315,7 @@ class PropertyShift_Properties {
 				'name' => 'ps_property_floor_plans',
 				'type' => 'floor_plans',
 				'serialized' => true,
-				'order' => 14,
+				'order' => 16,
 				'class' => 'full-width no-padding',
 			),
 			'video_url' => array(
@@ -285,7 +323,7 @@ class PropertyShift_Properties {
 				'title' => esc_html__('Video URL', 'propertyshift'),
 				'name' => 'ps_property_video_url',
 				'type' => 'text',
-				'order' => 15,
+				'order' => 17,
 			),
 			'video_cover' => array(
 				'group' => 'video',
@@ -293,7 +331,7 @@ class PropertyShift_Properties {
 				'name' => 'ps_property_video_img',
 				'type' => 'image_upload',
 				'display_img' => true,
-				'order' => 16,
+				'order' => 18,
 			),
 			'agent' => array(
 				'group' => 'owner_info',
@@ -303,7 +341,7 @@ class PropertyShift_Properties {
 				'type' => 'select',
 				'options' => $agent_select_options,
 				'value' => $post->post_author,
-				'order' => 17,
+				'order' => 19,
 			),
 			'agent_display' => array(
 				'group' => 'owner_info',
@@ -312,7 +350,7 @@ class PropertyShift_Properties {
 				'name' => 'ps_property_agent_display',
 				'type' => 'checkbox',
 				'value' => true,
-				'order' => 18,
+				'order' => 20,
 			),
 		);
 		$property_settings_init = apply_filters('propertyshift_property_settings_init_filter', $property_settings_init, $post_id);
@@ -519,26 +557,34 @@ class PropertyShift_Properties {
 	// Property Taxonomies
 	/************************************************************************/
 
+	public function create_tax_labels($tax = '', $tax_plural = '') {
+		$labels = array();
+		if(!empty($tax) && !empty($tax_plural)) {
+			$labels = array(
+		    'name'                          => $tax,
+		    'singular_name'                 => $tax,
+		    'search_items'                  => __( 'Search', 'propertyshift' ).' '.$tax_plural,
+		    'popular_items'                 => __( 'Popular', 'propertyshift' ).' '.$tax_plural,
+		    'all_items'                     => __( 'All', 'propertyshift' ).' '.$tax_plural,
+		    'parent_item'                   => __( 'Parent', 'propertyshift' ).' '.$tax,
+		    'edit_item'                     => __( 'Edit', 'propertyshift' ).' '.$tax,
+		    'update_item'                   => __( 'Update', 'propertyshift' ).' '.$tax,
+		    'add_new_item'                  => __( 'Add New', 'propertyshift' ).' '.$tax,
+		    'new_item_name'                 => __( 'New', 'propertyshift' ).' '.$tax,
+		    'separate_items_with_commas'    => sprintf(__( 'Separate %s with commas', 'propertyshift' ), $tax_plural),
+		    'add_or_remove_items'           => __( 'Add or remove', 'propertyshift' ).' '.$tax_plural,
+		    'choose_from_most_used'         => __( 'Choose from most used', 'propertyshift' ).' '.$tax_plural,
+		    );
+		}
+		return $labels;
+	}
+
 	/**
 	 *	Register property type taxonomy
 	 */
 	public function property_type_init() {
 		$property_type_tax_slug = $this->global_settings['ps_property_type_tax_slug'];
-	    $labels = array(
-	    'name'                          => __( 'Property Type', 'propertyshift' ),
-	    'singular_name'                 => __( 'Property Type', 'propertyshift' ),
-	    'search_items'                  => __( 'Search Property Types', 'propertyshift' ),
-	    'popular_items'                 => __( 'Popular Property Types', 'propertyshift' ),
-	    'all_items'                     => __( 'All Property Types', 'propertyshift' ),
-	    'parent_item'                   => __( 'Parent Property Type', 'propertyshift' ),
-	    'edit_item'                     => __( 'Edit Property Type', 'propertyshift' ),
-	    'update_item'                   => __( 'Update Property Type', 'propertyshift' ),
-	    'add_new_item'                  => __( 'Add New Property Type', 'propertyshift' ),
-	    'new_item_name'                 => __( 'New Property Type', 'propertyshift' ),
-	    'separate_items_with_commas'    => __( 'Separate property types with commas', 'propertyshift' ),
-	    'add_or_remove_items'           => __( 'Add or remove property types', 'propertyshift' ),
-	    'choose_from_most_used'         => __( 'Choose from most used property types', 'propertyshift' )
-	    );
+	    $labels = $this->create_tax_labels(__( 'Property Type', 'propertyshift' ), __( 'Property Types', 'propertyshift' ));
 	    
 	    register_taxonomy(
 	        'property_type',
@@ -563,21 +609,7 @@ class PropertyShift_Properties {
 	 */
 	public function property_status_init() {
 		$property_status_tax_slug = $this->global_settings['ps_property_status_tax_slug'];
-	    $labels = array(
-	    'name'                          => __( 'Property Status', 'propertyshift' ),
-	    'singular_name'                 => __( 'Property Status', 'propertyshift' ),
-	    'search_items'                  => __( 'Search Property Statuses', 'propertyshift' ),
-	    'popular_items'                 => __( 'Popular Property Statuses', 'propertyshift' ),
-	    'all_items'                     => __( 'All Property Statuses', 'propertyshift' ),
-	    'parent_item'                   => __( 'Parent Property Status', 'propertyshift' ),
-	    'edit_item'                     => __( 'Edit Property Status', 'propertyshift' ),
-	    'update_item'                   => __( 'Update Property Status', 'propertyshift' ),
-	    'add_new_item'                  => __( 'Add New Property Status', 'propertyshift' ),
-	    'new_item_name'                 => __( 'New Property Status', 'propertyshift' ),
-	    'separate_items_with_commas'    => __( 'Separate property statuses with commas', 'propertyshift' ),
-	    'add_or_remove_items'           => __( 'Add or remove property statuses', 'propertyshift' ),
-	    'choose_from_most_used'         => __( 'Choose from most used property statuses', 'propertyshift' )
-	    );
+	    $labels = $this->create_tax_labels(__( 'Property Status', 'propertyshift' ), __( 'Property Statuses', 'propertyshift' ));
 	    
 	    register_taxonomy(
 	        'property_status',
@@ -598,39 +630,75 @@ class PropertyShift_Properties {
 	}
 
 	/**
-	 *	Register property location taxonomy
+	 *	Register property city taxonomy
 	 */
-	public function property_location_init() {
-		$property_location_tax_slug = $this->global_settings['ps_property_location_tax_slug'];
-	    $labels = array(
-	    'name'                          => __( 'Property Location', 'propertyshift' ),
-	    'singular_name'                 => __( 'Property Location', 'propertyshift' ),
-	    'search_items'                  => __( 'Search Property Locations', 'propertyshift' ),
-	    'popular_items'                 => __( 'Popular Property Locations', 'propertyshift' ),
-	    'all_items'                     => __( 'All Property Locations', 'propertyshift' ),
-	    'parent_item'                   => __( 'Parent Property Location', 'propertyshift' ),
-	    'edit_item'                     => __( 'Edit Property Location', 'propertyshift' ),
-	    'update_item'                   => __( 'Update Property Location', 'propertyshift' ),
-	    'add_new_item'                  => __( 'Add New Property Location', 'propertyshift' ),
-	    'new_item_name'                 => __( 'New Property Location', 'propertyshift' ),
-	    'separate_items_with_commas'    => __( 'Separate property locations with commas', 'propertyshift' ),
-	    'add_or_remove_items'           => __( 'Add or remove property locations', 'propertyshift' ),
-	    'choose_from_most_used'         => __( 'Choose from most used property locations', 'propertyshift' )
-	    );
+	public function property_city_init() {
+		$property_city_tax_slug = $this->global_settings['ps_property_city_tax_slug'];
+	    $labels = $this->create_tax_labels(__( 'City', 'propertyshift' ), __( 'Cities', 'propertyshift' ));
 	    
 	    register_taxonomy(
-	        'property_location',
+	        'property_city',
 	        'ps-property',
 	        array(
-	            'label'         => __( 'Property Location', 'propertyshift' ),
+	            'label'         => __( 'City', 'propertyshift' ),
 	            'labels'        => $labels,
 	            'hierarchical'  => true,
-	            'rewrite' => array( 'slug' => $property_location_tax_slug ),
+	            'rewrite' => array( 'slug' => $property_city_tax_slug ),
 	            'capabilities' => array(
-	            	'manage_terms' => 'manage_property_location',
-    				'edit_terms' => 'edit_property_location',
-    				'delete_terms' => 'delete_property_location',
-	            	'assign_terms' => 'assign_property_location',
+	            	'manage_terms' => 'manage_property_city',
+    				'edit_terms' => 'edit_property_city',
+    				'delete_terms' => 'delete_property_city',
+	            	'assign_terms' => 'assign_property_city',
+	            ),
+	        )
+	    );
+	}
+
+	/**
+	 *	Register property state taxonomy
+	 */
+	public function property_state_init() {
+		$property_state_tax_slug = $this->global_settings['ps_property_state_tax_slug'];
+	    $labels = $this->create_tax_labels(__( 'State', 'propertyshift' ), __( 'States', 'propertyshift' ));
+	    
+	    register_taxonomy(
+	        'property_state',
+	        'ps-property',
+	        array(
+	            'label'         => __( 'State', 'propertyshift' ),
+	            'labels'        => $labels,
+	            'hierarchical'  => true,
+	            'rewrite' => array( 'slug' => $property_state_tax_slug ),
+	            'capabilities' => array(
+	            	'manage_terms' => 'manage_property_state',
+    				'edit_terms' => 'edit_property_state',
+    				'delete_terms' => 'delete_property_state',
+	            	'assign_terms' => 'assign_property_state',
+	            ),
+	        )
+	    );
+	}
+
+	/**
+	 *	Register property neighborhood taxonomy
+	 */
+	public function property_neighborhood_init() {
+		$property_neighborhood_tax_slug = $this->global_settings['ps_property_neighborhood_tax_slug'];
+	    $labels = $this->create_tax_labels(__( 'Neighborhood', 'propertyshift' ), __( 'Neighborhoods', 'propertyshift' ));
+	    
+	    register_taxonomy(
+	        'property_neighborhood',
+	        'ps-property',
+	        array(
+	            'label'         => __( 'Neighborhood', 'propertyshift' ),
+	            'labels'        => $labels,
+	            'hierarchical'  => true,
+	            'rewrite' => array( 'slug' => $property_neighborhood_tax_slug ),
+	            'capabilities' => array(
+	            	'manage_terms' => 'manage_property_neighborhood',
+    				'edit_terms' => 'edit_property_neighborhood',
+    				'delete_terms' => 'delete_property_neighborhood',
+	            	'assign_terms' => 'assign_property_neighborhood',
 	            ),
 	        )
 	    );
@@ -641,21 +709,7 @@ class PropertyShift_Properties {
 	 */
 	public function property_amenities_init() {
 		$property_amenities_tax_slug = $this->global_settings['ps_property_amenities_tax_slug'];
-	    $labels = array(
-	    'name'                          => __( 'Amenities', 'propertyshift' ),
-	    'singular_name'                 => __( 'Amenity', 'propertyshift' ),
-	    'search_items'                  => __( 'Search Amenities', 'propertyshift' ),
-	    'popular_items'                 => __( 'Popular Amenities', 'propertyshift' ),
-	    'all_items'                     => __( 'All Amenities', 'propertyshift' ),
-	    'parent_item'                   => __( 'Parent Amenity', 'propertyshift' ),
-	    'edit_item'                     => __( 'Edit Amenity', 'propertyshift' ),
-	    'update_item'                   => __( 'Update Amenity', 'propertyshift' ),
-	    'add_new_item'                  => __( 'Add New Amenity', 'propertyshift' ),
-	    'new_item_name'                 => __( 'New Amenity', 'propertyshift' ),
-	    'separate_items_with_commas'    => __( 'Separate amenities with commas', 'propertyshift' ),
-	    'add_or_remove_items'           => __( 'Add or remove amenities', 'propertyshift' ),
-	    'choose_from_most_used'         => __( 'Choose from most used amenities', 'propertyshift' )
-	    );
+	    $labels = $this->create_tax_labels(__( 'Amenity', 'propertyshift' ), __( 'Amenities', 'propertyshift' ));
 	    
 	    register_taxonomy(
 	        'property_amenities',
@@ -724,23 +778,18 @@ class PropertyShift_Properties {
 
 	        case 'location' :
 
-	            //Get property location
-	          	$property_location = $this->get_tax_location($post_id);
-	          	$address = $property_settings['street_address']['value'];
-	          	if(!empty($address)) { echo $address.'<br/>'; }
-	            if(empty($property_location)) { echo '--'; } else { echo $property_location; }
+	        	$address = $this->get_full_address($post_id, $exclude = array('Postal Code', 'Country'), $return = 'array');
+	          	foreach($address as $key=>$value) { echo $key.': '.$value.'<br/>'; }
 	            break;
 
 	        case 'type' :
 
-	            //Get property type
 	        	$property_type = $this->get_tax($post_id, 'property_type');
 	            if(empty( $property_type)) { echo '--'; } else { echo $property_type; }
 	            break;
 
 	        case 'status' :
 
-	            //Get property status
 	        	$property_status = $this->get_tax($post_id, 'property_status');
 	            if(empty($property_status)) { echo '--'; } else { echo $property_status; }
 	            break;
@@ -936,68 +985,30 @@ class PropertyShift_Properties {
 	}
 
 	/**
-	 *	Get property location
-	 *
-	 * @param int $post_id
-	 */
-	public function get_tax_location($post_id, $output = null, $array = null) {
-		$property_location = '';
-	    $property_location_output = '';
-	    $property_location_terms = get_the_terms( $post_id, 'property_location');
-	    if ( $property_location_terms && ! is_wp_error( $property_location_terms) ) : 
-	        $property_location_links = array();
-	        $property_location_child_links = array();
-	        foreach ( $property_location_terms as $property_location_term ) {
-	            if($property_location_term->parent != 0) {
-	                if($array == 'true') {
-	                    $property_location_child_links[] = $property_location_term->slug;
-	                } else {
-	                    $property_location_child_links[] = '<a href="'. esc_attr(get_term_link($property_location_term ->slug, 'property_location')) .'">'.$property_location_term ->name.'</a>' ;
-	                }
-	            } else {
-	                if($array == 'true') {
-	                    $property_location_links[] = $property_location_term->slug;
-	                } else {
-	                    $property_location_links[] = '<a href="'. esc_attr(get_term_link($property_location_term ->slug, 'property_location')) .'">'.$property_location_term ->name.'</a>' ;
-	                }
-	            }
-	        }                   
-	        $property_location = join( "<span>, </span>", $property_location_links );
-	        $property_location_children = join( "<span>, </span>", $property_location_child_links );
-	    endif;
-
-	    if($array == 'true') {
-	        if(!empty($property_location_links)) { $property_location_output = array_merge($property_location_links, $property_location_child_links); }
-	    } else {
-	        if($output == 'parent') {
-	            $property_location_output = $property_location;
-	        } else if($output == 'children') {
-	            $property_location_output = $property_location_children;
-	        } else {
-	            $property_location_output .= $property_location_children;
-	            if(!empty($property_location_children) && !empty($property_location)) { $property_location_output .= ', '; } 
-	            $property_location_output .= $property_location;
-	        }
-	    }
-	    
-	    return $property_location_output; 
-	}
-
-	/**
-	 *	Retrieves the full address, including location
+	 *	Retrieves the FULL address
 	 *
 	 * @param int $post_id
 	 *
 	 */
-	public function get_full_address($post_id) {
+	public function get_full_address($post_id, $exclude = array(), $return = 'string') {
 	    $property_settings = $this->load_property_settings($post_id);
-	    $street_address = $property_settings['street_address']['value'];
-	    $property_address = '';
-	    $property_location = $this->get_tax_location($post_id);
-	    if(!empty($street_address)) { $property_address .= $street_address; }
-	    if(!empty($street_address) && !empty($property_location)) { $property_address .= ', '; }
-	    if(!empty($property_location)) { $property_address .= $property_location; }
-	    return $property_address;
+	   	$property_address = array();
+	    if(!in_array('Address', $exclude)) { $property_address['Address'] = $property_settings['street_address']['value']; }
+	    if(!in_array('Neighborhood', $exclude)) { $property_address['Neighborhood'] = $this->get_tax($post_id, 'property_neighborhood'); }
+	    if(!in_array('City', $exclude)) { $property_address['City'] = $this->get_tax($post_id, 'property_city'); }
+	    if(!in_array('State', $exclude)) { $property_address['State'] = $this->get_tax($post_id, 'property_state'); }
+	    if(!in_array('Country', $exclude)) { $property_address['Country'] = $property_settings['country']['value']; }
+	    if(!in_array('Postal Code', $exclude)) { $property_address['Postal Code'] = $property_settings['postal_code']['value']; }
+
+	    $property_address = apply_filters('propertyshift_full_address', $property_address);
+	    $property_address = array_filter($property_address);
+
+	    if($return == 'string') {
+	    	$property_address = implode(', ',$property_address);
+	    	return $property_address;
+	    } else {
+	    	return $property_address;
+	    }
 	}
 
 	/**
@@ -1101,10 +1112,10 @@ class PropertyShift_Properties {
 		);
 
 		// Set default page layout
-		if($_GET['post_type'] == 'ps-property') { $page_settings_init['page_layout']['value'] = 'right sidebar'; }
+		if(isset($_GET['post_type']) && $_GET['post_type'] == 'ps-property') { $page_settings_init['page_layout']['value'] = 'right sidebar'; }
 			
 		// Set default page sidebar
-		if($_GET['post_type'] == 'ps-property') { $page_settings_init['page_layout_widget_area']['value'] = 'properties_sidebar'; }
+		if(isset($_GET['post_type']) && $_GET['post_type'] == 'ps-property') { $page_settings_init['page_layout_widget_area']['value'] = 'properties_sidebar'; }
 
 		return $page_settings_init;
 	}
@@ -1133,55 +1144,62 @@ class PropertyShift_Properties {
 	            'sidebar' => 'false',
 	        ),
 	        2 => array(
+	            'name' => esc_html__('Address', 'propertyshift'),
+	            'label' => esc_html__('Address', 'propertyshift'),
+	            'slug' => 'address',
+	            'active' => 'true',
+	            'sidebar' => 'false',
+	        ),
+	        3 => array(
 	            'name' => esc_html__('Gallery', 'propertyshift'),
 	            'label' => esc_html__('Gallery', 'propertyshift'),
 	            'slug' => 'gallery',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        3 => array(
+	        4 => array(
 	            'name' => esc_html__('Property Details', 'propertyshift'),
 	            'label' => esc_html__('Property Details', 'propertyshift'),
 	            'slug' => 'property_details',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        4 => array(
+	        5 => array(
 	            'name' => esc_html__('Video', 'propertyshift'),
 	            'label' => esc_html__('Video', 'propertyshift'),
 	            'slug' => 'video',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        5 => array(
+	        6 => array(
 	            'name' => esc_html__('Amenities', 'propertyshift'),
 	            'label' => esc_html__('Amenities', 'propertyshift'),
 	            'slug' => 'amenities',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        6 => array(
+	        7 => array(
 	            'name' => esc_html__('Floor Plans', 'propertyshift'),
 	            'label' => esc_html__('Floor Plans', 'propertyshift'),
 	            'slug' => 'floor_plans',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        7 => array(
+	        8 => array(
 	            'name' => esc_html__('Walk Score', 'propertyshift'),
 	            'label' => esc_html__('Walk Score', 'propertyshift'),
 	            'slug' => 'walk_score',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        8 => array(
+	        9 => array(
 	            'name' => esc_html__('Agent Info', 'propertyshift'),
 	            'label' => 'Agent Information',
 	            'slug' => 'agent_info',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        9 => array(
+	        10 => array(
 	            'name' => esc_html__('Related Properties', 'propertyshift'),
 	            'label' => 'Related Properties',
 	            'slug' => 'related',

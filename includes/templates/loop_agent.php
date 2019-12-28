@@ -4,22 +4,22 @@
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 
     //Get agent details
-    $agent_id = $template_args['id'];
+    $agent_id = isset($template_args['id']) ? $template_args['id'] : null;
 
     $agents_obj = new PropertyShift_Agents();
     $agent_settings = $agents_obj->load_agent_settings($agent_id);
-    $agent_display_name = $agent_settings['display_name']['value'];
-    $agent_avatar_url = $agent_settings['avatar_url']['value'];
-    $agent_email = $agent_settings['email']['value'];
-    $agent_title = $agent_settings['job_title']['value'];
-    $agent_mobile_phone = $agent_settings['mobile_phone']['value'];
-    $agent_office_phone = $agent_settings['office_phone']['value'];
-    $agent_fb = $agent_settings['facebook']['value'];
-    $agent_twitter = $agent_settings['twitter']['value'];
-    $agent_google = $agent_settings['google']['value'];
-    $agent_linkedin = $agent_settings['linkedin']['value'];
-    $agent_youtube = $agent_settings['youtube']['value'];
-    $agent_instagram = $agent_settings['instagram']['value'];
+    $agent_display_name = isset($agent_settings['display_name']['value']) ? $agent_settings['display_name']['value'] : '';
+    $agent_avatar_url = isset($agent_settings['avatar_url']['value']) ? $agent_settings['avatar_url']['value'] : '';
+    $agent_email = isset($agent_settings['email']['value']) ? $agent_settings['email']['value'] : '';
+    $agent_title = isset($agent_settings['job_title']['value']) ? $agent_settings['job_title']['value'] : '';
+    $agent_mobile_phone = isset($agent_settings['mobile_phone']['value']) ? $agent_settings['mobile_phone']['value'] : '';
+    $agent_office_phone = isset($agent_settings['office_phone']['value']) ? $agent_settings['office_phone']['value'] : '';
+    $agent_fb = isset($agent_settings['facebook']['value']) ? $agent_settings['facebook']['value'] : '';
+    $agent_twitter = isset($agent_settings['twitter']['value']) ? $agent_settings['twitter']['value'] : '';
+    $agent_google = isset($agent_settings['google']['value']) ? $agent_settings['google']['value'] : '';
+    $agent_linkedin = isset($agent_settings['linkedin']['value']) ? $agent_settings['linkedin']['value'] : '';
+    $agent_youtube = isset($agent_settings['youtube']['value']) ? $agent_settings['youtube']['value'] : '';
+    $agent_instagram = isset($agent_settings['instagram']['value']) ? $agent_settings['instagram']['value'] : '';
 
     //Get agent property count
     $agent_properties = $agents_obj->get_agent_properties($agent_id);

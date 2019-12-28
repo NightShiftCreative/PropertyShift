@@ -4,10 +4,10 @@
 
     //GET CUSTOM ARGS
     if(isset($template_args)) {
-        $custom_args = $template_args['custom_args'];
-        $custom_pagination = $template_args['custom_pagination'];
-        $custom_cols = $template_args['custom_cols'];
-        $no_post_message = $template_args['no_post_message'];
+        $custom_args = isset($template_args['custom_args']) ? $template_args['custom_args'] : null;
+        $custom_pagination = isset($template_args['custom_pagination']) ? $template_args['custom_pagination'] : null;
+        $custom_cols = isset($template_args['custom_cols']) ? $template_args['custom_cols'] : null;
+        $no_post_message = isset($template_args['no_post_message']) ? $template_args['no_post_message'] : null;
     }
 
     //GENERATE COLUMN LAYOUT

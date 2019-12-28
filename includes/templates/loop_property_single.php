@@ -16,7 +16,7 @@
     $property_detail_agent_contact_form = $global_settings['ps_property_detail_agent_contact_form'];
 
     //Get template location
-    if(isset($template_args)) { $template_location = $template_args['location']; } else { $template_location = ''; }
+    $template_location = isset($template_args['location']) ? $template_args['location'] : ''; 
     if($template_location == 'sidebar') { 
         $template_location_sidebar = 'true'; 
     } else { 
@@ -28,7 +28,8 @@
     $property_settings = $property_obj->load_property_settings($post->ID);
     $code = $property_settings['id']['value'];
     $featured = $property_settings['featured']['value'];
-    $address = $property_obj->get_full_address($post->ID);
+    $address = $property_obj->get_full_address($post->ID, array('Postal Code', 'Country', 'Neighborhood'));
+    $address_array = $property_obj->get_full_address($post->ID, array(), 'array');
     $price = $property_settings['price']['value'];
     $price_postfix = $property_settings['price_postfix']['value'];
     $area = $property_settings['area']['value'];
@@ -47,7 +48,7 @@
 
     $property_type = $property_obj->get_tax($postID, 'property_type');
     $property_status = $property_obj->get_tax($postID, 'property_status');
-    $property_location = $property_obj->get_tax($postID, 'property_location');
+    $property_city = $property_obj->get_tax($postID, 'property_city');
     $property_amenities = $property_obj->get_tax_amenities($postID, $property_detail_amenities_hide_empty, null);
 
     //Get agent details
@@ -136,6 +137,28 @@
                                 </div>
                             <?php } ?>
                             <?php echo $description; ?>
+                        </div>
+                    <?php } ?>
+
+                    <?php if($slug == 'address' && !empty($address_array)) { ?>
+                    <!--******************************************************-->
+                    <!-- ADDRESS -->
+                    <!--******************************************************-->
+                        <div class="property-single-item ps-single-item widget property-<?php echo esc_attr($slug); ?>">
+                            <?php if(!empty($label)) { ?>
+                                <div class="module-header module-header-left">
+                                    <h4><?php echo esc_attr($label); ?></h4>
+                                    <div class="widget-divider"><div class="bar"></div></div>
+                                </div>
+                            <?php } ?>
+                            <div class="property-details-full">
+                                <?php
+                                foreach($address_array as $key=>$value) { ?>
+                                    <div class="property-detail-item"><?php echo $key.': '; ?><span><?php echo $value; ?></span></div>
+                                <?php }
+                                do_action('propertyshift_property_address_widget', $postID); ?>
+                                <div class="clear"></div>
+                            </div>
                         </div>
                     <?php } ?>
 
@@ -371,9 +394,9 @@
                                             'terms' => $property_type
                                         ),
                                         array(
-                                            'taxonomy' => 'property_location',
+                                            'taxonomy' => 'property_city',
                                             'field' => 'slug',
-                                            'terms' => $property_location
+                                            'terms' => $property_city
                                         ),
                                     ),
                                     'orderby' => 'rand',

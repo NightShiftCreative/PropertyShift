@@ -234,10 +234,10 @@ class PropertyShift_Filters {
 	            'active' => 'true',
 	        ),
 	        2 => array(
-	            'name' => esc_html__('Property Location', 'propertyshift'),
-	            'label' => esc_html__('Property Location', 'propertyshift'),
+	            'name' => esc_html__('Property City', 'propertyshift'),
+	            'label' => esc_html__('Property City', 'propertyshift'),
 	            'placeholder' => esc_html__('Any', 'propertyshift'),
-	            'slug' => 'property_location',
+	            'slug' => 'property_city',
 	            'active' => 'true',
 	        ),
 	        3 => array(
@@ -267,6 +267,20 @@ class PropertyShift_Filters {
 	            'placeholder_second' => esc_html__('Max', 'propertyshift'),
 	            'slug' => 'area',
 	            'active' => 'true',
+	        ),
+	        7 => array(
+	            'name' => esc_html__('Property Neighborhood', 'propertyshift'),
+	            'label' => esc_html__('Property Neighborhood', 'propertyshift'),
+	            'placeholder' => esc_html__('Any', 'propertyshift'),
+	            'slug' => 'property_neighborhood',
+	            'active' => 'false',
+	        ),
+	        8 => array(
+	            'name' => esc_html__('Property State', 'propertyshift'),
+	            'label' => esc_html__('Property State', 'propertyshift'),
+	            'placeholder' => esc_html__('Any', 'propertyshift'),
+	            'slug' => 'property_state',
+	            'active' => 'false',
 	        ),
 	    );
 

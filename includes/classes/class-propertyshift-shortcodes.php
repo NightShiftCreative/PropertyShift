@@ -13,7 +13,6 @@ class PropertyShift_Shortcodes {
 	 *	Constructor
 	 */
 	public function __construct() {
-		add_action( 'media_buttons', array( $this, 'add_shortcode_wizard'));
 		add_filter("the_content", array( $this, 'content_filter'));
 		add_shortcode('ps_list_properties', array( $this, 'add_shortcode_list_properties'));
 		add_shortcode('ps_list_property_tax', array( $this, 'add_shortcode_list_property_tax'));
@@ -35,15 +34,6 @@ class PropertyShift_Shortcodes {
 	}
 
 	/**
-	 * Add shortcode wizard
-	 */
-	public function add_shortcode_wizard($editor_id) {
-		if($editor_id == 'content') { ?>
-
-		<?php }
-	}
-
-	/**
 	 * List Properties
 	 *
 	 * @param array $atts
@@ -59,7 +49,9 @@ class PropertyShift_Shortcodes {
 	            'layout' => 'grid',
 	            'cols' => null,
 	            'property_status' => '',
-	            'property_location' => '',
+	            'property_neighborhood' => '',
+	            'property_city' => '',
+	            'property_state' => '',
 	            'property_type' => '',
 	            'featured' => 'false'
 	    ), $atts);
@@ -75,7 +67,9 @@ class PropertyShift_Shortcodes {
 	    $args = array(
 	        'posts_per_page' => $atts['show_posts'],
 	        'property_status' => $atts['property_status'],
-	        'property_location' => $atts['property_location'],
+	        'property_neighborhood' => $atts['property_neighborhood'],
+	        'property_city' => $atts['property_city'],
+	        'property_state' => $atts['property_state'],
 	        'property_type' => $atts['property_type'],
 	        'meta_query' => $meta_query_featured,
 	    );

@@ -24,8 +24,10 @@ class propertyshift_list_properties_widget extends WP_Widget {
         $num = isset( $instance['num'] ) ? strip_tags($instance['num']) : 3;
         $layout = 'sidebar';
         $property_status = isset( $instance['property_status'] ) ? strip_tags($instance['property_status']) : '';
-        $property_location = isset( $instance['property_location'] ) ? strip_tags($instance['property_location']) : '';
         $property_type = isset( $instance['property_type'] ) ? strip_tags($instance['property_type']) : '';
+        $property_neighborhood = isset( $instance['property_neighborhood'] ) ? strip_tags($instance['property_neighborhood']) : '';
+        $property_city = isset( $instance['property_city'] ) ? strip_tags($instance['property_city']) : '';
+        $property_state = isset( $instance['property_state'] ) ? strip_tags($instance['property_state']) : '';
         $filter = isset( $instance['filter'] ) ? strip_tags($instance['filter']) : 'recent';
         ?>
             <?php echo wp_kses_post($before_widget); ?>
@@ -44,8 +46,10 @@ class propertyshift_list_properties_widget extends WP_Widget {
                             'post_type' => 'ps-property',
                             'showposts' => $num,
                             'property_status' => $property_status,
-                            'property_location' => $property_location,
                             'property_type' => $property_type,
+                            'property_neighborhood' => $property_neighborhood,
+                            'property_city' => $property_city,
+                            'property_state' => $property_state,
                             'meta_query' => $meta_query_featured,
                         ); 
 
@@ -102,8 +106,10 @@ class propertyshift_list_properties_widget extends WP_Widget {
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['num'] = strip_tags($new_instance['num']);
         $instance['property_status'] = strip_tags($new_instance['property_status']);
-        $instance['property_location'] = strip_tags($new_instance['property_location']);
         $instance['property_type'] = strip_tags($new_instance['property_type']);
+        $instance['property_neighborhood'] = strip_tags($new_instance['property_neighborhood']);
+        $instance['property_city'] = strip_tags($new_instance['property_city']);
+        $instance['property_state'] = strip_tags($new_instance['property_state']);
         $instance['filter'] = strip_tags($new_instance['filter']);
         return $instance;
     }
@@ -111,12 +117,14 @@ class propertyshift_list_properties_widget extends WP_Widget {
     /** @see WP_Widget::form */
     function form($instance) {  
 
-        $instance = wp_parse_args( (array) $instance, array( 'title' => '', 'num' => 3, 'show_header' => null, 'show_pagination' => null, 'layout' => null, 'property_status' => null, 'property_location' => null, 'property_type' => null, 'filter' => null ) );
+        $instance = wp_parse_args( (array) $instance, array( 'title' => '', 'num' => 3, 'show_header' => null, 'show_pagination' => null, 'layout' => null, 'property_status' => null, 'property_neighborhood' => null, 'property_city' => null, 'property_state' => null, 'property_type' => null, 'filter' => null ) );
         $title = esc_attr($instance['title']);
         $num = esc_attr($instance['num']);
         $property_status = esc_attr($instance['property_status']);
-        $property_location = esc_attr($instance['property_location']);
         $property_type = esc_attr($instance['property_type']);
+        $property_neighborhood = esc_attr($instance['property_neighborhood']);
+        $property_city = esc_attr($instance['property_city']);
+        $property_state = esc_attr($instance['property_state']);
         $filter = esc_attr($instance['filter']);
         ?>
 
@@ -145,20 +153,6 @@ class propertyshift_list_properties_widget extends WP_Widget {
         </p>
 
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('property_location')); ?>"><?php esc_html_e('Property Location:', 'propertyshift'); ?></label>
-            <select name="<?php echo esc_attr($this->get_field_name('property_location')); ?>">
-                <option value=""><?php esc_html_e( 'All', 'propertyshift' ); ?></option>
-                <?php
-                $property_locations = get_terms('property_location'); 
-                if ( !empty( $property_locations ) && !is_wp_error( $property_locations ) ) { ?>
-                    <?php foreach ( $property_locations as $property_location_select ) { ?>
-                        <option value="<?php echo esc_attr($property_location_select->name); ?>" <?php if($property_location == $property_location_select->name) { echo 'selected'; } ?>><?php echo esc_attr($property_location_select->name); ?></option>
-                    <?php } ?>
-                <?php } ?>
-            </select>
-        </p>
-
-        <p>
             <label for="<?php echo esc_attr($this->get_field_id('property_type')); ?>"><?php esc_html_e('Property Type:', 'propertyshift'); ?></label>
             <select name="<?php echo esc_attr($this->get_field_name('property_type')); ?>">
                 <option value=""><?php esc_html_e( 'All', 'propertyshift' ); ?></option>
@@ -167,6 +161,48 @@ class propertyshift_list_properties_widget extends WP_Widget {
                     if ( !empty( $property_types ) && !is_wp_error( $property_types ) ) { ?>
                         <?php foreach ( $property_types as $property_type_select ) { ?>
                             <option value="<?php echo esc_attr($property_type_select->name); ?>" <?php if($property_type == $property_type_select->name) { echo 'selected'; } ?>><?php echo esc_attr($property_type_select->name); ?></option>
+                    <?php } ?>
+                <?php } ?>
+            </select>
+        </p>
+
+        <p>
+            <label for="<?php echo esc_attr($this->get_field_id('property_neighborhood')); ?>"><?php esc_html_e('Property Neighborhood:', 'propertyshift'); ?></label>
+            <select name="<?php echo esc_attr($this->get_field_name('property_neighborhood')); ?>">
+                <option value=""><?php esc_html_e( 'All', 'propertyshift' ); ?></option>
+                <?php
+                $property_neighborhoods = get_terms('property_neighborhood'); 
+                if ( !empty( $property_neighborhoods ) && !is_wp_error( $property_neighborhoods ) ) { ?>
+                    <?php foreach ( $property_neighborhoods as $property_neighborhood_select ) { ?>
+                        <option value="<?php echo esc_attr($property_neighborhood_select->name); ?>" <?php if($property_neighborhood == $property_neighborhood_select->name) { echo 'selected'; } ?>><?php echo esc_attr($property_neighborhood_select->name); ?></option>
+                    <?php } ?>
+                <?php } ?>
+            </select>
+        </p>
+
+        <p>
+            <label for="<?php echo esc_attr($this->get_field_id('property_city')); ?>"><?php esc_html_e('Property City:', 'propertyshift'); ?></label>
+            <select name="<?php echo esc_attr($this->get_field_name('property_city')); ?>">
+                <option value=""><?php esc_html_e( 'All', 'propertyshift' ); ?></option>
+                <?php
+                $property_cities = get_terms('property_city'); 
+                if ( !empty( $property_cities ) && !is_wp_error( $property_cities ) ) { ?>
+                    <?php foreach ( $property_cities as $property_city_select ) { ?>
+                        <option value="<?php echo esc_attr($property_city_select->name); ?>" <?php if($property_city == $property_city_select->name) { echo 'selected'; } ?>><?php echo esc_attr($property_city_select->name); ?></option>
+                    <?php } ?>
+                <?php } ?>
+            </select>
+        </p>
+
+        <p>
+            <label for="<?php echo esc_attr($this->get_field_id('property_state')); ?>"><?php esc_html_e('Property State:', 'propertyshift'); ?></label>
+            <select name="<?php echo esc_attr($this->get_field_name('property_state')); ?>">
+                <option value=""><?php esc_html_e( 'All', 'propertyshift' ); ?></option>
+                <?php
+                $property_states = get_terms('property_state'); 
+                if ( !empty( $property_states ) && !is_wp_error( $property_states ) ) { ?>
+                    <?php foreach ( $property_states as $property_state_select ) { ?>
+                        <option value="<?php echo esc_attr($property_state_select->name); ?>" <?php if($property_state == $property_state_select->name) { echo 'selected'; } ?>><?php echo esc_attr($property_state_select->name); ?></option>
                     <?php } ?>
                 <?php } ?>
             </select>
@@ -183,7 +219,11 @@ class propertyshift_list_properties_widget extends WP_Widget {
         <?php
     }
 
-} // class utopian_recent_posts
-add_action('widgets_init', create_function('', 'return register_widget("propertyshift_list_properties_widget");'));
+}
+
+add_action('widgets_init', 'propertyshift_list_properties_widget_init');
+function propertyshift_list_properties_widget_init() { 
+    return register_widget('propertyshift_list_properties_widget'); 
+}
 
 ?>
