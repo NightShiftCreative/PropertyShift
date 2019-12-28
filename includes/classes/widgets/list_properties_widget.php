@@ -219,7 +219,11 @@ class propertyshift_list_properties_widget extends WP_Widget {
         <?php
     }
 
-} // class utopian_recent_posts
-add_action('widgets_init', create_function('', 'return register_widget("propertyshift_list_properties_widget");'));
+}
+
+add_action('widgets_init', 'propertyshift_list_properties_widget_init');
+function propertyshift_list_properties_widget_init() { 
+    return register_widget('propertyshift_list_properties_widget'); 
+}
 
 ?>
