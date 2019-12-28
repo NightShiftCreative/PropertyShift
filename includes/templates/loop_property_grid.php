@@ -8,6 +8,7 @@
     $property_listing_crop = $admin_obj->load_settings(false, 'ps_property_listing_crop');	
 
     //property settings
+    global $post;
     $property_obj = new PropertyShift_Properties();
 	$property_settings = $property_obj->load_property_settings($post->ID);
 	$featured = $property_settings['featured']['value'];
