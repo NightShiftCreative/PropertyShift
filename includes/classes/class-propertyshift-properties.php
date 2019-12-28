@@ -1112,10 +1112,10 @@ class PropertyShift_Properties {
 		);
 
 		// Set default page layout
-		if($_GET['post_type'] == 'ps-property') { $page_settings_init['page_layout']['value'] = 'right sidebar'; }
+		if(isset($_GET['post_type']) && $_GET['post_type'] == 'ps-property') { $page_settings_init['page_layout']['value'] = 'right sidebar'; }
 			
 		// Set default page sidebar
-		if($_GET['post_type'] == 'ps-property') { $page_settings_init['page_layout_widget_area']['value'] = 'properties_sidebar'; }
+		if(isset($_GET['post_type']) && $_GET['post_type'] == 'ps-property') { $page_settings_init['page_layout_widget_area']['value'] = 'properties_sidebar'; }
 
 		return $page_settings_init;
 	}
