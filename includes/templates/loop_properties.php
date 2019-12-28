@@ -9,12 +9,12 @@
 
     //GET CUSTOM ARGS
     if(isset($template_args)) {
-        $custom_args = $template_args['custom_args'];
-        $custom_show_filter = $template_args['custom_show_filter'];
-        $custom_layout = $template_args['custom_layout'];
-        $custom_pagination = $template_args['custom_pagination'];
-        $custom_cols = $template_args['custom_cols'];
-        $no_post_message = $template_args['no_post_message'];
+        $custom_args = isset($template_args['custom_args']) ? $template_args['custom_args'] : null;
+        $custom_show_filter = isset($template_args['custom_show_filter']) ? $template_args['custom_show_filter'] : null;
+        $custom_layout = isset($template_args['custom_layout']) ? $template_args['custom_layout'] : null;
+        $custom_pagination = isset($template_args['custom_pagination']) ? $template_args['custom_pagination'] : null;
+        $custom_cols = isset($template_args['custom_cols']) ? $template_args['custom_cols'] : null;
+        $no_post_message = isset($template_args['no_post_message']) ? $template_args['no_post_message'] : null;
     }
 	
     //PAGE SETTINGS

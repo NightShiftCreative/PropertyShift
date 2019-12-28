@@ -16,7 +16,8 @@ if(is_singular('ps-property')) {
 } else {
     $agent_form_message_placeholder =  esc_html__( 'Message', 'propertyshift' );
 }
-    
+
+$emailSent = false;
 $nameError = '';
 $emailError = '';
 $commentError = '';

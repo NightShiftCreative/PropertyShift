@@ -8,7 +8,7 @@ $num_properties_per_page = $admin_obj->load_settings(false, 'ps_num_properties_p
 $agent_detail_items = $admin_obj->load_settings(false, 'ps_agent_detail_items', false);
 
 //Get template location
-if(isset($template_args)) { $template_location = $template_args['location']; } else { $template_location = ''; }
+$template_location = isset($template_args['location']) ? $template_args['location'] : ''; 
 if($template_location == 'sidebar') { 
     $template_location_sidebar = 'true'; 
 } else { 
