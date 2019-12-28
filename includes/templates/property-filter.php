@@ -37,7 +37,7 @@ if(isset($widget_filter) || isset($shortcode_filter)) { $filter_position = ''; }
 
 //Calculate filter module class
 $filter_num = 1;
-foreach($filter_fields as $field) { if($field['active'] == 'true') { $filter_num++; }}
+foreach($filter_fields as $field) { if(isset($field['active']) && $field['active'] == 'true') { $filter_num++; }}
 
 $filter_module_class = 'filter-'.$property_filter_id.' filter-count-'.$filter_num.' ';
 if($filter_layout == 'boxed') { $filter_module_class .= 'filter-boxed ';  }
