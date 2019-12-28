@@ -5,9 +5,9 @@ $admin_obj = new PropertyShift_Admin();
 $properties_page = $admin_obj->load_settings(false, 'ps_properties_page');
 
 //Get template args
-$property_filter_id = $template_args['id'];
-$shortcode_filter = $template_args['shortcode_filter'];
-$widget_filter = $template_args['widget_filter'];
+$property_filter_id = isset($template_args['id']) ? $template_args['id'] : null;
+$shortcode_filter = isset($template_args['shortcode_filter']) ? $template_args['shortcode_filter'] : null;
+$widget_filter = isset($template_args['widget_filter']) ? $template_args['widget_filter'] : null;
 
 //Get filter details
 $filter_obj = new PropertyShift_Filters();
@@ -251,8 +251,8 @@ if (!empty($filter_fields)) { ?>
 		                        <?php } ?>
 
 		                        <?php if($slug == 'area') { ?>
-		                            <input type="number" name="areaMin" class="area-filter area-filter-min" placeholder="<?php echo $placeholder; ?>" value="<?php echo $currentFilters['areaMin']; ?>" />
-		                            <input type="number" name="areaMax" class="area-filter area-filter-max" placeholder="<?php echo $placeholder_second; ?>" value="<?php echo $currentFilters['areaMax']; ?>" />
+		                            <input type="number" name="areaMin" class="area-filter area-filter-min" placeholder="<?php echo $placeholder; ?>" value="<?php if(isset($currentFilters['areaMin'])) { echo $currentFilters['areaMin']; } ?>" />
+		                            <input type="number" name="areaMax" class="area-filter area-filter-max" placeholder="<?php echo $placeholder_second; ?>" value="<?php if(isset($currentFilters['areaMin'])) { echo $currentFilters['areaMax']; } ?>" />
 		                            <div class="clear"></div>
 		                        <?php } ?>
 

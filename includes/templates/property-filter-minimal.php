@@ -6,9 +6,9 @@
     if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 
     //Get template args
-    $property_filter_id = $template_args['id'];
-    $shortcode_filter = $template_args['shortcode_filter'];
-    $widget_filter = $template_args['widget_filter'];
+    $property_filter_id = isset($template_args['id']) ? $template_args['id'] : null;
+    $shortcode_filter = isset($template_args['shortcode_filter']) ? $template_args['shortcode_filter'] : null;
+    $widget_filter = isset($template_args['widget_filter']) ? $template_args['widget_filter'] : null;
 
     //Get filter details
     $filter_obj = new PropertyShift_Filters();
