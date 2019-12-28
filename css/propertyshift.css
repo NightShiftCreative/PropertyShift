@@ -161,8 +161,8 @@
 .accordion .ui-accordion-content { border:1px solid rgba(0, 0, 0, 0.1); padding:20px; margin-bottom:20px; }
 
 /* SOCIAL ICONS */
-.social-icons { margin-bottom:0; }
-.social-icons li { margin-left:0 !important; display:inline-block; padding-left:5px; padding-right:5px; line-height:1.4; }
+.social-icons, ul.social-icons { margin:0 !important; }
+.social-icons li { margin:0 !important; display:inline-block; padding-left:5px; padding-right:5px; line-height:1.4; }
 .social-icons li:first-child { padding-left:0px; }
 .social-icons li:last-child { padding-right:0px; }
 .social-icons.circle li a {
@@ -170,6 +170,12 @@
     display:inline-block;
     border-radius:100%;
     text-align:center;
+    background:black;
+    color:white;
+    width:40px;
+    height:40px;
+    line-height:40px;
+    font-size:16px;
 }
 
 /** TRUNCATE **/
@@ -397,7 +403,7 @@
 }
 .ps-agent .agent-details p span { float:right; font-weight:600; }
 
-.ps-agent .social-icons { margin-bottom:0; }
+.ps-agent .social-icons { margin-top:10px !important; }
 
 .agent-contact-form { margin-top:20px; }
 
