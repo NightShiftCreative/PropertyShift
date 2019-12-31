@@ -21,7 +21,7 @@ class PropertyShift {
 	public function __construct() {
 		
 		//Add actions & filters
-		require_once( plugin_dir_path( __FILE__ ) . '/includes/plugins/class-tgm-plugin-activation.php');
+		require_once( plugin_dir_path( __FILE__ ) . '/includes/classes/class-tgm-plugin-activation.php');
 		add_action( 'tgmpa_register', array( $this, 'require_plugins' ) );
 		if($this->is_plugin_active('ns-basics/ns-basics.php')) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
@@ -58,7 +58,6 @@ class PropertyShift {
 	 * Define constants
 	 */
 	public function define_constants() {
-
 		$ns_basics_latest_release = $this->get_latest_github_release('NS-Basics');
 		if(!defined('NS_URL')) { define('NS_URL', 'https://nightshiftcreative.co/'); }
 		if(!defined('NS_SHOP_URL')) { define('NS_SHOP_URL', 'https://products.nightshiftcreative.co/'); }
