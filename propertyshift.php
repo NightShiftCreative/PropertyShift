@@ -31,7 +31,6 @@ class PropertyShift {
 		//Functions
 		$this->load_plugin_textdomain();
 		$this->define_constants();
-		$this->update_checker();
 		if($this->is_plugin_active('ns-basics/ns-basics.php')) { $this->includes(); }
 	}
 
@@ -67,18 +66,6 @@ class PropertyShift {
 		define('PROPERTYSHIFT_GITHUB', '/NightShiftCreative/PropertyShift/');
 		define('PROPERTYSHIFT_LICENSE_PAGE', 'propertyshift-license-keys' );
 		define('PROPERTYSHIFT_DIR', plugins_url('', __FILE__));
-	}
-
-	/**
-	 * Update Checker
-	 */
-	public function update_checker() {
-		require 'includes/plugins/plugin-update-checker/plugin-update-checker.php';
-		$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-		    'https://github.com'.constant('PROPERTYSHIFT_GITHUB'),
-		    __FILE__,
-		    'propertyshift'
-		);
 	}
 
 	/**
