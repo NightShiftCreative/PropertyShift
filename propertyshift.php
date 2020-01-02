@@ -60,7 +60,7 @@ class PropertyShift {
 	 */
 	public function define_constants() {
 		$ns_basics_latest_release = $this->get_latest_github_release('NS-Basics');
-		if(!defined('NS_URL')) { define('NS_URL', 'https://nightshiftcreative.co/'); }
+		if(!defined('NS_BASICS_URL')) { define('NS_BASICS_URL', 'https://nightshiftcreative.co/'); }
 		if(!defined('NS_BASICS_SHOP_URL')) { define('NS_BASICS_SHOP_URL', 'https://products.nightshiftcreative.co/'); }
 		if(!defined('NS_BASICS_GITHUB')) { define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/'.$ns_basics_latest_release.'.zip'); }
 		if(!defined('PROPERTYSHIFT_GITHUB')) { define('PROPERTYSHIFT_GITHUB', '/NightShiftCreative/PropertyShift/'); } 
