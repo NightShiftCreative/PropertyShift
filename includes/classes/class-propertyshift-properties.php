@@ -540,15 +540,15 @@ class PropertyShift_Properties {
 	    if(is_admin() && $pagenow=='edit.php') {
 	    	if(isset($_GET['ps_beds']) && $_GET['ps_beds'] != '') {
 		        $query->query_vars['meta_key'] = 'ps_property_bedrooms';
-		        $query->query_vars['meta_value'] = $_GET['ps_beds'];
+		        $query->query_vars['meta_value'] = esc_attr($_GET['ps_beds']);
 		    }
 		    if(isset($_GET['ps_baths']) && $_GET['ps_baths'] != '') {
 		        $query->query_vars['meta_key'] = 'ps_property_bathrooms';
-		        $query->query_vars['meta_value'] = $_GET['ps_baths'];
+		        $query->query_vars['meta_value'] = esc_attr($_GET['ps_baths']);
 		    }
 		    if(isset($_GET['ps_agent']) && $_GET['ps_agent'] != '') {
 		        $query->query_vars['meta_key'] = 'post_author_override';
-		        $query->query_vars['meta_value'] = $_GET['ps_agent'];
+		        $query->query_vars['meta_value'] = esc_attr($_GET['ps_agent']);
 		    }
 	    }
 	}
