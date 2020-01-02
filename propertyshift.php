@@ -1,5 +1,4 @@
 <?php
-
 /**
 * Plugin Name: PropertyShift
 * Plugin URI: https://products.nightshiftcreative.co/plugins/propertyshift/
@@ -20,18 +19,20 @@ class PropertyShift {
 	 */
 	public function __construct() {
 		
-		//Add actions & filters
+		//Init
+		$this->load_plugin_textdomain();
+		$this->define_constants();
+
+		// Require NS Basics
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/classes/class-tgm-plugin-activation.php');
 		add_action( 'tgmpa_register', array( $this, 'require_plugins' ) );
+		
+		// Load Assets and Includes
 		if($this->is_plugin_active('ns-basics/ns-basics.php')) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts' ) );
+			$this->includes();
 		}
-
-		//Functions
-		$this->load_plugin_textdomain();
-		$this->define_constants();
-		if($this->is_plugin_active('ns-basics/ns-basics.php')) { $this->includes(); }
 	}
 
 	/**
@@ -62,9 +63,9 @@ class PropertyShift {
 		if(!defined('NS_URL')) { define('NS_URL', 'https://nightshiftcreative.co/'); }
 		if(!defined('NS_SHOP_URL')) { define('NS_SHOP_URL', 'https://products.nightshiftcreative.co/'); }
 		if(!defined('NS_BASICS_GITHUB')) { define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/'.$ns_basics_latest_release.'.zip'); }
-		define('PROPERTYSHIFT_GITHUB', '/NightShiftCreative/PropertyShift/');
-		define('PROPERTYSHIFT_LICENSE_PAGE', 'propertyshift-license-keys' );
-		define('PROPERTYSHIFT_DIR', plugins_url('', __FILE__));
+		if(!defined('PROPERTYSHIFT_GITHUB')) { define('PROPERTYSHIFT_GITHUB', '/NightShiftCreative/PropertyShift/'); } 
+		if(!defined('PROPERTYSHIFT_LICENSE_PAGE')) { define('PROPERTYSHIFT_LICENSE_PAGE', 'propertyshift-license-keys' ); }
+		if(!defined('PROPERTYSHIFT_DIR')) { define('PROPERTYSHIFT_DIR', plugins_url('', __FILE__)); }
 	}
 
 	/**
