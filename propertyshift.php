@@ -61,7 +61,7 @@ class PropertyShift {
 	public function define_constants() {
 		$ns_basics_latest_release = $this->get_latest_github_release('NS-Basics');
 		if(!defined('NS_URL')) { define('NS_URL', 'https://nightshiftcreative.co/'); }
-		if(!defined('NS_SHOP_URL')) { define('NS_SHOP_URL', 'https://products.nightshiftcreative.co/'); }
+		if(!defined('NS_BASICS_SHOP_URL')) { define('NS_BASICS_SHOP_URL', 'https://products.nightshiftcreative.co/'); }
 		if(!defined('NS_BASICS_GITHUB')) { define('NS_BASICS_GITHUB', '/NightShiftCreative/NS-Basics/archive/'.$ns_basics_latest_release.'.zip'); }
 		if(!defined('PROPERTYSHIFT_GITHUB')) { define('PROPERTYSHIFT_GITHUB', '/NightShiftCreative/PropertyShift/'); } 
 		if(!defined('PROPERTYSHIFT_LICENSE_PAGE')) { define('PROPERTYSHIFT_LICENSE_PAGE', 'propertyshift-license-keys' ); }
@@ -81,7 +81,7 @@ class PropertyShift {
 				'version'	   => '1.0.0',
 				'force_activation'   => false,
 				'force_deactivation' => false,
-				'external_url' => constant('NS_SHOP_URL'),
+				'external_url' => constant('NS_BASICS_SHOP_URL'),
 			),
 	    );
 

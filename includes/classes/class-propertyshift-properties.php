@@ -278,7 +278,7 @@ class PropertyShift_Properties {
 				'name' => 'ps_property_latitude',
 				'description' => sprintf( 
 				    __( 'Used only for add-ons, such as <a href="%s" target="_blank">Advanced Maps</a>', 'propertyshift' ), 
-				    esc_url( NS_SHOP_URL.'plugins/propertyshift/advanced-maps/' ) 
+				    esc_url( NS_BASICS_SHOP_URL.'plugins/propertyshift/advanced-maps/' ) 
 				),
 				'type' => 'text',
 				'order' => 12,
@@ -289,7 +289,7 @@ class PropertyShift_Properties {
 				'name' => 'ps_property_longitude',
 				'description' => sprintf( 
 				    __( 'Used only for add-ons, such as <a href="%s" target="_blank">Advanced Maps</a>', 'propertyshift' ), 
-				    esc_url( NS_SHOP_URL.'plugins/propertyshift/advanced-maps/' ) 
+				    esc_url( NS_BASICS_SHOP_URL.'plugins/propertyshift/advanced-maps/' ) 
 				),
 				'type' => 'text',
 				'order' => 13,	

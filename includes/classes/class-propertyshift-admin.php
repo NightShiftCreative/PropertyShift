@@ -719,7 +719,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 		ob_start();
 
 		$raw_addons = wp_remote_get(
-	        constant('NS_SHOP_URL').'/plugins/propertyshift/add-ons/',
+	        constant('NS_BASICS_SHOP_URL').'/plugins/propertyshift/add-ons/',
 	        array('timeout'     => 10, 'redirection' => 5, 'sslverify'   => false)
 	    );
 
@@ -747,7 +747,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
 	        echo '</div>';
 	    } else { 
 	    	esc_html_e('There was an issue connecting to the add-ons store. Get more information about our add-ons', 'propertyshift'); 
-	    	echo ' <a href="'.NS_SHOP_URL.'" target="_blank">here</a>.';
+	    	echo ' <a href="'.NS_BASICS_SHOP_URL.'" target="_blank">here</a>.';
 	    }
 
 		$output = ob_get_clean();

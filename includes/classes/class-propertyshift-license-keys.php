@@ -45,7 +45,7 @@ class PropertyShift_License_Keys {
 	            'url'      => home_url()
 	        );
 
-	        $response = wp_remote_post( NS_SHOP_URL, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+	        $response = wp_remote_post( NS_BASICS_SHOP_URL, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
 
 	        if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 	            if ( is_wp_error( $response ) ) {
@@ -118,7 +118,7 @@ class PropertyShift_License_Keys {
 	            'url'      => home_url()
 	        );
 
-	        $response = wp_remote_post( NS_SHOP_URL, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+	        $response = wp_remote_post( NS_BASICS_SHOP_URL, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
 
 	        if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 
