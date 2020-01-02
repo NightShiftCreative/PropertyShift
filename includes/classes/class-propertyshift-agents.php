@@ -371,18 +371,18 @@ class PropertyShift_Agents {
      */
     public function save_agent_user_fields($user_id) {
         if(!current_user_can( 'edit_user', $user_id )) { return false; }
-        if(isset($_POST['ps_agent_show_in_listings'])) {update_user_meta( $user_id, 'ps_agent_show_in_listings', $_POST['ps_agent_show_in_listings'] ); }
-        if(isset($_POST['ps_agent_job_title'])) {update_user_meta( $user_id, 'ps_agent_job_title', $_POST['ps_agent_job_title'] ); }
-        if(isset($_POST['ps_agent_mobile_phone'])) {update_user_meta( $user_id, 'ps_agent_mobile_phone', $_POST['ps_agent_mobile_phone'] ); }
-        if(isset($_POST['ps_agent_office_phone'])) {update_user_meta( $user_id, 'ps_agent_office_phone', $_POST['ps_agent_office_phone'] ); }
-        if(isset($_POST['ps_agent_facebook'])) {update_user_meta( $user_id, 'ps_agent_facebook', $_POST['ps_agent_facebook'] ); }
-        if(isset($_POST['ps_agent_twitter'])) {update_user_meta( $user_id, 'ps_agent_twitter', $_POST['ps_agent_twitter'] ); }
-        if(isset($_POST['ps_agent_linkedin'])) {update_user_meta( $user_id, 'ps_agent_linkedin', $_POST['ps_agent_linkedin'] ); }
-        if(isset($_POST['ps_agent_google'])) {update_user_meta( $user_id, 'ps_agent_google', $_POST['ps_agent_google'] ); }
-        if(isset($_POST['ps_agent_youtube'])) {update_user_meta( $user_id, 'ps_agent_youtube', $_POST['ps_agent_youtube'] ); }
-        if(isset($_POST['ps_agent_instagram'])) {update_user_meta( $user_id, 'ps_agent_instagram', $_POST['ps_agent_instagram'] ); }
-        if(isset($_POST['ps_agent_contact'])) {update_user_meta( $user_id, 'ps_agent_contact', $_POST['ps_agent_contact'] ); }
-    	if(isset($_POST['ps_agent_contact_form_7'])) {update_user_meta( $user_id, 'ps_agent_contact_form_7', $_POST['ps_agent_contact_form_7'] ); }
+        if(isset($_POST['ps_agent_show_in_listings'])) {update_user_meta( $user_id, 'ps_agent_show_in_listings', esc_attr($_POST['ps_agent_show_in_listings']) ); }
+        if(isset($_POST['ps_agent_job_title'])) {update_user_meta( $user_id, 'ps_agent_job_title', esc_attr($_POST['ps_agent_job_title']) ); }
+        if(isset($_POST['ps_agent_mobile_phone'])) {update_user_meta( $user_id, 'ps_agent_mobile_phone', esc_attr($_POST['ps_agent_mobile_phone']) ); }
+        if(isset($_POST['ps_agent_office_phone'])) {update_user_meta( $user_id, 'ps_agent_office_phone', esc_attr($_POST['ps_agent_office_phone']) ); }
+        if(isset($_POST['ps_agent_facebook'])) {update_user_meta( $user_id, 'ps_agent_facebook', esc_attr($_POST['ps_agent_facebook']) ); }
+        if(isset($_POST['ps_agent_twitter'])) {update_user_meta( $user_id, 'ps_agent_twitter', esc_attr($_POST['ps_agent_twitter']) ); }
+        if(isset($_POST['ps_agent_linkedin'])) {update_user_meta( $user_id, 'ps_agent_linkedin', esc_attr($_POST['ps_agent_linkedin']) ); }
+        if(isset($_POST['ps_agent_google'])) {update_user_meta( $user_id, 'ps_agent_google', esc_attr($_POST['ps_agent_google']) ); }
+        if(isset($_POST['ps_agent_youtube'])) {update_user_meta( $user_id, 'ps_agent_youtube', esc_attr($_POST['ps_agent_youtube']) ); }
+        if(isset($_POST['ps_agent_instagram'])) {update_user_meta( $user_id, 'ps_agent_instagram', esc_attr($_POST['ps_agent_instagram']) ); }
+        if(isset($_POST['ps_agent_contact'])) {update_user_meta( $user_id, 'ps_agent_contact', esc_attr($_POST['ps_agent_contact']) ); }
+    	if(isset($_POST['ps_agent_contact_form_7'])) {update_user_meta( $user_id, 'ps_agent_contact_form_7', esc_attr($_POST['ps_agent_contact_form_7']) ); }
     	do_action('propertyshift_save_agent_fields', $user_id); 
     }
 
