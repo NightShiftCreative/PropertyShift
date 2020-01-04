@@ -1,8 +1,8 @@
 === PropertyShift ===
 Contributors: cagipple
 Donate link: https://products.nightshiftcreative.co/
-Tags: real estate, property, properties, listings, mls, agents
-Requires at least: 4.6
+Tags: real estate, property, properties, listings, mls, house, agents, agent, directory, propertyshift, realtor
+Requires at least: 4.0
 Tested up to: 5.3
 Stable tag: 1.0.0
 Requires PHP: 5.2.4
