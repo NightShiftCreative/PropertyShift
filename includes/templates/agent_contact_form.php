@@ -30,18 +30,18 @@ if(isset($_POST['submitted'])) {
         $nameError =  esc_html__('Forgot your name!', 'propertyshift'); 
         $hasError = true;
     } else {
-        $agent_contact_name = trim($_POST['agent-contact-name']);
+        $agent_contact_name = sanitize_text_field($_POST['agent-contact-name']);
     }
       
     // need valid email
     if(trim($_POST['agent-contact-email']) === '')  {
         $emailError = esc_html__('Forgot to enter in your e-mail address.', 'propertyshift');
         $hasError = true;
-    } else if (!preg_match("/^[[:alnum:]][a-z0-9_.-]*@[a-z0-9.-]+\.[a-z]{2,4}$/i", trim($_POST['agent-contact-email']))) {
+    } else if(!is_email(trim($_POST['agent-contact-email']))) {
         $emailError = 'You entered an invalid email address.';
         $hasError = true;
     } else {
-        $agent_contact_email = trim($_POST['agent-contact-email']);
+        $agent_contact_email = sanitize_email($_POST['agent-contact-email']);
     }
         
     // we need at least some content
@@ -50,9 +50,9 @@ if(isset($_POST['submitted'])) {
         $hasError = true;
     } else {
         if(function_exists('stripslashes')) {
-          $agent_contact_message = stripslashes(trim($_POST['agent-contact-message']));
+          $agent_contact_message = stripslashes(sanitize_text_field($_POST['agent-contact-message']));
         } else {
-          $agent_contact_message = trim($_POST['agent-contact-message']);
+          $agent_contact_message = sanitize_text_field($_POST['agent-contact-message']);
         }
     }
         
@@ -64,7 +64,6 @@ if(isset($_POST['submitted'])) {
         /*---------------------------------------------------------*/
         $emailTo = $agent_email;
         $subject = 'Submitted message from '.$agent_contact_name;
-        $sendCopy = trim($_POST['sendCopy']);
         $formUrl = esc_url_raw($_POST['current_url']);
         $body = "This message was sent from a contact from on: $formUrl \n\n Name: $agent_contact_name \n\nEmail: $agent_contact_email \n\nMessage: $agent_contact_message";
         $headers = 'From: ' .$site_title.' <'.$emailTo.'>' . "\r\n" . 'Reply-To: ' . $agent_contact_email;
