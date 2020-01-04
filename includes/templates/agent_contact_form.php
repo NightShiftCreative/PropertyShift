@@ -60,12 +60,12 @@ if(isset($_POST['submitted'])) {
     if(!isset($hasError)) {
 
         /*---------------------------------------------------------*/
-        /* SET EMAIL YOUR EMAIL ADDRESS HERE                       */
+        /* SET EMAIL ADDRESS HERE                                  */
         /*---------------------------------------------------------*/
         $emailTo = $agent_email;
         $subject = 'Submitted message from '.$agent_contact_name;
         $sendCopy = trim($_POST['sendCopy']);
-        $formUrl = $_POST['current_url'];
+        $formUrl = esc_url_raw($_POST['current_url']);
         $body = "This message was sent from a contact from on: $formUrl \n\n Name: $agent_contact_name \n\nEmail: $agent_contact_email \n\nMessage: $agent_contact_message";
         $headers = 'From: ' .$site_title.' <'.$emailTo.'>' . "\r\n" . 'Reply-To: ' . $agent_contact_email;
 
