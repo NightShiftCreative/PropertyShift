@@ -35,7 +35,7 @@ class PropertyShift_License_Keys {
 	public function activate_license() {
 		if(isset($_POST['propertyshift_activate_license']) && !empty($_POST['propertyshift_activate_license'])) {
 
-	        $item_id = $_POST['propertyshift_activate_license'];
+	        $item_id = sanitize_text_field($_POST['propertyshift_activate_license']);
 	        $license = $this->get_license($item_id);
 
 	        $api_params = array(
@@ -108,7 +108,7 @@ class PropertyShift_License_Keys {
 	public function deactivate_license() {
 		if(isset($_POST['propertyshift_deactivate_license']) && !empty($_POST['propertyshift_deactivate_license'])) {
 
-	        $item_id = $_POST['propertyshift_deactivate_license'];
+	        $item_id = sanitize_text_field($_POST['propertyshift_deactivate_license']);
 	        $license = $this->get_license($item_id);
 
 	        $api_params = array(
