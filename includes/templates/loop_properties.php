@@ -39,7 +39,7 @@
     //GET PROPERTY LAYOUT
     if(isset($custom_layout)) {
         if(isset($_GET['custom_layout'])) {
-            $property_layout = $_GET['custom_layout']; 
+            $property_layout = sanitize_text_field($_GET['custom_layout']); 
         } else if($custom_layout == 'row') { 
             $property_layout = 'row';  
         } else if($custom_layout == 'tile') {
@@ -48,7 +48,7 @@
             $property_layout = 'grid'; 
         }
     } else if(isset($_GET['property_layout'])) {
-        $property_layout = $_GET['property_layout']; 
+        $property_layout = sanitize_text_field($_GET['property_layout']); 
     } else if($page_template == 'template_properties_row.php') {
         $property_layout = 'row';
     } else if($page_template == 'template_properties_map.php' || is_tax()) {
@@ -70,8 +70,9 @@
 
     //DETERMINE HOW POSTS ARE SORTED
     $meta_key = '';
+    $order = 'DESC';
     $order_by = get_option('ps_property_listing_default_sortby', 'date_desc');
-    if(isset($_GET['sort_by'])) { $order_by = $_GET['sort_by']; }
+    if(isset($_GET['sort_by'])) { $order_by = sanitize_text_field($_GET['sort_by']); }
 
     if ($order_by == 'date_desc') {
         $order = 'DESC';
@@ -88,11 +89,11 @@
     }
 
     //SET TAXONOMIES
-    if(empty($property_neighborhood)) { if(!empty($_GET['propertyNeighborhood'])) { $property_neighborhood = $_GET['propertyNeighborhood']; } else { $property_neighborhood = ''; } }
-    if(empty($property_city)) { if(!empty($_GET['propertyCity'])) { $property_city = $_GET['propertyCity']; } else { $property_city = ''; } }
-    if(empty($property_state)) { if(!empty($_GET['propertyState'])) { $property_state = $_GET['propertyState']; } else { $property_state = ''; } }
-    if(empty($property_status)) { if(!empty($_GET['propertyStatus'])) { $property_status = $_GET['propertyStatus']; } else { $property_status = ''; } }
-    if(empty($property_type)) { if(!empty($_GET['propertyType'])) { $property_type = $_GET['propertyType']; } else { $property_type = ''; } }
+    if(empty($property_neighborhood)) { if(!empty($_GET['propertyNeighborhood'])) { $property_neighborhood = sanitize_text_field($_GET['propertyNeighborhood']); } else { $property_neighborhood = ''; } }
+    if(empty($property_city)) { if(!empty($_GET['propertyCity'])) { $property_city = sanitize_text_field($_GET['propertyCity']); } else { $property_city = ''; } }
+    if(empty($property_state)) { if(!empty($_GET['propertyState'])) { $property_state = sanitize_text_field($_GET['propertyState']); } else { $property_state = ''; } }
+    if(empty($property_status)) { if(!empty($_GET['propertyStatus'])) { $property_status = sanitize_text_field($_GET['propertyStatus']); } else { $property_status = ''; } }
+    if(empty($property_type)) { if(!empty($_GET['propertyType'])) { $property_type = sanitize_text_field($_GET['propertyType']); } else { $property_type = ''; } }
 
     //SET META QUERY
     $meta_query = array();

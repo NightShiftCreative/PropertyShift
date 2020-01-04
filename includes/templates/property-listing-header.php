@@ -5,7 +5,7 @@ $currentUrl = home_url( $wp->request );
 $icon_set = esc_attr(get_option('ns_core_icon_set', 'fa'));
 if(function_exists('ns_core_load_theme_options')) { $icon_set = ns_core_load_theme_options('ns_core_icon_set'); }
 $order_by = get_option('ps_property_listing_default_sortby', 'date_desc');
-if(isset($_GET['sort_by'])) { $order_by = $_GET['sort_by']; }
+if(isset($_GET['sort_by'])) { $order_by = sanitize_text_field($_GET['sort_by']); }
 
 //Get template args
 $property_listing_query = $template_args['query'];
