@@ -26,7 +26,7 @@
     //Get all current filters from URL
     $currentFilters = array();
     foreach($_GET as $key=>$value) { 
-        if(!empty($value)) { $currentFilters[$key] = $value; }
+        if(!empty($value)) { $currentFilters[$key] = sanitize_text_field($value); }
     }
 
     //Get property status terms

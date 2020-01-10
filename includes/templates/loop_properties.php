@@ -136,12 +136,12 @@
         if(!empty($_GET['beds'])) {
             $meta_query[] = array(
                 'key'     => 'ps_property_bedrooms',
-                'value'   => $_GET['beds']
+                'value'   => sanitize_text_field($_GET['beds']),
             );
         }
 
         if (!empty($_GET['baths'])) {
-            $numBaths = intval($_GET['baths']);
+            $numBaths = intval(sanitize_text_field($_GET['baths']));
             $numBathsDemical = $numBaths + 0.5;
             $meta_query[] = array(
                 'key' => 'ps_property_bathrooms',
