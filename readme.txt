@@ -18,6 +18,7 @@ PropertyShift provides an intuitive interface for managing property details, age
 Full documentation here: [Docs](https://products.nightshiftcreative.co/docs/propertyshift/)
 
 **Core Features:**
+
 * Advanced property editor
 * 6 property taxonomies
 * Drag and drop property detail template configuration
@@ -33,6 +34,7 @@ Full documentation here: [Docs](https://products.nightshiftcreative.co/docs/prop
 * Translation-ready
 
 **Add functionality with these add-ons:**
+
 * [Advanced Maps](https://products.nightshiftcreative.co/plugins/propertyshift/advanced-maps/)
 * [Front-End Property Management](https://products.nightshiftcreative.co/plugins/propertyshift/front-end-property-management/)
 * [Custom Fields](https://products.nightshiftcreative.co/plugins/propertyshift/custom-fields/)
@@ -55,6 +57,12 @@ The easiest way is to add the [ps_list_properties] shortcode to your page. Make 
 = Is PropertyShift free? =
 
 Yes! The core plugin is free, however we offer premium add-ons and themes.
+
+== Screenshots ==
+
+1. Property listings
+2. Edit property
+3. Edit property filter
 
 == Changelog ==
 
