@@ -1,4 +1,4 @@
-### PropertyShift ###
+## PropertyShift ##
 
 PropertyShift provides an intuitive interface for managing property details, agents, property search filters, and more. It is also easily extendable with add-ons and themes. 
 
