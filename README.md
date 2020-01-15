@@ -1,6 +1,6 @@
 ## PropertyShift ##
 
-PropertyShift provides an intuitive interface for managing property details, agents, property search filters, and more. It is also easily extendable with add-ons and themes. 
+PropertyShift is a WordPress plugin that provides an intuitive interface for managing property details, agents, property search filters, and more. It is also easily extendable with add-ons and themes. 
 
 Full documentation here: [Docs](https://products.nightshiftcreative.co/docs/propertyshift/).
 
