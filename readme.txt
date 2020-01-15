@@ -60,9 +60,11 @@ Yes! The core plugin is free, however we offer premium add-ons and themes.
 
 == Screenshots ==
 
-1. Property listings
+1. Admin property listings
 2. Edit property
 3. Edit property filter
+4. Front-end property listings
+5. Property detail
 
 == Changelog ==
 
