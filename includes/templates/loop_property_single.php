@@ -82,7 +82,7 @@
                             <div class="property-title">
                                 <?php if(!empty($price)) { ?>
                                     <div class="property-price-single right">
-                                        <?php echo $property_obj->get_formatted_price($price); ?>
+                                        <?php echo esc_attr($property_obj->get_formatted_price($price)); ?>
                                         <?php if(!empty($price_postfix)) { ?><span class="price-postfix"><?php echo esc_attr($price_postfix); ?></span><?php } ?>
                                     </div>
                                 <?php } ?>
@@ -97,7 +97,7 @@
                                     <?php if(!empty($property_status)) { ?>
                                         <div class="property-tag button status"><?php echo wp_kses_post($property_status); ?></div>
                                     <?php } ?>
-                                    <?php if($property_detail_id == 'true' && !empty($code)) { ?><div class="property-id"><?php esc_html_e('Property Code', 'propertyshift'); ?>: <?php echo $code; ?></div><?php } ?>
+                                    <?php if($property_detail_id == 'true' && !empty($code)) { ?><div class="property-id"><?php esc_html_e('Property Code', 'propertyshift'); ?>: <?php echo esc_attr($code); ?></div><?php } ?>
                                     <?php if(!empty($property_type)) { ?><div class="property-type"><?php esc_html_e('Property Type:', 'propertyshift'); ?> <?php echo wp_kses_post($property_type); ?></div><?php } ?>
                                 </div>
                                 <div class="right property-actions">
@@ -136,7 +136,7 @@
                                     <div class="widget-divider"><div class="bar"></div></div>
                                 </div>
                             <?php } ?>
-                            <?php echo $description; ?>
+                            <?php echo wp_kses_post($description); ?>
                         </div>
                     <?php } ?>
 
@@ -154,7 +154,7 @@
                             <div class="property-details-full">
                                 <?php
                                 foreach($address_array as $key=>$value) { ?>
-                                    <div class="property-detail-item"><?php echo $key.': '; ?><span><?php echo $value; ?></span></div>
+                                    <div class="property-detail-item"><?php echo esc_attr($key).': '; ?><span><?php echo wp_kses_post($value); ?></span></div>
                                 <?php }
                                 do_action('propertyshift_property_address_widget', $postID); ?>
                                 <div class="clear"></div>
@@ -204,7 +204,7 @@
                             <?php } ?>
 
                             <div class="property-details-full">
-                                <?php if($property_detail_id == 'true' && !empty($code)) { ?><div class="property-detail-item"><?php esc_html_e('Property Code', 'propertyshift'); ?>:<span><?php echo $code; ?></span></div><?php } ?>
+                                <?php if($property_detail_id == 'true' && !empty($code)) { ?><div class="property-detail-item"><?php esc_html_e('Property Code', 'propertyshift'); ?>:<span><?php echo esc_attr($code); ?></span></div><?php } ?>
                                 <?php if(!empty($bedrooms)) { ?><div class="property-detail-item"><?php esc_html_e('Beds', 'propertyshift'); ?>:<span><?php echo esc_attr($bedrooms); ?></span></div><?php } ?>
                                 <?php if(!empty($bathrooms)) { ?><div class="property-detail-item"><?php esc_html_e('Baths', 'propertyshift'); ?>:<span><?php echo esc_attr($bathrooms); ?></span></div><?php } ?>
                                 <?php if(!empty($area)) { ?><div class="property-detail-item"><?php esc_html_e('Area', 'propertyshift'); ?>:<span><?php echo esc_attr($area); ?> <?php echo esc_attr($area_postfix); ?></span></div><?php } ?>
@@ -230,7 +230,7 @@
                                     <div class="widget-divider"><div class="bar"></div></div>
                                 </div>
                             <?php } ?>
-                            <?php echo $property_amenities; ?>
+                            <?php echo wp_kses_post($property_amenities); ?>
 						</div>
                 	<?php } ?>
 
