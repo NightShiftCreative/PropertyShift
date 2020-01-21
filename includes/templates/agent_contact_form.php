@@ -102,7 +102,7 @@ if(isset($_POST['submitted'])) {
             <input type="hidden" name="current_url" value="<?php echo $current_url; ?>" />
             <input type="hidden" name="submitted" id="submitted" value="true" />
             <input type="submit" name="submit" value="<?php echo $agent_form_submit_text; ?>" />
-            <div class="form-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php esc_html_e( 'Loading...', 'propertyshift' ); ?></div>
+            <div class="form-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" /> <?php esc_html_e( 'Loading...', 'propertyshift' ); ?></div>
         </div>
     </div>
 </form>

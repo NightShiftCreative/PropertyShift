@@ -389,7 +389,7 @@ class PropertyShift_Properties {
 	        </ul>
 
 	        <div class="ns-tabs-content">
-        	<div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" alt="" /> <?php echo esc_html_e('Loading...', 'propertyshift'); ?></div>
+        	<div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" /> <?php echo esc_html_e('Loading...', 'propertyshift'); ?></div>
 
         	<!--*************************************************-->
 	        <!-- GENERAL INFO -->

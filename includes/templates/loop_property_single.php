@@ -180,9 +180,9 @@
                                         $image_id = ns_basics_get_image_id($additional_image);
                                         $image_thumb = wp_get_attachment_image_src($image_id, 'property-thumbnail');
                                         if(!empty($image_thumb) && !empty($image_thumb[0])) {
-                                            echo '<a href="'.$additional_image.'" target="_blank"><img src="'.$image_thumb[0].'" alt="" /></a>';
+                                            echo '<a href="'.$additional_image.'" target="_blank"><img src="'.$image_thumb[0].'" /></a>';
                                         } else {
-                                            echo '<a href="'.$additional_image.'" target="_blank"><img src="'.$additional_image.'" alt="" /></a>';
+                                            echo '<a href="'.$additional_image.'" target="_blank"><img src="'.$additional_image.'" /></a>';
                                         }
                                     } ?>
                                 <div class="clear"></div>
@@ -265,7 +265,7 @@
                                                     </tr>
                                                 </table>
                                                 <?php if(!empty($floor_plan['description'])) { echo '<p>'.esc_html__($floor_plan['description'], 'propertyshift').'</p>'; } ?>
-                                                <?php if(!empty($floor_plan['img'])) { echo '<img class="floor-plan-img" src="'.$floor_plan['img'].'" alt="" />'; } ?>
+                                                <?php if(!empty($floor_plan['img'])) { echo '<img class="floor-plan-img" src="'.$floor_plan['img'].'" />'; } ?>
                                             </div> 
                                         <?php }
                                     } 
@@ -290,8 +290,8 @@
                                 <div class="module-header module-header-left">
                                     <h4>
                                         <span class="right">
-                                            <img src="<?php echo esc_url($walkScoreData['logo_url']); ?>" alt="" />
-                                            <a target="_blank" href="<?php echo esc_url($walkScoreData['help_link']); ?>"><img src="<?php echo esc_url($walkScoreData['more_info_icon']); ?>" alt="" /></a>
+                                            <img src="<?php echo esc_url($walkScoreData['logo_url']); ?>" />
+                                            <a target="_blank" href="<?php echo esc_url($walkScoreData['help_link']); ?>"><img src="<?php echo esc_url($walkScoreData['more_info_icon']); ?>" /></a>
                                         </span>
                                         <?php echo esc_attr($label); ?>
                                     </h4>
@@ -321,9 +321,9 @@
 							<a href="<?php echo esc_url($video_url); ?>" data-fancybox class="video-cover">
 								<div class="video-cover-content"><i class="fa fa-play icon"></i></div>
 								<?php if(!empty($video_img)) { ?>
-									<img src="<?php echo esc_url($video_img); ?>" alt="" />
+									<img src="<?php echo esc_url($video_img); ?>" />
 								<?php } else { ?>
-                                    <img src="<?php echo PROPERTYSHIFT_DIR.'/images/property-img-default.gif'; ?>" alt="" />
+                                    <img src="<?php echo PROPERTYSHIFT_DIR.'/images/property-img-default.gif'; ?>" />
 								<?php } ?>
 							</a>
 						</div>
@@ -349,7 +349,7 @@
 
                             <div class="agent-details">
                                 <?php
-                                if(!empty($agent_settings['avatar_url_thumb']['value'])) { echo '<img src="'.$agent_settings['avatar_url_thumb']['value'].'" alt="" />'; }
+                                if(!empty($agent_settings['avatar_url_thumb']['value'])) { echo '<img src="'.$agent_settings['avatar_url_thumb']['value'].'" />'; }
                                 echo '<div class="agent-display-name"><strong>'.$agent_settings['display_name']['value'].'</strong></div>';
                                 echo '<div class="agent-email">Email: '.$agent_settings['email']['value'].'</div>';
                                 if(!empty($agent_settings['office_phone']['value'])) { echo '<div class="agent-office-phone">Office: '.$agent_settings['office_phone']['value'].'</div>'; }

@@ -74,7 +74,7 @@ if(!empty($agent)) {
                             <?php if(!empty($agent_avatar_url)) {  ?>
                                 <img src="<?php echo $agent_avatar_url; ?>" alt="<?php echo get_the_title(); ?>" />  
                             <?php } else { ?>
-                                <img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" alt="" />
+                                <img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" />
                             <?php } ?>
                         </div>
 

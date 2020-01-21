@@ -79,7 +79,7 @@ class propertyshift_list_properties_widget extends WP_Widget {
                                                         <?php if($property_listing_crop == 'true') { the_post_thumbnail('property-thumbnail'); } else { the_post_thumbnail('full'); } ?>
                                                     </a>
                                                 <?php } else { ?>
-                                                    <a href="<?php the_permalink(); ?>" class="property-img-link"><img src="<?php echo PROPERTYSHIFT_DIR.'/images/property-img-default.gif'; ?>" alt="" /></a>
+                                                    <a href="<?php the_permalink(); ?>" class="property-img-link"><img src="<?php echo PROPERTYSHIFT_DIR.'/images/property-img-default.gif'; ?>" /></a>
                                                 <?php } ?>
                                             </div>
                                         </div>

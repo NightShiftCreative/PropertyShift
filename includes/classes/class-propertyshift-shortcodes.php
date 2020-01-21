@@ -133,7 +133,7 @@ class PropertyShift_Shortcodes {
 	                    if (isset($term_data['img'])) { $term_img = $term_data['img']; } else { $term_img = ''; } 
 	                    $output .= '<div class="slide slide-tax">';
 	                    $output .= '<a href="'. esc_attr(get_term_link($property_type->slug, $atts['tax'])) .'">';
-	                    if(!empty($term_img)) { $output .= '<img src="'.$term_img.'" alt="" />'; }
+	                    if(!empty($term_img)) { $output .= '<img src="'.$term_img.'" />'; }
 	                    $output .= '<h4>'.$property_type->name.'</h4>';
 	                    $output .= '<span>'.$property_type->count.' '.esc_html__( 'Properties', 'propertyshift' ).'</span>';
 	                    $output .= '</a>';

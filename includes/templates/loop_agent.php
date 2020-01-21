@@ -34,7 +34,7 @@
                 <img src="<?php echo $agent_avatar_url; ?>" alt="<?php echo $agent_display_name; ?>" />  
             </a>
 		<?php } else { ?>
-			<a href="<?php echo get_author_posts_url($agent_id); ?>" class="agent-img-link"><img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" alt="" /></a>
+			<a href="<?php echo get_author_posts_url($agent_id); ?>" class="agent-img-link"><img src="<?php echo PROPERTYSHIFT_DIR.'/images/agent-img-default.gif'; ?>" /></a>
 		<?php } ?>
 	</div>
 	
