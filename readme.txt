@@ -3,7 +3,7 @@ Contributors: cagipple
 Donate link: https://products.nightshiftcreative.co/
 Tags: real estate, property, properties, listings, mls, house, agents, agent, directory, propertyshift, realtor
 Requires at least: 4.0
-Tested up to: 5.3
+Tested up to: 5.7
 Stable tag: 1.0.0
 Requires PHP: 5.2.4
 License: GPLv2 or later
