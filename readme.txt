@@ -68,5 +68,20 @@ Yes! The core plugin is free, however we offer premium add-ons and themes.
 
 == Changelog ==
 
+= 1.0.1 =
+* FIX: removing empty alt tags on images
+* FIX: escaping variables on loop_property_single.php template
+* FIX: resolving php notices in /templates/property-filter-minimal.php
+* IMPROVEMENT: creating separate method for getting properties and removing code from template file
+* IMPROVEMENT: organized code for generating property column class
+* FIX: increase latest NS Basics version required
+* MOD: changed description for property latitude and longitude fields
+* FIX: Adding loop property grid class directly in template file
+* MOD: Removing video functionality from core
+* FIX: Resolving php notice on empty property tax image field
+* FIX: Set default column layout on list properties shortcode
+* IMPROVEMENT: consolidating price format function
+* IMPROVEMENT: adding option to refresh license key status
+
 = 1.0.0 =
 * Initial release

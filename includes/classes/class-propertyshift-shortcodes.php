@@ -47,7 +47,7 @@ class PropertyShift_Shortcodes {
 	            'show_header' => false,
 	            'show_pagination' => 'true',
 	            'layout' => 'grid',
-	            'cols' => null,
+	            'cols' => 3,
 	            'property_status' => '',
 	            'property_neighborhood' => '',
 	            'property_city' => '',

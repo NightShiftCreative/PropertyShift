@@ -43,8 +43,6 @@
     $floor_plans = $property_settings['floor_plans']['value'];
     $latitude = $property_settings['latitude']['value'];
     $longitude = $property_settings['longitude']['value'];
-    $video_url = $property_settings['video_url']['value'];
-    $video_img = $property_settings['video_cover']['value'];
 
     $property_type = $property_obj->get_tax($postID, 'property_type');
     $property_status = $property_obj->get_tax($postID, 'property_status');
@@ -80,13 +78,7 @@
                         <div class="property-single-item ps-single-item widget property-<?php echo esc_attr($slug); ?>">
                             
                             <div class="property-title">
-                                <?php if(!empty($price)) { ?>
-                                    <div class="property-price-single right">
-                                        <?php echo esc_attr($property_obj->get_formatted_price($price)); ?>
-                                        <?php if(!empty($price_postfix)) { ?><span class="price-postfix"><?php echo esc_attr($price_postfix); ?></span><?php } ?>
-                                    </div>
-                                <?php } ?>
-                                            
+                                <?php echo $property_obj->get_formatted_price($price, $price_postfix, $price_class = 'property-price-single right'); ?>               
                                 <?php if(!empty($address)) { echo '<p class="property-address">'.ns_core_get_icon($icon_set, 'map-marker', 'map-marker', 'location').$address.'</p>'; } ?>
                                 <div class="clear"></div>
                             </div>
@@ -307,27 +299,7 @@
 						</div>
 					<?php } ?>
 
-                	<?php if($slug == 'video' && !empty($video_url)) { ?>
-                    <!--******************************************************-->
-                    <!-- VIDEO -->
-                    <!--******************************************************-->
-						<div class="property-single-item ps-single-item widget property-<?php echo esc_attr($slug); ?>">
-					        <?php if(!empty($label)) { ?>
-                                <div class="module-header module-header-left">
-                                    <h4><?php echo esc_attr($label); ?></h4>
-                                    <div class="widget-divider"><div class="bar"></div></div>
-                                </div>
-                            <?php } ?>
-							<a href="<?php echo esc_url($video_url); ?>" data-fancybox class="video-cover">
-								<div class="video-cover-content"><i class="fa fa-play icon"></i></div>
-								<?php if(!empty($video_img)) { ?>
-									<img src="<?php echo esc_url($video_img); ?>" />
-								<?php } else { ?>
-                                    <img src="<?php echo PROPERTYSHIFT_DIR.'/images/property-img-default.gif'; ?>" />
-								<?php } ?>
-							</a>
-						</div>
-                	<?php } ?>
+                	
 
                     <?php if($slug == 'agent_info' && !empty($agent_id) && $agent_display == 'true') { ?>
                     <!--******************************************************-->

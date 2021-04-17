@@ -38,7 +38,7 @@
 
     //Calculate filter module class
     $filter_num = 1;
-    foreach($filter_fields as $field) { if($field['active'] == 'true') { $filter_num++; }}
+    foreach($filter_fields as $field) { if(isset($field['active']) && $field['active'] == 'true') { $filter_num++; }}
     if($filter_num > 4) { $show_advanced = true; } else { $show_advanced = false; }
 
     $filter_module_class = 'filter-'.$property_filter_id.' filter-count-'.$filter_num.' ';
@@ -50,6 +50,7 @@
     } else if($filter_position == 'below')  {
         $filter_module_class .= 'filter-below-banner ';  
     }
+    if(get_permalink() == $properties_page) { $filter_module_class .= 'filter-ajax '; }
 
     //Calculate filter item class
     $filter_class = '';
@@ -105,6 +106,7 @@
                         <div style="margin-right:0;" class="form-block filter-item filter-item-submit <?php if($label_count > 0) { echo 'has-label'; } ?> <?php if($show_advanced == false) { echo 'hide-advanced'; } ?> <?php echo esc_attr($filter_class); ?>">
                             <div class="advanced-options-toggle"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'propertyshift' ); ?></span></div>
                             <input type="hidden" name="advancedSearch" value="true" />
+                            <input type="hidden" name="action" value="ajaxPropertyFilter">
                             <button type="submit" class="button alt"><?php echo ns_core_get_icon($icon_set, 'search', 'magnifier', 'search' ); ?></button>
                         </div>
                     <?php }
@@ -267,6 +269,7 @@
                         <div style="margin-right:0;" class="form-block filter-item filter-item-submit <?php if($label_count > 0) { echo 'has-label'; } ?> <?php if($show_advanced == false) { echo 'hide-advanced'; } ?> <?php echo esc_attr($filter_class); ?>">
                             <div class="advanced-options-toggle"><?php echo ns_core_get_icon($icon_set, 'cog', 'cog', 'gear'); ?><span><?php esc_html_e( 'Advanced', 'propertyshift' ); ?></span></div>
                             <input type="hidden" name="advancedSearch" value="true" />
+                            <input type="hidden" name="action" value="ajaxPropertyFilter">
                             <button type="submit" class="button alt"><?php echo ns_core_get_icon($icon_set, 'search', 'magnifier', 'search' ); ?></button>
                         </div>
                     <?php } ?>

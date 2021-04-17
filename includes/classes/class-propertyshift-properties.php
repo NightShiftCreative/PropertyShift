@@ -276,10 +276,7 @@ class PropertyShift_Properties {
 				'group' => 'location',
 				'title' => esc_html__('Latitude', 'propertyshift'),
 				'name' => 'ps_property_latitude',
-				'description' => sprintf( 
-				    __( 'Used only for add-ons, such as <a href="%s" target="_blank">Advanced Maps</a>', 'propertyshift' ), 
-				    esc_url( NS_BASICS_SHOP_URL.'plugins/propertyshift/advanced-maps/' ) 
-				),
+				'description' => esc_html__('Provide the property latitude coordinate', 'propertyshift'),
 				'type' => 'text',
 				'order' => 12,
 			),
@@ -287,10 +284,7 @@ class PropertyShift_Properties {
 				'group' => 'location',
 				'title' => esc_html__('Longitude', 'propertyshift'),
 				'name' => 'ps_property_longitude',
-				'description' => sprintf( 
-				    __( 'Used only for add-ons, such as <a href="%s" target="_blank">Advanced Maps</a>', 'propertyshift' ), 
-				    esc_url( NS_BASICS_SHOP_URL.'plugins/propertyshift/advanced-maps/' ) 
-				),
+				'description' => esc_html__('Provide the property longitude coordinate', 'propertyshift'),
 				'type' => 'text',
 				'order' => 13,	
 			),
@@ -317,21 +311,6 @@ class PropertyShift_Properties {
 				'serialized' => true,
 				'order' => 16,
 				'class' => 'full-width no-padding',
-			),
-			'video_url' => array(
-				'group' => 'video',
-				'title' => esc_html__('Video URL', 'propertyshift'),
-				'name' => 'ps_property_video_url',
-				'type' => 'text',
-				'order' => 17,
-			),
-			'video_cover' => array(
-				'group' => 'video',
-				'title' => esc_html__('Video Cover Image', 'propertyshift'),
-				'name' => 'ps_property_video_img',
-				'type' => 'image_upload',
-				'display_img' => true,
-				'order' => 18,
 			),
 			'agent' => array(
 				'group' => 'owner_info',
@@ -383,7 +362,6 @@ class PropertyShift_Properties {
 	            <li><a href="#description" title="<?php esc_html_e('Description', 'propertyshift'); ?>"><i class="fa fa-pencil-alt"></i> <span class="tab-text"><?php echo esc_html_e('Description', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#gallery" title="<?php esc_html_e('Gallery', 'propertyshift'); ?>"><i class="fa fa-image"></i> <span class="tab-text"><?php echo esc_html_e('Gallery', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#floor-plans" title="<?php esc_html_e('Floor Plans', 'propertyshift'); ?>"><i class="fa fa-th-large"></i> <span class="tab-text"><?php echo esc_html_e('Floor Plans', 'propertyshift'); ?></span></a></li>
-	            <li><a href="#video" title="<?php esc_html_e('Video', 'propertyshift'); ?>"><i class="fa fa-video"></i> <span class="tab-text"><?php echo esc_html_e('Video', 'propertyshift'); ?></span></a></li>
 	            <li><a href="#agent" title="<?php esc_html_e('Contacts', 'propertyshift'); ?>"><i class="fa fa-user"></i> <span class="tab-text"><?php echo esc_html_e('Contacts', 'propertyshift'); ?></span></a></li>
 	            <?php do_action('propertyshift_after_property_tabs'); ?>
 	        </ul>
@@ -398,7 +376,7 @@ class PropertyShift_Properties {
 	            <h3><?php echo esc_html_e('General Info', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
-	            	if($setting['group'] == 'general') {
+	            	if(isset($setting['group']) && $setting['group'] == 'general') {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } ?>
@@ -411,7 +389,7 @@ class PropertyShift_Properties {
 	            <h3><?php echo esc_html_e('Location', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
-	            	if($setting['group'] == 'location') {
+	            	if(isset($setting['group']) && $setting['group'] == 'location') {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } ?>
@@ -424,7 +402,7 @@ class PropertyShift_Properties {
 	            <h3><?php echo esc_html_e('Description', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
-	            	if($setting['group'] == 'description') {
+	            	if(isset($setting['group']) && $setting['group'] == 'description') {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } ?>
@@ -437,7 +415,7 @@ class PropertyShift_Properties {
 	            <h3><?php echo esc_html_e('Gallery', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
-	            	if($setting['group'] == 'gallery') {
+	            	if(isset($setting['group']) && $setting['group'] == 'gallery') {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } ?>
@@ -450,20 +428,7 @@ class PropertyShift_Properties {
 	            <h3><?php echo esc_html_e('Floor Plans', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
-	            	if($setting['group'] == 'floor_plans') {
-            			$this->admin_obj->build_admin_field($setting);
-            		}
-	            } ?>
-	        </div>
-	        
-	        <!--*************************************************-->
-	        <!-- VIDEO -->
-	        <!--*************************************************-->
-	        <div id="video" class="tab-content">
-	            <h3><?php echo esc_html_e('Video', 'propertyshift'); ?></h3>
-	            <?php
-	            foreach($property_settings as $setting) {
-	            	if($setting['group'] == 'video') {
+	            	if(isset($setting['group']) && $setting['group'] == 'floor_plans') {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } ?>
@@ -476,7 +441,7 @@ class PropertyShift_Properties {
 	            <h3><?php echo esc_html_e('Primary Agent', 'propertyshift'); ?></h3>
 	            <?php
 	            foreach($property_settings as $setting) {
-	            	if($setting['group'] == 'owner_info') {
+	            	if(isset($setting['group']) && $setting['group'] == 'owner_info') {
             			$this->admin_obj->build_admin_field($setting);
             		}
 	            } ?>
@@ -772,8 +737,11 @@ class PropertyShift_Properties {
 
 	        case 'price' :
 	            $price = $property_settings['price']['value'];
-	            if(!empty($price)) { $price = $this->get_formatted_price($price); }
-	            if(empty($price)) { echo '--'; } else { echo $price; }
+	            if(!empty($price)) { 
+	            	echo $this->get_formatted_price($price);
+	            } else {
+	            	echo '--';
+	            }
 	            break;
 
 	        case 'location' :
@@ -827,7 +795,7 @@ class PropertyShift_Properties {
 	        <th scope="row" valign="top"><label for="cat_Image_url"><?php esc_html_e('Category Image Url', 'propertyshift'); ?></label></th>
 	        <td>
 	            <div class="admin-module admin-module-tax-field admin-module-tax-img no-border">
-	                <input type="text" class="property-tax-img" name="term_meta[img]" id="term_meta[img]" size="3" style="width:60%;" value="<?php echo $term_meta['img'] ? $term_meta['img'] : ''; ?>">
+	                <input type="text" class="property-tax-img" name="term_meta[img]" id="term_meta[img]" size="3" style="width:60%;" value="<?php if(isset($term_meta['img'])) { echo $term_meta['img'] ? $term_meta['img'] : ''; } ?>">
 	                <input class="button admin-button ns_upload_image_button" type="button" value="<?php esc_html_e('Upload Image', 'propertyshift'); ?>" />
 	                <span class="button button-secondary remove"><?php esc_html_e('Remove', 'propertyshift'); ?></span><br/>
 	                <p class="description"><?php esc_html_e('Image for Term, use full url', 'propertyshift'); ?></p>
@@ -896,6 +864,140 @@ class PropertyShift_Properties {
 	/************************************************************************/
 
 	/**
+	 *	Get properties
+	 *
+	 * @param array $custom_args
+	 */
+	public function get_properties($custom_args = null) {
+
+		//GET GLOBAL SETTINGS
+		$properties = array();
+		$num_properties_per_page = esc_attr(get_option('ps_num_properties_per_page', 12));
+
+		//SET PAGED VARIABLE
+	    if(is_front_page()) {  
+	        $paged = (get_query_var('page')) ? get_query_var('page') : 1;
+	    } else {  
+	        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+	    }
+
+		//DETERMINE HOW POSTS ARE SORTED
+	    $meta_key = '';
+	    $order = 'DESC';
+	    $order_by = get_option('ps_property_listing_default_sortby', 'date_desc');
+	    if(isset($_GET['sort_by'])) { $order_by = sanitize_text_field($_GET['sort_by']); }
+
+	    if ($order_by == 'date_desc') {
+	        $order = 'DESC';
+	    } else if($order_by == 'date_asc') {
+	        $order = 'ASC';
+	    } else if($order_by == 'price_asc') {
+	        $order = 'ASC';
+	        $order_by = 'meta_value_num';
+	        $meta_key = 'ps_property_price';
+	    } else if($order_by == 'price_desc') {
+	        $order = 'DESC';
+	        $order_by = 'meta_value_num';
+	        $meta_key = 'ps_property_price';
+	    }
+
+		//SET TAXONOMIES
+	    if(empty($property_neighborhood)) { if(!empty($_GET['propertyNeighborhood'])) { $property_neighborhood = sanitize_text_field($_GET['propertyNeighborhood']); } else { $property_neighborhood = ''; } }
+	    if(empty($property_city)) { if(!empty($_GET['propertyCity'])) { $property_city = sanitize_text_field($_GET['propertyCity']); } else { $property_city = ''; } }
+	    if(empty($property_state)) { if(!empty($_GET['propertyState'])) { $property_state = sanitize_text_field($_GET['propertyState']); } else { $property_state = ''; } }
+	    if(empty($property_status)) { if(!empty($_GET['propertyStatus'])) { $property_status = sanitize_text_field($_GET['propertyStatus']); } else { $property_status = ''; } }
+	    if(empty($property_type)) { if(!empty($_GET['propertyType'])) { $property_type = sanitize_text_field($_GET['propertyType']); } else { $property_type = ''; } }
+
+	    //SET META QUERY
+    	$meta_query = array();
+
+    	//FILTER FEATURED PROPERTIES
+	    if (isset($_GET['featured'])) {
+	        $meta_query[] = array(
+	            'key' => 'ps_property_featured',
+	            'value'   => 'true'
+	        );
+	    }
+
+	    //ADVANCED META QUERY
+	    if(isset($_GET['advancedSearch'])) {
+
+	        if(isset($_GET['priceMin'])) { $priceMin = preg_replace("/[^0-9]/","", $_GET['priceMin']); } else { $priceMin = null; }
+	        if(isset($_GET['priceMax'])) { $priceMax = preg_replace("/[^0-9]/","", $_GET['priceMax']); } else { $priceMax = null; }
+
+	        $areaCompare = '';
+	        if(empty($_GET['areaMin'])) { $areaMin = 0; } else { $areaMin = preg_replace("/[^0-9]/","", $_GET['areaMin']); }
+
+	        if(empty($_GET['areaMax'])) {
+	            $areaValue = $areaMin;
+	            $areaCompare = '>=';
+	        } else {
+	            $areaMax = preg_replace("/[^0-9]/","", $_GET['areaMax']);
+	            $areaCompare = 'BETWEEN';
+	            $areaValue = array( $areaMin, $areaMax );
+	        }
+
+	        if(isset($_GET['priceMin']) && isset($_GET['priceMax'])) {
+	            $meta_query[] = array(
+	                'key' => 'ps_property_price',
+	                'value'   => array( $priceMin, $priceMax ),
+	                'type'    => 'numeric',
+	                'compare' => 'BETWEEN',
+	            );
+	        }
+
+	        if(!empty($_GET['beds'])) {
+	            $meta_query[] = array(
+	                'key'     => 'ps_property_bedrooms',
+	                'value'   => sanitize_text_field($_GET['beds']),
+	            );
+	        }
+
+	        if (!empty($_GET['baths'])) {
+	            $numBaths = intval(sanitize_text_field($_GET['baths']));
+	            $numBathsDemical = $numBaths + 0.5;
+	            $meta_query[] = array(
+	                'key' => 'ps_property_bathrooms',
+	                'compare' => 'IN',
+	                'value'   => array($_GET['baths'], $numBathsDemical)
+	            );
+	        }
+
+	        $meta_query[] = array(
+	            'key' => 'ps_property_area',
+	            'value'   => $areaValue,
+	            'type'    => 'numeric',
+	            'compare' => $areaCompare,
+	        );
+	    }
+
+		$properties['args'] = array(
+	        'post_type' => 'ps-property',
+	        'posts_per_page' => $num_properties_per_page,
+	        'property_neighborhood' => $property_neighborhood,
+	        'property_city' => $property_city,
+	        'property_state' => $property_state,
+	        'property_status' => $property_status,
+	        'property_type' => $property_type,
+	        'order' => $order,
+	        'orderby' => $order_by,
+	        'meta_key' => $meta_key,
+	        'paged' => $paged,
+	        'meta_query' => $meta_query,
+	    );
+
+	    //OVERWRITE QUERY WITH CUSTOM ARGS
+	    if(isset($custom_args) && !isset($_GET['advancedSearch'])) {
+	        $properties['args'] = propertyshift_overwrite_query_args($properties['args'], $custom_args);
+	    }
+
+		$properties['args'] = apply_filters('propertyshift_pre_get_properties', $properties['args']);
+		$properties['query'] = new WP_Query($properties['args']);
+
+		return $properties;
+	}
+
+	/**
 	 *	Count properties
 	 *
 	 * @param string $type
@@ -920,18 +1022,27 @@ class PropertyShift_Properties {
 	 *
 	 * @param string $price
 	 */
-	public function get_formatted_price($price) {
+	public function get_formatted_price($price, $price_postfix = null, $class = null) {
 
-	    $currency_symbol = $this->global_settings['ps_currency_symbol'];
-	    $currency_symbol_position = $this->global_settings['ps_currency_symbol_position'];
-	    $currency_thousand = $this->global_settings['ps_thousand_separator'];
-	    $currency_decimal = $this->global_settings['ps_decimal_separator'];
-	    $currency_decimal_num =  $this->global_settings['ps_num_decimal'];
+		if(isset($price) && !empty($price)) {
+			$currency_symbol = $this->global_settings['ps_currency_symbol'];
+		    $currency_symbol_position = $this->global_settings['ps_currency_symbol_position'];
+		    $currency_thousand = $this->global_settings['ps_thousand_separator'];
+		    $currency_decimal = $this->global_settings['ps_decimal_separator'];
+		    $currency_decimal_num =  $this->global_settings['ps_num_decimal'];
 
-	    if(!empty($price)) { $price = number_format($price, $currency_decimal_num, $currency_decimal, $currency_thousand); }
-	    if($currency_symbol_position == 'before') { $price = $currency_symbol.$price; } else { $price = $price.$currency_symbol; }
+		    if(!empty($price)) { $price = number_format($price, $currency_decimal_num, $currency_decimal, $currency_thousand); }
+		    if($currency_symbol_position == 'before') { $price = $currency_symbol.$price; } else { $price = $price.$currency_symbol; }
 
-	    return $price;
+		    if(!empty($price_postfix)) { $price = $price.' <span class="price-postfix">'.esc_attr($price_postfix).'</span>'; }
+
+		    $price = '<div class="property-price '.$class.'">'.$price.'</div>';
+
+		    return $price;
+		} else {
+			return false;
+		}
+	    
 	}
 
 	/**
@@ -1165,41 +1276,34 @@ class PropertyShift_Properties {
 	            'sidebar' => 'false',
 	        ),
 	        5 => array(
-	            'name' => esc_html__('Video', 'propertyshift'),
-	            'label' => esc_html__('Video', 'propertyshift'),
-	            'slug' => 'video',
-	            'active' => 'true',
-	            'sidebar' => 'false',
-	        ),
-	        6 => array(
 	            'name' => esc_html__('Amenities', 'propertyshift'),
 	            'label' => esc_html__('Amenities', 'propertyshift'),
 	            'slug' => 'amenities',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        7 => array(
+	        6 => array(
 	            'name' => esc_html__('Floor Plans', 'propertyshift'),
 	            'label' => esc_html__('Floor Plans', 'propertyshift'),
 	            'slug' => 'floor_plans',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        8 => array(
+	        7 => array(
 	            'name' => esc_html__('Walk Score', 'propertyshift'),
 	            'label' => esc_html__('Walk Score', 'propertyshift'),
 	            'slug' => 'walk_score',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        9 => array(
+	        8 => array(
 	            'name' => esc_html__('Agent Info', 'propertyshift'),
 	            'label' => 'Agent Information',
 	            'slug' => 'agent_info',
 	            'active' => 'true',
 	            'sidebar' => 'false',
 	        ),
-	        10 => array(
+	        9 => array(
 	            'name' => esc_html__('Related Properties', 'propertyshift'),
 	            'label' => 'Related Properties',
 	            'slug' => 'related',

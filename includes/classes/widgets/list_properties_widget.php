@@ -85,7 +85,7 @@ class propertyshift_list_properties_widget extends WP_Widget {
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                             <h5 title="<?php the_title(); ?>"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                                            <?php if(!empty($price)) { ?><p><strong><?php echo $properties_obj->get_formatted_price($price); ?></strong> <?php if(!empty($price_postfix)) { ?><span class="price-postfix"><?php echo esc_attr($price_postfix); ?></span><?php } ?></p><?php } ?>
+                                            <?php echo $properties_obj->get_formatted_price($price, $price_postfix); ?>
                                         </div>
                                     </div>
                                 </div>

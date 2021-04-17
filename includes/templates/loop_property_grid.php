@@ -23,7 +23,7 @@
 	$property_status = $property_obj->get_tax($post->ID, 'property_status');
 ?>
 
-<div <?php post_class(); ?>>
+<div <?php post_class('ps-property ps-property-grid'); ?>>
 
 	<?php do_action('propertyshift_before_property_card', $property_settings); ?>
 
@@ -60,12 +60,7 @@
 			do_action('propertyshift_property_actions'); ?>
 		</div>
 
-		<?php if(!empty($price)) { ?>
-			<div class="property-price">
-				<?php echo $property_obj->get_formatted_price($price); ?>
-				<?php if(!empty($price_postfix)) { ?><span class="price-postfix"><?php echo esc_attr($price_postfix); ?></span><?php } ?>
-			</div>
-		<?php } ?>
+		<?php echo $property_obj->get_formatted_price($price, $price_postfix); ?>
 
 		<div class="property-title">
             <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>

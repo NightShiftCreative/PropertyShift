@@ -12,6 +12,7 @@ class PropertyShift_License_Keys {
 	 *	Init
 	 */
 	public function init() {
+		add_action('admin_init', array($this, 'refresh_license'));
 		add_action('admin_init', array($this, 'activate_license'));
 		add_action('admin_init', array($this, 'deactivate_license'));
 		add_action('admin_notices', array($this, 'admin_notices'));
@@ -27,6 +28,47 @@ class PropertyShift_License_Keys {
 	    $license['status_name'] = 'ps_'.$item_id.'_license_status';
 	    $license['status'] = get_option('ps_'.$item_id.'_license_status');
 	    return $license;
+	}
+
+	/**
+	 * Refresh License Key Status
+	 */
+	public function refresh_license() {
+		if(isset($_POST['propertyshift_refresh_license']) && !empty($_POST['propertyshift_refresh_license'])) {
+			$item_id = sanitize_text_field($_POST['propertyshift_refresh_license']);
+			$license = $this->get_license($item_id);
+
+			$api_params = array(
+	            'edd_action' => 'check_license',
+	            'license'    => $license['key'],
+	            'item_id'  => $item_id, // the name of our product in EDD
+	            'url'      => home_url()
+	        );
+
+	        $response = wp_remote_post( NS_BASICS_SHOP_URL, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+
+	        if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
+	            if ( is_wp_error( $response ) ) {
+	                $message = $response->get_error_message();
+	            } else {
+	                $message = __( 'An error occurred, please try again.', 'propertyshift' );
+	            }
+	        } else {
+	        	$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+	        	if($license_data->license !== 'valid') {
+	        		$message = __( 'Your license is invalid. Please try to reactivate it below.', 'propertyshift' );
+	        	}
+	        }
+
+	        if(!empty($message)) {
+	            delete_option($license['status_name']);
+	            $base_url = admin_url( 'admin.php?page=' . PROPERTYSHIFT_LICENSE_PAGE );
+	            $redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $base_url );
+	            wp_redirect( $redirect );
+	            exit();
+	        }
+
+		}
 	}
 
 	/**
@@ -205,7 +247,8 @@ class PropertyShift_License_Keys {
 	                        <?php if( $license_status !== false && $license_status == 'valid' ) { ?>
 	                            <?php wp_nonce_field( 'ns_nonce', 'ns_nonce' ); ?>
 	                            <button style="width:150px;" type="submit" class="button-secondary activate-license-button" name="propertyshift_deactivate_license" value="<?php echo $item_id; ?>"><?php echo esc_html_e('Deactivate License', 'propertyshift'); ?></button>
-	                        <?php } else {
+	                        	<button type="submit" class="button-secondary refresh-license-button" name="propertyshift_refresh_license" value="<?php echo $item_id; ?>"><?php echo esc_html_e('Refresh License Status', 'propertyshift'); ?></button>
+	                        <?php } else { 
 	                            wp_nonce_field( 'ns_nonce', 'ns_nonce' ); ?>
 	                            <button style="width:150px;" type="submit" class="button-secondary activate-license-button" name="propertyshift_activate_license" value="<?php echo $item_id; ?>"><?php echo esc_html_e('Activate License', 'propertyshift'); ?></button>
 	                        <?php } ?>

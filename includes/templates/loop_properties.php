@@ -3,7 +3,6 @@
     global $post;
     $properties_page = get_option('ps_properties_page');
     $properties_tax_layout = get_option('ps_properties_default_layout', 'grid');
-    $num_properties_per_page = esc_attr(get_option('ps_num_properties_per_page', 12));
     $page_template = get_post_meta($post->ID, '_wp_page_template', true);
     $property_listing_header_display = esc_attr(get_option('ps_property_listing_header_display', 'true'));
 
@@ -16,25 +15,6 @@
         $custom_cols = isset($template_args['custom_cols']) ? $template_args['custom_cols'] : null;
         $no_post_message = isset($template_args['no_post_message']) ? $template_args['no_post_message'] : null;
     }
-	
-    //PAGE SETTINGS
-    if(is_tax()) { 
-        if(!empty($properties_page)) {
-            $properties_page_id = url_to_postid( $properties_page ); 
-            $values = get_post_custom( $properties_page_id ); 
-            $page_layout = isset( $values['ns_basics_page_layout'] ) ? esc_attr( $values['ns_basics_page_layout'][0] ) : 'full';
-        } else {
-            $page_layout = 'full';
-        }
-    } else { 
-        $values = get_post_custom( $post->ID ); 
-        $page_layout = isset( $values['ns_basics_page_layout'] ) ? esc_attr( $values['ns_basics_page_layout'][0] ) : 'full';
-    }
-	
-	//GENERATE COLUMN LAYOUT
-    $property_col_num = 2;
-    if(isset($custom_cols)) { $property_col_num = $custom_cols; } else if($page_layout == 'full') { $property_col_num = 3; }
-    $property_col_class = propertyshift_col_class($property_col_num);
 
     //GET PROPERTY LAYOUT
     if(isset($custom_layout)) {
@@ -57,130 +37,25 @@
         $property_layout = 'grid'; 
     }
 
+    //GENERATE COLUMN LAYOUT
+    $property_col_num = 2;
+    if(isset($property_layout) && $property_layout == 'row') {
+        $property_col_num = 1;
+    } else if(isset($custom_cols)) { 
+        $property_col_num = $custom_cols; 
+    }
+    $property_col_class = propertyshift_col_class($property_col_num);
+
+
     /***************************************************************************/
-    /** SET QUERY ARGS **/
+    /** SET QUERY **/
     /***************************************************************************/
-
-    //SET PAGED VARIABLE
-    if(is_front_page()) {  
-        $paged = (get_query_var('page')) ? get_query_var('page') : 1;
-    } else {  
-        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-    }
-
-    //DETERMINE HOW POSTS ARE SORTED
-    $meta_key = '';
-    $order = 'DESC';
-    $order_by = get_option('ps_property_listing_default_sortby', 'date_desc');
-    if(isset($_GET['sort_by'])) { $order_by = sanitize_text_field($_GET['sort_by']); }
-
-    if ($order_by == 'date_desc') {
-        $order = 'DESC';
-    } else if($order_by == 'date_asc') {
-        $order = 'ASC';
-    } else if($order_by == 'price_asc') {
-        $order = 'ASC';
-        $order_by = 'meta_value_num';
-        $meta_key = 'ps_property_price';
-    } else if($order_by == 'price_desc') {
-        $order = 'DESC';
-        $order_by = 'meta_value_num';
-        $meta_key = 'ps_property_price';
-    }
-
-    //SET TAXONOMIES
-    if(empty($property_neighborhood)) { if(!empty($_GET['propertyNeighborhood'])) { $property_neighborhood = sanitize_text_field($_GET['propertyNeighborhood']); } else { $property_neighborhood = ''; } }
-    if(empty($property_city)) { if(!empty($_GET['propertyCity'])) { $property_city = sanitize_text_field($_GET['propertyCity']); } else { $property_city = ''; } }
-    if(empty($property_state)) { if(!empty($_GET['propertyState'])) { $property_state = sanitize_text_field($_GET['propertyState']); } else { $property_state = ''; } }
-    if(empty($property_status)) { if(!empty($_GET['propertyStatus'])) { $property_status = sanitize_text_field($_GET['propertyStatus']); } else { $property_status = ''; } }
-    if(empty($property_type)) { if(!empty($_GET['propertyType'])) { $property_type = sanitize_text_field($_GET['propertyType']); } else { $property_type = ''; } }
-
-    //SET META QUERY
-    $meta_query = array();
-
-    //FILTER FEATURED PROPERTIES
-    if (isset($_GET['featured'])) {
-        $meta_query[] = array(
-            'key' => 'ps_property_featured',
-            'value'   => 'true'
-        );
-    }
-
-    //ADVANCED META QUERY
-    if(isset($_GET['advancedSearch'])) {
-
-        if(isset($_GET['priceMin'])) { $priceMin = preg_replace("/[^0-9]/","", $_GET['priceMin']); } else { $priceMin = null; }
-        if(isset($_GET['priceMax'])) { $priceMax = preg_replace("/[^0-9]/","", $_GET['priceMax']); } else { $priceMax = null; }
-
-        $areaCompare = '';
-        if(empty($_GET['areaMin'])) { $areaMin = 0; } else { $areaMin = preg_replace("/[^0-9]/","", $_GET['areaMin']); }
-
-        if(empty($_GET['areaMax'])) {
-            $areaValue = $areaMin;
-            $areaCompare = '>=';
-        } else {
-            $areaMax = preg_replace("/[^0-9]/","", $_GET['areaMax']);
-            $areaCompare = 'BETWEEN';
-            $areaValue = array( $areaMin, $areaMax );
-        }
-
-        if(isset($_GET['priceMin']) && isset($_GET['priceMax'])) {
-            $meta_query[] = array(
-                'key' => 'ps_property_price',
-                'value'   => array( $priceMin, $priceMax ),
-                'type'    => 'numeric',
-                'compare' => 'BETWEEN',
-            );
-        }
-
-        if(!empty($_GET['beds'])) {
-            $meta_query[] = array(
-                'key'     => 'ps_property_bedrooms',
-                'value'   => sanitize_text_field($_GET['beds']),
-            );
-        }
-
-        if (!empty($_GET['baths'])) {
-            $numBaths = intval(sanitize_text_field($_GET['baths']));
-            $numBathsDemical = $numBaths + 0.5;
-            $meta_query[] = array(
-                'key' => 'ps_property_bathrooms',
-                'compare' => 'IN',
-                'value'   => array($_GET['baths'], $numBathsDemical)
-            );
-        }
-
-        $meta_query[] = array(
-            'key' => 'ps_property_area',
-            'value'   => $areaValue,
-            'type'    => 'numeric',
-            'compare' => $areaCompare,
-        );
-    }
-
-	$property_listing_args = array(
-        'post_type' => 'ps-property',
-        'posts_per_page' => $num_properties_per_page,
-        'property_neighborhood' => $property_neighborhood,
-        'property_city' => $property_city,
-        'property_state' => $property_state,
-        'property_status' => $property_status,
-        'property_type' => $property_type,
-        'order' => $order,
-        'orderby' => $order_by,
-        'meta_key' => $meta_key,
-        'paged' => $paged,
-        'meta_query' => $meta_query,
-    );
-
-    //OVERWRITE QUERY WITH CUSTOM ARGS
-    if(isset($custom_args) && !isset($_GET['advancedSearch'])) {
-        $property_listing_args = propertyshift_overwrite_query_args($property_listing_args, $custom_args);
-    }
-
-    $property_listing_args = apply_filters('propertyshift_pre_get_properties', $property_listing_args);
-	$property_listing_query = new WP_Query( $property_listing_args );
+    $properties_obj = new PropertyShift_Properties();
+    $property_listing = $properties_obj->get_properties($custom_args);
+    $property_listing_query = $property_listing['query'];
 ?>
+
+<div class="ps-property-listing-wrap">
 
 <?php 
 if($property_listing_header_display == 'true') { 
@@ -196,21 +71,13 @@ if($property_listing_header_display == 'true') {
 <?php
 if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->have_posts() ) : $property_listing_query->the_post(); ?>
 
-    <?php if ($property_layout == 'row' || $property_layout == 'grid') { ?>
-
-        <?php if ($property_layout == 'row') { ?>
-            <div class="col-lg-12"><?php propertyshift_template_loader('loop_property_grid.php', null, false); ?></div>
-        <?php } else { ?>
-            <div class="<?php echo esc_attr($property_col_class); ?>"><?php propertyshift_template_loader('loop_property_grid.php', null, false); ?></div>
-        <?php } ?>
-
-    <?php } else if($property_layout == 'tile') {
-        propertyshift_template_loader('loop_property_grid.php', null, false);
-    } ?>
+    <div class="<?php echo esc_attr($property_col_class); ?>">
+        <?php propertyshift_template_loader('loop_property_grid.php', null, false); ?>  
+    </div>
 
 <?php endwhile; ?>
     <div class="clear"></div>
-	</div><!-- end row -->
+	</div><!-- end listings -->
 	
 	<?php 
 	wp_reset_postdata();
@@ -261,5 +128,7 @@ if ( $property_listing_query->have_posts() ) : while ( $property_listing_query->
         </p>
     </div>
     <div class="clear"></div>
-	</div><!-- end row -->
+	</div><!-- end listings -->
 <?php endif; ?>
+
+</div><!-- end listings wrap -->

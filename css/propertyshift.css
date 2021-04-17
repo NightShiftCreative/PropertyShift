@@ -114,43 +114,6 @@
     text-align:center; 
 }
 
-/** VIDEO **/
-.video-cover { 
-    position:relative; 
-    display:block; 
-    background:#f0f4f8;
-    text-align:center;
-}
-.video-cover img { max-width:100%; height:auto; }
-.video-cover:hover .icon { border-color:#db7e40; background:#db7e40; }
-.video-cover-content {
-    position:absolute;
-    z-index:1;
-    padding:0px 20px;
-    text-align:center;
-    left:0;
-    right:0;
-    top:50%;
-    margin-top:-27px;
-    color:white;
-    font-size:18px;
-}
-.video-cover-content .icon {
-    margin:0;
-    margin-bottom:10px;
-    border:2px solid white;
-    width:60px;
-    height:60px;
-    padding-top:17px;
-    padding-left:3px;
-    border-radius:100%;
-    font-size:25px;
-    transition:all 0.4s;
-}
-.video-cover-content p { margin-bottom:0; }
-
-.video-cover-no-img { min-height:300px; }
-
 /** TABS **/
 .tabs .ui-tabs-nav li { opacity:0.8; }
 .tabs .ui-tabs-nav li.ui-state-active { font-weight:700; opacity:1.0; }
