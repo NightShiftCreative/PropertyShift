@@ -226,6 +226,9 @@ class PropertyShift {
 		// Load shortcodes class
 		$this->shortcodes = new PropertyShift_Shortcodes();
 
+		// Update checker class for add-ons
+		include( plugin_dir_path( __FILE__ ) . 'includes/classes/EDD_SL_Plugin_Updater.php');
+
 		//Action to let add-ons know that core classes are ready
 		do_action( 'propertyshift_loaded', plugin_dir_path( __FILE__ ) );
 
