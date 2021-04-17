@@ -83,6 +83,7 @@ Yes! The core plugin is free, however we offer premium add-ons and themes.
 * IMPROVEMENT: consolidating price format function
 * IMPROVEMENT: adding option to refresh license key status
 * IMPROVEMENT: including EDD plugin updater class in core
+* FIX: Fixing default property layout option
 
 = 1.0.0 =
 * Initial release
