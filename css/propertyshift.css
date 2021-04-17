@@ -12,6 +12,8 @@
 .show-none, .hide { display:none; }
 .show { display:block; }
 
+.button, input[type="submit"] { display:inline-block; }
+
 .icon { margin-right:6px; }
 
 .widget-divider, .widget-divider td { border:none; }

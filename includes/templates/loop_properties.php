@@ -2,7 +2,7 @@
     //GET GLOBAL SETTINGS
     global $post;
     $properties_page = get_option('ps_properties_page');
-    $properties_tax_layout = get_option('ps_properties_default_layout', 'grid');
+    $properties_default_layout = get_option('ps_properties_default_layout', 'grid');
     $page_template = get_post_meta($post->ID, '_wp_page_template', true);
     $property_listing_header_display = esc_attr(get_option('ps_property_listing_header_display', 'true'));
 
@@ -31,10 +31,8 @@
         $property_layout = sanitize_text_field($_GET['property_layout']); 
     } else if($page_template == 'template_properties_row.php') {
         $property_layout = 'row';
-    } else if($page_template == 'template_properties_map.php' || is_tax()) {
-        $property_layout = $properties_tax_layout; 
     } else {
-        $property_layout = 'grid'; 
+        $property_layout = $properties_default_layout; 
     }
 
     //GENERATE COLUMN LAYOUT

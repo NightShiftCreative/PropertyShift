@@ -298,7 +298,7 @@ class PropertyShift_Admin extends NS_Basics_Admin {
                 	$this->build_admin_field($num_properties_per_page_field);
 
                 	$properties_tax_layout_field = array(
-                		'title' => esc_html__('Properties Taxonomy Layout', 'propertyshift'),
+                		'title' => esc_html__('Properties Default Layout', 'propertyshift'),
                 		'name' => 'ps_properties_default_layout',
                 		'value' => $settings['ps_properties_default_layout'],
                 		'type' => 'radio_image',

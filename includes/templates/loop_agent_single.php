@@ -161,7 +161,6 @@ if(!empty($agent)) {
                                 $template_args_properties = array();
                                 $template_args_properties['custom_args'] = $agent_properties['args'];
                                 $template_args_properties['custom_show_filter'] = false;
-                                $template_args_properties['custom_layout'] = 'grid';
                                 $template_args_properties['custom_pagination'] = true;
                                 if($template_location_sidebar == 'true') { $template_args_properties['custom_cols'] = 1; }
                                 $template_args_properties['no_post_message'] = esc_html__( 'Sorry, no properties were found.', 'propertyshift' );

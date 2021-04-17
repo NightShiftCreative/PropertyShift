@@ -46,7 +46,7 @@ class PropertyShift_Shortcodes {
 	            'show_posts' => $num_properties_per_page,
 	            'show_header' => false,
 	            'show_pagination' => 'true',
-	            'layout' => 'grid',
+	            'layout' => get_option('ps_properties_default_layout', 'grid'),
 	            'cols' => 3,
 	            'property_status' => '',
 	            'property_neighborhood' => '',
