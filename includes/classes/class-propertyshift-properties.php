@@ -369,6 +369,11 @@ class PropertyShift_Properties {
 	        <div class="ns-tabs-content">
         	<div class="tab-loader"><img src="<?php echo esc_url(home_url('/')); ?>wp-admin/images/spinner.gif" /> <?php echo esc_html_e('Loading...', 'propertyshift'); ?></div>
 
+        	<div class="add-ons-plug right">
+        		<em>Need more options?</em>
+	        	<a href="<?php echo NS_BASICS_SHOP_URL.'/plugins/propertyshift/add-ons/'; ?>" target="_blank"><i class="fa fa-star"></i> <?php esc_html_e('Get Add-Ons', 'propertyshift'); ?></a>
+	        </div>
+
         	<!--*************************************************-->
 	        <!-- GENERAL INFO -->
 	        <!--*************************************************-->
