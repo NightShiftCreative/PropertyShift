@@ -84,6 +84,7 @@ Yes! The core plugin is free, however we offer premium add-ons and themes.
 * IMPROVEMENT: adding option to refresh license key status
 * IMPROVEMENT: including EDD plugin updater class in core
 * FIX: Fixing default property layout option
+* IMPROVEMENT: Styling on property social sharing
 
 = 1.0.0 =
 * Initial release

@@ -1332,7 +1332,7 @@ class PropertyShift_Properties {
 		$property_listing_display_share = esc_attr(get_option('ps_property_listing_display_share', 'true'));
 		if(class_exists('NS_Basics_Post_Sharing') && $property_listing_display_share == 'true') {
 			$post_share_obj = new NS_Basics_Post_Sharing();
-			echo $post_share_obj->build_post_sharing_links();
+			echo $post_share_obj->build_post_sharing_links('property-share');
 		}
 	}
 
