@@ -36,7 +36,7 @@
     }
 
     //GENERATE COLUMN LAYOUT
-    $property_col_num = 2;
+    $property_col_num = 3;
     if(isset($property_layout) && $property_layout == 'row') {
         $property_col_num = 1;
     } else if(isset($custom_cols)) { 

@@ -85,6 +85,7 @@ Yes! The core plugin is free, however we offer premium add-ons and themes.
 * IMPROVEMENT: including EDD plugin updater class in core
 * FIX: Fixing default property layout option
 * IMPROVEMENT: Styling on property social sharing
+* FIX: default property columns to 3
 
 = 1.0.0 =
 * Initial release
