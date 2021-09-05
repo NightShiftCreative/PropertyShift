@@ -24,7 +24,7 @@ function propertyshift_template_loader_single($template, $post_type, $plugin_pat
 
 	$theme_file = locate_template(array( 'propertyshift/' . $template));
 
-	if(is_singular($post_type)) {
+	if(in_the_loop() && is_singular($post_type)) {
 		if(empty($theme_file)) {
 			echo '<div class="propertyshift">'; 
 			if(empty($plugin_path)) { $plugin_path = plugin_dir_path( __FILE__ ); }
